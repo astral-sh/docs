@@ -1,0 +1,1968 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="charliermarsh">
+      
+      
+        <link rel="canonical" href="https://docs.astral.sh/ruff/contributing/">
+      
+      
+        <link rel="prev" href="../faq/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/ruff-favicon.png">
+      <meta name="generator" content="mkdocs-1.5.0, mkdocs-material-9.3.1+insiders-4.41.0">
+    
+    
+      
+        <title>Contributing - Ruff</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.176649b9.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.da3f46a0.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  <script src="https://cdn.usefathom.com/script.js" data-site="DUAEBFLB" defer></script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#contributing-to-ruff" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Ruff" class="md-header__button md-logo" aria-label="Ruff" data-md-component="logo">
+      
+  <img src="../assets/bolt.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Ruff
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Contributing
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="astral-light" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="astral-dark" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/astral-sh/ruff" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ruff
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Ruff" class="md-nav__button md-logo" aria-label="Ruff" data-md-component="logo">
+      
+  <img src="../assets/bolt.svg" alt="logo">
+
+    </a>
+    Ruff
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/astral-sh/ruff" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ruff
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorial/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Installing Ruff
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    The Ruff Linter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../formatter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    The Ruff Formatter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring Ruff
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../preview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Preview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rules/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../settings/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../versioning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Versioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../integrations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Integrations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-basics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          The Basics
+        </span>
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Basics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Prerequisites
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#development" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Development
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Project Structure
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-adding-a-new-lint-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Example: Adding a new lint rule
+        </span>
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Example: Adding a new lint rule">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rule-naming-convention" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Rule naming convention
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rule-testing-fixtures-and-snapshots" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Rule testing: fixtures and snapshots
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-adding-a-new-configuration-option" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Example: Adding a new configuration option
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mkdocs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          MkDocs
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Release Process
+        </span>
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Release Process">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-new-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Creating a new release
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ecosystem-ci" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Ecosystem CI
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#benchmarking-and-profiling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Benchmarking and Profiling
+        </span>
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Benchmarking and Profiling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cpython-benchmark" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          CPython Benchmark
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#microbenchmarks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Microbenchmarks
+        </span>
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Microbenchmarks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#benchmark-driven-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Benchmark-driven Development
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pr-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          PR Summary
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Tips
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#profiling-projects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Profiling Projects
+        </span>
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Profiling Projects">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Linux
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mac" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Mac
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cargo-dev" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          <code>cargo dev</code>
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#subsystems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Subsystems
+        </span>
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Subsystems">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#compilation-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Compilation Pipeline
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#import-categorization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Import Categorization
+        </span>
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Import Categorization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#project-root" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Project root
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#package-root" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Package root
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#import-categorization_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Import categorization
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="contributing-to-ruff">Contributing to Ruff<a class="headerlink" href="#contributing-to-ruff" title="Permanent link">#</a></h1>
+<p>Welcome! We're happy to have you here. Thank you in advance for your contribution to Ruff.</p>
+<ul>
+<li><a href="#the-basics">The Basics</a><ul>
+<li><a href="#prerequisites">Prerequisites</a></li>
+<li><a href="#development">Development</a></li>
+<li><a href="#project-structure">Project Structure</a></li>
+<li><a href="#example-adding-a-new-lint-rule">Example: Adding a new lint rule</a><ul>
+<li><a href="#rule-naming-convention">Rule naming convention</a></li>
+<li><a href="#rule-testing-fixtures-and-snapshots">Rule testing: fixtures and snapshots</a></li>
+</ul>
+</li>
+<li><a href="#example-adding-a-new-configuration-option">Example: Adding a new configuration option</a></li>
+</ul>
+</li>
+<li><a href="#mkdocs">MkDocs</a></li>
+<li><a href="#release-process">Release Process</a><ul>
+<li><a href="#creating-a-new-release">Creating a new release</a></li>
+</ul>
+</li>
+<li><a href="#ecosystem-ci">Ecosystem CI</a></li>
+<li><a href="#benchmarking-and-profiling">Benchmarking and Profiling</a><ul>
+<li><a href="#cpython-benchmark">CPython Benchmark</a></li>
+<li><a href="#microbenchmarks">Microbenchmarks</a><ul>
+<li><a href="#benchmark-driven-development">Benchmark-driven Development</a></li>
+<li><a href="#pr-summary">PR Summary</a></li>
+<li><a href="#tips">Tips</a></li>
+</ul>
+</li>
+<li><a href="#profiling-projects">Profiling Projects</a><ul>
+<li><a href="#linux">Linux</a></li>
+<li><a href="#mac">Mac</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#cargo-dev"><code>cargo dev</code></a></li>
+<li><a href="#subsystems">Subsystems</a><ul>
+<li><a href="#compilation-pipeline">Compilation Pipeline</a></li>
+<li><a href="#import-categorization">Import Categorization</a><ul>
+<li><a href="#project-root">Project root</a></li>
+<li><a href="#package-root">Package root</a></li>
+<li><a href="#import-categorization-1">Import categorization</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="the-basics">The Basics<a class="headerlink" href="#the-basics" title="Permanent link">#</a></h2>
+<p>Ruff welcomes contributions in the form of pull requests.</p>
+<p>For small changes (e.g., bug fixes), feel free to submit a PR.</p>
+<p>For larger changes (e.g., new lint rules, new functionality, new configuration options), consider
+creating an <a href="https://github.com/astral-sh/ruff/issues"><strong>issue</strong></a> outlining your proposed change.
+You can also join us on <a href="https://discord.com/invite/astral-sh">Discord</a> to discuss your idea with the
+community. We've labeled <a href="https://github.com/astral-sh/ruff/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22">beginner-friendly tasks</a>
+in the issue tracker, along with <a href="https://github.com/astral-sh/ruff/issues?q=is%3Aissue+is%3Aopen+label%3Abug">bugs</a>
+and <a href="https://github.com/astral-sh/ruff/issues?q=is%3Aissue+is%3Aopen+label%3Aaccepted">improvements</a>
+that are ready for contributions.</p>
+<p>If you have suggestions on how we might improve the contributing documentation, <a href="https://github.com/astral-sh/ruff/discussions/5693">let us know</a>!</p>
+<h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">#</a></h3>
+<p>Ruff is written in Rust. You'll need to install the
+<a href="https://www.rust-lang.org/tools/install">Rust toolchain</a> for development.</p>
+<p>You'll also need <a href="https://insta.rs/docs/">Insta</a> to update snapshot tests:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>cargo<span class="w"> </span>install<span class="w"> </span>cargo-insta
+</code></pre></div>
+<p>And you'll need pre-commit to run some validation checks:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>pipx<span class="w"> </span>install<span class="w"> </span>pre-commit<span class="w">  </span><span class="c1"># or `pip install pre-commit` if you have a virtualenv</span>
+</code></pre></div>
+<p>You can optionally install pre-commit hooks to automatically run the validation checks
+when making a commit:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>pre-commit<span class="w"> </span>install
+</code></pre></div>
+<p>We recommend <a href="https://nexte.st/">nextest</a> to run Ruff's test suite (via <code>cargo nextest run</code>),
+though it's not strictly necessary:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>cargo<span class="w"> </span>install<span class="w"> </span>cargo-nextest<span class="w"> </span>--locked
+</code></pre></div>
+<p>Throughout this guide, any usages of <code>cargo test</code> can be replaced with <code>cargo nextest run</code>,
+if you choose to install <code>nextest</code>.</p>
+<h3 id="development">Development<a class="headerlink" href="#development" title="Permanent link">#</a></h3>
+<p>After cloning the repository, run Ruff locally from the repository root with:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>cargo<span class="w"> </span>run<span class="w"> </span>-p<span class="w"> </span>ruff<span class="w"> </span>--<span class="w"> </span>check<span class="w"> </span>/path/to/file.py<span class="w"> </span>--no-cache
+</code></pre></div>
+<p>Prior to opening a pull request, ensure that your code has been auto-formatted,
+and that it passes both the lint and test validation checks:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>cargo<span class="w"> </span>clippy<span class="w"> </span>--workspace<span class="w"> </span>--all-targets<span class="w"> </span>--all-features<span class="w"> </span>--<span class="w"> </span>-D<span class="w"> </span>warnings<span class="w">  </span><span class="c1"># Rust linting</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nv">RUFF_UPDATE_SCHEMA</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>cargo<span class="w"> </span><span class="nb">test</span><span class="w">  </span><span class="c1"># Rust testing and updating ruff.schema.json</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>pre-commit<span class="w"> </span>run<span class="w"> </span>--all-files<span class="w"> </span>--show-diff-on-failure<span class="w">  </span><span class="c1"># Rust and Python formatting, Markdown and Python linting, etc.</span>
+</code></pre></div>
+<p>These checks will run on GitHub Actions when you open your pull request, but running them locally
+will save you time and expedite the merge process.</p>
+<p>If you're using VS Code, you can also install the recommended <a href="https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer">rust-analyzer</a> extension to get these checks while editing.</p>
+<p>Note that many code changes also require updating the snapshot tests, which is done interactively
+after running <code>cargo test</code> like so:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>cargo<span class="w"> </span>insta<span class="w"> </span>review
+</code></pre></div>
+<p>If your pull request relates to a specific lint rule, include the category and rule code in the
+title, as in the following examples:</p>
+<ul>
+<li>[<code>flake8-bugbear</code>] Avoid false positive for usage after <code>continue</code> (<code>B031</code>)</li>
+<li>[<code>flake8-simplify</code>] Detect implicit <code>else</code> cases in <code>needless-bool</code> (<code>SIM103</code>)</li>
+<li>[<code>pycodestyle</code>] Implement <code>redundant-backslash</code> (<code>E502</code>)</li>
+</ul>
+<p>Your pull request will be reviewed by a maintainer, which may involve a few rounds of iteration
+prior to merging.</p>
+<h3 id="project-structure">Project Structure<a class="headerlink" href="#project-structure" title="Permanent link">#</a></h3>
+<p>Ruff is structured as a monorepo with a <a href="https://matklad.github.io/2021/08/22/large-rust-workspaces.html">flat crate structure</a>,
+such that all crates are contained in a flat <code>crates</code> directory.</p>
+<p>The vast majority of the code, including all lint rules, lives in the <code>ruff_linter</code> crate (located
+at <code>crates/ruff_linter</code>). As a contributor, that's the crate that'll be most relevant to you.</p>
+<p>At the time of writing, the repository includes the following crates:</p>
+<ul>
+<li><code>crates/ruff_linter</code>: library crate containing all lint rules and the core logic for running them.
+    If you're working on a rule, this is the crate for you.</li>
+<li><code>crates/ruff_benchmark</code>: binary crate for running micro-benchmarks.</li>
+<li><code>crates/ruff_cache</code>: library crate for caching lint results.</li>
+<li><code>crates/ruff</code>: binary crate containing Ruff's command-line interface.</li>
+<li><code>crates/ruff_dev</code>: binary crate containing utilities used in the development of Ruff itself (e.g.,
+    <code>cargo dev generate-all</code>), see the <a href="#cargo-dev"><code>cargo dev</code></a> section below.</li>
+<li><code>crates/ruff_diagnostics</code>: library crate for the rule-independent abstractions in the lint
+    diagnostics APIs.</li>
+<li><code>crates/ruff_formatter</code>: library crate for language agnostic code formatting logic based on an
+    intermediate representation. The backend for <code>ruff_python_formatter</code>.</li>
+<li><code>crates/ruff_index</code>: library crate inspired by <code>rustc_index</code>.</li>
+<li><code>crates/ruff_macros</code>: proc macro crate containing macros used by Ruff.</li>
+<li><code>crates/ruff_notebook</code>: library crate for parsing and manipulating Jupyter notebooks.</li>
+<li><code>crates/ruff_python_ast</code>: library crate containing Python-specific AST types and utilities.</li>
+<li><code>crates/ruff_python_codegen</code>: library crate containing utilities for generating Python source code.</li>
+<li><code>crates/ruff_python_formatter</code>: library crate implementing the Python formatter. Emits an
+    intermediate representation for each node, which <code>ruff_formatter</code> prints based on the configured
+    line length.</li>
+<li><code>crates/ruff_python_semantic</code>: library crate containing Python-specific semantic analysis logic,
+    including Ruff's semantic model. Used to resolve queries like "What import does this variable
+    refer to?"</li>
+<li><code>crates/ruff_python_stdlib</code>: library crate containing Python-specific standard library data, e.g.
+    the names of all built-in exceptions and which standard library types are immutable.</li>
+<li><code>crates/ruff_python_trivia</code>: library crate containing Python-specific trivia utilities (e.g.,
+    for analyzing indentation, newlines, etc.).</li>
+<li><code>crates/ruff_python_parser</code>: library crate containing the Python parser.</li>
+<li><code>crates/ruff_wasm</code>: library crate for exposing Ruff as a WebAssembly module. Powers the
+    <a href="https://play.ruff.rs/">Ruff Playground</a>.</li>
+</ul>
+<h3 id="example-adding-a-new-lint-rule">Example: Adding a new lint rule<a class="headerlink" href="#example-adding-a-new-lint-rule" title="Permanent link">#</a></h3>
+<p>At a high level, the steps involved in adding a new lint rule are as follows:</p>
+<ol>
+<li>
+<p>Determine a name for the new rule as per our <a href="#rule-naming-convention">rule naming convention</a>
+    (e.g., <code>AssertFalse</code>, as in, "allow <code>assert False</code>").</p>
+</li>
+<li>
+<p>Create a file for your rule (e.g., <code>crates/ruff_linter/src/rules/flake8_bugbear/rules/assert_false.rs</code>).</p>
+</li>
+<li>
+<p>In that file, define a violation struct (e.g., <code>pub struct AssertFalse</code>). You can grep for
+    <code>#[violation]</code> to see examples.</p>
+</li>
+<li>
+<p>In that file, define a function that adds the violation to the diagnostic list as appropriate
+    (e.g., <code>pub(crate) fn assert_false</code>) based on whatever inputs are required for the rule (e.g.,
+    an <code>ast::StmtAssert</code> node).</p>
+</li>
+<li>
+<p>Define the logic for invoking the diagnostic in <code>crates/ruff_linter/src/checkers/ast/analyze</code> (for
+    AST-based rules), <code>crates/ruff_linter/src/checkers/tokens.rs</code> (for token-based rules),
+    <code>crates/ruff_linter/src/checkers/physical_lines.rs</code> (for text-based rules),
+    <code>crates/ruff_linter/src/checkers/filesystem.rs</code> (for filesystem-based rules), etc. For AST-based rules,
+    you'll likely want to modify <code>analyze/statement.rs</code> (if your rule is based on analyzing
+    statements, like imports) or <code>analyze/expression.rs</code> (if your rule is based on analyzing
+    expressions, like function calls).</p>
+</li>
+<li>
+<p>Map the violation struct to a rule code in <code>crates/ruff_linter/src/codes.rs</code> (e.g., <code>B011</code>). New rules
+    should be added in <code>RuleGroup::Preview</code>.</p>
+</li>
+<li>
+<p>Add proper <a href="#rule-testing-fixtures-and-snapshots">testing</a> for your rule.</p>
+</li>
+<li>
+<p>Update the generated files (documentation and generated code).</p>
+</li>
+</ol>
+<p>To trigger the violation, you'll likely want to augment the logic in <code>crates/ruff_linter/src/checkers/ast.rs</code>
+to call your new function at the appropriate time and with the appropriate inputs. The <code>Checker</code>
+defined therein is a Python AST visitor, which iterates over the AST, building up a semantic model,
+and calling out to lint rule analyzer functions as it goes.</p>
+<p>If you need to inspect the AST, you can run <code>cargo dev print-ast</code> with a Python file. Grep
+for the <code>Diagnostic::new</code> invocations to understand how other, similar rules are implemented.</p>
+<p>Once you're satisfied with your code, add tests for your rule
+(see: <a href="#rule-testing-fixtures-and-snapshots">rule testing</a>), and regenerate the documentation and
+associated assets (like our JSON Schema) with <code>cargo dev generate-all</code>.</p>
+<p>Finally, submit a pull request, and include the category, rule name, and rule code in the title, as
+in:</p>
+<blockquote>
+<p>[<code>pycodestyle</code>] Implement <code>redundant-backslash</code> (<code>E502</code>)</p>
+</blockquote>
+<h4 id="rule-naming-convention">Rule naming convention<a class="headerlink" href="#rule-naming-convention" title="Permanent link">#</a></h4>
+<p>Like Clippy, Ruff's rule names should make grammatical and logical sense when read as "allow
+${rule}" or "allow ${rule} items", as in the context of suppression comments.</p>
+<p>For example, <code>AssertFalse</code> fits this convention: it flags <code>assert False</code> statements, and so a
+suppression comment would be framed as "allow <code>assert False</code>".</p>
+<p>As such, rule names should...</p>
+<ul>
+<li>
+<p>Highlight the pattern that is being linted against, rather than the preferred alternative.
+    For example, <code>AssertFalse</code> guards against <code>assert False</code> statements.</p>
+</li>
+<li>
+<p><em>Not</em> contain instructions on how to fix the violation, which instead belong in the rule
+    documentation and the <code>fix_title</code>.</p>
+</li>
+<li>
+<p><em>Not</em> contain a redundant prefix, like <code>Disallow</code> or <code>Banned</code>, which are already implied by the
+    convention.</p>
+</li>
+</ul>
+<p>When re-implementing rules from other linters, we prioritize adhering to this convention over
+preserving the original rule name.</p>
+<h4 id="rule-testing-fixtures-and-snapshots">Rule testing: fixtures and snapshots<a class="headerlink" href="#rule-testing-fixtures-and-snapshots" title="Permanent link">#</a></h4>
+<p>To test rules, Ruff uses snapshots of Ruff's output for a given file (fixture). Generally, there
+will be one file per rule (e.g., <code>E402.py</code>), and each file will contain all necessary examples of
+both violations and non-violations. <code>cargo insta review</code> will generate a snapshot file containing
+Ruff's output for each fixture, which you can then commit alongside your changes.</p>
+<p>Once you've completed the code for the rule itself, you can define tests with the following steps:</p>
+<ol>
+<li>
+<p>Add a Python file to <code>crates/ruff_linter/resources/test/fixtures/[linter]</code> that contains the code you
+    want to test. The file name should match the rule name (e.g., <code>E402.py</code>), and it should include
+    examples of both violations and non-violations.</p>
+</li>
+<li>
+<p>Run Ruff locally against your file and verify the output is as expected. Once you're satisfied
+    with the output (you see the violations you expect, and no others), proceed to the next step.
+    For example, if you're adding a new rule named <code>E402</code>, you would run:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>cargo<span class="w"> </span>run<span class="w"> </span>-p<span class="w"> </span>ruff<span class="w"> </span>--<span class="w"> </span>check<span class="w"> </span>crates/ruff_linter/resources/test/fixtures/pycodestyle/E402.py<span class="w"> </span>--no-cache<span class="w"> </span>--preview<span class="w"> </span>--select<span class="w"> </span>E402
+</code></pre></div>
+<p><strong>Note:</strong> Only a subset of rules are enabled by default. When testing a new rule, ensure that
+you activate it by adding <code>--select ${rule_code}</code> to the command.</p>
+</li>
+<li>
+<p>Add the test to the relevant <code>crates/ruff_linter/src/rules/[linter]/mod.rs</code> file. If you're contributing
+    a rule to a pre-existing set, you should be able to find a similar example to pattern-match
+    against. If you're adding a new linter, you'll need to create a new <code>mod.rs</code> file (see,
+    e.g., <code>crates/ruff_linter/src/rules/flake8_bugbear/mod.rs</code>)</p>
+</li>
+<li>
+<p>Run <code>cargo test</code>. Your test will fail, but you'll be prompted to follow-up
+    with <code>cargo insta review</code>. Run <code>cargo insta review</code>, review and accept the generated snapshot,
+    then commit the snapshot file alongside the rest of your changes.</p>
+</li>
+<li>
+<p>Run <code>cargo test</code> again to ensure that your test passes.</p>
+</li>
+</ol>
+<h3 id="example-adding-a-new-configuration-option">Example: Adding a new configuration option<a class="headerlink" href="#example-adding-a-new-configuration-option" title="Permanent link">#</a></h3>
+<p>Ruff's user-facing settings live in a few different places.</p>
+<p>First, the command-line options are defined via the <code>Args</code> struct in <code>crates/ruff/src/args.rs</code>.</p>
+<p>Second, the <code>pyproject.toml</code> options are defined in <code>crates/ruff_workspace/src/options.rs</code> (via the
+<code>Options</code> struct), <code>crates/ruff_workspace/src/configuration.rs</code> (via the <code>Configuration</code> struct),
+and <code>crates/ruff_workspace/src/settings.rs</code> (via the <code>Settings</code> struct), which then includes
+the <code>LinterSettings</code> struct as a field.</p>
+<p>These represent, respectively: the schema used to parse the <code>pyproject.toml</code> file; an internal,
+intermediate representation; and the final, internal representation used to power Ruff.</p>
+<p>To add a new configuration option, you'll likely want to modify these latter few files (along with
+<code>args.rs</code>, if appropriate). If you want to pattern-match against an existing example, grep for
+<code>dummy_variable_rgx</code>, which defines a regular expression to match against acceptable unused
+variables (e.g., <code>_</code>).</p>
+<p>Note that plugin-specific configuration options are defined in their own modules (e.g.,
+<code>Settings</code> in <code>crates/ruff_linter/src/flake8_unused_arguments/settings.rs</code> coupled with
+<code>Flake8UnusedArgumentsOptions</code> in <code>crates/ruff_workspace/src/options.rs</code>).</p>
+<p>Finally, regenerate the documentation and generated code with <code>cargo dev generate-all</code>.</p>
+<h2 id="mkdocs">MkDocs<a class="headerlink" href="#mkdocs" title="Permanent link">#</a></h2>
+<p>To preview any changes to the documentation locally:</p>
+<ol>
+<li>
+<p>Install the <a href="https://www.rust-lang.org/tools/install">Rust toolchain</a>.</p>
+</li>
+<li>
+<p>Install MkDocs and Material for MkDocs with:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>docs/requirements.txt
+</code></pre></div>
+</li>
+<li>
+<p>Generate the MkDocs site with:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>python<span class="w"> </span>scripts/generate_mkdocs.py
+</code></pre></div>
+</li>
+<li>
+<p>Run the development server with:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># For contributors.</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>mkdocs<span class="w"> </span>serve<span class="w"> </span>-f<span class="w"> </span>mkdocs.public.yml
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="c1"># For members of the Astral org, which has access to MkDocs Insiders via sponsorship.</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>mkdocs<span class="w"> </span>serve<span class="w"> </span>-f<span class="w"> </span>mkdocs.insiders.yml
+</code></pre></div>
+</li>
+</ol>
+<p>The documentation should then be available locally at
+<a href="http://127.0.0.1:8000/ruff/">http://127.0.0.1:8000/ruff/</a>.</p>
+<h2 id="release-process">Release Process<a class="headerlink" href="#release-process" title="Permanent link">#</a></h2>
+<p>As of now, Ruff has an ad hoc release process: releases are cut with high frequency via GitHub
+Actions, which automatically generates the appropriate wheels across architectures and publishes
+them to <a href="https://pypi.org/project/ruff/">PyPI</a>.</p>
+<p>Ruff follows the <a href="https://semver.org/">semver</a> versioning standard. However, as pre-1.0 software,
+even patch releases may contain <a href="https://semver.org/#spec-item-4">non-backwards-compatible changes</a>.</p>
+<h3 id="creating-a-new-release">Creating a new release<a class="headerlink" href="#creating-a-new-release" title="Permanent link">#</a></h3>
+<ol>
+<li>Install <code>uv</code>: <code>curl -LsSf https://astral.sh/uv/install.sh | sh</code></li>
+<li>Run <code>./scripts/release.sh</code>; this command will:<ul>
+<li>Generate a temporary virtual environment with <code>rooster</code></li>
+<li>Generate a changelog entry in <code>CHANGELOG.md</code></li>
+<li>Update versions in <code>pyproject.toml</code> and <code>Cargo.toml</code></li>
+<li>Update references to versions in the <code>README.md</code> and documentation</li>
+<li>Display contributors for the release</li>
+</ul>
+</li>
+<li>The changelog should then be editorialized for consistency<ul>
+<li>Often labels will be missing from pull requests they will need to be manually organized into the proper section</li>
+<li>Changes should be edited to be user-facing descriptions, avoiding internal details</li>
+</ul>
+</li>
+<li>Highlight any breaking changes in <code>BREAKING_CHANGES.md</code></li>
+<li>Run <code>cargo check</code>. This should update the lock file with new versions.</li>
+<li>Create a pull request with the changelog and version updates</li>
+<li>Merge the PR</li>
+<li>Run the <a href="https://github.com/astral-sh/ruff/actions/workflows/release.yml">release workflow</a> with:<ul>
+<li>The new version number (without starting <code>v</code>)</li>
+</ul>
+</li>
+<li>The release workflow will do the following:<ol>
+<li>Build all the assets. If this fails (even though we tested in step 4), we haven't tagged or
+    uploaded anything, you can restart after pushing a fix. If you just need to rerun the build,
+    make sure you're <a href="https://docs.github.com/en/actions/managing-workflow-runs/re-running-workflows-and-jobs#re-running-failed-jobs-in-a-workflow">re-running all the failed
+    jobs</a> and not just a single failed job.</li>
+<li>Upload to PyPI.</li>
+<li>Create and push the Git tag (as extracted from <code>pyproject.toml</code>). We create the Git tag only
+    after building the wheels and uploading to PyPI, since we can't delete or modify the tag (<a href="https://github.com/astral-sh/ruff/issues/4468">#4468</a>).</li>
+<li>Attach artifacts to draft GitHub release</li>
+<li>Trigger downstream repositories. This can fail non-catastrophically, as we can run any
+    downstream jobs manually if needed.</li>
+</ol>
+</li>
+<li>Verify the GitHub release:<ol>
+<li>The Changelog should match the content of <code>CHANGELOG.md</code></li>
+<li>Append the contributors from the <code>bump.sh</code> script</li>
+</ol>
+</li>
+<li>If needed, <a href="https://github.com/astral-sh/ruff/blob/main/scripts/update_schemastore.py">update the schemastore</a>.<ol>
+<li>One can determine if an update is needed when
+    <code>git diff old-version-tag new-version-tag -- ruff.schema.json</code> returns a non-empty diff.</li>
+<li>Once run successfully, you should follow the link in the output to create a PR.</li>
+</ol>
+</li>
+<li>If needed, update the <code>ruff-lsp</code> and <code>ruff-vscode</code> repositories.</li>
+</ol>
+<h2 id="ecosystem-ci">Ecosystem CI<a class="headerlink" href="#ecosystem-ci" title="Permanent link">#</a></h2>
+<p>GitHub Actions will run your changes against a number of real-world projects from GitHub and
+report on any linter or formatter differences. You can also run those checks locally via:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>./python/ruff-ecosystem
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>ruff-ecosystem<span class="w"> </span>check<span class="w"> </span>ruff<span class="w"> </span><span class="s2">&quot;./target/debug/ruff&quot;</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>ruff-ecosystem<span class="w"> </span>format<span class="w"> </span>ruff<span class="w"> </span><span class="s2">&quot;./target/debug/ruff&quot;</span>
+</code></pre></div>
+<p>See the <a href="https://github.com/astral-sh/ruff/tree/main/python/ruff-ecosystem">ruff-ecosystem package</a> for more details.</p>
+<h2 id="benchmarking-and-profiling">Benchmarking and Profiling<a class="headerlink" href="#benchmarking-and-profiling" title="Permanent link">#</a></h2>
+<p>We have several ways of benchmarking and profiling Ruff:</p>
+<ul>
+<li>Our main performance benchmark comparing Ruff with other tools on the CPython codebase</li>
+<li>Microbenchmarks which run the linter or the formatter on individual files. These run on pull requests.</li>
+<li>Profiling the linter on either the microbenchmarks or entire projects</li>
+</ul>
+<blockquote>
+<p>[!NOTE]
+When running benchmarks, ensure that your CPU is otherwise idle (e.g., close any background
+applications, like web browsers). You may also want to switch your CPU to a "performance"
+mode, if it exists, especially when benchmarking short-lived processes.</p>
+</blockquote>
+<h3 id="cpython-benchmark">CPython Benchmark<a class="headerlink" href="#cpython-benchmark" title="Permanent link">#</a></h3>
+<p>First, clone <a href="https://github.com/python/cpython">CPython</a>. It's a large and diverse Python codebase,
+which makes it a good target for benchmarking.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>git<span class="w"> </span>clone<span class="w"> </span>--branch<span class="w"> </span><span class="m">3</span>.10<span class="w"> </span>https://github.com/python/cpython.git<span class="w"> </span>crates/ruff_linter/resources/test/cpython
+</code></pre></div>
+<p>To benchmark the release build:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>cargo<span class="w"> </span>build<span class="w"> </span>--release<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>hyperfine<span class="w"> </span>--warmup<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">  </span><span class="s2">&quot;./target/release/ruff ./crates/ruff_linter/resources/test/cpython/ --no-cache -e&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">  </span><span class="s2">&quot;./target/release/ruff ./crates/ruff_linter/resources/test/cpython/ -e&quot;</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>Benchmark<span class="w"> </span><span class="m">1</span>:<span class="w"> </span>./target/release/ruff<span class="w"> </span>./crates/ruff_linter/resources/test/cpython/<span class="w"> </span>--no-cache
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w">  </span>Time<span class="w"> </span><span class="o">(</span>mean<span class="w"> </span>±<span class="w"> </span>σ<span class="o">)</span>:<span class="w">     </span><span class="m">293</span>.8<span class="w"> </span>ms<span class="w"> </span>±<span class="w">   </span><span class="m">3</span>.2<span class="w"> </span>ms<span class="w">    </span><span class="o">[</span>User:<span class="w"> </span><span class="m">2384</span>.6<span class="w"> </span>ms,<span class="w"> </span>System:<span class="w"> </span><span class="m">90</span>.3<span class="w"> </span>ms<span class="o">]</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="w">  </span>Range<span class="w"> </span><span class="o">(</span>min<span class="w"> </span>…<span class="w"> </span>max<span class="o">)</span>:<span class="w">   </span><span class="m">289</span>.9<span class="w"> </span>ms<span class="w"> </span>…<span class="w"> </span><span class="m">301</span>.6<span class="w"> </span>ms<span class="w">    </span><span class="m">10</span><span class="w"> </span>runs
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>Benchmark<span class="w"> </span><span class="m">2</span>:<span class="w"> </span>./target/release/ruff<span class="w"> </span>./crates/ruff_linter/resources/test/cpython/
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="w">  </span>Time<span class="w"> </span><span class="o">(</span>mean<span class="w"> </span>±<span class="w"> </span>σ<span class="o">)</span>:<span class="w">      </span><span class="m">48</span>.0<span class="w"> </span>ms<span class="w"> </span>±<span class="w">   </span><span class="m">3</span>.1<span class="w"> </span>ms<span class="w">    </span><span class="o">[</span>User:<span class="w"> </span><span class="m">65</span>.2<span class="w"> </span>ms,<span class="w"> </span>System:<span class="w"> </span><span class="m">124</span>.7<span class="w"> </span>ms<span class="o">]</span>
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="w">  </span>Range<span class="w"> </span><span class="o">(</span>min<span class="w"> </span>…<span class="w"> </span>max<span class="o">)</span>:<span class="w">    </span><span class="m">45</span>.0<span class="w"> </span>ms<span class="w"> </span>…<span class="w">  </span><span class="m">66</span>.7<span class="w"> </span>ms<span class="w">    </span><span class="m">62</span><span class="w"> </span>runs
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>Summary
+<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a><span class="w">  </span><span class="s1">&#39;./target/release/ruff ./crates/ruff_linter/resources/test/cpython/&#39;</span><span class="w"> </span>ran
+<a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a><span class="w">    </span><span class="m">6</span>.12<span class="w"> </span>±<span class="w"> </span><span class="m">0</span>.41<span class="w"> </span><span class="nb">times</span><span class="w"> </span>faster<span class="w"> </span>than<span class="w"> </span><span class="s1">&#39;./target/release/ruff ./crates/ruff_linter/resources/test/cpython/ --no-cache&#39;</span>
+</code></pre></div>
+<p>To benchmark against the ecosystem's existing tools:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>hyperfine<span class="w"> </span>--ignore-failure<span class="w"> </span>--warmup<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">  </span><span class="s2">&quot;./target/release/ruff ./crates/ruff_linter/resources/test/cpython/ --no-cache&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">  </span><span class="s2">&quot;pyflakes crates/ruff_linter/resources/test/cpython&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">  </span><span class="s2">&quot;autoflake --recursive --expand-star-imports --remove-all-unused-imports --remove-unused-variables --remove-duplicate-keys resources/test/cpython&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">  </span><span class="s2">&quot;pycodestyle crates/ruff_linter/resources/test/cpython&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="w">  </span><span class="s2">&quot;flake8 crates/ruff_linter/resources/test/cpython&quot;</span>
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>Benchmark<span class="w"> </span><span class="m">1</span>:<span class="w"> </span>./target/release/ruff<span class="w"> </span>./crates/ruff_linter/resources/test/cpython/<span class="w"> </span>--no-cache
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="w">  </span>Time<span class="w"> </span><span class="o">(</span>mean<span class="w"> </span>±<span class="w"> </span>σ<span class="o">)</span>:<span class="w">     </span><span class="m">294</span>.3<span class="w"> </span>ms<span class="w"> </span>±<span class="w">   </span><span class="m">3</span>.3<span class="w"> </span>ms<span class="w">    </span><span class="o">[</span>User:<span class="w"> </span><span class="m">2467</span>.5<span class="w"> </span>ms,<span class="w"> </span>System:<span class="w"> </span><span class="m">89</span>.6<span class="w"> </span>ms<span class="o">]</span>
+<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="w">  </span>Range<span class="w"> </span><span class="o">(</span>min<span class="w"> </span>…<span class="w"> </span>max<span class="o">)</span>:<span class="w">   </span><span class="m">291</span>.1<span class="w"> </span>ms<span class="w"> </span>…<span class="w"> </span><span class="m">302</span>.8<span class="w"> </span>ms<span class="w">    </span><span class="m">10</span><span class="w"> </span>runs
+<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>
+<a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a><span class="w">  </span>Warning:<span class="w"> </span>Ignoring<span class="w"> </span>non-zero<span class="w"> </span><span class="nb">exit</span><span class="w"> </span>code.
+<a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>
+<a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a>Benchmark<span class="w"> </span><span class="m">2</span>:<span class="w"> </span>pyflakes<span class="w"> </span>crates/ruff_linter/resources/test/cpython
+<a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a><span class="w">  </span>Time<span class="w"> </span><span class="o">(</span>mean<span class="w"> </span>±<span class="w"> </span>σ<span class="o">)</span>:<span class="w">     </span><span class="m">15</span>.786<span class="w"> </span>s<span class="w"> </span>±<span class="w">  </span><span class="m">0</span>.143<span class="w"> </span>s<span class="w">    </span><span class="o">[</span>User:<span class="w"> </span><span class="m">15</span>.560<span class="w"> </span>s,<span class="w"> </span>System:<span class="w"> </span><span class="m">0</span>.214<span class="w"> </span>s<span class="o">]</span>
+<a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a><span class="w">  </span>Range<span class="w"> </span><span class="o">(</span>min<span class="w"> </span>…<span class="w"> </span>max<span class="o">)</span>:<span class="w">   </span><span class="m">15</span>.640<span class="w"> </span>s<span class="w"> </span>…<span class="w"> </span><span class="m">16</span>.157<span class="w"> </span>s<span class="w">    </span><span class="m">10</span><span class="w"> </span>runs
+<a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a>
+<a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a><span class="w">  </span>Warning:<span class="w"> </span>Ignoring<span class="w"> </span>non-zero<span class="w"> </span><span class="nb">exit</span><span class="w"> </span>code.
+<a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a>
+<a id="__codelineno-14-20" name="__codelineno-14-20" href="#__codelineno-14-20"></a>Benchmark<span class="w"> </span><span class="m">3</span>:<span class="w"> </span>autoflake<span class="w"> </span>--recursive<span class="w"> </span>--expand-star-imports<span class="w"> </span>--remove-all-unused-imports<span class="w"> </span>--remove-unused-variables<span class="w"> </span>--remove-duplicate-keys<span class="w"> </span>resources/test/cpython
+<a id="__codelineno-14-21" name="__codelineno-14-21" href="#__codelineno-14-21"></a><span class="w">  </span>Time<span class="w"> </span><span class="o">(</span>mean<span class="w"> </span>±<span class="w"> </span>σ<span class="o">)</span>:<span class="w">      </span><span class="m">6</span>.175<span class="w"> </span>s<span class="w"> </span>±<span class="w">  </span><span class="m">0</span>.169<span class="w"> </span>s<span class="w">    </span><span class="o">[</span>User:<span class="w"> </span><span class="m">54</span>.102<span class="w"> </span>s,<span class="w"> </span>System:<span class="w"> </span><span class="m">1</span>.057<span class="w"> </span>s<span class="o">]</span>
+<a id="__codelineno-14-22" name="__codelineno-14-22" href="#__codelineno-14-22"></a><span class="w">  </span>Range<span class="w"> </span><span class="o">(</span>min<span class="w"> </span>…<span class="w"> </span>max<span class="o">)</span>:<span class="w">    </span><span class="m">5</span>.950<span class="w"> </span>s<span class="w"> </span>…<span class="w">  </span><span class="m">6</span>.391<span class="w"> </span>s<span class="w">    </span><span class="m">10</span><span class="w"> </span>runs
+<a id="__codelineno-14-23" name="__codelineno-14-23" href="#__codelineno-14-23"></a>
+<a id="__codelineno-14-24" name="__codelineno-14-24" href="#__codelineno-14-24"></a>Benchmark<span class="w"> </span><span class="m">4</span>:<span class="w"> </span>pycodestyle<span class="w"> </span>crates/ruff_linter/resources/test/cpython
+<a id="__codelineno-14-25" name="__codelineno-14-25" href="#__codelineno-14-25"></a><span class="w">  </span>Time<span class="w"> </span><span class="o">(</span>mean<span class="w"> </span>±<span class="w"> </span>σ<span class="o">)</span>:<span class="w">     </span><span class="m">46</span>.921<span class="w"> </span>s<span class="w"> </span>±<span class="w">  </span><span class="m">0</span>.508<span class="w"> </span>s<span class="w">    </span><span class="o">[</span>User:<span class="w"> </span><span class="m">46</span>.699<span class="w"> </span>s,<span class="w"> </span>System:<span class="w"> </span><span class="m">0</span>.202<span class="w"> </span>s<span class="o">]</span>
+<a id="__codelineno-14-26" name="__codelineno-14-26" href="#__codelineno-14-26"></a><span class="w">  </span>Range<span class="w"> </span><span class="o">(</span>min<span class="w"> </span>…<span class="w"> </span>max<span class="o">)</span>:<span class="w">   </span><span class="m">46</span>.171<span class="w"> </span>s<span class="w"> </span>…<span class="w"> </span><span class="m">47</span>.863<span class="w"> </span>s<span class="w">    </span><span class="m">10</span><span class="w"> </span>runs
+<a id="__codelineno-14-27" name="__codelineno-14-27" href="#__codelineno-14-27"></a>
+<a id="__codelineno-14-28" name="__codelineno-14-28" href="#__codelineno-14-28"></a><span class="w">  </span>Warning:<span class="w"> </span>Ignoring<span class="w"> </span>non-zero<span class="w"> </span><span class="nb">exit</span><span class="w"> </span>code.
+<a id="__codelineno-14-29" name="__codelineno-14-29" href="#__codelineno-14-29"></a>
+<a id="__codelineno-14-30" name="__codelineno-14-30" href="#__codelineno-14-30"></a>Benchmark<span class="w"> </span><span class="m">5</span>:<span class="w"> </span>flake8<span class="w"> </span>crates/ruff_linter/resources/test/cpython
+<a id="__codelineno-14-31" name="__codelineno-14-31" href="#__codelineno-14-31"></a><span class="w">  </span>Time<span class="w"> </span><span class="o">(</span>mean<span class="w"> </span>±<span class="w"> </span>σ<span class="o">)</span>:<span class="w">     </span><span class="m">12</span>.260<span class="w"> </span>s<span class="w"> </span>±<span class="w">  </span><span class="m">0</span>.321<span class="w"> </span>s<span class="w">    </span><span class="o">[</span>User:<span class="w"> </span><span class="m">102</span>.934<span class="w"> </span>s,<span class="w"> </span>System:<span class="w"> </span><span class="m">1</span>.230<span class="w"> </span>s<span class="o">]</span>
+<a id="__codelineno-14-32" name="__codelineno-14-32" href="#__codelineno-14-32"></a><span class="w">  </span>Range<span class="w"> </span><span class="o">(</span>min<span class="w"> </span>…<span class="w"> </span>max<span class="o">)</span>:<span class="w">   </span><span class="m">11</span>.848<span class="w"> </span>s<span class="w"> </span>…<span class="w"> </span><span class="m">12</span>.933<span class="w"> </span>s<span class="w">    </span><span class="m">10</span><span class="w"> </span>runs
+<a id="__codelineno-14-33" name="__codelineno-14-33" href="#__codelineno-14-33"></a>
+<a id="__codelineno-14-34" name="__codelineno-14-34" href="#__codelineno-14-34"></a><span class="w">  </span>Warning:<span class="w"> </span>Ignoring<span class="w"> </span>non-zero<span class="w"> </span><span class="nb">exit</span><span class="w"> </span>code.
+<a id="__codelineno-14-35" name="__codelineno-14-35" href="#__codelineno-14-35"></a>
+<a id="__codelineno-14-36" name="__codelineno-14-36" href="#__codelineno-14-36"></a>Summary
+<a id="__codelineno-14-37" name="__codelineno-14-37" href="#__codelineno-14-37"></a><span class="w">  </span><span class="s1">&#39;./target/release/ruff ./crates/ruff_linter/resources/test/cpython/ --no-cache&#39;</span><span class="w"> </span>ran
+<a id="__codelineno-14-38" name="__codelineno-14-38" href="#__codelineno-14-38"></a><span class="w">   </span><span class="m">20</span>.98<span class="w"> </span>±<span class="w"> </span><span class="m">0</span>.62<span class="w"> </span><span class="nb">times</span><span class="w"> </span>faster<span class="w"> </span>than<span class="w"> </span><span class="s1">&#39;autoflake --recursive --expand-star-imports --remove-all-unused-imports --remove-unused-variables --remove-duplicate-keys resources/test/cpython&#39;</span>
+<a id="__codelineno-14-39" name="__codelineno-14-39" href="#__codelineno-14-39"></a><span class="w">   </span><span class="m">41</span>.66<span class="w"> </span>±<span class="w"> </span><span class="m">1</span>.18<span class="w"> </span><span class="nb">times</span><span class="w"> </span>faster<span class="w"> </span>than<span class="w"> </span><span class="s1">&#39;flake8 crates/ruff_linter/resources/test/cpython&#39;</span>
+<a id="__codelineno-14-40" name="__codelineno-14-40" href="#__codelineno-14-40"></a><span class="w">   </span><span class="m">53</span>.64<span class="w"> </span>±<span class="w"> </span><span class="m">0</span>.77<span class="w"> </span><span class="nb">times</span><span class="w"> </span>faster<span class="w"> </span>than<span class="w"> </span><span class="s1">&#39;pyflakes crates/ruff_linter/resources/test/cpython&#39;</span>
+<a id="__codelineno-14-41" name="__codelineno-14-41" href="#__codelineno-14-41"></a><span class="w">  </span><span class="m">159</span>.43<span class="w"> </span>±<span class="w"> </span><span class="m">2</span>.48<span class="w"> </span><span class="nb">times</span><span class="w"> </span>faster<span class="w"> </span>than<span class="w"> </span><span class="s1">&#39;pycodestyle crates/ruff_linter/resources/test/cpython&#39;</span>
+</code></pre></div>
+<p>To benchmark a subset of rules, e.g. <code>LineTooLong</code> and <code>DocLineTooLong</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>cargo<span class="w"> </span>build<span class="w"> </span>--release<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>hyperfine<span class="w"> </span>--warmup<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">  </span><span class="s2">&quot;./target/release/ruff ./crates/ruff_linter/resources/test/cpython/ --no-cache -e --select W505,E501&quot;</span>
+</code></pre></div>
+<p>You can run <code>poetry install</code> from <code>./scripts/benchmarks</code> to create a working environment for the
+above. All reported benchmarks were computed using the versions specified by
+<code>./scripts/benchmarks/pyproject.toml</code> on Python 3.11.</p>
+<p>To benchmark Pylint, remove the following files from the CPython repository:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>rm<span class="w"> </span>Lib/test/bad_coding.py<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">  </span>Lib/test/bad_coding2.py<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">  </span>Lib/test/bad_getattr.py<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">  </span>Lib/test/bad_getattr2.py<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">  </span>Lib/test/bad_getattr3.py<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="w">  </span>Lib/test/badcert.pem<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="w">  </span>Lib/test/badkey.pem<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="w">  </span>Lib/test/badsyntax_3131.py<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="w">  </span>Lib/test/badsyntax_future10.py<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="w">  </span>Lib/test/badsyntax_future3.py<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="w">  </span>Lib/test/badsyntax_future4.py<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a><span class="w">  </span>Lib/test/badsyntax_future5.py<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a><span class="w">  </span>Lib/test/badsyntax_future6.py<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a><span class="w">  </span>Lib/test/badsyntax_future7.py<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a><span class="w">  </span>Lib/test/badsyntax_future8.py<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a><span class="w">  </span>Lib/test/badsyntax_future9.py<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a><span class="w">  </span>Lib/test/badsyntax_pep3120.py<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a><span class="w">  </span>Lib/test/test_asyncio/test_runners.py<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-16-19" name="__codelineno-16-19" href="#__codelineno-16-19"></a><span class="w">  </span>Lib/test/test_copy.py<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-16-20" name="__codelineno-16-20" href="#__codelineno-16-20"></a><span class="w">  </span>Lib/test/test_inspect.py<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-16-21" name="__codelineno-16-21" href="#__codelineno-16-21"></a><span class="w">  </span>Lib/test/test_typing.py
+</code></pre></div>
+<p>Then, from <code>crates/ruff_linter/resources/test/cpython</code>, run: <code>time pylint -j 0 -E $(git ls-files '*.py')</code>. This
+will execute Pylint with maximum parallelism and only report errors.</p>
+<p>To benchmark Pyupgrade, run the following from <code>crates/ruff_linter/resources/test/cpython</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>hyperfine<span class="w"> </span>--ignore-failure<span class="w"> </span>--warmup<span class="w"> </span><span class="m">5</span><span class="w"> </span>--prepare<span class="w"> </span><span class="s2">&quot;git reset --hard HEAD&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">  </span><span class="s2">&quot;find . -type f -name \&quot;*.py\&quot; | xargs -P 0 pyupgrade --py311-plus&quot;</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>Benchmark<span class="w"> </span><span class="m">1</span>:<span class="w"> </span>find<span class="w"> </span>.<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*.py&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="w"> </span>-P<span class="w"> </span><span class="m">0</span><span class="w"> </span>pyupgrade<span class="w"> </span>--py311-plus
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="w">  </span>Time<span class="w"> </span><span class="o">(</span>mean<span class="w"> </span>±<span class="w"> </span>σ<span class="o">)</span>:<span class="w">     </span><span class="m">30</span>.119<span class="w"> </span>s<span class="w"> </span>±<span class="w">  </span><span class="m">0</span>.195<span class="w"> </span>s<span class="w">    </span><span class="o">[</span>User:<span class="w"> </span><span class="m">28</span>.638<span class="w"> </span>s,<span class="w"> </span>System:<span class="w"> </span><span class="m">0</span>.390<span class="w"> </span>s<span class="o">]</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="w">  </span>Range<span class="w"> </span><span class="o">(</span>min<span class="w"> </span>…<span class="w"> </span>max<span class="o">)</span>:<span class="w">   </span><span class="m">29</span>.813<span class="w"> </span>s<span class="w"> </span>…<span class="w"> </span><span class="m">30</span>.356<span class="w"> </span>s<span class="w">    </span><span class="m">10</span><span class="w"> </span>runs
+</code></pre></div>
+<h3 id="microbenchmarks">Microbenchmarks<a class="headerlink" href="#microbenchmarks" title="Permanent link">#</a></h3>
+<p>The <code>ruff_benchmark</code> crate benchmarks the linter and the formatter on individual files.</p>
+<p>You can run the benchmarks with</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>cargo<span class="w"> </span>benchmark
+</code></pre></div>
+<h4 id="benchmark-driven-development">Benchmark-driven Development<a class="headerlink" href="#benchmark-driven-development" title="Permanent link">#</a></h4>
+<p>Ruff uses <a href="https://bheisler.github.io/criterion.rs/book/">Criterion.rs</a> for benchmarks. You can use
+<code>--save-baseline=&lt;name&gt;</code> to store an initial baseline benchmark (e.g. on <code>main</code>) and then use
+<code>--benchmark=&lt;name&gt;</code> to compare against that benchmark. Criterion will print a message telling you
+if the benchmark improved/regressed compared to that baseline.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c1"># Run once on your &quot;baseline&quot; code</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>cargo<span class="w"> </span>bench<span class="w"> </span>-p<span class="w"> </span>ruff_benchmark<span class="w"> </span>--<span class="w"> </span>--save-baseline<span class="o">=</span>main
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="c1"># Then iterate with</span>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>cargo<span class="w"> </span>bench<span class="w"> </span>-p<span class="w"> </span>ruff_benchmark<span class="w"> </span>--<span class="w"> </span>--baseline<span class="o">=</span>main
+</code></pre></div>
+<h4 id="pr-summary">PR Summary<a class="headerlink" href="#pr-summary" title="Permanent link">#</a></h4>
+<p>You can use <code>--save-baseline</code> and <code>critcmp</code> to get a pretty comparison between two recordings.
+This is useful to illustrate the improvements of a PR.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1"># On main</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>cargo<span class="w"> </span>bench<span class="w"> </span>-p<span class="w"> </span>ruff_benchmark<span class="w"> </span>--<span class="w"> </span>--save-baseline<span class="o">=</span>main
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="c1"># After applying your changes</span>
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>cargo<span class="w"> </span>bench<span class="w"> </span>-p<span class="w"> </span>ruff_benchmark<span class="w"> </span>--<span class="w"> </span>--save-baseline<span class="o">=</span>pr
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>
+<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>critcmp<span class="w"> </span>main<span class="w"> </span>pr
+</code></pre></div>
+<p>You must install <a href="https://github.com/BurntSushi/critcmp"><code>critcmp</code></a> for the comparison.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>cargo<span class="w"> </span>install<span class="w"> </span>critcmp
+</code></pre></div>
+<h4 id="tips">Tips<a class="headerlink" href="#tips" title="Permanent link">#</a></h4>
+<ul>
+<li>Use <code>cargo bench -p ruff_benchmark &lt;filter&gt;</code> to only run specific benchmarks. For example: <code>cargo benchmark lexer</code>
+    to only run the lexer benchmarks.</li>
+<li>Use <code>cargo bench -p ruff_benchmark -- --quiet</code> for a more cleaned up output (without statistical relevance)</li>
+<li>Use <code>cargo bench -p ruff_benchmark -- --quick</code> to get faster results (more prone to noise)</li>
+</ul>
+<h3 id="profiling-projects">Profiling Projects<a class="headerlink" href="#profiling-projects" title="Permanent link">#</a></h3>
+<p>You can either use the microbenchmarks from above or a project directory for benchmarking. There
+are a lot of profiling tools out there,
+<a href="https://nnethercote.github.io/perf-book/profiling.html">The Rust Performance Book</a> lists some
+examples.</p>
+<h4 id="linux">Linux<a class="headerlink" href="#linux" title="Permanent link">#</a></h4>
+<p>Install <code>perf</code> and build <code>ruff_benchmark</code> with the <code>profiling</code> profile and then run it with perf</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>cargo<span class="w"> </span>bench<span class="w"> </span>-p<span class="w"> </span>ruff_benchmark<span class="w"> </span>--no-run<span class="w"> </span>--profile<span class="o">=</span>profiling<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>perf<span class="w"> </span>record<span class="w"> </span>--call-graph<span class="w"> </span>dwarf<span class="w"> </span>-F<span class="w"> </span><span class="m">9999</span><span class="w"> </span>cargo<span class="w"> </span>bench<span class="w"> </span>-p<span class="w"> </span>ruff_benchmark<span class="w"> </span>--profile<span class="o">=</span>profiling<span class="w"> </span>--<span class="w"> </span>--profile-time<span class="o">=</span><span class="m">1</span>
+</code></pre></div>
+<p>You can also use the <code>ruff_dev</code> launcher to run <code>ruff check</code> multiple times on a repository to
+gather enough samples for a good flamegraph (change the 999, the sample rate, and the 30, the number
+of checks, to your liking)</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>cargo<span class="w"> </span>build<span class="w"> </span>--bin<span class="w"> </span>ruff_dev<span class="w"> </span>--profile<span class="o">=</span>profiling
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>perf<span class="w"> </span>record<span class="w"> </span>-g<span class="w"> </span>-F<span class="w"> </span><span class="m">999</span><span class="w"> </span>target/profiling/ruff_dev<span class="w"> </span>repeat<span class="w"> </span>--repeat<span class="w"> </span><span class="m">30</span><span class="w"> </span>--exit-zero<span class="w"> </span>--no-cache<span class="w"> </span>path/to/cpython<span class="w"> </span>&gt;<span class="w"> </span>/dev/null
+</code></pre></div>
+<p>Then convert the recorded profile</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>perf<span class="w"> </span>script<span class="w"> </span>-F<span class="w"> </span>+pid<span class="w"> </span>&gt;<span class="w"> </span>/tmp/test.perf
+</code></pre></div>
+<p>You can now view the converted file with <a href="https://profiler.firefox.com/">firefox profiler</a>, with a
+more in-depth guide <a href="https://profiler.firefox.com/docs/#/./guide-perf-profiling">here</a></p>
+<p>An alternative is to convert the perf data to <code>flamegraph.svg</code> using
+<a href="https://github.com/flamegraph-rs/flamegraph">flamegraph</a> (<code>cargo install flamegraph</code>):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>flamegraph<span class="w"> </span>--perfdata<span class="w"> </span>perf.data<span class="w"> </span>--no-inline
+</code></pre></div>
+<h4 id="mac">Mac<a class="headerlink" href="#mac" title="Permanent link">#</a></h4>
+<p>Install <a href="https://crates.io/crates/cargo-instruments"><code>cargo-instruments</code></a>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>cargo<span class="w"> </span>install<span class="w"> </span>cargo-instruments
+</code></pre></div>
+<p>Then run the profiler with</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>cargo<span class="w"> </span>instruments<span class="w"> </span>-t<span class="w"> </span><span class="nb">time</span><span class="w"> </span>--bench<span class="w"> </span>linter<span class="w"> </span>--profile<span class="w"> </span>profiling<span class="w"> </span>-p<span class="w"> </span>ruff_benchmark<span class="w"> </span>--<span class="w"> </span>--profile-time<span class="o">=</span><span class="m">1</span>
+</code></pre></div>
+<ul>
+<li><code>-t</code>: Specifies what to profile. Useful options are <code>time</code> to profile the wall time and <code>alloc</code>
+    for profiling the allocations.</li>
+<li>You may want to pass an additional filter to run a single test file</li>
+</ul>
+<p>Otherwise, follow the instructions from the linux section.</p>
+<h2 id="cargo-dev"><code>cargo dev</code><a class="headerlink" href="#cargo-dev" title="Permanent link">#</a></h2>
+<p><code>cargo dev</code> is a shortcut for <code>cargo run --package ruff_dev --bin ruff_dev</code>. You can run some useful
+utils with it:</p>
+<ul>
+<li><code>cargo dev print-ast &lt;file&gt;</code>: Print the AST of a python file using Ruff's
+    <a href="https://github.com/astral-sh/ruff/tree/main/crates/ruff_python_parser">Python parser</a>.
+    For <code>if True: pass # comment</code>, you can see the syntax tree, the byte offsets for start and
+    stop of each node and also how the <code>:</code> token, the comment and whitespace are not represented
+    anymore:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>[
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>    If(
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>        StmtIf {
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>            range: 0..13,
+<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a>            test: Constant(
+<a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a>                ExprConstant {
+<a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a>                    range: 3..7,
+<a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a>                    value: Bool(
+<a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a>                        true,
+<a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a>                    ),
+<a id="__codelineno-28-11" name="__codelineno-28-11" href="#__codelineno-28-11"></a>                    kind: None,
+<a id="__codelineno-28-12" name="__codelineno-28-12" href="#__codelineno-28-12"></a>                },
+<a id="__codelineno-28-13" name="__codelineno-28-13" href="#__codelineno-28-13"></a>            ),
+<a id="__codelineno-28-14" name="__codelineno-28-14" href="#__codelineno-28-14"></a>            body: [
+<a id="__codelineno-28-15" name="__codelineno-28-15" href="#__codelineno-28-15"></a>                Pass(
+<a id="__codelineno-28-16" name="__codelineno-28-16" href="#__codelineno-28-16"></a>                    StmtPass {
+<a id="__codelineno-28-17" name="__codelineno-28-17" href="#__codelineno-28-17"></a>                        range: 9..13,
+<a id="__codelineno-28-18" name="__codelineno-28-18" href="#__codelineno-28-18"></a>                    },
+<a id="__codelineno-28-19" name="__codelineno-28-19" href="#__codelineno-28-19"></a>                ),
+<a id="__codelineno-28-20" name="__codelineno-28-20" href="#__codelineno-28-20"></a>            ],
+<a id="__codelineno-28-21" name="__codelineno-28-21" href="#__codelineno-28-21"></a>            orelse: [],
+<a id="__codelineno-28-22" name="__codelineno-28-22" href="#__codelineno-28-22"></a>        },
+<a id="__codelineno-28-23" name="__codelineno-28-23" href="#__codelineno-28-23"></a>    ),
+<a id="__codelineno-28-24" name="__codelineno-28-24" href="#__codelineno-28-24"></a>]
+</code></pre></div>
+<ul>
+<li><code>cargo dev print-tokens &lt;file&gt;</code>: Print the tokens that the AST is built upon. Again for
+    <code>if True: pass # comment</code>:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>0 If 2
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>3 True 7
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>7 Colon 8
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>9 Pass 13
+<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a>14 Comment(
+<a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a>    &quot;# comment&quot;,
+<a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a>) 23
+<a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a>23 Newline 24
+</code></pre></div>
+<ul>
+<li><code>cargo dev print-cst &lt;file&gt;</code>: Print the CST of a python file using
+    <a href="https://github.com/Instagram/LibCST">LibCST</a>, which is used in addition to the RustPython parser
+    in Ruff. E.g. for <code>if True: pass # comment</code> everything including the whitespace is represented:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>Module {
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>    body: [
+<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a>        Compound(
+<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a>            If(
+<a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a>                If {
+<a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a>                    test: Name(
+<a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a>                        Name {
+<a id="__codelineno-30-8" name="__codelineno-30-8" href="#__codelineno-30-8"></a>                            value: &quot;True&quot;,
+<a id="__codelineno-30-9" name="__codelineno-30-9" href="#__codelineno-30-9"></a>                            lpar: [],
+<a id="__codelineno-30-10" name="__codelineno-30-10" href="#__codelineno-30-10"></a>                            rpar: [],
+<a id="__codelineno-30-11" name="__codelineno-30-11" href="#__codelineno-30-11"></a>                        },
+<a id="__codelineno-30-12" name="__codelineno-30-12" href="#__codelineno-30-12"></a>                    ),
+<a id="__codelineno-30-13" name="__codelineno-30-13" href="#__codelineno-30-13"></a>                    body: SimpleStatementSuite(
+<a id="__codelineno-30-14" name="__codelineno-30-14" href="#__codelineno-30-14"></a>                        SimpleStatementSuite {
+<a id="__codelineno-30-15" name="__codelineno-30-15" href="#__codelineno-30-15"></a>                            body: [
+<a id="__codelineno-30-16" name="__codelineno-30-16" href="#__codelineno-30-16"></a>                                Pass(
+<a id="__codelineno-30-17" name="__codelineno-30-17" href="#__codelineno-30-17"></a>                                    Pass {
+<a id="__codelineno-30-18" name="__codelineno-30-18" href="#__codelineno-30-18"></a>                                        semicolon: None,
+<a id="__codelineno-30-19" name="__codelineno-30-19" href="#__codelineno-30-19"></a>                                    },
+<a id="__codelineno-30-20" name="__codelineno-30-20" href="#__codelineno-30-20"></a>                                ),
+<a id="__codelineno-30-21" name="__codelineno-30-21" href="#__codelineno-30-21"></a>                            ],
+<a id="__codelineno-30-22" name="__codelineno-30-22" href="#__codelineno-30-22"></a>                            leading_whitespace: SimpleWhitespace(
+<a id="__codelineno-30-23" name="__codelineno-30-23" href="#__codelineno-30-23"></a>                                &quot; &quot;,
+<a id="__codelineno-30-24" name="__codelineno-30-24" href="#__codelineno-30-24"></a>                            ),
+<a id="__codelineno-30-25" name="__codelineno-30-25" href="#__codelineno-30-25"></a>                            trailing_whitespace: TrailingWhitespace {
+<a id="__codelineno-30-26" name="__codelineno-30-26" href="#__codelineno-30-26"></a>                                whitespace: SimpleWhitespace(
+<a id="__codelineno-30-27" name="__codelineno-30-27" href="#__codelineno-30-27"></a>                                    &quot; &quot;,
+<a id="__codelineno-30-28" name="__codelineno-30-28" href="#__codelineno-30-28"></a>                                ),
+<a id="__codelineno-30-29" name="__codelineno-30-29" href="#__codelineno-30-29"></a>                                comment: Some(
+<a id="__codelineno-30-30" name="__codelineno-30-30" href="#__codelineno-30-30"></a>                                    Comment(
+<a id="__codelineno-30-31" name="__codelineno-30-31" href="#__codelineno-30-31"></a>                                        &quot;# comment&quot;,
+<a id="__codelineno-30-32" name="__codelineno-30-32" href="#__codelineno-30-32"></a>                                    ),
+<a id="__codelineno-30-33" name="__codelineno-30-33" href="#__codelineno-30-33"></a>                                ),
+<a id="__codelineno-30-34" name="__codelineno-30-34" href="#__codelineno-30-34"></a>                                newline: Newline(
+<a id="__codelineno-30-35" name="__codelineno-30-35" href="#__codelineno-30-35"></a>                                    None,
+<a id="__codelineno-30-36" name="__codelineno-30-36" href="#__codelineno-30-36"></a>                                    Real,
+<a id="__codelineno-30-37" name="__codelineno-30-37" href="#__codelineno-30-37"></a>                                ),
+<a id="__codelineno-30-38" name="__codelineno-30-38" href="#__codelineno-30-38"></a>                            },
+<a id="__codelineno-30-39" name="__codelineno-30-39" href="#__codelineno-30-39"></a>                        },
+<a id="__codelineno-30-40" name="__codelineno-30-40" href="#__codelineno-30-40"></a>                    ),
+<a id="__codelineno-30-41" name="__codelineno-30-41" href="#__codelineno-30-41"></a>                    orelse: None,
+<a id="__codelineno-30-42" name="__codelineno-30-42" href="#__codelineno-30-42"></a>                    leading_lines: [],
+<a id="__codelineno-30-43" name="__codelineno-30-43" href="#__codelineno-30-43"></a>                    whitespace_before_test: SimpleWhitespace(
+<a id="__codelineno-30-44" name="__codelineno-30-44" href="#__codelineno-30-44"></a>                        &quot; &quot;,
+<a id="__codelineno-30-45" name="__codelineno-30-45" href="#__codelineno-30-45"></a>                    ),
+<a id="__codelineno-30-46" name="__codelineno-30-46" href="#__codelineno-30-46"></a>                    whitespace_after_test: SimpleWhitespace(
+<a id="__codelineno-30-47" name="__codelineno-30-47" href="#__codelineno-30-47"></a>                        &quot;&quot;,
+<a id="__codelineno-30-48" name="__codelineno-30-48" href="#__codelineno-30-48"></a>                    ),
+<a id="__codelineno-30-49" name="__codelineno-30-49" href="#__codelineno-30-49"></a>                    is_elif: false,
+<a id="__codelineno-30-50" name="__codelineno-30-50" href="#__codelineno-30-50"></a>                },
+<a id="__codelineno-30-51" name="__codelineno-30-51" href="#__codelineno-30-51"></a>            ),
+<a id="__codelineno-30-52" name="__codelineno-30-52" href="#__codelineno-30-52"></a>        ),
+<a id="__codelineno-30-53" name="__codelineno-30-53" href="#__codelineno-30-53"></a>    ],
+<a id="__codelineno-30-54" name="__codelineno-30-54" href="#__codelineno-30-54"></a>    header: [],
+<a id="__codelineno-30-55" name="__codelineno-30-55" href="#__codelineno-30-55"></a>    footer: [],
+<a id="__codelineno-30-56" name="__codelineno-30-56" href="#__codelineno-30-56"></a>    default_indent: &quot;    &quot;,
+<a id="__codelineno-30-57" name="__codelineno-30-57" href="#__codelineno-30-57"></a>    default_newline: &quot;\n&quot;,
+<a id="__codelineno-30-58" name="__codelineno-30-58" href="#__codelineno-30-58"></a>    has_trailing_newline: true,
+<a id="__codelineno-30-59" name="__codelineno-30-59" href="#__codelineno-30-59"></a>    encoding: &quot;utf-8&quot;,
+<a id="__codelineno-30-60" name="__codelineno-30-60" href="#__codelineno-30-60"></a>}
+</code></pre></div>
+<ul>
+<li><code>cargo dev generate-all</code>: Update <code>ruff.schema.json</code>, <code>docs/configuration.md</code> and <code>docs/rules</code>.
+    You can also set <code>RUFF_UPDATE_SCHEMA=1</code> to update <code>ruff.schema.json</code> during <code>cargo test</code>.</li>
+<li><code>cargo dev generate-cli-help</code>, <code>cargo dev generate-docs</code> and <code>cargo dev generate-json-schema</code>:
+    Update just <code>docs/configuration.md</code>, <code>docs/rules</code> and <code>ruff.schema.json</code> respectively.</li>
+<li><code>cargo dev generate-options</code>: Generate a markdown-compatible table of all <code>pyproject.toml</code>
+    options. Used for <a href="https://docs.astral.sh/ruff/settings/">https://docs.astral.sh/ruff/settings/</a>.</li>
+<li><code>cargo dev generate-rules-table</code>: Generate a markdown-compatible table of all rules. Used for <a href="https://docs.astral.sh/ruff/rules/">https://docs.astral.sh/ruff/rules/</a>.</li>
+<li><code>cargo dev round-trip &lt;python file or jupyter notebook&gt;</code>: Read a Python file or Jupyter Notebook,
+    parse it, serialize the parsed representation and write it back. Used to check how good our
+    representation is so that fixes don't rewrite irrelevant parts of a file.</li>
+<li><code>cargo dev format_dev</code>: See ruff_python_formatter README.md</li>
+</ul>
+<h2 id="subsystems">Subsystems<a class="headerlink" href="#subsystems" title="Permanent link">#</a></h2>
+<h3 id="compilation-pipeline">Compilation Pipeline<a class="headerlink" href="#compilation-pipeline" title="Permanent link">#</a></h3>
+<p>If we view Ruff as a compiler, in which the inputs are paths to Python files and the outputs are
+diagnostics, then our current compilation pipeline proceeds as follows:</p>
+<ol>
+<li>
+<p><strong>File discovery</strong>: Given paths like <code>foo/</code>, locate all Python files in any specified subdirectories, taking into account our hierarchical settings system and any <code>exclude</code> options.</p>
+</li>
+<li>
+<p><strong>Package resolution</strong>: Determine the "package root" for every file by traversing over its parent directories and looking for <code>__init__.py</code> files.</p>
+</li>
+<li>
+<p><strong>Cache initialization</strong>: For every "package root", initialize an empty cache.</p>
+</li>
+<li>
+<p><strong>Analysis</strong>: For every file, in parallel:</p>
+<ol>
+<li>
+<p><strong>Cache read</strong>: If the file is cached (i.e., its modification timestamp hasn't changed since it was last analyzed), short-circuit, and return the cached diagnostics.</p>
+</li>
+<li>
+<p><strong>Tokenization</strong>: Run the lexer over the file to generate a token stream.</p>
+</li>
+<li>
+<p><strong>Indexing</strong>: Extract metadata from the token stream, such as: comment ranges, <code># noqa</code> locations, <code># isort: off</code> locations, "doc lines", etc.</p>
+</li>
+<li>
+<p><strong>Token-based rule evaluation</strong>: Run any lint rules that are based on the contents of the token stream (e.g., commented-out code).</p>
+</li>
+<li>
+<p><strong>Filesystem-based rule evaluation</strong>: Run any lint rules that are based on the contents of the filesystem (e.g., lack of <code>__init__.py</code> file in a package).</p>
+</li>
+<li>
+<p><strong>Logical line-based rule evaluation</strong>: Run any lint rules that are based on logical lines (e.g., stylistic rules).</p>
+</li>
+<li>
+<p><strong>Parsing</strong>: Run the parser over the token stream to produce an AST. (This consumes the token stream, so anything that relies on the token stream needs to happen before parsing.)</p>
+</li>
+<li>
+<p><strong>AST-based rule evaluation</strong>: Run any lint rules that are based on the AST. This includes the vast majority of lint rules. As part of this step, we also build the semantic model for the current file as we traverse over the AST. Some lint rules are evaluated eagerly, as we iterate over the AST, while others are evaluated in a deferred manner (e.g., unused imports, since we can't determine whether an import is unused until we've finished analyzing the entire file), after we've finished the initial traversal.</p>
+</li>
+<li>
+<p><strong>Import-based rule evaluation</strong>: Run any lint rules that are based on the module's imports (e.g., import sorting). These could, in theory, be included in the AST-based rule evaluation phase — they're just separated for simplicity.</p>
+</li>
+<li>
+<p><strong>Physical line-based rule evaluation</strong>: Run any lint rules that are based on physical lines (e.g., line-length).</p>
+</li>
+<li>
+<p><strong>Suppression enforcement</strong>: Remove any violations that are suppressed via <code># noqa</code> directives or <code>per-file-ignores</code>.</p>
+</li>
+<li>
+<p><strong>Cache write</strong>: Write the generated diagnostics to the package cache using the file as a key.</p>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>Reporting</strong>: Print diagnostics in the specified format (text, JSON, etc.), to the specified output channel (stdout, a file, etc.).</p>
+</li>
+</ol>
+<h3 id="import-categorization">Import Categorization<a class="headerlink" href="#import-categorization" title="Permanent link">#</a></h3>
+<p>To understand Ruff's import categorization system, we first need to define two concepts:</p>
+<ul>
+<li>"Project root": The directory containing the <code>pyproject.toml</code>, <code>ruff.toml</code>, or <code>.ruff.toml</code> file,
+    discovered by identifying the "closest" such directory for each Python file. (If you're running
+    via <code>ruff --config /path/to/pyproject.toml</code>, then the current working directory is used as the
+    "project root".)</li>
+<li>"Package root": The top-most directory defining the Python package that includes a given Python
+    file. To find the package root for a given Python file, traverse up its parent directories until
+    you reach a parent directory that doesn't contain an <code>__init__.py</code> file (and isn't in a subtree
+    marked as a <a href="https://docs.astral.sh/ruff/settings/#namespace-packages">namespace package</a>); take the directory
+    just before that, i.e., the first directory in the package.</li>
+</ul>
+<p>For example, given:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>my_project
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>├── pyproject.toml
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>└── src
+<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a>    └── foo
+<a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a>        ├── __init__.py
+<a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a>        └── bar
+<a id="__codelineno-31-7" name="__codelineno-31-7" href="#__codelineno-31-7"></a>            ├── __init__.py
+<a id="__codelineno-31-8" name="__codelineno-31-8" href="#__codelineno-31-8"></a>            └── baz.py
+</code></pre></div>
+<p>Then when analyzing <code>baz.py</code>, the project root would be the top-level directory (<code>./my_project</code>),
+and the package root would be <code>./my_project/src/foo</code>.</p>
+<h4 id="project-root">Project root<a class="headerlink" href="#project-root" title="Permanent link">#</a></h4>
+<p>The project root does not have a significant impact beyond that all relative paths within the loaded
+configuration file are resolved relative to the project root.</p>
+<p>For example, to indicate that <code>bar</code> above is a namespace package (it isn't, but let's run with it),
+the <code>pyproject.toml</code> would list <code>namespace-packages = ["./src/bar"]</code>, which would resolve
+to <code>my_project/src/bar</code>.</p>
+<p>The same logic applies when providing a configuration file via <code>--config</code>. In that case, the
+<em>current working directory</em> is used as the project root, and so all paths in that configuration file
+are resolved relative to the current working directory. (As a general rule, we want to avoid relying
+on the current working directory as much as possible, to ensure that Ruff exhibits the same behavior
+regardless of where and how you invoke it — but that's hard to avoid in this case.)</p>
+<p>Additionally, if a <code>pyproject.toml</code> file <em>extends</em> another configuration file, Ruff will still use
+the directory containing that <code>pyproject.toml</code> file as the project root. For example, if
+<code>./my_project/pyproject.toml</code> contains:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="k">[tool.ruff]</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="n">extend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/path/to/pyproject.toml&quot;</span>
+</code></pre></div>
+<p>Then Ruff will use <code>./my_project</code> as the project root, even though the configuration file extends
+<code>/path/to/pyproject.toml</code>. As such, if the configuration file at <code>/path/to/pyproject.toml</code> contains
+any relative paths, they will be resolved relative to <code>./my_project</code>.</p>
+<p>If a project uses nested configuration files, then Ruff would detect multiple project roots, one for
+each configuration file.</p>
+<h4 id="package-root">Package root<a class="headerlink" href="#package-root" title="Permanent link">#</a></h4>
+<p>The package root is used to determine a file's "module path". Consider, again, <code>baz.py</code>. In that
+case, <code>./my_project/src/foo</code> was identified as the package root, so the module path for <code>baz.py</code>
+would resolve to  <code>foo.bar.baz</code> — as computed by taking the relative path from the package root
+(inclusive of the root itself). The module path can be thought of as "the path you would use to
+import the module" (e.g., <code>import foo.bar.baz</code>).</p>
+<p>The package root and module path are used to, e.g., convert relative to absolute imports, and for
+import categorization, as described below.</p>
+<h4 id="import-categorization_1">Import categorization<a class="headerlink" href="#import-categorization_1" title="Permanent link">#</a></h4>
+<p>When sorting and formatting import blocks, Ruff categorizes every import into one of five
+categories:</p>
+<ol>
+<li><strong>"Future"</strong>: the import is a <code>__future__</code> import. That's easy: just look at the name of the
+    imported module!</li>
+<li><strong>"Standard library"</strong>: the import comes from the Python standard library (e.g., <code>import os</code>).
+    This is easy too: we include a list of all known standard library modules in Ruff itself, so it's
+    a simple lookup.</li>
+<li><strong>"Local folder"</strong>: the import is a relative import (e.g., <code>from .foo import bar</code>). This is easy
+    too: just check if the import includes a <code>level</code> (i.e., a dot-prefix).</li>
+<li><strong>"First party"</strong>: the import is part of the current project. (More on this below.)</li>
+<li><strong>"Third party"</strong>: everything else.</li>
+</ol>
+<p>The real challenge lies in determining whether an import is first-party — everything else is either
+trivial, or (as in the case of third-party) merely defined as "not first-party".</p>
+<p>There are three ways in which an import can be categorized as "first-party":</p>
+<ol>
+<li><strong>Explicit settings</strong>: the import is marked as such via the <code>known-first-party</code> setting. (This
+    should generally be seen as an escape hatch.)</li>
+<li><strong>Same-package</strong>: the imported module is in the same package as the current file. This gets back
+    to the importance of the "package root" and the file's "module path". Imagine that we're
+    analyzing <code>baz.py</code> above. If <code>baz.py</code> contains any imports that appear to come from the <code>foo</code>
+    package (e.g., <code>from foo import bar</code> or <code>import foo.bar</code>), they'll be classified as first-party
+    automatically. This check is as simple as comparing the first segment of the current file's
+    module path to the first segment of the import.</li>
+<li><strong>Source roots</strong>: Ruff supports a <code>[src](https://docs.astral.sh/ruff/settings/#src)</code> setting, which
+    sets the directories to scan when identifying first-party imports. The algorithm is
+    straightforward: given an import, like <code>import foo</code>, iterate over the directories enumerated in
+    the <code>src</code> setting and, for each directory, check for the existence of a subdirectory <code>foo</code> or a
+    file <code>foo.py</code>.</li>
+</ol>
+<p>By default, <code>src</code> is set to the project root. In the above example, we'd want to set
+<code>src = ["./src"]</code> to ensure that we locate <code>./my_project/src/foo</code> and thus categorize <code>import foo</code>
+as first-party in <code>baz.py</code>. In practice, for this limited example, setting <code>src = ["./src"]</code> is
+unnecessary, as all imports within <code>./my_project/src/foo</code> would be categorized as first-party via
+the same-package heuristic; but if your project contains multiple packages, you'll want to set <code>src</code>
+explicitly.</p>
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs Insiders
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.tracking", "content.code.annotate", "toc.integrate", "toc.follow", "navigation.path", "navigation.top", "content.code.copy", "content.tabs.link"], "search": "../assets/javascripts/workers/search.f2da59ea.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7e51e09.min.js"></script>
+      
+    
+  </body>
+</html>
