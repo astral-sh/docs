@@ -633,7 +633,7 @@
   <span class="md-ellipsis">
     
   
-    Creating a project
+    Working on projects
   
 
     
@@ -706,7 +706,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../preview/projects/" class="md-nav__link">
+      <a href="../../projects/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1635,15 +1635,23 @@
 
 
 <h1 id="installing-python">Installing Python<a class="headerlink" href="#installing-python" title="Permanent link">#</a></h1>
-<p>uv can manage Python installations — Python does not need to be installed to use uv.</p>
+<p>If Python is already installed, uv will <a href="#using-an-existing-python-installation">detect and use</a> it without configuration. However, uv can also install and manage Python versions.</p>
 <p>To install Python:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>install
 </code></pre></div>
 <p>This will install a uv-managed Python version even if there is already a Python installation on the system.</p>
-<p>Once Python is installed, it can be invoked via <code>python</code>:</p>
+<!-- TODO(zanieb): Restore when Python shim management is added
+Note that when an automatic Python installation occurs, the `python` command will not be added to the shell. Use `uv python install-shim` to ensure the `python` shim is installed.
+
+Once Python is installed, it can be invoked via `python`:
+
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="gp">$ </span>python<span class="w"> </span>--version
 </code></pre></div>
-<p>To prevent uv from managing Python system-wide, provide the <code>--no-shim</code> option during installation.</p>
+
+To prevent uv from managing Python system-wide, provide the `--no-shim` option during installation.
+-->
+
+<p>Once Python is installed, it will be used by <code>uv</code> commands.</p>
 <h2 id="installing-a-specific-version">Installing a specific version<a class="headerlink" href="#installing-a-specific-version" title="Permanent link">#</a></h2>
 <p>To install a specific Python version:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>install<span class="w"> </span><span class="m">3</span>.12
@@ -1663,11 +1671,13 @@
 <p>Even if a specific Python version is not requested, uv will download the latest version on demand. For example, the following will create a new virtual environment and download a managed Python version if one hasn't been installed yet:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="gp">$ </span>uv<span class="w"> </span>venv<span class="w"> </span>--python-preference<span class="w"> </span>only-managed
 </code></pre></div>
-<p>Note that when an automatic Python installation occurs, the <code>python</code> command will not be added to the shell. Use <code>uv python install-shim</code> to ensure the <code>python</code> shim is installed.</p>
+<!-- TODO(zanieb): Restore when Python shim management is added
+Note that when an automatic Python installation occurs, the `python` command will not be added to the shell. Use `uv python install-shim` to ensure the `python` shim is installed.
+-->
+
 <h2 id="using-an-existing-python-installation">Using an existing Python installation<a class="headerlink" href="#using-an-existing-python-installation" title="Permanent link">#</a></h2>
-<p>uv will also use an existing Python installation if already present on the system. There's no configuration necessary for this behavior, uv will use the system Python if it satisfies the requirements of the command invocation.</p>
-<p>To force uv to use the system Python, provide the <code>--python-preference only-system</code> option.</p>
-<p>See the <a href="../../python-versions/#adjusting-python-version-preferences">Python version preference</a> documentation for more details.</p>
+<p>uv will also use an existing Python installation if already present on the system. There's no configuration necessary for this behavior: uv will use the system Python if it satisfies the requirements of the command invocation. See the <a href="../../python-versions/#discovery-order">Python discovery</a> documentation for details.</p>
+<p>To force uv to use the system Python, provide the <code>--python-preference only-system</code> option. See the <a href="../../python-versions/#adjusting-python-version-preferences">Python version preference</a> documentation for more details.</p>
 
 
 
