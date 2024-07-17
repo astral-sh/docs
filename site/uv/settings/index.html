@@ -535,7 +535,7 @@
   <span class="md-ellipsis">
     
   
-    Creating a project
+    Working on projects
   
 
     
@@ -608,7 +608,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../preview/projects/" class="md-nav__link">
+      <a href="../projects/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3915,14 +3915,13 @@ formats described above.</p>
 limit resolutions to those present on that first index (<code>first-match</code>). This prevents
 "dependency confusion" attacks, whereby an attack can upload a malicious package under the
 same name to a secondary.</p>
-<p>Possible values:</p>
-<ul>
-<li><code>"first-index"</code>:        Only use results from the first index that returns a match for a given package name.</li>
-<li><code>"unsafe-first-match"</code>: Search for every package name across all indexes, exhausting the versions from the first index before moving on to the next.</li>
-<li><code>"unsafe-best-match"</code>:  Search for every package name across all indexes, preferring the "best" version found. If a package version is in multiple indexes, only look at the entry for the first index.</li>
-</ul>
 <p><strong>Default value</strong>: <code>"first-index"</code></p>
-<p><strong>Type</strong>: <code>str</code></p>
+<p><strong>Possible values</strong>:</p>
+<ul>
+<li><code>"first-index"</code>: Only use results from the first index that returns a match for a given package name</li>
+<li><code>"unsafe-first-match"</code>: Search for every package name across all indexes, exhausting the versions from the first index before moving on to the next</li>
+<li><code>"unsafe-best-match"</code>: Search for every package name across all indexes, preferring the "best" version found. If a package version is in multiple indexes, only look at the entry for the first index</li>
+</ul>
 <p><strong>Example usage</strong>:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">pyproject.toml</label><label for="__tabbed_7_2">uv.toml</label></div>
 <div class="tabbed-content">
@@ -3987,7 +3986,12 @@ use the <code>keyring</code> CLI to handle authentication.</p>
 <p>Defaults to <code>clone</code> (also known as Copy-on-Write) on macOS, and <code>hardlink</code> on Linux and
 Windows.</p>
 <p><strong>Default value</strong>: <code>"clone" (macOS) or "hardlink" (Linux, Windows)</code></p>
-<p><strong>Type</strong>: <code>str</code></p>
+<p><strong>Possible values</strong>:</p>
+<ul>
+<li><code>"clone"</code>: Clone (i.e., copy-on-write) packages from the wheel into the site packages</li>
+<li><code>"copy"</code>: Copy packages from the wheel into the site packages</li>
+<li><code>"hardlink"</code>: Hard link packages from the wheel into the site packages</li>
+</ul>
 <p><strong>Example usage</strong>:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="10:2"><input checked="checked" id="__tabbed_10_1" name="__tabbed_10" type="radio" /><input id="__tabbed_10_2" name="__tabbed_10" type="radio" /><div class="tabbed-labels"><label for="__tabbed_10_1">pyproject.toml</label><label for="__tabbed_10_2">uv.toml</label></div>
 <div class="tabbed-content">
@@ -4194,7 +4198,14 @@ those provided via <code>--find-links</code>.</p>
 along with first-party requirements that contain an explicit pre-release marker in the
 declared specifiers (<code>if-necessary-or-explicit</code>).</p>
 <p><strong>Default value</strong>: <code>"if-necessary-or-explicit"</code></p>
-<p><strong>Type</strong>: <code>str</code></p>
+<p><strong>Possible values</strong>:</p>
+<ul>
+<li><code>"disallow"</code>: Disallow all pre-release versions</li>
+<li><code>"allow"</code>: Allow all pre-release versions</li>
+<li><code>"if-necessary"</code>: Allow pre-release versions if all versions of a package are pre-release</li>
+<li><code>"explicit"</code>: Allow pre-release versions for first-party packages with explicit pre-release markers in their version requirements</li>
+<li><code>"if-necessary-or-explicit"</code>: Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements</li>
+</ul>
 <p><strong>Example usage</strong>:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="20:2"><input checked="checked" id="__tabbed_20_1" name="__tabbed_20" type="radio" /><input id="__tabbed_20_2" name="__tabbed_20" type="radio" /><div class="tabbed-labels"><label for="__tabbed_20_1">pyproject.toml</label><label for="__tabbed_20_2">uv.toml</label></div>
 <div class="tabbed-content">
@@ -4232,7 +4243,11 @@ declared specifiers (<code>if-necessary-or-explicit</code>).</p>
 <h4 id="python-fetch"><a href="#python-fetch"><code>python-fetch</code></a><a class="headerlink" href="#python-fetch" title="Permanent link">#</a></h4>
 <p>Whether to automatically download Python when required.</p>
 <p><strong>Default value</strong>: <code>"automatic"</code></p>
-<p><strong>Type</strong>: <code>str</code></p>
+<p><strong>Possible values</strong>:</p>
+<ul>
+<li><code>"automatic"</code>: Automatically fetch managed Python installations when needed</li>
+<li><code>"manual"</code>: Do not automatically fetch managed Python installations; require explicit installation</li>
+</ul>
 <p><strong>Example usage</strong>:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="22:2"><input checked="checked" id="__tabbed_22_1" name="__tabbed_22" type="radio" /><input id="__tabbed_22_2" name="__tabbed_22" type="radio" /><div class="tabbed-labels"><label for="__tabbed_22_1">pyproject.toml</label><label for="__tabbed_22_2">uv.toml</label></div>
 <div class="tabbed-content">
@@ -4252,7 +4267,14 @@ declared specifiers (<code>if-necessary-or-explicit</code>).</p>
 <p>Whether to prefer using Python installations that are already present on the system, or
 those that are downloaded and installed by uv.</p>
 <p><strong>Default value</strong>: <code>"installed"</code></p>
-<p><strong>Type</strong>: <code>str</code></p>
+<p><strong>Possible values</strong>:</p>
+<ul>
+<li><code>"only-managed"</code>: Only use managed Python installations; never use system Python installations</li>
+<li><code>"installed"</code>: Prefer installed Python installations, only download managed Python installations if no system Python installation is found</li>
+<li><code>"managed"</code>: Prefer managed Python installations over system Python installations, even if fetching is required</li>
+<li><code>"system"</code>: Prefer system Python installations over managed Python installations</li>
+<li><code>"only-system"</code>: Only use system Python installations; never use managed Python installations</li>
+</ul>
 <p><strong>Example usage</strong>:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="23:2"><input checked="checked" id="__tabbed_23_1" name="__tabbed_23" type="radio" /><input id="__tabbed_23_2" name="__tabbed_23" type="radio" /><div class="tabbed-labels"><label for="__tabbed_23_1">pyproject.toml</label><label for="__tabbed_23_2">uv.toml</label></div>
 <div class="tabbed-content">
@@ -4311,7 +4333,12 @@ those that are downloaded and installed by uv.</p>
 package requirement.</p>
 <p>By default, uv will use the latest compatible version of each package (<code>highest</code>).</p>
 <p><strong>Default value</strong>: <code>"highest"</code></p>
-<p><strong>Type</strong>: <code>str</code></p>
+<p><strong>Possible values</strong>:</p>
+<ul>
+<li><code>"highest"</code>: Resolve the highest compatible version of each package</li>
+<li><code>"lowest"</code>: Resolve the lowest compatible version of each package</li>
+<li><code>"lowest-direct"</code>: Resolve the lowest compatible version of any direct dependencies, and the highest compatible version of any transitive dependencies</li>
+</ul>
 <p><strong>Example usage</strong>:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="26:2"><input checked="checked" id="__tabbed_26_1" name="__tabbed_26" type="radio" /><input id="__tabbed_26_2" name="__tabbed_26" type="radio" /><div class="tabbed-labels"><label for="__tabbed_26_1">pyproject.toml</label><label for="__tabbed_26_2">uv.toml</label></div>
 <div class="tabbed-content">
@@ -4420,7 +4447,11 @@ packages.</p>
 <p>The style of the annotation comments included in the output file, used to indicate the
 source of each package.</p>
 <p><strong>Default value</strong>: <code>"split"</code></p>
-<p><strong>Type</strong>: <code>str</code></p>
+<p><strong>Possible values</strong>:</p>
+<ul>
+<li><code>"line"</code>: Render the annotations on a single, comma-separated line</li>
+<li><code>"split"</code>: Render each annotation on its own line</li>
+</ul>
 <p><strong>Example usage</strong>:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="31:2"><input checked="checked" id="__tabbed_31_1" name="__tabbed_31" type="radio" /><input id="__tabbed_31_2" name="__tabbed_31" type="radio" /><div class="tabbed-labels"><label for="__tabbed_31_1">pyproject.toml</label><label for="__tabbed_31_2">uv.toml</label></div>
 <div class="tabbed-content">
@@ -4836,14 +4867,13 @@ formats described above.</p>
 limit resolutions to those present on that first index (<code>first-match</code>). This prevents
 "dependency confusion" attacks, whereby an attack can upload a malicious package under the
 same name to a secondary.</p>
-<p>Possible values:</p>
-<ul>
-<li><code>"first-index"</code>:        Only use results from the first index that returns a match for a given package name.</li>
-<li><code>"unsafe-first-match"</code>: Search for every package name across all indexes, exhausting the versions from the first index before moving on to the next.</li>
-<li><code>"unsafe-best-match"</code>:  Search for every package name across all indexes, preferring the "best" version found. If a package version is in multiple indexes, only look at the entry for the first index.</li>
-</ul>
 <p><strong>Default value</strong>: <code>"first-index"</code></p>
-<p><strong>Type</strong>: <code>str</code></p>
+<p><strong>Possible values</strong>:</p>
+<ul>
+<li><code>"first-index"</code>: Only use results from the first index that returns a match for a given package name</li>
+<li><code>"unsafe-first-match"</code>: Search for every package name across all indexes, exhausting the versions from the first index before moving on to the next</li>
+<li><code>"unsafe-best-match"</code>: Search for every package name across all indexes, preferring the "best" version found. If a package version is in multiple indexes, only look at the entry for the first index</li>
+</ul>
 <p><strong>Example usage</strong>:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="49:2"><input checked="checked" id="__tabbed_49_1" name="__tabbed_49" type="radio" /><input id="__tabbed_49_2" name="__tabbed_49" type="radio" /><div class="tabbed-labels"><label for="__tabbed_49_1">pyproject.toml</label><label for="__tabbed_49_2">uv.toml</label></div>
 <div class="tabbed-content">
@@ -4936,7 +4966,12 @@ use the <code>keyring</code> CLI to handle authentication.</p>
 <p>Defaults to <code>clone</code> (also known as Copy-on-Write) on macOS, and <code>hardlink</code> on Linux and
 Windows.</p>
 <p><strong>Default value</strong>: <code>"clone" (macOS) or "hardlink" (Linux, Windows)</code></p>
-<p><strong>Type</strong>: <code>str</code></p>
+<p><strong>Possible values</strong>:</p>
+<ul>
+<li><code>"clone"</code>: Clone (i.e., copy-on-write) packages from the wheel into the site packages</li>
+<li><code>"copy"</code>: Copy packages from the wheel into the site packages</li>
+<li><code>"hardlink"</code>: Hard link packages from the wheel into the site packages</li>
+</ul>
 <p><strong>Example usage</strong>:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="53:2"><input checked="checked" id="__tabbed_53_1" name="__tabbed_53" type="radio" /><input id="__tabbed_53_2" name="__tabbed_53" type="radio" /><div class="tabbed-labels"><label for="__tabbed_53_1">pyproject.toml</label><label for="__tabbed_53_2">uv.toml</label></div>
 <div class="tabbed-content">
@@ -5263,7 +5298,14 @@ non-portable.</p>
 along with first-party requirements that contain an explicit pre-release marker in the
 declared specifiers (<code>if-necessary-or-explicit</code>).</p>
 <p><strong>Default value</strong>: <code>"if-necessary-or-explicit"</code></p>
-<p><strong>Type</strong>: <code>str</code></p>
+<p><strong>Possible values</strong>:</p>
+<ul>
+<li><code>"disallow"</code>: Disallow all pre-release versions</li>
+<li><code>"allow"</code>: Allow all pre-release versions</li>
+<li><code>"if-necessary"</code>: Allow pre-release versions if all versions of a package are pre-release</li>
+<li><code>"explicit"</code>: Allow pre-release versions for first-party packages with explicit pre-release markers in their version requirements</li>
+<li><code>"if-necessary-or-explicit"</code>: Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements</li>
+</ul>
 <p><strong>Example usage</strong>:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="67:2"><input checked="checked" id="__tabbed_67_1" name="__tabbed_67" type="radio" /><input id="__tabbed_67_2" name="__tabbed_67" type="radio" /><div class="tabbed-labels"><label for="__tabbed_67_1">pyproject.toml</label><label for="__tabbed_67_2">uv.toml</label></div>
 <div class="tabbed-content">
@@ -5437,7 +5479,12 @@ must either be pinned to exact versions (e.g., <code>==1.0.0</code>), or be spec
 package requirement.</p>
 <p>By default, uv will use the latest compatible version of each package (<code>highest</code>).</p>
 <p><strong>Default value</strong>: <code>"highest"</code></p>
-<p><strong>Type</strong>: <code>str</code></p>
+<p><strong>Possible values</strong>:</p>
+<ul>
+<li><code>"highest"</code>: Resolve the highest compatible version of each package</li>
+<li><code>"lowest"</code>: Resolve the lowest compatible version of each package</li>
+<li><code>"lowest-direct"</code>: Resolve the lowest compatible version of any direct dependencies, and the highest compatible version of any transitive dependencies</li>
+</ul>
 <p><strong>Example usage</strong>:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="74:2"><input checked="checked" id="__tabbed_74_1" name="__tabbed_74" type="radio" /><input id="__tabbed_74_2" name="__tabbed_74" type="radio" /><div class="tabbed-labels"><label for="__tabbed_74_1">pyproject.toml</label><label for="__tabbed_74_2">uv.toml</label></div>
 <div class="tabbed-content">
