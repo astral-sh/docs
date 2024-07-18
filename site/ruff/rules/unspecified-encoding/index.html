@@ -395,6 +395,187 @@
   
   
   
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    
+  
+    Editors
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Editors
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../editors/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Editor Integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../editors/setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../editors/features/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../editors/settings/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../editors/migration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Migrating from ruff-lsp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
     <li class="md-nav__item">
       <a href="../../configuration/" class="md-nav__link">
         
@@ -626,11 +807,15 @@
 argument.</p>
 <h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
 <p>Using <code>open</code> in text mode without an explicit encoding can lead to
-non-portable code, with differing behavior across platforms.</p>
+non-portable code, with differing behavior across platforms. While readers
+may assume that UTF-8 is the default encoding, in reality, the default
+is locale-specific.</p>
 <p>Instead, consider using the <code>encoding</code> parameter to enforce a specific
-encoding. <a href="https://peps.python.org/pep-0597/">PEP 597</a> recommends using <code>locale.getpreferredencoding(False)</code>
-as the default encoding on versions earlier than Python 3.10, and
-<code>encoding="locale"</code> on Python 3.10 and later.</p>
+encoding. <a href="https://peps.python.org/pep-0597/">PEP 597</a> recommends the use of <code>encoding="utf-8"</code> as a default,
+and suggests that it may become the default in future versions of Python.</p>
+<p>If a local-specific encoding is intended, use <code>encoding="local"</code>  on
+Python 3.10 and later, or <code>locale.getpreferredencoding()</code> on earlier versions,
+to make the encoding explicit.</p>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;file.txt&quot;</span><span class="p">)</span>
 </code></pre></div>
