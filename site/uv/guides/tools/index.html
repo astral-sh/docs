@@ -626,11 +626,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#relationship-to-uv-run" class="md-nav__link">
+  <a href="#installing-tools" class="md-nav__link">
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Relationship to <code>uv run</code>
+          Installing tools
         </span>
       
     </span>
@@ -639,11 +639,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#installing-tools" class="md-nav__link">
+  <a href="#next-steps" class="md-nav__link">
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Installing tools
+          Next steps
         </span>
       
     </span>
@@ -771,13 +771,13 @@
   
   
     <li class="md-nav__item">
-      <a href="../../preview/tools/" class="md-nav__link">
+      <a href="../../tools/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     
   
-    Command-line tools
+    Tools
   
 
     
@@ -1137,13 +1137,13 @@
   
   
     <li class="md-nav__item">
-      <a href="../docker/" class="md-nav__link">
+      <a href="../integration/docker/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     
   
-    Using in Docker
+    Docker
   
 
     
@@ -1163,13 +1163,13 @@
   
   
     <li class="md-nav__item">
-      <a href="../github/" class="md-nav__link">
+      <a href="../integration/github/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     
   
-    Using in GitHub Actions
+    GitHub Actions
   
 
     
@@ -1189,13 +1189,39 @@
   
   
     <li class="md-nav__item">
-      <a href="../pre-commit/" class="md-nav__link">
+      <a href="../integration/pre-commit/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     
   
-    Using in pre-commit
+    Pre-commit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../integration/commercial-indexes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Commercial indexes
   
 
     
@@ -1622,11 +1648,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#relationship-to-uv-run" class="md-nav__link">
+  <a href="#installing-tools" class="md-nav__link">
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Relationship to <code>uv run</code>
+          Installing tools
         </span>
       
     </span>
@@ -1635,11 +1661,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#installing-tools" class="md-nav__link">
+  <a href="#next-steps" class="md-nav__link">
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Installing tools
+          Next steps
         </span>
       
     </span>
@@ -1713,7 +1739,7 @@
 
 
 <h1 id="using-tools">Using tools<a class="headerlink" href="#using-tools" title="Permanent link">#</a></h1>
-<p>Many Python packages provide command-line tools. uv has specialized support for invoking tools provided by these packages without installing them into your environment.</p>
+<p>Many Python packages provide command-line interfaces which are useful as standalone tools. uv has specialized support for easily invoking and installing tools.</p>
 <h2 id="using-uvx">Using <code>uvx</code><a class="headerlink" href="#using-uvx" title="Permanent link">#</a></h2>
 <p>The <code>uvx</code> command is an alias for <code>uv tool run</code>, which can be used to invoke a tool without installing it.</p>
 <p>For example, to run <code>ruff</code>:</p>
@@ -1722,7 +1748,7 @@
 <p>Note this is exactly equivalent to:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="gp">$ </span>uv<span class="w"> </span>tool<span class="w"> </span>run<span class="w"> </span>ruff
 </code></pre></div>
-<p>Arguments can be passed to the tools:</p>
+<p>Arguments can be passed afted the tool name:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="gp">$ </span>uvx<span class="w"> </span>pycowsay<span class="w"> </span>hello<span class="w"> </span>from<span class="w"> </span>uv
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="go">  -------------</span>
@@ -1743,36 +1769,28 @@
 <p>To run a tool at a specific version, use <code>command@&lt;version&gt;</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="gp">$ </span>uvx<span class="w"> </span>ruff@0.3.0<span class="w"> </span>check
 </code></pre></div>
-<p>The <code>--from</code> option can also be used to specify package versions:</p>
-<p>To constrain to a range of versions:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="gp">$ </span>uvx<span class="w"> </span>--from<span class="w"> </span><span class="s1">&#39;ruff&gt;0.2.0,&lt;0.3.0&#39;</span><span class="w"> </span>ruff<span class="w"> </span>check
+<p>The <code>--from</code> option can also be used to specify package versions, as above:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="gp">$ </span>uvx<span class="w"> </span>--from<span class="w"> </span><span class="s1">&#39;ruff==0.3.0&#39;</span><span class="w"> </span>ruff<span class="w"> </span>check
 </code></pre></div>
+<p>Or, to constrain to a range of versions:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="gp">$ </span>uvx<span class="w"> </span>--from<span class="w"> </span><span class="s1">&#39;ruff&gt;0.2.0,&lt;0.3.0&#39;</span><span class="w"> </span>ruff<span class="w"> </span>check
+</code></pre></div>
+<p>Note the <code>@</code> syntax cannot be used for anything other than an exact version.</p>
 <h2 id="requesting-different-sources">Requesting different sources<a class="headerlink" href="#requesting-different-sources" title="Permanent link">#</a></h2>
 <p>The <code>--from</code> option can also be used to install from alternative sources.</p>
 <p>To pull from git:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="gp">$ </span>uvx<span class="w"> </span>--from<span class="w"> </span>git+https://github.com/httpie/cli<span class="w"> </span>httpie
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="gp">$ </span>uvx<span class="w"> </span>--from<span class="w"> </span>git+https://github.com/httpie/cli<span class="w"> </span>httpie
 </code></pre></div>
 <h2 id="commands-with-plugins">Commands with plugins<a class="headerlink" href="#commands-with-plugins" title="Permanent link">#</a></h2>
 <p>Additional dependencies can be included, e.g., to include <code>mkdocs-material</code> when running <code>mkdocs</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="gp">$ </span>uvx<span class="w"> </span>--with<span class="w"> </span>mkdocs-material<span class="w"> </span>mkdocs<span class="w"> </span>--help
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="gp">$ </span>uvx<span class="w"> </span>--with<span class="w"> </span>mkdocs-material<span class="w"> </span>mkdocs<span class="w"> </span>--help
 </code></pre></div>
-<h2 id="relationship-to-uv-run">Relationship to <code>uv run</code><a class="headerlink" href="#relationship-to-uv-run" title="Permanent link">#</a></h2>
-<p>The invocation <code>uv tool run ruff</code> is nearly equivalent to:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>--isolated<span class="w"> </span>--with<span class="w"> </span>ruff<span class="w"> </span>--<span class="w"> </span>ruff
-</code></pre></div>
-<p>However, there are a couple notable differences when using uv's tool interface:</p>
-<ul>
-<li>The <code>--with</code> option is not needed — the required package is inferred from the command name.</li>
-<li>The temporary environment is cached in a dedicated location.</li>
-<li>The <code>--isolated</code> flag is not needed — tools are always run isolated from the project.</li>
-<li>If a tool is already installed, <code>uv tool run</code> will use the installed version but <code>uv run</code> will not.</li>
-</ul>
 <h2 id="installing-tools">Installing tools<a class="headerlink" href="#installing-tools" title="Permanent link">#</a></h2>
 <p>If a tool is used often, it can be useful to install it to a persistent environment instead of invoking <code>uvx</code> repeatedly.</p>
 <p>To install <code>ruff</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="gp">$ </span>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>ruff
 </code></pre></div>
-<p>When a tool is installed, its executables are placed in a <code>bin</code> directory in the <code>PATH</code> which allows the tool to be run without uv (if it's not on the <code>PATH</code>, we'll warn you).</p>
+<p>When a tool is installed, its executables are placed in a <code>bin</code> directory in the <code>PATH</code> which allows the tool to be run without uv. If it's not on the <code>PATH</code>, a warning will be displayed and <code>uv tool update-shell</code> can be used to add it to the <code>PATH</code>.</p>
 <p>After installing <code>ruff</code>, it should be available:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="gp">$ </span>ruff<span class="w"> </span>--version
 </code></pre></div>
@@ -1787,9 +1805,14 @@
 <p>Additionally, package versions can be included without <code>--from</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="gp">$ </span>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span><span class="s1">&#39;httpie&gt;0.1.0&#39;</span>
 </code></pre></div>
-<p>And similarly for package sources:</p>
+<p>And, similarly, for package sources:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="gp">$ </span>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>git+https://github.com/httpie/cli
 </code></pre></div>
+<p>As with <code>uvx</code>, installations can include additional packages:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="gp">$ </span>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>mkdocs<span class="w"> </span>--with<span class="w"> </span>mkdocs-material
+</code></pre></div>
+<h2 id="next-steps">Next steps<a class="headerlink" href="#next-steps" title="Permanent link">#</a></h2>
+<p>See the <a href="../../tools/">tools concept</a> documentation for more details on how tools are managed.</p>
 
 
 

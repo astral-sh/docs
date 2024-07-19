@@ -16,7 +16,7 @@
         <link rel="prev" href="../configuration/environment/">
       
       
-        <link rel="next" href="../guides/docker/">
+        <link rel="next" href="../guides/integration/docker/">
       
       
         
@@ -634,13 +634,13 @@
   
   
     <li class="md-nav__item">
-      <a href="../preview/tools/" class="md-nav__link">
+      <a href="../tools/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     
   
-    Command-line tools
+    Tools
   
 
     
@@ -2047,6 +2047,19 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#pip_verify-hashes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          <code>verify-hashes</code>
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2165,13 +2178,13 @@
   
   
     <li class="md-nav__item">
-      <a href="../guides/docker/" class="md-nav__link">
+      <a href="../guides/integration/docker/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     
   
-    Using in Docker
+    Docker
   
 
     
@@ -2191,13 +2204,13 @@
   
   
     <li class="md-nav__item">
-      <a href="../guides/github/" class="md-nav__link">
+      <a href="../guides/integration/github/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     
   
-    Using in GitHub Actions
+    GitHub Actions
   
 
     
@@ -2217,13 +2230,39 @@
   
   
     <li class="md-nav__item">
-      <a href="../guides/pre-commit/" class="md-nav__link">
+      <a href="../guides/integration/pre-commit/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     
   
-    Using in pre-commit
+    Pre-commit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guides/integration/commercial-indexes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Commercial indexes
   
 
     
@@ -3655,6 +3694,19 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#pip_verify-hashes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          <code>verify-hashes</code>
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3821,7 +3873,8 @@ ignore errors.</p>
 </div>
 <hr />
 <h4 id="config-settings"><a href="#config-settings"><code>config-settings</code></a><a class="headerlink" href="#config-settings" title="Permanent link">#</a></h4>
-<p>Settings to pass to the PEP 517 build backend, specified as <code>KEY=VALUE</code> pairs.</p>
+<p>Settings to pass to the <a href="https://peps.python.org/pep-0517/">PEP 517</a> build backend,
+specified as <code>KEY=VALUE</code> pairs.</p>
 <p><strong>Default value</strong>: <code>{}</code></p>
 <p><strong>Type</strong>: <code>dict</code></p>
 <p><strong>Example usage</strong>:</p>
@@ -3841,8 +3894,8 @@ ignore errors.</p>
 <hr />
 <h4 id="exclude-newer"><a href="#exclude-newer"><code>exclude-newer</code></a><a class="headerlink" href="#exclude-newer" title="Permanent link">#</a></h4>
 <p>Limit candidate packages to those that were uploaded prior to the given date.</p>
-<p>Accepts both RFC 3339 timestamps (e.g., <code>2006-12-02T02:07:43Z</code>) and UTC dates in the same
-format (e.g., <code>2006-12-02</code>).</p>
+<p>Accepts both <a href="https://www.rfc-editor.org/rfc/rfc3339.html">RFC 3339</a> timestamps (e.g.,
+<code>2006-12-02T02:07:43Z</code>) and UTC dates in the same format (e.g., <code>2006-12-02</code>).</p>
 <p><strong>Default value</strong>: <code>None</code></p>
 <p><strong>Type</strong>: <code>str</code></p>
 <p><strong>Example usage</strong>:</p>
@@ -3862,8 +3915,8 @@ format (e.g., <code>2006-12-02</code>).</p>
 <hr />
 <h4 id="extra-index-url"><a href="#extra-index-url"><code>extra-index-url</code></a><a class="headerlink" href="#extra-index-url" title="Permanent link">#</a></h4>
 <p>Extra URLs of package indexes to use, in addition to <code>--index-url</code>.</p>
-<p>Accepts either a repository compliant with PEP 503 (the simple repository API), or a local
-directory laid out in the same format.</p>
+<p>Accepts either a repository compliant with <a href="https://peps.python.org/pep-0503/">PEP 503</a>
+(the simple repository API), or a local directory laid out in the same format.</p>
 <p>All indexes provided via this flag take priority over the index specified by
 <a href="#index-url"><code>index_url</code></a>. When multiple indexes are provided, earlier values take priority.</p>
 <p>To control uv's resolution strategy when multiple indexes are present, see
@@ -3939,8 +3992,8 @@ same name to a secondary.</p>
 <hr />
 <h4 id="index-url"><a href="#index-url"><code>index-url</code></a><a class="headerlink" href="#index-url" title="Permanent link">#</a></h4>
 <p>The URL of the Python package index (by default: <a href="https://pypi.org/simple">https://pypi.org/simple</a>).</p>
-<p>Accepts either a repository compliant with PEP 503 (the simple repository API), or a local
-directory laid out in the same format.</p>
+<p>Accepts either a repository compliant with <a href="https://peps.python.org/pep-0503/">PEP 503</a>
+(the simple repository API), or a local directory laid out in the same format.</p>
 <p>The index provided by this setting is given lower priority than any indexes specified via
 <a href="#extra-index-url"><code>extra_index_url</code></a>.</p>
 <p><strong>Default value</strong>: <code>"https://pypi.org/simple"</code></p>
@@ -3950,11 +4003,11 @@ directory laid out in the same format.</p>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">[tool.uv]</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="n">index-url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://pypi.org/simple&quot;</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="n">index-url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://test.pypi.org/simple&quot;</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">index-url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://pypi.org/simple&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">index-url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://test.pypi.org/simple&quot;</span>
 </code></pre></div>
 </div>
 </div>
@@ -3991,6 +4044,7 @@ Windows.</p>
 <li><code>"clone"</code>: Clone (i.e., copy-on-write) packages from the wheel into the site packages</li>
 <li><code>"copy"</code>: Copy packages from the wheel into the site packages</li>
 <li><code>"hardlink"</code>: Hard link packages from the wheel into the site packages</li>
+<li><code>"symlink"</code>: Symbolically link packages from the wheel into the site packages</li>
 </ul>
 <p><strong>Example usage</strong>:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="10:2"><input checked="checked" id="__tabbed_10_1" name="__tabbed_10" type="radio" /><input id="__tabbed_10_2" name="__tabbed_10" type="radio" /><div class="tabbed-labels"><label for="__tabbed_10_1">pyproject.toml</label><label for="__tabbed_10_2">uv.toml</label></div>
@@ -4253,11 +4307,11 @@ declared specifiers (<code>if-necessary-or-explicit</code>).</p>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="k">[tool.uv]</span>
-<a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a><span class="n">python-fetch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">\</span><span class="s2">&quot;automatic</span><span class="se">\&quot;</span>
+<a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a><span class="n">python-fetch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;manual&quot;</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="n">python-fetch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">\</span><span class="s2">&quot;automatic</span><span class="se">\&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="n">python-fetch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;manual&quot;</span>
 </code></pre></div>
 </div>
 </div>
@@ -4590,7 +4644,8 @@ time.</p>
 <hr />
 <h4 id="pip_config-settings"><a href="#pip_config-settings"><code>config-settings</code></a><a class="headerlink" href="#pip_config-settings" title="Permanent link">#</a></h4>
 <p><span id="config-settings"></span></p>
-<p>Settings to pass to the PEP 517 build backend, specified as <code>KEY=VALUE</code> pairs.</p>
+<p>Settings to pass to the <a href="https://peps.python.org/pep-0517/">PEP 517</a> build backend,
+specified as <code>KEY=VALUE</code> pairs.</p>
 <p><strong>Default value</strong>: <code>{}</code></p>
 <p><strong>Type</strong>: <code>dict</code></p>
 <p><strong>Example usage</strong>:</p>
@@ -4641,12 +4696,12 @@ time.</p>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-76-1" name="__codelineno-76-1" href="#__codelineno-76-1"></a><span class="k">[tool.uv.pip]</span>
-<a id="__codelineno-76-2" name="__codelineno-76-2" href="#__codelineno-76-2"></a><span class="n">emit-binary</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<a id="__codelineno-76-2" name="__codelineno-76-2" href="#__codelineno-76-2"></a><span class="n">emit-build-options</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-77-1" name="__codelineno-77-1" href="#__codelineno-77-1"></a><span class="k">[pip]</span>
-<a id="__codelineno-77-2" name="__codelineno-77-2" href="#__codelineno-77-2"></a><span class="n">emit-binary</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<a id="__codelineno-77-2" name="__codelineno-77-2" href="#__codelineno-77-2"></a><span class="n">emit-build-options</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 </code></pre></div>
 </div>
 </div>
@@ -4744,8 +4799,8 @@ be correct.</p>
 <h4 id="pip_exclude-newer"><a href="#pip_exclude-newer"><code>exclude-newer</code></a><a class="headerlink" href="#pip_exclude-newer" title="Permanent link">#</a></h4>
 <p><span id="exclude-newer"></span></p>
 <p>Limit candidate packages to those that were uploaded prior to the given date.</p>
-<p>Accepts both RFC 3339 timestamps (e.g., <code>2006-12-02T02:07:43Z</code>) and UTC dates in the same
-format (e.g., <code>2006-12-02</code>).</p>
+<p>Accepts both <a href="https://www.rfc-editor.org/rfc/rfc3339.html">RFC 3339</a> timestamps (e.g.,
+<code>2006-12-02T02:07:43Z</code>) and UTC dates in the same format (e.g., <code>2006-12-02</code>).</p>
 <p><strong>Default value</strong>: <code>None</code></p>
 <p><strong>Type</strong>: <code>str</code></p>
 <p><strong>Example usage</strong>:</p>
@@ -4789,8 +4844,8 @@ format (e.g., <code>2006-12-02</code>).</p>
 <h4 id="pip_extra-index-url"><a href="#pip_extra-index-url"><code>extra-index-url</code></a><a class="headerlink" href="#pip_extra-index-url" title="Permanent link">#</a></h4>
 <p><span id="extra-index-url"></span></p>
 <p>Extra URLs of package indexes to use, in addition to <code>--index-url</code>.</p>
-<p>Accepts either a repository compliant with PEP 503 (the simple repository API), or a local
-directory laid out in the same format.</p>
+<p>Accepts either a repository compliant with <a href="https://peps.python.org/pep-0503/">PEP 503</a>
+(the simple repository API), or a local directory laid out in the same format.</p>
 <p>All indexes provided via this flag take priority over the index specified by
 <a href="#index-url"><code>index_url</code></a>. When multiple indexes are provided, earlier values take priority.</p>
 <p>To control uv's resolution strategy when multiple indexes are present, see
@@ -4893,8 +4948,8 @@ same name to a secondary.</p>
 <h4 id="pip_index-url"><a href="#pip_index-url"><code>index-url</code></a><a class="headerlink" href="#pip_index-url" title="Permanent link">#</a></h4>
 <p><span id="index-url"></span></p>
 <p>The URL of the Python package index (by default: <a href="https://pypi.org/simple">https://pypi.org/simple</a>).</p>
-<p>Accepts either a repository compliant with PEP 503 (the simple repository API), or a local
-directory laid out in the same format.</p>
+<p>Accepts either a repository compliant with <a href="https://peps.python.org/pep-0503/">PEP 503</a>
+(the simple repository API), or a local directory laid out in the same format.</p>
 <p>The index provided by this setting is given lower priority than any indexes specified via
 <a href="#extra-index-url"><code>extra_index_url</code></a>.</p>
 <p><strong>Default value</strong>: <code>"https://pypi.org/simple"</code></p>
@@ -4904,12 +4959,12 @@ directory laid out in the same format.</p>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-98-1" name="__codelineno-98-1" href="#__codelineno-98-1"></a><span class="k">[tool.uv.pip]</span>
-<a id="__codelineno-98-2" name="__codelineno-98-2" href="#__codelineno-98-2"></a><span class="n">index-url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://pypi.org/simple&quot;</span>
+<a id="__codelineno-98-2" name="__codelineno-98-2" href="#__codelineno-98-2"></a><span class="n">index-url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://test.pypi.org/simple&quot;</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-99-1" name="__codelineno-99-1" href="#__codelineno-99-1"></a><span class="k">[pip]</span>
-<a id="__codelineno-99-2" name="__codelineno-99-2" href="#__codelineno-99-2"></a><span class="n">index-url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://pypi.org/simple&quot;</span>
+<a id="__codelineno-99-2" name="__codelineno-99-2" href="#__codelineno-99-2"></a><span class="n">index-url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://test.pypi.org/simple&quot;</span>
 </code></pre></div>
 </div>
 </div>
@@ -4942,7 +4997,7 @@ use the <code>keyring</code> CLI to handle authentication.</p>
 <p><span id="legacy-setup-py"></span></p>
 <p>Use legacy <code>setuptools</code> behavior when building source distributions without a
 <code>pyproject.toml</code>.</p>
-<p><strong>Default value</strong>: <code>None</code></p>
+<p><strong>Default value</strong>: <code>false</code></p>
 <p><strong>Type</strong>: <code>bool</code></p>
 <p><strong>Example usage</strong>:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="52:2"><input checked="checked" id="__tabbed_52_1" name="__tabbed_52" type="radio" /><input id="__tabbed_52_2" name="__tabbed_52" type="radio" /><div class="tabbed-labels"><label for="__tabbed_52_1">pyproject.toml</label><label for="__tabbed_52_2">uv.toml</label></div>
@@ -4971,6 +5026,7 @@ Windows.</p>
 <li><code>"clone"</code>: Clone (i.e., copy-on-write) packages from the wheel into the site packages</li>
 <li><code>"copy"</code>: Copy packages from the wheel into the site packages</li>
 <li><code>"hardlink"</code>: Hard link packages from the wheel into the site packages</li>
+<li><code>"symlink"</code>: Symbolically link packages from the wheel into the site packages</li>
 </ul>
 <p><strong>Example usage</strong>:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="53:2"><input checked="checked" id="__tabbed_53_1" name="__tabbed_53" type="radio" /><input id="__tabbed_53_2" name="__tabbed_53" type="radio" /><div class="tabbed-labels"><label for="__tabbed_53_1">pyproject.toml</label><label for="__tabbed_53_2">uv.toml</label></div>
@@ -5063,7 +5119,8 @@ distributions will exit with an error.</p>
 <h4 id="pip_no-build-isolation"><a href="#pip_no-build-isolation"><code>no-build-isolation</code></a><a class="headerlink" href="#pip_no-build-isolation" title="Permanent link">#</a></h4>
 <p><span id="no-build-isolation"></span></p>
 <p>Disable isolation when building source distributions.</p>
-<p>Assumes that build dependencies specified by PEP 518 are already installed.</p>
+<p>Assumes that build dependencies specified by <a href="https://peps.python.org/pep-0518/">PEP 518</a>
+are already installed.</p>
 <p><strong>Default value</strong>: <code>false</code></p>
 <p><strong>Type</strong>: <code>bool</code></p>
 <p><strong>Example usage</strong>:</p>
@@ -5579,7 +5636,7 @@ implementations.</p>
 <p>In universal mode, the current Python version (or user-provided <code>--python-version</code>) will be
 treated as a lower bound. For example, <code>--universal --python-version 3.7</code> would produce a
 universal resolution for Python 3.7 and later.</p>
-<p><strong>Default value</strong>: <code>None</code></p>
+<p><strong>Default value</strong>: <code>false</code></p>
 <p><strong>Type</strong>: <code>bool</code></p>
 <p><strong>Example usage</strong>:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="78:2"><input checked="checked" id="__tabbed_78_1" name="__tabbed_78" type="radio" /><input id="__tabbed_78_2" name="__tabbed_78" type="radio" /><div class="tabbed-labels"><label for="__tabbed_78_1">pyproject.toml</label><label for="__tabbed_78_2">uv.toml</label></div>
@@ -5641,6 +5698,30 @@ file.</p>
 </div>
 </div>
 <hr />
+<h4 id="pip_verify-hashes"><a href="#pip_verify-hashes"><code>verify-hashes</code></a><a class="headerlink" href="#pip_verify-hashes" title="Permanent link">#</a></h4>
+<p><span id="verify-hashes"></span></p>
+<p>Validate any hashes provided in the requirements file.</p>
+<p>Unlike <code>--require-hashes</code>, <code>--verify-hashes</code> does not require that all requirements have
+hashes; instead, it will limit itself to verifying the hashes of those requirements that do
+include them.</p>
+<p><strong>Default value</strong>: <code>false</code></p>
+<p><strong>Type</strong>: <code>bool</code></p>
+<p><strong>Example usage</strong>:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="81:2"><input checked="checked" id="__tabbed_81_1" name="__tabbed_81" type="radio" /><input id="__tabbed_81_2" name="__tabbed_81" type="radio" /><div class="tabbed-labels"><label for="__tabbed_81_1">pyproject.toml</label><label for="__tabbed_81_2">uv.toml</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-160-1" name="__codelineno-160-1" href="#__codelineno-160-1"></a><span class="k">[tool.uv.pip]</span>
+<a id="__codelineno-160-2" name="__codelineno-160-2" href="#__codelineno-160-2"></a><span class="n">verify-hashes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-161-1" name="__codelineno-161-1" href="#__codelineno-161-1"></a><span class="k">[pip]</span>
+<a id="__codelineno-161-2" name="__codelineno-161-2" href="#__codelineno-161-2"></a><span class="n">verify-hashes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<hr />
 <h2 id="workspace"><code>workspace</code><a class="headerlink" href="#workspace" title="Permanent link">#</a></h2>
 <h4 id="workspace_exclude"><a href="#workspace_exclude"><code>exclude</code></a><a class="headerlink" href="#workspace_exclude" title="Permanent link">#</a></h4>
 <p><span id="exclude"></span></p>
@@ -5651,16 +5732,16 @@ file.</p>
 <p><strong>Default value</strong>: <code>[]</code></p>
 <p><strong>Type</strong>: <code>list[str]</code></p>
 <p><strong>Example usage</strong>:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="81:2"><input checked="checked" id="__tabbed_81_1" name="__tabbed_81" type="radio" /><input id="__tabbed_81_2" name="__tabbed_81" type="radio" /><div class="tabbed-labels"><label for="__tabbed_81_1">pyproject.toml</label><label for="__tabbed_81_2">uv.toml</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="82:2"><input checked="checked" id="__tabbed_82_1" name="__tabbed_82" type="radio" /><input id="__tabbed_82_2" name="__tabbed_82" type="radio" /><div class="tabbed-labels"><label for="__tabbed_82_1">pyproject.toml</label><label for="__tabbed_82_2">uv.toml</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-160-1" name="__codelineno-160-1" href="#__codelineno-160-1"></a><span class="k">[tool.uv.workspace]</span>
-<a id="__codelineno-160-2" name="__codelineno-160-2" href="#__codelineno-160-2"></a><span class="n">exclude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;member1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;path/to/member2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;libs/*&quot;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-162-1" name="__codelineno-162-1" href="#__codelineno-162-1"></a><span class="k">[tool.uv.workspace]</span>
+<a id="__codelineno-162-2" name="__codelineno-162-2" href="#__codelineno-162-2"></a><span class="n">exclude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;member1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;path/to/member2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;libs/*&quot;</span><span class="p">]</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-161-1" name="__codelineno-161-1" href="#__codelineno-161-1"></a><span class="k">[workspace]</span>
-<a id="__codelineno-161-2" name="__codelineno-161-2" href="#__codelineno-161-2"></a><span class="n">exclude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;member1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;path/to/member2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;libs/*&quot;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-163-1" name="__codelineno-163-1" href="#__codelineno-163-1"></a><span class="k">[workspace]</span>
+<a id="__codelineno-163-2" name="__codelineno-163-2" href="#__codelineno-163-2"></a><span class="n">exclude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;member1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;path/to/member2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;libs/*&quot;</span><span class="p">]</span>
 </code></pre></div>
 </div>
 </div>
@@ -5674,16 +5755,16 @@ file.</p>
 <p><strong>Default value</strong>: <code>[]</code></p>
 <p><strong>Type</strong>: <code>list[str]</code></p>
 <p><strong>Example usage</strong>:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="82:2"><input checked="checked" id="__tabbed_82_1" name="__tabbed_82" type="radio" /><input id="__tabbed_82_2" name="__tabbed_82" type="radio" /><div class="tabbed-labels"><label for="__tabbed_82_1">pyproject.toml</label><label for="__tabbed_82_2">uv.toml</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="83:2"><input checked="checked" id="__tabbed_83_1" name="__tabbed_83" type="radio" /><input id="__tabbed_83_2" name="__tabbed_83" type="radio" /><div class="tabbed-labels"><label for="__tabbed_83_1">pyproject.toml</label><label for="__tabbed_83_2">uv.toml</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-162-1" name="__codelineno-162-1" href="#__codelineno-162-1"></a><span class="k">[tool.uv.workspace]</span>
-<a id="__codelineno-162-2" name="__codelineno-162-2" href="#__codelineno-162-2"></a><span class="n">members</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;member1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;path/to/member2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;libs/*&quot;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-164-1" name="__codelineno-164-1" href="#__codelineno-164-1"></a><span class="k">[tool.uv.workspace]</span>
+<a id="__codelineno-164-2" name="__codelineno-164-2" href="#__codelineno-164-2"></a><span class="n">members</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;member1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;path/to/member2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;libs/*&quot;</span><span class="p">]</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-163-1" name="__codelineno-163-1" href="#__codelineno-163-1"></a><span class="k">[workspace]</span>
-<a id="__codelineno-163-2" name="__codelineno-163-2" href="#__codelineno-163-2"></a><span class="n">members</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;member1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;path/to/member2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;libs/*&quot;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-165-1" name="__codelineno-165-1" href="#__codelineno-165-1"></a><span class="k">[workspace]</span>
+<a id="__codelineno-165-2" name="__codelineno-165-2" href="#__codelineno-165-2"></a><span class="n">members</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;member1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;path/to/member2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;libs/*&quot;</span><span class="p">]</span>
 </code></pre></div>
 </div>
 </div>
