@@ -619,6 +619,64 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Project structure
+        </span>
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Project structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyprojecttoml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          <code>pyproject.toml</code>
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#venv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          <code>.venv</code>
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uvlock" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          <code>uv.lock</code>
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#running-commands" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -751,13 +809,13 @@
   
   
     <li class="md-nav__item">
-      <a href="../../preview/tools/" class="md-nav__link">
+      <a href="../../tools/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     
   
-    Command-line tools
+    Tools
   
 
     
@@ -1117,13 +1175,13 @@
   
   
     <li class="md-nav__item">
-      <a href="../docker/" class="md-nav__link">
+      <a href="../integration/docker/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     
   
-    Using in Docker
+    Docker
   
 
     
@@ -1143,13 +1201,13 @@
   
   
     <li class="md-nav__item">
-      <a href="../github/" class="md-nav__link">
+      <a href="../integration/github/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     
   
-    Using in GitHub Actions
+    GitHub Actions
   
 
     
@@ -1169,13 +1227,39 @@
   
   
     <li class="md-nav__item">
-      <a href="../pre-commit/" class="md-nav__link">
+      <a href="../integration/pre-commit/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     
   
-    Using in pre-commit
+    Pre-commit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../integration/commercial-indexes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Commercial indexes
   
 
     
@@ -1569,6 +1653,64 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Project structure
+        </span>
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Project structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyprojecttoml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          <code>pyproject.toml</code>
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#venv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          <code>.venv</code>
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uvlock" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          <code>uv.lock</code>
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#running-commands" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1673,22 +1815,96 @@
 
 
 <h1 id="working-on-projects">Working on projects<a class="headerlink" href="#working-on-projects" title="Permanent link">#</a></h1>
+<p>uv can manage the development of a Python project from the ground up.</p>
 <h2 id="creating-a-new-project">Creating a new project<a class="headerlink" href="#creating-a-new-project" title="Permanent link">#</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>uv init
+<p>You can create a new Python project using the <code>uv init</code> command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">$ </span>uv<span class="w"> </span>init<span class="w"> </span>hello-world
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span>hello-world
+</code></pre></div>
+<p>Alternatively, you can initialize a project in the working directory:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span>hello-world
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="gp">$ </span>uv<span class="w"> </span>init
+</code></pre></div>
+<p>This will create the following directory structure:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>.
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>├── pyproject.toml
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>├── README.md
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>└── src
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    └── hello-world
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>        └── __init__.py
 </code></pre></div>
 <h3 id="working-on-an-existing-project">Working on an existing project<a class="headerlink" href="#working-on-an-existing-project" title="Permanent link">#</a></h3>
-<!-- What makes a project compatible with uv commands? What are my alternatives? -->
-
+<p>If your project already contains a standard <code>pyproject.toml</code>, you can start
+using uv without any extra work. Commands like <code>uv add</code> and <code>uv run</code> will
+create the lockfile and virtual environment the first time they are run.</p>
+<p>If you are migrating from an alternative Python package manager, you may need to
+edit your <code>pyproject.toml</code> manually to use uv. uv uses the <code>[tool.uv]</code> section
+of the <code>pyproject.toml</code> to support non-standard features, such as development
+dependencies. Alternative Python package managers may use different sections,
+or a custom format altogether.</p>
+<h2 id="project-structure">Project structure<a class="headerlink" href="#project-structure" title="Permanent link">#</a></h2>
+<p>A project consists of a few important parts that work together and allow uv to
+manage your project. Along with the files created by <code>uv init</code>, uv will create a
+virtual environment and <code>uv.lock</code> file in the root of your project the first time you
+run a project command.</p>
+<h3 id="pyprojecttoml"><code>pyproject.toml</code><a class="headerlink" href="#pyprojecttoml" title="Permanent link">#</a></h3>
+<p>The <code>pyproject.toml</code> contains metadata about your project:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">[project]</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hello-world&quot;</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Add your description here&quot;</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="n">readme</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;README.md&quot;</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[]</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="k">[tool.uv]</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="n">dev-dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[]</span>
+</code></pre></div>
+<p>This is where you specify dependencies, as well as details about the project
+such as it's description or license. You can edit this file manually, or use
+commands like <code>uv add</code> and <code>uv remove</code> to manage your project through the
+CLI.</p>
+<h3 id="venv"><code>.venv</code><a class="headerlink" href="#venv" title="Permanent link">#</a></h3>
+<p>The <code>.venv</code> folder contains your project's virtual environment, a Python
+environment that is isolated from the rest of your system. This is where uv will
+install your project's dependencies.</p>
+<h3 id="uvlock"><code>uv.lock</code><a class="headerlink" href="#uvlock" title="Permanent link">#</a></h3>
+<p><code>uv.lock</code> is a cross-platform lockfile that contains exact information about your
+project's dependencies. Unlike the <code>pyproject.toml</code> which is used to specify the
+broad requirements of your project, the lockfile contains the exact resolved versions
+that are installed in the virtual environment. This file should be checked into version
+control, allowing for consistent and reproducible installations across machines.</p>
+<p><code>uv.lock</code> is a human-readable TOML file but is managed by uv and should not be
+edited manually.</p>
 <h2 id="running-commands">Running commands<a class="headerlink" href="#running-commands" title="Permanent link">#</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>uv run
+<p><code>uv run</code> can be used to run arbitrary scripts or commands in your project
+environment. This ensures that the lockfile and virtual environment are
+up-to-date before executing a given command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>my_script.py
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>flask<span class="w"> </span>run<span class="w"> </span>-p<span class="w"> </span><span class="m">3000</span>
+</code></pre></div>
+<p>Alternatively, you can use <code>uv sync</code> to manually synchronize the lockfile and
+virtual environment before executing a command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="gp">$ </span>uv<span class="w"> </span>sync
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="gp">$ </span>python<span class="w"> </span>my_script.py
 </code></pre></div>
 <h2 id="managing-dependencies">Managing dependencies<a class="headerlink" href="#managing-dependencies" title="Permanent link">#</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>uv add
+<p>You can add dependencies to your <code>pyproject.toml</code> with the <code>uv add</code> command.
+This will also update the lockfile and virtual environment:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>requests
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>uv remove
+<p>You can also specify version constraints or alternative sources:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="gp"># </span>Specify<span class="w"> </span>a<span class="w"> </span>version<span class="w"> </span>constraint
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span><span class="s1">&#39;requests==2.31.0&#39;</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="gp"># </span>Add<span class="w"> </span>a<span class="w"> </span>git<span class="w"> </span>dependency
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>requests<span class="w"> </span>--git<span class="w"> </span>https://github.com/psf/requests
+</code></pre></div>
+<p>To remove a package, you can use <code>uv remove</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="gp">$ </span>uv<span class="w"> </span>remove<span class="w"> </span>requests
 </code></pre></div>
 <h2 id="next-steps">Next steps<a class="headerlink" href="#next-steps" title="Permanent link">#</a></h2>
-<p>See the <a href="../../projects/">projects concept</a> documentation for more details on projects.</p>
+<p>See the <a href="../../projects/">projects concept</a> documentation for more details about
+projects.</p>
 
 
 

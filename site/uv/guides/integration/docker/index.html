@@ -10,27 +10,31 @@
         <meta name="author" content="charliermarsh">
       
       
-        <link rel="canonical" href="https://docs.astral.sh/uv/guides/using-azure-artifacts/">
+        <link rel="canonical" href="https://docs.astral.sh/uv/guides/integration/docker/">
       
       
+        <link rel="prev" href="../../../settings/">
+      
+      
+        <link rel="next" href="../github/">
       
       
         
       
       
-      <link rel="icon" href="../../assets/favicon.ico">
+      <link rel="icon" href="../../../assets/favicon.ico">
       <meta name="generator" content="mkdocs-1.5.0, mkdocs-material-9.3.1+insiders-4.41.0">
     
     
       
-        <title>Using Azure Artifacts - uv</title>
+        <title>Docker - uv</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.176649b9.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.176649b9.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.da3f46a0.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.da3f46a0.min.css">
       
       
 
@@ -49,9 +53,9 @@
       
     
     
-      <link rel="stylesheet" href="../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -83,7 +87,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#using-azure-artifacts" class="md-skip">
+        <a href="#using-uv-in-docker" class="md-skip">
           Skip to content
         </a>
       
@@ -99,7 +103,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="uv" class="md-header__button md-logo" aria-label="uv" data-md-component="logo">
+    <a href="../../.." title="uv" class="md-header__button md-logo" aria-label="uv" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -119,7 +123,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Using Azure Artifacts
+              Docker
             
           </span>
         </div>
@@ -242,7 +246,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="uv" class="md-nav__button md-logo" aria-label="uv" data-md-component="logo">
+    <a href="../../.." title="uv" class="md-nav__button md-logo" aria-label="uv" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -271,7 +275,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -342,7 +346,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/" class="md-nav__link">
+      <a href="../../../installation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -368,7 +372,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../first-steps/" class="md-nav__link">
+      <a href="../../../first-steps/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -447,7 +451,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../install-python/" class="md-nav__link">
+      <a href="../../install-python/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -473,7 +477,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../scripts/" class="md-nav__link">
+      <a href="../../scripts/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -499,7 +503,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tools/" class="md-nav__link">
+      <a href="../../tools/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -525,7 +529,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../projects/" class="md-nav__link">
+      <a href="../../projects/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -604,7 +608,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../projects/" class="md-nav__link">
+      <a href="../../../projects/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -630,13 +634,13 @@
   
   
     <li class="md-nav__item">
-      <a href="../../preview/tools/" class="md-nav__link">
+      <a href="../../../tools/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     
   
-    Command-line tools
+    Tools
   
 
     
@@ -656,7 +660,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python-versions/" class="md-nav__link">
+      <a href="../../../python-versions/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -682,7 +686,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../preview/workspaces/" class="md-nav__link">
+      <a href="../../../preview/workspaces/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -708,7 +712,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../preview/dependencies/" class="md-nav__link">
+      <a href="../../../preview/dependencies/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -734,7 +738,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../resolution/" class="md-nav__link">
+      <a href="../../../resolution/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -760,7 +764,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cache/" class="md-nav__link">
+      <a href="../../../cache/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -786,7 +790,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../configuration/authentication/" class="md-nav__link">
+      <a href="../../../configuration/authentication/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -865,7 +869,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../configuration/files/" class="md-nav__link">
+      <a href="../../../configuration/files/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -891,7 +895,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../configuration/environment/" class="md-nav__link">
+      <a href="../../../configuration/environment/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -917,7 +921,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../settings/" class="md-nav__link">
+      <a href="../../../settings/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -948,19 +952,19 @@
       
   
   
+    
+  
   
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
             
@@ -979,7 +983,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
@@ -994,15 +998,41 @@
                 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../docker/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    
+  
+    Docker
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
     
   
-    Using in Docker
+    Docker
   
 
     
@@ -1011,6 +1041,136 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#running-in-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Running in Docker
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-uv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Installing uv
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-a-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Installing a package
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Installing requirements
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-a-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Installing a project
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optimizations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Optimizations
+        </span>
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Optimizations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-uv-temporarily" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Using uv temporarily
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Caching
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1028,7 +1188,7 @@
   <span class="md-ellipsis">
     
   
-    Using in GitHub Actions
+    GitHub Actions
   
 
     
@@ -1054,7 +1214,33 @@
   <span class="md-ellipsis">
     
   
-    Using in pre-commit
+    Pre-commit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../commercial-indexes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Commercial indexes
   
 
     
@@ -1127,7 +1313,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pip/environments/" class="md-nav__link">
+      <a href="../../../pip/environments/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1153,7 +1339,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pip/packages/" class="md-nav__link">
+      <a href="../../../pip/packages/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1179,7 +1365,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pip/inspection/" class="md-nav__link">
+      <a href="../../../pip/inspection/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1205,7 +1391,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pip/dependencies/" class="md-nav__link">
+      <a href="../../../pip/dependencies/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1231,7 +1417,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pip/compile/" class="md-nav__link">
+      <a href="../../../pip/compile/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1310,7 +1496,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../versioning/" class="md-nav__link">
+      <a href="../../../versioning/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1336,7 +1522,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../platforms/" class="md-nav__link">
+      <a href="../../../platforms/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1362,7 +1548,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pip/compatibility/" class="md-nav__link">
+      <a href="../../../pip/compatibility/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1416,11 +1602,11 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#authenticate-using-a-pat" class="md-nav__link">
+  <a href="#running-in-docker" class="md-nav__link">
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Authenticate using a PAT
+          Running in Docker
         </span>
       
     </span>
@@ -1429,15 +1615,99 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#authenticate-using-keyring" class="md-nav__link">
+  <a href="#installing-uv" class="md-nav__link">
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Authenticate using Keyring
+          Installing uv
         </span>
       
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-a-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Installing a package
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Installing requirements
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-a-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Installing a project
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optimizations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Optimizations
+        </span>
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Optimizations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-uv-temporarily" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Using uv temporarily
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Caching
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1459,6 +1729,44 @@
   
 
 
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+    <li class="md-path__item">
+      <a href="../../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+    
+    
+      <li class="md-path__item">
+        <a href="./" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Integration guides
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
               
               <article class="md-content__inner md-typeset">
                 
@@ -1468,30 +1776,70 @@
   
 
 
-<h1 id="using-azure-artifacts">Using Azure Artifacts<a class="headerlink" href="#using-azure-artifacts" title="Permanent link">#</a></h1>
-<p>uv can install packages from <a href="https://learn.microsoft.com/en-us/azure/devops/artifacts/start-using-azure-artifacts?view=azure-devops&amp;tabs=nuget%2Cnugetserver">Azure DevOps Artifacts</a>. You can authenticate to a feed using a <a href="https://learn.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops&amp;tabs=Windows">Personal Access Token</a> or interactively using Keyring.</p>
-<h2 id="authenticate-using-a-pat">Authenticate using a PAT<a class="headerlink" href="#authenticate-using-a-pat" title="Permanent link">#</a></h2>
-<p>If you have a Personal Access Token available (e.g. <a href="https://learn.microsoft.com/en-us/azure/devops/pipelines/build/variables?view=azure-devops&amp;tabs=yaml#systemaccesstoken"><code>$(System.AccessToken)</code> in an Azure pipeline</a>), you can authenticate to Artifacts using Basic Auth. Simply include the PAT in the password field of the URL. The username can be any dummy string.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># if your token is in the ADO_PAT environment variable</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">UV_EXTRA_INDEX_URL</span><span class="o">=</span>https://dummy:<span class="nv">$ADO_PAT</span>@pkgs.dev.azure.com/<span class="o">{</span>organization<span class="o">}</span>/<span class="o">{</span>project<span class="o">}</span>/_packaging/<span class="o">{</span>feedName<span class="o">}</span>/pypi/simple/
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>my-private-package
+<h1 id="using-uv-in-docker">Using uv in Docker<a class="headerlink" href="#using-uv-in-docker" title="Permanent link">#</a></h1>
+<h2 id="running-in-docker">Running in Docker<a class="headerlink" href="#running-in-docker" title="Permanent link">#</a></h2>
+<p>A Docker image is published with a built version of uv available. To run a uv command in a container:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>docker<span class="w"> </span>run<span class="w"> </span>ghcr.io/astral-sh/uv<span class="w"> </span>--help
 </code></pre></div>
-<h2 id="authenticate-using-keyring">Authenticate using Keyring<a class="headerlink" href="#authenticate-using-keyring" title="Permanent link">#</a></h2>
-<p>If you don’t have a PAT handy, you can authenticate to Artifacts using <a href="https://github.com/jaraco/keyring"><code>keyring</code></a> with <a href="https://github.com/Microsoft/artifacts-keyring">the <code>artifacts-keyring</code> plugin</a>. Because you’ll be using these two packages to authenticate to Azure Artifacts, you should arrange to have them installed into your environment from a source other than Artifacts.</p>
-<p>The <code>artifacts-keyring</code> plugin wraps <a href="https://github.com/microsoft/artifacts-credprovider">the Azure Artifacts Credential Provider tool</a>. The credential provider supports a few different authentication modes including interactive login — see <a href="https://github.com/microsoft/artifacts-credprovider">the tool's docs</a> for information on how to configure it.</p>
-<p><a href="https://github.com/astral-sh/uv/blob/main/PIP_COMPATIBILITY.md#registry-authentication">uv only supports using Keyring in subprocess mode</a>. The <code>keyring</code> executable must be on the <code>PATH</code>, meaning it should be installed globally or into your currently-active virtual environment. Keyring’s CLI requires a username in the URL, so you should modify your index URL to include the default username <code>VssSessionToken</code>.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># preinstall keyring and the Artifacts plugin from the public PyPI</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>keyring<span class="w"> </span>artifacts-keyring
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># enable uv&#39;s keyring integration</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="nb">export</span><span class="w"> </span><span class="nv">UV_KEYRING_PROVIDER</span><span class="o">=</span>subprocess
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># include default username in URL</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="nb">export</span><span class="w"> </span><span class="nv">UV_EXTRA_INDEX_URL</span><span class="o">=</span>https://VssSessionToken@pkgs.dev.azure.com/<span class="o">{</span>organization<span class="o">}</span>/<span class="o">{</span>project<span class="o">}</span>/_packaging/<span class="o">{</span>feedName<span class="o">}</span>/pypi/simple/
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>my-private-package
+<h2 id="installing-uv">Installing uv<a class="headerlink" href="#installing-uv" title="Permanent link">#</a></h2>
+<p>uv can be installed by copying from the official Docker image:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">python:3.12-slim-bullseye</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>ghcr.io/astral-sh/uv:latest<span class="w"> </span>/uv<span class="w"> </span>/bin/uv
 </code></pre></div>
+<p>Or with the standalone installer:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">python:3.12-slim-bullseye</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>curl<span class="w"> </span>--no-install-recommends
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">RUN</span><span class="w"> </span>curl<span class="w"> </span>-LsSf<span class="w"> </span>https://astral.sh/uv/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">ENV</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;/root/.cargo/bin/:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
+</code></pre></div>
+<p>Note this requires <code>curl</code> to be available.</p>
+<p>In either case, it is best practice to pin to a specific uv version.</p>
+<h2 id="installing-a-package">Installing a package<a class="headerlink" href="#installing-a-package" title="Permanent link">#</a></h2>
+<p>Once uv is installed in an image, it can be used to install some packages.</p>
+<p>The system Python environment is safe to use this context, since a container is already isolated. The <code>--system</code> flag can be used to install in the system environment:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">RUN</span><span class="w"> </span>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--system<span class="w"> </span>ruff
+</code></pre></div>
+<p>To use the system Python environment by default, set the <code>UV_SYSTEM_PYTHON</code> variable:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">ENV</span><span class="w"> </span><span class="nv">UV_SYSTEM_PYTHON</span><span class="o">=</span><span class="m">1</span>
+</code></pre></div>
+<p>Alternatively, a virtual environment can be created and activated:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">RUN</span><span class="w"> </span>uv<span class="w"> </span>venv<span class="w"> </span>/opt/venv
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="c"># Use the virtual environment automatically</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">ENV</span><span class="w"> </span><span class="nv">VIRTUAL_ENV</span><span class="o">=</span>/opt/venv
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c"># Place entry points in the environment at the front of the path</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="k">ENV</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;/opt/venv/bin:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
+</code></pre></div>
+<p>When using a virtual environment, the <code>--system</code> flag should be omitted from uv invocations:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">RUN</span><span class="w"> </span>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>ruff
+</code></pre></div>
+<h2 id="installing-requirements">Installing requirements<a class="headerlink" href="#installing-requirements" title="Permanent link">#</a></h2>
+<p>To install requirements files, copy them into the container:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">COPY</span><span class="w"> </span>requirements.txt<span class="w"> </span>.
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="k">RUN</span><span class="w"> </span>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</code></pre></div>
+<h2 id="installing-a-project">Installing a project<a class="headerlink" href="#installing-a-project" title="Permanent link">#</a></h2>
+<p>When installing a project alongside requirements, it is prudent to separate copying the requirements from the rest of the source code. This allows the dependencies of the project (which do not change often) to be cached separately from the project itself (which changes very frequently).</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">COPY</span><span class="w"> </span>pyproject.toml<span class="w"> </span>.
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="k">RUN</span><span class="w"> </span>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>pyproject.toml
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="k">COPY</span><span class="w"> </span>.<span class="w"> </span>.
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="k">RUN</span><span class="w"> </span>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+</code></pre></div>
+<h2 id="optimizations">Optimizations<a class="headerlink" href="#optimizations" title="Permanent link">#</a></h2>
+<h3 id="using-uv-temporarily">Using uv temporarily<a class="headerlink" href="#using-uv-temporarily" title="Permanent link">#</a></h3>
+<p>If uv isn't needed in the final image, the binary can be mounted in each invocation:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">RUN</span><span class="w"> </span>--mount<span class="o">=</span><span class="nv">from</span><span class="o">=</span>uv,source<span class="o">=</span>/uv,target<span class="o">=</span>/bin/uv<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--system<span class="w"> </span>ruff
+</code></pre></div>
+<h3 id="caching">Caching<a class="headerlink" href="#caching" title="Permanent link">#</a></h3>
+<p>A <a href="https://docs.docker.com/build/guide/mounts/#add-a-cache-mount">cache mount</a> can be used to improve performance across builds:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">RUN</span><span class="w"> </span>--mount<span class="o">=</span><span class="nv">type</span><span class="o">=</span>cache,target<span class="o">=</span>/root/.cache/uv<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w"> </span>./uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt<span class="w"> </span>--&gt;
+</code></pre></div>
+<p>Note the cache directory's location can be determined with the <code>uv cache dir</code> command.
+Alternatively, the cache can be set to a constant location:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">ENV</span><span class="w"> </span><span class="nv">UV_CACHE_DIR</span><span class="o">=</span>/opt/uv-cache/
+</code></pre></div>
+<p>If not mounting the cache, image size can be reduced with <code>--no-cache</code> flag.</p>
 
 
 
@@ -1541,10 +1889,10 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.expand", "navigation.tracking", "content.code.annotate", "toc.follow", "navigation.path", "navigation.top", "content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.f2da59ea.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.expand", "navigation.tracking", "content.code.annotate", "toc.follow", "navigation.path", "navigation.top", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.f2da59ea.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.d7e51e09.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.d7e51e09.min.js"></script>
       
     
   </body>
