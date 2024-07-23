@@ -16,13 +16,13 @@
         <link rel="prev" href="../tools/">
       
       
-        <link rel="next" href="../preview/workspaces/">
+        <link rel="next" href="../resolution/">
       
       
         
       
       
-      <link rel="icon" href="../assets/favicon.ico">
+      <link rel="icon" href="../assets/favicon.svg">
       <meta name="generator" content="mkdocs-1.5.0, mkdocs-material-9.3.1+insiders-4.41.0">
     
     
@@ -392,6 +392,58 @@
 
               
             
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../features/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -634,6 +686,58 @@
   
   
     <li class="md-nav__item">
+      <a href="../dependencies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Dependencies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workspaces/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Workspaces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../tools/" class="md-nav__link">
         
   
@@ -795,62 +899,23 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#python-distributions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Python distributions
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../preview/workspaces/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    
-  
-    Workspaces
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../preview/dependencies/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    
-  
-    Dependency sources
-  
-
-    
-  </span>
-  
-  
-
-      </a>
     </li>
   
 
@@ -1647,6 +1712,19 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#python-distributions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Python distributions
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1712,18 +1790,14 @@
   
 
 
-<p><strong>Warning: This documentation refers to experimental features that may change.</strong></p>
 <h1 id="python-versions">Python versions<a class="headerlink" href="#python-versions" title="Permanent link">#</a></h1>
-<p>A Python installation is composed of a Python interpreter (i.e. the <code>python</code> executable), the standard library, and other supporting files. It is common for an operating system to come with a Python version installed and there are many tools to help manage Python versions.</p>
+<p>A Python version is composed of a Python interpreter (i.e. the <code>python</code> executable), the standard library, and other supporting files. It is common for an operating system to come with a Python version installed.</p>
 <h2 id="requesting-a-version">Requesting a version<a class="headerlink" href="#requesting-a-version" title="Permanent link">#</a></h2>
 <p>uv will automatically download a Python version if it cannot be found.</p>
-<p>In stable commands, this behavior requires enabling preview mode. For example, when creating a virtual environment:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>uv<span class="w"> </span>venv<span class="w"> </span>--preview<span class="w"> </span>--python<span class="w"> </span><span class="m">3</span>.11.6
+<p>For example, when creating a virtual environment:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>uv<span class="w"> </span>venv<span class="w"> </span>--python<span class="w"> </span><span class="m">3</span>.11.6
 </code></pre></div>
 <p>uv will ensure that Python 3.11.6 is available — downloading and installing it if necessary — then create the virtual environment with it.</p>
-<p>For commands that are in preview, like <code>uv sync</code>, preview behavior is always on.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>uv<span class="w"> </span>sync<span class="w"> </span>--python<span class="w"> </span><span class="m">3</span>.12.3
-</code></pre></div>
 <p>Many Python version request formats are supported:</p>
 <ul>
 <li><code>&lt;version&gt;</code> e.g. <code>3</code>, <code>3.12</code>, <code>3.12.3</code></li>
@@ -1738,16 +1812,16 @@
 <h2 id="installing-a-python-version">Installing a Python version<a class="headerlink" href="#installing-a-python-version" title="Permanent link">#</a></h2>
 <p>Sometimes it is preferable to install the Python versions before they are needed.</p>
 <p>To install a Python version at a specific version:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>uv<span class="w"> </span>python<span class="w"> </span>install<span class="w"> </span><span class="m">3</span>.12.3
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>uv<span class="w"> </span>python<span class="w"> </span>install<span class="w"> </span><span class="m">3</span>.12.3
 </code></pre></div>
 <p>To install the latest patch version:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>uv<span class="w"> </span>python<span class="w"> </span>install<span class="w"> </span><span class="m">3</span>.12
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>uv<span class="w"> </span>python<span class="w"> </span>install<span class="w"> </span><span class="m">3</span>.12
 </code></pre></div>
 <p>To install a version that satisfies constraints:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>uv<span class="w"> </span>python<span class="w"> </span>install<span class="w"> </span><span class="s1">&#39;&gt;=3.8,&lt;3.10&#39;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>uv<span class="w"> </span>python<span class="w"> </span>install<span class="w"> </span><span class="s1">&#39;&gt;=3.8,&lt;3.10&#39;</span>
 </code></pre></div>
 <p>To install multiple versions:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>uv<span class="w"> </span>python<span class="w"> </span>install<span class="w"> </span><span class="m">3</span>.9<span class="w"> </span><span class="m">3</span>.10<span class="w"> </span><span class="m">3</span>.11
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>uv<span class="w"> </span>python<span class="w"> </span>install<span class="w"> </span><span class="m">3</span>.9<span class="w"> </span><span class="m">3</span>.10<span class="w"> </span><span class="m">3</span>.11
 </code></pre></div>
 <h2 id="project-python-versions">Project Python versions<a class="headerlink" href="#project-python-versions" title="Permanent link">#</a></h2>
 <p>By default <code>uv python install</code> will verify that a managed Python version is installed or install the latest version.</p>
@@ -1758,17 +1832,17 @@ uv will install all of the Python versions listed in the file. This file takes p
 <p>uv will also respect Python requirements defined in a <code>pyproject.toml</code> file during project command invocations.</p>
 <h2 id="viewing-available-python-versions">Viewing available Python versions<a class="headerlink" href="#viewing-available-python-versions" title="Permanent link">#</a></h2>
 <p>To list installed and available Python versions:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>uv<span class="w"> </span>python<span class="w"> </span>list
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>uv<span class="w"> </span>python<span class="w"> </span>list
 </code></pre></div>
 <p>By default, downloads for other platforms and old patch versions are hidden.</p>
 <p>To view all versions:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>uv<span class="w"> </span>python<span class="w"> </span>list<span class="w"> </span>--all-versions
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>uv<span class="w"> </span>python<span class="w"> </span>list<span class="w"> </span>--all-versions
 </code></pre></div>
 <p>To view Python versions for other platforms:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>uv<span class="w"> </span>python<span class="w"> </span>list<span class="w"> </span>--all-platforms
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>uv<span class="w"> </span>python<span class="w"> </span>list<span class="w"> </span>--all-platforms
 </code></pre></div>
 <p>To exclude downloads and only show installed Python versions:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>uv<span class="w"> </span>python<span class="w"> </span>list<span class="w"> </span>--only-installed
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>uv<span class="w"> </span>python<span class="w"> </span>list<span class="w"> </span>--only-installed
 </code></pre></div>
 <h2 id="adjusting-python-version-preferences">Adjusting Python version preferences<a class="headerlink" href="#adjusting-python-version-preferences" title="Permanent link">#</a></h2>
 <p>By default, uv will attempt to use Python versions found on the system and only download managed interpreters when necessary.
@@ -1793,6 +1867,10 @@ However, It's possible to adjust uv's Python version selection preference with t
 <ul>
 <li>A Python interpreter on the <code>PATH</code> as, e.g., <code>python3.7</code> on macOS and Linux.</li>
 </ul>
+<h2 id="python-distributions">Python distributions<a class="headerlink" href="#python-distributions" title="Permanent link">#</a></h2>
+<p>Python does not publish official distributable binaries, uv uses third-party standalone distributions from the <a href="https://github.com/indygreg/python-build-standalone"><code>python-build-standalone</code></a> project. The project is partially maintained by the uv maintainers and is used by many other Python projects.</p>
+<p>The Python distributions are self-contained and highly-portable. Additionally, these distributions have various build-time optimizations enabled to ensure they are performant.</p>
+<p>These distributions have some behavior quirks, generally as a consequence of portability. See the <a href="https://gregoryszorc.com/docs/python-build-standalone/main/quirks.html"><code>python-build-standalone</code> quirks</a> documentation for details. </p>
 
 
 
@@ -1821,6 +1899,46 @@ However, It's possible to adjust uv's Python version selection preference with t
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../tools/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Tools" rel="prev">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Tools
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../resolution/" class="md-footer__link md-footer__link--next" aria-label="Next: Resolution" rel="next">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Resolution
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
@@ -1842,7 +1960,7 @@ However, It's possible to adjust uv's Python version selection preference with t
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.expand", "navigation.tracking", "content.code.annotate", "toc.follow", "navigation.path", "navigation.top", "content.code.copy", "content.tabs.link"], "search": "../assets/javascripts/workers/search.f2da59ea.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.expand", "navigation.tracking", "content.code.annotate", "toc.follow", "navigation.footer", "navigation.path", "navigation.top", "content.code.copy", "content.tabs.link"], "search": "../assets/javascripts/workers/search.f2da59ea.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../assets/javascripts/bundle.d7e51e09.min.js"></script>
