@@ -103,8 +103,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="." title="uv" class="md-header__button md-logo" aria-label="uv" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <img src="assets/logo-letter.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -246,8 +245,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="." title="uv" class="md-nav__button md-logo" aria-label="uv" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <img src="assets/logo-letter.svg" alt="logo">
 
     </a>
     uv
@@ -549,32 +547,6 @@
 
               
             
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="overview/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    
-  
-    Overview
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -627,6 +599,32 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="guides/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -1769,95 +1767,103 @@
 <h2 id="highlights">Highlights<a class="headerlink" href="#highlights" title="Permanent link">#</a></h2>
 <ul>
 <li>🐍 <a href="guides/install-python/">Installs and manages</a> Python versions.</li>
-<li>🛠️ <a href="guides/tools/">Executes and installs</a> commands provided by Python packages.</li>
-<li>❇️ <a href="guides/scripts/">Runs scripts</a> with <a href="https://packaging.python.org/en/latest/specifications/inline-script-metadata/#inline-script-metadata">inline dependency metadata</a>.</li>
-<li>🗂️ Provides <a href="guides/projects/">comprehensive project management</a>, with a multi-platform lock file.</li>
-<li>🏢 Supports Cargo-style <a href="workspaces/">workspaces</a> for large projects.</li>
+<li>🛠️ <a href="guides/tools/">Runs and installs</a> Python applications.</li>
+<li>❇️ <a href="guides/scripts/">Runs scripts</a>, with support for <a href="guides/scripts/#declaring-script-dependencies">inline dependency metadata</a>.</li>
+<li>🗂️ Provides <a href="guides/projects/">comprehensive project management</a>, with a <a href="projects/#lock-file">universal lockfile</a>.</li>
+<li>🏢 Supports Cargo-style <a href="workspaces/">workspaces</a> for scalable projects.</li>
 <li>🚀 A replacement for <code>pip</code>, <code>pip-tools</code>, <code>pipx</code>, <code>poetry</code>, <code>pyenv</code>, <code>virtualenv</code>, and more.</li>
 <li>⚡️ <a href="https://github.com/astral-sh/uv/blob/main/BENCHMARKS.md">10-100x faster</a> than <code>pip</code>
   and <code>pip-tools</code> (<code>pip-compile</code> and <code>pip-sync</code>).</li>
-<li>🧪 Tested at-scale against the top 10,000 PyPI packages.</li>
 <li>💾 Disk-space efficient, with a <a href="cache/">global cache</a> for dependency deduplication.</li>
-<li>⁉️ Best-in-class error messages with a conflict-tracking resolver.</li>
-<li>⏬ A static binary that can be installed without Rust or Python via <code>curl</code> or <code>pip</code>.</li>
-<li>🖥️ Support for macOS, Linux, and Windows.</li>
+<li>⏬ Installable without Rust or Python via <code>curl</code> or <code>pip</code>.</li>
+<li>🖥️ Supports macOS, Linux, and Windows.</li>
 </ul>
 <p>uv is backed by <a href="https://astral.sh">Astral</a>, the creators of <a href="https://github.com/astral-sh/ruff">Ruff</a>.</p>
 <h2 id="getting-started">Getting started<a class="headerlink" href="#getting-started" title="Permanent link">#</a></h2>
-<p>Install uv with our official standalone installer:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># On macOS and Linux.</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>curl<span class="w"> </span>-LsSf<span class="w"> </span>https://astral.sh/uv/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># On Windows.</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>powershell<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;irm https://astral.sh/uv/install.ps1 | iex&quot;</span>
+<p>Install uv with our official standalone installer, on macOS and Linux:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>curl<span class="w"> </span>-LsSf<span class="w"> </span>https://astral.sh/uv/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
+</code></pre></div>
+<p>Or, on Windows:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>powershell<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;irm https://astral.sh/uv/install.ps1 | iex&quot;</span>
 </code></pre></div>
 <p>Then, check out the <a href="first-steps/">first steps</a>, see more <a href="installation/">installation methods</a>, or read on for a brief overview.</p>
 <h2 id="project-management">Project management<a class="headerlink" href="#project-management" title="Permanent link">#</a></h2>
-<p>uv can manage project dependencies and environments:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="gp">$ </span>uv<span class="w"> </span>init<span class="w"> </span>example
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="go">Initialized project `example` at `/home/user/example`</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span>example
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>ruff
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="go">Creating virtualenv at: .venv</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="go">Resolved 2 packages in 170ms</span>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="go">   Built example @ file:///home/user/example</span>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="go">Prepared 2 packages in 627ms</span>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="go">Installed 2 packages in 1ms</span>
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="go"> + example==0.1.0 (from file:///home/user/example)</span>
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="go"> + ruff==0.5.4</span>
-<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
-<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>--<span class="w"> </span>ruff<span class="w"> </span>check
-<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="go">All checks passed!</span>
+<p>uv manages project dependencies and environments:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="gp">$ </span>uv<span class="w"> </span>init<span class="w"> </span>example
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="go">Initialized project `example` at `/home/user/example`</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span>example
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>ruff
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="go">Creating virtualenv at: .venv</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="go">Resolved 2 packages in 170ms</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="go">   Built example @ file:///home/user/example</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="go">Prepared 2 packages in 627ms</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="go">Installed 2 packages in 1ms</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="go"> + example==0.1.0 (from file:///home/user/example)</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="go"> + ruff==0.5.4</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>ruff<span class="w"> </span>check
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="go">All checks passed!</span>
 </code></pre></div>
 <p>See the <a href="guides/projects/">project guide</a> to get started.</p>
 <h2 id="tool-management">Tool management<a class="headerlink" href="#tool-management" title="Permanent link">#</a></h2>
-<p>uv provides an interface for executing and installing command-line tools provided by Python packages, similar to <code>pipx</code>. </p>
+<p>uv executes and installs command-line tools provided by Python packages, similar to <code>pipx</code>. </p>
 <p>Run a tool in an ephemeral environment with <code>uvx</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="gp">$ </span>uvx<span class="w"> </span>pycowsay<span class="w"> </span><span class="s1">&#39;hello world!&#39;</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="go">Resolved 1 package in 167ms</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="go">Installed 1 package in 9ms</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="go"> + pycowsay==0.0.0.2</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="go">  &quot;&quot;&quot;</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="go">  ------------</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="go">&lt; hello world! &gt;</span>
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="go">  ------------</span>
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="go">   \   ^__^</span>
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="go">    \  (oo)\_______</span>
-<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="go">       (__)\       )\/\</span>
-<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="go">           ||----w |</span>
-<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="go">           ||     ||</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="gp">$ </span>uvx<span class="w"> </span>pycowsay<span class="w"> </span><span class="s1">&#39;hello world!&#39;</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="go">Resolved 1 package in 167ms</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="go">Installed 1 package in 9ms</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="go"> + pycowsay==0.0.0.2</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="go">  &quot;&quot;&quot;</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="go">  ------------</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="go">&lt; hello world! &gt;</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="go">  ------------</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="go">   \   ^__^</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="go">    \  (oo)\_______</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="go">       (__)\       )\/\</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="go">           ||----w |</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="go">           ||     ||</span>
 </code></pre></div>
 <p>Install a tool with <code>uv tool install</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="gp">$ </span>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>ruff
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="go">Resolved 1 package in 6ms</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="go">Installed 1 package in 2ms</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="go"> + ruff==0.5.4</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="go">Installed 1 executable: ruff</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="gp">$ </span>ruff<span class="w"> </span>--version
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="go">ruff 0.5.4</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="gp">$ </span>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>ruff
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="go">Resolved 1 package in 6ms</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="go">Installed 1 package in 2ms</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="go"> + ruff==0.5.4</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="go">Installed 1 executable: ruff</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="gp">$ </span>ruff<span class="w"> </span>--version
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="go">ruff 0.5.4</span>
 </code></pre></div>
 <p>See the <a href="guides/tools/">tools guide</a> to get started.</p>
 <h2 id="python-management">Python management<a class="headerlink" href="#python-management" title="Permanent link">#</a></h2>
-<p>uv supports installing Python and managing multiple Python versions.</p>
+<p>uv installs Python and allows quickly switching between Python versions.</p>
 <p>Install the Python versions your project requires:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>install<span class="w"> </span><span class="m">3</span>.10<span class="w"> </span><span class="m">3</span>.11<span class="w"> </span><span class="m">3</span>.12
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="go">warning: `uv python install` is experimental and may change without warning</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="go">Searching for Python versions matching: Python 3.10</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="go">Searching for Python versions matching: Python 3.11</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="go">Searching for Python versions matching: Python 3.12</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="go">Installed 3 versions in 3.42s</span>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="go"> + cpython-3.10.14-macos-aarch64-none</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="go"> + cpython-3.11.9-macos-aarch64-none</span>
-<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="go"> + cpython-3.12.4-macos-aarch64-none</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>install<span class="w"> </span><span class="m">3</span>.10<span class="w"> </span><span class="m">3</span>.11<span class="w"> </span><span class="m">3</span>.12
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="go">warning: `uv python install` is experimental and may change without warning</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="go">Searching for Python versions matching: Python 3.10</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="go">Searching for Python versions matching: Python 3.11</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="go">Searching for Python versions matching: Python 3.12</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="go">Installed 3 versions in 3.42s</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="go"> + cpython-3.10.14-macos-aarch64-none</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="go"> + cpython-3.11.9-macos-aarch64-none</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="go"> + cpython-3.12.4-macos-aarch64-none</span>
 </code></pre></div>
 <p>Or, fetch Python versions on demand:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="gp">$ </span>uv<span class="w"> </span>venv<span class="w"> </span>--python<span class="w"> </span><span class="m">3</span>.12.0
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="go">Creating virtualenv at: .venv</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="go">Activate with: source .venv/bin/activate</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="gp">$ </span>uv<span class="w"> </span>venv<span class="w"> </span>--python<span class="w"> </span><span class="m">3</span>.12.0
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="go">Using Python 3.12.0</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="go">Creating virtualenv at: .venv</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="go">Activate with: source .venv/bin/activate</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>--python<span class="w"> </span>pypy@3.8<span class="w"> </span>--<span class="w"> </span>python<span class="w"> </span>--version
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="go">Python 3.8.16 (a9dbdca6fc3286b0addd2240f11d97d8e8de187a, Dec 29 2022, 11:45:30)</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="go">[PyPy 7.3.11 with GCC Apple LLVM 13.1.6 (clang-1316.0.21.2.5)] on darwin</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="go">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="go">&gt;&gt;&gt;&gt; </span>
+</code></pre></div>
+<p>Use a specific Python version in the current directory:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>$ uv python pin pypy@3.11
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>Pinned `.python-version` to `pypy@3.11`
 </code></pre></div>
 <p>See the <a href="guides/install-python/">installing Python guide</a> to get started.</p>
 <h2 id="package-management">Package management<a class="headerlink" href="#package-management" title="Permanent link">#</a></h2>
@@ -1865,27 +1871,27 @@
 a wide range of advanced <code>pip</code> features, including editable installs, Git dependencies, direct URL dependencies, local dependencies, constraints, source distributions, HTML and JSON indexes, and more.</p>
 <p>uv extends these interfaces with advanced features, such as dependency version overrides, multi-platform resolutions, reproducible resolutions, alternative resolution strategies, and more.</p>
 <p>Compile requirements into a multi-platform requirements file:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="gp">$ </span>uv<span class="w"> </span>pip<span class="w"> </span>compile<span class="w"> </span>docs/requirements.in<span class="w"> </span>--universal<span class="w"> </span>--output-file<span class="w"> </span>docs/requirements.txt
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="go">Resolved 43 packages in 12ms</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="gp">$ </span>uv<span class="w"> </span>pip<span class="w"> </span>compile<span class="w"> </span>docs/requirements.in<span class="w"> </span>--universal<span class="w"> </span>--output-file<span class="w"> </span>docs/requirements.txt
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="go">Resolved 43 packages in 12ms</span>
 </code></pre></div>
 <p>Create a virtual environment:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="gp">$ </span>uv<span class="w"> </span>venv
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="go">Using Python 3.12.3 interpreter at: /opt/homebrew/opt/python@3.12/bin/python3.12</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="go">Creating virtualenv at: .venv</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="go">Activate with: source .venv/bin/activate</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="gp">$ </span>uv<span class="w"> </span>venv
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="go">Using Python 3.12.3</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="go">Creating virtualenv at: .venv</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="go">Activate with: source .venv/bin/activate</span>
 </code></pre></div>
 <p>Install the locked requirements:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="gp">$ </span>uv<span class="w"> </span>pip<span class="w"> </span>sync<span class="w"> </span>docs/requirements.txt
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="go">Resolved 43 packages in 11ms</span>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="go">Installed 43 packages in 208ms</span>
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="go"> + babel==2.15.0</span>
-<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="go"> + black==24.4.2</span>
-<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="go"> + certifi==2024.7.4</span>
-<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="go"> ...</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="gp">$ </span>uv<span class="w"> </span>pip<span class="w"> </span>sync<span class="w"> </span>docs/requirements.txt
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="go">Resolved 43 packages in 11ms</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="go">Installed 43 packages in 208ms</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="go"> + babel==2.15.0</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="go"> + black==24.4.2</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="go"> + certifi==2024.7.4</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="go"> ...</span>
 </code></pre></div>
 <p>See the <a href="pip/environments/">uv pip documentation</a> to get started.</p>
 <h2 id="next-steps">Next steps<a class="headerlink" href="#next-steps" title="Permanent link">#</a></h2>
-<p>See the <a href="overview/">documentation overview</a> to learn more about uv.</p>
+<p>See the <a href="first-steps/">first steps</a> or jump straight into the <a href="guides/overview/">guides</a> to start using uv.</p>
 
 
 
