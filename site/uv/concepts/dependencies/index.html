@@ -1997,19 +1997,22 @@
 
 
 <h1 id="specifying-dependencies">Specifying dependencies<a class="headerlink" href="#specifying-dependencies" title="Permanent link">#</a></h1>
-<p>In uv, project dependency specification is divided between two <code>pyproject.toml</code> tables: <code>project.dependencies</code> and
-<code>tool.uv.sources</code>.</p>
-<p><code>project.dependencies</code> is used to define the standards-compliant dependency metadata,
-propagated when uploading to PyPI or building a wheel. <code>tool.uv.sources</code> is used to specify the <em>sources</em>
+<p>In uv, project dependency specification is divided between two <code>pyproject.toml</code> tables:
+<code>project.dependencies</code> and <code>tool.uv.sources</code>.</p>
+<p><code>project.dependencies</code> is used to define the standards-compliant dependency metadata, propagated
+when uploading to PyPI or building a wheel. <code>tool.uv.sources</code> is used to specify the <em>sources</em>
 required to install the dependencies, which can come from a Git repository, a URL, a local path, a
-different index, etc. This metadata must be expressed separately because the <code>project.dependencies</code> standard does not allow these common patterns.</p>
+different index, etc. This metadata must be expressed separately because the <code>project.dependencies</code>
+standard does not allow these common patterns.</p>
 <h2 id="project-dependencies">Project dependencies<a class="headerlink" href="#project-dependencies" title="Permanent link">#</a></h2>
 <p>The <code>project.dependencies</code> table represents the dependencies that are used when uploading to PyPI or
-building a wheel. Individual dependencies are specified using <a href="#pep-508">PEP 508</a> syntax, and the table follows the <a href="https://packaging.python.org/en/latest/specifications/pyproject-toml/">PEP 621</a>
+building a wheel. Individual dependencies are specified using <a href="#pep-508">PEP 508</a> syntax, and the
+table follows the <a href="https://packaging.python.org/en/latest/specifications/pyproject-toml/">PEP 621</a>
 standard.</p>
-<p><code>project.dependencies</code> defines the packages that are required for the project, along with the version constraints that should be used when installing them.</p>
-<p><code>project.dependencies</code> is structured as a list. Each entry includes a dependency name and
-version. An entry may include extras or environment markers for platform-specific packages. For example:</p>
+<p><code>project.dependencies</code> defines the packages that are required for the project, along with the
+version constraints that should be used when installing them.</p>
+<p><code>project.dependencies</code> is structured as a list. Each entry includes a dependency name and version.
+An entry may include extras or environment markers for platform-specific packages. For example:</p>
 <div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">[project]</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;albatross&quot;</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span>
@@ -2026,9 +2029,12 @@ version. An entry may include extras or environment markers for platform-specifi
 <a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">  </span><span class="s2">&quot;mollymawk ==0.1.0&quot;</span>
 <a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="p">]</span>
 </code></pre></div>
-<p>If the project only requires packages from standard package indexes, then <code>project.dependencies</code> is sufficient. If, the project depends on packages from Git, remote URLs, or local sources, <code>tool.uv.sources</code> is needed.</p>
+<p>If the project only requires packages from standard package indexes, then <code>project.dependencies</code> is
+sufficient. If, the project depends on packages from Git, remote URLs, or local sources,
+<code>tool.uv.sources</code> is needed.</p>
 <h2 id="dependency-sources">Dependency sources<a class="headerlink" href="#dependency-sources" title="Permanent link">#</a></h2>
-<p>During development, the project may rely on a package that isn't available on PyPI. The following additional sources are supported by uv:</p>
+<p>During development, the project may rely on a package that isn't available on PyPI. The following
+additional sources are supported by uv:</p>
 <ul>
 <li>Git</li>
 <li>URL</li>
@@ -2037,8 +2043,8 @@ version. An entry may include extras or environment markers for platform-specifi
 </ul>
 <p>Only a single source may be defined for each dependency.</p>
 <p>Note that if a non-uv project uses a project with sources as a Git- or path-dependency, only
-<code>project.dependencies</code> is respected, the information in the source table
-will need to be re-specified in a format specific to the other package manager.</p>
+<code>project.dependencies</code> is respected, the information in the source table will need to be
+re-specified in a format specific to the other package manager.</p>
 <h3 id="git">Git<a class="headerlink" href="#git" title="Permanent link">#</a></h3>
 <p>To add a Git dependency source, prefix a Git-compatible URL to clone with <code>git+</code>.</p>
 <p>For example:</p>
@@ -2058,9 +2064,12 @@ will need to be re-specified in a format specific to the other package manager.<
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>git+https://github.com/encode/httpx<span class="w"> </span>--branch<span class="w"> </span>main
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>git+https://github.com/encode/httpx<span class="w"> </span>--rev<span class="w"> </span>326b943
 </code></pre></div>
-<p>Git dependencies can also be manually added or edited in the <code>pyproject.toml</code> with the <code>{ git = &lt;url&gt; }</code> syntax. A target revision may be specified with one of: <code>rev</code>, <code>tag</code>, or <code>branch</code>. A <code>subdirectory</code> may be specified if the package isn't in the repository root.</p>
+<p>Git dependencies can also be manually added or edited in the <code>pyproject.toml</code> with the <code>{ git =
+&lt;url&gt; }</code> syntax. A target revision may be specified with one of: <code>rev</code>, <code>tag</code>, or <code>branch</code>. A
+<code>subdirectory</code> may be specified if the package isn't in the repository root.</p>
 <h3 id="url">URL<a class="headerlink" href="#url" title="Permanent link">#</a></h3>
-<p>To add a URL source, provide a <code>https://</code> URL to either a wheel (ending in <code>.whl</code>) or a source distribution (ending in <code>.zip</code> or <code>.tar.gz</code>).</p>
+<p>To add a URL source, provide a <code>https://</code> URL to either a wheel (ending in <code>.whl</code>) or a source
+distribution (ending in <code>.zip</code> or <code>.tar.gz</code>).</p>
 <p>For example:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span><span class="s2">&quot;https://files.pythonhosted.org/packages/5c/2d/3da5bdf4408b8b2800061c339f240c1802f2e82d55e50bd39c5a881f47f0/httpx-0.27.0.tar.gz&quot;</span>
 </code></pre></div>
@@ -2073,9 +2082,12 @@ will need to be re-specified in a format specific to the other package manager.<
 <a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="k">[tool.uv.sources]</span>
 <a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="n">httpx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">url</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;https://files.pythonhosted.org/packages/5c/2d/3da5bdf4408b8b2800061c339f240c1802f2e82d55e50bd39c5a881f47f0/httpx-0.27.0.tar.gz&quot;</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
-<p>URL dependencies can also be manually added or edited in the <code>pyproject.toml</code> with the <code>{ url = &lt;url&gt; }</code> syntax.  A <code>subdirectory</code> may be specified if the if the source distribution isn't in the archive root.</p>
+<p>URL dependencies can also be manually added or edited in the <code>pyproject.toml</code> with the <code>{ url =
+&lt;url&gt; }</code> syntax.  A <code>subdirectory</code> may be specified if the if the source distribution isn't in the
+archive root.</p>
 <h3 id="path">Path<a class="headerlink" href="#path" title="Permanent link">#</a></h3>
-<p>To add a path source, provide the path of a wheel (ending in <code>.whl</code>), a source distribution (ending in <code>.zip</code> or <code>.tar.gz</code>), or a directory containing a <code>pyproject.toml</code>.</p>
+<p>To add a path source, provide the path of a wheel (ending in <code>.whl</code>), a source distribution (ending
+in <code>.zip</code> or <code>.tar.gz</code>), or a directory containing a <code>pyproject.toml</code>.</p>
 <p>For example:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>/example/foo.whl
 </code></pre></div>
@@ -2091,12 +2103,16 @@ will need to be re-specified in a format specific to the other package manager.<
 <p>The path may also be a relative path, e.g.:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>./foo
 </code></pre></div>
-<p>Note an <a href="#editables-dependencies">editable installation</a> is not used for path dependencies. However, for directories, an editable installation may be requested, e.g.:</p>
+<p>Note an <a href="#editables-dependencies">editable installation</a> is not used for path dependencies. However,
+for directories, an editable installation may be requested, e.g.:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>--editable<span class="w"> </span>./foo
 </code></pre></div>
 <p>However, it is recommended to use <a href="#workspaces"><em>workspaces</em></a> instead of manual path dependencies. </p>
 <h3 id="workspace-member">Workspace member<a class="headerlink" href="#workspace-member" title="Permanent link">#</a></h3>
-<p>To declare a workspace member, add the dependency with <code>{ workspace = true }</code>. All workspace members must be explicitly stated. Workspace members are <a href="#editables-dependencies">editable</a> by default; <code>editable = false</code> may be included to install them as regular dependencies. See the <a href="../workspaces/">workspace</a> documentation for more details on workspaces.</p>
+<p>To declare a workspace member, add the dependency with <code>{ workspace = true }</code>. All workspace members
+must be explicitly stated. Workspace members are <a href="#editables-dependencies">editable</a> by default;
+<code>editable = false</code> may be included to install them as regular dependencies. See the
+<a href="../workspaces/">workspace</a> documentation for more details on workspaces.</p>
 <div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">[project]</span>
 <a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
 <a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">  </span><span class="s2">&quot;mollymawk ==0.1.0&quot;</span>
@@ -2111,9 +2127,12 @@ will need to be re-specified in a format specific to the other package manager.<
 <a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="p">]</span>
 </code></pre></div>
 <h2 id="optional-dependencies">Optional dependencies<a class="headerlink" href="#optional-dependencies" title="Permanent link">#</a></h2>
-<p>It is common for projects that are published as libraries to make some features optional to reduce the default dependency tree. For example,
-Pandas has an <a href="https://pandas.pydata.org/docs/getting_started/install.html#excel-files"><code>excel</code> extra</a>
-and a <a href="https://pandas.pydata.org/docs/getting_started/install.html#visualization"><code>plot</code> extra</a> to avoid installation of Excel parsers and <code>matplotlib</code> unless someone explicitly requires them. Extras are requested with the <code>package[&lt;extra&gt;]</code> syntax, e.g., <code>pandas[plot, excel]</code>.</p>
+<p>It is common for projects that are published as libraries to make some features optional to reduce
+the default dependency tree. For example, Pandas has an <a href="https://pandas.pydata.org/docs/getting_started/install.html#excel-files"><code>excel</code>
+extra</a> and a <a href="https://pandas.pydata.org/docs/getting_started/install.html#visualization"><code>plot</code>
+extra</a> to avoid
+installation of Excel parsers and <code>matplotlib</code> unless someone explicitly requires them. Extras are
+requested with the <code>package[&lt;extra&gt;]</code> syntax, e.g., <code>pandas[plot, excel]</code>.</p>
 <p>Optional dependencies are specified in <code>[project.optional-dependencies]</code>, a TOML table that maps
 from extra name to its dependencies, following <a href="#pep-508">PEP 508</a> syntax.</p>
 <p>Optional dependencies can have entries in <code>tool.uv.sources</code> the same as normal dependencies.</p>
@@ -2138,7 +2157,9 @@ from extra name to its dependencies, following <a href="#pep-508">PEP 508</a> sy
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>httpx<span class="w"> </span>--optional<span class="w"> </span>network
 </code></pre></div>
 <h2 id="development-dependencies">Development dependencies<a class="headerlink" href="#development-dependencies" title="Permanent link">#</a></h2>
-<p>Unlike optional dependencies, development dependencies are local-only and will <em>not</em> be included in the project requirements when published to PyPI or other indexes. As such, development dependencies are included under <code>[tool.uv]</code> instead of <code>[project]</code>. </p>
+<p>Unlike optional dependencies, development dependencies are local-only and will <em>not</em> be included in
+the project requirements when published to PyPI or other indexes. As such, development dependencies
+are included under <code>[tool.uv]</code> instead of <code>[project]</code>. </p>
 <p>Development dependencies can have entries in <code>tool.uv.sources</code> the same as normal dependencies.</p>
 <div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">[tool.uv]</span>
 <a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="n">dev-dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
@@ -2149,7 +2170,8 @@ from extra name to its dependencies, following <a href="#pep-508">PEP 508</a> sy
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>ruff<span class="w"> </span>--dev<span class="sb">`</span>
 </code></pre></div>
 <h2 id="pep-508">PEP 508<a class="headerlink" href="#pep-508" title="Permanent link">#</a></h2>
-<p><a href="https://peps.python.org/pep-0508/">PEP 508</a> defines a syntax for dependency specification. It is composed of, in order:</p>
+<p><a href="https://peps.python.org/pep-0508/">PEP 508</a> defines a syntax for dependency specification. It is
+composed of, in order:</p>
 <ul>
 <li>The dependency name</li>
 <li>The extras you want (optional)</li>
@@ -2162,24 +2184,25 @@ interpreted as "a version of <code>foo</code> that's at least 1.2.3, but less th
 <p>A star can be used for the last digit with equals, e.g. <code>foo ==2.1.*</code> will accept any release from
 the 2.1 series. Similarly, <code>~=</code> matches where the last digit is equal or higher, e.g., <code>foo ~=1.2</code>
 is equal to <code>foo &gt;=1.2,&lt;2</code>, and <code>foo ~=1.2.3</code> is equal to <code>foo &gt;=1.2.3,&lt;1.3</code>.</p>
-<p>Extras are comma-separated in square bracket between name and version, e.g., <code>pandas[excel,plot] ==2.2</code>. Whitespace between extra names is ignored.</p>
+<p>Extras are comma-separated in square bracket between name and version, e.g., <code>pandas[excel,plot]
+==2.2</code>. Whitespace between extra names is ignored.</p>
 <p>Some dependencies are only required in specific environments, e.g., a specific Python version or
 operating system. For example to install the <code>importlib-metadata</code> backport for the
-<code>importlib.metadata</code> module, use <code>importlib-metadata &gt;=7.1.0,&lt;8; python_version &lt; '3.10'</code>.
-To install <code>colorama</code> on Windows (but omit it on other platforms), use
-<code>colorama &gt;=0.4.6,&lt;5; platform_system == "Windows"</code>.</p>
-<p>Markers are combined with <code>and</code>, <code>or</code>, and parentheses, e.g., <code>aiohttp &gt;=3.7.4,&lt;4; (sys_platform != 'win32' or implementation_name != 'pypy') and python_version &gt;= '3.10'</code>.
-Note that versions within markers must be quoted, while versions <em>outside</em> of markers must <em>not</em> be
-quoted.</p>
+<code>importlib.metadata</code> module, use <code>importlib-metadata &gt;=7.1.0,&lt;8; python_version &lt; '3.10'</code>. To
+install <code>colorama</code> on Windows (but omit it on other platforms), use <code>colorama &gt;=0.4.6,&lt;5;
+platform_system == "Windows"</code>.</p>
+<p>Markers are combined with <code>and</code>, <code>or</code>, and parentheses, e.g., <code>aiohttp &gt;=3.7.4,&lt;4; (sys_platform !=
+'win32' or implementation_name != 'pypy') and python_version &gt;= '3.10'</code>. Note that versions within
+markers must be quoted, while versions <em>outside</em> of markers must <em>not</em> be quoted.</p>
 <h2 id="editable-dependencies">Editable dependencies<a class="headerlink" href="#editable-dependencies" title="Permanent link">#</a></h2>
 <p>A regular installation of a directory with a Python package first builds a wheel and then installs
-that wheel into your virtual environment, copying all source files. When the package source files are edited,
-the virtual environment will contain outdated versions.</p>
-<p>Editable installations solve this problem by adding a link to the project within the virtual environment
-(a <code>.pth</code> file), which instructs the interpreter to include the source files directly.</p>
-<p>There are some limitations to editables (mainly: the build backend needs to support them, and
-native modules aren't recompiled before import), but they are useful for development, as the
-virtual environment will always use the latest changes to the package.</p>
+that wheel into your virtual environment, copying all source files. When the package source files
+are edited, the virtual environment will contain outdated versions.</p>
+<p>Editable installations solve this problem by adding a link to the project within the virtual
+environment (a <code>.pth</code> file), which instructs the interpreter to include the source files directly.</p>
+<p>There are some limitations to editables (mainly: the build backend needs to support them, and native
+modules aren't recompiled before import), but they are useful for development, as the virtual
+environment will always use the latest changes to the package.</p>
 <p>uv uses editable installation for workspace packages by default.</p>
 <p>To add an editable dependency, use the <code>--editable</code> flag:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>--editable<span class="w"> </span>./path/foo
@@ -2263,6 +2286,54 @@ virtual environment will always use the latest changes to the package.</p>
     Made with
     <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
       Material for MkDocs Insiders
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/astral-sh/uv" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://discord.com/invite/astral-sh" target="_blank" rel="noopener" title="discord.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M524.531 69.836a1.5 1.5 0 0 0-.764-.7A485.065 485.065 0 0 0 404.081 32.03a1.816 1.816 0 0 0-1.923.91 337.461 337.461 0 0 0-14.9 30.6 447.848 447.848 0 0 0-134.426 0 309.541 309.541 0 0 0-15.135-30.6 1.89 1.89 0 0 0-1.924-.91 483.689 483.689 0 0 0-119.688 37.107 1.712 1.712 0 0 0-.788.676C39.068 183.651 18.186 294.69 28.43 404.354a2.016 2.016 0 0 0 .765 1.375 487.666 487.666 0 0 0 146.825 74.189 1.9 1.9 0 0 0 2.063-.676A348.2 348.2 0 0 0 208.12 430.4a1.86 1.86 0 0 0-1.019-2.588 321.173 321.173 0 0 1-45.868-21.853 1.885 1.885 0 0 1-.185-3.126 251.047 251.047 0 0 0 9.109-7.137 1.819 1.819 0 0 1 1.9-.256c96.229 43.917 200.41 43.917 295.5 0a1.812 1.812 0 0 1 1.924.233 234.533 234.533 0 0 0 9.132 7.16 1.884 1.884 0 0 1-.162 3.126 301.407 301.407 0 0 1-45.89 21.83 1.875 1.875 0 0 0-1 2.611 391.055 391.055 0 0 0 30.014 48.815 1.864 1.864 0 0 0 2.063.7A486.048 486.048 0 0 0 610.7 405.729a1.882 1.882 0 0 0 .765-1.352c12.264-126.783-20.532-236.912-86.934-334.541ZM222.491 337.58c-28.972 0-52.844-26.587-52.844-59.239s23.409-59.241 52.844-59.241c29.665 0 53.306 26.82 52.843 59.239 0 32.654-23.41 59.241-52.843 59.241Zm195.38 0c-28.971 0-52.843-26.587-52.843-59.239s23.409-59.241 52.843-59.241c29.667 0 53.307 26.82 52.844 59.239 0 32.654-23.177 59.241-52.844 59.241Z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://pypi.org/project/uv/" target="_blank" rel="noopener" title="pypi.org" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6zM286.2 404c11.1 0 20.1 9.1 20.1 20.3 0 11.3-9 20.4-20.1 20.4-11 0-20.1-9.2-20.1-20.4.1-11.3 9.1-20.3 20.1-20.3zM167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4zm-6.7-142.6c-11.1 0-20.1-9.1-20.1-20.3.1-11.3 9-20.4 20.1-20.4 11 0 20.1 9.2 20.1 20.4s-9 20.3-20.1 20.3z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://x.com/astral_sh" target="_blank" rel="noopener" title="x.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8l164.9-188.5L26.8 48h145.6l100.5 132.9L389.2 48zm-24.8 373.8h39.1L151.1 88h-42l255.3 333.8z"/></svg>
     </a>
   
 </div>
