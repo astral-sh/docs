@@ -10,7 +10,7 @@
         <meta name="author" content="charliermarsh">
       
       
-        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/shebang-missing-executable-file/">
+        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/builtin-import-shadowing/">
       
       
       
@@ -23,7 +23,7 @@
     
     
       
-        <title>shebang-missing-executable-file (EXE002) - Ruff</title>
+        <title>builtin-import-shadowing (A004) - Ruff</title>
       
     
     
@@ -83,7 +83,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#shebang-missing-executable-file-exe002" class="md-skip">
+        <a href="#builtin-import-shadowing-a004" class="md-skip">
           Skip to content
         </a>
       
@@ -118,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              shebang-missing-executable-file (EXE002)
+              builtin-import-shadowing (A004)
             
           </span>
         </div>
@@ -798,26 +798,20 @@
   
 
 
-<h1 id="shebang-missing-executable-file-exe002">shebang-missing-executable-file (EXE002)<a class="headerlink" href="#shebang-missing-executable-file-exe002" title="Permanent link">#</a></h1>
-<p>Derived from the <strong>flake8-executable</strong> linter.</p>
+<h1 id="builtin-import-shadowing-a004">builtin-import-shadowing (A004)<a class="headerlink" href="#builtin-import-shadowing-a004" title="Permanent link">#</a></h1>
+<p>Derived from the <strong>flake8-builtins</strong> linter.</p>
+<p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
-<p>Checks for executable <code>.py</code> files that do not have a shebang.</p>
+<p>Checks for imports that use the same names as builtins.</p>
 <h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
-<p>In Python, a shebang (also known as a hashbang) is the first line of a
-script, which specifies the interpreter that should be used to run the
-script.</p>
-<p>If a <code>.py</code> file is executable, but does not have a shebang, it may be run
-with the wrong interpreter, or fail to run at all.</p>
-<p>If the file is meant to be executable, add a shebang, as in:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="ch">#!/usr/bin/env python</span>
-</code></pre></div>
-<p>Otherwise, remove the executable bit from the file (e.g., <code>chmod -x __main__.py</code>).</p>
-<p>A file is considered executable if it has the executable bit set (i.e., its
-permissions mode intersects with <code>0o111</code>). As such, <em>this rule is only
-available on Unix-like systems</em>, and is not enforced on Windows or WSL.</p>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<p>Reusing a builtin for the name of an import increases the difficulty
+of reading and maintaining the code, and can cause non-obvious errors,
+as readers may mistake the variable for the builtin and vice versa.</p>
+<p>Builtins can be marked as exceptions to this rule via the
+<a href="../../settings/#lint_flake8-builtins_builtins-ignorelist"><code>lint.flake8-builtins.builtins-ignorelist</code></a> configuration option.</p>
+<h2 id="options">Options<a class="headerlink" href="#options" title="Permanent link">#</a></h2>
 <ul>
-<li><a href="https://docs.python.org/3/tutorial/appendix.html#executable-python-scripts">Python documentation: Executable Python Scripts</a></li>
+<li><a href="../../settings/#lint_flake8-builtins_builtins-ignorelist"><code>lint.flake8-builtins.builtins-ignorelist</code></a></li>
 </ul>
 
 
