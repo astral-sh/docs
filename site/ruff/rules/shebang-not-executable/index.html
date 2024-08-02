@@ -809,9 +809,16 @@ script.</p>
 <p>The presence of a shebang suggests that a file is intended to be
 executable. If a file contains a shebang but is not executable, then the
 shebang is misleading, or the file is missing the executable bit.</p>
-<p>If the file is meant to be executable, add a shebang; otherwise, remove the
-executable bit from the file.</p>
-<p><em>This rule is only available on Unix-like systems.</em></p>
+<p>If the file is meant to be executable, add a shebang, as in:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="ch">#!/usr/bin/env python</span>
+</code></pre></div>
+<p>Otherwise, remove the executable bit from the file (e.g., <code>chmod -x __main__.py</code>).</p>
+<p>A file is considered executable if it has the executable bit set (i.e., its
+permissions mode intersects with <code>0o111</code>). As such, <em>this rule is only
+available on Unix-like systems</em>, and is not enforced on Windows or WSL.</p>
+<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="ch">#!/usr/bin/env python</span>
+</code></pre></div>
 <h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/tutorial/appendix.html#executable-python-scripts">Python documentation: Executable Python Scripts</a></li>
