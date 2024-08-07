@@ -451,6 +451,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -592,6 +594,32 @@
     
   
     Working on projects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/publish/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Publishing packages
   
 
     
@@ -1668,6 +1696,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -1760,44 +1794,19 @@
 
               
             
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
+              
+                
   
   
   
-    
-    
-      
+    <li class="md-nav__item">
+      <a href="../../reference/resolver-internals/" class="md-nav__link">
         
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
-        
-          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
-            
   
   <span class="md-ellipsis">
     
   
-    Policies
+    Resolver
   
 
     
@@ -1805,19 +1814,11 @@
   
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_9">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Policies
+      </a>
+    </li>
   
 
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
+              
             
               
                 
@@ -2087,23 +2088,23 @@
 
 <h1 id="python-versions">Python versions<a class="headerlink" href="#python-versions" title="Permanent link">#</a></h1>
 <p>A Python version is composed of a Python interpreter (i.e. the <code>python</code> executable), the standard
-library, and other supporting files. </p>
+library, and other supporting files.</p>
 <h2 id="managed-and-system-python-installations">Managed and system Python installations<a class="headerlink" href="#managed-and-system-python-installations" title="Permanent link">#</a></h2>
 <p>Since it is common for a system to have an existing Python installation, uv supports
-<a href="#discovery-of-python-versions">discovering</a> Python versions. However, uv also supports <a href="#installing-a-python-version">installing
-Python versions</a> itself. To distinguish between these two types of
-Python installations, uv refers to Python versions it installs as <em>managed</em> Python installations and
-all other Python installations as <em>system</em> Python installations.</p>
+<a href="#discovery-of-python-versions">discovering</a> Python versions. However, uv also supports
+<a href="#installing-a-python-version">installing Python versions</a> itself. To distinguish between these two
+types of Python installations, uv refers to Python versions it installs as <em>managed</em> Python
+installations and all other Python installations as <em>system</em> Python installations.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>uv does not distinguish between Python versions installed by the operating system vs those
-installed and managed by other tools. For example, if a Python installation is managed with 
+installed and managed by other tools. For example, if a Python installation is managed with
 <code>pyenv</code>, it would still be considered a <em>system</em> Python version in uv.</p>
 </div>
 <h2 id="requesting-a-version">Requesting a version<a class="headerlink" href="#requesting-a-version" title="Permanent link">#</a></h2>
 <p>A specific Python version can be requested with the <code>--python</code> flag in most uv commands. For
 example, when creating a virtual environment:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>uv<span class="w"> </span>venv<span class="w"> </span>--python<span class="w"> </span><span class="m">3</span>.11.6
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">$ </span>uv<span class="w"> </span>venv<span class="w"> </span>--python<span class="w"> </span><span class="m">3</span>.11.6
 </code></pre></div>
 <p>uv will ensure that Python 3.11.6 is available — downloading and installing it if necessary — then
 create the virtual environment with it.</p>
@@ -2124,8 +2125,8 @@ create the virtual environment with it.</p>
 <li><code>&lt;install-dir&gt;</code> e.g. <code>/some/environment/</code></li>
 </ul>
 <p>By default, uv will automatically download Python versions if they cannot be found on the system.
-This behavior can be <a href="#disabling-automatic-python-downloads">disabled with the <code>python-fetch</code>
-option</a>.</p>
+This behavior can be
+<a href="#disabling-automatic-python-downloads">disabled with the <code>python-fetch</code> option</a>.</p>
 <h2 id="installing-a-python-version">Installing a Python version<a class="headerlink" href="#installing-a-python-version" title="Permanent link">#</a></h2>
 <p>uv bundles a list of downloadable CPython and PyPy distributions for macOS, Linux, and Windows.</p>
 <div class="admonition tip">
@@ -2134,17 +2135,22 @@ option</a>.</p>
 <code>uv python install</code>.</p>
 </div>
 <p>To install a Python version at a specific version:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>uv<span class="w"> </span>python<span class="w"> </span>install<span class="w"> </span><span class="m">3</span>.12.3
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>install<span class="w"> </span><span class="m">3</span>.12.3
 </code></pre></div>
 <p>To install the latest patch version:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>uv<span class="w"> </span>python<span class="w"> </span>install<span class="w"> </span><span class="m">3</span>.12
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>install<span class="w"> </span><span class="m">3</span>.12
 </code></pre></div>
 <p>To install a version that satisfies constraints:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>uv<span class="w"> </span>python<span class="w"> </span>install<span class="w"> </span><span class="s1">&#39;&gt;=3.8,&lt;3.10&#39;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>install<span class="w"> </span><span class="s1">&#39;&gt;=3.8,&lt;3.10&#39;</span>
 </code></pre></div>
 <p>To install multiple versions:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>uv<span class="w"> </span>python<span class="w"> </span>install<span class="w"> </span><span class="m">3</span>.9<span class="w"> </span><span class="m">3</span>.10<span class="w"> </span><span class="m">3</span>.11
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>install<span class="w"> </span><span class="m">3</span>.9<span class="w"> </span><span class="m">3</span>.10<span class="w"> </span><span class="m">3</span>.11
 </code></pre></div>
+<p>To install a specific implementation:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>install<span class="w"> </span>pypy
+</code></pre></div>
+<p>All of the <a href="#requesting-a-version">Python version request</a> formats are supported except those that
+are used for requesting local interpreters such as a file path.</p>
 <h2 id="project-python-versions">Project Python versions<a class="headerlink" href="#project-python-versions" title="Permanent link">#</a></h2>
 <p>By default <code>uv python install</code> will verify that a managed Python version is installed or install the
 latest version.</p>
@@ -2157,24 +2163,24 @@ precedence over the <code>.python-version</code> file.</p>
 invocations.</p>
 <h2 id="viewing-available-python-versions">Viewing available Python versions<a class="headerlink" href="#viewing-available-python-versions" title="Permanent link">#</a></h2>
 <p>To list installed and available Python versions:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>uv<span class="w"> </span>python<span class="w"> </span>list
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>list
 </code></pre></div>
 <p>By default, downloads for other platforms and old patch versions are hidden.</p>
 <p>To view all versions:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>uv<span class="w"> </span>python<span class="w"> </span>list<span class="w"> </span>--all-versions
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>list<span class="w"> </span>--all-versions
 </code></pre></div>
 <p>To view Python versions for other platforms:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>uv<span class="w"> </span>python<span class="w"> </span>list<span class="w"> </span>--all-platforms
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>list<span class="w"> </span>--all-platforms
 </code></pre></div>
 <p>To exclude downloads and only show installed Python versions:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>uv<span class="w"> </span>python<span class="w"> </span>list<span class="w"> </span>--only-installed
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>list<span class="w"> </span>--only-installed
 </code></pre></div>
 <h2 id="discovery-of-python-versions">Discovery of Python versions<a class="headerlink" href="#discovery-of-python-versions" title="Permanent link">#</a></h2>
 <p>When searching for a Python version, the following locations are checked:</p>
 <ul>
 <li>Managed Python installations in the <code>UV_PYTHON_INSTALL_DIR</code>.</li>
-<li>A Python interpreter on the <code>PATH</code> as <code>python</code>, <code>python3</code>, or <code>python3.x</code> on macOS and Linux, or <code>python.exe</code>
-  on Windows.</li>
+<li>A Python interpreter on the <code>PATH</code> as <code>python</code>, <code>python3</code>, or <code>python3.x</code> on macOS and Linux, or
+  <code>python.exe</code> on Windows.</li>
 <li>On Windows, the Python interpreter returned by <code>py --list-paths</code> that matches the requested
   version.</li>
 </ul>
@@ -2189,15 +2195,15 @@ version download.</p>
 <code>automatic</code>; set to <code>manual</code> to only allow Python downloads during <code>uv python install</code>.</p>
 <h2 id="adjusting-python-version-preferences">Adjusting Python version preferences<a class="headerlink" href="#adjusting-python-version-preferences" title="Permanent link">#</a></h2>
 <p>By default, uv will attempt to use Python versions found on the system and only download managed
-interpreters when necessary. </p>
+interpreters when necessary.</p>
 <p>The <code>python-preference</code> option can be used to adjust this behavior. By default, it is set to
 <code>managed</code> which prefers managed Python installations over system Python installations. However,
 system Python installations are still preferred over downloading a managed Python version.</p>
 <p>The following alternative options are available:</p>
 <ul>
 <li><code>only-managed</code>: Only use managed Python installations; never use system Python installations</li>
-<li><code>system</code>:       Prefer system Python installations over managed Python installations</li>
-<li><code>only-system</code>:  Only use system Python installations; never use managed Python installations</li>
+<li><code>system</code>: Prefer system Python installations over managed Python installations</li>
+<li><code>only-system</code>: Only use system Python installations; never use managed Python installations</li>
 </ul>
 <p>These options allow disabling uv's managed Python versions entirely or always using them and
 ignoring any existing system installations.</p>
@@ -2225,13 +2231,12 @@ supported formats.</p>
 distributions from the
 <a href="https://github.com/indygreg/python-build-standalone"><code>python-build-standalone</code></a> project. The
 project is partially maintained by the uv maintainers and is used by many other Python projects.</p>
-<p>The uv Python distributions are self-contained, highly-portable, and performant. While
-Python can be built from source, as in tools like <code>pyenv</code>, it requires preinstalled system
-dependencies and creating optimized, performant builds is very slow.</p>
+<p>The uv Python distributions are self-contained, highly-portable, and performant. While Python can be
+built from source, as in tools like <code>pyenv</code>, it requires preinstalled system dependencies and
+creating optimized, performant builds is very slow.</p>
 <p>These distributions have some behavior quirks, generally as a consequence of portability. See the
-<a href="https://gregoryszorc.com/docs/python-build-standalone/main/quirks.html"><code>python-build-standalone</code>
-quirks</a> documentation for
-details. </p>
+<a href="https://gregoryszorc.com/docs/python-build-standalone/main/quirks.html"><code>python-build-standalone</code> quirks</a>
+documentation for details.</p>
 <h3 id="pypy-distributions">PyPy distributions<a class="headerlink" href="#pypy-distributions" title="Permanent link">#</a></h3>
 <p>PyPy distributions are provided by the PyPy project.</p>
 

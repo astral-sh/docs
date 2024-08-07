@@ -453,6 +453,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -642,6 +644,19 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Next steps
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -690,6 +705,32 @@
     
   
     Working on projects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../publish/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Publishing packages
   
 
     
@@ -1558,6 +1599,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -1650,44 +1697,19 @@
 
               
             
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
+              
+                
   
   
   
-    
-    
-      
+    <li class="md-nav__item">
+      <a href="../../reference/resolver-internals/" class="md-nav__link">
         
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
-        
-          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
-            
   
   <span class="md-ellipsis">
     
   
-    Policies
+    Resolver
   
 
     
@@ -1695,19 +1717,11 @@
   
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_9">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Policies
+      </a>
+    </li>
   
 
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
+              
             
               
                 
@@ -1846,6 +1860,19 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Next steps
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1867,8 +1894,15 @@
 
 <h1 id="running-scripts">Running scripts<a class="headerlink" href="#running-scripts" title="Permanent link">#</a></h1>
 <p>A Python script is a file intended for standalone execution, e.g., with <code>python &lt;script&gt;.py</code>. Using
-uv to execute scripts will ensure that script dependencies are properly managed inside and outside
-of projects.</p>
+uv to execute scripts ensures that script dependencies are managed without manually managing
+environments.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you are not familiar with Python environments: every Python installation has an environment
+that packages can be installed in. Typically, creating <a href="https://docs.python.org/3/library/venv.html"><em>virtual</em> environments</a> is recommended to
+isolate packages required by each script. uv automatically manages virtual environments for you
+and prefers a <a href="#declaring-script-dependencies">declarative</a> approach to dependencies.</p>
+</div>
 <h2 id="running-a-script-without-dependencies">Running a script without dependencies<a class="headerlink" href="#running-a-script-without-dependencies" title="Permanent link">#</a></h2>
 <p>If your script has no dependencies, you can execute it with <code>uv run</code>:</p>
 <div class="highlight"><span class="filename">example.py</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello world&quot;</span><span class="p">)</span>
@@ -1900,7 +1934,7 @@ of projects.</p>
 <p>Note that if you use <code>uv run</code> in a <em>project</em>, i.e. a directory with a <code>pyproject.toml</code>, it will
 install the current project before running the script. If your script does not depend on the
 project, use the <code>--no-project</code> flag to skip this:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="gp"># </span>Note,<span class="w"> </span>it<span class="w"> </span>is<span class="w"> </span>important<span class="w"> </span>that<span class="w"> </span>the<span class="w"> </span>flag<span class="w"> </span>comes<span class="w"> </span>_before_<span class="w"> </span>the<span class="w"> </span>script
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="gp">$ </span><span class="c1"># Note, it is important that the flag comes _before_ the script</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>--no-project<span class="w"> </span>example.py
 </code></pre></div>
 <p>See the <a href="../projects/">projects guide</a> for more details on working in projects.</p>
@@ -1936,8 +1970,8 @@ dependencies, but uv supports requesting dependencies per invocation as well.</p
 <p>Note that if <code>uv run</code> is used in a <em>project</em>, these dependencies will be included <em>in addition</em> to
 the project's dependencies. To opt-out of this behavior, use the <code>--no-project</code> flag.</p>
 <h2 id="declaring-script-dependencies">Declaring script dependencies<a class="headerlink" href="#declaring-script-dependencies" title="Permanent link">#</a></h2>
-<p>Python recently added a standard format for <a href="https://packaging.python.org/en/latest/specifications/inline-script-metadata/#inline-script-metadata">inline script
-metadata</a>.
+<p>Python recently added a standard format for
+<a href="https://packaging.python.org/en/latest/specifications/inline-script-metadata/#inline-script-metadata">inline script metadata</a>.
 This allows the dependencies for a script to be declared in the script itself.</p>
 <p>To use inline script metadata, include a <code>script</code> section at the top of the script and declare the
 dependencies using TOML:</p>
@@ -1970,7 +2004,11 @@ dependencies using TOML:</p>
 <a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="go">│   (&#39;10&#39;, &#39;Voting Guidelines&#39;)</span>
 <a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a><span class="go">]</span>
 </code></pre></div>
-<p>uv also supports Python version requirements:</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>When using inline script metadata, even if <code>uv run</code> is <a href="../../concepts/projects/#running-scripts">used in a <em>project</em></a>, the project's dependencies will be ignored. The <code>--no-project</code> flag is not required.</p>
+</div>
+<p>uv also respects Python version requirements:</p>
 <div class="highlight"><span class="filename">example.py</span><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># /// script</span>
 <a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="c1"># requires-python = &quot;&gt;=3.12&quot;</span>
 <a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="c1"># dependencies = []</span>
@@ -1980,27 +2018,32 @@ dependencies using TOML:</p>
 <a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="nb">type</span> <span class="n">Point</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span>
 <a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="nb">print</span><span class="p">(</span><span class="n">Point</span><span class="p">)</span>
 </code></pre></div>
-<p>uv will fetch the required Python version if it is not installed — see the documentation on <a href="../../concepts/python-versions/">Python
-versions</a> for more details. Note that the <code>dependencies</code> field must
-be provided even if empty.</p>
-<p>Note that when using inline script metadata, even if <code>uv run</code> is used in a <em>project</em>, the project's
-dependencies will be ignored. The <code>--no-project</code> flag is not required.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code>dependencies</code> field must be provided even if empty.</p>
+</div>
+<p><code>uv run</code> will search for and use the required Python version. The Python version will download if it
+is not installed — see the documentation on <a href="../../concepts/python-versions/">Python versions</a> for
+more details.</p>
 <h2 id="using-different-python-versions">Using different Python versions<a class="headerlink" href="#using-different-python-versions" title="Permanent link">#</a></h2>
 <p>uv allows arbitrary Python versions to be requested on each script invocation, for example:</p>
 <div class="highlight"><span class="filename">example.py</span><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kn">import</span> <span class="nn">sys</span>
 <a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
 <a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span><span class="p">[:</span><span class="mi">3</span><span class="p">])))</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="gp"># </span>Use<span class="w"> </span>the<span class="w"> </span>default<span class="w"> </span>Python<span class="w"> </span>version,<span class="w"> </span>may<span class="w"> </span>differ<span class="w"> </span>on<span class="w"> </span>your<span class="w"> </span>machine
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="gp">$ </span><span class="c1"># Use the default Python version, may differ on your machine</span>
 <a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>example.py
 <a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="go">3.12.1</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="gp"># </span>Use<span class="w"> </span>a<span class="w"> </span>specific<span class="w"> </span>Python<span class="w"> </span>version
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="gp">$ </span><span class="c1"># Use a specific Python version</span>
 <a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>--python<span class="w"> </span><span class="m">3</span>.10<span class="w"> </span>example.py
 <a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="go">3.10.13</span>
 </code></pre></div>
 <p>See the <a href="../../concepts/python-versions/#requesting-a-version">Python version request</a> documentation
 for more details on requesting Python versions.</p>
+<h2 id="next-steps">Next steps<a class="headerlink" href="#next-steps" title="Permanent link">#</a></h2>
+<p>To learn more about <code>uv run</code>, see the <a href="../../reference/cli/#uv-run">command reference</a>.</p>
+<p>Or, read on to learn how to <a href="../tools/">run and install tools</a> with uv.</p>
 
 
 

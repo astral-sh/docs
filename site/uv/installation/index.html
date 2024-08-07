@@ -474,6 +474,19 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Next steps
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -552,6 +565,8 @@
       
         
           
+        
+      
         
       
         
@@ -703,6 +718,32 @@
     
   
     Working on projects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guides/publish/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Publishing packages
   
 
     
@@ -1571,6 +1612,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -1663,44 +1710,19 @@
 
               
             
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
+              
+                
   
   
   
-    
-    
-      
+    <li class="md-nav__item">
+      <a href="../reference/resolver-internals/" class="md-nav__link">
         
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
-        
-          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
-            
   
   <span class="md-ellipsis">
     
   
-    Policies
+    Resolver
   
 
     
@@ -1708,19 +1730,11 @@
   
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_9">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Policies
+      </a>
+    </li>
   
 
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
+              
             
               
                 
@@ -1872,6 +1886,19 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Next steps
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1892,67 +1919,68 @@
 
 
 <h1 id="installing-uv">Installing uv<a class="headerlink" href="#installing-uv" title="Permanent link">#</a></h1>
-<p>Install uv with our standalone installers, from PyPI, or from your package manager of choice.</p>
+<p>Install uv with our standalone installers or your package manager of choice (e.g.,
+<code>pip install uv</code>).</p>
 <h2 id="standalone-installer">Standalone installer<a class="headerlink" href="#standalone-installer" title="Permanent link">#</a></h2>
-<p>uv provides a standalone installer that downloads and installs uv:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># On macOS and Linux.</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>curl<span class="w"> </span>-LsSf<span class="w"> </span>https://astral.sh/uv/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># On Windows.</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>powershell<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;irm https://astral.sh/uv/install.ps1 | iex&quot;</span>
+<p>uv provides a standalone installer to download and install uv:</p>
+<div class="highlight"><span class="filename">macOS and Linux</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">$ </span>curl<span class="w"> </span>-LsSf<span class="w"> </span>https://astral.sh/uv/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
 </code></pre></div>
-<p>uv is installed to <code>~/.cargo/bin</code>.</p>
+<div class="highlight"><span class="filename">Windows</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="gp">$ </span>powershell<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;irm https://astral.sh/uv/install.ps1 | iex&quot;</span>
+</code></pre></div>
+<p>By default, uv is installed to <code>~/.cargo/bin</code>.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>The installation script may be inspected with:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># On macOS and Linux.</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>curl<span class="w"> </span>-LsSf<span class="w"> </span>https://astral.sh/uv/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>less
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># On Windows.</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>powershell<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;irm https://astral.sh/uv/install.ps1 | more&quot;</span>
+<p>The installation script may be inspected before use:</p>
+<div class="highlight"><span class="filename">macOS and Linux</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="gp">$ </span>curl<span class="w"> </span>-LsSf<span class="w"> </span>https://astral.sh/uv/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>less
+</code></pre></div>
+<div class="highlight"><span class="filename">Windows</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="gp">$ </span>powershell<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;irm https://astral.sh/uv/install.ps1 | more&quot;</span>
 </code></pre></div>
 <p>Alternatively, the installer or binaries can be downloaded directly from <a href="#github-releases">GitHub</a>.</p>
 </div>
-<p>A specific release can be requested by including the version in the URL:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># On macOS and Linux.</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>curl<span class="w"> </span>-LsSf<span class="w"> </span>https://astral.sh/uv/0.2.11/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># On Windows.</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>powershell<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;irm https://astral.sh/uv/0.2.11/install.ps1 | iex&quot;</span>
+<p>Request a specific version by including it in the URL:</p>
+<div class="highlight"><span class="filename">macOS and Linux</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="gp">$ </span>curl<span class="w"> </span>-LsSf<span class="w"> </span>https://astral.sh/uv/0.2.11/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
 </code></pre></div>
-<p>When the standalone installer is used, uv can upgrade itself:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>uv<span class="w"> </span>self<span class="w"> </span>update
+<div class="highlight"><span class="filename">Windows</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="gp">$ </span>powershell<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;irm https://astral.sh/uv/0.2.11/install.ps1 | iex&quot;</span>
 </code></pre></div>
-<p>When another installation method is used, self updates are disabled. Use the package manager's
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>When uv is installed via the standalone installer, self-updates are enabled:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="gp">$ </span>uv<span class="w"> </span>self<span class="w"> </span>update
+</code></pre></div>
+<p>When another installation method is used, self-updates are disabled. Use the package manager's
 upgrade method instead.</p>
+</div>
 <h2 id="pypi">PyPI<a class="headerlink" href="#pypi" title="Permanent link">#</a></h2>
 <p>For convenience, uv is published to <a href="https://pypi.org/project/uv/">PyPI</a>.</p>
 <p>If installing from PyPI, we recommend installing uv into an isolated environment, e.g., with <code>pipx</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>pipx<span class="w"> </span>install<span class="w"> </span>uv
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="gp">$ </span>pipx<span class="w"> </span>install<span class="w"> </span>uv
 </code></pre></div>
 <p>However, <code>pip</code> can also be used:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>pip<span class="w"> </span>install<span class="w"> </span>uv
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="gp">$ </span>pip<span class="w"> </span>install<span class="w"> </span>uv
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>There are prebuilt distributions (wheels) for many platforms; if not available for a given 
-platform, uv will be built from source which requires a Rust toolchain to be installed. See the
+<p>uv ships with prebuilt distributions (wheels) for many platforms; if a wheel is not available for a given
+platform, uv will be built from source, which requires a Rust toolchain. See the
 <a href="https://github.com/astral-sh/uv/blob/main/CONTRIBUTING.md#setup">contributing setup guide</a>
 for details on building uv from source.</p>
 </div>
 <h2 id="homebrew">Homebrew<a class="headerlink" href="#homebrew" title="Permanent link">#</a></h2>
 <p>uv is available in the core Homebrew packages.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>brew<span class="w"> </span>install<span class="w"> </span>uv
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="gp">$ </span>brew<span class="w"> </span>install<span class="w"> </span>uv
 </code></pre></div>
 <h2 id="docker">Docker<a class="headerlink" href="#docker" title="Permanent link">#</a></h2>
 <p>uv provides a Docker image at
 <a href="https://github.com/astral-sh/uv/pkgs/container/uv"><code>ghcr.io/astral-sh/uv</code></a>.</p>
 <p>See our guide on <a href="../guides/integration/docker/">using uv in Docker</a> for more details.</p>
 <h2 id="github-releases">GitHub Releases<a class="headerlink" href="#github-releases" title="Permanent link">#</a></h2>
-<p>uv release artifacts can be downloaded directly from <a href="https://github.com/astral-sh/uv/releases">GitHub
-Releases</a>.</p>
+<p>uv release artifacts can be downloaded directly from
+<a href="https://github.com/astral-sh/uv/releases">GitHub Releases</a>.</p>
 <p>Each release page includes binaries for all supported platforms as well as instructions for using
 the standalone installer via <code>github.com</code> instead of <code>astral.sh</code>.</p>
+<h2 id="next-steps">Next steps<a class="headerlink" href="#next-steps" title="Permanent link">#</a></h2>
+<p>See the <a href="../first-steps/">first steps</a> or jump straight to the <a href="../guides/">guides</a> to start
+using uv.</p>
 
 
 

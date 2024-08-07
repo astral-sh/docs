@@ -10,25 +10,31 @@
         <meta name="author" content="charliermarsh">
       
       
+        <link rel="canonical" href="https://docs.astral.sh/uv/reference/resolver-internals/">
       
+      
+        <link rel="prev" href="../settings/">
+      
+      
+        <link rel="next" href="../../versioning/">
       
       
         
       
       
-      <link rel="icon" href="/uv/assets/favicon.svg">
+      <link rel="icon" href="../../assets/favicon.svg">
       <meta name="generator" content="mkdocs-1.5.0, mkdocs-material-9.3.1+insiders-4.41.0">
     
     
       
-        <title>uv</title>
+        <title>Resolver - uv</title>
       
     
     
-      <link rel="stylesheet" href="/uv/assets/stylesheets/main.176649b9.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.176649b9.min.css">
       
         
-        <link rel="stylesheet" href="/uv/assets/stylesheets/palette.da3f46a0.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.da3f46a0.min.css">
       
       
 
@@ -47,9 +53,9 @@
       
     
     
-      <link rel="stylesheet" href="/uv/stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("/uv/",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -80,6 +86,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#resolver-internals" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -92,9 +103,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/uv/." title="uv" class="md-header__button md-logo" aria-label="uv" data-md-component="logo">
+    <a href="../.." title="uv" class="md-header__button md-logo" aria-label="uv" data-md-component="logo">
       
-  <img src="/uv/assets/logo-letter.svg" alt="logo">
+  <img src="../../assets/logo-letter.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -111,7 +122,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              Resolver
             
           </span>
         </div>
@@ -234,9 +245,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/uv/." title="uv" class="md-nav__button md-logo" aria-label="uv" data-md-component="logo">
+    <a href="../.." title="uv" class="md-nav__button md-logo" aria-label="uv" data-md-component="logo">
       
-  <img src="/uv/assets/logo-letter.svg" alt="logo">
+  <img src="../../assets/logo-letter.svg" alt="logo">
 
     </a>
     uv
@@ -262,7 +273,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/uv/." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -341,7 +352,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/uv/installation/" class="md-nav__link">
+      <a href="../../installation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -367,7 +378,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/uv/first-steps/" class="md-nav__link">
+      <a href="../../first-steps/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -393,7 +404,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/uv/features/" class="md-nav__link">
+      <a href="../../features/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -457,7 +468,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="/uv/guides/" class="md-nav__link ">
+            <a href="../../guides/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -498,7 +509,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/uv/guides/install-python/" class="md-nav__link">
+      <a href="../../guides/install-python/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -524,7 +535,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/uv/guides/scripts/" class="md-nav__link">
+      <a href="../../guides/scripts/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -550,7 +561,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/uv/guides/tools/" class="md-nav__link">
+      <a href="../../guides/tools/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -576,7 +587,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/uv/guides/projects/" class="md-nav__link">
+      <a href="../../guides/projects/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -602,7 +613,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/uv/guides/publish/" class="md-nav__link">
+      <a href="../../guides/publish/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -670,7 +681,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="/uv/concepts/" class="md-nav__link ">
+            <a href="../../concepts/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -711,7 +722,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/uv/concepts/projects/" class="md-nav__link">
+      <a href="../../concepts/projects/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -737,7 +748,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/uv/concepts/dependencies/" class="md-nav__link">
+      <a href="../../concepts/dependencies/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -763,7 +774,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/uv/concepts/workspaces/" class="md-nav__link">
+      <a href="../../concepts/workspaces/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -789,7 +800,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/uv/concepts/tools/" class="md-nav__link">
+      <a href="../../concepts/tools/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -815,7 +826,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/uv/concepts/python-versions/" class="md-nav__link">
+      <a href="../../concepts/python-versions/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -841,7 +852,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/uv/concepts/resolution/" class="md-nav__link">
+      <a href="../../concepts/resolution/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -867,7 +878,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/uv/concepts/cache/" class="md-nav__link">
+      <a href="../../concepts/cache/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -927,7 +938,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="/uv/configuration/" class="md-nav__link ">
+            <a href="../../configuration/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -968,7 +979,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/uv/configuration/files/" class="md-nav__link">
+      <a href="../../configuration/files/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -994,7 +1005,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/uv/configuration/environment/" class="md-nav__link">
+      <a href="../../configuration/environment/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1020,7 +1031,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/uv/configuration/authentication/" class="md-nav__link">
+      <a href="../../configuration/authentication/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1082,7 +1093,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="/uv/guides/integration/" class="md-nav__link ">
+            <a href="../../guides/integration/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1123,7 +1134,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/uv/guides/integration/docker/" class="md-nav__link">
+      <a href="../../guides/integration/docker/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1149,7 +1160,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/uv/guides/integration/github/" class="md-nav__link">
+      <a href="../../guides/integration/github/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1175,7 +1186,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/uv/guides/integration/pre-commit/" class="md-nav__link">
+      <a href="../../guides/integration/pre-commit/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1201,7 +1212,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/uv/guides/integration/alternative-indexes/" class="md-nav__link">
+      <a href="../../guides/integration/alternative-indexes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1267,7 +1278,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="/uv/pip/" class="md-nav__link ">
+            <a href="../../pip/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1308,7 +1319,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/uv/pip/environments/" class="md-nav__link">
+      <a href="../../pip/environments/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1334,7 +1345,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/uv/pip/packages/" class="md-nav__link">
+      <a href="../../pip/packages/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1360,7 +1371,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/uv/pip/inspection/" class="md-nav__link">
+      <a href="../../pip/inspection/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1386,7 +1397,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/uv/pip/dependencies/" class="md-nav__link">
+      <a href="../../pip/dependencies/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1412,7 +1423,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/uv/pip/compile/" class="md-nav__link">
+      <a href="../../pip/compile/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1438,7 +1449,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/uv/pip/compatibility/" class="md-nav__link">
+      <a href="../../pip/compatibility/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1469,6 +1480,8 @@
       
   
   
+    
+  
   
     
     
@@ -1485,15 +1498,13 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
         
           <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
             
@@ -1512,7 +1523,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1529,7 +1540,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/uv/reference/cli/" class="md-nav__link">
+      <a href="../cli/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1555,7 +1566,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/uv/reference/settings/" class="md-nav__link">
+      <a href="../settings/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1579,9 +1590,35 @@
                 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="/uv/reference/resolver-internals/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    
+  
+    Resolver
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1596,6 +1633,78 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#resolver" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Resolver
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#forking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Forking
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requires-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Requires-python
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wheel-tags" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Wheel tags
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1607,7 +1716,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/uv/versioning/" class="md-nav__link">
+      <a href="../../versioning/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1633,7 +1742,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/uv/platforms/" class="md-nav__link">
+      <a href="../../platforms/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1677,6 +1786,68 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#resolver" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Resolver
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#forking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Forking
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requires-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Requires-python
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wheel-tags" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Wheel tags
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1689,8 +1860,138 @@
               
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+                  
 
+  
+  
+
+
+<h1 id="resolver-internals">Resolver internals<a class="headerlink" href="#resolver-internals" title="Permanent link">#</a></h1>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>This document focuses on the internal workings of uv's resolver. For using uv, see the
+<a href="../../concepts/resolution/">resolution concept</a> documentation.</p>
+</div>
+<h2 id="resolver">Resolver<a class="headerlink" href="#resolver" title="Permanent link">#</a></h2>
+<p>As defined in a textbook, resolution, or finding a set of version to install from a given set of
+requirements, is equivalent to the
+<a href="https://en.wikipedia.org/wiki/Boolean_satisfiability_problem">SAT problem</a> and thereby NP-complete:
+in the worst case you have to try all possible combinations of all versions of all packages and
+there are no general, fast algorithms. In practice, this is misleading for a number of reasons:</p>
+<ul>
+<li>The slowest part of resolution in uv is loading package and version metadata, even if it's cached.</li>
+<li>There are many possible solutions, but some are preferable than others. For example we generally
+  prefer using the latest version of packages.</li>
+<li>Package's dependencies are complex, e.g., there are contiguous versions ranges — not arbitrary
+  boolean inclusion/exclusions of versions, adjacent releases often have the same or similar
+  requirements, etc.</li>
+<li>For most resolutions, the resolver doesn't need to backtrack, picking versions iteratively is
+  sufficient. If there are version preferences from a previous resolution, barely any work needs to
+  be done.</li>
+<li>When resolution fails, more information is needed than a message that there is no solution (as is
+  seen in SAT solvers). Instead, the resolver should produce an understandable error trace that
+  states which packages are involved in away to allows a user to remove the conflict.</li>
+</ul>
+<p>uv uses <a href="https://github.com/pubgrub-rs/pubgrub">pubgrub-rs</a>, the Rust implementation of
+<a href="https://nex3.medium.com/pubgrub-2fb6470504f">PubGrub</a>, an incremental version solver. PubGrub in uv
+works in the following steps:</p>
+<ul>
+<li>Start with a partial solution that declares which packages versions have been selected and which
+  are undecided. Initially, only a virtual root package is decided.</li>
+<li>The highest priority package is selected from the undecided packages. Package with URLs (including
+  file, git, etc.) have the highest priority, then those with more exact specifiers (such as <code>==</code>),
+  then those with less strict specifiers. Inside each category, packages are ordered by when they
+  were first seen (i.e. order in a file), making the resolution deterministic.</li>
+<li>A version is picked for the selected package. The version must works with all specifiers from the
+  requirements in the partial solution and must not be previously marked as incompatible. The
+  resolver prefers versions from a lockfile (<code>uv.lock</code> or <code>-o requirements.txt</code>) and those installed
+  in the current environment. Versions are checked from highest to lowest (unless using an
+  alternative <a href="../../concepts/resolution/#resolution-strategy">resolution strategy</a>).</li>
+<li>All requirements of the selected package version are added to the undecided packages. uv
+  prefetches their metadata in the background to improve performance.</li>
+<li>The process is either repeated with the next package unless a conflict is detected, in which the
+  resolver will backtrack. For example, the partial solution contains, among other packages, <code>a 2</code>
+  then <code>b 2</code> with the requirements <code>a 2 -&gt; c 1</code> and <code>b 2 -&gt; c 2</code>. No compatible version of <code>c</code> can
+  be found. PubGrub can determine this was caused by <code>a 2</code> and <code>b 2</code> and add the incompatibility
+  <code>{a 2, b 2}</code>, meaning that when either is picked, the other cannot be selected. The partial
+  solution is restored to <code>a 2</code> with the tracked incompatibility and the resolver attempts to pick a
+  new version for <code>b</code>.</li>
+</ul>
+<p>Eventually, the resolver either picks compatible versions for all packages (a successful resolution)
+or there is an incompatibility including the virtual "root" package which defines the versions
+requested by the user. An incompatibility with the root package indicates that whatever versions of
+the root dependencies and their transitive dependencies are picked, there will always be a conflict.
+From the incompatibilities tracked in PubGrub, an error message is constructed to enumerate the
+involved packages.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>For more details on the PubGrub algorithm, see <a href="https://pubgrub-rs-guide.pages.dev/internals/intro">Internals of the PubGrub
+algorithm</a>.</p>
+</div>
+<h2 id="forking">Forking<a class="headerlink" href="#forking" title="Permanent link">#</a></h2>
+<p>Python resolvers historically didn't support backtracking, and even with backtracking, resolution
+was usually limited to single environment, which one specific architecture, operating system, Python
+version, and Python implementation. Some packages use contradictory requirements for different
+environments, for example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>numpy&gt;=2,&lt;3 ; python_version &gt;= &quot;3.11&quot;
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>numpy&gt;=1.16,&lt;2 ; python_version &lt; &quot;3.11&quot;
+</code></pre></div>
+<p>Since Python only allows one version of each package, a naive resolver would error here. Inspired by
+<a href="https://github.com/python-poetry/poetry">Poetry</a>, uv uses a forking resolver: whenever there are
+multiple requirements for a package with different markers, the resolution is split.</p>
+<p>In the above example, the partial solution would be split into two resolutions, one for
+<code>python_version &gt;= "3.11"</code> and one for <code>python_version &lt; "3.11"</code>.</p>
+<p>If markers overlap or are missing a part of the marker space, the resolver splits additional times —
+there can be many forks per package. For example, given:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>flask &gt; 1 ; sys_platform == &#39;darwin&#39;
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>flask &gt; 2 ; sys_platform == &#39;win32&#39;
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>flask
+</code></pre></div>
+<p>A fork would be created for <code>sys_platform == 'darwin'</code>, for <code>sys_platform == 'win32'</code>, and for
+<code>sys_platform != 'darwin' and sys_platform != 'win32'</code>.</p>
+<p>Forks can be nested, e.g., each fork is dependent on any previous forks that occurred. Forks with
+identical packages are merged to keep the number of forks low.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Forking can be observed in the logs of <code>uv lock -v</code> by looking for
+<code>Splitting resolution on ...</code>, <code>Solving split ... (requires-python: ...)</code> and <code>Split ... resolution
+took ...</code>.</p>
+</div>
+<p>One difficulty in a forking resolver is that where splits occur is dependent on the order packages
+are seen, which is in turn dependent on the preferences, e.g., from <code>uv.lock</code>. So it is possible for
+the resolver to solve the requirements with specific forks, write this to the lockfile, and when the
+resolver is invoked again, a different solution is found because the preferences result in different
+fork points. To avoid this, the <code>environment-markers</code> of each fork and each package that diverges
+between forks is written to the lockfile. When performing a new resolution, the forks from the
+lockfile are used to ensure the resolution is stable. When requirements change, new forks may be
+added to the saved forks.</p>
+<h2 id="requires-python">Requires-python<a class="headerlink" href="#requires-python" title="Permanent link">#</a></h2>
+<p>To ensure that a resolution with <code>requires-python = "&gt;=3.9"</code> can actually be installed for the
+included Python versions, uv requires that all dependencies have the same minimum Python version.
+Package versions that declare a higher minimum Python version, e.g., <code>requires-python = "&gt;=3.10"</code>,
+are rejected, because a resolution with that version can't be installed on Python 3.9. For
+simplicity and forward compatibility, only lower bounds in <code>requires-python</code> are respected. For
+example, if a package declares <code>requires-python = "&gt;=3.8,&lt;4"</code>, the <code>&lt;4</code> marker is not propagated to
+the entire resolution.</p>
+<h2 id="wheel-tags">Wheel tags<a class="headerlink" href="#wheel-tags" title="Permanent link">#</a></h2>
+<p>While uv's resolution is universal with respect to environment markers, this doesn't extend to wheel
+tags. Wheel tags can encode the Python version, Python implementation, operating system, and
+architecture. For example, <code>torch-2.4.0-cp312-cp312-manylinux2014_aarch64.whl</code> is only compatible
+with CPython 3.12 on arm64 Linux with <code>glibc&gt;=2.17</code> (per the <code>manylinux2014</code> policy), while
+<code>tqdm-4.66.4-py3-none-any.whl</code> works with all Python 3 versions and interpreters on any operating
+system and architecture. Most projects have a universally compatible source distribution that can be
+used when attempted to install a package that has no compatible wheel, but some packages, such as
+<code>torch</code>, don't publish a source distribution. In this case an installation on, e.g., Python 3.13, an
+uncommon operating system, or architecture, will fail and complain that there is no matching wheel.</p>
+
+
+
+  
+
+
+
+
+                
               </article>
             </div>
           
@@ -1710,6 +2011,44 @@
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../settings/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Settings" rel="prev">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Settings
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../versioning/" class="md-footer__link md-footer__link--next" aria-label="Next: Versioning" rel="next">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Versioning
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">
@@ -1781,12 +2120,12 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "/uv/", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.expand", "navigation.indexes", "navigation.tracking", "content.code.annotate", "toc.follow", "navigation.footer", "navigation.top", "content.code.copy", "content.tabs.link"], "search": "/uv/assets/javascripts/workers/search.f2da59ea.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.expand", "navigation.indexes", "navigation.tracking", "content.code.annotate", "toc.follow", "navigation.footer", "navigation.top", "content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.f2da59ea.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="/uv/assets/javascripts/bundle.d7e51e09.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7e51e09.min.js"></script>
       
-        <script src="/uv/js/extra.js"></script>
+        <script src="../../js/extra.js"></script>
       
     
   </body>

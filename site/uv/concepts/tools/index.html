@@ -451,6 +451,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -592,6 +594,32 @@
     
   
     Working on projects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/publish/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Publishing packages
   
 
     
@@ -902,11 +930,11 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#bin-directory" class="md-nav__link">
+  <a href="#the-bin-directory" class="md-nav__link">
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          <code>bin</code> directory
+          The <code>bin</code> directory
         </span>
       
     </span>
@@ -928,11 +956,11 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#overriding-executables" class="md-nav__link">
+  <a href="#overwriting-executables" class="md-nav__link">
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Overriding executables
+          Overwriting executables
         </span>
       
     </span>
@@ -946,11 +974,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#uv-tool-run-vs-uv-run" class="md-nav__link">
+  <a href="#relationship-to-uv-run" class="md-nav__link">
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          <code>uv tool run</code> vs <code>uv run</code>
+          Relationship to <code>uv run</code>
         </span>
       
     </span>
@@ -1635,6 +1663,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -1727,44 +1761,19 @@
 
               
             
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
+              
+                
   
   
   
-    
-    
-      
+    <li class="md-nav__item">
+      <a href="../../reference/resolver-internals/" class="md-nav__link">
         
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
-        
-          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
-            
   
   <span class="md-ellipsis">
     
   
-    Policies
+    Resolver
   
 
     
@@ -1772,19 +1781,11 @@
   
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_9">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Policies
+      </a>
+    </li>
   
 
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
+              
             
               
                 
@@ -1944,11 +1945,11 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#bin-directory" class="md-nav__link">
+  <a href="#the-bin-directory" class="md-nav__link">
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          <code>bin</code> directory
+          The <code>bin</code> directory
         </span>
       
     </span>
@@ -1970,11 +1971,11 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#overriding-executables" class="md-nav__link">
+  <a href="#overwriting-executables" class="md-nav__link">
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Overriding executables
+          Overwriting executables
         </span>
       
     </span>
@@ -1988,11 +1989,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#uv-tool-run-vs-uv-run" class="md-nav__link">
+  <a href="#relationship-to-uv-run" class="md-nav__link">
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          <code>uv tool run</code> vs <code>uv run</code>
+          Relationship to <code>uv run</code>
         </span>
       
     </span>
@@ -2022,18 +2023,20 @@
 <h1 id="tools">Tools<a class="headerlink" href="#tools" title="Permanent link">#</a></h1>
 <p>Tools are Python packages that provide command-line interfaces. Tools can be invoked without
 installation using <code>uvx</code>, in which case their dependencies are installed in a temporary virtual
-environment isolated from the current project. Alternatively, tools can be installed with <code>uv tool
-install</code>, in which case their executables are placed in the <code>PATH</code> — an isolated virtual environment
-is still used but it is not treated as disposable.</p>
+environment isolated from the current project. Tools can also be installed with <code>uv tool install</code>,
+in which case their executables are <a href="#the-path">available on the <code>PATH</code></a> — an isolated virtual
+environment is still used but it is not treated as disposable.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>See the <a href="../../guides/tools/">tools guide</a> for an introduction to working with the tools 
+<p>See the <a href="../../guides/tools/">tools guide</a> for an introduction to working with the tools
 interface — this document discusses details of tool management.</p>
 </div>
 <h2 id="tool-environments">Tool environments<a class="headerlink" href="#tool-environments" title="Permanent link">#</a></h2>
-<p>Tools are installed into virtual environments which are created in the uv tools directory. When
-running tools with <code>uvx</code> or <code>uv tool run</code>, the virtual environments are stored in the uv cache
-directory and are treated as disposable.</p>
+<p>When running a tool with <code>uvx</code> or <code>uv tool run</code>, a virtual environment is stored in the uv cache
+directory and is treated as disposable. The environment is cached to reduce the overhead of
+invocations.</p>
+<p>When installing a tool with <code>uv tool install</code>, a virtual environment is created in the uv tools
+directory.</p>
 <h3 id="tools-directory">Tools directory<a class="headerlink" href="#tools-directory" title="Permanent link">#</a></h3>
 <p>By default, the uv tools directory is named <code>tools</code> and is in the uv application state directory,
 e.g., <code>~/.local/share/uv/tools</code>. The location may be customized with the <code>UV_TOOL_DIR</code> environment
@@ -2061,9 +2064,10 @@ mutate a tool environment manually with a <code>pip</code> operation.</p>
 </code></pre></div>
 <p>All tool environment mutations will reinstall the tool executables, even if they have not changed.</p>
 <h3 id="including-additional-dependencies">Including additional dependencies<a class="headerlink" href="#including-additional-dependencies" title="Permanent link">#</a></h3>
-<p>Additional packages can be included during tool invocations and installations:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="gp">$ </span>uvx<span class="w"> </span>--with<span class="w"> </span>&lt;extra-package&gt;<span class="w"> </span>&lt;tool-package&gt;
+<p>Additional packages can be included during tool invocations:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="gp">$ </span>uvx<span class="w"> </span>--with<span class="w"> </span>&lt;extra-package&gt;<span class="w"> </span>&lt;tool&gt;
 </code></pre></div>
+<p>And installations:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="gp">$ </span>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>--with<span class="w"> </span>&lt;extra-package&gt;<span class="w"> </span>&lt;tool-package&gt;
 </code></pre></div>
 <p>The <code>--with</code> option can be provided multiple times to include additional packages.</p>
@@ -2073,11 +2077,11 @@ mutate a tool environment manually with a <code>pip</code> operation.</p>
 <p>If the requested version conflicts with the requirements of the tool package, package resolution
 will fail and the command will error.</p>
 <h2 id="tool-executables">Tool executables<a class="headerlink" href="#tool-executables" title="Permanent link">#</a></h2>
-<p>Tool executables are all console entry points, script entry points, and binary scripts provided by a
-Python package. Tool executables are symlinked into the <code>bin</code> directory on Unix and copied on
+<p>Tool executables include all console entry points, script entry points, and binary scripts provided
+by a Python package. Tool executables are symlinked into the <code>bin</code> directory on Unix and copied on
 Windows.</p>
-<h3 id="bin-directory"><code>bin</code> directory<a class="headerlink" href="#bin-directory" title="Permanent link">#</a></h3>
-<p>Executables are installed into the user's <code>bin</code> directory following the XDG standard, e.g.,
+<h3 id="the-bin-directory">The <code>bin</code> directory<a class="headerlink" href="#the-bin-directory" title="Permanent link">#</a></h3>
+<p>Executables are installed into the user <code>bin</code> directory following the XDG standard, e.g.,
 <code>~/.local/bin</code>. Unlike other directory schemes in uv, the XDG standard is used on <em>all platforms</em>
 notably including Windows and macOS — there is no clear alternative location to place executables on
 these platforms. The installation directory is determined from the first available environment
@@ -2092,11 +2096,11 @@ variable:</p>
 <p>The <code>bin</code> directory must be in the <code>PATH</code> variable for tool executables to be available from the
 shell. If it is not in the <code>PATH</code>, a warning will be displayed. The <code>uv tool update-shell</code> command
 can be used to add the <code>bin</code> directory to the <code>PATH</code> in common shell configuration files.</p>
-<h3 id="overriding-executables">Overriding executables<a class="headerlink" href="#overriding-executables" title="Permanent link">#</a></h3>
+<h3 id="overwriting-executables">Overwriting executables<a class="headerlink" href="#overwriting-executables" title="Permanent link">#</a></h3>
 <p>Installation of tools will not overwrite executables in the <code>bin</code> directory that were not previously
 installed by uv. For example, if <code>pipx</code> has been used to install a tool, <code>uv tool install</code> will
 fail. The <code>--force</code> flag can be used to override this behavior.</p>
-<h2 id="uv-tool-run-vs-uv-run"><code>uv tool run</code> vs <code>uv run</code><a class="headerlink" href="#uv-tool-run-vs-uv-run" title="Permanent link">#</a></h2>
+<h2 id="relationship-to-uv-run">Relationship to <code>uv run</code><a class="headerlink" href="#relationship-to-uv-run" title="Permanent link">#</a></h2>
 <p>The invocation <code>uv tool run &lt;name&gt;</code> is nearly equivalent to:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>--no-project<span class="w"> </span>--with<span class="w"> </span>&lt;name&gt;<span class="w"> </span>--<span class="w"> </span>&lt;name&gt;
 </code></pre></div>
@@ -2107,6 +2111,7 @@ fail. The <code>--force</code> flag can be used to override this behavior.</p>
 <li>The <code>--no-project</code> flag is not needed — tools are always run isolated from the project.</li>
 <li>If a tool is already installed, <code>uv tool run</code> will use the installed version but <code>uv run</code> will
   not.</li>
+<li>The project will be built and installed instead of using an editable installation</li>
 </ul>
 
 

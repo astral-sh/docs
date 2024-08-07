@@ -451,6 +451,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -592,6 +594,32 @@
     
   
     Working on projects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/publish/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Publishing packages
   
 
     
@@ -804,11 +832,24 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#configuration" class="md-nav__link">
+  <a href="#when-not-to-use-workspaces" class="md-nav__link">
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Configuration
+          When (not) to use workspaces
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Usage
         </span>
       
     </span>
@@ -1532,6 +1573,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -1624,44 +1671,19 @@
 
               
             
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
+              
+                
   
   
   
-    
-    
-      
+    <li class="md-nav__item">
+      <a href="../../reference/resolver-internals/" class="md-nav__link">
         
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
-        
-          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
-            
   
   <span class="md-ellipsis">
     
   
-    Policies
+    Resolver
   
 
     
@@ -1669,19 +1691,11 @@
   
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_9">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Policies
+      </a>
+    </li>
   
 
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
+              
             
               
                 
@@ -1769,11 +1783,24 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#configuration" class="md-nav__link">
+  <a href="#when-not-to-use-workspaces" class="md-nav__link">
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Configuration
+          When (not) to use workspaces
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Usage
         </span>
       
     </span>
@@ -1815,23 +1842,43 @@
 
 <h1 id="workspaces">Workspaces<a class="headerlink" href="#workspaces" title="Permanent link">#</a></h1>
 <p>Workspaces help organize large codebases by splitting them into multiple packages with independent
-dependencies.</p>
-<p>When using the <code>uv pip</code> interface, workspace dependencies behave like automatic editable path
-dependencies. Using the uv project interface, all of the workspace packages are locked together. <code>uv
-run</code> installs only the current package (unless overridden with <code>--package</code>) and its workspace and
-non-workspace dependencies.</p>
-<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">#</a></h2>
-<p>A workspace can be created by adding a <code>tool.uv.workspace</code> to a <code>pyproject.toml</code> that is the
-workspace root. This table contains <code>members</code> (mandatory) and <code>exclude</code> (optional), with lists of
-globs of directories:</p>
+dependencies. Each package in a workspace has its own <code>pyproject.toml</code>, but they are all locked
+together in a shared lockfile and installed to shared virtual environment.</p>
+<p>Using the project interface, <code>uv run</code> and <code>uv sync</code> will install all packages of the workspace,
+unless you select a single workspace member with <code>--package</code>. When using the <code>uv pip</code> interface,
+workspace dependencies behave like editable path dependencies.</p>
+<h2 id="when-not-to-use-workspaces">When (not) to use workspaces<a class="headerlink" href="#when-not-to-use-workspaces" title="Permanent link">#</a></h2>
+<p>One common use case for a workspace is that the codebase grows large, and eventually you want some
+modules to become independent packages with their own dependency specification. Other use cases are
+separating parts of the codebase with different responsibilities, e.g. in a repository with a
+library package and CLI package, where the CLI package makes features of the library available but
+has additional dependencies, a webserver with a backend and an ingestion package, or a library that
+has a performance-critical subroutine implemented in a native language.</p>
+<p>Workspaces are not suited when you don't want to install all members together, members have
+conflicting requirements, or you simply want individual virtual environments per project. In this
+case, use regular (editable) relative path dependencies.</p>
+<p>Currently, workspace don't properly support different members having different <code>requires-python</code>
+values, we apply the highest of all <code>requires-python</code> lower bounds to the entire workspace. You need
+to use a <code>uv pip</code> to install individual member in an older virtual environment.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>As Python does not provide dependency isolation, uv can't ensure that a package uses only the dependencies it has declared, and not also imports a package that was installed for another dependency. For workspaces specifically, uv can't ensure that packages don't import dependencies declared by another workspace member.</p>
+</div>
+<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">#</a></h2>
+<p>A workspace can be created by adding a <code>tool.uv.workspace</code> table to a <code>pyproject.toml</code> that will
+become the workspace root. This table contains <code>members</code> (mandatory) and <code>exclude</code> (optional), with
+lists of globs of directories:</p>
 <div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">[tool.uv.workspace]</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">members</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;packages/*&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;examples/*&quot;</span><span class="p">]</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">exclude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;example/excluded_example&quot;</span><span class="p">]</span>
 </code></pre></div>
-<p>If <code>tool.uv.sources</code> is defined in the workspace root, it applies to all packages, unless overridden
-in the <code>tool.uv.sources</code> of a specific project.</p>
+<p><code>uv.lock</code> and <code>.venv</code> for the entire workspace are created next to this <code>pyproject.toml</code>. All
+members need to be in directories below it.</p>
+<p>If <code>tool.uv.sources</code> is defined in the workspace root, it applies to all members, unless overridden
+in the <code>tool.uv.sources</code> of a specific member.</p>
+<p>Using <code>uv init</code> inside a workspace will add the newly created package to <code>members</code>.</p>
 <h2 id="common-structures">Common structures<a class="headerlink" href="#common-structures" title="Permanent link">#</a></h2>
-<p>There a two main workspace structures: A <strong>root package with helpers</strong> and a <strong>flat workspace</strong>. </p>
+<p>There a two main workspace structures: A <strong>root package with helpers</strong> and a <strong>flat workspace</strong>.</p>
 <p>The root workspace layout defines one main package in the root of the repository, with helper
 packages in <code>packages</code>. In this example <code>albatross/pyproject.toml</code> has both a <code>project</code> section and
 a <code>tool.uv.workspace</code> section.</p>
@@ -1882,6 +1929,16 @@ defines a so-called virtual workspace. In this example <code>albatross/pyproject
 <a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>├── pyproject.toml
 <a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>├── README.md
 <a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>└── uv.lock
+</code></pre></div>
+<p>In the flat layout, you may still define development dependencies in the workspace root
+<code>pyproject.toml</code>:</p>
+<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">[tool.uv.workspace]</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">members</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;packages/*&quot;</span><span class="p">]</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">[tool.uv]</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="n">dev-dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">  </span><span class="s2">&quot;pytest &gt;=8.3.2,&lt;9&quot;</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="p">]</span>
 </code></pre></div>
 
 

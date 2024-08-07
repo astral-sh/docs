@@ -451,6 +451,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -592,6 +594,32 @@
     
   
     Working on projects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/publish/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Publishing packages
   
 
     
@@ -1558,6 +1586,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -1650,44 +1684,19 @@
 
               
             
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
+              
+                
   
   
   
-    
-    
-      
+    <li class="md-nav__item">
+      <a href="../../reference/resolver-internals/" class="md-nav__link">
         
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
-        
-          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
-            
   
   <span class="md-ellipsis">
     
   
-    Policies
+    Resolver
   
 
     
@@ -1695,19 +1704,11 @@
   
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_9">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Policies
+      </a>
+    </li>
   
 
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
+              
             
               
                 
@@ -1873,17 +1874,14 @@ important for Python installations that come with the operating system which oft
 packages themselves. A virtual environment is a lightweight way to isolate packages from a Python
 installation's environment. Unlike <code>pip</code>, uv requires using a virtual environment by default.</p>
 <h2 id="creating-a-virtual-environment">Creating a virtual environment<a class="headerlink" href="#creating-a-virtual-environment" title="Permanent link">#</a></h2>
-<p>uv supports creating virtual environments:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Create a virtual environment at `.venv`</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>uv<span class="w"> </span>venv
+<p>uv supports creating virtual environments, e.g., to create a virtual environment at <code>.venv</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">$ </span>uv<span class="w"> </span>venv
 </code></pre></div>
-<p>A specific name or path can be specified:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Create a virtual environment at `my-name`</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>uv<span class="w"> </span>venv<span class="w"> </span>my-name
+<p>A specific name or path can be specified, e.g., to create a virtual environment at <code>my-name</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="gp">$ </span>uv<span class="w"> </span>venv<span class="w"> </span>my-name
 </code></pre></div>
-<p>A Python version can be requested:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Create a virtual environment with Python 3.11</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>uv<span class="w"> </span>venv<span class="w"> </span>--python<span class="w"> </span><span class="m">3</span>.11
+<p>A Python version can be requested, e.g., to create a virtual environment with Python 3.11:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="gp">$ </span>uv<span class="w"> </span>venv<span class="w"> </span>--python<span class="w"> </span><span class="m">3</span>.11
 </code></pre></div>
 <p>Note this requires the requested Python version to be available on the system. However, if
 available, uv will download Python for you. See the <a href="../../concepts/python-versions/">Python version</a>
@@ -1891,17 +1889,15 @@ documentation for more details.</p>
 <h2 id="using-a-virtual-environment">Using a virtual environment<a class="headerlink" href="#using-a-virtual-environment" title="Permanent link">#</a></h2>
 <p>When using the default virtual environment name, uv will automatically find and use the virtual
 environment during subsequent invocations.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>uv<span class="w"> </span>venv
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="gp">$ </span>uv<span class="w"> </span>venv
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1"># Install a package in the new virtual environment</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>ruff
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="gp">$ </span><span class="c1"># Install a package in the new virtual environment</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="gp">$ </span>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>ruff
 </code></pre></div>
 <p>The virtual environment can be "activated" to make its packages available:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># On macOS and Linux.</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nb">source</span><span class="w"> </span>.venv/bin/activate
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># On Windows.</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>.venv<span class="se">\S</span>cripts<span class="se">\a</span>ctivate
+<div class="highlight"><span class="filename">macOS and Linux</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="gp">$ </span><span class="nb">source</span><span class="w"> </span>.venv/bin/activate
+</code></pre></div>
+<div class="highlight"><span class="filename">Windows</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="gp">$ </span>.venv<span class="se">\S</span>cripts<span class="se">\a</span>ctivate
 </code></pre></div>
 <h2 id="using-arbitrary-python-environments">Using arbitrary Python environments<a class="headerlink" href="#using-arbitrary-python-environments" title="Permanent link">#</a></h2>
 <p>Since uv has no dependency on Python, it can install into virtual environments other than its own.
@@ -1910,9 +1906,9 @@ regardless of where uv is installed. Note that if <code>VIRTUAL_ENV</code> is se
 <strong>not</strong> a <a href="https://peps.python.org/pep-0405/#specification">PEP 405 compliant</a> virtual environment,
 it will be ignored.</p>
 <p>uv can also install into arbitrary, even non-virtual environments, with the <code>--python</code> argument
-provided to <code>uv pip sync</code> or <code>uv pip install</code>. For example, <code>uv pip install
---python /path/to/python</code> will install into the environment linked to the <code>/path/to/python</code>
-interpreter.</p>
+provided to <code>uv pip sync</code> or <code>uv pip install</code>. For example,
+<code>uv pip install --python /path/to/python</code> will install into the environment linked to the
+<code>/path/to/python</code> interpreter.</p>
 <p>For convenience, <code>uv pip install --system</code> will install into the system Python environment. Using
 <code>--system</code> is roughly equivalent to <code>uv pip install --python $(which python)</code>, but note that
 executables that are linked to virtual environments will be skipped. Although we generally recommend
@@ -1927,10 +1923,9 @@ are not in virtual environments. Conversely, when the <code>--system</code> flag
 any interpreters that <em>are</em> in virtual environments.</p>
 <p>Installing into system Python across platforms and distributions is notoriously difficult. uv
 supports the common cases, but will not work in all cases. For example, installing into system
-Python on Debian prior to Python 3.10 is unsupported due to the <a href="https://ffy00.github.io/blog/02-python-debian-and-the-install-locations/">distribution's patching of
-<code>distutils</code> (but not
-<code>sysconfig</code>)</a>. While we
-always recommend the use of virtual environments, uv considers them to be required in these
+Python on Debian prior to Python 3.10 is unsupported due to the
+<a href="https://ffy00.github.io/blog/02-python-debian-and-the-install-locations/">distribution's patching of <code>distutils</code> (but not <code>sysconfig</code>)</a>.
+While we always recommend the use of virtual environments, uv considers them to be required in these
 non-standard environments.</p>
 <p>If uv is installed in a Python environment, e.g., with <code>pip</code>, it can still be used to modify other
 environments. However, when invoked with <code>python -m uv</code>, uv will default to using the parent
@@ -1961,8 +1956,8 @@ included:</p>
 </ul>
 <p>When running a command that does not mutate the environment such as <code>uv pip compile</code>, uv does not
 <em>require</em> a virtual environment. Instead, it needs a Python toolchain to create ephemeral
-environments. See the documentation on <a href="../../concepts/python-versions/#discovery-order">toolchain
-discovery</a> for details on discovery.</p>
+environments. See the documentation on
+<a href="../../concepts/python-versions/#discovery-order">toolchain discovery</a> for details on discovery.</p>
 
 
 

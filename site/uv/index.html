@@ -407,11 +407,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
+  <a href="#learn-more" class="md-nav__link">
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Next steps
+          Learn more
         </span>
       
     </span>
@@ -586,6 +586,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -727,6 +729,32 @@
     
   
     Working on projects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="guides/publish/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Publishing packages
   
 
     
@@ -1595,6 +1623,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -1687,44 +1721,19 @@
 
               
             
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
+              
+                
   
   
   
-    
-    
-      
+    <li class="md-nav__item">
+      <a href="reference/resolver-internals/" class="md-nav__link">
         
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
-        
-          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
-            
   
   <span class="md-ellipsis">
     
   
-    Policies
+    Resolver
   
 
     
@@ -1732,19 +1741,11 @@
   
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_9">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Policies
+      </a>
+    </li>
   
 
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
+              
             
               
                 
@@ -1910,11 +1911,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
+  <a href="#learn-more" class="md-nav__link">
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Next steps
+          Learn more
         </span>
       
     </span>
@@ -1957,16 +1958,17 @@
 
 <h2 id="highlights">Highlights<a class="headerlink" href="#highlights" title="Permanent link">#</a></h2>
 <ul>
-<li>🐍 <a href="guides/install-python/">Installs and manages</a> Python versions.</li>
-<li>🛠️ <a href="guides/tools/">Runs and installs</a> Python applications.</li>
-<li>❇️ <a href="guides/scripts/">Runs scripts</a>, with support for <a href="guides/scripts/#declaring-script-dependencies">inline dependency
-  metadata</a>.</li>
-<li>🗂️ Provides <a href="guides/projects/">comprehensive project management</a>, with a <a href="concepts/projects/#lockfile">universal
-  lockfile</a>.</li>
+<li>🚀 A single tool to replace <code>pip</code>, <code>pip-tools</code>, <code>pipx</code>, <code>poetry</code>, <code>pyenv</code>, <code>virtualenv</code>, and more.</li>
+<li>⚡️ <a href="https://github.com/astral-sh/uv/blob/main/BENCHMARKS.md">10-100x faster</a> than <code>pip</code>.</li>
+<li>🐍 <a href="#python-management">Installs and manages</a> Python versions.</li>
+<li>🛠️ <a href="#tool-management">Runs and installs</a> Python applications.</li>
+<li>❇️ <a href="guides/scripts/">Runs scripts</a>, with support for
+  <a href="guides/scripts/#declaring-script-dependencies">inline dependency metadata</a>.</li>
+<li>🗂️ Provides <a href="#project-management">comprehensive project management</a>, with a
+  <a href="concepts/projects/#lockfile">universal lockfile</a>.</li>
+<li>🔩 Includes a <a href="#the-pip-interface">pip-compatible interface</a> for a performance boost with a
+  familiar CLI.</li>
 <li>🏢 Supports Cargo-style <a href="concepts/workspaces/">workspaces</a> for scalable projects.</li>
-<li>🚀 A replacement for <code>pip</code>, <code>pip-tools</code>, <code>pipx</code>, <code>poetry</code>, <code>pyenv</code>, <code>virtualenv</code>, and more.</li>
-<li>⚡️ <a href="https://github.com/astral-sh/uv/blob/main/BENCHMARKS.md">10-100x faster</a> than <code>pip</code> and
-  <code>pip-tools</code> (<code>pip-compile</code> and <code>pip-sync</code>).</li>
 <li>💾 Disk-space efficient, with a <a href="concepts/cache/">global cache</a> for dependency deduplication.</li>
 <li>⏬ Installable without Rust or Python via <code>curl</code> or <code>pip</code>.</li>
 <li>🖥️ Supports macOS, Linux, and Windows.</li>
@@ -1974,16 +1976,20 @@
 <p>uv is backed by <a href="https://astral.sh">Astral</a>, the creators of
 <a href="https://github.com/astral-sh/ruff">Ruff</a>.</p>
 <h2 id="getting-started">Getting started<a class="headerlink" href="#getting-started" title="Permanent link">#</a></h2>
-<p>Install uv with our official standalone installer, on macOS and Linux:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>curl<span class="w"> </span>-LsSf<span class="w"> </span>https://astral.sh/uv/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
+<p>Install uv with our official standalone installer:</p>
+<div class="highlight"><span class="filename">macOS and Linux</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">$ </span>curl<span class="w"> </span>-LsSf<span class="w"> </span>https://astral.sh/uv/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
 </code></pre></div>
-<p>Or, on Windows:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>powershell<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;irm https://astral.sh/uv/install.ps1 | iex&quot;</span>
+<div class="highlight"><span class="filename">Windows</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="gp">$ </span>powershell<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;irm https://astral.sh/uv/install.ps1 | iex&quot;</span>
 </code></pre></div>
-<p>Then, check out the <a href="first-steps/">first steps</a>, see more <a href="installation/">installation
-methods</a>, or read on for a brief overview.</p>
+<p>Then, check out the <a href="first-steps/">first steps</a> or read on for a brief overview.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>uv may also be installed with pip, Homebrew, and more. See all of the methods on the
+<a href="installation/">installation page</a>.</p>
+</div>
 <h2 id="project-management">Project management<a class="headerlink" href="#project-management" title="Permanent link">#</a></h2>
-<p>uv manages project dependencies and environments:</p>
+<p>uv manages project dependencies and environments, with support for lockfiles, workspaces, and more,
+similar to <code>rye</code> or <code>poetry</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="gp">$ </span>uv<span class="w"> </span>init<span class="w"> </span>example
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="go">Initialized project `example` at `/home/user/example`</span>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
@@ -2003,7 +2009,7 @@ methods</a>, or read on for a brief overview.</p>
 </code></pre></div>
 <p>See the <a href="guides/projects/">project guide</a> to get started.</p>
 <h2 id="tool-management">Tool management<a class="headerlink" href="#tool-management" title="Permanent link">#</a></h2>
-<p>uv executes and installs command-line tools provided by Python packages, similar to <code>pipx</code>. </p>
+<p>uv executes and installs command-line tools provided by Python packages, similar to <code>pipx</code>.</p>
 <p>Run a tool in an ephemeral environment with <code>uvx</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="gp">$ </span>uvx<span class="w"> </span>pycowsay<span class="w"> </span><span class="s1">&#39;hello world!&#39;</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="go">Resolved 1 package in 167ms</span>
@@ -2032,19 +2038,18 @@ methods</a>, or read on for a brief overview.</p>
 </code></pre></div>
 <p>See the <a href="guides/tools/">tools guide</a> to get started.</p>
 <h2 id="python-management">Python management<a class="headerlink" href="#python-management" title="Permanent link">#</a></h2>
-<p>uv installs Python and allows quickly switching between Python versions.</p>
-<p>Install the Python versions your project requires:</p>
+<p>uv installs Python and allows quickly switching between versions.</p>
+<p>Install multiple Python versions:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>install<span class="w"> </span><span class="m">3</span>.10<span class="w"> </span><span class="m">3</span>.11<span class="w"> </span><span class="m">3</span>.12
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="go">warning: `uv python install` is experimental and may change without warning</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="go">Searching for Python versions matching: Python 3.10</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="go">Searching for Python versions matching: Python 3.11</span>
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="go">Searching for Python versions matching: Python 3.12</span>
-<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="go">Installed 3 versions in 3.42s</span>
-<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="go"> + cpython-3.10.14-macos-aarch64-none</span>
-<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="go"> + cpython-3.11.9-macos-aarch64-none</span>
-<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="go"> + cpython-3.12.4-macos-aarch64-none</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="go">Searching for Python versions matching: Python 3.10</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="go">Searching for Python versions matching: Python 3.11</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="go">Searching for Python versions matching: Python 3.12</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="go">Installed 3 versions in 3.42s</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="go"> + cpython-3.10.14-macos-aarch64-none</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="go"> + cpython-3.11.9-macos-aarch64-none</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="go"> + cpython-3.12.4-macos-aarch64-none</span>
 </code></pre></div>
-<p>Or, fetch Python versions on demand:</p>
+<p>Download Python versions as needed:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="gp">$ </span>uv<span class="w"> </span>venv<span class="w"> </span>--python<span class="w"> </span><span class="m">3</span>.12.0
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="go">Using Python 3.12.0</span>
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="go">Creating virtualenv at: .venv</span>
@@ -2054,7 +2059,7 @@ methods</a>, or read on for a brief overview.</p>
 <a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="go">Python 3.8.16 (a9dbdca6fc3286b0addd2240f11d97d8e8de187a, Dec 29 2022, 11:45:30)</span>
 <a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="go">[PyPy 7.3.11 with GCC Apple LLVM 13.1.6 (clang-1316.0.21.2.5)] on darwin</span>
 <a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="go">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</span>
-<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="go">&gt;&gt;&gt;&gt; </span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="go">&gt;&gt;&gt;&gt;</span>
 </code></pre></div>
 <p>Use a specific Python version in the current directory:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>$ uv python pin pypy@3.11
@@ -2062,15 +2067,17 @@ methods</a>, or read on for a brief overview.</p>
 </code></pre></div>
 <p>See the <a href="guides/install-python/">installing Python guide</a> to get started.</p>
 <h2 id="the-pip-interface">The pip interface<a class="headerlink" href="#the-pip-interface" title="Permanent link">#</a></h2>
-<p>uv provides a drop-in replacement for common <code>pip</code>, <code>pip-tools</code>, and <code>virtualenv</code> commands with
-support for a wide range of advanced <code>pip</code> features, including editable installs, Git dependencies,
-direct URL dependencies, local dependencies, constraints, source distributions, HTML and JSON
-indexes, and more.</p>
-<p>uv extends these interfaces with advanced features, such as dependency version overrides,
-multi-platform resolutions, reproducible resolutions, alternative resolution strategies, and more.</p>
-<p>Compile requirements into a multi-platform requirements file:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="gp">$ </span>uv<span class="w"> </span>pip<span class="w"> </span>compile<span class="w"> </span>docs/requirements.in<span class="w"> </span>--universal<span class="w"> </span>--output-file<span class="w"> </span>docs/requirements.txt
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="go">Resolved 43 packages in 12ms</span>
+<p>uv provides a drop-in replacement for common <code>pip</code>, <code>pip-tools</code>, and <code>virtualenv</code> commands.</p>
+<p>uv extends their interfaces with advanced features, such as dependency version overrides,
+platform-independent resolutions, reproducible resolutions, alternative resolution strategies, and
+more.</p>
+<p>Migrate to uv without changing your existing workflows — and experience a 10-100x speedup — with the
+<code>uv pip</code> interface.</p>
+<p>Compile requirements into a platform-independent requirements file:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="gp">$ </span>uv<span class="w"> </span>pip<span class="w"> </span>compile<span class="w"> </span>docs/requirements.in<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">   </span>--universal<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">   </span>--output-file<span class="w"> </span>docs/requirements.txt
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="go">Resolved 43 packages in 12ms</span>
 </code></pre></div>
 <p>Create a virtual environment:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="gp">$ </span>uv<span class="w"> </span>venv
@@ -2087,10 +2094,10 @@ multi-platform resolutions, reproducible resolutions, alternative resolution str
 <a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="go"> + certifi==2024.7.4</span>
 <a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="go"> ...</span>
 </code></pre></div>
-<p>See the <a href="pip/">uv pip documentation</a> to get started.</p>
-<h2 id="next-steps">Next steps<a class="headerlink" href="#next-steps" title="Permanent link">#</a></h2>
-<p>See the <a href="first-steps/">first steps</a> or jump straight into the <a href="guides/">guides</a> to
-start using uv.</p>
+<p>See the <a href="pip/">pip interface documentation</a> to get started.</p>
+<h2 id="learn-more">Learn more<a class="headerlink" href="#learn-more" title="Permanent link">#</a></h2>
+<p>See the <a href="first-steps/">first steps</a> or jump straight to the <a href="guides/">guides</a> to start
+using uv.</p>
 
 
 
