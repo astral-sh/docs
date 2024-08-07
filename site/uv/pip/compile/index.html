@@ -451,6 +451,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -592,6 +594,32 @@
     
   
     Working on projects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/publish/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Publishing packages
   
 
     
@@ -1571,6 +1599,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -1663,44 +1697,19 @@
 
               
             
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
+              
+                
   
   
   
-    
-    
-      
+    <li class="md-nav__item">
+      <a href="../../reference/resolver-internals/" class="md-nav__link">
         
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
-        
-          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
-            
   
   <span class="md-ellipsis">
     
   
-    Policies
+    Resolver
   
 
     
@@ -1708,19 +1717,11 @@
   
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_9">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Policies
+      </a>
+    </li>
   
 
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
+              
             
               
                 
@@ -1902,28 +1903,28 @@ standard <code>pyproject.toml</code> to define dependencies, but other dependenc
 well. See the documentation on <a href="../dependencies/">declaring dependencies</a> for more details on how to
 define dependencies.</p>
 <p>To lock dependencies declared in a <code>pyproject.toml</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>uv<span class="w"> </span>pip<span class="w"> </span>compile<span class="w"> </span>pyproject.toml<span class="w"> </span>-o<span class="w"> </span>requirements.txt
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">$ </span>uv<span class="w"> </span>pip<span class="w"> </span>compile<span class="w"> </span>pyproject.toml<span class="w"> </span>-o<span class="w"> </span>requirements.txt
 </code></pre></div>
 <p>Note by default the <code>uv pip compile</code> output is just displayed and <code>--output-file</code> / <code>-o</code> argument is
 needed to write to a file.</p>
 <p>To lock dependencies declared in a <code>requirements.in</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>uv<span class="w"> </span>pip<span class="w"> </span>compile<span class="w"> </span>requirements.in<span class="w"> </span>-o<span class="w"> </span>requirements.txt
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="gp">$ </span>uv<span class="w"> </span>pip<span class="w"> </span>compile<span class="w"> </span>requirements.in<span class="w"> </span>-o<span class="w"> </span>requirements.txt
 </code></pre></div>
 <p>To lock dependencies declared in multiple files:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>uv<span class="w"> </span>pip<span class="w"> </span>compile<span class="w"> </span>pyproject.toml<span class="w"> </span>requirements-dev.in<span class="w"> </span>-o<span class="w"> </span>requirements-dev.txt<span class="sb">`</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="gp">$ </span>uv<span class="w"> </span>pip<span class="w"> </span>compile<span class="w"> </span>pyproject.toml<span class="w"> </span>requirements-dev.in<span class="w"> </span>-o<span class="w"> </span>requirements-dev.txt
 </code></pre></div>
 <p>uv also supports legacy <code>setup.py</code> and <code>setup.cfg</code> formats. To lock dependencies declared in a
 <code>setup.py</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>uv<span class="w"> </span>pip<span class="w"> </span>compile<span class="w"> </span>setup.py<span class="w"> </span>-o<span class="w"> </span>requirements.txt
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="gp">$ </span>uv<span class="w"> </span>pip<span class="w"> </span>compile<span class="w"> </span>setup.py<span class="w"> </span>-o<span class="w"> </span>requirements.txt
 </code></pre></div>
 <p>To lock dependencies from stdin, use <code>-</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;ruff&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>uv<span class="w"> </span>pip<span class="w"> </span>compile<span class="w"> </span>-
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;ruff&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>uv<span class="w"> </span>pip<span class="w"> </span>compile<span class="w"> </span>-
 </code></pre></div>
 <p>To lock with optional dependencies enabled, e.g., the "foo" extra:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>pyproject.toml<span class="w"> </span>--extra<span class="w"> </span>foo
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="gp">$ </span>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>pyproject.toml<span class="w"> </span>--extra<span class="w"> </span>foo
 </code></pre></div>
 <p>To lock with all optional dependencies enabled:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>pyproject.toml<span class="w"> </span>--all-extras
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="gp">$ </span>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>pyproject.toml<span class="w"> </span>--all-extras
 </code></pre></div>
 <p>Note extras are not supported with the <code>requirements.in</code> format.</p>
 <h2 id="upgrading-requirements">Upgrading requirements<a class="headerlink" href="#upgrading-requirements" title="Permanent link">#</a></h2>
@@ -1936,22 +1937,22 @@ dependency is pinned it will not be upgraded on a subsequent compile run. For ex
 <a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="go">ruff==0.3.0</span>
 </code></pre></div>
 <p>To upgrade a dependency, use the <code>--upgrade-package</code> flag:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>uv<span class="w"> </span>pip<span class="w"> </span>compile<span class="w"> </span>-<span class="w"> </span>-o<span class="w"> </span>requirements.txt<span class="w"> </span>--upgrade-package<span class="w"> </span>ruff
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="gp">$ </span>uv<span class="w"> </span>pip<span class="w"> </span>compile<span class="w"> </span>-<span class="w"> </span>-o<span class="w"> </span>requirements.txt<span class="w"> </span>--upgrade-package<span class="w"> </span>ruff
 </code></pre></div>
 <p>To upgrade all dependencies, there is an <code>--upgrade</code> flag.</p>
 <h2 id="syncing-an-environment">Syncing an environment<a class="headerlink" href="#syncing-an-environment" title="Permanent link">#</a></h2>
 <p>Dependencies can be installed directly from their definition files or from compiled
-<code>requirements.txt</code> files with <code>uv pip install</code>. See the documentation on <a href="../packages/#installing-packages-from-files">installing packages from
-files</a> for more details.</p>
+<code>requirements.txt</code> files with <code>uv pip install</code>. See the documentation on
+<a href="../packages/#installing-packages-from-files">installing packages from files</a> for more details.</p>
 <p>When installing with <code>uv pip install</code>, packages that are already installed will not be removed
 unless they conflict with the lockfile. This means that the environment can have dependencies that
 aren't declared in the lockfile, which isn't great for reproducibility. To ensure the environment
 exactly matches the lockfile, use <code>uv pip sync</code> instead.</p>
 <p>To sync an environment with a <code>requirements.txt</code> file:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>uv<span class="w"> </span>pip<span class="w"> </span>sync<span class="w"> </span>requirements.txt
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="gp">$ </span>uv<span class="w"> </span>pip<span class="w"> </span>sync<span class="w"> </span>requirements.txt
 </code></pre></div>
 <p>To sync an environment with a <code>pyproject.toml</code> file:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>uv<span class="w"> </span>pip<span class="w"> </span>sync<span class="w"> </span>pyproject.toml
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="gp">$ </span>uv<span class="w"> </span>pip<span class="w"> </span>sync<span class="w"> </span>pyproject.toml
 </code></pre></div>
 <h2 id="adding-constraints">Adding constraints<a class="headerlink" href="#adding-constraints" title="Permanent link">#</a></h2>
 <p>Constraints files are <code>requirements.txt</code>-like files that only control the <em>version</em> of a requirement
@@ -1962,7 +1963,7 @@ dependencies of the current project.</p>
 <div class="highlight"><span class="filename">constraints.txt</span><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>pydantic&lt;2.0
 </code></pre></div>
 <p>To use a constraints file:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>uv<span class="w"> </span>pip<span class="w"> </span>compile<span class="w"> </span>requirements.in<span class="w"> </span>--constraint<span class="w"> </span>constraints.txt
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="gp">$ </span>uv<span class="w"> </span>pip<span class="w"> </span>compile<span class="w"> </span>requirements.in<span class="w"> </span>--constraint<span class="w"> </span>constraints.txt
 </code></pre></div>
 <p>Note that multiple constraints can be defined in each file and multiple files can be used.</p>
 <h2 id="overriding-dependency-versions">Overriding dependency versions<a class="headerlink" href="#overriding-dependency-versions" title="Permanent link">#</a></h2>
@@ -1979,7 +1980,7 @@ then the dependencies cannot be resolved.</p>
 <div class="highlight"><span class="filename">overrides.txt</span><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>c&gt;=2.0
 </code></pre></div>
 <p>To use an overrides file:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>uv<span class="w"> </span>pip<span class="w"> </span>compile<span class="w"> </span>requirements.in<span class="w"> </span>--override<span class="w"> </span>overrides.txt
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="gp">$ </span>uv<span class="w"> </span>pip<span class="w"> </span>compile<span class="w"> </span>requirements.in<span class="w"> </span>--override<span class="w"> </span>overrides.txt
 </code></pre></div>
 <p>Now, resolution can succeed. However, note that if <code>a</code> is <em>correct</em> that it does not support
 <code>c&gt;=2.0</code> then a runtime error will likely be encountered when using the packages.</p>

@@ -451,6 +451,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -592,6 +594,32 @@
     
   
     Working on projects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/publish/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Publishing packages
   
 
     
@@ -1545,6 +1573,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -1637,44 +1671,19 @@
 
               
             
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
+              
+                
   
   
   
-    
-    
-      
+    <li class="md-nav__item">
+      <a href="../../reference/resolver-internals/" class="md-nav__link">
         
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
-        
-          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
-            
   
   <span class="md-ellipsis">
     
   
-    Policies
+    Resolver
   
 
     
@@ -1682,19 +1691,11 @@
   
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_9">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Policies
+      </a>
+    </li>
   
 
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
+              
             
               
                 
@@ -1848,9 +1849,9 @@ been accessed in prior runs.</p>
 <li><strong>For registry dependencies</strong> (like those downloaded from PyPI), uv respects HTTP caching headers.</li>
 <li><strong>For direct URL dependencies</strong>, uv respects HTTP caching headers, and also caches based on the
   URL itself.</li>
-<li><strong>For Git dependencies</strong>, uv caches based on the fully-resolved Git commit hash. As such, <code>uv pip
-  compile</code> will pin Git dependencies to a specific commit hash when writing the resolved dependency
-  set.</li>
+<li><strong>For Git dependencies</strong>, uv caches based on the fully-resolved Git commit hash. As such,
+  <code>uv pip compile</code> will pin Git dependencies to a specific commit hash when writing the resolved
+  dependency set.</li>
 <li><strong>For local dependencies</strong>, uv caches based on the last-modified time of the source archive (i.e.,
   the local <code>.whl</code> or <code>.tar.gz</code> file). For directories, uv caches based on the last-modified time of
   the <code>pyproject.toml</code>, <code>setup.py</code>, or <code>setup.cfg</code> file.</li>
@@ -1864,8 +1865,8 @@ are running, and <em>never</em> safe to modify the cache directly (e.g., by remo
 <p>If you're running into caching issues, uv includes a few escape hatches:</p>
 <ul>
 <li>To force uv to revalidate cached data for all dependencies, run <code>uv pip install --refresh ...</code>.</li>
-<li>To force uv to revalidate cached data for a specific dependency, run, e.g., <code>uv pip install
-  --refresh-package flask ...</code>.</li>
+<li>To force uv to revalidate cached data for a specific dependency, run, e.g.,
+  <code>uv pip install --refresh-package flask ...</code>.</li>
 <li>To force uv to ignore existing installed versions, run <code>uv pip install --reinstall ...</code>.</li>
 </ul>
 <h2 id="clearing-the-cache">Clearing the cache<a class="headerlink" href="#clearing-the-cache" title="Permanent link">#</a></h2>
@@ -1873,10 +1874,10 @@ are running, and <em>never</em> safe to modify the cache directly (e.g., by remo
 <ul>
 <li><code>uv cache clean</code> removes <em>all</em> cache entries from the cache directory, clearing it out entirely.</li>
 <li><code>uv cache clean ruff</code> removes all cache entries for the <code>ruff</code> package, useful for invalidating
-   the cache for a single or finite set of packages.</li>
+  the cache for a single or finite set of packages.</li>
 <li><code>uv cache prune</code> removes all <em>unused</em> cache entries. For example, the cache directory may contain
-   entries created in previous uv versions that are no longer necessary and can be safely removed.
-   <code>uv cache prune</code> is safe to run periodically, to keep the cache directory clean.</li>
+  entries created in previous uv versions that are no longer necessary and can be safely removed.
+  <code>uv cache prune</code> is safe to run periodically, to keep the cache directory clean.</li>
 </ul>
 <h2 id="caching-in-continuous-integration">Caching in continuous integration<a class="headerlink" href="#caching-in-continuous-integration" title="Permanent link">#</a></h2>
 <p>It's common to cache package installation artifacts in continuous integration environments (like
@@ -1891,7 +1892,8 @@ for extension modules.</p>
 <p>To support this caching strategy, uv provides a <code>uv cache prune --ci</code> command, which removes all
 pre-built wheels from the cache but retains any wheels that were built from source. We recommend
 running <code>uv cache prune --ci</code> at the end of your continuous integration job to ensure maximum cache
-efficiency.</p>
+efficiency. For an example, see the
+<a href="../../guides/integration/github/#caching">GitHub integration guide</a>.</p>
 
 
 

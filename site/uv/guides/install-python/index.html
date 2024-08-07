@@ -453,6 +453,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -565,6 +567,19 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#getting-started" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Getting started
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#installing-a-specific-version" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -609,6 +624,19 @@
       
         <span class="md-typeset">
           Using an existing Python installation
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Next steps
         </span>
       
     </span>
@@ -690,6 +718,32 @@
     
   
     Working on projects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../publish/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Publishing packages
   
 
     
@@ -1558,6 +1612,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -1650,44 +1710,19 @@
 
               
             
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
+              
+                
   
   
   
-    
-    
-      
+    <li class="md-nav__item">
+      <a href="../../reference/resolver-internals/" class="md-nav__link">
         
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
-        
-          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
-            
   
   <span class="md-ellipsis">
     
   
-    Policies
+    Resolver
   
 
     
@@ -1695,19 +1730,11 @@
   
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_9">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Policies
+      </a>
+    </li>
   
 
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
+              
             
               
                 
@@ -1795,6 +1822,19 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#getting-started" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Getting started
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#installing-a-specific-version" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1846,6 +1886,19 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Next steps
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1866,21 +1919,24 @@
 
 
 <h1 id="installing-python">Installing Python<a class="headerlink" href="#installing-python" title="Permanent link">#</a></h1>
-<p>If Python is already installed on your system, uv will <a href="#using-an-existing-python-installation">detect and
-use</a> it without configuration. However, uv can also install
-and manage Python versions for you.</p>
+<p>If Python is already installed on your system, uv will
+<a href="#using-an-existing-python-installation">detect and use</a> it without configuration. However, uv can
+also install and manage Python versions for you.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>uv will <a href="#automatic-python-downloads">automatically fetch Python versions</a> as needed — you don't need to install Python to get started.</p>
 </div>
+<!-- TODO(zanieb): I don't love this heading. -->
+
+<h2 id="getting-started">Getting started<a class="headerlink" href="#getting-started" title="Permanent link">#</a></h2>
 <p>To install the latest Python version:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>install
 </code></pre></div>
-<p>This will install a uv managed Python version even if there is already a Python installation on your
-system.</p>
+<p>This will install a uv-managed Python version even if there is already a Python installation on your
+system. If you've previously installed Python with uv, a new version will not be installed.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Python does not publish official distributable binaries so uv uses third-party distributions from the <a href="https://github.com/indygreg/python-build-standalone"><code>python-build-standalone</code></a> project. The project is partially maintained by the uv maintainers and is used by many other Python projects. See the <a href="../../concepts/python-versions/#python-distributions">Python distributions</a> documentation for more details.</p>
+<p>Python does not publish official distributable binaries. As such, uv uses third-party distributions from the <a href="https://github.com/indygreg/python-build-standalone"><code>python-build-standalone</code></a> project. The project is partially maintained by the uv maintainers and is used by other prominent Python projects (e.g., <a href="https://github.com/astral-sh/rye">Rye</a>, <a href="https://github.com/bazelbuild/rules_python">Bazel</a>). See the <a href="../../concepts/python-versions/#python-distributions">Python distributions</a> documentation for more details.</p>
 </div>
 <!-- TODO(zanieb): Restore when Python shim management is added
 Note that when an automatic Python installation occurs, the `python` command will not be added to the shell. Use `uv python install-shim` to ensure the `python` shim is installed.
@@ -1894,15 +1950,28 @@ To prevent uv from managing Python system-wide, provide the `--no-shim` option d
 -->
 
 <p>Once Python is installed, it will be used by <code>uv</code> commands automatically.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>When Python is installed by uv, it will not be available globally (i.e. via the <code>python</code> command).
+Support for this feature is planned for a future release. In the meantime, use
+<a href="../scripts/#using-different-python-versions"><code>uv run</code></a> or
+<a href="../../pip/environments/">create and activate a virtual environment</a> to use <code>python</code> directly.</p>
+</div>
 <h2 id="installing-a-specific-version">Installing a specific version<a class="headerlink" href="#installing-a-specific-version" title="Permanent link">#</a></h2>
 <p>To install a specific Python version:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>install<span class="w"> </span><span class="m">3</span>.12
+</code></pre></div>
+<p>To install multiple Python versions:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>install<span class="w"> </span><span class="m">3</span>.11<span class="w"> </span><span class="m">3</span>.12
+</code></pre></div>
+<p>To install an alternative Python implementation, e.g. PyPy:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>$ uv python install pypy@3.12
 </code></pre></div>
 <p>See the <a href="../../concepts/python-versions/#installing-a-python-version"><code>python install</code></a> documentation
 for more details.</p>
 <h2 id="viewing-python-installations">Viewing Python installations<a class="headerlink" href="#viewing-python-installations" title="Permanent link">#</a></h2>
 <p>To view available and installed Python versions:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>list
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>list
 </code></pre></div>
 <p>See the <a href="../../concepts/python-versions/#viewing-available-python-versions"><code>python list</code></a>
 documentation for more details.</p>
@@ -1912,25 +1981,33 @@ documentation for more details.</p>
 <p>Note that Python does not need to be explicitly installed to use uv. By default, uv will
 automatically download Python versions when they are required. For example, the following would
 download Python 3.12 if it was not installed:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>--python<span class="w"> </span><span class="m">3</span>.12<span class="w"> </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;print(&quot;hello world&quot;)&#39;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>--python<span class="w"> </span><span class="m">3</span>.12<span class="w"> </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;print(&quot;hello world&quot;)&#39;</span>
 </code></pre></div>
 <p>Even if a specific Python version is not requested, uv will download the latest version on demand.
 For example, the following will create a new virtual environment and download a managed Python
 version if Python is not found:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="gp">$ </span>uv<span class="w"> </span>venv
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="gp">$ </span>uv<span class="w"> </span>venv
 </code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Automatic Python downloads can be <a href="../../concepts/python-versions/#disabling-automatic-python-downloads">easily disabled</a> if you want more control over when Python is downloaded.</p>
+</div>
 <!-- TODO(zanieb): Restore when Python shim management is added
 Note that when an automatic Python installation occurs, the `python` command will not be added to the shell. Use `uv python install-shim` to ensure the `python` shim is installed.
 -->
 
 <h2 id="using-an-existing-python-installation">Using an existing Python installation<a class="headerlink" href="#using-an-existing-python-installation" title="Permanent link">#</a></h2>
-<p>uv will also use an existing Python installation if already present on your system. There is no
-configuration necessary for this behavior: uv will use the system Python if it satisfies the
-requirements of the command invocation. See the <a href="../../concepts/python-versions/#discovery-order">Python
-discovery</a> documentation for details.</p>
+<p>uv will use existing Python installations if present on your system. There is no configuration
+necessary for this behavior: uv will use the system Python if it satisfies the requirements of the
+command invocation. See the <a href="../../concepts/python-versions/#discovery-order">Python discovery</a>
+documentation for details.</p>
 <p>To force uv to use the system Python, provide the <code>--python-preference only-system</code> option. See the
 <a href="../../concepts/python-versions/#adjusting-python-version-preferences">Python version preference</a>
 documentation for more details.</p>
+<h2 id="next-steps">Next steps<a class="headerlink" href="#next-steps" title="Permanent link">#</a></h2>
+<p>To learn more about <code>uv python</code>, see the <a href="../../concepts/python-versions/">Python version concept</a>
+page and the <a href="../../reference/cli/#uv-python">command reference</a>.</p>
+<p>Or, read on to learn how to <a href="../scripts/">run scripts</a> and invoke Python with uv.</p>
 
 
 

@@ -453,6 +453,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -617,11 +619,11 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#using-uvx" class="md-nav__link">
+  <a href="#running-tools" class="md-nav__link">
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Using <code>uvx</code>
+          Running tools
         </span>
       
     </span>
@@ -729,6 +731,32 @@
     
   
     Working on projects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../publish/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Publishing packages
   
 
     
@@ -1597,6 +1625,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -1689,44 +1723,19 @@
 
               
             
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
+              
+                
   
   
   
-    
-    
-      
+    <li class="md-nav__item">
+      <a href="../../reference/resolver-internals/" class="md-nav__link">
         
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
-        
-          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
-            
   
   <span class="md-ellipsis">
     
   
-    Policies
+    Resolver
   
 
     
@@ -1734,19 +1743,11 @@
   
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_9">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Policies
+      </a>
+    </li>
   
 
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
+              
             
               
                 
@@ -1834,11 +1835,11 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#using-uvx" class="md-nav__link">
+  <a href="#running-tools" class="md-nav__link">
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Using <code>uvx</code>
+          Running tools
         </span>
       
     </span>
@@ -1946,7 +1947,7 @@
 <h1 id="using-tools">Using tools<a class="headerlink" href="#using-tools" title="Permanent link">#</a></h1>
 <p>Many Python packages provide applications that can be used as tools. uv has specialized support for
 easily invoking and installing tools.</p>
-<h2 id="using-uvx">Using <code>uvx</code><a class="headerlink" href="#using-uvx" title="Permanent link">#</a></h2>
+<h2 id="running-tools">Running tools<a class="headerlink" href="#running-tools" title="Permanent link">#</a></h2>
 <p>The <code>uvx</code> command invokes a tool without installing it.</p>
 <p>For example, to run <code>ruff</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">$ </span>uvx<span class="w"> </span>ruff
@@ -1956,7 +1957,7 @@ easily invoking and installing tools.</p>
 <p>This is exactly equivalent to:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="gp">$ </span>uv<span class="w"> </span>tool<span class="w"> </span>run<span class="w"> </span>ruff
 </code></pre></div>
-<p><code>uvx</code> is provided as a short alias since the operation is very common.</p>
+<p><code>uvx</code> is provided as an alias for convenience.</p>
 </div>
 <p>Arguments can be provided after the tool name:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="gp">$ </span>uvx<span class="w"> </span>pycowsay<span class="w"> </span>hello<span class="w"> </span>from<span class="w"> </span>uv
@@ -1970,8 +1971,9 @@ easily invoking and installing tools.</p>
 <a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="go">           ||----w |</span>
 <a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="go">           ||     ||</span>
 </code></pre></div>
+<p>Tools are installed into temporary, isolated environmnets when using <code>uvx</code>.</p>
 <h2 id="commands-with-different-package-names">Commands with different package names<a class="headerlink" href="#commands-with-different-package-names" title="Permanent link">#</a></h2>
-<p>When you invoke <code>uvx ruff</code>, uv installs the <code>ruff</code> package which provides the <code>ruff</code> command.
+<p>When <code>uvx ruff</code> is invoked, uv installs the <code>ruff</code> package which provides the <code>ruff</code> command.
 However, sometimes the package and command names differ.</p>
 <p>The <code>--from</code> option can be used to invoke a command from a specific package, e.g. <code>http</code> which is
 provided by <code>httpie</code>:</p>
@@ -1990,7 +1992,7 @@ provided by <code>httpie</code>:</p>
 <p>Note the <code>@</code> syntax cannot be used for anything other than an exact version.</p>
 <h2 id="requesting-different-sources">Requesting different sources<a class="headerlink" href="#requesting-different-sources" title="Permanent link">#</a></h2>
 <p>The <code>--from</code> option can also be used to install from alternative sources.</p>
-<p>To pull from git:</p>
+<p>For example, to pull from git:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="gp">$ </span>uvx<span class="w"> </span>--from<span class="w"> </span>git+https://github.com/httpie/cli<span class="w"> </span>httpie
 </code></pre></div>
 <h2 id="commands-with-plugins">Commands with plugins<a class="headerlink" href="#commands-with-plugins" title="Permanent link">#</a></h2>
@@ -1998,14 +2000,14 @@ provided by <code>httpie</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="gp">$ </span>uvx<span class="w"> </span>--with<span class="w"> </span>mkdocs-material<span class="w"> </span>mkdocs<span class="w"> </span>--help
 </code></pre></div>
 <h2 id="installing-tools">Installing tools<a class="headerlink" href="#installing-tools" title="Permanent link">#</a></h2>
-<p>If a tool is used often, it can be useful to install it to a persistent environment and add it to
-the <code>PATH</code> instead of invoking <code>uvx</code> repeatedly.</p>
+<p>If a tool is used often, it is useful to install it to a persistent environment and add it to the
+<code>PATH</code> instead of invoking <code>uvx</code> repeatedly.</p>
 <p>To install <code>ruff</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="gp">$ </span>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>ruff
 </code></pre></div>
 <p>When a tool is installed, its executables are placed in a <code>bin</code> directory in the <code>PATH</code> which allows
-the tool to be run without uv. If it's not on the <code>PATH</code>, a warning will be displayed and <code>uv tool
-update-shell</code> can be used to add it to the <code>PATH</code>.</p>
+the tool to be run without uv. If it's not on the <code>PATH</code>, a warning will be displayed and
+<code>uv tool update-shell</code> can be used to add it to the <code>PATH</code>.</p>
 <p>After installing <code>ruff</code>, it should be available:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="gp">$ </span>ruff<span class="w"> </span>--version
 </code></pre></div>
@@ -2030,8 +2032,9 @@ the tool.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="gp">$ </span>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>mkdocs<span class="w"> </span>--with<span class="w"> </span>mkdocs-material
 </code></pre></div>
 <h2 id="next-steps">Next steps<a class="headerlink" href="#next-steps" title="Permanent link">#</a></h2>
-<p>See the <a href="../../concepts/tools/">tools concept</a> documentation for more details on how tools are
-managed.</p>
+<p>To learn more about managing tools with uv, see the <a href="../../concepts/projects/">Tools concept</a> page
+and the <a href="../../reference/cli/#uv-tool">command reference</a>.</p>
+<p>Or, read on to learn how to to <a href="../projects/">work on projects</a>.</p>
 
 
 

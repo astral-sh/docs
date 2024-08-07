@@ -16,7 +16,7 @@
         <link rel="prev" href="../tools/">
       
       
-        <link rel="next" href="../../concepts/">
+        <link rel="next" href="../publish/">
       
       
         
@@ -453,6 +453,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -775,6 +777,32 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../publish/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Publishing packages
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1635,6 +1663,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -1727,44 +1761,19 @@
 
               
             
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
+              
+                
   
   
   
-    
-    
-      
+    <li class="md-nav__item">
+      <a href="../../reference/resolver-internals/" class="md-nav__link">
         
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
-        
-          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
-            
   
   <span class="md-ellipsis">
     
   
-    Policies
+    Resolver
   
 
     
@@ -1772,19 +1781,11 @@
   
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_9">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Policies
+      </a>
+    </li>
   
 
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
+              
             
               
                 
@@ -2037,7 +2038,7 @@ table.</p>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>├── pyproject.toml
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>├── README.md
 <a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>└── src
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    └── hello-world
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    └── hello_world
 <a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>        └── __init__.py
 </code></pre></div>
 <h3 id="working-on-an-existing-project">Working on an existing project<a class="headerlink" href="#working-on-an-existing-project" title="Permanent link">#</a></h3>
@@ -2065,12 +2066,12 @@ in the root of your project the first time you run a project command.</p>
 <a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="k">[tool.uv]</span>
 <a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="n">dev-dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[]</span>
 </code></pre></div>
-<p>This is where you specify dependencies, as well as details about the project such as it's
-description or license. You can edit this file manually, or use commands like <code>uv add</code> and <code>uv
-remove</code> to manage your project through the CLI.</p>
+<p>This is where you specify dependencies, as well as details about the project such as its description
+or license. You can edit this file manually, or use commands like <code>uv add</code> and <code>uv remove</code> to manage
+your project through the CLI.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>See the official <a href="https://packaging.python.org/en/latest/guides/writing-pyproject-toml/"><code>pyproject.toml</code> guide</a> 
+<p>See the official <a href="https://packaging.python.org/en/latest/guides/writing-pyproject-toml/"><code>pyproject.toml</code> guide</a>
 for more details on getting started with the <code>pyproject.toml</code> format.</p>
 </div>
 <h3 id="venv"><code>.venv</code><a class="headerlink" href="#venv" title="Permanent link">#</a></h3>
@@ -2092,10 +2093,10 @@ the lockfile and project environment:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>requests
 </code></pre></div>
 <p>You can also specify version constraints or alternative sources:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="gp"># </span>Specify<span class="w"> </span>a<span class="w"> </span>version<span class="w"> </span>constraint
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="gp">$ </span><span class="c1"># Specify a version constraint</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span><span class="s1">&#39;requests==2.31.0&#39;</span>
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="gp"># </span>Add<span class="w"> </span>a<span class="w"> </span>git<span class="w"> </span>dependency
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="gp">$ </span><span class="c1"># Add a git dependency</span>
 <a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>requests<span class="w"> </span>--git<span class="w"> </span>https://github.com/psf/requests
 </code></pre></div>
 <p>To remove a package, you can use <code>uv remove</code>:</p>
@@ -2104,8 +2105,11 @@ the lockfile and project environment:</p>
 <p>See the documentation on <a href="../../concepts/projects/#managing-dependencies">managing dependencies</a> for
 more details.</p>
 <h2 id="running-commands">Running commands<a class="headerlink" href="#running-commands" title="Permanent link">#</a></h2>
-<p><code>uv run</code> can be used to run arbitrary scripts or commands in your project environment. This ensures
-that the lockfile and project environment are up-to-date before executing a given command.</p>
+<p><code>uv run</code> can be used to run arbitrary scripts or commands in your project environment.</p>
+<p>Prior to every <code>uv run</code> invocation, uv will verify that the lockfile is up-to-date with the
+<code>pyproject.toml</code>, and that the environment is up-to-date with the lockfile, keeping your project
+in-sync without the need for manual intervention. <code>uv run</code> guarantees that your command is run in a
+consistent, locked environment.</p>
 <p>For example, to use <code>flask</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>flask
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>--<span class="w"> </span>flask<span class="w"> </span>run<span class="w"> </span>-p<span class="w"> </span><span class="m">3000</span>
@@ -2129,11 +2133,12 @@ executing a command:</p>
 <p class="admonition-title">Note</p>
 <p>The virtual environment must be active to run scripts and commands in the project without <code>uv run</code>. Virtual environment activation differs per shell and platform.</p>
 </div>
-<p>See the documentation on <a href="../../concepts/projects/#running-commands">running commands</a> and <a href="../../concepts/projects/#running-scripts">running
-scripts</a> in projects for more details.</p>
+<p>See the documentation on <a href="../../concepts/projects/#running-commands">running commands</a> and
+<a href="../../concepts/projects/#running-scripts">running scripts</a> in projects for more details.</p>
 <h2 id="next-steps">Next steps<a class="headerlink" href="#next-steps" title="Permanent link">#</a></h2>
-<p>See the <a href="../../concepts/projects/">projects concept</a> documentation for more details about working
-with projects.</p>
+<p>To learn more about working on projects with uv, see the <a href="../../concepts/projects/">Projects concept</a>
+page and the <a href="../../reference/cli/#uv">command reference</a>.</p>
+<p>Or, read on to learn how to <a href="../publish/">publish your project as a package</a>.</p>
 
 
 
@@ -2184,13 +2189,13 @@ with projects.</p>
         
         
           
-          <a href="../../concepts/" class="md-footer__link md-footer__link--next" aria-label="Next: Concepts overview" rel="next">
+          <a href="../publish/" class="md-footer__link md-footer__link--next" aria-label="Next: Publishing packages" rel="next">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Concepts overview
+                Publishing packages
               </div>
             </div>
             <div class="md-footer__button md-icon">

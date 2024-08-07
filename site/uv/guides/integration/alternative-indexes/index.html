@@ -451,6 +451,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -592,6 +594,32 @@
     
   
     Working on projects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../publish/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Publishing packages
   
 
     
@@ -1564,6 +1592,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -1656,44 +1690,19 @@
 
               
             
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
+              
+                
   
   
   
-    
-    
-      
+    <li class="md-nav__item">
+      <a href="../../../reference/resolver-internals/" class="md-nav__link">
         
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
-        
-          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
-            
   
   <span class="md-ellipsis">
     
   
-    Policies
+    Resolver
   
 
     
@@ -1701,19 +1710,11 @@
   
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_9">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Policies
+      </a>
+    </li>
   
 
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
+              
             
               
                 
@@ -1882,42 +1883,43 @@
 package indexes. Most alternative indexes require various forms of authentication, which requires
 some initial setup.</p>
 <h2 id="azure-artifacts">Azure Artifacts<a class="headerlink" href="#azure-artifacts" title="Permanent link">#</a></h2>
-<p>uv can install packages from <a href="https://learn.microsoft.com/en-us/azure/devops/artifacts/start-using-azure-artifacts?view=azure-devops&amp;tabs=nuget%2Cnugetserver">Azure DevOps
-Artifacts</a>.
-Authenticate to a feed using a <a href="https://learn.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops&amp;tabs=Windows">Personal Access
-Token</a>
+<p>uv can install packages from
+<a href="https://learn.microsoft.com/en-us/azure/devops/artifacts/start-using-azure-artifacts?view=azure-devops&amp;tabs=nuget%2Cnugetserver">Azure DevOps Artifacts</a>.
+Authenticate to a feed using a
+<a href="https://learn.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops&amp;tabs=Windows">Personal Access Token</a>
 (PAT) or interactively using the <a href="https://github.com/jaraco/keyring"><code>keyring</code></a> package.</p>
 <h3 id="using-a-pat">Using a PAT<a class="headerlink" href="#using-a-pat" title="Permanent link">#</a></h3>
-<p>If there is a PAT available (eg <a href="https://learn.microsoft.com/en-us/azure/devops/pipelines/build/variables?view=azure-devops&amp;tabs=yaml#systemaccesstoken"><code>$(System.AccessToken)</code> in an Azure
-pipeline</a>),
+<p>If there is a PAT available (eg
+<a href="https://learn.microsoft.com/en-us/azure/devops/pipelines/build/variables?view=azure-devops&amp;tabs=yaml#systemaccesstoken"><code>$(System.AccessToken)</code> in an Azure pipeline</a>),
 credentials can be provided via the "Basic" HTTP authentication scheme. Include the PAT in the
 password field of the URL. A username must be included as well, but can be any string.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># With the token stored in the `ADO_PAT` environment variable</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">UV_EXTRA_INDEX_URL</span><span class="o">=</span>https://dummy:<span class="nv">$ADO_PAT</span>@pkgs.dev.azure.com/<span class="o">{</span>organisation<span class="o">}</span>/<span class="o">{</span>project<span class="o">}</span>/_packaging/<span class="o">{</span>feedName<span class="o">}</span>/pypi/simple/
+<p>For example, with the token stored in the <code>$ADO_PAT</code> environment variable, set the index URL with:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">$ </span><span class="nb">export</span><span class="w"> </span><span class="nv">UV_EXTRA_INDEX_URL</span><span class="o">=</span>https://dummy:<span class="nv">$ADO_PAT</span>@pkgs.dev.azure.com/<span class="o">{</span>organisation<span class="o">}</span>/<span class="o">{</span>project<span class="o">}</span>/_packaging/<span class="o">{</span>feedName<span class="o">}</span>/pypi/simple/
 </code></pre></div>
 <h3 id="using-keyring">Using <code>keyring</code><a class="headerlink" href="#using-keyring" title="Permanent link">#</a></h3>
 <p>If there is not a PAT available, authenticate to Artifacts using the
-<a href="https://github.com/jaraco/keyring"><code>keyring</code></a> package with <a href="https://github.com/Microsoft/artifacts-keyring">the <code>artifacts-keyring</code>
-plugin</a>. Because these two packages are required to
-authenticate to Azure Artifacts, they must be pre-installed from a source other than Artifacts.</p>
-<p>The <code>artifacts-keyring</code> plugin wraps <a href="https://github.com/microsoft/artifacts-credprovider">the Azure Artifacts Credential Provider
-tool</a>. The credential provider supports a few
-different authentication modes including interactive login — see <a href="https://github.com/microsoft/artifacts-credprovider">the tool's
-documentation</a> for information on
-configuration.</p>
-<p>uv only supports using the <code>keyring</code> package in <a href="https://github.com/astral-sh/uv/blob/main/PIP_COMPATIBILITY.md#registry-authentication">subprocess
-mode</a>. The
-<code>keyring</code> executable must be in the <code>PATH</code>, i.e., installed globally or in the active environment.
-The <code>keyring</code> CLI requires a username in the URL, so the index URL must include the default username
-<code>VssSessionToken</code>.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Pre-install keyring and the Artifacts plugin from the public PyPI</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>keyring<span class="w"> </span>--with<span class="w"> </span>artifacts-keyring
+<a href="https://github.com/jaraco/keyring"><code>keyring</code></a> package with
+<a href="https://github.com/Microsoft/artifacts-keyring">the <code>artifacts-keyring</code> plugin</a>. Because these two
+packages are required to authenticate to Azure Artifacts, they must be pre-installed from a source
+other than Artifacts.</p>
+<p>The <code>artifacts-keyring</code> plugin wraps
+<a href="https://github.com/microsoft/artifacts-credprovider">the Azure Artifacts Credential Provider tool</a>.
+The credential provider supports a few different authentication modes including interactive login —
+see <a href="https://github.com/microsoft/artifacts-credprovider">the tool's documentation</a> for information
+on configuration.</p>
+<p>uv only supports using the <code>keyring</code> package in
+<a href="https://github.com/astral-sh/uv/blob/main/PIP_COMPATIBILITY.md#registry-authentication">subprocess mode</a>.
+The <code>keyring</code> executable must be in the <code>PATH</code>, i.e., installed globally or in the active
+environment. The <code>keyring</code> CLI requires a username in the URL, so the index URL must include the
+default username <code>VssSessionToken</code>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="gp">$ </span><span class="c1"># Pre-install keyring and the Artifacts plugin from the public PyPI</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="gp">$ </span>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>keyring<span class="w"> </span>--with<span class="w"> </span>artifacts-keyring
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># Enable keyring authentication</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="nb">export</span><span class="w"> </span><span class="nv">UV_KEYRING_PROVIDER</span><span class="o">=</span>subprocess
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="gp">$ </span><span class="c1"># Enable keyring authentication</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="gp">$ </span><span class="nb">export</span><span class="w"> </span><span class="nv">UV_KEYRING_PROVIDER</span><span class="o">=</span>subprocess
 <a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># Configure the index URL with the username</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="nb">export</span><span class="w"> </span><span class="nv">UV_EXTRA_INDEX_URL</span><span class="o">=</span>https://VssSessionToken@pkgs.dev.azure.com/<span class="o">{</span>organisation<span class="o">}</span>/<span class="o">{</span>project<span class="o">}</span>/_packaging/<span class="o">{</span>feedName<span class="o">}</span>/pypi/simple/
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="gp">$ </span><span class="c1"># Configure the index URL with the username</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="gp">$ </span><span class="nb">export</span><span class="w"> </span><span class="nv">UV_EXTRA_INDEX_URL</span><span class="o">=</span>https://VssSessionToken@pkgs.dev.azure.com/<span class="o">{</span>organisation<span class="o">}</span>/<span class="o">{</span>project<span class="o">}</span>/_packaging/<span class="o">{</span>feedName<span class="o">}</span>/pypi/simple/
 </code></pre></div>
 <h2 id="other-indexes">Other indexes<a class="headerlink" href="#other-indexes" title="Permanent link">#</a></h2>
 <p>uv is also known to work with JFrog's Artifactory, the Google Cloud Artifact Registry, and AWS Code

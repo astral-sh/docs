@@ -451,6 +451,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -592,6 +594,32 @@
     
   
     Working on projects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/publish/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Publishing packages
   
 
     
@@ -1714,6 +1742,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -1806,44 +1840,19 @@
 
               
             
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
+              
+                
   
   
   
-    
-    
-      
+    <li class="md-nav__item">
+      <a href="../../reference/resolver-internals/" class="md-nav__link">
         
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
-        
-          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
-            
   
   <span class="md-ellipsis">
     
   
-    Policies
+    Resolver
   
 
     
@@ -1851,19 +1860,11 @@
   
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_9">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Policies
+      </a>
+    </li>
   
 
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
+              
             
               
                 
@@ -2180,8 +2181,8 @@
 <h1 id="compatibility-with-pip-and-pip-tools">Compatibility with <code>pip</code> and <code>pip-tools</code><a class="headerlink" href="#compatibility-with-pip-and-pip-tools" title="Permanent link">#</a></h1>
 <p>uv is designed as a drop-in replacement for common <code>pip</code> and <code>pip-tools</code> workflows.</p>
 <p>Informally, the intent is such that existing <code>pip</code> and <code>pip-tools</code> users can switch to uv without
-making meaningful changes to their packaging workflows; and, in most cases, swapping out <code>pip
-install</code> for <code>uv pip install</code> should "just work".</p>
+making meaningful changes to their packaging workflows; and, in most cases, swapping out
+<code>pip install</code> for <code>uv pip install</code> should "just work".</p>
 <p>However, uv is <em>not</em> intended to be an <em>exact</em> clone of <code>pip</code>, and the further you stray from common
 <code>pip</code> workflows, the more likely you are to encounter differences in behavior. In some cases, those
 differences may be known and intentional; in others, they may be the result of implementation
@@ -2224,20 +2225,19 @@ specifier (e.g., <code>flask&gt;=2.0.0rc1</code>) to opt in to pre-release suppo
 package. <code>pip</code>, meanwhile, <em>may</em> respect pre-release identifiers in transitive dependencies
 depending on the order in which the resolver encounters the relevant specifiers
 (<a href="https://github.com/astral-sh/uv/issues/1641#issuecomment-1981402429">#1641</a>).</p>
-<p>Pre-releases are <a href="https://pubgrub-rs-guide.netlify.app/limitations/prerelease_versions">notoriously
-difficult</a> to model, and are a
-frequent source of bugs in packaging tools. Even <code>pip</code>, which is viewed as a reference
-implementation, has a number of open questions around pre-release handling
+<p>Pre-releases are
+<a href="https://pubgrub-rs-guide.netlify.app/limitations/prerelease_versions">notoriously difficult</a> to
+model, and are a frequent source of bugs in packaging tools. Even <code>pip</code>, which is viewed as a
+reference implementation, has a number of open questions around pre-release handling
 (<a href="https://github.com/pypa/pip/issues/12469">#12469</a>,
 <a href="https://github.com/pypa/pip/issues/12470">#12470</a>,
 <a href="https://discuss.python.org/t/handling-of-pre-releases-when-backtracking/40505/20">#40505</a>, etc.).
 uv's pre-release handling is <em>intentionally</em> limited and <em>intentionally</em> requires user opt-in for
 pre-releases, to ensure correctness.</p>
 <p>In the future, uv <em>may</em> support pre-release identifiers in transitive dependencies. However, it's
-likely contingent on evolution in the Python packaging specifications. The existing PEPs <a href="https://discuss.python.org/t/handling-of-pre-releases-when-backtracking/40505/17">do not
-cover "dependency
-resolution"</a> and
-are instead focused on behavior for a <em>single</em> version specifier. As such, there are unresolved
+likely contingent on evolution in the Python packaging specifications. The existing PEPs
+<a href="https://discuss.python.org/t/handling-of-pre-releases-when-backtracking/40505/17">do not cover "dependency resolution"</a>
+and are instead focused on behavior for a <em>single</em> version specifier. As such, there are unresolved
 questions around the correct and intended behavior for pre-releases in the packaging ecosystem more
 broadly.</p>
 <h2 id="local-version-identifiers">Local version identifiers<a class="headerlink" href="#local-version-identifiers" title="Permanent link">#</a></h2>
@@ -2278,15 +2278,17 @@ on PyPI.</p>
 a match. This means that if a package exists on multiple indexes, uv will limit its candidate
 versions to those present in the first index that contains the package.</p>
 <p><code>pip</code>, meanwhile, will combine the candidate versions from all indexes, and select the best version
-from the combined set, though it makes <a href="https://github.com/pypa/pip/issues/5045#issuecomment-369521345">no guarantees around the
-order</a> in which it searches indexes,
-and expects that packages are unique up to name and version, even across indexes.</p>
+from the combined set, though it makes
+<a href="https://github.com/pypa/pip/issues/5045#issuecomment-369521345">no guarantees around the order</a> in
+which it searches indexes, and expects that packages are unique up to name and version, even across
+indexes.</p>
 <p>uv's behavior is such that if a package exists on an internal index, it should always be installed
 from the internal index, and never from PyPI. The intent is to prevent "dependency confusion"
 attacks, in which an attacker publishes a malicious package on PyPI with the same name as an
 internal package, thus causing the malicious package to be installed instead of the internal
-package. See, for example, <a href="https://pytorch.org/blog/compromised-nightly-dependency/">the <code>torchtriton</code>
-attack</a> from December 2022.</p>
+package. See, for example,
+<a href="https://pytorch.org/blog/compromised-nightly-dependency/">the <code>torchtriton</code> attack</a> from
+December 2022.</p>
 <p>As of v0.1.39, users can opt in to <code>pip</code>-style behavior for multiple indexes via the
 <code>--index-strategy</code> command-line option, or the <code>UV_INDEX_STRATEGY</code> environment variable, which
 supports the following values:</p>
@@ -2302,8 +2304,8 @@ supports the following values:</p>
 <p>While <code>unsafe-best-match</code> is the closest to <code>pip</code>'s behavior, it exposes users to the risk of
 "dependency confusion" attacks.</p>
 <p>In the future, uv will support pinning packages to dedicated indexes (see:
-<a href="https://github.com/astral-sh/uv/issues/171">#171</a>). Additionally, <a href="https://peps.python.org/pep-0708/">PEP
-708</a> is a provisional standard that aims to address the
+<a href="https://github.com/astral-sh/uv/issues/171">#171</a>). Additionally,
+<a href="https://peps.python.org/pep-0708/">PEP 708</a> is a provisional standard that aims to address the
 "dependency confusion" issue across package registries and installers.</p>
 <h2 id="transitive-direct-url-dependencies-for-constraints-and-overrides">Transitive direct URL dependencies for constraints and overrides<a class="headerlink" href="#transitive-direct-url-dependencies-for-constraints-and-overrides" title="Permanent link">#</a></h2>
 <p>While uv does support URL dependencies (e.g., <code>black @ https://...</code>), it does not support
@@ -2330,8 +2332,8 @@ Python interpreter found on the <code>PATH</code>, like <code>pip</code>.</p>
 <p>In other words, uv inverts the default, requiring explicit opt-in to installing into the system
 Python, which can lead to breakages and other complications, and should only be done in limited
 circumstances.</p>
-<p>For more, see <a href="../environments/#using-arbitrary-python-environments">"Using arbitrary Python
-environments"</a>.</p>
+<p>For more, see
+<a href="../environments/#using-arbitrary-python-environments">"Using arbitrary Python environments"</a>.</p>
 <h2 id="resolution-strategy">Resolution strategy<a class="headerlink" href="#resolution-strategy" title="Permanent link">#</a></h2>
 <p>For a given set of dependency specifiers, it's often the case that there is no single "correct" set
 of packages to install. Instead, there are many valid sets of packages that satisfy the specifiers.</p>
