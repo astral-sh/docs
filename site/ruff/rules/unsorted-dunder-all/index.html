@@ -839,8 +839,12 @@ code more readable and idiomatic.</p>
 </code></pre></div>
 <h2 id="fix-safety">Fix safety<a class="headerlink" href="#fix-safety" title="Permanent link">#</a></h2>
 <p>This rule's fix is marked as always being safe, in that
-it should never alter the semantics of any Python code.
-However, note that for multiline <code>__all__</code> definitions
+it should very rarely alter the semantics of any Python code.
+However, note that (although it's rare) the value of <code>__all__</code>
+could be read by code elsewhere that depends on the exact
+iteration order of the items in <code>__all__</code>, in which case this
+rule's fix could theoretically cause breakage.</p>
+<p>Note also that for multiline <code>__all__</code> definitions
 that include comments on their own line, it can be hard
 to tell where the comments should be moved to when sorting
 the contents of <code>__all__</code>. While this rule's fix will
