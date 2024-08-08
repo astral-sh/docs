@@ -804,9 +804,9 @@
 <p>Checks for timeout context managers which do not contain a checkpoint.</p>
 <h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
 <p>Some asynchronous context managers, such as <code>asyncio.timeout</code> and
-<code>trio.move_on_after</code>, have no effect unless they contain an <code>await</code>
-statement. The use of such context managers without an <code>await</code> statement is
-likely a mistake.</p>
+<code>trio.move_on_after</code>, have no effect unless they contain a checkpoint.
+The use of such context managers without an <code>await</code>, <code>async with</code> or
+<code>async for</code> statement is likely a mistake.</p>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">func</span><span class="p">():</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="k">with</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">timeout</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
