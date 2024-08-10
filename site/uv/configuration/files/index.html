@@ -352,7 +352,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/" class="md-nav__link">
+      <a href="../../getting-started/installation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -378,7 +378,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../first-steps/" class="md-nav__link">
+      <a href="../../getting-started/first-steps/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -404,7 +404,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../features/" class="md-nav__link">
+      <a href="../../getting-started/features/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1677,7 +1677,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../versioning/" class="md-nav__link">
+      <a href="../../reference/versioning/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1703,7 +1703,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../platforms/" class="md-nav__link">
+      <a href="../../reference/platforms/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1792,6 +1792,15 @@
 <p>uv supports persistent configuration files at both the project- and user-level.</p>
 <p>Specifically, uv will search for a <code>pyproject.toml</code> or <code>uv.toml</code> file in the current directory, or
 in the nearest parent directory.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For <code>tool</code> commands, which operate the user level, local configuration
+files will be ignored. Instead, uv will exclusively read from user-level configuration
+(e.g., <code>~/.config/uv/uv.toml</code>).</p>
+</div>
+<p>In workspaces, uv will begin its search at the workspace root, ignoring any configuration defined in
+workspace members. Since the workspace is locked as a single unit, configuration is shared across
+all members.</p>
 <p>If a <code>pyproject.toml</code> file is found, uv will read configuration from the <code>[tool.uv.pip]</code> table. For
 example, to set a persistent index URL, add the following to a <code>pyproject.toml</code>:</p>
 <div class="highlight"><span class="filename">project.toml</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">[tool.uv.pip]</span>

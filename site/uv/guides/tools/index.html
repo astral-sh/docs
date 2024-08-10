@@ -352,7 +352,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/" class="md-nav__link">
+      <a href="../../getting-started/installation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -378,7 +378,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../first-steps/" class="md-nav__link">
+      <a href="../../getting-started/first-steps/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -404,7 +404,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../features/" class="md-nav__link">
+      <a href="../../getting-started/features/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -689,6 +689,19 @@
       
         <span class="md-typeset">
           Installing tools
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#upgrading-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Upgrading tools
         </span>
       
     </span>
@@ -1755,7 +1768,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../versioning/" class="md-nav__link">
+      <a href="../../reference/versioning/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1781,7 +1794,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../platforms/" class="md-nav__link">
+      <a href="../../reference/platforms/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1913,6 +1926,19 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#upgrading-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Upgrading tools
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#next-steps" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2031,9 +2057,22 @@ the tool.</p>
 <p>As with <code>uvx</code>, installations can include additional packages:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="gp">$ </span>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>mkdocs<span class="w"> </span>--with<span class="w"> </span>mkdocs-material
 </code></pre></div>
+<h2 id="upgrading-tools">Upgrading tools<a class="headerlink" href="#upgrading-tools" title="Permanent link">#</a></h2>
+<p>To upgrade a tool, use <code>uv tool upgrade</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="gp">$ </span>uv<span class="w"> </span>tool<span class="w"> </span>upgrade<span class="w"> </span>ruff
+</code></pre></div>
+<p>Tool upgrades will respect the version constraints provided when installing the tool. For example,
+<code>uv tool install ruff &gt;=0.3,&lt;0.4</code> followed by <code>uv tool upgrade ruff</code> will upgrade Ruff to the latest
+version in the range <code>&gt;=0.3,&lt;0.4</code>.</p>
+<p>To instead replace the version constraints, re-install the tool with <code>uv tool install</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="gp">$ </span>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>ruff&gt;<span class="o">=</span><span class="m">0</span>.4
+</code></pre></div>
+<p>To instead upgrade all tools:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="gp">$ </span>uv<span class="w"> </span>tool<span class="w"> </span>upgrade<span class="w"> </span>--all
+</code></pre></div>
 <h2 id="next-steps">Next steps<a class="headerlink" href="#next-steps" title="Permanent link">#</a></h2>
-<p>To learn more about managing tools with uv, see the <a href="../../concepts/projects/">Tools concept</a> page
-and the <a href="../../reference/cli/#uv-tool">command reference</a>.</p>
+<p>To learn more about managing tools with uv, see the <a href="../../concepts/tools/">Tools concept</a> page and
+the <a href="../../reference/cli/#uv-tool">command reference</a>.</p>
 <p>Or, read on to learn how to to <a href="../projects/">work on projects</a>.</p>
 
 
