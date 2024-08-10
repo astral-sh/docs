@@ -352,7 +352,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/" class="md-nav__link">
+      <a href="../../getting-started/installation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -378,7 +378,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../first-steps/" class="md-nav__link">
+      <a href="../../getting-started/first-steps/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -404,7 +404,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../features/" class="md-nav__link">
+      <a href="../../getting-started/features/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -941,6 +941,19 @@
       
         <span class="md-typeset">
           Viewing available Python versions
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#discovery-of-virtual-environments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Discovery of virtual environments
         </span>
       
     </span>
@@ -1826,7 +1839,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../versioning/" class="md-nav__link">
+      <a href="../../reference/versioning/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1852,7 +1865,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../platforms/" class="md-nav__link">
+      <a href="../../reference/platforms/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1963,6 +1976,19 @@
       
         <span class="md-typeset">
           Viewing available Python versions
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#discovery-of-virtual-environments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Discovery of virtual environments
         </span>
       
     </span>
@@ -2126,7 +2152,7 @@ create the virtual environment with it.</p>
 </ul>
 <p>By default, uv will automatically download Python versions if they cannot be found on the system.
 This behavior can be
-<a href="#disabling-automatic-python-downloads">disabled with the <code>python-fetch</code> option</a>.</p>
+<a href="#disabling-automatic-python-downloads">disabled with the <code>python-downloads</code> option</a>.</p>
 <h2 id="installing-a-python-version">Installing a Python version<a class="headerlink" href="#installing-a-python-version" title="Permanent link">#</a></h2>
 <p>uv bundles a list of downloadable CPython and PyPy distributions for macOS, Linux, and Windows.</p>
 <div class="admonition tip">
@@ -2175,6 +2201,18 @@ invocations.</p>
 <p>To exclude downloads and only show installed Python versions:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>list<span class="w"> </span>--only-installed
 </code></pre></div>
+<h2 id="discovery-of-virtual-environments">Discovery of virtual environments<a class="headerlink" href="#discovery-of-virtual-environments" title="Permanent link">#</a></h2>
+<p>Some uv commands may use a Python interpreter from a virtual environment. When searching for virtual
+environments, uv prioritizes (in order):</p>
+<ul>
+<li>The <code>VIRTUAL_ENV</code> environment variable.</li>
+<li>The <code>CONDA_PREFIX</code> environment variable.</li>
+<li>A <code>.venv</code> directory in the working directory.</li>
+<li>A <code>.venv</code> directory in any parent directory.</li>
+</ul>
+<p>After exhausting these possibilities, uv will either
+<a href="#discovery-of-python-versions">search for a Python installation</a> or exit with an error if the
+command requires a virtual environment.</p>
 <h2 id="discovery-of-python-versions">Discovery of Python versions<a class="headerlink" href="#discovery-of-python-versions" title="Permanent link">#</a></h2>
 <p>When searching for a Python version, the following locations are checked:</p>
 <ul>
@@ -2186,12 +2224,15 @@ invocations.</p>
 </ul>
 <p>When performing discovery, non-executable files will be ignored. Each discovered executable is
 queried for metadata to ensure it meets the <a href="#requesting-a-version">requested Python version</a>. If
-the query fails, the executable will be skipped.</p>
+the query fails, the executable will be skipped. If the executable satisfies the request, it is used
+without inspecting additional executables.</p>
+<p>When searching for a managed Python version, uv will prefer newer versions first. When searching for
+a system Python version, uv will use the first compatible version — not the newest version.</p>
 <p>If a Python version cannot be found on the system, uv will check for a compatible managed Python
 version download.</p>
 <h2 id="disabling-automatic-python-downloads">Disabling automatic Python downloads<a class="headerlink" href="#disabling-automatic-python-downloads" title="Permanent link">#</a></h2>
 <p>By default, uv will automatically download Python versions when needed.</p>
-<p>The <code>python-fetch</code> option can be used to disable this behavior. By default, it is set to
+<p>The <code>python-downloads</code> option can be used to disable this behavior. By default, it is set to
 <code>automatic</code>; set to <code>manual</code> to only allow Python downloads during <code>uv python install</code>.</p>
 <h2 id="adjusting-python-version-preferences">Adjusting Python version preferences<a class="headerlink" href="#adjusting-python-version-preferences" title="Permanent link">#</a></h2>
 <p>By default, uv will attempt to use Python versions found on the system and only download managed

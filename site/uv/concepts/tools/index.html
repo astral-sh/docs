@@ -352,7 +352,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/" class="md-nav__link">
+      <a href="../../getting-started/installation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -378,7 +378,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../first-steps/" class="md-nav__link">
+      <a href="../../getting-started/first-steps/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -404,7 +404,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../features/" class="md-nav__link">
+      <a href="../../getting-started/features/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1793,7 +1793,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../versioning/" class="md-nav__link">
+      <a href="../../reference/versioning/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1819,7 +1819,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../platforms/" class="md-nav__link">
+      <a href="../../reference/platforms/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2049,30 +2049,40 @@ variable.</p>
 <h3 id="mutating-tool-environments">Mutating tool environments<a class="headerlink" href="#mutating-tool-environments" title="Permanent link">#</a></h3>
 <p>Tool environments are <em>not</em> intended to be mutated directly. It is strongly recommended never to
 mutate a tool environment manually with a <code>pip</code> operation.</p>
-<p>Tool environments may be either mutated or re-created by subsequent <code>uv tool install</code> operations.</p>
-<p>To upgrade a single package in a tool environment:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="gp">$ </span>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>black<span class="w"> </span>--upgrade-package<span class="w"> </span>click
-</code></pre></div>
+<p>Tool environments may be upgraded via <code>uv tool upgrade</code>, or re-created entirely via subsequent
+<code>uv tool install</code> operations.</p>
 <p>To upgrade all packages in a tool environment</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="gp">$ </span>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>black<span class="w"> </span>--upgrade
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="gp">$ </span>uv<span class="w"> </span>tool<span class="w"> </span>upgrade<span class="w"> </span>black
 </code></pre></div>
-<p>To reinstall a single package in a tool environment:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="gp">$ </span>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>black<span class="w"> </span>--reinstall-package<span class="w"> </span>click
+<p>To upgrade a single package in a tool environment:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="gp">$ </span>uv<span class="w"> </span>tool<span class="w"> </span>upgrade<span class="w"> </span>black<span class="w"> </span>--upgrade-package<span class="w"> </span>click
 </code></pre></div>
 <p>To reinstall all packages in a tool environment</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="gp">$ </span>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>black<span class="w"> </span>--reinstall
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="gp">$ </span>uv<span class="w"> </span>tool<span class="w"> </span>upgrade<span class="w"> </span>black<span class="w"> </span>--reinstall
 </code></pre></div>
-<p>All tool environment mutations will reinstall the tool executables, even if they have not changed.</p>
+<p>To reinstall a single package in a tool environment:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="gp">$ </span>uv<span class="w"> </span>tool<span class="w"> </span>upgrade<span class="w"> </span>black<span class="w"> </span>--reinstall-package<span class="w"> </span>click
+</code></pre></div>
+<p>Tool upgrades will respect the version constraints provided when installing the tool. For example,
+<code>uv tool install black &gt;=23,&lt;24</code> followed by <code>uv tool upgrade black</code> will upgrade Black to the
+latest version in the range <code>&gt;=23,&lt;24</code>.</p>
+<p>To instead replace the version constraints, re-install the tool with <code>uv tool install</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="gp">$ </span>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>black&gt;<span class="o">=</span><span class="m">24</span>
+</code></pre></div>
+<p>Similarly, tool upgrades will retain the settings provided when installing the tool. For example,
+<code>uv tool install black --prelease allow</code> followed by <code>uv tool upgrade black</code> will retain the
+<code>--prelease allow</code> setting.</p>
+<p>Tool upgrades will reinstall the tool executables, even if they have not changed.</p>
 <h3 id="including-additional-dependencies">Including additional dependencies<a class="headerlink" href="#including-additional-dependencies" title="Permanent link">#</a></h3>
 <p>Additional packages can be included during tool invocations:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="gp">$ </span>uvx<span class="w"> </span>--with<span class="w"> </span>&lt;extra-package&gt;<span class="w"> </span>&lt;tool&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="gp">$ </span>uvx<span class="w"> </span>--with<span class="w"> </span>&lt;extra-package&gt;<span class="w"> </span>&lt;tool&gt;
 </code></pre></div>
 <p>And installations:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="gp">$ </span>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>--with<span class="w"> </span>&lt;extra-package&gt;<span class="w"> </span>&lt;tool-package&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="gp">$ </span>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>--with<span class="w"> </span>&lt;extra-package&gt;<span class="w"> </span>&lt;tool-package&gt;
 </code></pre></div>
 <p>The <code>--with</code> option can be provided multiple times to include additional packages.</p>
 <p>The <code>--with</code> option supports package specifications, so a specific version can be requested:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="gp">$ </span>uvx<span class="w"> </span>--with<span class="w"> </span>&lt;extra-package&gt;<span class="o">==</span>&lt;version&gt;<span class="w"> </span>&lt;tool-package&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="gp">$ </span>uvx<span class="w"> </span>--with<span class="w"> </span>&lt;extra-package&gt;<span class="o">==</span>&lt;version&gt;<span class="w"> </span>&lt;tool-package&gt;
 </code></pre></div>
 <p>If the requested version conflicts with the requirements of the tool package, package resolution
 will fail and the command will error.</p>
@@ -2102,7 +2112,7 @@ installed by uv. For example, if <code>pipx</code> has been used to install a to
 fail. The <code>--force</code> flag can be used to override this behavior.</p>
 <h2 id="relationship-to-uv-run">Relationship to <code>uv run</code><a class="headerlink" href="#relationship-to-uv-run" title="Permanent link">#</a></h2>
 <p>The invocation <code>uv tool run &lt;name&gt;</code> is nearly equivalent to:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>--no-project<span class="w"> </span>--with<span class="w"> </span>&lt;name&gt;<span class="w"> </span>--<span class="w"> </span>&lt;name&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>--no-project<span class="w"> </span>--with<span class="w"> </span>&lt;name&gt;<span class="w"> </span>--<span class="w"> </span>&lt;name&gt;
 </code></pre></div>
 <p>However, there are a couple notable differences when using uv's tool interface:</p>
 <ul>
