@@ -306,6 +306,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -411,6 +413,32 @@
     
   
     Features
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/help/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting help
   
 
     
@@ -1943,21 +1971,12 @@ will search for a virtual environment in the following order:</p>
 </ul>
 <p>If no virtual environment is found, uv will prompt the user to create one in the current directory
 via <code>uv venv</code>.</p>
-<p>If the <code>--system</code> flag is included, uv will skip virtual environments and search for:</p>
-<ul>
-<li>The Python interpreter available as <code>python3</code> on macOS and Linux, or <code>python.exe</code> on Windows.</li>
-<li>On Windows, the Python interpreter returned by <code>py --list-paths</code> that matches the requested
-  version.</li>
-</ul>
-<p>If a specific Python version is requested, e.g., <code>--python 3.7</code>, additional executable names are
-included:</p>
-<ul>
-<li>The Python interpreter available as, e.g., <code>python3.7</code> on macOS and Linux.</li>
-</ul>
-<p>When running a command that does not mutate the environment such as <code>uv pip compile</code>, uv does not
-<em>require</em> a virtual environment. Instead, it needs a Python toolchain to create ephemeral
-environments. See the documentation on
-<a href="../../concepts/python-versions/#discovery-order">toolchain discovery</a> for details on discovery.</p>
+<p>If the <code>--system</code> flag is included, uv will skip virtual environments search for an installed Python
+version. Similarly, when running a command that does not mutate the environment such as
+<code>uv pip compile</code>, uv does not <em>require</em> a virtual environment — however, a Python interpreter is
+still required. See the documentation on
+<a href="../../concepts/python-versions/#discovery-order">Python discovery</a> for details on the discovery of
+installed Python versions.</p>
 
 
 
