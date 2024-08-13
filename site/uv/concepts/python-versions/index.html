@@ -306,6 +306,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -411,6 +413,32 @@
     
   
     Features
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/help/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting help
   
 
     
@@ -941,19 +969,6 @@
       
         <span class="md-typeset">
           Viewing available Python versions
-        </span>
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#discovery-of-virtual-environments" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        <span class="md-typeset">
-          Discovery of virtual environments
         </span>
       
     </span>
@@ -1984,19 +1999,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#discovery-of-virtual-environments" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        <span class="md-typeset">
-          Discovery of virtual environments
-        </span>
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#discovery-of-python-versions" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2201,18 +2203,6 @@ invocations.</p>
 <p>To exclude downloads and only show installed Python versions:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>list<span class="w"> </span>--only-installed
 </code></pre></div>
-<h2 id="discovery-of-virtual-environments">Discovery of virtual environments<a class="headerlink" href="#discovery-of-virtual-environments" title="Permanent link">#</a></h2>
-<p>Some uv commands may use a Python interpreter from a virtual environment. When searching for virtual
-environments, uv prioritizes (in order):</p>
-<ul>
-<li>The <code>VIRTUAL_ENV</code> environment variable.</li>
-<li>The <code>CONDA_PREFIX</code> environment variable.</li>
-<li>A <code>.venv</code> directory in the working directory.</li>
-<li>A <code>.venv</code> directory in any parent directory.</li>
-</ul>
-<p>After exhausting these possibilities, uv will either
-<a href="#discovery-of-python-versions">search for a Python installation</a> or exit with an error if the
-command requires a virtual environment.</p>
 <h2 id="discovery-of-python-versions">Discovery of Python versions<a class="headerlink" href="#discovery-of-python-versions" title="Permanent link">#</a></h2>
 <p>When searching for a Python version, the following locations are checked:</p>
 <ul>
@@ -2222,6 +2212,11 @@ command requires a virtual environment.</p>
 <li>On Windows, the Python interpreter returned by <code>py --list-paths</code> that matches the requested
   version.</li>
 </ul>
+<p>In some cases, uv allows using a Python version from a virtual environment. In this case, the
+virtual environment's interpreter will be checked for compatibility with the request before
+searching for an installation as described above. See the
+<a href="../../pip/environments/#discovery-of-python-environments">pip-compatible virtual environment discovery</a>
+documentation for details.</p>
 <p>When performing discovery, non-executable files will be ignored. Each discovered executable is
 queried for metadata to ensure it meets the <a href="#requesting-a-version">requested Python version</a>. If
 the query fails, the executable will be skipped. If the executable satisfies the request, it is used

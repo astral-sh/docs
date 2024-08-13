@@ -306,6 +306,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -411,6 +413,32 @@
     
   
     Features
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/help/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting help
   
 
     
@@ -2873,7 +2901,7 @@
 </dd>
 <dt><a href="#uv-tree"><code>uv tree</code></a></dt><dd><p>Display the project&#8217;s dependency tree (experimental)</p>
 </dd>
-<dt><a href="#uv-tool"><code>uv tool</code></a></dt><dd><p>Run and manage tools provided by Python packages (experimental)</p>
+<dt><a href="#uv-tool"><code>uv tool</code></a></dt><dd><p>Run and install commands provided by Python packages (experimental)</p>
 </dd>
 <dt><a href="#uv-python"><code>uv python</code></a></dt><dd><p>Manage Python versions and installations (experimental)</p>
 </dd>
@@ -3532,6 +3560,10 @@
 </ul>
 </dd><dt><code>--rev</code> <i>rev</i></dt><dd><p>Commit to use when adding a dependency from Git</p>
 
+</dd><dt><code>--script</code> <i>script</i></dt><dd><p>Add the dependency to the specified Python script, rather than to a project.</p>
+
+<p>If provided, uv will add the dependency to the script&#8217;s inline metadata table, in adhere with PEP 723. If no such inline metadata table is present, a new one will be created and added to the script. When executed via <code>uv run</code>, uv will create a temporary environment for the script with all inline dependencies installed.</p>
+
 </dd><dt><code>--tag</code> <i>tag</i></dt><dd><p>Tag to use when adding a dependency from Git</p>
 
 </dd><dt><code>--upgrade</code>, <code>-U</code></dt><dd><p>Allow package upgrades, ignoring pinned versions in any existing output file. Implies <code>--refresh</code></p>
@@ -3779,6 +3811,10 @@
 
 <li><code>lowest-direct</code>:  Resolve the lowest compatible version of any direct dependencies, and the highest compatible version of any transitive dependencies</li>
 </ul>
+</dd><dt><code>--script</code> <i>script</i></dt><dd><p>Remove the dependency from the specified Python script, rather than from a project.</p>
+
+<p>If provided, uv will remove the dependency from the script&#8217;s inline metadata table, in adhere with PEP 723.</p>
+
 </dd><dt><code>--upgrade</code>, <code>-U</code></dt><dd><p>Allow package upgrades, ignoring pinned versions in any existing output file. Implies <code>--refresh</code></p>
 
 </dd><dt><code>--upgrade-package</code>, <code>-P</code> <i>upgrade-package</i></dt><dd><p>Allow upgrades for a specific package, ignoring pinned versions in any existing output file. Implies <code>--refresh-package</code></p>
@@ -4548,31 +4584,37 @@
 </dd></dl>
 
 <h2 id="uv-tool">uv tool<a class="headerlink" href="#uv-tool" title="Permanent link">#</a></h2>
-<p>Run and manage tools provided by Python packages (experimental)</p>
+<p>Run and install commands provided by Python packages (experimental)</p>
 <h3 class="cli-reference">Usage</h3>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>uv tool [OPTIONS] &lt;COMMAND&gt;
 </code></pre></div>
 <h3 class="cli-reference">Commands</h3>
 
-<dl class="cli-reference"><dt><a href="#uv-tool-run"><code>uv tool run</code></a></dt><dd><p>Run a tool</p>
+<dl class="cli-reference"><dt><a href="#uv-tool-run"><code>uv tool run</code></a></dt><dd><p>Run a command provided by a Python package</p>
 </dd>
-<dt><a href="#uv-tool-install"><code>uv tool install</code></a></dt><dd><p>Install a tool</p>
+<dt><a href="#uv-tool-install"><code>uv tool install</code></a></dt><dd><p>Install commands provided by a Python package</p>
 </dd>
-<dt><a href="#uv-tool-upgrade"><code>uv tool upgrade</code></a></dt><dd><p>Upgrade a tool</p>
+<dt><a href="#uv-tool-upgrade"><code>uv tool upgrade</code></a></dt><dd><p>Upgrade installed tools</p>
 </dd>
 <dt><a href="#uv-tool-list"><code>uv tool list</code></a></dt><dd><p>List installed tools</p>
 </dd>
 <dt><a href="#uv-tool-uninstall"><code>uv tool uninstall</code></a></dt><dd><p>Uninstall a tool</p>
 </dd>
-<dt><a href="#uv-tool-update-shell"><code>uv tool update-shell</code></a></dt><dd><p>Ensure that the tool executable directory is on <code>PATH</code></p>
+<dt><a href="#uv-tool-update-shell"><code>uv tool update-shell</code></a></dt><dd><p>Ensure that the tool executable directory is on the <code>PATH</code></p>
 </dd>
-<dt><a href="#uv-tool-dir"><code>uv tool dir</code></a></dt><dd><p>Show the tools directory</p>
+<dt><a href="#uv-tool-dir"><code>uv tool dir</code></a></dt><dd><p>Show the path to the uv tools directory</p>
 </dd>
 </dl>
 
 <h3 id="uv-tool-run">uv tool run<a class="headerlink" href="#uv-tool-run" title="Permanent link">#</a></h3>
-<p>Run a tool</p>
+<p>Run a command provided by a Python package.</p>
+<p>By default, the package to install is assumed to match the command name.</p>
+<p>The name of the command can include an exact version in the format <code>&lt;package&gt;@&lt;version&gt;</code>, e.g., <code>uv run ruff@0.3.0</code>. If more complex version specification is desired or if the command is provided by a different package, use <code>--from</code>.</p>
+<p>If the tool was previously installed, i.e., via <code>uv tool install</code>, the installed version will be used unless a version is requested or the <code>--isolated</code> flag is used.</p>
+<p><code>uvx</code> is provided as a convenient alias for <code>uv tool run</code>, their behavior is identical.</p>
+<p>If no command is provided, the installed tools are displayed.</p>
+<p>Packages are installed into an ephemeral virtual environment in the uv cache directory.</p>
 <h3 class="cli-reference">Usage</h3>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>uv tool run [OPTIONS] [COMMAND]
@@ -4800,7 +4842,9 @@
 </dd></dl>
 
 <h3 id="uv-tool-install">uv tool install<a class="headerlink" href="#uv-tool-install" title="Permanent link">#</a></h3>
-<p>Install a tool</p>
+<p>Install commands provided by a Python package.</p>
+<p>Packages are installed into an isolated virtual environment in the uv tools directory. The executables are linked the tool executable directory, which is determined according to the XDG standard and can be retrieved with <code>uv tool dir --bin</code>.</p>
+<p>If the tool was previously installed, the existing tool will generally be replaced.</p>
 <h3 class="cli-reference">Usage</h3>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>uv tool install [OPTIONS] &lt;PACKAGE&gt;
@@ -5032,7 +5076,9 @@
 </dd></dl>
 
 <h3 id="uv-tool-upgrade">uv tool upgrade<a class="headerlink" href="#uv-tool-upgrade" title="Permanent link">#</a></h3>
-<p>Upgrade a tool</p>
+<p>Upgrade installed tools.</p>
+<p>If a tool was installed with version constraints, they will be respected on upgrade — to upgrade a tool beyond the originally provided constraints, use <code>uv tool install</code> again.</p>
+<p>If a tool was installed with specific settings, they will be respected on upgraded. For example, if <code>--prereleases allow</code> was provided during installation, it will continue to be respected in upgrades.</p>
 <h3 class="cli-reference">Usage</h3>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>uv tool upgrade [OPTIONS] &lt;NAME&gt;
@@ -5295,27 +5341,10 @@
 
 <p>For example, spinners or progress bars.</p>
 
-</dd><dt><code>--no-python-downloads</code></dt><dd><p>Disable automatic downloads of Python</p>
-
 </dd><dt><code>--offline</code></dt><dd><p>Disable network access.</p>
 
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 
-</dd><dt><code>--python-preference</code> <i>python-preference</i></dt><dd><p>Whether to prefer uv-managed or system Python installations.</p>
-
-<p>By default, uv prefers using Python versions it manages. However, it will use system Python installations if a uv-managed Python is not installed. This option allows prioritizing or ignoring system Python installations.</p>
-
-<p>Possible values:</p>
-
-<ul>
-<li><code>only-managed</code>:  Only use managed Python installations; never use system Python installations</li>
-
-<li><code>managed</code>:  Prefer managed Python installations over system Python installations</li>
-
-<li><code>system</code>:  Prefer system Python installations over managed Python installations</li>
-
-<li><code>only-system</code>:  Only use system Python installations; never use managed Python installations</li>
-</ul>
 </dd><dt><code>--quiet</code>, <code>-q</code></dt><dd><p>Do not print any output</p>
 
 </dd><dt><code>--show-paths</code></dt><dd><p>Whether to display the path to each tool environment and installed executable</p>
@@ -5414,7 +5443,10 @@
 </dd></dl>
 
 <h3 id="uv-tool-update-shell">uv tool update-shell<a class="headerlink" href="#uv-tool-update-shell" title="Permanent link">#</a></h3>
-<p>Ensure that the tool executable directory is on <code>PATH</code></p>
+<p>Ensure that the tool executable directory is on the <code>PATH</code>.</p>
+<p>If the tool executable directory is not present on the <code>PATH</code>, uv will attempt to add it to the relevant shell configuration files.</p>
+<p>If the shell configuration files already include a blurb to add the executable directory to the path, but the directory is not present on the <code>PATH</code>, uv will exit with an error.</p>
+<p>The tool executable directory is determined according to the XDG standard and can be retrieved with <code>uv tool dir --bin</code>.</p>
 <h3 class="cli-reference">Usage</h3>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>uv tool update-shell [OPTIONS]
@@ -5491,7 +5523,9 @@
 </dd></dl>
 
 <h3 id="uv-tool-dir">uv tool dir<a class="headerlink" href="#uv-tool-dir" title="Permanent link">#</a></h3>
-<p>Show the tools directory</p>
+<p>Show the path to the uv tools directory.</p>
+<p>The tools directory is used to store environments and metadata for installed tools.</p>
+<p>To instead view the directory uv installs executables into, use the <code>--bin</code> flag.</p>
 <h3 class="cli-reference">Usage</h3>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>uv tool dir [OPTIONS]
