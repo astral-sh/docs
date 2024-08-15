@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../assets/ruff-favicon.png">
-      <meta name="generator" content="mkdocs-1.5.0, mkdocs-material-9.3.1+insiders-4.41.0">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.3.1+insiders-4.41.0">
     
     
       
@@ -1286,31 +1286,18 @@ formatting <code>.pyi</code> files, but would continue to include them in lintin
 <p>Files that are passed to <code>ruff</code> directly are always analyzed, regardless of the above criteria.
 For example, <code>ruff check /path/to/excluded/file.py</code> will always lint <code>file.py</code>.</p>
 <h3 id="default-inclusions">Default inclusions<a class="headerlink" href="#default-inclusions" title="Permanent link">#</a></h3>
-<p>By default, Ruff will discover files matching <code>*.py</code>, <code>*.ipy</code>, or <code>pyproject.toml</code>.</p>
-<p>To lint or format files with additional file extensions, use the <a href="../settings/#extend-include"><code>extend-include</code></a> setting.</p>
+<p>By default, Ruff will discover files matching <code>*.py</code>, <code>*.pyi</code>, <code>*.ipynb</code>, or <code>pyproject.toml</code>.</p>
+<p>To lint or format files with additional file extensions, use the <a href="../settings/#extend-include"><code>extend-include</code></a> setting.
+You can also change the default selection using the <a href="../settings/#include"><code>include</code></a> setting.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">pyproject.toml</label><label for="__tabbed_6_2">ruff.toml</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">[tool.ruff]</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">extend-include</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;*.ipynb&quot;</span><span class="p">]</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">include</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;pyproject.toml&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;src/**/*.py&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;scripts/**/*.py&quot;</span><span class="p">]</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">extend-include</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;*.ipynb&quot;</span><span class="p">]</span>
-</code></pre></div>
-</div>
-</div>
-</div>
-<p>You can also change the default selection using the <a href="../settings/#include"><code>include</code></a> setting.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">pyproject.toml</label><label for="__tabbed_7_2">ruff.toml</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">[tool.ruff]</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="n">include</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;pyproject.toml&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;src/**/*.py&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;scripts/**/*.py&quot;</span><span class="p">]</span>
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">include</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;pyproject.toml&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;src/**/*.py&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;scripts/**/*.py&quot;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">include</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;pyproject.toml&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;src/**/*.py&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;scripts/**/*.py&quot;</span><span class="p">]</span>
 </code></pre></div>
 </div>
 </div>
@@ -1321,86 +1308,89 @@ For example, <code>ruff check /path/to/excluded/file.py</code> will always lint 
 matches a directory.</p>
 </div>
 <h2 id="jupyter-notebook-discovery">Jupyter Notebook discovery<a class="headerlink" href="#jupyter-notebook-discovery" title="Permanent link">#</a></h2>
-<p>Ruff has built-in support for <a href="https://jupyter.org/">Jupyter Notebooks</a>.</p>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>Notebooks are linted and formatted by default when using <a href="../preview/">preview mode</a>.
-You can opt-out of notebook linting and formatting by adding <code>*.ipynb</code> to <a href="../settings/#extend-exclude"><code>extend-exclude</code></a>.</p>
-</div>
-<p>To opt in to linting and formatting Jupyter Notebook (<code>.ipynb</code>) files, add the <code>*.ipynb</code> pattern to
-your <a href="../settings/#extend-include"><code>extend-include</code></a> setting, like so:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">pyproject.toml</label><label for="__tabbed_8_2">ruff.toml</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">[tool.ruff]</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="n">extend-include</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;*.ipynb&quot;</span><span class="p">]</span>
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">extend-include</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;*.ipynb&quot;</span><span class="p">]</span>
-</code></pre></div>
-</div>
-</div>
-</div>
-<p>This will prompt Ruff to discover Jupyter Notebook (<code>.ipynb</code>) files in any specified
-directories, then lint and format them accordingly.</p>
+<p>Ruff has built-in support for linting and formatting <a href="https://jupyter.org/">Jupyter Notebooks</a>,
+which are linted and formatted by default on version <code>0.6.0</code> and higher.</p>
 <p>If you'd prefer to either only lint or only format Jupyter Notebook files, you can use the
-section specific <code>exclude</code> option to do so. For example, the following would only lint Jupyter
+section-specific <code>exclude</code> option to do so. For example, the following would only lint Jupyter
 Notebook files and not format them:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="9:2"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><input id="__tabbed_9_2" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="__tabbed_9_1">pyproject.toml</label><label for="__tabbed_9_2">ruff.toml</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">pyproject.toml</label><label for="__tabbed_7_2">ruff.toml</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">[tool.ruff]</span>
-<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="n">extend-include</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;*.ipynb&quot;</span><span class="p">]</span>
-<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>
-<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="k">[tool.ruff.format]</span>
-<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="n">exclude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;*.ipynb&quot;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">[tool.ruff.format]</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="n">exclude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;*.ipynb&quot;</span><span class="p">]</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">extend-include</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;*.ipynb&quot;</span><span class="p">]</span>
-<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>
-<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="k">[format]</span>
-<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="n">exclude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;*.ipynb&quot;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">[format]</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="n">exclude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;*.ipynb&quot;</span><span class="p">]</span>
 </code></pre></div>
 </div>
 </div>
 </div>
 <p>And, conversely, the following would only format Jupyter Notebook files and not lint them:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">pyproject.toml</label><label for="__tabbed_8_2">ruff.toml</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">[tool.ruff.lint]</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="n">exclude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;*.ipynb&quot;</span><span class="p">]</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">[lint]</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="n">exclude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;*.ipynb&quot;</span><span class="p">]</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>You can completely disable Jupyter Notebook support by updating the
+<a href="../settings/#extend-exclude"><code>extend-exclude</code></a> setting:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="9:2"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><input id="__tabbed_9_2" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="__tabbed_9_1">pyproject.toml</label><label for="__tabbed_9_2">ruff.toml</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">[tool.ruff]</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="n">extend-exclude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;*.ipynb&quot;</span><span class="p">]</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">extend-exclude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;*.ipynb&quot;</span><span class="p">]</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>If you'd like to ignore certain rules specifically for Jupyter Notebook files, you can do so by
+using the <a href="../settings/#per-file-ignores"><code>per-file-ignores</code></a> setting:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="10:2"><input checked="checked" id="__tabbed_10_1" name="__tabbed_10" type="radio" /><input id="__tabbed_10_2" name="__tabbed_10" type="radio" /><div class="tabbed-labels"><label for="__tabbed_10_1">pyproject.toml</label><label for="__tabbed_10_2">ruff.toml</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">[tool.ruff]</span>
-<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="n">extend-include</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;*.ipynb&quot;</span><span class="p">]</span>
-<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>
-<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="k">[tool.ruff.lint]</span>
-<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="n">exclude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;*.ipynb&quot;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">[tool.ruff.lint.per-file-ignores]</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="s2">&quot;*.ipynb&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;T20&quot;</span><span class="p">]</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="n">extend-include</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;*.ipynb&quot;</span><span class="p">]</span>
-<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>
-<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="k">[lint]</span>
-<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="n">exclude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;*.ipynb&quot;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">[lint.per-file-ignores]</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="s2">&quot;*.ipynb&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;T20&quot;</span><span class="p">]</span>
 </code></pre></div>
 </div>
 </div>
 </div>
-<p>Alternatively, pass the notebook file(s) to <code>ruff</code> on the command-line directly. For example,
-<code>ruff check /path/to/notebook.ipynb</code> will always lint <code>notebook.ipynb</code>. Similarly,
-<code>ruff format /path/to/notebook.ipynb</code> will always format <code>notebook.ipynb</code>.</p>
+<p>Some rules have different behavior when applied to Jupyter Notebook files. For
+example, when applied to <code>.py</code> files the
+<a href="../rules/module-import-not-at-top-of-file/"><code>module-import-not-at-top-of-file</code> (<code>E402</code>)</a>
+rule detect imports at the top of a file, but for notebooks it detects imports at the top of a
+<strong>cell</strong>. For a given rule, the rule's documentation will always specify if it has different
+behavior when applied to Jupyter Notebook files.</p>
 <h2 id="command-line-interface">Command-line interface<a class="headerlink" href="#command-line-interface" title="Permanent link">#</a></h2>
 <p>Some configuration options can be provided or overridden via dedicated flags on the command line.
 This includes those related to rule enablement and disablement,
 file discovery, logging level, and more:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>ruff<span class="w"> </span>check<span class="w"> </span>path/to/code/<span class="w"> </span>--select<span class="w"> </span>F401<span class="w"> </span>--select<span class="w"> </span>F403<span class="w"> </span>--quiet
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="gp">$ </span>ruff<span class="w"> </span>check<span class="w"> </span>path/to/code/<span class="w"> </span>--select<span class="w"> </span>F401<span class="w"> </span>--select<span class="w"> </span>F403<span class="w"> </span>--quiet
 </code></pre></div>
 <p>All other configuration options can be set via the command line
 using the <code>--config</code> flag, detailed below.</p>
 <h3 id="the-config-cli-flag">The <code>--config</code> CLI flag<a class="headerlink" href="#the-config-cli-flag" title="Permanent link">#</a></h3>
 <p>The <code>--config</code> flag has two uses. It is most often used to point to the
 configuration file that you would like Ruff to use, for example:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>ruff<span class="w"> </span>check<span class="w"> </span>path/to/directory<span class="w"> </span>--config<span class="w"> </span>path/to/ruff.toml
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="gp">$ </span>ruff<span class="w"> </span>check<span class="w"> </span>path/to/directory<span class="w"> </span>--config<span class="w"> </span>path/to/ruff.toml
 </code></pre></div>
 <p>However, the <code>--config</code> flag can also be used to provide arbitrary
 overrides of configuration settings using TOML <code>&lt;KEY&gt; = &lt;VALUE&gt;</code> pairs.
@@ -1411,7 +1401,7 @@ that does not have a dedicated command-line flag.</p>
 since this setting has no dedicated CLI flag. The <code>per-file-ignores</code> setting
 could also have been overridden via the <code>--per-file-ignores</code> dedicated flag,
 but using <code>--config</code> to override the setting is also fine:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>ruff<span class="w"> </span>check<span class="w"> </span>path/to/file<span class="w"> </span>--config<span class="w"> </span>path/to/ruff.toml<span class="w"> </span>--config<span class="w"> </span><span class="s2">&quot;lint.dummy-variable-rgx = &#39;__.*&#39;&quot;</span><span class="w"> </span>--config<span class="w"> </span><span class="s2">&quot;lint.per-file-ignores = {&#39;some_file.py&#39; = [&#39;F841&#39;]}&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="gp">$ </span>ruff<span class="w"> </span>check<span class="w"> </span>path/to/file<span class="w"> </span>--config<span class="w"> </span>path/to/ruff.toml<span class="w"> </span>--config<span class="w"> </span><span class="s2">&quot;lint.dummy-variable-rgx = &#39;__.*&#39;&quot;</span><span class="w"> </span>--config<span class="w"> </span><span class="s2">&quot;lint.per-file-ignores = {&#39;some_file.py&#39; = [&#39;F841&#39;]}&quot;</span>
 </code></pre></div>
 <p>Configuration options passed to <code>--config</code> are parsed in the same way
 as configuration options in a <code>ruff.toml</code> file.
@@ -1423,7 +1413,7 @@ need to be prefixed with <code>format.</code>.</p>
 a dedicated flag and by the <code>--config</code> flag, the dedicated flag
 takes priority. In this example, the maximum permitted line length
 will be set to 90, not 100:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>ruff<span class="w"> </span>format<span class="w"> </span>path/to/file<span class="w"> </span>--line-length<span class="o">=</span><span class="m">90</span><span class="w"> </span>--config<span class="w"> </span><span class="s2">&quot;line-length=100&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="gp">$ </span>ruff<span class="w"> </span>format<span class="w"> </span>path/to/file<span class="w"> </span>--line-length<span class="o">=</span><span class="m">90</span><span class="w"> </span>--config<span class="w"> </span><span class="s2">&quot;line-length=100&quot;</span>
 </code></pre></div>
 <p>Specifying <code>--config "line-length=90"</code> will override the <code>line-length</code>
 setting from <em>all</em> configuration files detected by Ruff,
@@ -1753,6 +1743,8 @@ see the <a href="https://python-poetry.org/docs/#enable-tab-completion-for-bash-
     
     
       <script src="../assets/javascripts/bundle.d7e51e09.min.js"></script>
+      
+        <script src="../js/extra.js"></script>
       
     
   </body>

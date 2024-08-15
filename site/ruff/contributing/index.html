@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../assets/ruff-favicon.png">
-      <meta name="generator" content="mkdocs-1.5.0, mkdocs-material-9.3.1+insiders-4.41.0">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.3.1+insiders-4.41.0">
     
     
       
@@ -2084,12 +2084,8 @@ trivial, or (as in the case of third-party) merely defined as "not first-party".
     the <code>src</code> setting and, for each directory, check for the existence of a subdirectory <code>foo</code> or a
     file <code>foo.py</code>.</li>
 </ol>
-<p>By default, <code>src</code> is set to the project root. In the above example, we'd want to set
-<code>src = ["./src"]</code> to ensure that we locate <code>./my_project/src/foo</code> and thus categorize <code>import foo</code>
-as first-party in <code>baz.py</code>. In practice, for this limited example, setting <code>src = ["./src"]</code> is
-unnecessary, as all imports within <code>./my_project/src/foo</code> would be categorized as first-party via
-the same-package heuristic; but if your project contains multiple packages, you'll want to set <code>src</code>
-explicitly.</p>
+<p>By default, <code>src</code> is set to the project root, along with <code>"src"</code> subdirectory in the project root.
+This ensures that Ruff supports both flat and "src" layouts out of the box.</p>
 
 
 
@@ -2143,6 +2139,8 @@ explicitly.</p>
     
     
       <script src="../assets/javascripts/bundle.d7e51e09.min.js"></script>
+      
+        <script src="../js/extra.js"></script>
       
     
   </body>

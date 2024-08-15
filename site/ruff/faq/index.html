@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../assets/ruff-favicon.png">
-      <meta name="generator" content="mkdocs-1.5.0, mkdocs-material-9.3.1+insiders-4.41.0">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.3.1+insiders-4.41.0">
     
     
       
@@ -1301,7 +1301,7 @@ are not officially supported (e.g., Ruff does <em>not</em> respect type comments
 <p>Ruff is installable under any Python version from 3.7 onwards.</p>
 <h2 id="do-i-need-to-install-rust-to-use-ruff">Do I need to install Rust to use Ruff?<a class="headerlink" href="#do-i-need-to-install-rust-to-use-ruff" title="Permanent link">#</a></h2>
 <p>Nope! Ruff is available as <a href="https://pypi.org/project/ruff/"><code>ruff</code></a> on PyPI:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pip<span class="w"> </span>install<span class="w"> </span>ruff
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">$ </span>pip<span class="w"> </span>install<span class="w"> </span>ruff
 </code></pre></div>
 <p>Ruff ships with wheels for all major platforms, which enables <code>pip</code> to install Ruff without relying
 on Rust at all.</p>
@@ -1343,12 +1343,13 @@ first-party.</p>
 <p>When Ruff sees an import like <code>import foo</code>, it will then iterate over the <code>src</code> directories,
 looking for a corresponding Python module (in reality, a directory named <code>foo</code> or a file named
 <code>foo.py</code>).</p>
-<p>If the <code>src</code> field is omitted, Ruff will default to using the "project root" as the only
-first-party source. The "project root" is typically the directory containing your <code>pyproject.toml</code>,
-<code>ruff.toml</code>, or <code>.ruff.toml</code> file, unless a configuration file is provided on the command-line via
-the <code>--config</code> option, in which case, the current working directory is used as the project root.</p>
-<p>In this case, Ruff would only check the top-level directory. Instead, we can configure Ruff to
-consider <code>src</code> as a first-party source like so:</p>
+<p>If the <code>src</code> field is omitted, Ruff will default to using the "project root", along with a <code>"src"</code>
+subdirectory, as the first-party sources, to support both flat and nested project layouts.
+The "project root" is typically the directory containing your <code>pyproject.toml</code>, <code>ruff.toml</code>, or
+<code>.ruff.toml</code> file, unless a configuration file is provided on the command-line via the <code>--config</code>
+option, in which case, the current working directory is used as the project root.</p>
+<p>In this case, Ruff would check the <code>"src"</code> directory by default, but we can configure it as an
+explicit, exclusive first-party source like so:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">pyproject.toml</label><label for="__tabbed_1_2">ruff.toml</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -1439,50 +1440,31 @@ like so:</p>
 <p>Ruff does not yet support all of isort's configuration options, though it does support many of
 them. You can find the supported settings in the <a href="../settings/#lintisort">API reference</a>.</p>
 <h2 id="does-ruff-support-jupyter-notebooks">Does Ruff support Jupyter Notebooks?<a class="headerlink" href="#does-ruff-support-jupyter-notebooks" title="Permanent link">#</a></h2>
-<p>Ruff has built-in support for linting <a href="https://jupyter.org/">Jupyter Notebooks</a>.</p>
-<p>To opt in to linting Jupyter Notebook (<code>.ipynb</code>) files, add the <code>*.ipynb</code> pattern to your
-<a href="../settings/#extend-include"><code>extend-include</code></a> setting, like so:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">pyproject.toml</label><label for="__tabbed_4_2">ruff.toml</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">[tool.ruff]</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">extend-include</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;*.ipynb&quot;</span><span class="p">]</span>
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">extend-include</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;*.ipynb&quot;</span><span class="p">]</span>
-</code></pre></div>
-</div>
-</div>
-</div>
-<p>This will prompt Ruff to discover Jupyter Notebook (<code>.ipynb</code>) files in any specified
-directories, then lint and format them accordingly.</p>
-<p>Alternatively, pass the notebook file(s) to <code>ruff</code> on the command-line directly. For example,
-<code>ruff check /path/to/notebook.ipynb</code> will always lint <code>notebook.ipynb</code>. Similarly,
-<code>ruff format /path/to/notebook.ipynb</code> will always format <code>notebook.ipynb</code>.</p>
+<p>Ruff has built-in support for linting and formatting <a href="https://jupyter.org/">Jupyter Notebooks</a>. Refer to the
+<a href="../configuration/#jupyter-notebook-discovery">Jupyter Notebook section</a> for more details.</p>
 <p>Ruff also integrates with <a href="https://github.com/nbQA-dev/nbQA">nbQA</a>, a tool for running linters and
 code formatters over Jupyter Notebooks.</p>
 <p>After installing <code>ruff</code> and <code>nbqa</code>, you can run Ruff over a notebook like so:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>&gt;<span class="w"> </span>nbqa<span class="w"> </span>ruff<span class="w"> </span>Untitled.ipynb
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>Untitled.ipynb:cell_1:2:5:<span class="w"> </span>F841<span class="w"> </span>Local<span class="w"> </span>variable<span class="w"> </span><span class="sb">`</span>x<span class="sb">`</span><span class="w"> </span>is<span class="w"> </span>assigned<span class="w"> </span>to<span class="w"> </span>but<span class="w"> </span>never<span class="w"> </span>used
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>Untitled.ipynb:cell_2:1:1:<span class="w"> </span>E402<span class="w"> </span>Module<span class="w"> </span>level<span class="w"> </span>import<span class="w"> </span>not<span class="w"> </span>at<span class="w"> </span>top<span class="w"> </span>of<span class="w"> </span>file
-<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>Untitled.ipynb:cell_2:1:8:<span class="w"> </span>F401<span class="w"> </span><span class="sb">`</span>os<span class="sb">`</span><span class="w"> </span>imported<span class="w"> </span>but<span class="w"> </span>unused
-<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>Found<span class="w"> </span><span class="m">3</span><span class="w"> </span>errors.
-<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="m">1</span><span class="w"> </span>potentially<span class="w"> </span>fixable<span class="w"> </span>with<span class="w"> </span>the<span class="w"> </span>--fix<span class="w"> </span>option.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="gp">$ </span>nbqa<span class="w"> </span>ruff<span class="w"> </span>Untitled.ipynb
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="go">Untitled.ipynb:cell_1:2:5: F841 Local variable `x` is assigned to but never used</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="go">Untitled.ipynb:cell_2:1:1: E402 Module level import not at top of file</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="go">Untitled.ipynb:cell_2:1:8: F401 `os` imported but unused</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="go">Found 3 errors.</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="go">1 potentially fixable with the --fix option.</span>
 </code></pre></div>
 <h2 id="does-ruff-support-numpy-or-google-style-docstrings">Does Ruff support NumPy- or Google-style docstrings?<a class="headerlink" href="#does-ruff-support-numpy-or-google-style-docstrings" title="Permanent link">#</a></h2>
 <p>Yes! To enforce a docstring convention, add a <a href="../settings/#lint_pydocstyle_convention"><code>convention</code></a>
 setting following to your configuration file:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">pyproject.toml</label><label for="__tabbed_5_2">ruff.toml</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">pyproject.toml</label><label for="__tabbed_4_2">ruff.toml</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">[tool.ruff.lint.pydocstyle]</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="n">convention</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;google&quot;</span><span class="w">  </span><span class="c1"># Accepts: &quot;google&quot;, &quot;numpy&quot;, or &quot;pep257&quot;.</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">[tool.ruff.lint.pydocstyle]</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">convention</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;google&quot;</span><span class="w">  </span><span class="c1"># Accepts: &quot;google&quot;, &quot;numpy&quot;, or &quot;pep257&quot;.</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">[lint.pydocstyle]</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="n">convention</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;google&quot;</span><span class="w">  </span><span class="c1"># Accepts: &quot;google&quot;, &quot;numpy&quot;, or &quot;pep257&quot;.</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">[lint.pydocstyle]</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="n">convention</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;google&quot;</span><span class="w">  </span><span class="c1"># Accepts: &quot;google&quot;, &quot;numpy&quot;, or &quot;pep257&quot;.</span>
 </code></pre></div>
 </div>
 </div>
@@ -1492,22 +1474,22 @@ setting following to your configuration file:</p>
 as above.</p>
 <p>Alongside <a href="../settings/#lint_pydocstyle_convention"><code>convention</code></a>, you'll want to
 explicitly enable the <code>D</code> rule code prefix, since the <code>D</code> rules are not enabled by default:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">pyproject.toml</label><label for="__tabbed_6_2">ruff.toml</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">pyproject.toml</label><label for="__tabbed_5_2">ruff.toml</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">[tool.ruff.lint]</span>
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="n">select</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;D&quot;</span><span class="p">]</span>
-<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
-<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="k">[tool.ruff.lint.pydocstyle]</span>
-<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="n">convention</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;google&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">[tool.ruff.lint]</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="n">select</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;D&quot;</span><span class="p">]</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="k">[tool.ruff.lint.pydocstyle]</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="n">convention</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;google&quot;</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">[lint]</span>
-<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="n">select</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;D&quot;</span><span class="p">]</span>
-<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>
-<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="k">[lint.pydocstyle]</span>
-<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="n">convention</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;google&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">[lint]</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="n">select</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;D&quot;</span><span class="p">]</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="k">[lint.pydocstyle]</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="n">convention</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;google&quot;</span>
 </code></pre></div>
 </div>
 </div>
@@ -1515,40 +1497,40 @@ explicitly enable the <code>D</code> rule code prefix, since the <code>D</code> 
 <p>Enabling a <a href="../settings/#lint_pydocstyle_convention"><code>convention</code></a> will disable any rules that are not
 included in the specified convention. As such, the intended workflow is to enable a convention and
 then selectively enable or disable any additional rules on top of it:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">pyproject.toml</label><label for="__tabbed_7_2">ruff.toml</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">pyproject.toml</label><label for="__tabbed_6_2">ruff.toml</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">[tool.ruff.lint]</span>
-<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="n">select</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">    </span><span class="s2">&quot;D&quot;</span><span class="p">,</span>
-<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">    </span><span class="c1"># Augment the convention by requiring an imperative mood for all docstrings.</span>
-<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="w">    </span><span class="s2">&quot;D401&quot;</span><span class="p">,</span>
-<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="p">]</span>
-<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>
-<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="n">ignore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="w">    </span><span class="c1"># Relax the convention by _not_ requiring documentation for every function parameter.</span>
-<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="w">    </span><span class="s2">&quot;D417&quot;</span><span class="p">,</span>
-<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="p">]</span>
-<a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a>
-<a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a><span class="k">[tool.ruff.lint.pydocstyle]</span>
-<a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a><span class="n">convention</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;google&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">[tool.ruff.lint]</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="n">select</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">    </span><span class="s2">&quot;D&quot;</span><span class="p">,</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">    </span><span class="c1"># Augment the convention by requiring an imperative mood for all docstrings.</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="w">    </span><span class="s2">&quot;D401&quot;</span><span class="p">,</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="p">]</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="n">ignore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="w">    </span><span class="c1"># Relax the convention by _not_ requiring documentation for every function parameter.</span>
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="w">    </span><span class="s2">&quot;D417&quot;</span><span class="p">,</span>
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="p">]</span>
+<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>
+<a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="k">[tool.ruff.lint.pydocstyle]</span>
+<a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a><span class="n">convention</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;google&quot;</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">[lint]</span>
-<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="n">select</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">    </span><span class="s2">&quot;D&quot;</span><span class="p">,</span>
-<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="w">    </span><span class="c1"># Augment the convention by requiring an imperative mood for all docstrings.</span>
-<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="w">    </span><span class="s2">&quot;D401&quot;</span><span class="p">,</span>
-<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="p">]</span>
-<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>
-<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="n">ignore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="w">    </span><span class="c1"># Relax the convention by _not_ requiring documentation for every function parameter.</span>
-<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a><span class="w">    </span><span class="s2">&quot;D417&quot;</span><span class="p">,</span>
-<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a><span class="p">]</span>
-<a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a>
-<a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a><span class="k">[lint.pydocstyle]</span>
-<a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a><span class="n">convention</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;google&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">[lint]</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="n">select</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">    </span><span class="s2">&quot;D&quot;</span><span class="p">,</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">    </span><span class="c1"># Augment the convention by requiring an imperative mood for all docstrings.</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">    </span><span class="s2">&quot;D401&quot;</span><span class="p">,</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="p">]</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="n">ignore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="w">    </span><span class="c1"># Relax the convention by _not_ requiring documentation for every function parameter.</span>
+<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="w">    </span><span class="s2">&quot;D417&quot;</span><span class="p">,</span>
+<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="p">]</span>
+<a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a>
+<a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a><span class="k">[lint.pydocstyle]</span>
+<a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a><span class="n">convention</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;google&quot;</span>
 </code></pre></div>
 </div>
 </div>
@@ -1606,26 +1588,26 @@ in preview, visit the <a href="../rules/">rules reference</a>.</p>
 <p>In lieu of a <code>pyproject.toml</code> file, you can use a <code>ruff.toml</code> file for configuration. The two
 files are functionally equivalent and have an identical schema, with the exception that a <code>ruff.toml</code>
 file can omit the <code>[tool.ruff]</code> section header. For example:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="8:1"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">pyproject.toml</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:1"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">pyproject.toml</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block"></div>
 </div>
 </div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">[tool.ruff]</span>
-<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="n">line-length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">88</span>
-<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>
-<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="k">[tool.ruff.lint.pydocstyle]</span>
-<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="n">convention</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;google&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">[tool.ruff]</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="n">line-length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">88</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="k">[tool.ruff.lint.pydocstyle]</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="n">convention</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;google&quot;</span>
 </code></pre></div>
-<div class="tabbed-set tabbed-alternate" data-tabs="9:1"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="__tabbed_9_1">ruff.toml</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="8:1"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">ruff.toml</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block"></div>
 </div>
 </div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="n">line-length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">88</span>
-<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>
-<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="k">[lint.pydocstyle]</span>
-<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="n">convention</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;google&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">line-length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">88</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="k">[lint.pydocstyle]</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="n">convention</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;google&quot;</span>
 </code></pre></div>
 <p>Ruff doesn't currently support INI files, like <code>setup.cfg</code> or <code>tox.ini</code>.</p>
 <h2 id="how-can-i-change-ruffs-default-configuration">How can I change Ruff's default configuration?<a class="headerlink" href="#how-can-i-change-ruffs-default-configuration" title="Permanent link">#</a></h2>
@@ -1709,6 +1691,8 @@ environment variables (see the <a href="https://bixense.com/clicolors/">spec</a>
     
     
       <script src="../assets/javascripts/bundle.d7e51e09.min.js"></script>
+      
+        <script src="../js/extra.js"></script>
       
     
   </body>

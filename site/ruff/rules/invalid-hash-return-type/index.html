@@ -19,7 +19,7 @@
       
       
       <link rel="icon" href="../../assets/ruff-favicon.png">
-      <meta name="generator" content="mkdocs-1.5.0, mkdocs-material-9.3.1+insiders-4.41.0">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.3.1+insiders-4.41.0">
     
     
       
@@ -800,15 +800,14 @@
 
 <h1 id="invalid-hash-return-type-ple0309">invalid-hash-return-type (PLE0309)<a class="headerlink" href="#invalid-hash-return-type-ple0309" title="Permanent link">#</a></h1>
 <p>Derived from the <strong>Pylint</strong> linter.</p>
-<p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
-<p>Checks for <code>__hash__</code> implementations that return a value other than an integer.</p>
+<p>Checks for <code>__hash__</code> implementations that return non-integer values.</p>
 <h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
 <p>The <code>__hash__</code> method should return an integer. Returning a different
 type may cause unexpected behavior.</p>
 <p>Note: <code>bool</code> is a subclass of <code>int</code>, so it's technically valid for <code>__hash__</code> to
 return <code>True</code> or <code>False</code>. However, for consistency with other rules, Ruff will
-still raise when <code>__hash__</code> returns a <code>bool</code>.</p>
+still emit a diagnostic when <code>__hash__</code> returns a <code>bool</code>.</p>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">class</span> <span class="nc">Foo</span><span class="p">:</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="k">def</span> <span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -876,6 +875,8 @@ still raise when <code>__hash__</code> returns a <code>bool</code>.</p>
     
     
       <script src="../../assets/javascripts/bundle.d7e51e09.min.js"></script>
+      
+        <script src="../../js/extra.js"></script>
       
     
   </body>
