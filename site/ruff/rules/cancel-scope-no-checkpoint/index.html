@@ -19,7 +19,7 @@
       
       
       <link rel="icon" href="../../assets/ruff-favicon.png">
-      <meta name="generator" content="mkdocs-1.5.0, mkdocs-material-9.3.1+insiders-4.41.0">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.3.1+insiders-4.41.0">
     
     
       
@@ -802,6 +802,8 @@
 <p>Derived from the <strong>flake8-async</strong> linter.</p>
 <h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
 <p>Checks for timeout context managers which do not contain a checkpoint.</p>
+<p>For the purposes of this check, <code>yield</code> is considered a checkpoint,
+since checkpoints may occur in the caller to which we yield.</p>
 <h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
 <p>Some asynchronous context managers, such as <code>asyncio.timeout</code> and
 <code>trio.move_on_after</code>, have no effect unless they contain a checkpoint.
@@ -877,6 +879,8 @@ The use of such context managers without an <code>await</code>, <code>async with
     
     
       <script src="../../assets/javascripts/bundle.d7e51e09.min.js"></script>
+      
+        <script src="../../js/extra.js"></script>
       
     
   </body>

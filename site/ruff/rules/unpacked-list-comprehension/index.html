@@ -19,7 +19,7 @@
       
       
       <link rel="icon" href="../../assets/ruff-favicon.png">
-      <meta name="generator" content="mkdocs-1.5.0, mkdocs-material-9.3.1+insiders-4.41.0">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.3.1+insiders-4.41.0">
     
     
       
@@ -800,13 +800,17 @@
 
 <h1 id="unpacked-list-comprehension-up027">unpacked-list-comprehension (UP027)<a class="headerlink" href="#unpacked-list-comprehension-up027" title="Permanent link">#</a></h1>
 <p>Derived from the <strong>pyupgrade</strong> linter.</p>
+<p><strong>Warning: This rule is deprecated and will be removed in a future release.</strong></p>
 <p>Fix is always available.</p>
+<h2 id="deprecation">Deprecation<a class="headerlink" href="#deprecation" title="Permanent link">#</a></h2>
+<p>There's no <a href="https://github.com/astral-sh/ruff/issues/12754">evidence</a> that generators are
+meaningfully faster than list comprehensions when combined with unpacking.</p>
 <h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
 <p>Checks for list comprehensions that are immediately unpacked.</p>
 <h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
 <p>There is no reason to use a list comprehension if the result is immediately
-unpacked. Instead, use a generator expression, which is more efficient as
-it avoids allocating an intermediary list.</p>
+unpacked. Instead, use a generator expression, which avoids allocating
+an intermediary list.</p>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="n">foo</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">items</span><span class="p">]</span>
 </code></pre></div>
@@ -871,6 +875,8 @@ it avoids allocating an intermediary list.</p>
     
     
       <script src="../../assets/javascripts/bundle.d7e51e09.min.js"></script>
+      
+        <script src="../../js/extra.js"></script>
       
     
   </body>

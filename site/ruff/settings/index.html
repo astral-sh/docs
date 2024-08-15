@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../assets/ruff-favicon.png">
-      <meta name="generator" content="mkdocs-1.5.0, mkdocs-material-9.3.1+insiders-4.41.0">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.3.1+insiders-4.41.0">
     
     
       
@@ -3602,11 +3602,9 @@ settings.</p>
 <code>*.pyw</code>, to include any file with the <code>.pyw</code> extension. <code>pyproject.toml</code> is
 included here not for configuration but because we lint whether e.g. the
 <code>[project]</code> matches the schema.</p>
-<p>If <a href="https://docs.astral.sh/ruff/preview/">preview</a> is enabled, the default
-includes notebook files (<code>.ipynb</code> extension). You can exclude them by adding
-<code>*.ipynb</code> to <a href="#extend-exclude"><code>extend-exclude</code></a>.</p>
+<p>Notebook files (<code>.ipynb</code> extension) are included by default on Ruff 0.6.0+.</p>
 <p>For more information on the glob syntax, refer to the <a href="https://docs.rs/globset/latest/globset/#syntax"><code>globset</code> documentation</a>.</p>
-<p><strong>Default value</strong>: <code>["*.py", "*.pyi", "**/pyproject.toml"]</code></p>
+<p><strong>Default value</strong>: <code>["*.py", "*.pyi", "*.ipynb", "**/pyproject.toml"]</code></p>
 <p><strong>Type</strong>: <code>list[str]</code></p>
 <p><strong>Example usage</strong>:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="10:2"><input checked="checked" id="__tabbed_10_1" name="__tabbed_10" type="radio" /><input id="__tabbed_10_2" name="__tabbed_10" type="radio" /><div class="tabbed-labels"><label for="__tabbed_10_1">pyproject.toml</label><label for="__tabbed_10_2">ruff.toml</label></div>
@@ -3814,27 +3812,31 @@ Enabled by default.</p>
 <h4 id="src"><a href="#src"><code>src</code></a><a class="headerlink" href="#src" title="Permanent link">#</a></h4>
 <p>The directories to consider when resolving first- vs. third-party
 imports.</p>
-<p>As an example: given a Python package structure like:</p>
+<p>When omitted, the <code>src</code> directory will typically default to including both:</p>
+<ol>
+<li>The directory containing the nearest <code>pyproject.toml</code>, <code>ruff.toml</code>, or <code>.ruff.toml</code> file (the "project root").</li>
+<li>The <code>"src"</code> subdirectory of the project root.</li>
+</ol>
+<p>These defaults ensure that uv supports both flat layouts and <code>src</code> layouts out-of-the-box.
+(If a configuration file is explicitly provided (e.g., via the <code>--config</code> command-line
+flag), the current working directory will be considered the project root.)</p>
+<p>As an example, consider an alternative project structure, like:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>my_project
 <a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>├── pyproject.toml
-<a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a>└── src
+<a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a>└── lib
 <a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a>    └── my_package
 <a id="__codelineno-36-5" name="__codelineno-36-5" href="#__codelineno-36-5"></a>        ├── __init__.py
 <a id="__codelineno-36-6" name="__codelineno-36-6" href="#__codelineno-36-6"></a>        ├── foo.py
 <a id="__codelineno-36-7" name="__codelineno-36-7" href="#__codelineno-36-7"></a>        └── bar.py
 </code></pre></div>
-<p>The <code>./src</code> directory should be included in the <code>src</code> option
-(e.g., <code>src = ["src"]</code>), such that when resolving imports,
-<code>my_package.foo</code> is considered a first-party import.</p>
-<p>When omitted, the <code>src</code> directory will typically default to the
-directory containing the nearest <code>pyproject.toml</code>, <code>ruff.toml</code>, or
-<code>.ruff.toml</code> file (the "project root"), unless a configuration file
-is explicitly provided (e.g., via the <code>--config</code> command-line flag).</p>
+<p>In this case, the <code>./lib</code> directory should be included in the <code>src</code> option
+(e.g., <code>src = ["lib"]</code>), such that when resolving imports, <code>my_package.foo</code>
+is considered first-party.</p>
 <p>This field supports globs. For example, if you have a series of Python
 packages in a <code>python_modules</code> directory, <code>src = ["python_modules/*"]</code>
-would expand to incorporate all of the packages in that directory. User
-home directory and environment variables will also be expanded.</p>
-<p><strong>Default value</strong>: <code>["."]</code></p>
+would expand to incorporate all packages in that directory. User home
+directory and environment variables will also be expanded.</p>
+<p><strong>Default value</strong>: <code>[".", "src"]</code></p>
 <p><strong>Type</strong>: <code>list[str]</code></p>
 <p><strong>Example usage</strong>:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="19:2"><input checked="checked" id="__tabbed_19_1" name="__tabbed_19" type="radio" /><input id="__tabbed_19_2" name="__tabbed_19" type="radio" /><div class="tabbed-labels"><label for="__tabbed_19_1">pyproject.toml</label><label for="__tabbed_19_2">ruff.toml</label></div>
@@ -5299,7 +5301,7 @@ string.</p>
 <p><span id="aliases"></span></p>
 <p>The conventional aliases for imports. These aliases can be extended by
 the <a href="#lint_flake8-import-conventions_extend-aliases"><code>extend-aliases</code></a> option.</p>
-<p><strong>Default value</strong>: <code>{"altair": "alt", "matplotlib": "mpl", "matplotlib.pyplot": "plt", "numpy": "np", "pandas": "pd", "seaborn": "sns", "tensorflow": "tf", "tkinter":  "tk", "holoviews": "hv", "panel": "pn", "plotly.express": "px", "polars": "pl", "pyarrow": "pa"}</code></p>
+<p><strong>Default value</strong>: <code>{"altair": "alt", "matplotlib": "mpl", "matplotlib.pyplot": "plt", "numpy": "np", "pandas": "pd", "seaborn": "sns", "tensorflow": "tf", "tkinter":  "tk", "holoviews": "hv", "panel": "pn", "plotly.express": "px", "polars": "pl", "pyarrow": "pa", "xml.etree.ElementTree": "ET"}</code></p>
 <p><strong>Type</strong>: <code>dict[str, str]</code></p>
 <p><strong>Example usage</strong>:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="71:2"><input checked="checked" id="__tabbed_71_1" name="__tabbed_71" type="radio" /><input id="__tabbed_71_2" name="__tabbed_71" type="radio" /><div class="tabbed-labels"><label for="__tabbed_71_1">pyproject.toml</label><label for="__tabbed_71_2">ruff.toml</label></div>
@@ -5410,9 +5412,7 @@ should have parentheses. If the option is set to <code>true</code> (the
 default), <code>@pytest.fixture()</code> is valid and <code>@pytest.fixture</code> is
 invalid. If set to <code>false</code>, <code>@pytest.fixture</code> is valid and
 <code>@pytest.fixture()</code> is invalid.</p>
-<p>If <a href="https://docs.astral.sh/ruff/preview/">preview</a> is enabled, defaults to
-<code>false</code>.</p>
-<p><strong>Default value</strong>: <code>true</code></p>
+<p><strong>Default value</strong>: <code>false</code></p>
 <p><strong>Type</strong>: <code>bool</code></p>
 <p><strong>Example usage</strong>:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="75:2"><input checked="checked" id="__tabbed_75_1" name="__tabbed_75" type="radio" /><input id="__tabbed_75_2" name="__tabbed_75" type="radio" /><div class="tabbed-labels"><label for="__tabbed_75_1">pyproject.toml</label><label for="__tabbed_75_2">ruff.toml</label></div>
@@ -5437,9 +5437,7 @@ should have parentheses. If the option is set to <code>true</code> (the
 default), <code>@pytest.mark.foo()</code> is valid and <code>@pytest.mark.foo</code> is
 invalid. If set to <code>false</code>, <code>@pytest.mark.foo</code> is valid and
 <code>@pytest.mark.foo()</code> is invalid.</p>
-<p>If <a href="https://docs.astral.sh/ruff/preview/">preview</a> is enabled, defaults to
-<code>false</code>.</p>
-<p><strong>Default value</strong>: <code>true</code></p>
+<p><strong>Default value</strong>: <code>false</code></p>
 <p><strong>Type</strong>: <code>bool</code></p>
 <p><strong>Example usage</strong>:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="76:2"><input checked="checked" id="__tabbed_76_1" name="__tabbed_76" type="radio" /><input id="__tabbed_76_2" name="__tabbed_76" type="radio" /><div class="tabbed-labels"><label for="__tabbed_76_1">pyproject.toml</label><label for="__tabbed_76_2">ruff.toml</label></div>
@@ -7463,6 +7461,8 @@ parentheses around the tuple (see <code>RUF031</code>).</p>
     
     
       <script src="../assets/javascripts/bundle.d7e51e09.min.js"></script>
+      
+        <script src="../js/extra.js"></script>
       
     
   </body>

@@ -19,7 +19,7 @@
       
       
       <link rel="icon" href="../../assets/ruff-favicon.png">
-      <meta name="generator" content="mkdocs-1.5.0, mkdocs-material-9.3.1+insiders-4.41.0">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.3.1+insiders-4.41.0">
     
     
       
@@ -800,16 +800,15 @@
 
 <h1 id="invalid-length-return-type-ple0303">invalid-length-return-type (PLE0303)<a class="headerlink" href="#invalid-length-return-type-ple0303" title="Permanent link">#</a></h1>
 <p>Derived from the <strong>Pylint</strong> linter.</p>
-<p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
-<p>Checks for <code>__len__</code> implementations that return values other than a non-negative
-integer.</p>
+<p>Checks for <code>__len__</code> implementations that return values that are not non-negative
+integers.</p>
 <h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
 <p>The <code>__len__</code> method should return a non-negative integer. Returning a different
 value may cause unexpected behavior.</p>
 <p>Note: <code>bool</code> is a subclass of <code>int</code>, so it's technically valid for <code>__len__</code> to
 return <code>True</code> or <code>False</code>. However, for consistency with other rules, Ruff will
-still raise when <code>__len__</code> returns a <code>bool</code>.</p>
+still emit a diagnostic when <code>__len__</code> returns a <code>bool</code>.</p>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">class</span> <span class="nc">Foo</span><span class="p">:</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -877,6 +876,8 @@ still raise when <code>__len__</code> returns a <code>bool</code>.</p>
     
     
       <script src="../../assets/javascripts/bundle.d7e51e09.min.js"></script>
+      
+        <script src="../../js/extra.js"></script>
       
     
   </body>

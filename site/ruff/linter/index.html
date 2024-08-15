@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../assets/ruff-favicon.png">
-      <meta name="generator" content="mkdocs-1.5.0, mkdocs-material-9.3.1+insiders-4.41.0">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.3.1+insiders-4.41.0">
     
     
       
@@ -998,10 +998,10 @@ and more.</p>
 <h2 id="ruff-check"><code>ruff check</code><a class="headerlink" href="#ruff-check" title="Permanent link">#</a></h2>
 <p><code>ruff check</code> is the primary entrypoint to the Ruff linter. It accepts a list of files or
 directories, and lints all discovered Python files, optionally fixing any fixable errors:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ruff<span class="w"> </span>check<span class="w">                  </span><span class="c1"># Lint all files in the current directory.</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>ruff<span class="w"> </span>check<span class="w"> </span>--fix<span class="w">            </span><span class="c1"># Lint all files in the current directory, and fix any fixable errors.</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>ruff<span class="w"> </span>check<span class="w"> </span>--watch<span class="w">          </span><span class="c1"># Lint all files in the current directory, and re-lint on change.</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>ruff<span class="w"> </span>check<span class="w"> </span>path/to/code/<span class="w">    </span><span class="c1"># Lint all files in `path/to/code` (and any subdirectories).</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">$ </span>ruff<span class="w"> </span>check<span class="w">                  </span><span class="c1"># Lint all files in the current directory.</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="gp">$ </span>ruff<span class="w"> </span>check<span class="w"> </span>--fix<span class="w">            </span><span class="c1"># Lint all files in the current directory, and fix any fixable errors.</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="gp">$ </span>ruff<span class="w"> </span>check<span class="w"> </span>--watch<span class="w">          </span><span class="c1"># Lint all files in the current directory, and re-lint on change.</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="gp">$ </span>ruff<span class="w"> </span>check<span class="w"> </span>path/to/code/<span class="w">    </span><span class="c1"># Lint all files in `path/to/code` (and any subdirectories).</span>
 </code></pre></div>
 <p>For the full list of supported options, run <code>ruff check --help</code>.</p>
 <div class="admonition note">
@@ -1122,7 +1122,7 @@ with the exception of <code>F401</code>.</p>
 <p>Ruff supports automatic fixes for a variety of lint errors. For example, Ruff can remove unused
 imports, reformat docstrings, rewrite type annotations to use newer Python syntax, and more.</p>
 <p>To enable fixes, pass the <code>--fix</code> flag to <code>ruff check</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>ruff<span class="w"> </span>check<span class="w"> </span>--fix
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="gp">$ </span>ruff<span class="w"> </span>check<span class="w"> </span>--fix
 </code></pre></div>
 <p>By default, Ruff will fix all violations for which safe fixes are available; to determine
 whether a rule supports fixing, see <a href="../rules/"><em>Rules</em></a>.</p>
@@ -1132,30 +1132,30 @@ applying safe fixes, but the meaning could be changed when applying unsafe fixes
 <p>For example, <a href="../rules/unnecessary-iterable-allocation-for-first-element/"><code>unnecessary-iterable-allocation-for-first-element</code></a>
 (<code>RUF015</code>) is a rule which checks for potentially unperformant use of <code>list(...)[0]</code>. The fix
 replaces this pattern with <code>next(iter(...))</code> which can result in a drastic speedup:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>$<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>timeit<span class="w"> </span><span class="s2">&quot;head = list(range(99999999))[0]&quot;</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="m">1</span><span class="w"> </span>loop,<span class="w"> </span>best<span class="w"> </span>of<span class="w"> </span><span class="m">5</span>:<span class="w"> </span><span class="m">1</span>.69<span class="w"> </span>sec<span class="w"> </span>per<span class="w"> </span>loop
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="gp">$ </span>python<span class="w"> </span>-m<span class="w"> </span>timeit<span class="w"> </span><span class="s2">&quot;head = list(range(99999999))[0]&quot;</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="go">1 loop, best of 5: 1.69 sec per loop</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>$<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>timeit<span class="w"> </span><span class="s2">&quot;head = next(iter(range(99999999)))&quot;</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="m">5000000</span><span class="w"> </span>loops,<span class="w"> </span>best<span class="w"> </span>of<span class="w"> </span><span class="m">5</span>:<span class="w"> </span><span class="m">70</span>.8<span class="w"> </span>nsec<span class="w"> </span>per<span class="w"> </span>loop
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="gp">$ </span>python<span class="w"> </span>-m<span class="w"> </span>timeit<span class="w"> </span><span class="s2">&quot;head = next(iter(range(99999999)))&quot;</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="go">5000000 loops, best of 5: 70.8 nsec per loop</span>
 </code></pre></div>
 <p>However, when the collection is empty, this changes the raised exception from an <code>IndexError</code> to <code>StopIteration</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>$<span class="w"> </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;list(range(0))[0]&#39;</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>Traceback<span class="w"> </span><span class="o">(</span>most<span class="w"> </span>recent<span class="w"> </span>call<span class="w"> </span>last<span class="o">)</span>:
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">  </span>File<span class="w"> </span><span class="s2">&quot;&lt;string&gt;&quot;</span>,<span class="w"> </span>line<span class="w"> </span><span class="m">1</span>,<span class="w"> </span><span class="k">in</span><span class="w"> </span>&lt;module&gt;
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>IndexError:<span class="w"> </span>list<span class="w"> </span>index<span class="w"> </span>out<span class="w"> </span>of<span class="w"> </span>range
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="gp">$ </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;list(range(0))[0]&#39;</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="go">Traceback (most recent call last):</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="go">  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="go">IndexError: list index out of range</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>$<span class="w"> </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;next(iter(range(0)))[0]&#39;</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>Traceback<span class="w"> </span><span class="o">(</span>most<span class="w"> </span>recent<span class="w"> </span>call<span class="w"> </span>last<span class="o">)</span>:
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">  </span>File<span class="w"> </span><span class="s2">&quot;&lt;string&gt;&quot;</span>,<span class="w"> </span>line<span class="w"> </span><span class="m">1</span>,<span class="w"> </span><span class="k">in</span><span class="w"> </span>&lt;module&gt;
-<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>StopIteration
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="gp">$ </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;next(iter(range(0)))[0]&#39;</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="go">Traceback (most recent call last):</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="go">  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="go">StopIteration</span>
 </code></pre></div>
 <p>Since this could break error handling, this fix is categorized as unsafe.</p>
 <p>Ruff only enables safe fixes by default. Unsafe fixes can be enabled by settings <a href="../settings/#unsafe-fixes"><code>unsafe-fixes</code></a> in your configuration file or passing the <code>--unsafe-fixes</code> flag to <code>ruff check</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># Show unsafe fixes</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>ruff<span class="w"> </span>check<span class="w"> </span>--unsafe-fixes
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="gp"># </span>Show<span class="w"> </span>unsafe<span class="w"> </span>fixes
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="go">ruff check --unsafe-fixes</span>
 <a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
-<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="c1"># Apply unsafe fixes</span>
-<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>ruff<span class="w"> </span>check<span class="w"> </span>--fix<span class="w"> </span>--unsafe-fixes
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="gp"># </span>Apply<span class="w"> </span>unsafe<span class="w"> </span>fixes
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="go">ruff check --fix --unsafe-fixes</span>
 </code></pre></div>
 <p>By default, Ruff will display a hint when unsafe fixes are available but not enabled. The suggestion can be silenced
 by setting the <a href="../settings/#unsafe-fixes"><code>unsafe-fixes</code></a> setting to <code>false</code> or using the <code>--no-unsafe-fixes</code> flag.</p>
@@ -1354,6 +1354,8 @@ for more.</p>
     
     
       <script src="../assets/javascripts/bundle.d7e51e09.min.js"></script>
+      
+        <script src="../js/extra.js"></script>
       
     
   </body>

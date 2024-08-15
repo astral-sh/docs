@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../assets/ruff-favicon.png">
-      <meta name="generator" content="mkdocs-1.5.0, mkdocs-material-9.3.1+insiders-4.41.0">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.3.1+insiders-4.41.0">
     
     
       
@@ -937,7 +937,7 @@
 your project. For a more detailed overview, see <a href="../configuration/"><em>Configuring Ruff</em></a>.</p>
 <h2 id="getting-started">Getting Started<a class="headerlink" href="#getting-started" title="Permanent link">#</a></h2>
 <p>To start, we'll install Ruff through PyPI (or with your <a href="../installation/">preferred package manager</a>):</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pip<span class="w"> </span>install<span class="w"> </span>ruff
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">$ </span>pip<span class="w"> </span>install<span class="w"> </span>ruff
 </code></pre></div>
 <p>Let's then assume that our project structure looks like:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>numbers
@@ -958,15 +958,15 @@ your project. For a more detailed overview, see <a href="../configuration/"><em>
 <a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    <span class="p">)</span>
 </code></pre></div>
 <p>We can run the Ruff linter over our project via <code>ruff check</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>❯<span class="w"> </span>ruff<span class="w"> </span>check
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>numbers/numbers.py:3:8:<span class="w"> </span>F401<span class="w"> </span><span class="o">[</span>*<span class="o">]</span><span class="w"> </span><span class="sb">`</span>os<span class="sb">`</span><span class="w"> </span>imported<span class="w"> </span>but<span class="w"> </span>unused
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>Found<span class="w"> </span><span class="m">1</span><span class="w"> </span>error.
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="o">[</span>*<span class="o">]</span><span class="w"> </span><span class="m">1</span><span class="w"> </span>fixable<span class="w"> </span>with<span class="w"> </span>the<span class="w"> </span><span class="sb">`</span>--fix<span class="sb">`</span><span class="w"> </span>option.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="gp">$ </span>ruff<span class="w"> </span>check
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="go">numbers/numbers.py:3:8: F401 [*] `os` imported but unused</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="go">Found 1 error.</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="go">[*] 1 fixable with the `--fix` option.</span>
 </code></pre></div>
 <p>Ruff identified an unused import, which is a common error in Python code. Ruff considers this a
 "fixable" error, so we can resolve the issue automatically by running <code>ruff check --fix</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>❯<span class="w"> </span>ruff<span class="w"> </span>check<span class="w"> </span>--fix
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>Found<span class="w"> </span><span class="m">1</span><span class="w"> </span>error<span class="w"> </span><span class="o">(</span><span class="m">1</span><span class="w"> </span>fixed,<span class="w"> </span><span class="m">0</span><span class="w"> </span>remaining<span class="o">)</span>.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="gp">$ </span>ruff<span class="w"> </span>check<span class="w"> </span>--fix
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="go">Found 1 error (1 fixed, 0 remaining).</span>
 </code></pre></div>
 <p>Running <code>git diff</code> shows the following:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="gd">--- a/numbers/numbers.py</span>
@@ -985,11 +985,11 @@ your project. For a more detailed overview, see <a href="../configuration/"><em>
 <a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="w"> </span>   )
 </code></pre></div>
 <p>Note Ruff runs in the current directory by default, but you can pass specific paths to check:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>❯<span class="w"> </span>ruff<span class="w"> </span>check<span class="w"> </span>numbers/numbers.py
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="gp">$ </span>ruff<span class="w"> </span>check<span class="w"> </span>numbers/numbers.py
 </code></pre></div>
 <p>Now that our project is passing <code>ruff check</code>, we can run the Ruff formatter via <code>ruff format</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>❯<span class="w"> </span>ruff<span class="w"> </span>format
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="m">1</span><span class="w"> </span>file<span class="w"> </span>reformatted
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="gp">$ </span>ruff<span class="w"> </span>format
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="go">1 file reformatted</span>
 </code></pre></div>
 <p>Running <code>git diff</code> shows that the <code>sum</code> call was reformatted to fit within the default 88-character
 line length limit:</p>
@@ -1039,9 +1039,9 @@ Ruff's behavior.</p>
 </div>
 </div>
 <p>Running Ruff again, we see that it now enforces a maximum line width, with a limit of 79:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>❯<span class="w"> </span>ruff<span class="w"> </span>check
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>numbers/numbers.py:5:80:<span class="w"> </span>E501<span class="w"> </span>Line<span class="w"> </span>too<span class="w"> </span>long<span class="w"> </span><span class="o">(</span><span class="m">90</span><span class="w"> </span>&gt;<span class="w"> </span><span class="m">79</span><span class="o">)</span>
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>Found<span class="w"> </span><span class="m">1</span><span class="w"> </span>error.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="gp">$ </span>ruff<span class="w"> </span>check
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="go">numbers/numbers.py:5:80: E501 Line too long (90 &gt; 79)</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="go">Found 1 error.</span>
 </code></pre></div>
 <p>For a full enumeration of the supported settings, see <a href="../settings/"><em>Settings</em></a>. For our project
 specifically, we'll want to make note of the minimum supported Python version:</p>
@@ -1112,10 +1112,10 @@ rules, we can set our configuration file to the following:</p>
 </div>
 <p>If we run Ruff again, we'll see that it now enforces the pyupgrade rules. In particular, Ruff flags
 the use of the deprecated <code>typing.Iterable</code> instead of <code>collections.abc.Iterable</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>❯<span class="w"> </span>ruff<span class="w"> </span>check
-<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>numbers/numbers.py:1:1:<span class="w"> </span>UP035<span class="w"> </span><span class="o">[</span>*<span class="o">]</span><span class="w"> </span>Import<span class="w"> </span>from<span class="w"> </span><span class="sb">`</span>collections.abc<span class="sb">`</span><span class="w"> </span>instead:<span class="w"> </span><span class="sb">`</span>Iterable<span class="sb">`</span>
-<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>Found<span class="w"> </span><span class="m">1</span><span class="w"> </span>error.
-<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="o">[</span>*<span class="o">]</span><span class="w"> </span><span class="m">1</span><span class="w"> </span>fixable<span class="w"> </span>with<span class="w"> </span>the<span class="w"> </span><span class="sb">`</span>--fix<span class="sb">`</span><span class="w"> </span>option.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="gp">$ </span>ruff<span class="w"> </span>check
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="go">numbers/numbers.py:1:1: UP035 [*] Import from `collections.abc` instead: `Iterable`</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="go">Found 1 error.</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="go">[*] 1 fixable with the `--fix` option.</span>
 </code></pre></div>
 <p>Over time, we may choose to enforce additional rules. For example, we may want to enforce that
 all functions have docstrings:</p>
@@ -1151,12 +1151,12 @@ all functions have docstrings:</p>
 </div>
 </div>
 <p>If we run Ruff again, we'll see that it now enforces the pydocstyle rules:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>❯<span class="w"> </span>ruff<span class="w"> </span>check
-<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>numbers/__init__.py:1:1:<span class="w"> </span>D104<span class="w"> </span>Missing<span class="w"> </span>docstring<span class="w"> </span><span class="k">in</span><span class="w"> </span>public<span class="w"> </span>package
-<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>numbers/numbers.py:1:1:<span class="w"> </span>UP035<span class="w"> </span><span class="o">[</span>*<span class="o">]</span><span class="w"> </span>Import<span class="w"> </span>from<span class="w"> </span><span class="sb">`</span>collections.abc<span class="sb">`</span><span class="w"> </span>instead:<span class="w"> </span><span class="sb">`</span>Iterable<span class="sb">`</span>
-<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>numbers/numbers.py:1:1:<span class="w"> </span>D100<span class="w"> </span>Missing<span class="w"> </span>docstring<span class="w"> </span><span class="k">in</span><span class="w"> </span>public<span class="w"> </span>module
-<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>Found<span class="w"> </span><span class="m">3</span><span class="w"> </span>errors.
-<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="o">[</span>*<span class="o">]</span><span class="w"> </span><span class="m">1</span><span class="w"> </span>fixable<span class="w"> </span>with<span class="w"> </span>the<span class="w"> </span><span class="sb">`</span>--fix<span class="sb">`</span><span class="w"> </span>option.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="gp">$ </span>ruff<span class="w"> </span>check
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="go">numbers/__init__.py:1:1: D104 Missing docstring in public package</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="go">numbers/numbers.py:1:1: UP035 [*] Import from `collections.abc` instead: `Iterable`</span>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="go">numbers/numbers.py:1:1: D100 Missing docstring in public module</span>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="go">Found 3 errors.</span>
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="go">[*] 1 fixable with the `--fix` option.</span>
 </code></pre></div>
 <h3 id="ignoring-errors">Ignoring Errors<a class="headerlink" href="#ignoring-errors" title="Permanent link">#</a></h3>
 <p>Any lint rule can be ignored by adding a <code># noqa</code> comment to the line in question. For example,
@@ -1169,10 +1169,10 @@ let's ignore the <code>UP035</code> rule for the <code>Iterable</code> import:</
 <a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">num</span> <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">numbers</span> <span class="k">if</span> <span class="n">num</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
 </code></pre></div>
 <p>Running <code>ruff check</code> again, we'll see that it no longer flags the <code>Iterable</code> import:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>❯<span class="w"> </span>ruff<span class="w"> </span>check
-<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>numbers/__init__.py:1:1:<span class="w"> </span>D104<span class="w"> </span>Missing<span class="w"> </span>docstring<span class="w"> </span><span class="k">in</span><span class="w"> </span>public<span class="w"> </span>package
-<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>numbers/numbers.py:1:1:<span class="w"> </span>D100<span class="w"> </span>Missing<span class="w"> </span>docstring<span class="w"> </span><span class="k">in</span><span class="w"> </span>public<span class="w"> </span>module
-<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>Found<span class="w"> </span><span class="m">3</span><span class="w"> </span>errors.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="gp">$ </span>ruff<span class="w"> </span>check
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="go">numbers/__init__.py:1:1: D104 Missing docstring in public package</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="go">numbers/numbers.py:1:1: D100 Missing docstring in public module</span>
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="go">Found 3 errors.</span>
 </code></pre></div>
 <p>If we want to ignore a rule for an entire file, we can add the line <code># ruff: noqa: {code}</code> anywhere
 in the file, preferably towards the top, like so:</p>
@@ -1191,8 +1191,8 @@ violations of that rule and instead focus on enforcing it going forward.</p>
 <p>Ruff enables this workflow via the <code>--add-noqa</code> flag, which will add a <code># noqa</code> directive to each
 line based on its existing violations. We can combine <code>--add-noqa</code> with the <code>--select</code> command-line
 flag to add <code># noqa</code> directives to all existing <code>UP035</code> violations:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>❯<span class="w"> </span>ruff<span class="w"> </span>check<span class="w"> </span>--select<span class="w"> </span>UP035<span class="w"> </span>--add-noqa<span class="w"> </span>.
-<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>Added<span class="w"> </span><span class="m">1</span><span class="w"> </span>noqa<span class="w"> </span>directive.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="gp">$ </span>ruff<span class="w"> </span>check<span class="w"> </span>--select<span class="w"> </span>UP035<span class="w"> </span>--add-noqa<span class="w"> </span>.
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="go">Added 1 noqa directive.</span>
 </code></pre></div>
 <p>Running <code>git diff</code> shows the following:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="gh">diff --git a/tutorial/src/main.py b/tutorial/src/main.py</span>
@@ -1274,6 +1274,8 @@ section for more information.</p>
     
     
       <script src="../assets/javascripts/bundle.d7e51e09.min.js"></script>
+      
+        <script src="../js/extra.js"></script>
       
     
   </body>

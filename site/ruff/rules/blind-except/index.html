@@ -19,7 +19,7 @@
       
       
       <link rel="icon" href="../../assets/ruff-favicon.png">
-      <meta name="generator" content="mkdocs-1.5.0, mkdocs-material-9.3.1+insiders-4.41.0">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.3.1+insiders-4.41.0">
     
     
       
@@ -801,7 +801,8 @@
 <h1 id="blind-except-ble001">blind-except (BLE001)<a class="headerlink" href="#blind-except-ble001" title="Permanent link">#</a></h1>
 <p>Derived from the <strong>flake8-blind-except</strong> linter.</p>
 <h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
-<p>Checks for <code>except</code> clauses that catch all exceptions.</p>
+<p>Checks for <code>except</code> clauses that catch all exceptions.  This includes
+bare <code>except</code>, <code>except BaseException</code> and <code>except Exception</code>.</p>
 <h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
 <p>Overly broad <code>except</code> clauses can lead to unexpected behavior, such as
 catching <code>KeyboardInterrupt</code> or <code>SystemExit</code> exceptions that prevent the
@@ -839,6 +840,7 @@ for propagating exception traces:</p>
 <ul>
 <li><a href="https://docs.python.org/3/reference/compound_stmts.html#the-try-statement">Python documentation: The <code>try</code> statement</a></li>
 <li><a href="https://docs.python.org/3/library/exceptions.html#exception-hierarchy">Python documentation: Exception hierarchy</a></li>
+<li><a href="https://peps.python.org/pep-0008/#programming-recommendations">PEP8 Programming Recommendations on bare <code>except</code></a></li>
 </ul>
 
 
@@ -893,6 +895,8 @@ for propagating exception traces:</p>
     
     
       <script src="../../assets/javascripts/bundle.d7e51e09.min.js"></script>
+      
+        <script src="../../js/extra.js"></script>
       
     
   </body>
