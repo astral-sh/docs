@@ -10,7 +10,7 @@
         <meta name="author" content="charliermarsh">
       
       
-        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/one-blank-line-before-class/">
+        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/fast-api-unused-path-parameter/">
       
       
       
@@ -23,7 +23,7 @@
     
     
       
-        <title>one-blank-line-before-class (D203) - Ruff</title>
+        <title>fast-api-unused-path-parameter (FAST003) - Ruff</title>
       
     
     
@@ -83,7 +83,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#one-blank-line-before-class-d203" class="md-skip">
+        <a href="#fast-api-unused-path-parameter-fast003" class="md-skip">
           Skip to content
         </a>
       
@@ -118,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              one-blank-line-before-class (D203)
+              fast-api-unused-path-parameter (FAST003)
             
           </span>
         </div>
@@ -798,32 +798,46 @@
   
 
 
-<h1 id="one-blank-line-before-class-d203">one-blank-line-before-class (D203)<a class="headerlink" href="#one-blank-line-before-class-d203" title="Permanent link">#</a></h1>
-<p>Derived from the <strong>pydocstyle</strong> linter.</p>
-<p>Fix is always available.</p>
+<h1 id="fast-api-unused-path-parameter-fast003">fast-api-unused-path-parameter (FAST003)<a class="headerlink" href="#fast-api-unused-path-parameter-fast003" title="Permanent link">#</a></h1>
+<p>Derived from the <strong>FastAPI</strong> linter.</p>
+<p>Fix is sometimes available.</p>
+<p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
-<p>Checks for docstrings on class definitions that are not preceded by a
-blank line.</p>
+<p>Identifies FastAPI routes that declare path parameters in the route path
+that are not included in the function signature.</p>
 <h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
-<p>Use a blank line to separate the docstring from the class definition, for
-consistency.</p>
-<p>This rule may not apply to all projects; its applicability is a matter of
-convention. By default, this rule is disabled when using the <code>google</code>,
-<code>numpy</code>, and <code>pep257</code> conventions.</p>
-<p>For an alternative, see <a href="https://docs.astral.sh/ruff/rules/blank-line-before-class">D211</a>.</p>
+<p>Path parameters are used to extract values from the URL path.</p>
+<p>If a path parameter is declared in the route path but not in the function
+signature, it will not be accessible in the function body, which is likely
+a mistake.</p>
+<p>If a path parameter is declared in the route path, but as a positional-only
+argument in the function signature, it will also not be accessible in the
+function body, as FastAPI will not inject the parameter.</p>
+<h2 id="known-problems">Known problems<a class="headerlink" href="#known-problems" title="Permanent link">#</a></h2>
+<p>If the path parameter is <em>not</em> a valid Python identifier (e.g., <code>user-id</code>, as
+opposed to <code>user_id</code>), FastAPI will normalize it. However, this rule simply
+ignores such path parameters, as FastAPI's normalization behavior is undocumented.</p>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">class</span> <span class="nc">PhotoMetadata</span><span class="p">:</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Metadata about a photo.&quot;&quot;&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/things/</span><span class="si">{thing_id}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">read_thing</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span> <span class="o">...</span>
 </code></pre></div>
 <p>Use instead:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">class</span> <span class="nc">PhotoMetadata</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Metadata about a photo.&quot;&quot;&quot;</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/things/</span><span class="si">{thing_id}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">read_thing</span><span class="p">(</span><span class="n">thing_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span> <span class="o">...</span>
 </code></pre></div>
-<h2 id="options">Options<a class="headerlink" href="#options" title="Permanent link">#</a></h2>
-<ul>
-<li><a href="../../settings/#lint_pydocstyle_convention"><code>lint.pydocstyle.convention</code></a></li>
-</ul>
+<h2 id="fix-safety">Fix safety<a class="headerlink" href="#fix-safety" title="Permanent link">#</a></h2>
+<p>This rule's fix is marked as unsafe, as modifying a function signature can
+change the behavior of the code.</p>
 
 
 
