@@ -1964,7 +1964,7 @@ also install and manage Python versions for you.</p>
 system. If you've previously installed Python with uv, a new version will not be installed.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Python does not publish official distributable binaries. As such, uv uses third-party distributions from the <a href="https://github.com/indygreg/python-build-standalone"><code>python-build-standalone</code></a> project. The project is partially maintained by the uv maintainers and is used by other prominent Python projects (e.g., <a href="https://github.com/astral-sh/rye">Rye</a>, <a href="https://github.com/bazelbuild/rules_python">Bazel</a>). See the <a href="../../concepts/python-versions/#python-distributions">Python distributions</a> documentation for more details.</p>
+<p>Python does not publish official distributable binaries. As such, uv uses third-party distributions from the <a href="https://github.com/indygreg/python-build-standalone"><code>python-build-standalone</code></a> project. The project is partially maintained by the uv maintainers and is used by other prominent Python projects (e.g., <a href="https://github.com/astral-sh/rye">Rye</a>, <a href="https://github.com/bazelbuild/rules_python">Bazel</a>). See the <a href="../../concepts/python-versions/#managed-python-distributions">Python distributions</a> documentation for more details.</p>
 </div>
 <!-- TODO(zanieb): Restore when Python shim management is added
 Note that when an automatic Python installation occurs, the `python` command will not be added to the shell. Use `uv python install-shim` to ensure the `python` shim is installed.
@@ -2027,8 +2027,9 @@ Note that when an automatic Python installation occurs, the `python` command wil
 <h2 id="using-an-existing-python-installation">Using an existing Python installation<a class="headerlink" href="#using-an-existing-python-installation" title="Permanent link">#</a></h2>
 <p>uv will use existing Python installations if present on your system. There is no configuration
 necessary for this behavior: uv will use the system Python if it satisfies the requirements of the
-command invocation. See the <a href="../../concepts/python-versions/#discovery-order">Python discovery</a>
-documentation for details.</p>
+command invocation. See the
+<a href="../../concepts/python-versions/#discovery-of-python-versions">Python discovery</a> documentation for
+details.</p>
 <p>To force uv to use the system Python, provide the <code>--python-preference only-system</code> option. See the
 <a href="../../concepts/python-versions/#adjusting-python-version-preferences">Python version preference</a>
 documentation for more details.</p>
