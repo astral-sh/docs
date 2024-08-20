@@ -1542,6 +1542,8 @@
       
         
       
+        
+      
     
     
       
@@ -2279,6 +2281,32 @@
   
   
     <li class="md-nav__item">
+      <a href="../benchmarks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Benchmarks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../versioning/" class="md-nav__link">
         
   
@@ -2943,23 +2971,23 @@
 </code></pre></div>
 <h3 class="cli-reference">Commands</h3>
 
-<dl class="cli-reference"><dt><a href="#uv-run"><code>uv run</code></a></dt><dd><p>Run a command or script (experimental)</p>
+<dl class="cli-reference"><dt><a href="#uv-run"><code>uv run</code></a></dt><dd><p>Run a command or script</p>
 </dd>
-<dt><a href="#uv-init"><code>uv init</code></a></dt><dd><p>Create a new project (experimental)</p>
+<dt><a href="#uv-init"><code>uv init</code></a></dt><dd><p>Create a new project</p>
 </dd>
-<dt><a href="#uv-add"><code>uv add</code></a></dt><dd><p>Add dependencies to the project (experimental)</p>
+<dt><a href="#uv-add"><code>uv add</code></a></dt><dd><p>Add dependencies to the project</p>
 </dd>
-<dt><a href="#uv-remove"><code>uv remove</code></a></dt><dd><p>Remove dependencies from the project (experimental)</p>
+<dt><a href="#uv-remove"><code>uv remove</code></a></dt><dd><p>Remove dependencies from the project</p>
 </dd>
-<dt><a href="#uv-sync"><code>uv sync</code></a></dt><dd><p>Update the project&#8217;s environment (experimental)</p>
+<dt><a href="#uv-sync"><code>uv sync</code></a></dt><dd><p>Update the project&#8217;s environment</p>
 </dd>
-<dt><a href="#uv-lock"><code>uv lock</code></a></dt><dd><p>Update the project&#8217;s lockfile (experimental)</p>
+<dt><a href="#uv-lock"><code>uv lock</code></a></dt><dd><p>Update the project&#8217;s lockfile</p>
 </dd>
-<dt><a href="#uv-tree"><code>uv tree</code></a></dt><dd><p>Display the project&#8217;s dependency tree (experimental)</p>
+<dt><a href="#uv-tree"><code>uv tree</code></a></dt><dd><p>Display the project&#8217;s dependency tree</p>
 </dd>
-<dt><a href="#uv-tool"><code>uv tool</code></a></dt><dd><p>Run and install commands provided by Python packages (experimental)</p>
+<dt><a href="#uv-tool"><code>uv tool</code></a></dt><dd><p>Run and install commands provided by Python packages</p>
 </dd>
-<dt><a href="#uv-python"><code>uv python</code></a></dt><dd><p>Manage Python versions and installations (experimental)</p>
+<dt><a href="#uv-python"><code>uv python</code></a></dt><dd><p>Manage Python versions and installations</p>
 </dd>
 <dt><a href="#uv-pip"><code>uv pip</code></a></dt><dd><p>Manage Python packages with a pip-compatible interface</p>
 </dd>
@@ -2974,7 +3002,7 @@
 </dl>
 
 <h2 id="uv-run">uv run<a class="headerlink" href="#uv-run" title="Permanent link">#</a></h2>
-<p>Run a command or script (experimental).</p>
+<p>Run a command or script.</p>
 <p>Ensures that the command runs in a Python environment.</p>
 <p>When used with a file ending in <code>.py</code>, the file will be treated as a script and run with a Python interpreter, i.e., <code>uv run file.py</code> is equivalent to <code>uv run python file.py</code>. If the script contains inline dependency metadata, it will be installed into an isolated, ephemeral environment.</p>
 <p>When used in a project, the project environment will be created and updated before invoking the command.</p>
@@ -3022,7 +3050,7 @@
 
 </dd><dt><code>--exclude-newer</code> <i>exclude-newer</i></dt><dd><p>Limit candidate packages to those that were uploaded prior to the given date.</p>
 
-<p>Accepts both RFC 3339 timestamps (e.g., <code>2006-12-02T02:07:43Z</code>) and UTC dates in the same format (e.g., <code>2006-12-02</code>).</p>
+<p>Accepts both RFC 3339 timestamps (e.g., <code>2006-12-02T02:07:43Z</code>) and local dates in the same format (e.g., <code>2006-12-02</code>) in your system&#8217;s configured time zone.</p>
 
 </dd><dt><code>--extra</code> <i>extra</i></dt><dd><p>Include optional dependencies from the extra group name.</p>
 
@@ -3253,7 +3281,7 @@
 </dd></dl>
 
 <h2 id="uv-init">uv init<a class="headerlink" href="#uv-init" title="Permanent link">#</a></h2>
-<p>Create a new project (experimental).</p>
+<p>Create a new project.</p>
 <p>Follows the <code>pyproject.toml</code> specification.</p>
 <p>If a <code>pyproject.toml</code> already exists at the target, uv will exit with an error.</p>
 <p>If a <code>pyproject.toml</code> is found in any of the parent directories of the target path, the project will be added as a workspace member of the parent.</p>
@@ -3364,7 +3392,7 @@
 </dd></dl>
 
 <h2 id="uv-add">uv add<a class="headerlink" href="#uv-add" title="Permanent link">#</a></h2>
-<p>Add dependencies to the project (experimental).</p>
+<p>Add dependencies to the project.</p>
 <p>Dependencies are added to the project's <code>pyproject.toml</code> file.</p>
 <p>If a given dependency exists already, it will be updated to the new version specifier unless it includes markers that differ from the existing specifier in which case another entry for the depenedency will be added.</p>
 <p>If no constraint or URL is provided for a dependency, a lower bound is added equal to the latest compatible version of the package, e.g., <code>&gt;=1.2.3</code>, unless <code>--frozen</code> is provided, in which case no resolution is performed.</p>
@@ -3417,7 +3445,7 @@
 
 </dd><dt><code>--exclude-newer</code> <i>exclude-newer</i></dt><dd><p>Limit candidate packages to those that were uploaded prior to the given date.</p>
 
-<p>Accepts both RFC 3339 timestamps (e.g., <code>2006-12-02T02:07:43Z</code>) and UTC dates in the same format (e.g., <code>2006-12-02</code>).</p>
+<p>Accepts both RFC 3339 timestamps (e.g., <code>2006-12-02T02:07:43Z</code>) and local dates in the same format (e.g., <code>2006-12-02</code>) in your system&#8217;s configured time zone.</p>
 
 </dd><dt><code>--extra</code> <i>extra</i></dt><dd><p>Extras to enable for the dependency.</p>
 
@@ -3640,7 +3668,7 @@
 </dd></dl>
 
 <h2 id="uv-remove">uv remove<a class="headerlink" href="#uv-remove" title="Permanent link">#</a></h2>
-<p>Remove dependencies from the project (experimental).</p>
+<p>Remove dependencies from the project.</p>
 <p>Dependencies are removed from the project's <code>pyproject.toml</code> file.</p>
 <p>If multiple entries exist for a given dependency, i.e., each with different markers, all of the entries will be removed.</p>
 <p>The lockfile and project environment will be updated to reflect the removed dependencies. To skip updating the lockfile, use <code>--frozen</code>. To skip updating the environment, use <code>--no-sync</code>.</p>
@@ -3691,7 +3719,7 @@
 
 </dd><dt><code>--exclude-newer</code> <i>exclude-newer</i></dt><dd><p>Limit candidate packages to those that were uploaded prior to the given date.</p>
 
-<p>Accepts both RFC 3339 timestamps (e.g., <code>2006-12-02T02:07:43Z</code>) and UTC dates in the same format (e.g., <code>2006-12-02</code>).</p>
+<p>Accepts both RFC 3339 timestamps (e.g., <code>2006-12-02T02:07:43Z</code>) and local dates in the same format (e.g., <code>2006-12-02</code>) in your system&#8217;s configured time zone.</p>
 
 </dd><dt><code>--extra-index-url</code> <i>extra-index-url</i></dt><dd><p>Extra URLs of package indexes to use, in addition to <code>--index-url</code>.</p>
 
@@ -3890,8 +3918,9 @@
 </dd></dl>
 
 <h2 id="uv-sync">uv sync<a class="headerlink" href="#uv-sync" title="Permanent link">#</a></h2>
-<p>Update the project's environment (experimental).</p>
-<p>Syncing ensures that all project dependencies are installed and up-to-date with the lockfile. Syncing also removes packages that are not declared as dependencies of the project.</p>
+<p>Update the project's environment.</p>
+<p>Syncing ensures that all project dependencies are installed and up-to-date with the lockfile.</p>
+<p>By default, an exact sync is performed: uv removes packages that are not declared as dependencies of the project. Use the <code>--inexact</code> flag to keep extraneous packages. Note that if an extraneous package conflicts with a project dependency, it will still be removed. Additionally, if <code>--no-build-isolation</code> is used, uv will not remove extraneous packages to avoid removing possible build dependencies.</p>
 <p>If the project virtual environment (<code>.venv</code>) does not exist, it will be created.</p>
 <p>The project is re-locked before syncing unless the <code>--locked</code> or <code>--frozen</code> flag is provided.</p>
 <p>uv will search for a project in the current directory or any parent directory. If a project cannot be found, uv will exit with an error.</p>
@@ -3934,7 +3963,7 @@
 
 </dd><dt><code>--exclude-newer</code> <i>exclude-newer</i></dt><dd><p>Limit candidate packages to those that were uploaded prior to the given date.</p>
 
-<p>Accepts both RFC 3339 timestamps (e.g., <code>2006-12-02T02:07:43Z</code>) and UTC dates in the same format (e.g., <code>2006-12-02</code>).</p>
+<p>Accepts both RFC 3339 timestamps (e.g., <code>2006-12-02T02:07:43Z</code>) and local dates in the same format (e.g., <code>2006-12-02</code>) in your system&#8217;s configured time zone.</p>
 
 </dd><dt><code>--extra</code> <i>extra</i></dt><dd><p>Include optional dependencies from the extra group name.</p>
 
@@ -3976,6 +4005,12 @@
 <p>Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.</p>
 
 <p>The index given by this flag is given lower priority than all other indexes specified via the <code>--extra-index-url</code> flag.</p>
+
+</dd><dt><code>--inexact</code></dt><dd><p>Do not remove extraneous packages present in the environment.</p>
+
+<p>When enabled, uv will make the minimum necessary changes to satisfy the requirements.</p>
+
+<p>By default, syncing will remove any extraneous packages from the environment, unless <code>--no-build-isolation</code> is enabled, in which case extra packages are considered necessary for builds.</p>
 
 </dd><dt><code>--keyring-provider</code> <i>keyring-provider</i></dt><dd><p>Attempt to use <code>keyring</code> for authentication for index URLs.</p>
 
@@ -4036,12 +4071,6 @@
 </dd><dt><code>--no-build-package</code> <i>no-build-package</i></dt><dd><p>Don&#8217;t build source distributions for a specific package</p>
 
 </dd><dt><code>--no-cache</code>, <code>-n</code></dt><dd><p>Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation</p>
-
-</dd><dt><code>--no-clean</code></dt><dd><p>Do not remove extraneous packages.</p>
-
-<p>When enabled, uv will make the minimum necessary changes to satisfy the requirements.</p>
-
-<p>By default, syncing will remove any extraneous packages from the environment, unless <code>--no-build-isolation</code> is enabled, in which case extra packages are considered necessary for builds.</p>
 
 </dd><dt><code>--no-config</code></dt><dd><p>Avoid discovering configuration files (<code>pyproject.toml</code>, <code>uv.toml</code>).</p>
 
@@ -4145,7 +4174,7 @@
 </dd></dl>
 
 <h2 id="uv-lock">uv lock<a class="headerlink" href="#uv-lock" title="Permanent link">#</a></h2>
-<p>Update the project's lockfile (experimental).</p>
+<p>Update the project's lockfile.</p>
 <p>If the project lockfile (<code>uv.lock</code>) does not exist, it will be created. If a lockfile is present, its contents will be used as preferences for the resolution.</p>
 <p>If there are no changes to the project's dependencies, locking will have no effect unless the <code>--upgrade</code> flag is provided.</p>
 <h3 class="cli-reference">Usage</h3>
@@ -4178,7 +4207,7 @@
 
 </dd><dt><code>--exclude-newer</code> <i>exclude-newer</i></dt><dd><p>Limit candidate packages to those that were uploaded prior to the given date.</p>
 
-<p>Accepts both RFC 3339 timestamps (e.g., <code>2006-12-02T02:07:43Z</code>) and UTC dates in the same format (e.g., <code>2006-12-02</code>).</p>
+<p>Accepts both RFC 3339 timestamps (e.g., <code>2006-12-02T02:07:43Z</code>) and local dates in the same format (e.g., <code>2006-12-02</code>) in your system&#8217;s configured time zone.</p>
 
 </dd><dt><code>--extra-index-url</code> <i>extra-index-url</i></dt><dd><p>Extra URLs of package indexes to use, in addition to <code>--index-url</code>.</p>
 
@@ -4367,7 +4396,7 @@
 </dd></dl>
 
 <h2 id="uv-tree">uv tree<a class="headerlink" href="#uv-tree" title="Permanent link">#</a></h2>
-<p>Display the project's dependency tree (experimental)</p>
+<p>Display the project's dependency tree</p>
 <h3 class="cli-reference">Usage</h3>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>uv tree [OPTIONS]
@@ -4401,7 +4430,7 @@
 <p>[default: 255]</p>
 </dd><dt><code>--exclude-newer</code> <i>exclude-newer</i></dt><dd><p>Limit candidate packages to those that were uploaded prior to the given date.</p>
 
-<p>Accepts both RFC 3339 timestamps (e.g., <code>2006-12-02T02:07:43Z</code>) and UTC dates in the same format (e.g., <code>2006-12-02</code>).</p>
+<p>Accepts both RFC 3339 timestamps (e.g., <code>2006-12-02T02:07:43Z</code>) and local dates in the same format (e.g., <code>2006-12-02</code>) in your system&#8217;s configured time zone.</p>
 
 </dd><dt><code>--extra-index-url</code> <i>extra-index-url</i></dt><dd><p>Extra URLs of package indexes to use, in addition to <code>--index-url</code>.</p>
 
@@ -4649,7 +4678,7 @@
 </dd></dl>
 
 <h2 id="uv-tool">uv tool<a class="headerlink" href="#uv-tool" title="Permanent link">#</a></h2>
-<p>Run and install commands provided by Python packages (experimental)</p>
+<p>Run and install commands provided by Python packages</p>
 <h3 class="cli-reference">Usage</h3>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>uv tool [OPTIONS] &lt;COMMAND&gt;
@@ -4716,7 +4745,7 @@
 
 </dd><dt><code>--exclude-newer</code> <i>exclude-newer</i></dt><dd><p>Limit candidate packages to those that were uploaded prior to the given date.</p>
 
-<p>Accepts both RFC 3339 timestamps (e.g., <code>2006-12-02T02:07:43Z</code>) and UTC dates in the same format (e.g., <code>2006-12-02</code>).</p>
+<p>Accepts both RFC 3339 timestamps (e.g., <code>2006-12-02T02:07:43Z</code>) and local dates in the same format (e.g., <code>2006-12-02</code>) in your system&#8217;s configured time zone.</p>
 
 </dd><dt><code>--extra-index-url</code> <i>extra-index-url</i></dt><dd><p>Extra URLs of package indexes to use, in addition to <code>--index-url</code>.</p>
 
@@ -4952,7 +4981,7 @@
 
 </dd><dt><code>--editable</code>, <code>-e</code></dt><dt><code>--exclude-newer</code> <i>exclude-newer</i></dt><dd><p>Limit candidate packages to those that were uploaded prior to the given date.</p>
 
-<p>Accepts both RFC 3339 timestamps (e.g., <code>2006-12-02T02:07:43Z</code>) and UTC dates in the same format (e.g., <code>2006-12-02</code>).</p>
+<p>Accepts both RFC 3339 timestamps (e.g., <code>2006-12-02T02:07:43Z</code>) and local dates in the same format (e.g., <code>2006-12-02</code>) in your system&#8217;s configured time zone.</p>
 
 </dd><dt><code>--extra-index-url</code> <i>extra-index-url</i></dt><dd><p>Extra URLs of package indexes to use, in addition to <code>--index-url</code>.</p>
 
@@ -5188,7 +5217,7 @@
 
 </dd><dt><code>--exclude-newer</code> <i>exclude-newer</i></dt><dd><p>Limit candidate packages to those that were uploaded prior to the given date.</p>
 
-<p>Accepts both RFC 3339 timestamps (e.g., <code>2006-12-02T02:07:43Z</code>) and UTC dates in the same format (e.g., <code>2006-12-02</code>).</p>
+<p>Accepts both RFC 3339 timestamps (e.g., <code>2006-12-02T02:07:43Z</code>) and local dates in the same format (e.g., <code>2006-12-02</code>) in your system&#8217;s configured time zone.</p>
 
 </dd><dt><code>--extra-index-url</code> <i>extra-index-url</i></dt><dd><p>Extra URLs of package indexes to use, in addition to <code>--index-url</code>.</p>
 
@@ -5685,7 +5714,7 @@
 </dd></dl>
 
 <h2 id="uv-python">uv python<a class="headerlink" href="#uv-python" title="Permanent link">#</a></h2>
-<p>Manage Python versions and installations (experimental)</p>
+<p>Manage Python versions and installations</p>
 <p>Generally, uv first searches for Python in a virtual environment, either
 active or in a <code>.venv</code> directory  in the current working directory or
 any parent directory. If a virtual environment is not required, uv will
@@ -5693,8 +5722,7 @@ then search for a Python interpreter. Python interpreters are found by
 searching for Python executables in the <code>PATH</code> environment variable.</p>
 <p>On Windows, the <code>py</code> launcher is also invoked to find Python
 executables.</p>
-<p>When preview is enabled, i.e., via <code>--preview</code> or by using a preview
-command, uv will download Python if a version cannot be found. This
+<p>By default, uv will download Python if a version cannot be found. This
 behavior can be disabled with the <code>--python-downloads</code> option.</p>
 <p>The <code>--python</code> option allows requesting a different interpreter.</p>
 <p>The following Python version request formats are supported:</p>
@@ -6394,7 +6422,7 @@ an error.</p>
 
 </dd><dt><code>--exclude-newer</code> <i>exclude-newer</i></dt><dd><p>Limit candidate packages to those that were uploaded prior to the given date.</p>
 
-<p>Accepts both RFC 3339 timestamps (e.g., <code>2006-12-02T02:07:43Z</code>) and UTC dates in the same format (e.g., <code>2006-12-02</code>).</p>
+<p>Accepts both RFC 3339 timestamps (e.g., <code>2006-12-02T02:07:43Z</code>) and local dates in the same format (e.g., <code>2006-12-02</code>) in your system&#8217;s configured time zone.</p>
 
 </dd><dt><code>--extra</code> <i>extra</i></dt><dd><p>Include optional dependencies from the extra group name; may be provided more than once.</p>
 
@@ -6448,8 +6476,6 @@ an error.</p>
 
 <li><code>subprocess</code>:  Use the <code>keyring</code> command for credential lookup</li>
 </ul>
-</dd><dt><code>--legacy-setup-py</code></dt><dd><p>Use legacy <code>setuptools</code> behavior when building source distributions without a <code>pyproject.toml</code></p>
-
 </dd><dt><code>--link-mode</code> <i>link-mode</i></dt><dd><p>The method to use when installing packages from the global cache.</p>
 
 <p>This option is only used when building source distributions.</p>
@@ -6739,7 +6765,7 @@ an error.</p>
 
 </dd><dt><code>--exclude-newer</code> <i>exclude-newer</i></dt><dd><p>Limit candidate packages to those that were uploaded prior to the given date.</p>
 
-<p>Accepts both RFC 3339 timestamps (e.g., <code>2006-12-02T02:07:43Z</code>) and UTC dates in the same format (e.g., <code>2006-12-02</code>).</p>
+<p>Accepts both RFC 3339 timestamps (e.g., <code>2006-12-02T02:07:43Z</code>) and local dates in the same format (e.g., <code>2006-12-02</code>) in your system&#8217;s configured time zone.</p>
 
 </dd><dt><code>--extra-index-url</code> <i>extra-index-url</i></dt><dd><p>Extra URLs of package indexes to use, in addition to <code>--index-url</code>.</p>
 
@@ -6787,8 +6813,6 @@ an error.</p>
 
 <li><code>subprocess</code>:  Use the <code>keyring</code> command for credential lookup</li>
 </ul>
-</dd><dt><code>--legacy-setup-py</code></dt><dd><p>Use legacy <code>setuptools</code> behavior when building source distributions without a <code>pyproject.toml</code></p>
-
 </dd><dt><code>--link-mode</code> <i>link-mode</i></dt><dd><p>The method to use when installing packages from the global cache.</p>
 
 <p>Defaults to <code>clone</code> (also known as Copy-on-Write) on macOS, and <code>hardlink</code> on Linux and Windows.</p>
@@ -7030,7 +7054,7 @@ an error.</p>
 
 </dd><dt><code>--exclude-newer</code> <i>exclude-newer</i></dt><dd><p>Limit candidate packages to those that were uploaded prior to the given date.</p>
 
-<p>Accepts both RFC 3339 timestamps (e.g., <code>2006-12-02T02:07:43Z</code>) and UTC dates in the same format (e.g., <code>2006-12-02</code>).</p>
+<p>Accepts both RFC 3339 timestamps (e.g., <code>2006-12-02T02:07:43Z</code>) and local dates in the same format (e.g., <code>2006-12-02</code>) in your system&#8217;s configured time zone.</p>
 
 </dd><dt><code>--extra</code> <i>extra</i></dt><dd><p>Include optional dependencies from the extra group name; may be provided more than once.</p>
 
@@ -7082,8 +7106,6 @@ an error.</p>
 
 <li><code>subprocess</code>:  Use the <code>keyring</code> command for credential lookup</li>
 </ul>
-</dd><dt><code>--legacy-setup-py</code></dt><dd><p>Use legacy <code>setuptools</code> behavior when building source distributions without a <code>pyproject.toml</code></p>
-
 </dd><dt><code>--link-mode</code> <i>link-mode</i></dt><dd><p>The method to use when installing packages from the global cache.</p>
 
 <p>Defaults to <code>clone</code> (also known as Copy-on-Write) on macOS, and <code>hardlink</code> on Linux and Windows.</p>
@@ -7968,7 +7990,7 @@ an error.</p>
 
 </dd><dt><code>--exclude-newer</code> <i>exclude-newer</i></dt><dd><p>Limit candidate packages to those that were uploaded prior to the given date.</p>
 
-<p>Accepts both RFC 3339 timestamps (e.g., <code>2006-12-02T02:07:43Z</code>) and UTC dates in the same format (e.g., <code>2006-12-02</code>).</p>
+<p>Accepts both RFC 3339 timestamps (e.g., <code>2006-12-02T02:07:43Z</code>) and local dates in the same format (e.g., <code>2006-12-02</code>) in your system&#8217;s configured time zone.</p>
 
 </dd><dt><code>--extra-index-url</code> <i>extra-index-url</i></dt><dd><p>Extra URLs of package indexes to use, in addition to <code>--index-url</code>.</p>
 
