@@ -391,6 +391,25 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Python management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#script-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Script support
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1951,6 +1970,25 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Python management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#script-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Script support
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2018,7 +2056,7 @@
 <li>⚡️ <a href="https://github.com/astral-sh/uv/blob/main/BENCHMARKS.md">10-100x faster</a> than <code>pip</code>.</li>
 <li>🐍 <a href="#python-management">Installs and manages</a> Python versions.</li>
 <li>🛠️ <a href="#tool-management">Runs and installs</a> Python applications.</li>
-<li>❇️ <a href="guides/scripts/">Runs scripts</a>, with support for
+<li>❇️ <a href="#script-support">Runs scripts</a>, with support for
   <a href="guides/scripts/#declaring-script-dependencies">inline dependency metadata</a>.</li>
 <li>🗂️ Provides <a href="#project-management">comprehensive project management</a>, with a
   <a href="concepts/projects/#lockfile">universal lockfile</a>.</li>
@@ -2122,6 +2160,21 @@ similar to <code>rye</code> or <code>poetry</code>:</p>
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>Pinned `.python-version` to `pypy@3.11`
 </code></pre></div>
 <p>See the <a href="guides/install-python/">installing Python guide</a> to get started.</p>
+<h3 id="script-support">Script support<a class="headerlink" href="#script-support" title="Permanent link">#</a></h3>
+<p>uv manages dependencies and environments for single-file scripts.</p>
+<p>Create a new script and add inline metadata declaring its dependencies:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;import requests; print(requests.get(&quot;https://astral.sh&quot;))&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>example.py
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>--script<span class="w"> </span>example.py<span class="w"> </span>requests
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="go">Updated `example.py`</span>
+</code></pre></div>
+<p>Then, run the script in an isolated virtual environment:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>$ uv run example.py
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>Reading inline script metadata from: example.py
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>Installed 5 packages in 12ms
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>&lt;Response [200]&gt;
+</code></pre></div>
+<p>See the <a href="guides/scripts/">scripts guide</a> to get started.</p>
 <h2 id="the-pip-interface">The pip interface<a class="headerlink" href="#the-pip-interface" title="Permanent link">#</a></h2>
 <p>uv provides a drop-in replacement for common <code>pip</code>, <code>pip-tools</code>, and <code>virtualenv</code> commands.</p>
 <p>uv extends their interfaces with advanced features, such as dependency version overrides,
@@ -2130,25 +2183,25 @@ more.</p>
 <p>Migrate to uv without changing your existing workflows — and experience a 10-100x speedup — with the
 <code>uv pip</code> interface.</p>
 <p>Compile requirements into a platform-independent requirements file:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="gp">$ </span>uv<span class="w"> </span>pip<span class="w"> </span>compile<span class="w"> </span>docs/requirements.in<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">   </span>--universal<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">   </span>--output-file<span class="w"> </span>docs/requirements.txt
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="go">Resolved 43 packages in 12ms</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="gp">$ </span>uv<span class="w"> </span>pip<span class="w"> </span>compile<span class="w"> </span>docs/requirements.in<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">   </span>--universal<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">   </span>--output-file<span class="w"> </span>docs/requirements.txt
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="go">Resolved 43 packages in 12ms</span>
 </code></pre></div>
 <p>Create a virtual environment:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="gp">$ </span>uv<span class="w"> </span>venv
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="go">Using Python 3.12.3</span>
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="go">Creating virtualenv at: .venv</span>
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="go">Activate with: source .venv/bin/activate</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="gp">$ </span>uv<span class="w"> </span>venv
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="go">Using Python 3.12.3</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="go">Creating virtualenv at: .venv</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="go">Activate with: source .venv/bin/activate</span>
 </code></pre></div>
 <p>Install the locked requirements:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="gp">$ </span>uv<span class="w"> </span>pip<span class="w"> </span>sync<span class="w"> </span>docs/requirements.txt
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="go">Resolved 43 packages in 11ms</span>
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="go">Installed 43 packages in 208ms</span>
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="go"> + babel==2.15.0</span>
-<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="go"> + black==24.4.2</span>
-<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="go"> + certifi==2024.7.4</span>
-<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="go"> ...</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="gp">$ </span>uv<span class="w"> </span>pip<span class="w"> </span>sync<span class="w"> </span>docs/requirements.txt
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="go">Resolved 43 packages in 11ms</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="go">Installed 43 packages in 208ms</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="go"> + babel==2.15.0</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="go"> + black==24.4.2</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="go"> + certifi==2024.7.4</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="go"> ...</span>
 </code></pre></div>
 <p>See the <a href="pip/">pip interface documentation</a> to get started.</p>
 <h2 id="learn-more">Learn more<a class="headerlink" href="#learn-more" title="Permanent link">#</a></h2>
