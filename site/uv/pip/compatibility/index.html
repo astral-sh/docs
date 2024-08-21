@@ -1707,6 +1707,19 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#manylinux_compatible-enforcement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          <code>manylinux_compatible</code> enforcement
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#bytecode-compilation" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2259,6 +2272,19 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#manylinux_compatible-enforcement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          <code>manylinux_compatible</code> enforcement
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#bytecode-compilation" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2669,6 +2695,27 @@ provided. For example, <code>uv pip install -e . --only-binary :all:</code> is a
 reuse any binary distributions that are already present in the local cache.</p>
 <p>Additionally, and in contrast to pip, uv's resolver will still read metadata from pre-built binary
 distributions when <code>--no-binary</code> is provided.</p>
+<h2 id="manylinux_compatible-enforcement"><code>manylinux_compatible</code> enforcement<a class="headerlink" href="#manylinux_compatible-enforcement" title="Permanent link">#</a></h2>
+<p><a href="https://peps.python.org/pep-0600/#package-installers">PEP 600</a> describes a mechanism through which
+Python distributors can opt out of <code>manylinux</code> compatibility by defining a <code>manylinux_compatible</code>
+function on the <code>_manylinux</code> standard library module.</p>
+<p>uv respects <code>manylinux_compatible</code>, but only tests against the current glibc version, and applies
+the return value of <code>manylinux_compatible</code> globally.</p>
+<p>In other words, if <code>manylinux_compatible</code> returns <code>True</code>, uv will treat the system as
+<code>manylinux</code>-compatible; if it returns <code>False</code>, uv will treat the system as <code>manylinux</code>-incompatible,
+without calling <code>manylinux_compatible</code> for every glibc version.</p>
+<p>This approach is not a complete implementation of the spec, but is compatible with common blanket
+<code>manylinux_compatible</code> implementations like
+<a href="https://pypi.org/project/no-manylinux/"><code>no-manylinux</code></a>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">manylinux1_compatible</span> <span class="o">=</span> <span class="kc">False</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">manylinux2010_compatible</span> <span class="o">=</span> <span class="kc">False</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">manylinux2014_compatible</span> <span class="o">=</span> <span class="kc">False</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="k">def</span> <span class="nf">manylinux_compatible</span><span class="p">(</span><span class="o">*</span><span class="n">_</span><span class="p">,</span> <span class="o">**</span><span class="n">__</span><span class="p">):</span>  <span class="c1"># PEP 600</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>    <span class="k">return</span> <span class="kc">False</span>
+</code></pre></div>
 <h2 id="bytecode-compilation">Bytecode compilation<a class="headerlink" href="#bytecode-compilation" title="Permanent link">#</a></h2>
 <p>Unlike pip, uv does not compile <code>.py</code> files to <code>.pyc</code> files during installation by default (i.e., uv
 does not create or populate <code>__pycache__</code> directories). To enable bytecode compilation during
