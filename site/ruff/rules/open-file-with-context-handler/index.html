@@ -801,12 +801,17 @@
 <h1 id="open-file-with-context-handler-sim115">open-file-with-context-handler (SIM115)<a class="headerlink" href="#open-file-with-context-handler-sim115" title="Permanent link">#</a></h1>
 <p>Derived from the <strong>flake8-simplify</strong> linter.</p>
 <h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
-<p>Checks for uses of the builtin <code>open()</code> function without an associated context
-manager.</p>
+<p>Checks for cases where files are opened (e.g., using the builtin <code>open()</code> function)
+without using a context manager.</p>
 <h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
 <p>If a file is opened without a context manager, it is not guaranteed that
 the file will be closed (e.g., if an exception is raised), which can cause
 resource leaks.</p>
+<h2 id="preview-mode-behavior">Preview-mode behavior<a class="headerlink" href="#preview-mode-behavior" title="Permanent link">#</a></h2>
+<p>If [preview] mode is enabled, this rule will detect a wide array of IO calls where
+context managers could be used, such as <code>tempfile.TemporaryFile()</code> or
+<code>tarfile.TarFile(...).gzopen()</code>. If preview mode is not enabled, only <code>open()</code>,
+<code>builtins.open()</code> and <code>pathlib.Path(...).open()</code> are detected.</p>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;foo.txt&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="o">...</span>
