@@ -3392,7 +3392,7 @@ the current project root.</p>
 variable, which takes precedence over that default.</p>
 <p>This setting will override even the <code>RUFF_CACHE_DIR</code> environment
 variable, if set.</p>
-<p><strong>Default value</strong>: <code>.ruff_cache</code></p>
+<p><strong>Default value</strong>: <code>".ruff_cache"</code></p>
 <p><strong>Type</strong>: <code>str</code></p>
 <p><strong>Example usage</strong>:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">pyproject.toml</label><label for="__tabbed_2_2">ruff.toml</label></div>
@@ -4114,7 +4114,7 @@ to their defaults) as:</p>
 <p>PEP 8 recommends using spaces for <a href="https://peps.python.org/pep-0008/#indentation">indentation</a>.
 We care about accessibility; if you do not need tabs for accessibility, we do not recommend you use them.</p>
 <p>See <a href="#indent-width"><code>indent-width</code></a> to configure the number of spaces per indentation and the tab width.</p>
-<p><strong>Default value</strong>: <code>space</code></p>
+<p><strong>Default value</strong>: <code>"space"</code></p>
 <p><strong>Type</strong>: <code>"space" | "tab"</code></p>
 <p><strong>Example usage</strong>:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="25:2"><input checked="checked" id="__tabbed_25_1" name="__tabbed_25" type="radio" /><input id="__tabbed_25_2" name="__tabbed_25" type="radio" /><div class="tabbed-labels"><label for="__tabbed_25_1">pyproject.toml</label><label for="__tabbed_25_2">ruff.toml</label></div>
@@ -4143,7 +4143,7 @@ We care about accessibility; if you do not need tabs for accessibility, we do no
 <li><code>cr-lf</code>: Line endings will be converted to <code>\r\n</code>. The default line ending on Windows.</li>
 <li><code>native</code>: Line endings will be converted to <code>\n</code> on Unix and <code>\r\n</code> on Windows.</li>
 </ul>
-<p><strong>Default value</strong>: <code>auto</code></p>
+<p><strong>Default value</strong>: <code>"auto"</code></p>
 <p><strong>Type</strong>: <code>"auto" | "lf" | "cr-lf" | "native"</code></p>
 <p><strong>Example usage</strong>:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="26:2"><input checked="checked" id="__tabbed_26_1" name="__tabbed_26" type="radio" /><input id="__tabbed_26_2" name="__tabbed_26" type="radio" /><div class="tabbed-labels"><label for="__tabbed_26_1">pyproject.toml</label><label for="__tabbed_26_2">ruff.toml</label></div>
@@ -4206,7 +4206,7 @@ which leads to the less readable code: <code>'It\'s monday morning'</code>.</p>
 <p>In addition, Ruff supports the quote style <code>preserve</code> for projects that already use
 a mixture of single and double quotes and can't migrate to the <code>double</code> or <code>single</code> style.
 The quote style <code>preserve</code> leaves the quotes of all strings unchanged.</p>
-<p><strong>Default value</strong>: <code>double</code></p>
+<p><strong>Default value</strong>: <code>"double"</code></p>
 <p><strong>Type</strong>: <code>"double" | "single" | "preserve"</code></p>
 <p><strong>Example usage</strong>:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="28:2"><input checked="checked" id="__tabbed_28_1" name="__tabbed_28" type="radio" /><input id="__tabbed_28_2" name="__tabbed_28" type="radio" /><div class="tabbed-labels"><label for="__tabbed_28_1">pyproject.toml</label><label for="__tabbed_28_2">ruff.toml</label></div>
@@ -4296,7 +4296,7 @@ enforcing <code>RUF001</code>, <code>RUF002</code>, and <code>RUF003</code>.</p>
 should be ignored when enforcing (e.g.) unused-variable rules. The
 default expression matches <code>_</code>, <code>__</code>, and <code>_var</code>, but not <code>_var_</code>.</p>
 <p><strong>Default value</strong>: <code>"^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"</code></p>
-<p><strong>Type</strong>: <code>re.Pattern</code></p>
+<p><strong>Type</strong>: <code>str</code></p>
 <p><strong>Example usage</strong>:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="31:2"><input checked="checked" id="__tabbed_31_1" name="__tabbed_31" type="radio" /><input id="__tabbed_31_2" name="__tabbed_31" type="radio" /><div class="tabbed-labels"><label for="__tabbed_31_1">pyproject.toml</label><label for="__tabbed_31_2">ruff.toml</label></div>
 <div class="tabbed-content">
@@ -5182,7 +5182,7 @@ the following:</p>
 <li><code>Copyright (C) 2021-2023</code></li>
 <li><code>Copyright (C) 2021, 2023</code></li>
 </ul>
-<p><strong>Default value</strong>: <code>(?i)Copyright\s+((?:\(C\)|©)\s+)?\d{4}((-|,\s)\d{4})*</code></p>
+<p><strong>Default value</strong>: <code>"(?i)Copyright\s+((?:\(C\)|©)\s+)?\d{4}((-|,\s)\d{4})*"</code></p>
 <p><strong>Type</strong>: <code>str</code></p>
 <p><strong>Example usage</strong>:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="66:2"><input checked="checked" id="__tabbed_66_1" name="__tabbed_66" type="radio" /><input id="__tabbed_66_2" name="__tabbed_66" type="radio" /><div class="tabbed-labels"><label for="__tabbed_66_1">pyproject.toml</label><label for="__tabbed_66_2">ruff.toml</label></div>
@@ -6077,7 +6077,7 @@ for <a href="#lint_isort_order-by-type"><code>order-by-type</code></a> regardles
 <h4 id="lint_isort_default-section"><a href="#lint_isort_default-section"><code>default-section</code></a><a class="headerlink" href="#lint_isort_default-section" title="Permanent link">#</a></h4>
 <p><span id="default-section"></span></p>
 <p>Define a default section for any imports that don't fit into the specified <a href="#lint_isort_section-order"><code>section-order</code></a>.</p>
-<p><strong>Default value</strong>: <code>third-party</code></p>
+<p><strong>Default value</strong>: <code>"third-party"</code></p>
 <p><strong>Type</strong>: <code>str</code></p>
 <p><strong>Example usage</strong>:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="101:2"><input checked="checked" id="__tabbed_101_1" name="__tabbed_101" type="radio" /><input id="__tabbed_101_2" name="__tabbed_101" type="radio" /><div class="tabbed-labels"><label for="__tabbed_101_1">pyproject.toml</label><label for="__tabbed_101_2">ruff.toml</label></div>
@@ -6567,7 +6567,7 @@ versa.</p>
 <a href="https://pycqa.github.io/isort/docs/configuration/options.html#reverse-relative"><code>reverse-relative</code></a> default (<code>reverse-relative = false</code>); setting
 this to "closest-to-furthest" is equivalent to isort's
 <code>reverse-relative = true</code>.</p>
-<p><strong>Default value</strong>: <code>furthest-to-closest</code></p>
+<p><strong>Default value</strong>: <code>"furthest-to-closest"</code></p>
 <p><strong>Type</strong>: <code>"furthest-to-closest" | "closest-to-furthest"</code></p>
 <p><strong>Example usage</strong>:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="120:2"><input checked="checked" id="__tabbed_120_1" name="__tabbed_120" type="radio" /><input id="__tabbed_120_2" name="__tabbed_120" type="radio" /><div class="tabbed-labels"><label for="__tabbed_120_1">pyproject.toml</label><label for="__tabbed_120_2">ruff.toml</label></div>
@@ -6891,8 +6891,8 @@ the last segment in case the decorator itself consists of a dotted name.</p>
 <h4 id="lint_pycodestyle_ignore-overlong-task-comments"><a href="#lint_pycodestyle_ignore-overlong-task-comments"><code>ignore-overlong-task-comments</code></a><a class="headerlink" href="#lint_pycodestyle_ignore-overlong-task-comments" title="Permanent link">#</a></h4>
 <p><span id="ignore-overlong-task-comments"></span></p>
 <p>Whether line-length violations (<code>E501</code>) should be triggered for
-comments starting with <a href="#lint_task-tags"><code>task-tags</code></a> (by default: ["TODO", "FIXME",
-and "XXX"]).</p>
+comments starting with <a href="#lint_task-tags"><code>task-tags</code></a> (by default: "TODO", "FIXME",
+and "XXX").</p>
 <p><strong>Default value</strong>: <code>false</code></p>
 <p><strong>Type</strong>: <code>bool</code></p>
 <p><strong>Example usage</strong>:</p>
