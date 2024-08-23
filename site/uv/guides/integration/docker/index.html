@@ -1122,6 +1122,8 @@
       
         
       
+        
+      
     
     
       
@@ -1425,6 +1427,32 @@
     
   
     Pre-commit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fastapi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    FastAPI
   
 
     
@@ -2140,11 +2168,11 @@ container:</p>
 </code></pre></div>
 <h2 id="installing-uv">Installing uv<a class="headerlink" href="#installing-uv" title="Permanent link">#</a></h2>
 <p>uv can be installed by copying from the official Docker image:</p>
-<div class="highlight"><span class="filename">Dockerfile</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">python:3.12-slim-bullseye</span>
+<div class="highlight"><span class="filename">Dockerfile</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">python:3.12-slim-bookworm</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>ghcr.io/astral-sh/uv:latest<span class="w"> </span>/uv<span class="w"> </span>/bin/uv
 </code></pre></div>
 <p>Or, with the installer:</p>
-<div class="highlight"><span class="filename">Dockerfile</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">python:3.12-slim-bullseye</span>
+<div class="highlight"><span class="filename">Dockerfile</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">python:3.12-slim-bookworm</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c"># The installer requires curl (and certificates) to download the release archive</span>
 <a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>--no-install-recommends<span class="w"> </span>curl<span class="w"> </span>ca-certificates
@@ -2160,10 +2188,10 @@ container:</p>
 </code></pre></div>
 <p>Note this requires <code>curl</code> to be available.</p>
 <p>In either case, it is best practice to pin to a specific uv version, e.g., with:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>ghcr.io/astral-sh/uv:0.3.1<span class="w"> </span>/uv<span class="w"> </span>/bin/uv
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>ghcr.io/astral-sh/uv:0.3.2<span class="w"> </span>/uv<span class="w"> </span>/bin/uv
 </code></pre></div>
 <p>Or, with the installer:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">ADD</span><span class="w"> </span>https://astral.sh/uv/0.3.1/install.sh<span class="w"> </span>/uv-installer.sh
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">ADD</span><span class="w"> </span>https://astral.sh/uv/0.3.2/install.sh<span class="w"> </span>/uv-installer.sh
 </code></pre></div>
 <h2 id="installing-a-project">Installing a project<a class="headerlink" href="#installing-a-project" title="Permanent link">#</a></h2>
 <p>If you're using uv to manage your project, you can copy it into the image and install it:</p>

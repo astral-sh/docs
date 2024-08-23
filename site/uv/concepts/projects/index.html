@@ -1278,6 +1278,8 @@
       
         
       
+        
+      
     
     
       
@@ -1393,6 +1395,32 @@
     
   
     Pre-commit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/integration/fastapi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    FastAPI
   
 
     
@@ -2111,6 +2139,14 @@ it is up-to-date if it exists. The project environment can also be explicitly cr
 project dependencies, use <code>uv add</code> to add a package to the environment. For one-off requirements,
 use <a href="../../guides/tools/"><code>uvx</code></a> or
 <a href="#running-commands-with-additional-dependencies"><code>uv run --with</code></a>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you don't want uv to manage the project environment, set <a href="../../reference/settings/#managed"><code>managed = false</code></a>
+to disable automatic locking and syncing of the project. For example:</p>
+<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">[tool.uv]</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">managed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
+</code></pre></div>
+</div>
 <h2 id="lockfile">Lockfile<a class="headerlink" href="#lockfile" title="Permanent link">#</a></h2>
 <p>uv creates a <code>uv.lock</code> file next to the <code>pyproject.toml</code>.</p>
 <p><code>uv.lock</code> is a <em>universal</em> or <em>cross-platform</em> lockfile that captures the packages that would be
@@ -2119,11 +2155,11 @@ version.</p>
 <p>If your project supports a more limited set of platforms or Python versions, you can constrain the
 set of solved platforms via the <code>environments</code> setting, which accepts a list of PEP 508 environment
 markers. For example, to constrain the lockfile to macOS and Linux, and exclude Windows:</p>
-<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">[tool.uv]</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">environments</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="s2">&quot;sys_platform == &#39;darwin&#39;&quot;</span><span class="p">,</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="s2">&quot;sys_platform == &#39;linux&#39;&quot;</span><span class="p">,</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="p">]</span>
+<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">[tool.uv]</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">environments</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="s2">&quot;sys_platform == &#39;darwin&#39;&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="s2">&quot;sys_platform == &#39;linux&#39;&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="p">]</span>
 </code></pre></div>
 <p>Entries in the <code>environments</code> setting must be disjoint (i.e., they must not overlap). For example,
 <code>sys_platform == 'darwin'</code> and <code>sys_platform == 'linux'</code> are disjoint, but
@@ -2147,7 +2183,7 @@ error will be raised instead of updating the lockfile.</p>
 <h2 id="managing-dependencies">Managing dependencies<a class="headerlink" href="#managing-dependencies" title="Permanent link">#</a></h2>
 <p>uv is capable of adding, updating, and removing dependencies using the CLI.</p>
 <p>To add a dependency:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>httpx
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>httpx
 </code></pre></div>
 <p>uv supports adding <a href="../dependencies/#editable-dependencies">editable dependencies</a>,
 <a href="../dependencies/#development-dependencies">development dependencies</a>,
@@ -2155,46 +2191,46 @@ error will be raised instead of updating the lockfile.</p>
 <a href="../dependencies/#dependency-sources">dependency sources</a>. See the
 <a href="../dependencies/">dependency specification</a> documentation for more details.</p>
 <p>uv will raise an error if the dependency cannot be resolved, e.g.:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span><span class="s1">&#39;httpx&gt;9999&#39;</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="go">error: Because only httpx&lt;=9999 is available and example==0.1.0 depends on httpx&gt;9999, we can conclude that example==0.1.0 cannot be used.</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="go">And because only example==0.1.0 is available and you require example, we can conclude that the requirements are unsatisfiable.</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span><span class="s1">&#39;httpx&gt;9999&#39;</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="go">error: Because only httpx&lt;=9999 is available and example==0.1.0 depends on httpx&gt;9999, we can conclude that example==0.1.0 cannot be used.</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="go">And because only example==0.1.0 is available and you require example, we can conclude that the requirements are unsatisfiable.</span>
 </code></pre></div>
 <p>To remove a dependency:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="gp">$ </span>uv<span class="w"> </span>remove<span class="w"> </span>httpx
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="gp">$ </span>uv<span class="w"> </span>remove<span class="w"> </span>httpx
 </code></pre></div>
 <p>To update an existing dependency, e.g., to add a lower bound to the <code>httpx</code> version:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span><span class="s1">&#39;httpx&gt;0.1.0&#39;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span><span class="s1">&#39;httpx&gt;0.1.0&#39;</span>
 </code></pre></div>
 <p>Or, to change the bounds for <code>httpx</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span><span class="s1">&#39;httpx&lt;0.2.0&#39;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span><span class="s1">&#39;httpx&lt;0.2.0&#39;</span>
 </code></pre></div>
 <p>To add a dependency source, e.g., to use <code>httpx</code> from GitHub during development:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>git+https://github.com/encode/httpx
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>git+https://github.com/encode/httpx
 </code></pre></div>
 <h2 id="running-commands">Running commands<a class="headerlink" href="#running-commands" title="Permanent link">#</a></h2>
 <p>When working on a project, it is installed into virtual environment at <code>.venv</code>. This environment is
 isolated from the current shell by default, so invocations that require the project, e.g.,
 <code>python -c "import example"</code>, will fail. Instead, use <code>uv run</code> to run commands in the project
 environment:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import example&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import example&quot;</span>
 </code></pre></div>
 <p>When using <code>run</code>, uv will ensure that the project environment is up-to-date before running the given
 command.</p>
 <p>The given command can be provided by the project environment or exist outside of it, e.g.:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="gp">$ </span><span class="c1"># Presuming the project provides `example-cli`</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>example-cli<span class="w"> </span>foo
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="gp">$ </span><span class="c1"># Running a `bash` script that requires the project to be available</span>
-<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>bash<span class="w"> </span>scripts/foo.sh
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="gp">$ </span><span class="c1"># Presuming the project provides `example-cli`</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>example-cli<span class="w"> </span>foo
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="gp">$ </span><span class="c1"># Running a `bash` script that requires the project to be available</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>bash<span class="w"> </span>scripts/foo.sh
 </code></pre></div>
 <h3 id="running-commands-with-additional-dependencies">Running commands with additional dependencies<a class="headerlink" href="#running-commands-with-additional-dependencies" title="Permanent link">#</a></h3>
 <p>Additional dependencies or different versions of dependencies can be requested per invocation.</p>
 <p>The <code>--with</code> option is used to include a dependency for the invocation, e.g., to request a different
 version of <code>httpx</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>--with<span class="w"> </span><span class="nv">httpx</span><span class="o">==</span><span class="m">0</span>.26.0<span class="w"> </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import httpx; print(httpx.__version__)&quot;</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="go">0.26.0</span>
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>--with<span class="w"> </span><span class="nv">httpx</span><span class="o">==</span><span class="m">0</span>.25.0<span class="w"> </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import httpx; print(httpx.__version__)&quot;</span>
-<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="go">0.25.0</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>--with<span class="w"> </span><span class="nv">httpx</span><span class="o">==</span><span class="m">0</span>.26.0<span class="w"> </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import httpx; print(httpx.__version__)&quot;</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="go">0.26.0</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>--with<span class="w"> </span><span class="nv">httpx</span><span class="o">==</span><span class="m">0</span>.25.0<span class="w"> </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import httpx; print(httpx.__version__)&quot;</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="go">0.25.0</span>
 </code></pre></div>
 <p>The requested version will be respected regardless of the project's requirements. For example, even
 if the project requires <code>httpx==0.24.0</code>, the output above would be the same.</p>
@@ -2203,17 +2239,17 @@ if the project requires <code>httpx==0.24.0</code>, the output above would be th
 project. See the <a href="../../guides/scripts/#declaring-script-dependencies">scripts guide</a> for more
 details.</p>
 <p>For example, given a script:</p>
-<div class="highlight"><span class="filename">example.py</span><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># /// script</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="c1"># dependencies = [</span>
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="c1">#   &quot;httpx&quot;,</span>
-<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="c1"># ]</span>
-<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="c1"># ///</span>
-<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>
-<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="kn">import</span> <span class="nn">httpx</span>
-<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>
-<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="n">resp</span> <span class="o">=</span> <span class="n">httpx</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://peps.python.org/api/peps.json&quot;</span><span class="p">)</span>
-<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="n">data</span> <span class="o">=</span> <span class="n">resp</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="nb">print</span><span class="p">([(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">])</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">()][:</span><span class="mi">10</span><span class="p">])</span>
+<div class="highlight"><span class="filename">example.py</span><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># /// script</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="c1"># dependencies = [</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="c1">#   &quot;httpx&quot;,</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="c1"># ]</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="c1"># ///</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="kn">import</span> <span class="nn">httpx</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="n">resp</span> <span class="o">=</span> <span class="n">httpx</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://peps.python.org/api/peps.json&quot;</span><span class="p">)</span>
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="n">data</span> <span class="o">=</span> <span class="n">resp</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="nb">print</span><span class="p">([(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">])</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">()][:</span><span class="mi">10</span><span class="p">])</span>
 </code></pre></div>
 <p>The invocation <code>uv run example.py</code> would run <em>isolated</em> from the project with only the given
 dependencies listed.</p>
