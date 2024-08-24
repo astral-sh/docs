@@ -993,6 +993,19 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#finding-a-python-executable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Finding a Python executable
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#discovery-of-python-versions" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2085,6 +2098,19 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#finding-a-python-executable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Finding a Python executable
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#discovery-of-python-versions" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2288,6 +2314,22 @@ invocations.</p>
 </code></pre></div>
 <p>To exclude downloads and only show installed Python versions:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>list<span class="w"> </span>--only-installed
+</code></pre></div>
+<h2 id="finding-a-python-executable">Finding a Python executable<a class="headerlink" href="#finding-a-python-executable" title="Permanent link">#</a></h2>
+<p>To find a Python executable, use the <code>uv python find</code> command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>find
+</code></pre></div>
+<p>By default, this will display the path to the first available Python executable. See the
+<a href="#discovery-of-python-versions">discovery rules</a> for details about how executables are discovered.</p>
+<p>This interface also supports many <a href="#requesting-a-version">request formats</a>, e.g., to find a Python
+executable that has a version of 3.11 or newer:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>find<span class="w"> </span>&gt;<span class="o">=</span><span class="m">3</span>.11
+</code></pre></div>
+<p>By default, <code>uv python find</code> will include Python versions from virtual environments. If a <code>.venv</code>
+directory is found in the working directory or any of the parent directories or the <code>VIRTUAL_ENV</code>
+environment variable is set, it will take precedence over any Python executables on the <code>PATH</code>.</p>
+<p>To ignore virtual environments, use the <code>--system</code> flag:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>find<span class="w"> </span>--system
 </code></pre></div>
 <h2 id="discovery-of-python-versions">Discovery of Python versions<a class="headerlink" href="#discovery-of-python-versions" title="Permanent link">#</a></h2>
 <p>When searching for a Python version, the following locations are checked:</p>
