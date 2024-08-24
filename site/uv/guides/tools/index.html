@@ -2114,9 +2114,14 @@ easily invoking and installing tools.</p>
 <p>Tools are installed into temporary, isolated environments when using <code>uvx</code>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>If you are running a tool in a <a href="../../concepts/projects/"><em>project</em></a> and the tool requires that your project is installed,
-e.g., when using <code>pytest</code> or <code>mypy</code>, you'll want to use <a href="../projects/#running-commands"><code>uv run</code></a> instead of <code>uvx</code>.
-Otherwise, the tool will be run in a virtual environment that is isolated from your project.</p>
+<p>If you are running a tool in a <a href="../../concepts/projects/"><em>project</em></a> and the tool requires that
+your project is installed, e.g., when using <code>pytest</code> or <code>mypy</code>, you'll want to use
+<a href="../projects/#running-commands"><code>uv run</code></a> instead of <code>uvx</code>. Otherwise, the tool will be run in
+a virtual environment that is isolated from your project.</p>
+<p>If your project has a flat structure, e.g., instead of using a <code>src</code> directory for modules,
+the project itself does not need to be installed and <code>uvx</code> is fine. In this case, using
+<code>uv run</code> is only beneficial if you want to pin the version of the tool in the project's
+dependencies.</p>
 </div>
 <h2 id="commands-with-different-package-names">Commands with different package names<a class="headerlink" href="#commands-with-different-package-names" title="Permanent link">#</a></h2>
 <p>When <code>uvx ruff</code> is invoked, uv installs the <code>ruff</code> package which provides the <code>ruff</code> command.

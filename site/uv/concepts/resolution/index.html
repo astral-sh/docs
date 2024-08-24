@@ -1084,6 +1084,19 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#lower-bounds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Lower bounds
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#reproducible-resolutions" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2144,6 +2157,19 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#lower-bounds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Lower bounds
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#reproducible-resolutions" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2318,8 +2344,8 @@ is requested or an upgrade is explicitly requested with <code>--upgrade</code>.<
 <p>By default, uv tries to use the latest version of each package. For example,
 <code>uv pip install flask&gt;=2.0.0</code> will install the latest version of Flask, e.g., 3.0.0. If
 <code>flask&gt;=2.0.0</code> is a dependency of the project, only <code>flask</code> 3.0.0 will be used. This is important,
-for example, because running tests will not check that the the project is actually compatible with
-its stated lower bound of <code>flask</code> 2.0.0.</p>
+for example, because running tests will not check that the project is actually compatible with its
+stated lower bound of <code>flask</code> 2.0.0.</p>
 <p>With <code>--resolution lowest</code>, uv will install the lowest possible version for all dependencies, both
 direct and indirect (transitive). Alternatively, <code>--resolution lowest-direct</code> will use the lowest
 compatible versions for all direct dependencies, while using the latest compatible versions for all
@@ -2407,6 +2433,23 @@ constraints files.</p>
 <p>If multiple overrides are provided for the same package, they must be differentiated with
 <a href="#platform-markers">markers</a>. If a package has a dependency with a marker, it is replaced
 unconditionally when using overrides — it does not matter if the marker evaluates to true or false.</p>
+<h2 id="lower-bounds">Lower bounds<a class="headerlink" href="#lower-bounds" title="Permanent link">#</a></h2>
+<p>By default, <code>uv add</code> adds lower bounds to dependencies and, when using uv to manage projects, uv
+will warn if direct dependencies don't have lower bound.</p>
+<p>Lower bounds are not critical in the "happy path", but they are important for cases where there are
+dependency conflicts. For example, consider a project that requires two packages and those packages
+have conflicting dependencies. The resolver needs to check all combinations of all versions within
+the constraints for the two packages — if all of them conflict, an error is reported because the
+dependencies are not satisfiable. If there are no lower bounds, the resolver can (and often will)
+backtrack down to the oldest version of a package. This isn't only problematic because it's slow,
+the old version of the package often fails to build, or the resolver can end up picking a version
+that's old enough that it doesn't depend on the conflicting package, but also doesn't work with your
+code.</p>
+<p>Lower bounds are particularly critical when writing a library. It's important to declare the lowest
+version for each dependency that your library works with, and to validate that the bounds are
+correct — testing with <a href="#resolution-strategy"><code>--resolution lowest</code> or <code>resolution lowest-direct</code></a>.
+Otherwise, a user may receive an old, incompatible version of one of your library's dependencies and
+the library will fail with an unexpected error.</p>
 <h2 id="reproducible-resolutions">Reproducible resolutions<a class="headerlink" href="#reproducible-resolutions" title="Permanent link">#</a></h2>
 <p>uv supports an <code>--exclude-newer</code> option to limit resolution to distributions published before a
 specific date, allowing reproduction of installations regardless of new package releases. The date
