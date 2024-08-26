@@ -2266,20 +2266,25 @@ container:</p>
 </code></pre></div>
 <p>Note this requires <code>curl</code> to be available.</p>
 <p>In either case, it is best practice to pin to a specific uv version, e.g., with:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>ghcr.io/astral-sh/uv:0.3.3<span class="w"> </span>/uv<span class="w"> </span>/bin/uv
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>ghcr.io/astral-sh/uv:0.3.4<span class="w"> </span>/uv<span class="w"> </span>/bin/uv
 </code></pre></div>
 <p>Or, with the installer:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">ADD</span><span class="w"> </span>https://astral.sh/uv/0.3.3/install.sh<span class="w"> </span>/uv-installer.sh
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">ADD</span><span class="w"> </span>https://astral.sh/uv/0.3.4/install.sh<span class="w"> </span>/uv-installer.sh
 </code></pre></div>
 <h2 id="installing-a-project">Installing a project<a class="headerlink" href="#installing-a-project" title="Permanent link">#</a></h2>
 <p>If you're using uv to manage your project, you can copy it into the image and install it:</p>
 <div class="highlight"><span class="filename">Dockerfile</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c"># Copy the project into the image</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">ADD</span><span class="w"> </span>.<span class="w"> </span>/app
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="c"># Sync the project into a new environment, using the frozen lockfile</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c"># Sync the project into a new environment, using the frozen lockfile</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
 <a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="k">RUN</span><span class="w"> </span>uv<span class="w"> </span>sync<span class="w"> </span>--frozen
 </code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>It is best practice to use <a href="#intermediate-layers">intermediate layers</a> separating installation
+of dependencies and the project itself to improve Docker image build times.</p>
+</div>
 <p>Once the project is installed, you can either <em>activate</em> the virtual environment:</p>
 <div class="highlight"><span class="filename">Dockerfile</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c"># Use the virtual environment automatically</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">ENV</span><span class="w"> </span><span class="nv">VIRTUAL_ENV</span><span class="o">=</span>/app/.venv
@@ -2337,9 +2342,9 @@ The <code>--system</code> flag can be used to install in the system environment:
 <a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="k">RUN</span><span class="w"> </span>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
 </code></pre></div>
 <h3 id="installing-a-project_1">Installing a project<a class="headerlink" href="#installing-a-project_1" title="Permanent link">#</a></h3>
-<p>When installing a project alongside requirements, it is prudent to separate copying the requirements
-from the rest of the source code. This allows the dependencies of the project (which do not change
-often) to be cached separately from the project itself (which changes very frequently).</p>
+<p>When installing a project alongside requirements, it is best practice to separate copying the
+requirements from the rest of the source code. This allows the dependencies of the project (which do
+not change often) to be cached separately from the project itself (which changes very frequently).</p>
 <div class="highlight"><span class="filename">Dockerfile</span><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">COPY</span><span class="w"> </span>pyproject.toml<span class="w"> </span>.
 <a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="k">RUN</span><span class="w"> </span>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>pyproject.toml
 <a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="k">COPY</span><span class="w"> </span>.<span class="w"> </span>.
@@ -2348,7 +2353,7 @@ often) to be cached separately from the project itself (which changes very frequ
 <h2 id="optimizations">Optimizations<a class="headerlink" href="#optimizations" title="Permanent link">#</a></h2>
 <h3 id="using-uv-temporarily">Using uv temporarily<a class="headerlink" href="#using-uv-temporarily" title="Permanent link">#</a></h3>
 <p>If uv isn't needed in the final image, the binary can be mounted in each invocation:</p>
-<div class="highlight"><span class="filename">Dockerfile</span><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">RUN</span><span class="w"> </span>--mount<span class="o">=</span><span class="nv">from</span><span class="o">=</span>uv,source<span class="o">=</span>/uv,target<span class="o">=</span>/bin/uv<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><span class="filename">Dockerfile</span><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">RUN</span><span class="w"> </span>--mount<span class="o">=</span><span class="nv">from</span><span class="o">=</span>ghcr.io/astral-sh/uv,source<span class="o">=</span>/uv,target<span class="o">=</span>/bin/uv<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">    </span>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--system<span class="w"> </span>ruff
 </code></pre></div>
 <h3 id="compiling-bytecode">Compiling bytecode<a class="headerlink" href="#compiling-bytecode" title="Permanent link">#</a></h3>
@@ -2382,20 +2387,21 @@ a big time saver.</p>
 <a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="k">FROM</span><span class="w"> </span><span class="s">python:3.12-slim</span>
 <a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>ghcr.io/astral-sh/uv:latest<span class="w"> </span>/uv<span class="w"> </span>/bin/uv
 <a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>
-<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="c"># Copy the lockfile and `pyproject.toml` into the image</span>
-<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="k">ADD</span><span class="w"> </span>uv.lock<span class="w"> </span>/app/uv.lock
-<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="k">ADD</span><span class="w"> </span>pyproject.toml<span class="w"> </span>/app/pyproject.toml
-<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>
-<a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a><span class="c"># Install dependencies</span>
-<a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
-<a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a><span class="k">RUN</span><span class="w"> </span>uv<span class="w"> </span>sync<span class="w"> </span>--frozen<span class="w"> </span>--no-install-project
-<a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a>
-<a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a><span class="c"># Copy the project into the image</span>
-<a id="__codelineno-22-14" name="__codelineno-22-14" href="#__codelineno-22-14"></a><span class="k">ADD</span><span class="w"> </span>.<span class="w"> </span>/app
-<a id="__codelineno-22-15" name="__codelineno-22-15" href="#__codelineno-22-15"></a><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
-<a id="__codelineno-22-16" name="__codelineno-22-16" href="#__codelineno-22-16"></a>
-<a id="__codelineno-22-17" name="__codelineno-22-17" href="#__codelineno-22-17"></a><span class="c"># Sync the project</span>
-<a id="__codelineno-22-18" name="__codelineno-22-18" href="#__codelineno-22-18"></a><span class="k">RUN</span><span class="w"> </span>uv<span class="w"> </span>sync<span class="w"> </span>--frozen
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="c"># Change the working directory to the `app` directory</span>
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>
+<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="c"># Copy the lockfile and `pyproject.toml` into the image</span>
+<a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a><span class="k">ADD</span><span class="w"> </span>uv.lock<span class="w"> </span>/app/uv.lock
+<a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a><span class="k">ADD</span><span class="w"> </span>pyproject.toml<span class="w"> </span>/app/pyproject.toml
+<a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a>
+<a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a><span class="c"># Install dependencies</span>
+<a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a><span class="k">RUN</span><span class="w"> </span>uv<span class="w"> </span>sync<span class="w"> </span>--frozen<span class="w"> </span>--no-install-project
+<a id="__codelineno-22-14" name="__codelineno-22-14" href="#__codelineno-22-14"></a>
+<a id="__codelineno-22-15" name="__codelineno-22-15" href="#__codelineno-22-15"></a><span class="c"># Copy the project into the image</span>
+<a id="__codelineno-22-16" name="__codelineno-22-16" href="#__codelineno-22-16"></a><span class="k">ADD</span><span class="w"> </span>.<span class="w"> </span>/app
+<a id="__codelineno-22-17" name="__codelineno-22-17" href="#__codelineno-22-17"></a>
+<a id="__codelineno-22-18" name="__codelineno-22-18" href="#__codelineno-22-18"></a><span class="c"># Sync the project</span>
+<a id="__codelineno-22-19" name="__codelineno-22-19" href="#__codelineno-22-19"></a><span class="k">RUN</span><span class="w"> </span>uv<span class="w"> </span>sync<span class="w"> </span>--frozen
 </code></pre></div>
 <p>Note that the <code>pyproject.toml</code> is required to identify the project root and name, but the project
 <em>contents</em> are not copied into the image until the final <code>uv sync</code> command.</p>
