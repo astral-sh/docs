@@ -2040,6 +2040,18 @@ system's trust store.</p>
 <p>If client certificate authentication (mTLS) is desired, set the <code>SSL_CLIENT_CERT</code> environment
 variable to the path of the PEM formatted file containing the certificate followed by the private
 key.</p>
+<p>Finally, if you're using a setup in which you want to trust a self-signed certificate or otherwise
+disable certificate verification, you can instruct uv to allow insecure connections to dedicated
+hosts via the <code>allow-insecure-host</code> configuration option. For example, adding the following to
+<code>pyproject.toml</code> will allow insecure connections to <code>example.com</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">[tool.uv]</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">allow-insecure-host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;example.com&quot;</span><span class="p">]</span>
+</code></pre></div>
+<p><code>allow-insecure-host</code> expects to receive a hostname (e.g., <code>localhost</code>) or hostname-port pair (e.g.,
+<code>localhost:8080</code>), and is only applicable to HTTPS connections, as HTTP connections are inherently
+insecure.</p>
+<p>Use <code>allow-insecure-host</code> with caution and only in trusted environments, as it can expose you to
+security risks due to the lack of certificate verification.</p>
 <h2 id="authentication-with-alternative-package-indexes">Authentication with alternative package indexes<a class="headerlink" href="#authentication-with-alternative-package-indexes" title="Permanent link">#</a></h2>
 <p>See the <a href="../../guides/integration/alternative-indexes/">alternative indexes integration guide</a> for
 details on authentication with popular alternative Python package indexes.</p>
