@@ -1316,6 +1316,19 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#installing-python-in-musl-based-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Installing Python in musl-based images
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2194,6 +2207,19 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#installing-python-in-musl-based-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Installing Python in musl-based images
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2426,10 +2452,10 @@ container:</p>
 </code></pre></div>
 <p>Note this requires <code>curl</code> to be available.</p>
 <p>In either case, it is best practice to pin to a specific uv version, e.g., with:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>ghcr.io/astral-sh/uv:0.3.4<span class="w"> </span>/uv<span class="w"> </span>/bin/uv
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>ghcr.io/astral-sh/uv:0.3.5<span class="w"> </span>/uv<span class="w"> </span>/bin/uv
 </code></pre></div>
 <p>Or, with the installer:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">ADD</span><span class="w"> </span>https://astral.sh/uv/0.3.4/install.sh<span class="w"> </span>/uv-installer.sh
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">ADD</span><span class="w"> </span>https://astral.sh/uv/0.3.5/install.sh<span class="w"> </span>/uv-installer.sh
 </code></pre></div>
 <h3 id="installing-a-project">Installing a project<a class="headerlink" href="#installing-a-project" title="Permanent link">#</a></h3>
 <p>If you're using uv to manage your project, you can copy it into the image and install it:</p>
@@ -2491,6 +2517,13 @@ in the container.</p>
 <div class="highlight"><span class="filename">Dockerfile</span><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">ENV</span><span class="w"> </span><span class="nv">UV_TOOL_BIN_DIR</span><span class="o">=</span>/opt/uv-bin/
 </code></pre></div>
 </div>
+<h3 id="installing-python-in-musl-based-images">Installing Python in musl-based images<a class="headerlink" href="#installing-python-in-musl-based-images" title="Permanent link">#</a></h3>
+<p>While uv <a href="../../install-python/">installs a compatible Python version</a> if there isn't one available
+in the image, uv does not yet support installing Python for musl-based distributions. For example,
+if you are using an Alpine Linux base image that doesn't have Python installed, you need to add it
+with the system package manager:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>apk<span class="w"> </span>add<span class="w"> </span>--no-cache<span class="w"> </span>python3~<span class="o">=</span><span class="m">3</span>.12
+</code></pre></div>
 <h2 id="developing-in-a-container">Developing in a container<a class="headerlink" href="#developing-in-a-container" title="Permanent link">#</a></h2>
 <p>When developing, it's useful to mount the project directory into a container. With this setup,
 changes to the project can be immediately reflected in a containerized service without rebuilding
@@ -2500,7 +2533,7 @@ should be kept.</p>
 <h3 id="mounting-the-project-with-docker-run">Mounting the project with <code>docker run</code><a class="headerlink" href="#mounting-the-project-with-docker-run" title="Permanent link">#</a></h3>
 <p>Bind mount the project (in the working directory) to <code>/app</code> while retaining the <code>.venv</code> directory
 with an <a href="https://docs.docker.com/engine/storage/#volumes">anonymous volume</a>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="gp">$ </span>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>--volume<span class="w"> </span>.:/app<span class="w"> </span>--volume<span class="w"> </span>/app/.venv<span class="w"> </span><span class="o">[</span>...<span class="o">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="gp">$ </span>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>--volume<span class="w"> </span>.:/app<span class="w"> </span>--volume<span class="w"> </span>/app/.venv<span class="w"> </span><span class="o">[</span>...<span class="o">]</span>
 </code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -2522,27 +2555,27 @@ to the containerized service when files change.</p>
 <a href="https://docs.docker.com/compose/compose-application-model/#the-compose-file">Docker compose file</a>
 to mount the project directory without syncing the project virtual environment and to rebuild the
 image when the configuration changes:</p>
-<div class="highlight"><span class="filename">compose.yaml</span><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nt">services</span><span class="p">:</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">  </span><span class="nt">example</span><span class="p">:</span>
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">    </span><span class="nt">build</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.</span>
-<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>
-<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">    </span><span class="c1"># ...</span>
-<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>
-<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="w">    </span><span class="nt">develop</span><span class="p">:</span>
-<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="w">      </span><span class="c1"># Create a `watch` configuration to update the appl</span>
-<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="w">      </span><span class="c1">#</span>
-<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="w">      </span><span class="nt">watch</span><span class="p">:</span>
-<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="w">        </span><span class="c1"># Sync the working directory with the `/app` directory in the container</span>
-<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sync</span>
-<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="w">          </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.</span>
-<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a><span class="w">          </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/app</span>
-<a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a><span class="w">          </span><span class="c1"># Exclude the project virtual environment</span>
-<a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a><span class="w">          </span><span class="nt">ignore</span><span class="p">:</span>
-<a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a><span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.venv/</span>
-<a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a>
-<a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a><span class="w">        </span><span class="c1"># Rebuild the image on changes to the `pyproject.toml`</span>
-<a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rebuild</span>
-<a id="__codelineno-13-21" name="__codelineno-13-21" href="#__codelineno-13-21"></a><span class="w">          </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./pyproject.toml</span>
+<div class="highlight"><span class="filename">compose.yaml</span><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nt">services</span><span class="p">:</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">  </span><span class="nt">example</span><span class="p">:</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">    </span><span class="nt">build</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">    </span><span class="c1"># ...</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="w">    </span><span class="nt">develop</span><span class="p">:</span>
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="w">      </span><span class="c1"># Create a `watch` configuration to update the appl</span>
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="w">      </span><span class="c1">#</span>
+<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="w">      </span><span class="nt">watch</span><span class="p">:</span>
+<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="w">        </span><span class="c1"># Sync the working directory with the `/app` directory in the container</span>
+<a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sync</span>
+<a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a><span class="w">          </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.</span>
+<a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a><span class="w">          </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/app</span>
+<a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a><span class="w">          </span><span class="c1"># Exclude the project virtual environment</span>
+<a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a><span class="w">          </span><span class="nt">ignore</span><span class="p">:</span>
+<a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a><span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.venv/</span>
+<a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a>
+<a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a><span class="w">        </span><span class="c1"># Rebuild the image on changes to the `pyproject.toml`</span>
+<a id="__codelineno-14-20" name="__codelineno-14-20" href="#__codelineno-14-20"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rebuild</span>
+<a id="__codelineno-14-21" name="__codelineno-14-21" href="#__codelineno-14-21"></a><span class="w">          </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./pyproject.toml</span>
 </code></pre></div>
 <p>Then, run <code>docker compose watch</code> to run the container with the development setup.</p>
 <p>See a complete example in the
@@ -2552,17 +2585,17 @@ image when the configuration changes:</p>
 <p>Compiling Python source files to bytecode is typically desirable for production images as it tends
 to improve startup time (at the cost of increased installation time).</p>
 <p>To enable bytecode compilation, use the <code>--compile-bytecode</code> flag:</p>
-<div class="highlight"><span class="filename">Dockerfile</span><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">RUN</span><span class="w"> </span>uv<span class="w"> </span>sync<span class="w"> </span>--compile-bytecode
+<div class="highlight"><span class="filename">Dockerfile</span><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">RUN</span><span class="w"> </span>uv<span class="w"> </span>sync<span class="w"> </span>--compile-bytecode
 </code></pre></div>
 <p>Alternatively, you can set the <code>UV_COMPILE_BYTECODE</code> environment variable to ensure that all
 commands within the Dockerfile compile bytecode:</p>
-<div class="highlight"><span class="filename">Dockerfile</span><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">ENV</span><span class="w"> </span><span class="nv">UV_COMPILE_BYTECODE</span><span class="o">=</span><span class="m">1</span>
+<div class="highlight"><span class="filename">Dockerfile</span><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">ENV</span><span class="w"> </span><span class="nv">UV_COMPILE_BYTECODE</span><span class="o">=</span><span class="m">1</span>
 </code></pre></div>
 <h3 id="caching">Caching<a class="headerlink" href="#caching" title="Permanent link">#</a></h3>
 <p>A <a href="https://docs.docker.com/build/guide/mounts/#add-a-cache-mount">cache mount</a> can be used to
 improve performance across builds:</p>
-<div class="highlight"><span class="filename">Dockerfile</span><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">RUN</span><span class="w"> </span>--mount<span class="o">=</span><span class="nv">type</span><span class="o">=</span>cache,target<span class="o">=</span>/root/.cache/uv<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">    </span>uv<span class="w"> </span>sync
+<div class="highlight"><span class="filename">Dockerfile</span><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">RUN</span><span class="w"> </span>--mount<span class="o">=</span><span class="nv">type</span><span class="o">=</span>cache,target<span class="o">=</span>/root/.cache/uv<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">    </span>uv<span class="w"> </span>sync
 </code></pre></div>
 <p>If you're not mounting the cache, image size can be reduced by using the <code>--no-cache</code> flag or
 setting <code>UV_NO_CACHE</code>.</p>
@@ -2571,7 +2604,7 @@ setting <code>UV_NO_CACHE</code>.</p>
 <p>The cache directory's location can be determined by running the <code>uv cache dir</code> command in the
 container.</p>
 <p>Alternatively, the cache can be set to a constant location:</p>
-<div class="highlight"><span class="filename">Dockerfile</span><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">ENV</span><span class="w"> </span><span class="nv">UV_CACHE_DIR</span><span class="o">=</span>/opt/uv-cache/
+<div class="highlight"><span class="filename">Dockerfile</span><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">ENV</span><span class="w"> </span><span class="nv">UV_CACHE_DIR</span><span class="o">=</span>/opt/uv-cache/
 </code></pre></div>
 </div>
 <h3 id="intermediate-layers">Intermediate layers<a class="headerlink" href="#intermediate-layers" title="Permanent link">#</a></h3>
@@ -2580,25 +2613,25 @@ dependency installation into its own layer via the <code>--no-install</code> opt
 <p><code>uv sync --no-install-project</code> will install the dependencies of the project but not the project
 itself. Since the project changes frequently, but its dependencies are generally static, this can be
 a big time saver.</p>
-<div class="highlight"><span class="filename">Dockerfile</span><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c"># Install uv</span>
-<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="k">FROM</span><span class="w"> </span><span class="s">python:3.12-slim</span>
-<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>ghcr.io/astral-sh/uv:latest<span class="w"> </span>/uv<span class="w"> </span>/bin/uv
-<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>
-<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="c"># Change the working directory to the `app` directory</span>
-<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
-<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>
-<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="c"># Copy the lockfile and `pyproject.toml` into the image</span>
-<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="k">ADD</span><span class="w"> </span>uv.lock<span class="w"> </span>/app/uv.lock
-<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a><span class="k">ADD</span><span class="w"> </span>pyproject.toml<span class="w"> </span>/app/pyproject.toml
-<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>
-<a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a><span class="c"># Install dependencies</span>
-<a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a><span class="k">RUN</span><span class="w"> </span>uv<span class="w"> </span>sync<span class="w"> </span>--frozen<span class="w"> </span>--no-install-project
-<a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a>
-<a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a><span class="c"># Copy the project into the image</span>
-<a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a><span class="k">ADD</span><span class="w"> </span>.<span class="w"> </span>/app
-<a id="__codelineno-18-17" name="__codelineno-18-17" href="#__codelineno-18-17"></a>
-<a id="__codelineno-18-18" name="__codelineno-18-18" href="#__codelineno-18-18"></a><span class="c"># Sync the project</span>
-<a id="__codelineno-18-19" name="__codelineno-18-19" href="#__codelineno-18-19"></a><span class="k">RUN</span><span class="w"> </span>uv<span class="w"> </span>sync<span class="w"> </span>--frozen
+<div class="highlight"><span class="filename">Dockerfile</span><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c"># Install uv</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="k">FROM</span><span class="w"> </span><span class="s">python:3.12-slim</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>ghcr.io/astral-sh/uv:latest<span class="w"> </span>/uv<span class="w"> </span>/bin/uv
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="c"># Change the working directory to the `app` directory</span>
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>
+<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="c"># Copy the lockfile and `pyproject.toml` into the image</span>
+<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="k">ADD</span><span class="w"> </span>uv.lock<span class="w"> </span>/app/uv.lock
+<a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a><span class="k">ADD</span><span class="w"> </span>pyproject.toml<span class="w"> </span>/app/pyproject.toml
+<a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>
+<a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a><span class="c"># Install dependencies</span>
+<a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a><span class="k">RUN</span><span class="w"> </span>uv<span class="w"> </span>sync<span class="w"> </span>--frozen<span class="w"> </span>--no-install-project
+<a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a>
+<a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a><span class="c"># Copy the project into the image</span>
+<a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a><span class="k">ADD</span><span class="w"> </span>.<span class="w"> </span>/app
+<a id="__codelineno-19-17" name="__codelineno-19-17" href="#__codelineno-19-17"></a>
+<a id="__codelineno-19-18" name="__codelineno-19-18" href="#__codelineno-19-18"></a><span class="c"># Sync the project</span>
+<a id="__codelineno-19-19" name="__codelineno-19-19" href="#__codelineno-19-19"></a><span class="k">RUN</span><span class="w"> </span>uv<span class="w"> </span>sync<span class="w"> </span>--frozen
 </code></pre></div>
 <p>Note that the <code>pyproject.toml</code> is required to identify the project root and name, but the project
 <em>contents</em> are not copied into the image until the final <code>uv sync</code> command.</p>
@@ -2610,41 +2643,41 @@ a big time saver.</p>
 </div>
 <h3 id="using-uv-temporarily">Using uv temporarily<a class="headerlink" href="#using-uv-temporarily" title="Permanent link">#</a></h3>
 <p>If uv isn't needed in the final image, the binary can be mounted in each invocation:</p>
-<div class="highlight"><span class="filename">Dockerfile</span><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">RUN</span><span class="w"> </span>--mount<span class="o">=</span><span class="nv">from</span><span class="o">=</span>ghcr.io/astral-sh/uv,source<span class="o">=</span>/uv,target<span class="o">=</span>/bin/uv<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">    </span>uv<span class="w"> </span>sync
+<div class="highlight"><span class="filename">Dockerfile</span><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">RUN</span><span class="w"> </span>--mount<span class="o">=</span><span class="nv">from</span><span class="o">=</span>ghcr.io/astral-sh/uv,source<span class="o">=</span>/uv,target<span class="o">=</span>/bin/uv<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">    </span>uv<span class="w"> </span>sync
 </code></pre></div>
 <h2 id="using-the-pip-interface">Using the pip interface<a class="headerlink" href="#using-the-pip-interface" title="Permanent link">#</a></h2>
 <h3 id="installing-a-package">Installing a package<a class="headerlink" href="#installing-a-package" title="Permanent link">#</a></h3>
 <p>The system Python environment is safe to use this context, since a container is already isolated.
 The <code>--system</code> flag can be used to install in the system environment:</p>
-<div class="highlight"><span class="filename">Dockerfile</span><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">RUN</span><span class="w"> </span>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--system<span class="w"> </span>ruff
+<div class="highlight"><span class="filename">Dockerfile</span><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="k">RUN</span><span class="w"> </span>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--system<span class="w"> </span>ruff
 </code></pre></div>
 <p>To use the system Python environment by default, set the <code>UV_SYSTEM_PYTHON</code> variable:</p>
-<div class="highlight"><span class="filename">Dockerfile</span><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="k">ENV</span><span class="w"> </span><span class="nv">UV_SYSTEM_PYTHON</span><span class="o">=</span><span class="m">1</span>
+<div class="highlight"><span class="filename">Dockerfile</span><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="k">ENV</span><span class="w"> </span><span class="nv">UV_SYSTEM_PYTHON</span><span class="o">=</span><span class="m">1</span>
 </code></pre></div>
 <p>Alternatively, a virtual environment can be created and activated:</p>
-<div class="highlight"><span class="filename">Dockerfile</span><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="k">RUN</span><span class="w"> </span>uv<span class="w"> </span>venv<span class="w"> </span>/opt/venv
-<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="c"># Use the virtual environment automatically</span>
-<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="k">ENV</span><span class="w"> </span><span class="nv">VIRTUAL_ENV</span><span class="o">=</span>/opt/venv
-<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="c"># Place entry points in the environment at the front of the path</span>
-<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="k">ENV</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;/opt/venv/bin:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
+<div class="highlight"><span class="filename">Dockerfile</span><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="k">RUN</span><span class="w"> </span>uv<span class="w"> </span>venv<span class="w"> </span>/opt/venv
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="c"># Use the virtual environment automatically</span>
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="k">ENV</span><span class="w"> </span><span class="nv">VIRTUAL_ENV</span><span class="o">=</span>/opt/venv
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="c"># Place entry points in the environment at the front of the path</span>
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="k">ENV</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;/opt/venv/bin:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
 </code></pre></div>
 <p>When using a virtual environment, the <code>--system</code> flag should be omitted from uv invocations:</p>
-<div class="highlight"><span class="filename">Dockerfile</span><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="k">RUN</span><span class="w"> </span>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>ruff
+<div class="highlight"><span class="filename">Dockerfile</span><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="k">RUN</span><span class="w"> </span>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>ruff
 </code></pre></div>
 <h3 id="installing-requirements">Installing requirements<a class="headerlink" href="#installing-requirements" title="Permanent link">#</a></h3>
 <p>To install requirements files, copy them into the container:</p>
-<div class="highlight"><span class="filename">Dockerfile</span><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="k">COPY</span><span class="w"> </span>requirements.txt<span class="w"> </span>.
-<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="k">RUN</span><span class="w"> </span>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+<div class="highlight"><span class="filename">Dockerfile</span><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="k">COPY</span><span class="w"> </span>requirements.txt<span class="w"> </span>.
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="k">RUN</span><span class="w"> </span>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
 </code></pre></div>
 <h3 id="installing-a-project_1">Installing a project<a class="headerlink" href="#installing-a-project_1" title="Permanent link">#</a></h3>
 <p>When installing a project alongside requirements, it is best practice to separate copying the
 requirements from the rest of the source code. This allows the dependencies of the project (which do
 not change often) to be cached separately from the project itself (which changes very frequently).</p>
-<div class="highlight"><span class="filename">Dockerfile</span><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="k">COPY</span><span class="w"> </span>pyproject.toml<span class="w"> </span>.
-<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="k">RUN</span><span class="w"> </span>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>pyproject.toml
-<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="k">COPY</span><span class="w"> </span>.<span class="w"> </span>.
-<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="k">RUN</span><span class="w"> </span>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+<div class="highlight"><span class="filename">Dockerfile</span><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="k">COPY</span><span class="w"> </span>pyproject.toml<span class="w"> </span>.
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="k">RUN</span><span class="w"> </span>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>pyproject.toml
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="k">COPY</span><span class="w"> </span>.<span class="w"> </span>.
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="k">RUN</span><span class="w"> </span>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
 </code></pre></div>
 
 
