@@ -2399,14 +2399,18 @@ supported formats.</p>
 <h2 id="managed-python-distributions">Managed Python distributions<a class="headerlink" href="#managed-python-distributions" title="Permanent link">#</a></h2>
 <p>uv supports downloading and installing CPython and PyPy distributions.</p>
 <h3 id="cpython-distributions">CPython distributions<a class="headerlink" href="#cpython-distributions" title="Permanent link">#</a></h3>
-<p>Python does not publish official distributable CPython binaries, uv uses third-party standalone
-distributions from the
-<a href="https://github.com/indygreg/python-build-standalone"><code>python-build-standalone</code></a> project. The
-project is partially maintained by the uv maintainers and is used by many other Python projects.</p>
+<p>As Python does not publish official distributable CPython binaries, uv instead uses pre-built
+third-party distributions from the
+<a href="https://github.com/indygreg/python-build-standalone"><code>python-build-standalone</code></a> project.
+<code>python-build-standalone</code> is partially maintained by the uv maintainers and is used in many other
+Python projects, like <a href="https://github.com/astral-sh/rye">Rye</a> and
+<a href="https://github.com/bazelbuild/rules_python">bazelbuild/rules_python</a>.</p>
 <p>The uv Python distributions are self-contained, highly-portable, and performant. While Python can be
-built from source, as in tools like <code>pyenv</code>, it requires preinstalled system dependencies and
-creating optimized, performant builds is very slow.</p>
-<p>These distributions have some behavior quirks, generally as a consequence of portability. See the
+built from source, as in tools like <code>pyenv</code>, doing so requires preinstalled system dependencies, and
+creating optimized, performant builds (e.g., with PGO and LTO enabled) is very slow.</p>
+<p>These distributions have some behavior quirks, generally as a consequence of portability; and, at
+present, uv does not support installing them on musl-based Linux distributions, like Alpine Linux.
+See the
 <a href="https://gregoryszorc.com/docs/python-build-standalone/main/quirks.html"><code>python-build-standalone</code> quirks</a>
 documentation for details.</p>
 <h3 id="pypy-distributions">PyPy distributions<a class="headerlink" href="#pypy-distributions" title="Permanent link">#</a></h3>
