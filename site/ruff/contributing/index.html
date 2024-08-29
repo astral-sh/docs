@@ -1728,6 +1728,7 @@ will execute Pylint with maximum parallelism and only report errors.</p>
 <p>You can run the benchmarks with</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>cargo<span class="w"> </span>benchmark
 </code></pre></div>
+<p><code>cargo benchmark</code> is an alias for <code>cargo bench -p ruff_benchmark --bench linter --bench formatter --</code></p>
 <h4 id="benchmark-driven-development">Benchmark-driven Development<a class="headerlink" href="#benchmark-driven-development" title="Permanent link">#</a></h4>
 <p>Ruff uses <a href="https://bheisler.github.io/criterion.rs/book/">Criterion.rs</a> for benchmarks. You can use
 <code>--save-baseline=&lt;name&gt;</code> to store an initial baseline benchmark (e.g. on <code>main</code>) and then use
@@ -1755,7 +1756,7 @@ This is useful to illustrate the improvements of a PR.</p>
 </code></pre></div>
 <h4 id="tips">Tips<a class="headerlink" href="#tips" title="Permanent link">#</a></h4>
 <ul>
-<li>Use <code>cargo bench -p ruff_benchmark &lt;filter&gt;</code> to only run specific benchmarks. For example: <code>cargo benchmark lexer</code>
+<li>Use <code>cargo bench -p ruff_benchmark &lt;filter&gt;</code> to only run specific benchmarks. For example: <code>cargo bench -p ruff_benchmark lexer</code>
     to only run the lexer benchmarks.</li>
 <li>Use <code>cargo bench -p ruff_benchmark -- --quiet</code> for a more cleaned up output (without statistical relevance)</li>
 <li>Use <code>cargo bench -p ruff_benchmark -- --quick</code> to get faster results (more prone to noise)</li>

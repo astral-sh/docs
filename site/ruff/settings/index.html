@@ -3870,6 +3870,15 @@ treats the following as identical to <code>target-version = "py38"</code>:</p>
 </code></pre></div>
 <p>If both are specified, <code>target-version</code> takes precedence over
 <code>requires-python</code>.</p>
+<p>Note that a stub file can <a href="https://typing.readthedocs.io/en/latest/spec/distributing.html#syntax">sometimes make use of a typing feature</a>
+before it is available at runtime, as long as the stub does not make
+use of new <em>syntax</em>. For example, a type checker will understand
+<code>int | str</code> in a stub as being a <code>Union</code> type annotation, even if the
+type checker is run using Python 3.9, despite the fact that the <code>|</code>
+operator can only be used to create union types at runtime on Python
+3.10+. As such, Ruff will often recommend newer features in a stub
+file than it would for an equivalent runtime file with the same target
+version.</p>
 <p><strong>Default value</strong>: <code>"py38"</code></p>
 <p><strong>Type</strong>: <code>"py37" | "py38" | "py39" | "py310" | "py311" | "py312"</code></p>
 <p><strong>Example usage</strong>:</p>
