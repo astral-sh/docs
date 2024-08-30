@@ -2503,8 +2503,9 @@ contain a package that will be built and installed into the project environment.
 <div class="highlight"><span class="filename">hello.py</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello from example-app!&quot;</span><span class="p">)</span>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="n">main</span><span class="p">()</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="n">main</span><span class="p">()</span>
 </code></pre></div>
 <p>And can be executed with <code>uv run</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>hello.py
@@ -2641,6 +2642,14 @@ of used package versions is known.</p>
 <p><code>uv.lock</code> is a human-readable TOML file but is managed by uv and should not be edited manually.
 There is no Python standard for lockfiles at this time, so the format of this file is specific to uv
 and not usable by other tools.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you need to integrate uv with other tools or workflows, you can export <code>uv.lock</code> to <code>requirements.txt</code> format
+with <code>uv export --format requirements-txt</code>. The generated <code>requirements.txt</code> file can then be installed via
+<code>uv pip install</code>, or with other tools like <code>pip</code>.</p>
+<p>In general, we recommend against using both a <code>uv.lock</code> and a <code>requirements.txt</code> file. If you find yourself
+exporting a <code>uv.lock</code> file, consider opening an issue to discuss your use case.</p>
+</div>
 <h3 id="checking-if-the-lockfile-is-up-to-date">Checking if the lockfile is up-to-date<a class="headerlink" href="#checking-if-the-lockfile-is-up-to-date" title="Permanent link">#</a></h3>
 <p>To avoid updating the lockfile during <code>uv sync</code> and <code>uv run</code> invocations, use the <code>--frozen</code> flag.</p>
 <p>To assert the lockfile matches the project metadata, use the <code>--locked</code> flag. If the lockfile is not

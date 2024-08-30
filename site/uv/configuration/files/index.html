@@ -1969,16 +1969,16 @@ files will be ignored. Instead, uv will exclusively read from user-level configu
 <p>In workspaces, uv will begin its search at the workspace root, ignoring any configuration defined in
 workspace members. Since the workspace is locked as a single unit, configuration is shared across
 all members.</p>
-<p>If a <code>pyproject.toml</code> file is found, uv will read configuration from the <code>[tool.uv.pip]</code> table. For
+<p>If a <code>pyproject.toml</code> file is found, uv will read configuration from the <code>[tool.uv]</code> table. For
 example, to set a persistent index URL, add the following to a <code>pyproject.toml</code>:</p>
-<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">[tool.uv.pip]</span>
+<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">[tool.uv]</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">index-url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://test.pypi.org/simple&quot;</span>
 </code></pre></div>
 <p>(If there is no such table, the <code>pyproject.toml</code> file will be ignored, and uv will continue
 searching in the directory hierarchy.)</p>
-<p>If a <code>uv.toml</code> file is found, uv will read from the <code>[pip]</code> table. For example:</p>
-<div class="highlight"><span class="filename">uv.toml</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">[pip]</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">index-url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://test.pypi.org/simple&quot;</span>
+<p>uv will also search for <code>uv.toml</code> files, which follow an identical structure, but omit the
+<code>[tool.uv]</code> prefix. For example:</p>
+<div class="highlight"><span class="filename">uv.toml</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">index-url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://test.pypi.org/simple&quot;</span>
 </code></pre></div>
 <p>uv will also discover user-level configuration at <code>~/.config/uv/uv.toml</code> (or
 <code>$XDG_CONFIG_HOME/uv/uv.toml</code>) on macOS and Linux, or <code>%APPDATA%\uv\uv.toml</code> on Windows. User-level
@@ -1999,14 +1999,20 @@ configuration files (e.g., user-level configuration will be ignored).</p>
 <h2 id="settings">Settings<a class="headerlink" href="#settings" title="Permanent link">#</a></h2>
 <p>See the <a href="../../reference/settings/">settings reference</a> for an enumeration of the available settings.</p>
 <h2 id="configuring-the-pip-interface">Configuring the pip interface<a class="headerlink" href="#configuring-the-pip-interface" title="Permanent link">#</a></h2>
-<p>A dedicated <a href="../../reference/settings/#pip"><code>[uv.pip]</code></a> section is provided for configuring <em>just</em>
-the <code>uv pip</code> command line interface. Settings in this section will not apply to <code>uv</code> commands
-outside of the <code>uv pip</code> namespace. However, many of the settings in this section have corollaries in
+<p>A dedicated <a href="../../reference/settings/#pip"><code>[tool.uv.pip]</code></a> section is provided for configuring
+<em>just</em> the <code>uv pip</code> command line interface. Settings in this section will not apply to <code>uv</code> commands
+outside the <code>uv pip</code> namespace. However, many of the settings in this section have corollaries in
 the top-level namespace which <em>do</em> apply to the <code>uv pip</code> interface unless they are overridden by a
 value in the <code>uv.pip</code> section.</p>
 <p>The <code>uv.pip</code> settings are designed to adhere closely to pip's interface and are declared separately
 to retain compatibility while allowing the global settings to use alternate designs (e.g.,
 <code>--no-build</code>).</p>
+<p>As an example, setting the <code>index-url</code> under <code>[tool.uv.pip]</code>, as in the following <code>pyproject.toml</code>,
+would only affect the <code>uv pip</code> subcommands (e.g., <code>uv pip install</code>, but not <code>uv sync</code>, <code>uv lock</code>, or
+<code>uv run</code>):</p>
+<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">[tool.uv.pip]</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">index-url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://test.pypi.org/simple&quot;</span>
+</code></pre></div>
 
 
 
