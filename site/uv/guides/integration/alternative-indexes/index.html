@@ -1389,6 +1389,38 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#aws-codeartifact" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          AWS CodeArtifact
+        </span>
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AWS CodeArtifact">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#publishing-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Publishing packages
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#other-indexes" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1989,6 +2021,38 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#aws-codeartifact" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          AWS CodeArtifact
+        </span>
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AWS CodeArtifact">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#publishing-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Publishing packages
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#other-indexes" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2024,6 +2088,12 @@
 <p>While uv uses the official Python Package Index (PyPI) by default, it also supports alternative
 package indexes. Most alternative indexes require various forms of authentication, which requires
 some initial setup.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Please read the dcocumentation on <a href="../../../pip/compatibility/#packages-that-exist-on-multiple-indexes">using multiple indexes</a>
+in uv — the default behavior is different from pip to prevent dependency confusion attacks, but
+this means that uv may not find the versions of a package as you'd expect.</p>
+</div>
 <h2 id="azure-artifacts">Azure Artifacts<a class="headerlink" href="#azure-artifacts" title="Permanent link">#</a></h2>
 <p>uv can install packages from
 <a href="https://learn.microsoft.com/en-us/azure/devops/artifacts/start-using-azure-artifacts?view=azure-devops&amp;tabs=nuget%2Cnugetserver">Azure DevOps Artifacts</a>.
@@ -2063,9 +2133,46 @@ default username <code>VssSessionToken</code>.</p>
 <a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="gp">$ </span><span class="c1"># Configure the index URL with the username</span>
 <a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="gp">$ </span><span class="nb">export</span><span class="w"> </span><span class="nv">UV_EXTRA_INDEX_URL</span><span class="o">=</span>https://VssSessionToken@pkgs.dev.azure.com/<span class="o">{</span>organisation<span class="o">}</span>/<span class="o">{</span>project<span class="o">}</span>/_packaging/<span class="o">{</span>feedName<span class="o">}</span>/pypi/simple/
 </code></pre></div>
+<h2 id="aws-codeartifact">AWS CodeArtifact<a class="headerlink" href="#aws-codeartifact" title="Permanent link">#</a></h2>
+<p>uv can install packages from
+<a href="https://docs.aws.amazon.com/codeartifact/latest/ug/using-python.html">AWS CodeArtifact</a>.</p>
+<p>The authorization token can be retrieved using the <code>awscli</code> tool.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This guide assumes the AWS CLI has previously been authenticated.</p>
+</div>
+<p>First, declare some constants for your CodeArtifact repository:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AWS_DOMAIN</span><span class="o">=</span><span class="s2">&quot;&lt;your-domain&gt;&quot;</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AWS_ACCOUNT_ID</span><span class="o">=</span><span class="s2">&quot;&lt;your-account-id&gt;&quot;</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AWS_REGION</span><span class="o">=</span><span class="s2">&quot;&lt;your-region&gt;&quot;</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AWS_CODEARTIFACT_REPOSITORY</span><span class="o">=</span><span class="s2">&quot;&lt;your-repository&gt;&quot;</span>
+</code></pre></div>
+<p>Then, retrieve a token from the <code>awscli</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AWS_CODEARTIFACT_TOKEN</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span>aws<span class="w"> </span>codeartifact<span class="w"> </span>get-authorization-token<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span>--domain<span class="w"> </span><span class="nv">$AWS_DOMAIN</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span>--domain-owner<span class="w"> </span><span class="nv">$AWS_ACCOUNT_ID</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span>--query<span class="w"> </span>authorizationToken<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span>--output<span class="w"> </span>text
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="k">)</span><span class="s2">&quot;</span>
+</code></pre></div>
+<p>And configure the index URL:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">UV_EXTRA_INDEX_URL</span><span class="o">=</span><span class="s2">&quot;https://aws:</span><span class="si">${</span><span class="nv">AWS_CODEARTIFACT_TOKEN</span><span class="si">}</span><span class="s2">@</span><span class="si">${</span><span class="nv">AWS_DOMAIN</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">AWS_ACCOUNT_ID</span><span class="si">}</span><span class="s2">.d.codeartifact.</span><span class="si">${</span><span class="nv">AWS_REGION</span><span class="si">}</span><span class="s2">.amazonaws.com/pypi/</span><span class="si">${</span><span class="nv">AWS_CODEARTIFACT_REPOSITORY</span><span class="si">}</span><span class="s2">/simple/&quot;</span>
+</code></pre></div>
+<h3 id="publishing-packages">Publishing packages<a class="headerlink" href="#publishing-packages" title="Permanent link">#</a></h3>
+<p>If you also want to publish your own packages to AWS CodeArtifact, you can use <code>twine</code> as described
+in the <a href="../../publish/">publishing guide</a>. You will need to set <code>TWINE_REPOSITORY_URL</code> separately
+from the credentials:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Configure twine to use AWS CodeArtifact</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">TWINE_REPOSITORY_URL</span><span class="o">=</span><span class="s2">&quot;https://</span><span class="si">${</span><span class="nv">AWS_CODEARTIFACT_TOKEN</span><span class="si">}</span><span class="s2">@</span><span class="si">${</span><span class="nv">AWS_DOMAIN</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">AWS_ACCOUNT_ID</span><span class="si">}</span><span class="s2">.d.codeartifact.</span><span class="si">${</span><span class="nv">AWS_REGION</span><span class="si">}</span><span class="s2">.amazonaws.com/pypi/</span><span class="si">${</span><span class="nv">AWS_CODEARTIFACT_REPOSITORY</span><span class="si">}</span><span class="s2">/&quot;</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">TWINE_USERNAME</span><span class="o">=</span>aws
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="nb">export</span><span class="w"> </span><span class="nv">TWINE_PASSWORD</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$AWS_CODEARTIFACT_TOKEN</span><span class="s2">&quot;</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="c1"># Publish the package</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>uv<span class="w"> </span>run<span class="w"> </span>twine<span class="w"> </span>upload<span class="w"> </span>dist/*
+</code></pre></div>
 <h2 id="other-indexes">Other indexes<a class="headerlink" href="#other-indexes" title="Permanent link">#</a></h2>
-<p>uv is also known to work with JFrog's Artifactory, the Google Cloud Artifact Registry, and AWS Code
-Artifact.</p>
+<p>uv is also known to work with JFrog's Artifactory and the Google Cloud Artifact Registry.</p>
 
 
 
