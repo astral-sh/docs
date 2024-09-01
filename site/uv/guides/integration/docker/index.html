@@ -2488,7 +2488,7 @@ container:</p>
 <p>uv builds and publishes the following Docker tags:</p>
 <ul>
 <li><code>uv:latest</code></li>
-<li><code>uv:{major}.{minor}.{patch}</code>, e.g., <code>uv:0.4.1</code></li>
+<li><code>uv:{major}.{minor}.{patch}</code>, e.g., <code>uv:0.4.2</code></li>
 <li><code>uv:{major}.{minor}</code>, e.g., <code>uv:0.4</code> (the latest patch version)</li>
 </ul>
 <p>For more details, see the <a href="https://github.com/astral-sh/uv/pkgs/container/uv">GitHub Container</a>
@@ -2515,10 +2515,10 @@ page.</p>
 </code></pre></div>
 <p>Note this requires <code>curl</code> to be available.</p>
 <p>In either case, it is best practice to pin to a specific uv version, e.g., with:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>ghcr.io/astral-sh/uv:0.4.1<span class="w"> </span>/uv<span class="w"> </span>/bin/uv
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>ghcr.io/astral-sh/uv:0.4.2<span class="w"> </span>/uv<span class="w"> </span>/bin/uv
 </code></pre></div>
 <p>Or, with the installer:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">ADD</span><span class="w"> </span>https://astral.sh/uv/0.4.1/install.sh<span class="w"> </span>/uv-installer.sh
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">ADD</span><span class="w"> </span>https://astral.sh/uv/0.4.2/install.sh<span class="w"> </span>/uv-installer.sh
 </code></pre></div>
 <h3 id="installing-a-project">Installing a project<a class="headerlink" href="#installing-a-project" title="Permanent link">#</a></h3>
 <p>If you're using uv to manage your project, you can copy it into the image and install it:</p>
@@ -2625,7 +2625,7 @@ image when the configuration changes:</p>
 <a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">    </span><span class="c1"># ...</span>
 <a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>
 <a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="w">    </span><span class="nt">develop</span><span class="p">:</span>
-<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="w">      </span><span class="c1"># Create a `watch` configuration to update the appl</span>
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="w">      </span><span class="c1"># Create a `watch` configuration to update the app</span>
 <a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="w">      </span><span class="c1">#</span>
 <a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="w">      </span><span class="nt">watch</span><span class="p">:</span>
 <a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="w">        </span><span class="c1"># Sync the working directory with the `/app` directory in the container</span>
