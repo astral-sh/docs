@@ -18,8 +18,8 @@
         
       
       
-      <link rel="icon" href="../../assets/ruff-favicon.png">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.3.1+insiders-4.41.0">
+      <link rel="icon" href="../../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.3.1+insiders-4.41.0">
     
     
       
@@ -64,6 +64,23 @@
 
     
     
+<link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="/static/favicon-16x16.png"/>
+<link rel="manifest" href="/static/site.webmanifest"/>
+<link rel="mask-icon" href="/static/safari-pinned-tab.svg" color="#2e183d"/>
+<meta name="msapplication-TileColor" content="#d7ff64"/>
+<meta name="theme-color" content="#ffffff"/>
+<meta name="robots" content="index,follow"/>
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Astral",
+        "url": "https://astral.sh"
+    }
+</script>
+
   </head>
   
   
@@ -801,11 +818,27 @@
 <h1 id="async-function-with-timeout-async109">async-function-with-timeout (ASYNC109)<a class="headerlink" href="#async-function-with-timeout-async109" title="Permanent link">#</a></h1>
 <p>Derived from the <strong>flake8-async</strong> linter.</p>
 <h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
-<p>Checks for <code>async</code> functions with a <code>timeout</code> argument.</p>
+<p>Checks for <code>async</code> function definitions with <code>timeout</code> parameters.</p>
 <h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
 <p>Rather than implementing asynchronous timeout behavior manually, prefer
 built-in timeout functionality, such as <code>asyncio.timeout</code>, <code>trio.fail_after</code>,
 or <code>anyio.move_on_after</code>, among others.</p>
+<p>This rule is highly opinionated to enforce a design pattern
+called <a href="https://vorpus.org/blog/some-thoughts-on-asynchronous-api-design-in-a-post-asyncawait-world/#timeouts-and-cancellation">"structured concurrency"</a> that allows for
+<code>async</code> functions to be oblivious to timeouts,
+instead letting callers to handle the logic with a context manager.</p>
+<h2 id="details">Details<a class="headerlink" href="#details" title="Permanent link">#</a></h2>
+<p>This rule attempts to detect which async framework your code is using
+by analysing the imports in the file it's checking. If it sees an
+<code>anyio</code> import in your code, it will assume <code>anyio</code> is your framework
+of choice; if it sees a <code>trio</code> import, it will assume <code>trio</code>; if it
+sees neither, it will assume <code>asyncio</code>. <code>asyncio.timeout</code> was added
+in Python 3.11, so if <code>asyncio</code> is detected as the framework being used,
+this rule will be ignored when your configured <a href="../../settings/#target-version"><code>target-version</code></a> is set
+to less than Python 3.11.</p>
+<p>For functions that wrap <code>asyncio.timeout</code>, <code>trio.fail_after</code> or
+<code>anyio.move_on_after</code>, false positives from this rule can be avoided
+by using a different parameter name.</p>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">long_running_task</span><span class="p">(</span><span class="n">timeout</span><span class="p">):</span> <span class="o">...</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
