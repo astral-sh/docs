@@ -1997,6 +1997,12 @@ searching in the directory hierarchy.)</p>
 <code>[tool.uv]</code> prefix. For example:</p>
 <div class="highlight"><span class="filename">uv.toml</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">index-url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://test.pypi.org/simple&quot;</span>
 </code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>uv.toml</code> files take precedence over <code>pyproject.toml</code> files, so if both <code>uv.toml</code> and
+<code>pyproject.toml</code> files are present in a directory, configuration will be read from <code>uv.toml</code>, and
+<code>[tool.uv]</code> section in the accompanying <code>pyproject.toml</code> will be ignored.</p>
+</div>
 <p>uv will also discover user-level configuration at <code>~/.config/uv/uv.toml</code> (or
 <code>$XDG_CONFIG_HOME/uv/uv.toml</code>) on macOS and Linux, or <code>%APPDATA%\uv\uv.toml</code> on Windows. User-level
 configuration must use the <code>uv.toml</code> format, rather than the <code>pyproject.toml</code> format, as a
