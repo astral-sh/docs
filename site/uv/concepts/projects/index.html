@@ -954,6 +954,25 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Project environments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom-project-environment-paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Custom project environment paths
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1002,6 +1021,19 @@
       
         <span class="md-typeset">
           Limited resolution environments
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Optional dependencies
         </span>
       
     </span>
@@ -2274,6 +2306,25 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Project environments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom-project-environment-paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Custom project environment paths
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2322,6 +2373,19 @@
       
         <span class="md-typeset">
           Limited resolution environments
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Optional dependencies
         </span>
       
     </span>
@@ -2642,6 +2706,26 @@ to disable automatic locking and syncing of the project. For example:</p>
 <a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="n">managed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
 </code></pre></div>
 </div>
+<h3 id="custom-project-environment-paths">Custom project environment paths<a class="headerlink" href="#custom-project-environment-paths" title="Permanent link">#</a></h3>
+<p>The <code>UV_PROJECT_ENVIRONMENT</code> environment variable can be used to configure the project virtual
+environment path (<code>.venv</code> by default).</p>
+<p>If a relative path is provided, it will be resolved relative to the workspace root. If an absolute
+path is provided, it will be used as-is, i.e. a child directory will not be created for the
+environment. If an environment is not present at the provided path, uv will create it.</p>
+<p>This option can be used to write to the system Python environment, though it is not recommended.
+<code>uv sync</code> will remove extraneous packages from the environment by default and, as such, may leave
+the system in a broken state.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>If an absolute path is provided and the setting is used across multiple projects, the
+environment will be overwritten by invocations in each project. This setting is only recommended
+for use in CI or Docker images.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>uv does not read the <code>VIRTUAL_ENV</code> environment variable during project operations. A warning
+will be displayed if <code>VIRTUAL_ENV</code> is set to a different path than the project's environment.</p>
+</div>
 <h2 id="project-lockfile">Project lockfile<a class="headerlink" href="#project-lockfile" title="Permanent link">#</a></h2>
 <p>uv creates a <code>uv.lock</code> file next to the <code>pyproject.toml</code>.</p>
 <p><code>uv.lock</code> is a <em>universal</em> or <em>cross-platform</em> lockfile that captures the packages that would be
@@ -2690,6 +2774,16 @@ markers. For example, to constrain the lockfile to macOS and Linux, and exclude 
 <code>sys_platform == 'darwin'</code> and <code>sys_platform == 'linux'</code> are disjoint, but
 <code>sys_platform == 'darwin'</code> and <code>python_version &gt;= '3.9'</code> are not, since both could be true at the
 same time.</p>
+<h3 id="optional-dependencies">Optional dependencies<a class="headerlink" href="#optional-dependencies" title="Permanent link">#</a></h3>
+<p>uv requires that all optional dependencies ("extras") declared by the project are compatible with
+each other and resolves all optional dependencies together when creating the lockfile.</p>
+<p>If optional dependencies declared in one group are not compatible with those in another group, uv
+will fail to resolve the requirements of the project with an error.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There is currently no way to declare conflicting optional dependencies. See
+<a href="https://github.com/astral-sh/uv/issues/6981">astral.sh/uv#6981</a> to track support.</p>
+</div>
 <h2 id="managing-dependencies">Managing dependencies<a class="headerlink" href="#managing-dependencies" title="Permanent link">#</a></h2>
 <p>uv is capable of adding, updating, and removing dependencies using the CLI.</p>
 <p>To add a dependency:</p>
