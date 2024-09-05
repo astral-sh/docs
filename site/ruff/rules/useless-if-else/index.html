@@ -10,7 +10,7 @@
         <meta name="author" content="charliermarsh">
       
       
-        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/bad-dunder-method-name/">
+        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/useless-if-else/">
       
       
       
@@ -23,7 +23,7 @@
     
     
 
-<title>bad-dunder-method-name (PLW3201) | Ruff</title>
+<title>useless-if-else (RUF034) | Ruff</title>
 
 
     
@@ -100,7 +100,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#bad-dunder-method-name-plw3201" class="md-skip">
+        <a href="#useless-if-else-ruf034" class="md-skip">
           Skip to content
         </a>
       
@@ -135,7 +135,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              bad-dunder-method-name (PLW3201)
+              useless-if-else (RUF034)
             
           </span>
         </div>
@@ -815,35 +815,23 @@
   
 
 
-<h1 id="bad-dunder-method-name-plw3201">bad-dunder-method-name (PLW3201)<a class="headerlink" href="#bad-dunder-method-name-plw3201" title="Permanent link">#</a></h1>
-<p>Derived from the <strong>Pylint</strong> linter.</p>
+<h1 id="useless-if-else-ruf034">useless-if-else (RUF034)<a class="headerlink" href="#useless-if-else-ruf034" title="Permanent link">#</a></h1>
 <p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
-<p>Checks for dunder methods that have no special meaning in Python 3.</p>
+<p>Checks for useless if-else conditions with identical arms.</p>
 <h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
-<p>Misspelled or no longer supported dunder name methods may cause your code to not function
-as expected.</p>
-<p>Since dunder methods are associated with customizing the behavior
-of a class in Python, introducing a dunder method such as <code>__foo__</code>
-that diverges from standard Python dunder methods could potentially
-confuse someone reading the code.</p>
-<p>This rule will detect all methods starting and ending with at least
-one underscore (e.g., <code>_str_</code>), but ignores known dunder methods (like
-<code>__init__</code>), as well as methods that are marked with <code>@override</code>.</p>
-<p>Additional dunder methods names can be allowed via the
-<a href="../../settings/#lint_pylint_allow-dunder-method-names"><code>lint.pylint.allow-dunder-method-names</code></a> setting.</p>
+<p>Useless if-else conditions add unnecessary complexity to the code without
+providing any logical benefit.</p>
+<p>Assigning the value directly is clearer and more explicit, and
+should be preferred.</p>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">class</span> <span class="nc">Foo</span><span class="p">:</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="k">def</span> <span class="nf">__init_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="o">...</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Bad</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">foo</span> <span class="o">=</span> <span class="n">x</span> <span class="k">if</span> <span class="n">y</span> <span class="k">else</span> <span class="n">x</span>
 </code></pre></div>
 <p>Use instead:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">class</span> <span class="nc">Foo</span><span class="p">:</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="o">...</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Good</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">foo</span> <span class="o">=</span> <span class="n">x</span>
 </code></pre></div>
-<h2 id="options">Options<a class="headerlink" href="#options" title="Permanent link">#</a></h2>
-<ul>
-<li><a href="../../settings/#lint_pylint_allow-dunder-method-names"><code>lint.pylint.allow-dunder-method-names</code></a></li>
-</ul>
 
 
 
