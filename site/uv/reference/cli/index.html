@@ -5832,7 +5832,7 @@
 <p>If a tool was installed with specific settings, they will be respected on upgraded. For example, if <code>--prereleases allow</code> was provided during installation, it will continue to be respected in upgrades.</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>uv tool upgrade [OPTIONS] &lt;NAME&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>uv tool upgrade [OPTIONS] &lt;NAME&gt;...
 </code></pre></div>
 <h3 class="cli-reference">Arguments</h3>
 
@@ -6130,6 +6130,8 @@
 
 </dd><dt><code>--show-paths</code></dt><dd><p>Whether to display the path to each tool environment and installed executable</p>
 
+</dd><dt><code>--show-version-specifiers</code></dt><dd><p>Whether to display the version specifier(s) used to install each tool</p>
+
 </dd><dt><code>--verbose</code>, <code>-v</code></dt><dd><p>Use verbose output.</p>
 
 <p>You can configure fine-grained logging using the <code>RUST_LOG</code> environment variable. (&lt;https://docs.rs/tracing-subscriber/latest/tracing_subscriber/filter/struct.EnvFilter.html#directives&gt;)</p>
@@ -6142,7 +6144,7 @@
 <p>Uninstall a tool</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>uv tool uninstall [OPTIONS] &lt;NAME&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>uv tool uninstall [OPTIONS] &lt;NAME&gt;...
 </code></pre></div>
 <h3 class="cli-reference">Arguments</h3>
 
@@ -9088,6 +9090,11 @@ uv will exit with an error.</p>
 <p>WARNING: Hosts included in this list will not be verified against the system&#8217;s certificate store. Only use <code>--allow-insecure-host</code> in a secure network with verified sources, as it bypasses SSL verification and could expose you to MITM attacks.</p>
 
 <p>May also be set with the <code>UV_INSECURE_HOST</code> environment variable.</p>
+</dd><dt><code>--build-constraint</code>, <code>-b</code> <i>build-constraint</i></dt><dd><p>Constrain build dependencies using the given requirements files when building distributions.</p>
+
+<p>Constraints files are <code>requirements.txt</code>-like files that only control the <em>version</em> of a build dependency that&#8217;s installed. However, including a package in a constraints file will <em>not</em> trigger the inclusion of that package on its own.</p>
+
+<p>May also be set with the <code>UV_BUILD_CONSTRAINT</code> environment variable.</p>
 </dd><dt><code>--cache-dir</code> <i>cache-dir</i></dt><dd><p>Path to the cache directory.</p>
 
 <p>Defaults to <code>$HOME/Library/Caches/uv</code> on macOS, <code>$XDG_CACHE_HOME/uv</code> or <code>$HOME/.cache/uv</code> on Linux, and <code>%LOCALAPPDATA%\uv\cache</code> on Windows.</p>
