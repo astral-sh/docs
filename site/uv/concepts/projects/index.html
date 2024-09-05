@@ -2588,7 +2588,7 @@ definitions with <a href="../dependencies/">package sources</a> in <code>tool.uv
 </div>
 <h2 id="defining-entry-points">Defining entry points<a class="headerlink" href="#defining-entry-points" title="Permanent link">#</a></h2>
 <p>uv uses the standard <code>[project.scripts]</code> table to define entry points for the project.</p>
-<p>For example, to declare an command called <code>hello</code> that invokes the <code>hello</code> function in the
+<p>For example, to declare a command called <code>hello</code> that invokes the <code>hello</code> function in the
 <code>example_package_app</code> module:</p>
 <div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">[project.scripts]</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">hello</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;example_package_app:hello&quot;</span>
@@ -2628,9 +2628,10 @@ project for a library instead.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="gp">$ </span>uv<span class="w"> </span>init<span class="w"> </span>--app<span class="w"> </span>example-app
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="gp">$ </span>tree<span class="w"> </span>example-app
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="go">example-app</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="go">├── README.md</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="go">├── hello.py</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="go">└── pyproject.toml</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="go">├── .python-version</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="go">├── README.md</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="go">├── hello.py</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="go">└── pyproject.toml</span>
 </code></pre></div>
 <p>When creating an application, uv will generate a minimal <code>pyproject.toml</code>. A build system is not
 defined and the source code is in the top-level directory, e.g., <code>hello.py</code>. The project does not
@@ -2663,11 +2664,12 @@ consume.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="gp">$ </span>uv<span class="w"> </span>init<span class="w"> </span>--lib<span class="w"> </span>example-lib
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="gp">$ </span>tree<span class="w"> </span>example-lib
 <a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="go">example-lib</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="go">├── README.md</span>
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="go">├── pyproject.toml</span>
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="go">└── src</span>
-<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="go">    └── example_lib</span>
-<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="go">        └── __init__.py</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="go">├── .python-version</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="go">├── README.md</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="go">├── pyproject.toml</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="go">└── src</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="go">    └── example_lib</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="go">        └── __init__.py</span>
 </code></pre></div>
 <p>When creating a library, uv defines a build system and places the source code in placed in a <code>src</code>
 directory. These changes ensure that the library is isolated from any <code>python</code> invocations in the
@@ -2710,11 +2712,12 @@ environment.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="gp">$ </span>uv<span class="w"> </span>init<span class="w"> </span>--app<span class="w"> </span>--package<span class="w"> </span>example-packaged-app
 <a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="gp">$ </span>tree<span class="w"> </span>example-packaged-app
 <a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="go">example-packaged-app</span>
-<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="go">├── README.md</span>
-<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="go">├── pyproject.toml</span>
-<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="go">└── src</span>
-<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="go">    └── example_packaged-app</span>
-<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="go">        └── __init__.py</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="go">├── .python-version</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="go">├── README.md</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="go">├── pyproject.toml</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="go">└── src</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="go">    └── example_packaged-app</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="go">        └── __init__.py</span>
 </code></pre></div>
 <p>But the module defines a CLI function:</p>
 <div class="highlight"><span class="filename">__init__.py</span><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">def</span> <span class="nf">hello</span><span class="p">():</span>
@@ -2820,18 +2823,31 @@ exporting a <code>uv.lock</code> file, consider opening an issue to discuss your
 up-to-date, an error will be raised instead of updating the lockfile.</p>
 <h3 id="upgrading-locked-package-versions">Upgrading locked package versions<a class="headerlink" href="#upgrading-locked-package-versions" title="Permanent link">#</a></h3>
 <p>By default, uv will prefer the locked versions of packages when running <code>uv sync</code> and <code>uv lock</code>.
-Package versions will only change if project's dependency constraints exclude the previous, locked
-version. To upgrade to the latest package versions supported by the project's dependency
-constraints, use <code>uv lock --upgrade</code>.</p>
+Package versions will only change if the project's dependency constraints exclude the previous,
+locked version.</p>
+<p>To upgrade all packages:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="gp">$ </span>uv<span class="w"> </span>lock<span class="w"> </span>--upgrade
+</code></pre></div>
+<p>To upgrade a single package to the latest version:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="gp">$ </span>uv<span class="w"> </span>lock<span class="w"> </span>--upgrade-package<span class="w"> </span>&lt;package&gt;
+</code></pre></div>
+<p>To upgrade a single package to a specific version:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="gp">$ </span>uv<span class="w"> </span>lock<span class="w"> </span>--upgrade-package<span class="w"> </span>&lt;package&gt;<span class="o">==</span>&lt;version&gt;
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In all cases, upgrades are limited to the project's dependency constraints. For example, if the
+project defines an upper bound for a package then an upgrade will not go beyond that version.</p>
+</div>
 <h3 id="limited-resolution-environments">Limited resolution environments<a class="headerlink" href="#limited-resolution-environments" title="Permanent link">#</a></h3>
 <p>If your project supports a more limited set of platforms or Python versions, you can constrain the
 set of solved platforms via the <code>environments</code> setting, which accepts a list of PEP 508 environment
 markers. For example, to constrain the lockfile to macOS and Linux, and exclude Windows:</p>
-<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">[tool.uv]</span>
-<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="n">environments</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">    </span><span class="s2">&quot;sys_platform == &#39;darwin&#39;&quot;</span><span class="p">,</span>
-<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">    </span><span class="s2">&quot;sys_platform == &#39;linux&#39;&quot;</span><span class="p">,</span>
-<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="p">]</span>
+<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">[tool.uv]</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="n">environments</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="w">    </span><span class="s2">&quot;sys_platform == &#39;darwin&#39;&quot;</span><span class="p">,</span>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="w">    </span><span class="s2">&quot;sys_platform == &#39;linux&#39;&quot;</span><span class="p">,</span>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="p">]</span>
 </code></pre></div>
 <p>Entries in the <code>environments</code> setting must be disjoint (i.e., they must not overlap). For example,
 <code>sys_platform == 'darwin'</code> and <code>sys_platform == 'linux'</code> are disjoint, but
@@ -2850,7 +2866,7 @@ will fail to resolve the requirements of the project with an error.</p>
 <h2 id="managing-dependencies">Managing dependencies<a class="headerlink" href="#managing-dependencies" title="Permanent link">#</a></h2>
 <p>uv is capable of adding, updating, and removing dependencies using the CLI.</p>
 <p>To add a dependency:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>httpx
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>httpx
 </code></pre></div>
 <p>uv supports adding <a href="../dependencies/#editable-dependencies">editable dependencies</a>,
 <a href="../dependencies/#development-dependencies">development dependencies</a>,
@@ -2858,15 +2874,15 @@ will fail to resolve the requirements of the project with an error.</p>
 <a href="../dependencies/#dependency-sources">dependency sources</a>. See the
 <a href="../dependencies/">dependency specification</a> documentation for more details.</p>
 <p>uv will raise an error if the dependency cannot be resolved, e.g.:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span><span class="s1">&#39;httpx&gt;9999&#39;</span>
-<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="go">error: Because only httpx&lt;=9999 is available and example==0.1.0 depends on httpx&gt;9999, we can conclude that example==0.1.0 cannot be used.</span>
-<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="go">And because only example==0.1.0 is available and you require example, we can conclude that the requirements are unsatisfiable.</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span><span class="s1">&#39;httpx&gt;9999&#39;</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="go">error: Because only httpx&lt;=9999 is available and example==0.1.0 depends on httpx&gt;9999, we can conclude that example==0.1.0 cannot be used.</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="go">And because only example==0.1.0 is available and you require example, we can conclude that the requirements are unsatisfiable.</span>
 </code></pre></div>
 <p>To remove a dependency:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="gp">$ </span>uv<span class="w"> </span>remove<span class="w"> </span>httpx
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="gp">$ </span>uv<span class="w"> </span>remove<span class="w"> </span>httpx
 </code></pre></div>
 <p>To update an existing dependency, e.g., to add a lower bound to the <code>httpx</code> version:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span><span class="s1">&#39;httpx&gt;0.1.0&#39;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span><span class="s1">&#39;httpx&gt;0.1.0&#39;</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -2874,41 +2890,41 @@ will fail to resolve the requirements of the project with an error.</p>
 <code>pyproject.toml</code>. The locked version of the dependency will only change if necessary to
 satisfy the new constraints. To force the package version to update to the latest within
 the constraints, use <code>--upgrade-package &lt;name&gt;</code>, e.g.:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span><span class="s1">&#39;httpx&gt;0.1.0&#39;</span><span class="w"> </span>--upgrade-package<span class="w"> </span>httpx
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span><span class="s1">&#39;httpx&gt;0.1.0&#39;</span><span class="w"> </span>--upgrade-package<span class="w"> </span>httpx
 </code></pre></div>
 <p>See the <a href="#upgrading-locked-package-versions">lockfile</a> section for more details on upgrading
 package versions.</p>
 </div>
 <p>Or, to change the bounds for <code>httpx</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span><span class="s1">&#39;httpx&lt;0.2.0&#39;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span><span class="s1">&#39;httpx&lt;0.2.0&#39;</span>
 </code></pre></div>
 <p>To add a dependency source, e.g., to use <code>httpx</code> from GitHub during development:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>git+https://github.com/encode/httpx
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>git+https://github.com/encode/httpx
 </code></pre></div>
 <h2 id="running-commands">Running commands<a class="headerlink" href="#running-commands" title="Permanent link">#</a></h2>
 <p>When working on a project, it is installed into virtual environment at <code>.venv</code>. This environment is
 isolated from the current shell by default, so invocations that require the project, e.g.,
 <code>python -c "import example"</code>, will fail. Instead, use <code>uv run</code> to run commands in the project
 environment:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import example&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import example&quot;</span>
 </code></pre></div>
 <p>When using <code>run</code>, uv will ensure that the project environment is up-to-date before running the given
 command.</p>
 <p>The given command can be provided by the project environment or exist outside of it, e.g.:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="gp">$ </span><span class="c1"># Presuming the project provides `example-cli`</span>
-<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>example-cli<span class="w"> </span>foo
-<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>
-<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="gp">$ </span><span class="c1"># Running a `bash` script that requires the project to be available</span>
-<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>bash<span class="w"> </span>scripts/foo.sh
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="gp">$ </span><span class="c1"># Presuming the project provides `example-cli`</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>example-cli<span class="w"> </span>foo
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="gp">$ </span><span class="c1"># Running a `bash` script that requires the project to be available</span>
+<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>bash<span class="w"> </span>scripts/foo.sh
 </code></pre></div>
 <h3 id="running-commands-with-additional-dependencies">Running commands with additional dependencies<a class="headerlink" href="#running-commands-with-additional-dependencies" title="Permanent link">#</a></h3>
 <p>Additional dependencies or different versions of dependencies can be requested per invocation.</p>
 <p>The <code>--with</code> option is used to include a dependency for the invocation, e.g., to request a different
 version of <code>httpx</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>--with<span class="w"> </span><span class="nv">httpx</span><span class="o">==</span><span class="m">0</span>.26.0<span class="w"> </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import httpx; print(httpx.__version__)&quot;</span>
-<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="go">0.26.0</span>
-<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>--with<span class="w"> </span><span class="nv">httpx</span><span class="o">==</span><span class="m">0</span>.25.0<span class="w"> </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import httpx; print(httpx.__version__)&quot;</span>
-<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="go">0.25.0</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>--with<span class="w"> </span><span class="nv">httpx</span><span class="o">==</span><span class="m">0</span>.26.0<span class="w"> </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import httpx; print(httpx.__version__)&quot;</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="go">0.26.0</span>
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>--with<span class="w"> </span><span class="nv">httpx</span><span class="o">==</span><span class="m">0</span>.25.0<span class="w"> </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import httpx; print(httpx.__version__)&quot;</span>
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="go">0.25.0</span>
 </code></pre></div>
 <p>The requested version will be respected regardless of the project's requirements. For example, even
 if the project requires <code>httpx==0.24.0</code>, the output above would be the same.</p>
@@ -2917,17 +2933,17 @@ if the project requires <code>httpx==0.24.0</code>, the output above would be th
 project. See the <a href="../../guides/scripts/#declaring-script-dependencies">scripts guide</a> for more
 details.</p>
 <p>For example, given a script:</p>
-<div class="highlight"><span class="filename">example.py</span><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="c1"># /// script</span>
-<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="c1"># dependencies = [</span>
-<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="c1">#   &quot;httpx&quot;,</span>
-<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="c1"># ]</span>
-<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="c1"># ///</span>
-<a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a>
-<a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a><span class="kn">import</span> <span class="nn">httpx</span>
-<a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a>
-<a id="__codelineno-27-9" name="__codelineno-27-9" href="#__codelineno-27-9"></a><span class="n">resp</span> <span class="o">=</span> <span class="n">httpx</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://peps.python.org/api/peps.json&quot;</span><span class="p">)</span>
-<a id="__codelineno-27-10" name="__codelineno-27-10" href="#__codelineno-27-10"></a><span class="n">data</span> <span class="o">=</span> <span class="n">resp</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-<a id="__codelineno-27-11" name="__codelineno-27-11" href="#__codelineno-27-11"></a><span class="nb">print</span><span class="p">([(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">])</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">()][:</span><span class="mi">10</span><span class="p">])</span>
+<div class="highlight"><span class="filename">example.py</span><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="c1"># /// script</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="c1"># dependencies = [</span>
+<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="c1">#   &quot;httpx&quot;,</span>
+<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="c1"># ]</span>
+<a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a><span class="c1"># ///</span>
+<a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a>
+<a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a><span class="kn">import</span> <span class="nn">httpx</span>
+<a id="__codelineno-30-8" name="__codelineno-30-8" href="#__codelineno-30-8"></a>
+<a id="__codelineno-30-9" name="__codelineno-30-9" href="#__codelineno-30-9"></a><span class="n">resp</span> <span class="o">=</span> <span class="n">httpx</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://peps.python.org/api/peps.json&quot;</span><span class="p">)</span>
+<a id="__codelineno-30-10" name="__codelineno-30-10" href="#__codelineno-30-10"></a><span class="n">data</span> <span class="o">=</span> <span class="n">resp</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<a id="__codelineno-30-11" name="__codelineno-30-11" href="#__codelineno-30-11"></a><span class="nb">print</span><span class="p">([(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">])</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">()][:</span><span class="mi">10</span><span class="p">])</span>
 </code></pre></div>
 <p>The invocation <code>uv run example.py</code> would run <em>isolated</em> from the project with only the given
 dependencies listed.</p>
@@ -2944,10 +2960,10 @@ can be installed directly.</p>
 <p><code>uv build</code> can be used to build both source distributions and binary distributions for your project.
 By default, <code>uv build</code> will build the project in the current directory, and place the built
 artifacts in a <code>dist/</code> subdirectory:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="gp">$ </span>uv<span class="w"> </span>build
-<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="gp">$ </span>ls<span class="w"> </span>dist/
-<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="go">example-0.1.0-py3-none-any.whl</span>
-<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="go">example-0.1.0.tar.gz</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="gp">$ </span>uv<span class="w"> </span>build
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="gp">$ </span>ls<span class="w"> </span>dist/
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="go">example-0.1.0-py3-none-any.whl</span>
+<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="go">example-0.1.0.tar.gz</span>
 </code></pre></div>
 <p>You can build the project in a different directory by providing a path to <code>uv build</code>, e.g.,
 <code>uv build path/to/project</code>.</p>
@@ -2956,6 +2972,16 @@ that source distribution.</p>
 <p>You can limit <code>uv build</code> to building a source distribution with <code>uv build --source</code>, a binary
 distribution with <code>uv build --binary</code>, or build both distributions from source with
 <code>uv build --source --binary</code>.</p>
+<p><code>uv build</code> accepts <code>--build-constraints</code>, which can be used to constrain the versions of any build
+requirements during the build process. When coupled with <code>--require-hashes</code>, uv will enforce that
+the requirement used to build the project match specific, known hashes, for reproducibility.</p>
+<p>For example, given the following <code>constraints.txt</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>setuptools==68.2.2 --hash=sha256:b454a35605876da60632df1a60f736524eb73cc47bbc9f3f1ef1b644de74fd2a
+</code></pre></div>
+<p>Running the following would build the project with the specified version of <code>setuptools</code>, and verify
+that the downloaded <code>setuptools</code> distribution matches the specified hash:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="gp">$ </span>uv<span class="w"> </span>build<span class="w"> </span>--build-constraints<span class="w"> </span>constraints.txt<span class="w"> </span>--require-hashes
+</code></pre></div>
 <h2 id="build-isolation">Build isolation<a class="headerlink" href="#build-isolation" title="Permanent link">#</a></h2>
 <p>By default, uv builds all packages in isolated virtual environments, as per
 <a href="https://peps.python.org/pep-0517/">PEP 517</a>. Some packages are incompatible with build isolation,
@@ -2963,74 +2989,74 @@ be it intentionally (e.g., due to the use of heavy build dependencies, mostly co
 unintentionally (e.g., due to the use of legacy packaging setups).</p>
 <p>To disable build isolation for a specific dependency, add it to the <code>no-build-isolation-package</code>
 list in your <code>pyproject.toml</code>:</p>
-<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="k">[project]</span>
-<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;project&quot;</span>
-<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span>
-<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;...&quot;</span>
-<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a><span class="n">readme</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;README.md&quot;</span>
-<a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a><span class="n">requires-python</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&gt;=3.12&quot;</span>
-<a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a><span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;cchardet&quot;</span><span class="p">]</span>
-<a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a>
-<a id="__codelineno-29-9" name="__codelineno-29-9" href="#__codelineno-29-9"></a><span class="k">[tool.uv]</span>
-<a id="__codelineno-29-10" name="__codelineno-29-10" href="#__codelineno-29-10"></a><span class="n">no-build-isolation-package</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;cchardet&quot;</span><span class="p">]</span>
-</code></pre></div>
-<p>Installing packages without build isolation requires that the package's build dependencies are
-installed in the project environment <em>prior</em> to installing the package itself. This can be achieved
-by separating out the build dependencies and the packages that require them into distinct optional
-groups. For example:</p>
-<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="k">[project]</span>
-<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;project&quot;</span>
-<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span>
-<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;...&quot;</span>
-<a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a><span class="n">readme</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;README.md&quot;</span>
-<a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a><span class="n">requires-python</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&gt;=3.12&quot;</span>
-<a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a><span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[]</span>
-<a id="__codelineno-30-8" name="__codelineno-30-8" href="#__codelineno-30-8"></a>
-<a id="__codelineno-30-9" name="__codelineno-30-9" href="#__codelineno-30-9"></a><span class="k">[project.optional-dependencies]</span>
-<a id="__codelineno-30-10" name="__codelineno-30-10" href="#__codelineno-30-10"></a><span class="n">build</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;setuptools&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;cython&quot;</span><span class="p">]</span>
-<a id="__codelineno-30-11" name="__codelineno-30-11" href="#__codelineno-30-11"></a><span class="n">compile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;cchardet&quot;</span><span class="p">]</span>
-<a id="__codelineno-30-12" name="__codelineno-30-12" href="#__codelineno-30-12"></a>
-<a id="__codelineno-30-13" name="__codelineno-30-13" href="#__codelineno-30-13"></a><span class="k">[tool.uv]</span>
-<a id="__codelineno-30-14" name="__codelineno-30-14" href="#__codelineno-30-14"></a><span class="n">no-build-isolation-package</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;cchardet&quot;</span><span class="p">]</span>
-</code></pre></div>
-<p>Given the above, a user would first sync the <code>build</code> dependencies:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="gp">$ </span>uv<span class="w"> </span>sync<span class="w"> </span>--extra<span class="w"> </span>build
-<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="go"> + cython==3.0.11</span>
-<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="go"> + foo==0.1.0 (from file:///Users/crmarsh/workspace/uv/foo)</span>
-<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="go"> + setuptools==73.0.1</span>
-</code></pre></div>
-<p>Followed by the <code>compile</code> dependencies:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="gp">$ </span>uv<span class="w"> </span>sync<span class="w"> </span>--extra<span class="w"> </span>compile
-<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="go"> + cchardet==2.1.7</span>
-<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="go"> - cython==3.0.11</span>
-<a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a><span class="go"> - setuptools==73.0.1</span>
-</code></pre></div>
-<p>Note that <code>uv sync --extra compile</code> would, by default, uninstall the <code>cython</code> and <code>setuptools</code>
-packages. To instead retain the build dependencies, include both extras in the second <code>uv sync</code>
-invocation:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="gp">$ </span>uv<span class="w"> </span>sync<span class="w"> </span>--extra<span class="w"> </span>build
-<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="gp">$ </span>uv<span class="w"> </span>sync<span class="w"> </span>--extra<span class="w"> </span>build<span class="w"> </span>--extra<span class="w"> </span>compile
-</code></pre></div>
-<p>Some packages, like <code>cchardet</code>, only require build dependencies for the <em>installation</em> phase of
-<code>uv sync</code>. Others, like <code>flash-attn</code>, require their build dependencies to be present even just to
-resolve the project's lockfile during the <em>resolution</em> phase.</p>
-<p>In such cases, the build dependencies must be installed prior to running any <code>uv lock</code> or <code>uv sync</code>
-commands, using the lower lower-level <code>uv pip</code> API. For example, given:</p>
 <div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="k">[project]</span>
 <a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;project&quot;</span>
 <a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span>
 <a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;...&quot;</span>
 <a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a><span class="n">readme</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;README.md&quot;</span>
 <a id="__codelineno-34-6" name="__codelineno-34-6" href="#__codelineno-34-6"></a><span class="n">requires-python</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&gt;=3.12&quot;</span>
-<a id="__codelineno-34-7" name="__codelineno-34-7" href="#__codelineno-34-7"></a><span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;flash-attn&quot;</span><span class="p">]</span>
+<a id="__codelineno-34-7" name="__codelineno-34-7" href="#__codelineno-34-7"></a><span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;cchardet&quot;</span><span class="p">]</span>
 <a id="__codelineno-34-8" name="__codelineno-34-8" href="#__codelineno-34-8"></a>
 <a id="__codelineno-34-9" name="__codelineno-34-9" href="#__codelineno-34-9"></a><span class="k">[tool.uv]</span>
-<a id="__codelineno-34-10" name="__codelineno-34-10" href="#__codelineno-34-10"></a><span class="n">no-build-isolation-package</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;flash-attn&quot;</span><span class="p">]</span>
+<a id="__codelineno-34-10" name="__codelineno-34-10" href="#__codelineno-34-10"></a><span class="n">no-build-isolation-package</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;cchardet&quot;</span><span class="p">]</span>
+</code></pre></div>
+<p>Installing packages without build isolation requires that the package's build dependencies are
+installed in the project environment <em>prior</em> to installing the package itself. This can be achieved
+by separating out the build dependencies and the packages that require them into distinct optional
+groups. For example:</p>
+<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="k">[project]</span>
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;project&quot;</span>
+<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span>
+<a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;...&quot;</span>
+<a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a><span class="n">readme</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;README.md&quot;</span>
+<a id="__codelineno-35-6" name="__codelineno-35-6" href="#__codelineno-35-6"></a><span class="n">requires-python</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&gt;=3.12&quot;</span>
+<a id="__codelineno-35-7" name="__codelineno-35-7" href="#__codelineno-35-7"></a><span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[]</span>
+<a id="__codelineno-35-8" name="__codelineno-35-8" href="#__codelineno-35-8"></a>
+<a id="__codelineno-35-9" name="__codelineno-35-9" href="#__codelineno-35-9"></a><span class="k">[project.optional-dependencies]</span>
+<a id="__codelineno-35-10" name="__codelineno-35-10" href="#__codelineno-35-10"></a><span class="n">build</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;setuptools&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;cython&quot;</span><span class="p">]</span>
+<a id="__codelineno-35-11" name="__codelineno-35-11" href="#__codelineno-35-11"></a><span class="n">compile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;cchardet&quot;</span><span class="p">]</span>
+<a id="__codelineno-35-12" name="__codelineno-35-12" href="#__codelineno-35-12"></a>
+<a id="__codelineno-35-13" name="__codelineno-35-13" href="#__codelineno-35-13"></a><span class="k">[tool.uv]</span>
+<a id="__codelineno-35-14" name="__codelineno-35-14" href="#__codelineno-35-14"></a><span class="n">no-build-isolation-package</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;cchardet&quot;</span><span class="p">]</span>
+</code></pre></div>
+<p>Given the above, a user would first sync the <code>build</code> dependencies:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="gp">$ </span>uv<span class="w"> </span>sync<span class="w"> </span>--extra<span class="w"> </span>build
+<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a><span class="go"> + cython==3.0.11</span>
+<a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a><span class="go"> + foo==0.1.0 (from file:///Users/crmarsh/workspace/uv/foo)</span>
+<a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a><span class="go"> + setuptools==73.0.1</span>
+</code></pre></div>
+<p>Followed by the <code>compile</code> dependencies:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="gp">$ </span>uv<span class="w"> </span>sync<span class="w"> </span>--extra<span class="w"> </span>compile
+<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="go"> + cchardet==2.1.7</span>
+<a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a><span class="go"> - cython==3.0.11</span>
+<a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a><span class="go"> - setuptools==73.0.1</span>
+</code></pre></div>
+<p>Note that <code>uv sync --extra compile</code> would, by default, uninstall the <code>cython</code> and <code>setuptools</code>
+packages. To instead retain the build dependencies, include both extras in the second <code>uv sync</code>
+invocation:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="gp">$ </span>uv<span class="w"> </span>sync<span class="w"> </span>--extra<span class="w"> </span>build
+<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="gp">$ </span>uv<span class="w"> </span>sync<span class="w"> </span>--extra<span class="w"> </span>build<span class="w"> </span>--extra<span class="w"> </span>compile
+</code></pre></div>
+<p>Some packages, like <code>cchardet</code>, only require build dependencies for the <em>installation</em> phase of
+<code>uv sync</code>. Others, like <code>flash-attn</code>, require their build dependencies to be present even just to
+resolve the project's lockfile during the <em>resolution</em> phase.</p>
+<p>In such cases, the build dependencies must be installed prior to running any <code>uv lock</code> or <code>uv sync</code>
+commands, using the lower lower-level <code>uv pip</code> API. For example, given:</p>
+<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="k">[project]</span>
+<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;project&quot;</span>
+<a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span>
+<a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;...&quot;</span>
+<a id="__codelineno-39-5" name="__codelineno-39-5" href="#__codelineno-39-5"></a><span class="n">readme</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;README.md&quot;</span>
+<a id="__codelineno-39-6" name="__codelineno-39-6" href="#__codelineno-39-6"></a><span class="n">requires-python</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&gt;=3.12&quot;</span>
+<a id="__codelineno-39-7" name="__codelineno-39-7" href="#__codelineno-39-7"></a><span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;flash-attn&quot;</span><span class="p">]</span>
+<a id="__codelineno-39-8" name="__codelineno-39-8" href="#__codelineno-39-8"></a>
+<a id="__codelineno-39-9" name="__codelineno-39-9" href="#__codelineno-39-9"></a><span class="k">[tool.uv]</span>
+<a id="__codelineno-39-10" name="__codelineno-39-10" href="#__codelineno-39-10"></a><span class="n">no-build-isolation-package</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;flash-attn&quot;</span><span class="p">]</span>
 </code></pre></div>
 <p>You could run the following sequence of commands:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="gp">$ </span>uv<span class="w"> </span>venv
-<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="gp">$ </span>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>torch
-<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a><span class="gp">$ </span>uv<span class="w"> </span>sync
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="gp">$ </span>uv<span class="w"> </span>venv
+<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a><span class="gp">$ </span>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>torch
+<a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a><span class="gp">$ </span>uv<span class="w"> </span>sync
 </code></pre></div>
 
 
