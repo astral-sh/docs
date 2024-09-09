@@ -2720,7 +2720,7 @@ environment.</p>
 <a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="go">        └── __init__.py</span>
 </code></pre></div>
 <p>But the module defines a CLI function:</p>
-<div class="highlight"><span class="filename">__init__.py</span><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">def</span> <span class="nf">hello</span><span class="p">():</span>
+<div class="highlight"><span class="filename">__init__.py</span><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">def</span> <span class="nf">hello</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello from example-packaged-app!&quot;</span><span class="p">)</span>
 </code></pre></div>
 <p>And the <code>pyproject.toml</code> includes a script entrypoint:</p>
@@ -2954,9 +2954,9 @@ documentation.</p>
 <p>To distribute your project to others (e.g., to upload it to an index like PyPI), you'll need to
 build it into a distributable format.</p>
 <p>Python projects are typically distributed as both source distributions (sdists) and binary
-distributions (wheels). The former is a <code>.tar.gz</code> file containing the project's source code along
-with some additional metadata, while the latter is a <code>.whl</code> file containing pre-built artifacts that
-can be installed directly.</p>
+distributions (wheels). The former is typically a <code>.tar.gz</code> or <code>.zip</code> file containing the project's
+source code along with some additional metadata, while the latter is a <code>.whl</code> file containing
+pre-built artifacts that can be installed directly.</p>
 <p><code>uv build</code> can be used to build both source distributions and binary distributions for your project.
 By default, <code>uv build</code> will build the project in the current directory, and place the built
 artifacts in a <code>dist/</code> subdirectory:</p>
@@ -2969,9 +2969,9 @@ artifacts in a <code>dist/</code> subdirectory:</p>
 <code>uv build path/to/project</code>.</p>
 <p><code>uv build</code> will first build a source distribution, and then build a binary distribution (wheel) from
 that source distribution.</p>
-<p>You can limit <code>uv build</code> to building a source distribution with <code>uv build --source</code>, a binary
-distribution with <code>uv build --binary</code>, or build both distributions from source with
-<code>uv build --source --binary</code>.</p>
+<p>You can limit <code>uv build</code> to building a source distribution with <code>uv build --sdist</code>, a binary
+distribution with <code>uv build --wheel</code>, or build both distributions from source with
+<code>uv build --sdist --wheel</code>.</p>
 <p><code>uv build</code> accepts <code>--build-constraints</code>, which can be used to constrain the versions of any build
 requirements during the build process. When coupled with <code>--require-hashes</code>, uv will enforce that
 the requirement used to build the project match specific, known hashes, for reproducibility.</p>

@@ -2290,7 +2290,8 @@ published metadata), use the <code>--no-sources</code> flag:</p>
 A <code>subdirectory</code> may be specified if the package isn't in the repository root.</p>
 <h3 id="url">URL<a class="headerlink" href="#url" title="Permanent link">#</a></h3>
 <p>To add a URL source, provide a <code>https://</code> URL to either a wheel (ending in <code>.whl</code>) or a source
-distribution (ending in <code>.zip</code> or <code>.tar.gz</code>).</p>
+distribution (typically ending in <code>.tar.gz</code> or <code>.zip</code>; see
+<a href="../resolution/#source-distribution">here</a> for all supported formats).</p>
 <p>For example:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span><span class="s2">&quot;https://files.pythonhosted.org/packages/5c/2d/3da5bdf4408b8b2800061c339f240c1802f2e82d55e50bd39c5a881f47f0/httpx-0.27.0.tar.gz&quot;</span>
 </code></pre></div>
@@ -2304,11 +2305,12 @@ distribution (ending in <code>.zip</code> or <code>.tar.gz</code>).</p>
 <a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="n">httpx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">url</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;https://files.pythonhosted.org/packages/5c/2d/3da5bdf4408b8b2800061c339f240c1802f2e82d55e50bd39c5a881f47f0/httpx-0.27.0.tar.gz&quot;</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
 <p>URL dependencies can also be manually added or edited in the <code>pyproject.toml</code> with the
-<code>{ url = &lt;url&gt; }</code> syntax. A <code>subdirectory</code> may be specified if the if the source distribution isn't
-in the archive root.</p>
+<code>{ url = &lt;url&gt; }</code> syntax. A <code>subdirectory</code> may be specified if the source distribution isn't in the
+archive root.</p>
 <h3 id="path">Path<a class="headerlink" href="#path" title="Permanent link">#</a></h3>
-<p>To add a path source, provide the path of a wheel (ending in <code>.whl</code>), a source distribution (ending
-in <code>.zip</code> or <code>.tar.gz</code>), or a directory containing a <code>pyproject.toml</code>.</p>
+<p>To add a path source, provide the path of a wheel (ending in <code>.whl</code>), a source distribution
+(typically ending in <code>.tar.gz</code> or <code>.zip</code>; see <a href="../resolution/#source-distribution">here</a>
+for all supported formats), or a directory containing a <code>pyproject.toml</code>.</p>
 <p>For example:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>/example/foo-0.1.0-py3-none-any.whl
 </code></pre></div>
