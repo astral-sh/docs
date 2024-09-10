@@ -2669,7 +2669,8 @@ consume.</p>
 <a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="go">├── pyproject.toml</span>
 <a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="go">└── src</span>
 <a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="go">    └── example_lib</span>
-<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="go">        └── __init__.py</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="go">        ├── py.typed</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="go">        └── __init__.py</span>
 </code></pre></div>
 <p>When creating a library, uv defines a build system and places the source code in placed in a <code>src</code>
 directory. These changes ensure that the library is isolated from any <code>python</code> invocations in the
@@ -2819,6 +2820,7 @@ exporting a <code>uv.lock</code> file, consider opening an issue to discuss your
 </div>
 <h3 id="checking-if-the-lockfile-is-up-to-date">Checking if the lockfile is up-to-date<a class="headerlink" href="#checking-if-the-lockfile-is-up-to-date" title="Permanent link">#</a></h3>
 <p>To avoid updating the lockfile during <code>uv sync</code> and <code>uv run</code> invocations, use the <code>--frozen</code> flag.</p>
+<p>To avoid updating the environment during <code>uv run</code> invocations, use the <code>--no-sync</code> flag.</p>
 <p>To assert the lockfile matches the project metadata, use the <code>--locked</code> flag. If the lockfile is not
 up-to-date, an error will be raised instead of updating the lockfile.</p>
 <h3 id="upgrading-locked-package-versions">Upgrading locked package versions<a class="headerlink" href="#upgrading-locked-package-versions" title="Permanent link">#</a></h3>

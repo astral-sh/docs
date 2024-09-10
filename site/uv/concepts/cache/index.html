@@ -2107,19 +2107,19 @@ been accessed in prior runs.</p>
 the <code>pyproject.toml</code>, <code>setup.py</code>, or <code>setup.cfg</code> file in the directory root has changed. This is a
 heuristic and, in some cases, may lead to fewer re-installs than desired.</p>
 <p>To incorporate other information into the cache key for a given package, you can add cache key
-entries under <code>tool.uv.cache-key</code>, which can include both file paths and Git commit hashes.</p>
+entries under <code>tool.uv.cache-keys</code>, which can include both file paths and Git commit hashes.</p>
 <p>For example, if a project uses <a href="https://pypi.org/project/setuptools-scm/"><code>setuptools-scm</code></a>, and
 should be rebuilt whenever the commit hash changes, you can add the following to the project's
 <code>pyproject.toml</code>:</p>
 <div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">[tool.uv]</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">cache-key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="n">git</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">}]</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">cache-keys</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="n">git</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">}]</span>
 </code></pre></div>
 <p>Similarly, if a project reads from a <code>requirements.txt</code> to populate its dependencies, you can add
 the following to the project's <code>pyproject.toml</code>:</p>
 <div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">[tool.uv]</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">cache-key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;requirements.txt&quot;</span><span class="w"> </span><span class="p">}]</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">cache-keys</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;requirements.txt&quot;</span><span class="w"> </span><span class="p">}]</span>
 </code></pre></div>
-<p>As an escape hatch, if a project uses <code>dynamic</code> metadata that isn't covered by <code>tool.uv.cache-key</code>,
+<p>As an escape hatch, if a project uses <code>dynamic</code> metadata that isn't covered by <code>tool.uv.cache-keys</code>,
 you can instruct uv to <em>always</em> rebuild and reinstall it by adding the project to the
 <code>tool.uv.reinstall-package</code> list:</p>
 <div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">[tool.uv]</span>
