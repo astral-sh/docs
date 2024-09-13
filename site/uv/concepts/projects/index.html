@@ -2974,7 +2974,7 @@ that source distribution.</p>
 <p>You can limit <code>uv build</code> to building a source distribution with <code>uv build --sdist</code>, a binary
 distribution with <code>uv build --wheel</code>, or build both distributions from source with
 <code>uv build --sdist --wheel</code>.</p>
-<p><code>uv build</code> accepts <code>--build-constraints</code>, which can be used to constrain the versions of any build
+<p><code>uv build</code> accepts <code>--build-constraint</code>, which can be used to constrain the versions of any build
 requirements during the build process. When coupled with <code>--require-hashes</code>, uv will enforce that
 the requirement used to build the project match specific, known hashes, for reproducibility.</p>
 <p>For example, given the following <code>constraints.txt</code>:</p>
@@ -2982,7 +2982,7 @@ the requirement used to build the project match specific, known hashes, for repr
 </code></pre></div>
 <p>Running the following would build the project with the specified version of <code>setuptools</code>, and verify
 that the downloaded <code>setuptools</code> distribution matches the specified hash:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="gp">$ </span>uv<span class="w"> </span>build<span class="w"> </span>--build-constraints<span class="w"> </span>constraints.txt<span class="w"> </span>--require-hashes
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="gp">$ </span>uv<span class="w"> </span>build<span class="w"> </span>--build-constraint<span class="w"> </span>constraints.txt<span class="w"> </span>--require-hashes
 </code></pre></div>
 <h2 id="build-isolation">Build isolation<a class="headerlink" href="#build-isolation" title="Permanent link">#</a></h2>
 <p>By default, uv builds all packages in isolated virtual environments, as per
