@@ -1101,6 +1101,19 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#dependency-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Dependency metadata
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#lower-bounds" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2215,6 +2228,19 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#dependency-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <span class="md-typeset">
+          Dependency metadata
+        </span>
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#lower-bounds" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2480,30 +2506,76 @@ model, and are a frequent source of bugs in other packaging tools. uv's pre-rele
 <p>For more details, see
 <a href="../../pip/compatibility/#pre-release-compatibility">Pre-release compatibility</a>.</p>
 <h2 id="dependency-constraints">Dependency constraints<a class="headerlink" href="#dependency-constraints" title="Permanent link">#</a></h2>
-<p>uv supports constraints files (<code>--constraint constraints.txt</code>), like pip, which narrow the set of
-acceptable versions for the given packages. Constraint files are like a regular requirements files,
-but they do not add packages to the requirements — they only take affect if the package is requested
-in a direct or transitive dependency. Constraints are often useful for reducing the range of
-available versions for a transitive dependency without adding a direct requirement on the package.</p>
+<p>Like pip, uv supports constraint files (<code>--constraint constraints.txt</code>) which narrow the set of
+acceptable versions for the given packages. Constraint files are similar to requirements files, but
+being listed as a constraint alone will not cause a package to be included to the resolution.
+Instead, constraints only take effect if a requested package is already pulled in as a direct or
+transitive dependency. Constraints are useful for reducing the range of available versions for a
+transitive dependency. They can also be used to keep a resolution in sync with some other set of
+resolved versions, regardless of which packages are overlapping between the two.</p>
 <h2 id="dependency-overrides">Dependency overrides<a class="headerlink" href="#dependency-overrides" title="Permanent link">#</a></h2>
-<p>Overrides allow bypassing failing or undesirable resolutions by overriding the declared dependencies
-of a package. Overrides are a useful last resort for cases in which the you know that a dependency
-is compatible with a newer version of a package than it declares, but the it has not yet been
-updated to declare that compatibility.</p>
-<p>For example, if a transitive dependency declares the requirement <code>pydantic&gt;=1.0,&lt;2.0</code>, but <em>works</em>
-with <code>pydantic&gt;=2.0</code>, the user can override the declared dependency with <code>pydantic&gt;=1.0,&lt;3</code> to allow
-the resolver to installer a newer version of <code>pydantic</code>.</p>
-<p>While constraints and dependencies are purely additive, and thus cannot expand the set of acceptable
-versions for a package, overrides can expand the set of acceptable versions for a package, providing
-an escape hatch for erroneous upper version bounds. As with constraints, overrides do not add a
-dependency on the package and only take affect if the package is requested in a direct or transitive
-dependency.</p>
+<p>Dependency overrides allow bypassing failing or undesirable resolutions by overriding a package's
+declared dependencies. Overrides are a useful last resort for cases in which you <em>know</em> that a
+dependency is compatible with a certain version of a package, despite the metadata indicating
+otherwise.</p>
+<p>For example, if a transitive dependency declares the requirement <code>pydantic&gt;=1.0,&lt;2.0</code>, but <em>does</em>
+work with <code>pydantic&gt;=2.0</code>, the user can override the declared dependency by including
+<code>pydantic&gt;=1.0,&lt;3</code> in the overrides, thereby allowing the resolver to choose a newer version of
+<code>pydantic</code>.</p>
+<p>Concretely, if <code>pydantic&gt;=1.0,&lt;3</code> is included as an override, uv will ignore all declared
+requirements on <code>pydantic</code>, replacing them with the override. In the above example, the
+<code>pydantic&gt;=1.0,&lt;2.0</code> requirement would be ignored completely, and would instead be replaced with
+<code>pydantic&gt;=1.0,&lt;3</code>.</p>
+<p>While constraints can only <em>reduce</em> the set of acceptable versions for a package, overrides can
+<em>expand</em> the set of acceptable versions, providing an escape hatch for erroneous upper version
+bounds. As with constraints, overrides do not add a dependency on the package and only take effect
+if the package is requested in a direct or transitive dependency.</p>
 <p>In a <code>pyproject.toml</code>, use <code>tool.uv.override-dependencies</code> to define a list of overrides. In the
 pip-compatible interface, the <code>--override</code> option can be used to pass files with the same format as
 constraints files.</p>
 <p>If multiple overrides are provided for the same package, they must be differentiated with
 <a href="#platform-markers">markers</a>. If a package has a dependency with a marker, it is replaced
 unconditionally when using overrides — it does not matter if the marker evaluates to true or false.</p>
+<h2 id="dependency-metadata">Dependency metadata<a class="headerlink" href="#dependency-metadata" title="Permanent link">#</a></h2>
+<p>During resolution, uv needs to resolve the metadata for each package it encounters, in order to
+determine its dependencies. This metadata is often available as a static file in the package index;
+however, for packages that only provide source distributions, the metadata may not be available
+upfront.</p>
+<p>In such cases, uv has to build the package to determine its metadata (e.g., by invoking <code>setup.py</code>).
+This can introduce a performance penalty during resolution. Further, it imposes the requirement that
+the package can be built on all platforms, which may not be true.</p>
+<p>For example, you may have a package that should only be built and installed on Linux, but doesn't
+build successfully on macOS or Windows. While uv can construct a perfectly valid lockfile for this
+scenario, doing so would require building the package, which would fail on non-Linux platforms.</p>
+<p>The <code>tool.uv.dependency-metadata</code> table can be used to provide static metadata for such dependencies
+upfront, thereby allowing uv to skip the build step and use the provided metadata instead.</p>
+<p>For example, to provide metadata for <code>chumpy</code> upfront, include its <code>dependency-metadata</code> in the
+<code>pyproject.toml</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">[[tool.uv.dependency-metadata]]</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;chumpy&quot;</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.70&quot;</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">requires-dist</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;numpy&gt;=1.8.1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;scipy&gt;=0.13.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;six&gt;=1.11.0&quot;</span><span class="p">]</span>
+</code></pre></div>
+<p>These declarations are intended for cases in which a package does <em>not</em> declare static metadata
+upfront, though they are also useful for packages that require disabling build isolation. In such
+cases, it may be easier to declare the package metadata upfront, rather than creating a custom build
+environment prior to resolving the package.</p>
+<p>For example, you can declare the metadata for <code>flash-attn</code>, allowing uv to resolve without building
+the package from source (which itself requires installing <code>torch</code>):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">[[tool.uv.dependency-metadata]]</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;flash-attn&quot;</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2.6.3&quot;</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">requires-dist</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;torch&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;einops&quot;</span><span class="p">]</span>
+</code></pre></div>
+<p>Like dependency overrides, <code>tool.uv.dependency-metadata</code> can also be used for cases in which a
+package's metadata is incorrect or incomplete, or when a package is not available in the package
+index. While dependency overrides allow overriding the allowed versions of a package globally,
+metadata overrides allow overriding the declared metadata of a <em>specific package</em>.</p>
+<p>Entries in the <code>tool.uv.dependency-metadata</code> table follow the
+<a href="https://packaging.python.org/en/latest/specifications/core-metadata/">Metadata 2.3</a> specification,
+though only <code>name</code>, <code>version</code>, <code>requires-dist</code>, <code>requires-python</code>, and <code>provides-extra</code> are read by
+uv. The <code>version</code> field is also considered optional. If omitted, the metadata will be used for all
+versions of the specified package.</p>
 <h2 id="lower-bounds">Lower bounds<a class="headerlink" href="#lower-bounds" title="Permanent link">#</a></h2>
 <p>By default, <code>uv add</code> adds lower bounds to dependencies and, when using uv to manage projects, uv
 will warn if direct dependencies don't have lower bound.</p>
