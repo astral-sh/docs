@@ -4657,6 +4657,9 @@ would typically constitute an invalid resolution.</p>
 <p>While constraints are <em>additive</em>, in that they're combined with the requirements of the
 constituent packages, overrides are <em>absolute</em>, in that they completely replace the
 requirements of any constituent packages.</p>
+<p>Including a package as an override will <em>not</em> trigger installation of the package on its
+own; instead, the package must be requested elsewhere in the project's first-party or
+transitive dependencies.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>In <code>uv lock</code>, <code>uv sync</code>, and <code>uv run</code>, uv will only read <code>override-dependencies</code> from
