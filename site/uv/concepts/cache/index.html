@@ -1001,7 +1001,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Dependency caching
+          
         </span>
       
     </span>
@@ -1014,7 +1014,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Dynamic metadata
+          
         </span>
       
     </span>
@@ -1027,7 +1027,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Cache safety
+          
         </span>
       
     </span>
@@ -1040,7 +1040,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Clearing the cache
+          
         </span>
       
     </span>
@@ -1053,7 +1053,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Caching in continuous integration
+          
         </span>
       
     </span>
@@ -1066,7 +1066,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Cache directory
+          
         </span>
       
     </span>
@@ -1985,7 +1985,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Dependency caching
+          
         </span>
       
     </span>
@@ -1998,7 +1998,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Dynamic metadata
+          
         </span>
       
     </span>
@@ -2011,7 +2011,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Cache safety
+          
         </span>
       
     </span>
@@ -2024,7 +2024,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Clearing the cache
+          
         </span>
       
     </span>
@@ -2037,7 +2037,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Caching in continuous integration
+          
         </span>
       
     </span>
@@ -2050,7 +2050,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Cache directory
+          
         </span>
       
     </span>
@@ -2077,8 +2077,8 @@
   
 
 
-<h1 id="caching">Caching<a class="headerlink" href="#caching" title="Permanent link">#</a></h1>
-<h2 id="dependency-caching">Dependency caching<a class="headerlink" href="#dependency-caching" title="Permanent link">#</a></h2>
+<h1 id="caching"><a class="toclink" href="#caching">Caching</a></h1>
+<h2 id="dependency-caching"><a class="toclink" href="#dependency-caching">Dependency caching</a></h2>
 <p>uv uses aggressive caching to avoid re-downloading (and re-building dependencies) that have already
 been accessed in prior runs.</p>
 <p>The specifics of uv's caching semantics vary based on the nature of the dependency:</p>
@@ -2102,7 +2102,7 @@ been accessed in prior runs.</p>
 <li>To force uv to ignore existing installed versions, pass <code>--reinstall</code> to any installation command
   (e.g., <code>uv sync --reinstall</code> or <code>uv pip install --reinstall ...</code>).</li>
 </ul>
-<h2 id="dynamic-metadata">Dynamic metadata<a class="headerlink" href="#dynamic-metadata" title="Permanent link">#</a></h2>
+<h2 id="dynamic-metadata"><a class="toclink" href="#dynamic-metadata">Dynamic metadata</a></h2>
 <p>By default, uv will <em>only</em> rebuild and reinstall local directory dependencies (e.g., editables) if
 the <code>pyproject.toml</code>, <code>setup.py</code>, or <code>setup.cfg</code> file in the directory root has changed. This is a
 heuristic and, in some cases, may lead to fewer re-installs than desired.</p>
@@ -2139,14 +2139,14 @@ you can instruct uv to <em>always</em> rebuild and reinstall it by adding the pr
 </code></pre></div>
 <p>This will force uv to rebuild and reinstall <code>my-package</code> on every run, regardless of whether the
 package's <code>pyproject.toml</code>, <code>setup.py</code>, or <code>setup.cfg</code> file has changed.</p>
-<h2 id="cache-safety">Cache safety<a class="headerlink" href="#cache-safety" title="Permanent link">#</a></h2>
+<h2 id="cache-safety"><a class="toclink" href="#cache-safety">Cache safety</a></h2>
 <p>It's safe to run multiple uv commands concurrently, even against the same virtual environment. uv's
 cache is designed to be thread-safe and append-only, and thus robust to multiple concurrent readers
 and writers. uv applies a file-based lock to the target virtual environment when installing, to
 avoid concurrent modifications across processes.</p>
 <p>Note that it's <em>not</em> safe to modify the uv cache (e.g., <code>uv cache clean</code>) while other uv commands
 are running, and <em>never</em> safe to modify the cache directly (e.g., by removing a file or directory).</p>
-<h2 id="clearing-the-cache">Clearing the cache<a class="headerlink" href="#clearing-the-cache" title="Permanent link">#</a></h2>
+<h2 id="clearing-the-cache"><a class="toclink" href="#clearing-the-cache">Clearing the cache</a></h2>
 <p>uv provides a few different mechanisms for removing entries from the cache:</p>
 <ul>
 <li><code>uv cache clean</code> removes <em>all</em> cache entries from the cache directory, clearing it out entirely.</li>
@@ -2156,7 +2156,7 @@ are running, and <em>never</em> safe to modify the cache directly (e.g., by remo
   entries created in previous uv versions that are no longer necessary and can be safely removed.
   <code>uv cache prune</code> is safe to run periodically, to keep the cache directory clean.</li>
 </ul>
-<h2 id="caching-in-continuous-integration">Caching in continuous integration<a class="headerlink" href="#caching-in-continuous-integration" title="Permanent link">#</a></h2>
+<h2 id="caching-in-continuous-integration"><a class="toclink" href="#caching-in-continuous-integration">Caching in continuous integration</a></h2>
 <p>It's common to cache package installation artifacts in continuous integration environments (like
 GitHub Actions or GitLab CI) to speed up subsequent runs.</p>
 <p>By default, uv caches both the wheels that it builds from source and the pre-built wheels that it
@@ -2171,7 +2171,7 @@ pre-built wheels and unzipped source distributions from the cache, but retains a
 built from source. We recommend running <code>uv cache prune --ci</code> at the end of your continuous
 integration job to ensure maximum cache efficiency. For an example, see the
 <a href="../../guides/integration/github/#caching">GitHub integration guide</a>.</p>
-<h2 id="cache-directory">Cache directory<a class="headerlink" href="#cache-directory" title="Permanent link">#</a></h2>
+<h2 id="cache-directory"><a class="toclink" href="#cache-directory">Cache directory</a></h2>
 <p>uv determines the cache directory according to, in order:</p>
 <ol>
 <li>A temporary cache directory, if <code>--no-cache</code> was requested.</li>
@@ -2240,13 +2240,13 @@ into the environment and will instead need to fallback to slow copy operations.<
         
         
           
-          <a href="../../configuration/" class="md-footer__link md-footer__link--next" aria-label="Next: Configuration overview" rel="next">
+          <a href="../../configuration/" class="md-footer__link md-footer__link--next" aria-label="Next: " rel="next">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Configuration overview
+                
               </div>
             </div>
             <div class="md-footer__button md-icon">

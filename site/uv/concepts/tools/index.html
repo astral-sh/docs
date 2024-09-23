@@ -936,7 +936,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Execution vs installation
+          
         </span>
       
     </span>
@@ -949,7 +949,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Tool environments
+          
         </span>
       
     </span>
@@ -962,7 +962,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Tool versions
+          
         </span>
       
     </span>
@@ -976,7 +976,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Tools directory
+          
         </span>
       
     </span>
@@ -989,7 +989,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Mutating tool environments
+          
         </span>
       
     </span>
@@ -1002,7 +1002,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Including additional dependencies
+          
         </span>
       
     </span>
@@ -1020,7 +1020,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Tool executables
+          
         </span>
       
     </span>
@@ -1060,7 +1060,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Overwriting executables
+          
         </span>
       
     </span>
@@ -2088,7 +2088,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Execution vs installation
+          
         </span>
       
     </span>
@@ -2101,7 +2101,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Tool environments
+          
         </span>
       
     </span>
@@ -2114,7 +2114,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Tool versions
+          
         </span>
       
     </span>
@@ -2128,7 +2128,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Tools directory
+          
         </span>
       
     </span>
@@ -2141,7 +2141,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Mutating tool environments
+          
         </span>
       
     </span>
@@ -2154,7 +2154,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Including additional dependencies
+          
         </span>
       
     </span>
@@ -2172,7 +2172,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Tool executables
+          
         </span>
       
     </span>
@@ -2212,7 +2212,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Overwriting executables
+          
         </span>
       
     </span>
@@ -2257,14 +2257,14 @@
   
 
 
-<h1 id="tools">Tools<a class="headerlink" href="#tools" title="Permanent link">#</a></h1>
+<h1 id="tools"><a class="toclink" href="#tools">Tools</a></h1>
 <p>Tools are Python packages that provide command-line interfaces.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>See the <a href="../../guides/tools/">tools guide</a> for an introduction to working with the tools
 interface — this document discusses details of tool management.</p>
 </div>
-<h2 id="the-uv-tool-interface">The <code>uv tool</code> interface<a class="headerlink" href="#the-uv-tool-interface" title="Permanent link">#</a></h2>
+<h2 id="the-uv-tool-interface"><a class="toclink" href="#the-uv-tool-interface">The <code>uv tool</code> interface</a></h2>
 <p>uv includes a dedicated interface for interacting with tools. Tools can be invoked without
 installation using <code>uv tool run</code>, in which case their dependencies are installed in a temporary
 virtual environment isolated from the current project.</p>
@@ -2274,12 +2274,12 @@ refer to <code>uvx</code> instead of <code>uv tool run</code>.</p>
 <p>Tools can also be installed with <code>uv tool install</code>, in which case their executables are
 <a href="#the-path">available on the <code>PATH</code></a> — an isolated virtual environment is still used, but it is not
 removed when the command completes.</p>
-<h2 id="execution-vs-installation">Execution vs installation<a class="headerlink" href="#execution-vs-installation" title="Permanent link">#</a></h2>
+<h2 id="execution-vs-installation"><a class="toclink" href="#execution-vs-installation">Execution vs installation</a></h2>
 <p>In most cases, executing a tool with <code>uvx</code> is more appropriate than installing the tool. Installing
 the tool is useful if you need the tool to be available to other programs on your system, e.g., if
 some script you do not control requires the tool, or if you are in a Docker image and want to make
 the tool available to users.</p>
-<h2 id="tool-environments">Tool environments<a class="headerlink" href="#tool-environments" title="Permanent link">#</a></h2>
+<h2 id="tool-environments"><a class="toclink" href="#tool-environments">Tool environments</a></h2>
 <p>When running a tool with <code>uvx</code>, a virtual environment is stored in the uv cache directory and is
 treated as disposable, i.e., if you run <code>uv cache clean</code> the environment will be deleted. The
 environment is only cached to reduce the overhead of repeated invocations. If the environment is
@@ -2287,7 +2287,7 @@ removed, a new one will be created automatically.</p>
 <p>When installing a tool with <code>uv tool install</code>, a virtual environment is created in the uv tools
 directory. The environment will not be removed unless the tool is uninstalled. If the environment is
 manually deleted, the tool will fail to run.</p>
-<h2 id="tool-versions">Tool versions<a class="headerlink" href="#tool-versions" title="Permanent link">#</a></h2>
+<h2 id="tool-versions"><a class="toclink" href="#tool-versions">Tool versions</a></h2>
 <p>Unless a specific version is requested, <code>uv tool install</code> will install the latest available of the
 requested tool. <code>uvx</code> will use the latest available version of the requested tool <em>on the first
 invocation</em>. After that, <code>uvx</code> will use the cached version of the tool unless a different version is
@@ -2329,7 +2329,7 @@ in:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="gp">$ </span>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>ruff@latest
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="gp">$ </span>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>ruff@0.6.0
 </code></pre></div>
-<h3 id="tools-directory">Tools directory<a class="headerlink" href="#tools-directory" title="Permanent link">#</a></h3>
+<h3 id="tools-directory"><a class="toclink" href="#tools-directory">Tools directory</a></h3>
 <p>By default, the uv tools directory is named <code>tools</code> and is in the uv application state directory,
 e.g., <code>~/.local/share/uv/tools</code>. The location may be customized with the <code>UV_TOOL_DIR</code> environment
 variable.</p>
@@ -2338,7 +2338,7 @@ variable.</p>
 </code></pre></div>
 <p>Tool environments are placed in a directory with the same name as the tool package, e.g.,
 <code>.../tools/&lt;name&gt;</code>.</p>
-<h3 id="mutating-tool-environments">Mutating tool environments<a class="headerlink" href="#mutating-tool-environments" title="Permanent link">#</a></h3>
+<h3 id="mutating-tool-environments"><a class="toclink" href="#mutating-tool-environments">Mutating tool environments</a></h3>
 <p>Tool environments are <em>not</em> intended to be mutated directly. It is strongly recommended never to
 mutate a tool environment manually with a <code>pip</code> operation.</p>
 <p>Tool environments may be upgraded via <code>uv tool upgrade</code>, or re-created entirely via subsequent
@@ -2365,7 +2365,7 @@ latest version in the range <code>&gt;=23,&lt;24</code>.</p>
 <code>uv tool install black --prerelease allow</code> followed by <code>uv tool upgrade black</code> will retain the
 <code>--prerelease allow</code> setting.</p>
 <p>Tool upgrades will reinstall the tool executables, even if they have not changed.</p>
-<h3 id="including-additional-dependencies">Including additional dependencies<a class="headerlink" href="#including-additional-dependencies" title="Permanent link">#</a></h3>
+<h3 id="including-additional-dependencies"><a class="toclink" href="#including-additional-dependencies">Including additional dependencies</a></h3>
 <p>Additional packages can be included during tool execution:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="gp">$ </span>uvx<span class="w"> </span>--with<span class="w"> </span>&lt;extra-package&gt;<span class="w"> </span>&lt;tool&gt;
 </code></pre></div>
@@ -2378,11 +2378,11 @@ latest version in the range <code>&gt;=23,&lt;24</code>.</p>
 </code></pre></div>
 <p>If the requested version conflicts with the requirements of the tool package, package resolution
 will fail and the command will error.</p>
-<h2 id="tool-executables">Tool executables<a class="headerlink" href="#tool-executables" title="Permanent link">#</a></h2>
+<h2 id="tool-executables"><a class="toclink" href="#tool-executables">Tool executables</a></h2>
 <p>Tool executables include all console entry points, script entry points, and binary scripts provided
 by a Python package. Tool executables are symlinked into the <code>bin</code> directory on Unix and copied on
 Windows.</p>
-<h3 id="the-bin-directory">The <code>bin</code> directory<a class="headerlink" href="#the-bin-directory" title="Permanent link">#</a></h3>
+<h3 id="the-bin-directory"><a class="toclink" href="#the-bin-directory">The <code>bin</code> directory</a></h3>
 <p>Executables are installed into the user <code>bin</code> directory following the XDG standard, e.g.,
 <code>~/.local/bin</code>. Unlike other directory schemes in uv, the XDG standard is used on <em>all platforms</em>
 notably including Windows and macOS — there is no clear alternative location to place executables on
@@ -2395,15 +2395,15 @@ variable:</p>
 <li><code>$HOME/.local/bin</code></li>
 </ul>
 <p>Executables provided by dependencies of tool packages are not installed.</p>
-<h3 id="the-path">The <code>PATH</code><a class="headerlink" href="#the-path" title="Permanent link">#</a></h3>
+<h3 id="the-path"><a class="toclink" href="#the-path">The <code>PATH</code></a></h3>
 <p>The <code>bin</code> directory must be in the <code>PATH</code> variable for tool executables to be available from the
 shell. If it is not in the <code>PATH</code>, a warning will be displayed. The <code>uv tool update-shell</code> command
 can be used to add the <code>bin</code> directory to the <code>PATH</code> in common shell configuration files.</p>
-<h3 id="overwriting-executables">Overwriting executables<a class="headerlink" href="#overwriting-executables" title="Permanent link">#</a></h3>
+<h3 id="overwriting-executables"><a class="toclink" href="#overwriting-executables">Overwriting executables</a></h3>
 <p>Installation of tools will not overwrite executables in the <code>bin</code> directory that were not previously
 installed by uv. For example, if <code>pipx</code> has been used to install a tool, <code>uv tool install</code> will
 fail. The <code>--force</code> flag can be used to override this behavior.</p>
-<h2 id="relationship-to-uv-run">Relationship to <code>uv run</code><a class="headerlink" href="#relationship-to-uv-run" title="Permanent link">#</a></h2>
+<h2 id="relationship-to-uv-run"><a class="toclink" href="#relationship-to-uv-run">Relationship to <code>uv run</code></a></h2>
 <p>The invocation <code>uv tool run &lt;name&gt;</code> (or <code>uvx &lt;name&gt;</code>) is nearly equivalent to:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>--no-project<span class="w"> </span>--with<span class="w"> </span>&lt;name&gt;<span class="w"> </span>--<span class="w"> </span>&lt;name&gt;
 </code></pre></div>

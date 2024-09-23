@@ -736,7 +736,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Preparing your project for packaging
+          
         </span>
       
     </span>
@@ -749,7 +749,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Building your package
+          
         </span>
       
     </span>
@@ -762,7 +762,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Publishing your package
+          
         </span>
       
     </span>
@@ -775,7 +775,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Installing your package
+          
         </span>
       
     </span>
@@ -788,7 +788,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Next steps
+          
         </span>
       
     </span>
@@ -1972,7 +1972,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Preparing your project for packaging
+          
         </span>
       
     </span>
@@ -1985,7 +1985,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Building your package
+          
         </span>
       
     </span>
@@ -1998,7 +1998,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Publishing your package
+          
         </span>
       
     </span>
@@ -2011,7 +2011,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Installing your package
+          
         </span>
       
     </span>
@@ -2024,7 +2024,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Next steps
+          
         </span>
       
     </span>
@@ -2051,19 +2051,19 @@
   
 
 
-<h1 id="publishing-a-package">Publishing a package<a class="headerlink" href="#publishing-a-package" title="Permanent link">#</a></h1>
+<h1 id="publishing-a-package"><a class="toclink" href="#publishing-a-package">Publishing a package</a></h1>
 <p>uv supports building Python packages into source and binary distributions via <code>uv build</code>.</p>
 <p>As uv does not yet have a dedicated command for publishing packages, you can use the PyPA tool
 <a href="https://github.com/pypa/twine"><code>twine</code></a> to upload your package to a package registry, which can be
 invoked via <code>uvx</code>.</p>
-<h2 id="preparing-your-project-for-packaging">Preparing your project for packaging<a class="headerlink" href="#preparing-your-project-for-packaging" title="Permanent link">#</a></h2>
+<h2 id="preparing-your-project-for-packaging"><a class="toclink" href="#preparing-your-project-for-packaging">Preparing your project for packaging</a></h2>
 <p>Before attempting to publish your project, you'll want to make sure it's ready to be packaged for
 distribution.</p>
 <p>If your project does not include a <code>[build-system]</code> definition in the <code>pyproject.toml</code>, uv will not
 build it by default. This means that your project may not be ready for distribution. Read more about
 the effect of declaring a build system in the
 <a href="../../concepts/projects/#build-systems">project concept</a> documentation.</p>
-<h2 id="building-your-package">Building your package<a class="headerlink" href="#building-your-package" title="Permanent link">#</a></h2>
+<h2 id="building-your-package"><a class="toclink" href="#building-your-package">Building your package</a></h2>
 <p>Build your package with <code>uv build</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">$ </span>uv<span class="w"> </span>build
 </code></pre></div>
@@ -2071,7 +2071,7 @@ the effect of declaring a build system in the
 artifacts in a <code>dist/</code> subdirectory.</p>
 <p>Alternatively, <code>uv build &lt;SRC&gt;</code> will build the package in the specified directory, while
 <code>uv build --package &lt;PACKAGE&gt;</code> will build the specified package within the current workspace.</p>
-<h2 id="publishing-your-package">Publishing your package<a class="headerlink" href="#publishing-your-package" title="Permanent link">#</a></h2>
+<h2 id="publishing-your-package"><a class="toclink" href="#publishing-your-package">Publishing your package</a></h2>
 <p>Publish your package with <code>twine</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="gp">$ </span>uvx<span class="w"> </span>twine<span class="w"> </span>upload<span class="w"> </span>dist/*
 </code></pre></div>
@@ -2079,7 +2079,7 @@ artifacts in a <code>dist/</code> subdirectory.</p>
 <p class="admonition-title">Tip</p>
 <p>To provide credentials, use the <code>TWINE_USERNAME</code> and <code>TWINE_PASSWORD</code> environment variables.</p>
 </div>
-<h2 id="installing-your-package">Installing your package<a class="headerlink" href="#installing-your-package" title="Permanent link">#</a></h2>
+<h2 id="installing-your-package"><a class="toclink" href="#installing-your-package">Installing your package</a></h2>
 <p>Test that the package can be installed and imported with <code>uv run</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>--with<span class="w"> </span>&lt;PACKAGE&gt;<span class="w"> </span>--no-project<span class="w"> </span>--<span class="w"> </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import &lt;PACKAGE&gt;&quot;</span>
 </code></pre></div>
@@ -2089,7 +2089,7 @@ artifacts in a <code>dist/</code> subdirectory.</p>
 <p>If you have recently installed the package, you may need to include the
 <code>--refresh-package &lt;PACKAGE&gt;</code> option to avoid using a cached version of the package.</p>
 </div>
-<h2 id="next-steps">Next steps<a class="headerlink" href="#next-steps" title="Permanent link">#</a></h2>
+<h2 id="next-steps"><a class="toclink" href="#next-steps">Next steps</a></h2>
 <p>To learn more about publishing packages, check out the
 <a href="https://packaging.python.org/en/latest/guides/section-build-and-publish/">PyPA guides</a> on building
 and publishing.</p>
@@ -2144,13 +2144,13 @@ and publishing.</p>
         
         
           
-          <a href="../../concepts/" class="md-footer__link md-footer__link--next" aria-label="Next: Concepts overview" rel="next">
+          <a href="../../concepts/" class="md-footer__link md-footer__link--next" aria-label="Next: " rel="next">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Concepts overview
+                
               </div>
             </div>
             <div class="md-footer__button md-icon">
