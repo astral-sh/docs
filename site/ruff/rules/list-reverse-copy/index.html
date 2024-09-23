@@ -25,7 +25,7 @@
     
     
 
-<title>list-reverse-copy (FURB187) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              list-reverse-copy (FURB187)
+              
             
           </span>
         </div>
@@ -817,17 +817,17 @@
   
 
 
-<h1 id="list-reverse-copy-furb187">list-reverse-copy (FURB187)<a class="headerlink" href="#list-reverse-copy-furb187" title="Permanent link">#</a></h1>
+<h1 id="list-reverse-copy-furb187"><a class="toclink" href="#list-reverse-copy-furb187">list-reverse-copy (FURB187)</a></h1>
 <p>Derived from the <strong><a href="../#refurb-furb">refurb</a></strong> linter.</p>
 <p>Fix is always available.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for list reversals that can be performed in-place in lieu of
 creating a new list.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>When reversing a list, it's more efficient to use the in-place method
 <code>.reverse()</code> instead of creating a new list, if the original list is
 no longer needed.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">l</span> <span class="o">=</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
@@ -841,13 +841,13 @@ no longer needed.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">l</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
 </code></pre></div>
-<h2 id="fix-safety">Fix safety<a class="headerlink" href="#fix-safety" title="Permanent link">#</a></h2>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
 <p>This rule's fix is marked as unsafe, as calling <code>.reverse()</code> on a list
 will mutate the list in-place, unlike <code>reversed</code>, which creates a new list
 and leaves the original list unchanged.</p>
 <p>If the list is referenced elsewhere, this could lead to unexpected
 behavior.</p>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/tutorial/datastructures.html#more-on-lists">Python documentation: More on Lists</a></li>
 </ul>

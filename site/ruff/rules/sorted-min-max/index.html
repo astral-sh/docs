@@ -25,7 +25,7 @@
     
     
 
-<title>sorted-min-max (FURB192) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              sorted-min-max (FURB192)
+              
             
           </span>
         </div>
@@ -817,17 +817,17 @@
   
 
 
-<h1 id="sorted-min-max-furb192">sorted-min-max (FURB192)<a class="headerlink" href="#sorted-min-max-furb192" title="Permanent link">#</a></h1>
+<h1 id="sorted-min-max-furb192"><a class="toclink" href="#sorted-min-max-furb192">sorted-min-max (FURB192)</a></h1>
 <p>Derived from the <strong><a href="../#refurb-furb">refurb</a></strong> linter.</p>
 <p>Fix is sometimes available.</p>
 <p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for uses of <code>sorted()</code> to retrieve the minimum or maximum value in
 a sequence.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Using <code>sorted()</code> to compute the minimum or maximum value in a sequence is
 inefficient and less readable than using <code>min()</code> or <code>max()</code> directly.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">nums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">lowest</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">nums</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">highest</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">nums</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
@@ -838,7 +838,7 @@ inefficient and less readable than using <code>min()</code> or <code>max()</code
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">lowest</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">highest</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="fix-safety">Fix safety<a class="headerlink" href="#fix-safety" title="Permanent link">#</a></h2>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
 <p>In some cases, migrating to <code>min</code> or <code>max</code> can lead to a change in behavior,
 notably when breaking ties.</p>
 <p>As an example, <code>sorted(data, key=itemgetter(0), reverse=True)[0]</code> will return
@@ -846,7 +846,7 @@ the <em>last</em> "minimum" element in the list, if there are multiple elements 
 the same key. However, <code>min(data, key=itemgetter(0))</code> will return the <em>first</em>
 "minimum" element in the list in the same scenario.</p>
 <p>AS such, this rule's fix is marked as unsafe when the <code>reverse</code> keyword is used.</p>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/library/functions.html#min">Python documentation: <code>min</code></a></li>
 <li><a href="https://docs.python.org/3/library/functions.html#max">Python documentation: <code>max</code></a></li>

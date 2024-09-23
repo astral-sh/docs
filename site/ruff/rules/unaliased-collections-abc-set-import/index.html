@@ -25,7 +25,7 @@
     
     
 
-<title>unaliased-collections-abc-set-import (PYI025) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              unaliased-collections-abc-set-import (PYI025)
+              
             
           </span>
         </div>
@@ -817,25 +817,25 @@
   
 
 
-<h1 id="unaliased-collections-abc-set-import-pyi025">unaliased-collections-abc-set-import (PYI025)<a class="headerlink" href="#unaliased-collections-abc-set-import-pyi025" title="Permanent link">#</a></h1>
+<h1 id="unaliased-collections-abc-set-import-pyi025"><a class="toclink" href="#unaliased-collections-abc-set-import-pyi025">unaliased-collections-abc-set-import (PYI025)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-pyi-pyi">flake8-pyi</a></strong> linter.</p>
 <p>Fix is sometimes available.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for <code>from collections.abc import Set</code> imports that do not alias
 <code>Set</code> to <code>AbstractSet</code>.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>The <code>Set</code> type in <code>collections.abc</code> is an abstract base class for set-like types.
 It is easily confused with, and not equivalent to, the <code>set</code> builtin.</p>
 <p>To avoid confusion, <code>Set</code> should be aliased to <code>AbstractSet</code> when imported. This
 makes it clear that the imported type is an abstract base class, and not the
 <code>set</code> builtin.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Set</span>
 </code></pre></div>
 <p>Use instead:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Set</span> <span class="k">as</span> <span class="n">AbstractSet</span>
 </code></pre></div>
-<h2 id="fix-safety">Fix safety<a class="headerlink" href="#fix-safety" title="Permanent link">#</a></h2>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
 <p>This rule's fix is marked as unsafe for <code>Set</code> imports defined at the
 top-level of a <code>.py</code> module. Top-level symbols are implicitly exported by the
 module, and so renaming a top-level symbol may break downstream modules

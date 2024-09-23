@@ -25,7 +25,7 @@
     
     
 
-<title>invalid-get-logger-argument (LOG002) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              invalid-get-logger-argument (LOG002)
+              
             
           </span>
         </div>
@@ -817,13 +817,13 @@
   
 
 
-<h1 id="invalid-get-logger-argument-log002">invalid-get-logger-argument (LOG002)<a class="headerlink" href="#invalid-get-logger-argument-log002" title="Permanent link">#</a></h1>
+<h1 id="invalid-get-logger-argument-log002"><a class="toclink" href="#invalid-get-logger-argument-log002">invalid-get-logger-argument (LOG002)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-logging-log">flake8-logging</a></strong> linter.</p>
 <p>Fix is sometimes available.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for any usage of <code>__cached__</code> and <code>__file__</code> as an argument to
 <code>logging.getLogger()</code>.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>The <a href="https://docs.python.org/3/library/logging.html#logger-objects">logging documentation</a> recommends this pattern:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 </code></pre></div>
@@ -834,7 +834,7 @@ which is the intended format for logger names.</p>
 <li><code>__cached__</code> - the pathname of the module's compiled version, such as <code>foo/__pycache__/bar.cpython-311.pyc</code>.</li>
 <li><code>__file__</code> - the pathname of the module, such as <code>foo/bar.py</code>.</li>
 </ul>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span> <span class="nn">logging</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span>

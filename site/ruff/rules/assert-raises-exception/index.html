@@ -25,7 +25,7 @@
     
     
 
-<title>assert-raises-exception (B017) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              assert-raises-exception (B017)
+              
             
           </span>
         </div>
@@ -817,18 +817,18 @@
   
 
 
-<h1 id="assert-raises-exception-b017">assert-raises-exception (B017)<a class="headerlink" href="#assert-raises-exception-b017" title="Permanent link">#</a></h1>
+<h1 id="assert-raises-exception-b017"><a class="toclink" href="#assert-raises-exception-b017">assert-raises-exception (B017)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-bugbear-b">flake8-bugbear</a></strong> linter.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for <code>assertRaises</code> and <code>pytest.raises</code> context managers that catch
 <code>Exception</code> or <code>BaseException</code>.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>These forms catch every <code>Exception</code>, which can lead to tests passing even
 if, e.g., the code under consideration raises a <code>SyntaxError</code> or
 <code>IndentationError</code>.</p>
 <p>Either assert for a more specific exception (builtin or custom), or use
 <code>assertRaisesRegex</code> or <code>pytest.raises(..., match=&lt;REGEX&gt;)</code> respectively.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">Exception</span><span class="p">,</span> <span class="n">foo</span><span class="p">)</span>
 </code></pre></div>
 <p>Use instead:</p>

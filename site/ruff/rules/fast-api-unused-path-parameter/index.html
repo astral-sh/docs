@@ -25,7 +25,7 @@
     
     
 
-<title>fast-api-unused-path-parameter (FAST003) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              fast-api-unused-path-parameter (FAST003)
+              
             
           </span>
         </div>
@@ -817,14 +817,14 @@
   
 
 
-<h1 id="fast-api-unused-path-parameter-fast003">fast-api-unused-path-parameter (FAST003)<a class="headerlink" href="#fast-api-unused-path-parameter-fast003" title="Permanent link">#</a></h1>
+<h1 id="fast-api-unused-path-parameter-fast003"><a class="toclink" href="#fast-api-unused-path-parameter-fast003">fast-api-unused-path-parameter (FAST003)</a></h1>
 <p>Derived from the <strong><a href="../#fastapi-fast">FastAPI</a></strong> linter.</p>
 <p>Fix is sometimes available.</p>
 <p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Identifies FastAPI routes that declare path parameters in the route path
 that are not included in the function signature.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Path parameters are used to extract values from the URL path.</p>
 <p>If a path parameter is declared in the route path but not in the function
 signature, it will not be accessible in the function body, which is likely
@@ -832,11 +832,11 @@ a mistake.</p>
 <p>If a path parameter is declared in the route path, but as a positional-only
 argument in the function signature, it will also not be accessible in the
 function body, as FastAPI will not inject the parameter.</p>
-<h2 id="known-problems">Known problems<a class="headerlink" href="#known-problems" title="Permanent link">#</a></h2>
+<h2 id="known-problems"><a class="toclink" href="#known-problems">Known problems</a></h2>
 <p>If the path parameter is <em>not</em> a valid Python identifier (e.g., <code>user-id</code>, as
 opposed to <code>user_id</code>), FastAPI will normalize it. However, this rule simply
 ignores such path parameters, as FastAPI's normalization behavior is undocumented.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
@@ -854,7 +854,7 @@ ignores such path parameters, as FastAPI's normalization behavior is undocumente
 <a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/things/</span><span class="si">{thing_id}</span><span class="s2">&quot;</span><span class="p">)</span>
 <a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">read_thing</span><span class="p">(</span><span class="n">thing_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span> <span class="o">...</span>
 </code></pre></div>
-<h2 id="fix-safety">Fix safety<a class="headerlink" href="#fix-safety" title="Permanent link">#</a></h2>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
 <p>This rule's fix is marked as unsafe, as modifying a function signature can
 change the behavior of the code.</p>
 

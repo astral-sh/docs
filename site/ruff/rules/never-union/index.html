@@ -25,7 +25,7 @@
     
     
 
-<title>never-union (RUF020) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              never-union (RUF020)
+              
             
           </span>
         </div>
@@ -817,16 +817,16 @@
   
 
 
-<h1 id="never-union-ruf020">never-union (RUF020)<a class="headerlink" href="#never-union-ruf020" title="Permanent link">#</a></h1>
+<h1 id="never-union-ruf020"><a class="toclink" href="#never-union-ruf020">never-union (RUF020)</a></h1>
 <p>Fix is always available.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for uses of <code>typing.NoReturn</code> and <code>typing.Never</code> in union types.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p><code>typing.NoReturn</code> and <code>typing.Never</code> are special types, used to indicate
 that a function never returns, or that a type has no values.</p>
 <p>Including <code>typing.NoReturn</code> or <code>typing.Never</code> in a union type is redundant,
 as, e.g., <code>typing.Never | T</code> is equivalent to <code>T</code>.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Never</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
@@ -835,7 +835,7 @@ as, e.g., <code>typing.Never | T</code> is equivalent to <code>T</code>.</p>
 <p>Use instead:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">def</span> <span class="nf">func</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span> <span class="o">...</span>
 </code></pre></div>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/library/typing.html#typing.Never">Python documentation: <code>typing.Never</code></a></li>
 <li><a href="https://docs.python.org/3/library/typing.html#typing.NoReturn">Python documentation: <code>typing.NoReturn</code></a></li>

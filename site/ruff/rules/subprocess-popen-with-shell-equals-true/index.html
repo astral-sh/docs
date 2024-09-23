@@ -25,7 +25,7 @@
     
     
 
-<title>subprocess-popen-with-shell-equals-true (S602) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              subprocess-popen-with-shell-equals-true (S602)
+              
             
           </span>
         </div>
@@ -817,15 +817,15 @@
   
 
 
-<h1 id="subprocess-popen-with-shell-equals-true-s602">subprocess-popen-with-shell-equals-true (S602)<a class="headerlink" href="#subprocess-popen-with-shell-equals-true-s602" title="Permanent link">#</a></h1>
+<h1 id="subprocess-popen-with-shell-equals-true-s602"><a class="toclink" href="#subprocess-popen-with-shell-equals-true-s602">subprocess-popen-with-shell-equals-true (S602)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-bandit-s">flake8-bandit</a></strong> linter.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Check for method calls that initiate a subprocess with a shell.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Starting a subprocess with a shell can allow attackers to execute arbitrary
 shell commands. Consider starting the process without a shell call and
 sanitize the input to mitigate the risk of shell injection.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">subprocess</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;ls -l&quot;</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -835,7 +835,7 @@ sanitize the input to mitigate the risk of shell injection.</p>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="s2">&quot;ls&quot;</span><span class="p">,</span> <span class="s2">&quot;-l&quot;</span><span class="p">])</span>
 </code></pre></div>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/library/subprocess.html">Python documentation: <code>subprocess</code> — Subprocess management</a></li>
 <li><a href="https://cwe.mitre.org/data/definitions/78.html">Common Weakness Enumeration: CWE-78</a></li>

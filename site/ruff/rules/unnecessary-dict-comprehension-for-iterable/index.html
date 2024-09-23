@@ -25,7 +25,7 @@
     
     
 
-<title>unnecessary-dict-comprehension-for-iterable (C420) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              unnecessary-dict-comprehension-for-iterable (C420)
+              
             
           </span>
         </div>
@@ -817,19 +817,19 @@
   
 
 
-<h1 id="unnecessary-dict-comprehension-for-iterable-c420">unnecessary-dict-comprehension-for-iterable (C420)<a class="headerlink" href="#unnecessary-dict-comprehension-for-iterable-c420" title="Permanent link">#</a></h1>
+<h1 id="unnecessary-dict-comprehension-for-iterable-c420"><a class="toclink" href="#unnecessary-dict-comprehension-for-iterable-c420">unnecessary-dict-comprehension-for-iterable (C420)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-comprehensions-c4">flake8-comprehensions</a></strong> linter.</p>
 <p>Fix is sometimes available.</p>
 <p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for unnecessary <code>dict</code> comprehension when creating a dictionary from
 an iterable.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>It's unnecessary to use a <code>dict</code> comprehension to build a dictionary from
 an iterable when the value is static.</p>
 <p>Prefer <code>dict.fromkeys(iterable)</code> over <code>{value: None for value in iterable}</code>,
 as <code>dict.fromkeys</code> is more readable and efficient.</p>
-<h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">#</a></h2>
+<h2 id="examples"><a class="toclink" href="#examples">Examples</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span><span class="n">a</span><span class="p">:</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">iterable</span><span class="p">}</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="p">{</span><span class="n">a</span><span class="p">:</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">iterable</span><span class="p">}</span>
 </code></pre></div>

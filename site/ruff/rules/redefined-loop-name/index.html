@@ -25,7 +25,7 @@
     
     
 
-<title>redefined-loop-name (PLW2901) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              redefined-loop-name (PLW2901)
+              
             
           </span>
         </div>
@@ -817,13 +817,13 @@
   
 
 
-<h1 id="redefined-loop-name-plw2901">redefined-loop-name (PLW2901)<a class="headerlink" href="#redefined-loop-name-plw2901" title="Permanent link">#</a></h1>
+<h1 id="redefined-loop-name-plw2901"><a class="toclink" href="#redefined-loop-name-plw2901">redefined-loop-name (PLW2901)</a></h1>
 <p>Derived from the <strong><a href="../#pylint-pl">Pylint</a></strong> linter.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for variables defined in <code>for</code> loops and <code>with</code> statements that
 get overwritten within the body, for example by another <code>for</code> loop or
 <code>with</code> statement or by direct assignment.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Redefinition of a loop variable inside the loop's body causes its value
 to differ from the original loop iteration for the remainder of the
 block, in a way that will likely cause bugs.</p>
@@ -835,7 +835,7 @@ into the remainder of the enclosing loop.</p>
 <p>While this mistake is easy to spot in small examples, it can be hidden
 in larger blocks of code, where the definition and redefinition of the
 variable may not be visible at the same time.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">i</span> <span class="o">=</span> <span class="mi">9</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>  <span class="c1"># prints 9 every iteration</span>

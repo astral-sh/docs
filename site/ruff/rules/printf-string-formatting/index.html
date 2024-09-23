@@ -25,7 +25,7 @@
     
     
 
-<title>printf-string-formatting (UP031) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              printf-string-formatting (UP031)
+              
             
           </span>
         </div>
@@ -817,18 +817,18 @@
   
 
 
-<h1 id="printf-string-formatting-up031">printf-string-formatting (UP031)<a class="headerlink" href="#printf-string-formatting-up031" title="Permanent link">#</a></h1>
+<h1 id="printf-string-formatting-up031"><a class="toclink" href="#printf-string-formatting-up031">printf-string-formatting (UP031)</a></h1>
 <p>Derived from the <strong><a href="../#pyupgrade-up">pyupgrade</a></strong> linter.</p>
 <p>Fix is sometimes available.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for <code>printf</code>-style string formatting, and offers to replace it with
 <code>str.format</code> calls.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p><code>printf</code>-style string formatting has a number of quirks, and leads to less
 readable code than using <code>str.format</code> calls or f-strings. In general, prefer
 the newer <code>str.format</code> and f-strings constructs over <code>printf</code>-style string
 formatting.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="s2">&quot;Hello&quot;</span><span class="p">,</span> <span class="s2">&quot;World&quot;</span><span class="p">)</span>  <span class="c1"># &quot;Hello, World&quot;</span>
 </code></pre></div>
 <p>Use instead:</p>
@@ -836,7 +836,7 @@ formatting.</p>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;Hello&#39;</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="s1">&#39;World&#39;</span><span class="si">}</span><span class="s2">&quot;</span>  <span class="c1"># &quot;Hello, World&quot;</span>
 </code></pre></div>
-<h2 id="fix-safety">Fix safety<a class="headerlink" href="#fix-safety" title="Permanent link">#</a></h2>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
 <p>In cases where the format string contains a single generic format specifier
 (e.g. <code>%s</code>), and the right-hand side is an ambiguous expression,
 we cannot offer a safe fix.</p>
@@ -855,7 +855,7 @@ resolve differently when using f-strings:</p>
 <a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">val</span><span class="p">)</span>  <span class="c1"># &quot;1&quot;</span>
 <a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">val</span><span class="p">))</span>  <span class="c1"># &quot;(1,)&quot;</span>
 </code></pre></div>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/library/stdtypes.html#old-string-formatting">Python documentation: <code>printf</code>-style String Formatting</a></li>
 <li><a href="https://docs.python.org/3/library/stdtypes.html#str.format">Python documentation: <code>str.format</code></a></li>

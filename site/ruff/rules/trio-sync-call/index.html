@@ -25,7 +25,7 @@
     
     
 
-<title>trio-sync-call (ASYNC105) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              trio-sync-call (ASYNC105)
+              
             
           </span>
         </div>
@@ -817,16 +817,16 @@
   
 
 
-<h1 id="trio-sync-call-async105">trio-sync-call (ASYNC105)<a class="headerlink" href="#trio-sync-call-async105" title="Permanent link">#</a></h1>
+<h1 id="trio-sync-call-async105"><a class="toclink" href="#trio-sync-call-async105">trio-sync-call (ASYNC105)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-async-async">flake8-async</a></strong> linter.</p>
 <p>Fix is sometimes available.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for calls to trio functions that are not immediately awaited.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Many of the functions exposed by trio are asynchronous, and must be awaited
 to take effect. Calling a trio function without an <code>await</code> can lead to
 <code>RuntimeWarning</code> diagnostics and unexpected behaviour.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">double_sleep</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">trio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span>
 </code></pre></div>
@@ -834,7 +834,7 @@ to take effect. Calling a trio function without an <code>await</code> can lead t
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">double_sleep</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="k">await</span> <span class="n">trio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="fix-safety">Fix safety<a class="headerlink" href="#fix-safety" title="Permanent link">#</a></h2>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
 <p>This rule's fix is marked as unsafe, as adding an <code>await</code> to a function
 call changes its semantics and runtime behavior.</p>
 

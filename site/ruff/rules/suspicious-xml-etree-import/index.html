@@ -25,7 +25,7 @@
     
     
 
-<title>suspicious-xml-etree-import (S405) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              suspicious-xml-etree-import (S405)
+              
             
           </span>
         </div>
@@ -817,17 +817,17 @@
   
 
 
-<h1 id="suspicious-xml-etree-import-s405">suspicious-xml-etree-import (S405)<a class="headerlink" href="#suspicious-xml-etree-import-s405" title="Permanent link">#</a></h1>
+<h1 id="suspicious-xml-etree-import-s405"><a class="toclink" href="#suspicious-xml-etree-import-s405">suspicious-xml-etree-import (S405)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-bandit-s">flake8-bandit</a></strong> linter.</p>
 <p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for imports of the <code>xml.etree.cElementTree</code> and <code>xml.etree.ElementTree</code> modules</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Using various methods from these modules to parse untrusted XML data is
 known to be vulnerable to XML attacks. Replace vulnerable imports with the
 equivalent <code>defusedxml</code> package, or make sure <code>defusedxml.defuse_stdlib()</code> is
 called before parsing XML data.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">xml.etree.cElementTree</span>
 </code></pre></div>
 

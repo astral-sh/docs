@@ -25,7 +25,7 @@
     
     
 
-<title>explicit-f-string-type-conversion (RUF010) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              explicit-f-string-type-conversion (RUF010)
+              
             
           </span>
         </div>
@@ -817,19 +817,19 @@
   
 
 
-<h1 id="explicit-f-string-type-conversion-ruf010">explicit-f-string-type-conversion (RUF010)<a class="headerlink" href="#explicit-f-string-type-conversion-ruf010" title="Permanent link">#</a></h1>
+<h1 id="explicit-f-string-type-conversion-ruf010"><a class="toclink" href="#explicit-f-string-type-conversion-ruf010">explicit-f-string-type-conversion (RUF010)</a></h1>
 <p>Fix is always available.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for uses of <code>str()</code>, <code>repr()</code>, and <code>ascii()</code> as explicit type
 conversions within f-strings.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>f-strings support dedicated conversion flags for these types, which are
 more succinct and idiomatic.</p>
 <p>Note that, in many cases, calling <code>str()</code> within an f-string is
 unnecessary and can be removed entirely, as the value will be converted
 to a string automatically, the notable exception being for classes that
 implement a custom <code>__format__</code> method.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">a</span> <span class="o">=</span> <span class="s2">&quot;some string&quot;</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">repr</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
 </code></pre></div>

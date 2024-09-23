@@ -25,7 +25,7 @@
     
     
 
-<title>mutable-argument-default (B006) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              mutable-argument-default (B006)
+              
             
           </span>
         </div>
@@ -817,12 +817,12 @@
   
 
 
-<h1 id="mutable-argument-default-b006">mutable-argument-default (B006)<a class="headerlink" href="#mutable-argument-default-b006" title="Permanent link">#</a></h1>
+<h1 id="mutable-argument-default-b006"><a class="toclink" href="#mutable-argument-default-b006">mutable-argument-default (B006)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-bugbear-b">flake8-bugbear</a></strong> linter.</p>
 <p>Fix is sometimes available.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for uses of mutable objects as function argument defaults.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Function defaults are evaluated once, when the function is defined.</p>
 <p>The same mutable object is then shared across all calls to the function.
 If the object is modified, those modifications will persist across calls,
@@ -833,12 +833,12 @@ for each call.</p>
 <p>Arguments with immutable type annotations will be ignored by this rule.
 Types outside of the standard library can be marked as immutable with the
 <a href="../../settings/#lint_flake8-bugbear_extend-immutable-calls"><code>lint.flake8-bugbear.extend-immutable-calls</code></a> configuration option.</p>
-<h2 id="known-problems">Known problems<a class="headerlink" href="#known-problems" title="Permanent link">#</a></h2>
+<h2 id="known-problems"><a class="toclink" href="#known-problems">Known problems</a></h2>
 <p>Mutable argument defaults can be used intentionally to cache computation
 results. Replacing the default with <code>None</code> or an immutable data structure
 does not work for such usages. Instead, prefer the <code>@functools.lru_cache</code>
 decorator from the standard library.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span> <span class="nf">add_to_list</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">some_list</span><span class="o">=</span><span class="p">[]):</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">some_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="k">return</span> <span class="n">some_list</span>
@@ -858,11 +858,11 @@ decorator from the standard library.</p>
 <a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">l1</span> <span class="o">=</span> <span class="n">add_to_list</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># [0]</span>
 <a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="n">l2</span> <span class="o">=</span> <span class="n">add_to_list</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># [1]</span>
 </code></pre></div>
-<h2 id="options">Options<a class="headerlink" href="#options" title="Permanent link">#</a></h2>
+<h2 id="options"><a class="toclink" href="#options">Options</a></h2>
 <ul>
 <li><a href="../../settings/#lint_flake8-bugbear_extend-immutable-calls"><code>lint.flake8-bugbear.extend-immutable-calls</code></a></li>
 </ul>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/tutorial/controlflow.html#default-argument-values">Python documentation: Default Argument Values</a></li>
 </ul>

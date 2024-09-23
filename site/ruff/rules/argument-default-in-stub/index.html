@@ -25,7 +25,7 @@
     
     
 
-<title>argument-default-in-stub (PYI014) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              argument-default-in-stub (PYI014)
+              
             
           </span>
         </div>
@@ -817,14 +817,14 @@
   
 
 
-<h1 id="argument-default-in-stub-pyi014">argument-default-in-stub (PYI014)<a class="headerlink" href="#argument-default-in-stub-pyi014" title="Permanent link">#</a></h1>
+<h1 id="argument-default-in-stub-pyi014"><a class="toclink" href="#argument-default-in-stub-pyi014">argument-default-in-stub (PYI014)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-pyi-pyi">flake8-pyi</a></strong> linter.</p>
 <p>Fix is always available.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for untyped function arguments in stubs with default values that
 are not "simple" /// (i.e., <code>int</code>, <code>float</code>, <code>complex</code>, <code>bytes</code>, <code>str</code>,
 <code>bool</code>, <code>None</code>, <code>...</code>, or simple container literals).</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Stub (<code>.pyi</code>) files exist to define type hints, and are not evaluated at
 runtime. As such, function arguments in stub files should not have default
 values, as they are ignored by type checkers.</p>
@@ -834,13 +834,13 @@ are permitted by this rule.</p>
 <p>Instead of including and reproducing a complex value, use <code>...</code> to indicate
 that the assignment has a default value, but that the value is non-simple
 or varies according to the current platform or Python version.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">arg</span><span class="o">=</span><span class="p">[])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
 </code></pre></div>
 <p>Use instead:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">arg</span><span class="o">=...</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
 </code></pre></div>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://github.com/PyCQA/flake8-pyi/blob/main/ERRORCODES.md"><code>flake8-pyi</code></a></li>
 </ul>

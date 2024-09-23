@@ -25,7 +25,7 @@
     
     
 
-<title>printf-in-get-text-func-call (INT003) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              printf-in-get-text-func-call (INT003)
+              
             
           </span>
         </div>
@@ -817,11 +817,11 @@
   
 
 
-<h1 id="printf-in-get-text-func-call-int003">printf-in-get-text-func-call (INT003)<a class="headerlink" href="#printf-in-get-text-func-call-int003" title="Permanent link">#</a></h1>
+<h1 id="printf-in-get-text-func-call-int003"><a class="toclink" href="#printf-in-get-text-func-call-int003">printf-in-get-text-func-call (INT003)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-gettext-int">flake8-gettext</a></strong> linter.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for printf-style formatted strings in <code>gettext</code> function calls.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>In the <code>gettext</code> API, the <code>gettext</code> function (often aliased to <code>_</code>) returns
 a translation of its input argument by looking it up in a translation
 catalog.</p>
@@ -831,7 +831,7 @@ function call, the translation catalog will look up the formatted string,
 rather than the printf-style template.</p>
 <p>Instead, format the value returned by the function call, rather than
 its argument.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">gettext</span> <span class="kn">import</span> <span class="n">gettext</span> <span class="k">as</span> <span class="n">_</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Maria&quot;</span>
@@ -843,7 +843,7 @@ its argument.</p>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Maria&quot;</span>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">_</span><span class="p">(</span><span class="s2">&quot;Hello, </span><span class="si">%s</span><span class="s2">!&quot;</span><span class="p">)</span> <span class="o">%</span> <span class="n">name</span>  <span class="c1"># Looks for &quot;Hello, %s!&quot;.</span>
 </code></pre></div>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/library/gettext.html">Python documentation: gettext</a></li>
 </ul>

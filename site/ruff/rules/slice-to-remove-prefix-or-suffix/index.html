@@ -25,7 +25,7 @@
     
     
 
-<title>slice-to-remove-prefix-or-suffix (FURB188) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              slice-to-remove-prefix-or-suffix (FURB188)
+              
             
           </span>
         </div>
@@ -817,19 +817,19 @@
   
 
 
-<h1 id="slice-to-remove-prefix-or-suffix-furb188">slice-to-remove-prefix-or-suffix (FURB188)<a class="headerlink" href="#slice-to-remove-prefix-or-suffix-furb188" title="Permanent link">#</a></h1>
+<h1 id="slice-to-remove-prefix-or-suffix-furb188"><a class="toclink" href="#slice-to-remove-prefix-or-suffix-furb188">slice-to-remove-prefix-or-suffix (FURB188)</a></h1>
 <p>Derived from the <strong><a href="../#refurb-furb">refurb</a></strong> linter.</p>
 <p>Fix is always available.</p>
 <p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for the removal of a prefix or suffix from a string by assigning
 the string to a slice after checking <code>.startswith()</code> or <code>.endswith()</code>, respectively.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>The methods <a href="https://docs.python.org/3/library/stdtypes.html#str.removeprefix"><code>str.removeprefix</code></a>
 and <a href="https://docs.python.org/3/library/stdtypes.html#str.removesuffix"><code>str.removesuffix</code></a>,
 introduced in Python 3.9, have the same behavior
 and are more readable and efficient.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">filename</span><span class="p">[:</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span> <span class="k">if</span> <span class="n">filename</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.txt&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="n">filename</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">if</span> <span class="n">text</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;pre&quot;</span><span class="p">):</span>

@@ -25,7 +25,7 @@
     
     
 
-<title>no-slots-in-tuple-subclass (SLOT001) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              no-slots-in-tuple-subclass (SLOT001)
+              
             
           </span>
         </div>
@@ -817,11 +817,11 @@
   
 
 
-<h1 id="no-slots-in-tuple-subclass-slot001">no-slots-in-tuple-subclass (SLOT001)<a class="headerlink" href="#no-slots-in-tuple-subclass-slot001" title="Permanent link">#</a></h1>
+<h1 id="no-slots-in-tuple-subclass-slot001"><a class="toclink" href="#no-slots-in-tuple-subclass-slot001">no-slots-in-tuple-subclass (SLOT001)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-slots-slot">flake8-slots</a></strong> linter.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for subclasses of <code>tuple</code> that lack a <code>__slots__</code> definition.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>In Python, the <code>__slots__</code> attribute allows you to explicitly define the
 attributes (instance variables) that a class can have. By default, Python
 uses a dictionary to store an object's attributes, which incurs some memory
@@ -833,7 +833,7 @@ built-in <code>tuple</code> class. Since tuples are typically immutable, they do
 require additional attributes beyond what the <code>tuple</code> class provides.
 Defining <code>__slots__</code> for subclasses of <code>tuple</code> prevents the creation of a
 dictionary for each instance, reducing memory consumption.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">class</span> <span class="nc">Foo</span><span class="p">(</span><span class="nb">tuple</span><span class="p">):</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="k">pass</span>
 </code></pre></div>
@@ -841,7 +841,7 @@ dictionary for each instance, reducing memory consumption.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">class</span> <span class="nc">Foo</span><span class="p">(</span><span class="nb">tuple</span><span class="p">):</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">()</span>
 </code></pre></div>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/reference/datamodel.html#slots">Python documentation: <code>__slots__</code></a></li>
 </ul>

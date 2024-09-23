@@ -25,7 +25,7 @@
     
     
 
-<title>missing-f-string-syntax (RUF027) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              missing-f-string-syntax (RUF027)
+              
             
           </span>
         </div>
@@ -817,14 +817,14 @@
   
 
 
-<h1 id="missing-f-string-syntax-ruf027">missing-f-string-syntax (RUF027)<a class="headerlink" href="#missing-f-string-syntax-ruf027" title="Permanent link">#</a></h1>
+<h1 id="missing-f-string-syntax-ruf027"><a class="toclink" href="#missing-f-string-syntax-ruf027">missing-f-string-syntax (RUF027)</a></h1>
 <p>Fix is always available.</p>
 <p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Searches for strings that look like they were meant to be f-strings, but are missing an <code>f</code> prefix.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Expressions inside curly braces are only evaluated if the string has an <code>f</code> prefix.</p>
-<h2 id="details">Details<a class="headerlink" href="#details" title="Permanent link">#</a></h2>
+<h2 id="details"><a class="toclink" href="#details">Details</a></h2>
 <p>There are many possible string literals which are not meant to be f-strings
 despite containing f-string-like syntax. As such, this lint ignores all strings
 where one of the following conditions applies:</p>
@@ -840,7 +840,7 @@ where one of the following conditions applies:</p>
 <li>The string is part of a function call that is known to expect a template string rather than an
     evaluated f-string: for example, a [<code>logging</code>][logging] call, a [<code>gettext</code>][gettext] call, or a [<code>fastAPI</code> path].</li>
 </ol>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Sarah&quot;</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">day_of_week</span> <span class="o">=</span> <span class="s2">&quot;Tuesday&quot;</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello </span><span class="si">{name}</span><span class="s2">! It is </span><span class="si">{day_of_week}</span><span class="s2"> today!&quot;</span><span class="p">)</span>

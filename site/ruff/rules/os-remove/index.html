@@ -25,7 +25,7 @@
     
     
 
-<title>os-remove (PTH107) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              os-remove (PTH107)
+              
             
           </span>
         </div>
@@ -817,18 +817,18 @@
   
 
 
-<h1 id="os-remove-pth107">os-remove (PTH107)<a class="headerlink" href="#os-remove-pth107" title="Permanent link">#</a></h1>
+<h1 id="os-remove-pth107"><a class="toclink" href="#os-remove-pth107">os-remove (PTH107)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-use-pathlib-pth">flake8-use-pathlib</a></strong> linter.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for uses of <code>os.remove</code>.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p><code>pathlib</code> offers a high-level API for path manipulation, as compared to
 the lower-level API offered by <code>os</code>. When possible, using <code>Path</code> object
 methods such as <code>Path.unlink()</code> can improve readability over the <code>os</code>
 module's counterparts (e.g., <code>os.remove()</code>).</p>
 <p>Note that <code>os</code> functions may be preferable if performance is a concern,
 e.g., in hot loops.</p>
-<h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">#</a></h2>
+<h2 id="examples"><a class="toclink" href="#examples">Examples</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">os</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;file.py&quot;</span><span class="p">)</span>
@@ -838,7 +838,7 @@ e.g., in hot loops.</p>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;file.py&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">unlink</span><span class="p">()</span>
 </code></pre></div>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path.unlink">Python documentation: <code>Path.unlink</code></a></li>
 <li><a href="https://docs.python.org/3/library/os.html#os.remove">Python documentation: <code>os.remove</code></a></li>

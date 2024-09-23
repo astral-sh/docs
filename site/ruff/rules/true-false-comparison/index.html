@@ -25,7 +25,7 @@
     
     
 
-<title>true-false-comparison (E712) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              true-false-comparison (E712)
+              
             
           </span>
         </div>
@@ -817,18 +817,18 @@
   
 
 
-<h1 id="true-false-comparison-e712">true-false-comparison (E712)<a class="headerlink" href="#true-false-comparison-e712" title="Permanent link">#</a></h1>
+<h1 id="true-false-comparison-e712"><a class="toclink" href="#true-false-comparison-e712">true-false-comparison (E712)</a></h1>
 <p>Derived from the <strong><a href="../#pycodestyle-e-w">pycodestyle</a></strong> linter.</p>
 <p>Fix is always available.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for equality comparisons to boolean literals.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p><a href="https://peps.python.org/pep-0008/#programming-recommendations">PEP 8</a> recommends against using the equality operators <code>==</code> and <code>!=</code> to
 compare values to <code>True</code> or <code>False</code>.</p>
 <p>Instead, use <code>if cond:</code> or <code>if not cond:</code> to check for truth values.</p>
 <p>If you intend to check if a value is the boolean literal <code>True</code> or <code>False</code>,
 consider using <code>is</code> or <code>is not</code> to check for identity instead.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">if</span> <span class="n">foo</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="o">...</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
@@ -842,7 +842,7 @@ consider using <code>is</code> or <code>is not</code> to check for identity inst
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">if</span> <span class="ow">not</span> <span class="n">bar</span><span class="p">:</span>
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="o">...</span>
 </code></pre></div>
-<h2 id="fix-safety">Fix safety<a class="headerlink" href="#fix-safety" title="Permanent link">#</a></h2>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
 <p>This rule's fix is marked as unsafe, as it may alter runtime behavior when
 used with libraries that override the <code>==</code>/<code>__eq__</code> or <code>!=</code>/<code>__ne__</code> operators.
 In these cases, <code>is</code>/<code>is not</code> may not be equivalent to <code>==</code>/<code>!=</code>. For more

@@ -25,7 +25,7 @@
     
     
 
-<title>default-factory-kwarg (RUF026) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              default-factory-kwarg (RUF026)
+              
             
           </span>
         </div>
@@ -817,12 +817,12 @@
   
 
 
-<h1 id="default-factory-kwarg-ruf026">default-factory-kwarg (RUF026)<a class="headerlink" href="#default-factory-kwarg-ruf026" title="Permanent link">#</a></h1>
+<h1 id="default-factory-kwarg-ruf026"><a class="toclink" href="#default-factory-kwarg-ruf026">default-factory-kwarg (RUF026)</a></h1>
 <p>Fix is sometimes available.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for incorrect usages of <code>default_factory</code> as a keyword argument when
 initializing a <code>defaultdict</code>.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>The <code>defaultdict</code> constructor accepts a callable as its first argument.
 For example, it's common to initialize a <code>defaultdict</code> with <code>int</code> or <code>list</code>
 via <code>defaultdict(int)</code> or <code>defaultdict(list)</code>, to create a dictionary that
@@ -836,11 +836,11 @@ dictionary with <code>{"foo": 1, "bar": 2}</code> as its initial entries.</p>
 that returns <code>[]</code> when a key is missing. Specifying a <code>default_factory</code>
 keyword argument is almost always a mistake, and one that type checkers
 can't reliably detect.</p>
-<h2 id="fix-safety">Fix safety<a class="headerlink" href="#fix-safety" title="Permanent link">#</a></h2>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
 <p>This rule's fix is marked as unsafe, as converting <code>default_factory</code> from a
 keyword to a positional argument will change the behavior of the code, even
 if the keyword argument was used erroneously.</p>
-<h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">#</a></h2>
+<h2 id="examples"><a class="toclink" href="#examples">Examples</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">defaultdict</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">defaultdict</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
 </code></pre></div>

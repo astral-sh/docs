@@ -25,7 +25,7 @@
     
     
 
-<title>error-instead-of-exception (TRY400) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              error-instead-of-exception (TRY400)
+              
             
           </span>
         </div>
@@ -817,17 +817,17 @@
   
 
 
-<h1 id="error-instead-of-exception-try400">error-instead-of-exception (TRY400)<a class="headerlink" href="#error-instead-of-exception-try400" title="Permanent link">#</a></h1>
+<h1 id="error-instead-of-exception-try400"><a class="toclink" href="#error-instead-of-exception-try400">error-instead-of-exception (TRY400)</a></h1>
 <p>Derived from the <strong><a href="../#tryceratops-try">tryceratops</a></strong> linter.</p>
 <p>Fix is sometimes available.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for uses of <code>logging.error</code> instead of <code>logging.exception</code> when
 logging an exception.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p><code>logging.exception</code> logs the exception and the traceback, while
 <code>logging.error</code> only logs the exception. The former is more appropriate
 when logging an exception, as the traceback is often useful for debugging.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">logging</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
@@ -847,12 +847,12 @@ when logging an exception, as the traceback is often useful for debugging.</p>
 <a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="k">except</span> <span class="ne">NotImplementedError</span><span class="p">:</span>
 <a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>        <span class="n">logging</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Exception occurred&quot;</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="fix-safety">Fix safety<a class="headerlink" href="#fix-safety" title="Permanent link">#</a></h2>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
 <p>This rule's fix is marked as safe when run against <code>logging.error</code> calls,
 but unsafe when marked against other logger-like calls (e.g.,
 <code>logger.error</code>), since the rule is prone to false positives when detecting
 logger-like calls outside of the <code>logging</code> module.</p>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/library/logging.html#logging.exception">Python documentation: <code>logging.exception</code></a></li>
 </ul>

@@ -25,7 +25,7 @@
     
     
 
-<title>blind-except (BLE001) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              blind-except (BLE001)
+              
             
           </span>
         </div>
@@ -817,18 +817,18 @@
   
 
 
-<h1 id="blind-except-ble001">blind-except (BLE001)<a class="headerlink" href="#blind-except-ble001" title="Permanent link">#</a></h1>
+<h1 id="blind-except-ble001"><a class="toclink" href="#blind-except-ble001">blind-except (BLE001)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-blind-except-ble">flake8-blind-except</a></strong> linter.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for <code>except</code> clauses that catch all exceptions.  This includes
 bare <code>except</code>, <code>except BaseException</code> and <code>except Exception</code>.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Overly broad <code>except</code> clauses can lead to unexpected behavior, such as
 catching <code>KeyboardInterrupt</code> or <code>SystemExit</code> exceptions that prevent the
 user from exiting the program.</p>
 <p>Instead of catching all exceptions, catch only those that are expected to
 be raised in the <code>try</code> block.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">try</span><span class="p">:</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">foo</span><span class="p">()</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">except</span> <span class="ne">BaseException</span><span class="p">:</span>
@@ -855,7 +855,7 @@ for propagating exception traces:</p>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">except</span> <span class="ne">BaseException</span><span class="p">:</span>
 <a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="n">logging</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Something went wrong&quot;</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/reference/compound_stmts.html#the-try-statement">Python documentation: The <code>try</code> statement</a></li>
 <li><a href="https://docs.python.org/3/library/exceptions.html#exception-hierarchy">Python documentation: Exception hierarchy</a></li>

@@ -25,7 +25,7 @@
     
     
 
-<title>any-type (ANN401) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              any-type (ANN401)
+              
             
           </span>
         </div>
@@ -817,24 +817,24 @@
   
 
 
-<h1 id="any-type-ann401">any-type (ANN401)<a class="headerlink" href="#any-type-ann401" title="Permanent link">#</a></h1>
+<h1 id="any-type-ann401"><a class="toclink" href="#any-type-ann401">any-type (ANN401)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-annotations-ann">flake8-annotations</a></strong> linter.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks that function arguments are annotated with a more specific type than
 <code>Any</code>.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p><code>Any</code> is a special type indicating an unconstrained type. When an
 expression is annotated with type <code>Any</code>, type checkers will allow all
 operations on it.</p>
 <p>It's better to be explicit about the type of an expression, and to use
 <code>Any</code> as an "escape hatch" only when it is really needed.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span> <span class="o">...</span>
 </code></pre></div>
 <p>Use instead:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span> <span class="o">...</span>
 </code></pre></div>
-<h2 id="known-problems">Known problems<a class="headerlink" href="#known-problems" title="Permanent link">#</a></h2>
+<h2 id="known-problems"><a class="toclink" href="#known-problems">Known problems</a></h2>
 <p>Type aliases are unsupported and can lead to false positives.
 For example, the following will trigger this rule inadvertently:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>
@@ -844,7 +844,7 @@ For example, the following will trigger this rule inadvertently:</p>
 <a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
 <a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">MyAny</span><span class="p">):</span> <span class="o">...</span>
 </code></pre></div>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://www.python.org/dev/peps/pep-0484/#the-any-type">PEP 484</a></li>
 <li><a href="https://docs.python.org/3/library/typing.html#typing.Any">Python documentation: <code>typing.Any</code></a></li>

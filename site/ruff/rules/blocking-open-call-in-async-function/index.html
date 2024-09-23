@@ -25,7 +25,7 @@
     
     
 
-<title>blocking-open-call-in-async-function (ASYNC230) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              blocking-open-call-in-async-function (ASYNC230)
+              
             
           </span>
         </div>
@@ -817,17 +817,17 @@
   
 
 
-<h1 id="blocking-open-call-in-async-function-async230">blocking-open-call-in-async-function (ASYNC230)<a class="headerlink" href="#blocking-open-call-in-async-function-async230" title="Permanent link">#</a></h1>
+<h1 id="blocking-open-call-in-async-function-async230"><a class="toclink" href="#blocking-open-call-in-async-function-async230">blocking-open-call-in-async-function (ASYNC230)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-async-async">flake8-async</a></strong> linter.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks that async functions do not open files with blocking methods like <code>open</code>.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Blocking an async function via a blocking call will block the entire
 event loop, preventing it from executing other tasks while waiting for the
 call to complete, negating the benefits of asynchronous programming.</p>
 <p>Instead of making a blocking call, use an equivalent asynchronous library
 or function.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;bar.txt&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>        <span class="n">contents</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>

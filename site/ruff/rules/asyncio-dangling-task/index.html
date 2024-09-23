@@ -25,7 +25,7 @@
     
     
 
-<title>asyncio-dangling-task (RUF006) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              asyncio-dangling-task (RUF006)
+              
             
           </span>
         </div>
@@ -817,18 +817,18 @@
   
 
 
-<h1 id="asyncio-dangling-task-ruf006">asyncio-dangling-task (RUF006)<a class="headerlink" href="#asyncio-dangling-task-ruf006" title="Permanent link">#</a></h1>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h1 id="asyncio-dangling-task-ruf006"><a class="toclink" href="#asyncio-dangling-task-ruf006">asyncio-dangling-task (RUF006)</a></h1>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for <code>asyncio.create_task</code> and <code>asyncio.ensure_future</code> calls
 that do not store a reference to the returned result.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Per the <code>asyncio</code> documentation, the event loop only retains a weak
 reference to tasks. If the task returned by <code>asyncio.create_task</code> and
 <code>asyncio.ensure_future</code> is not stored in a variable, or a collection,
 or otherwise referenced, it may be garbage collected at any time. This
 can lead to unexpected and inconsistent behavior, as your tasks may or
 may not run to completion.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">asyncio</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
@@ -852,7 +852,7 @@ may not run to completion.</p>
 <a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    <span class="c1"># completion:</span>
 <a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>    <span class="n">task</span><span class="o">.</span><span class="n">add_done_callback</span><span class="p">(</span><span class="n">background_tasks</span><span class="o">.</span><span class="n">discard</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://textual.textualize.io/blog/2023/02/11/the-heisenbug-lurking-in-your-async-code/"><em>The Heisenbug lurking in your async code</em></a></li>
 <li><a href="https://docs.python.org/3/library/asyncio-task.html#asyncio.create_task">The Python Standard Library</a></li>

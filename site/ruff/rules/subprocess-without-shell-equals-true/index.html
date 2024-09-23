@@ -25,7 +25,7 @@
     
     
 
-<title>subprocess-without-shell-equals-true (S603) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              subprocess-without-shell-equals-true (S603)
+              
             
           </span>
         </div>
@@ -817,24 +817,24 @@
   
 
 
-<h1 id="subprocess-without-shell-equals-true-s603">subprocess-without-shell-equals-true (S603)<a class="headerlink" href="#subprocess-without-shell-equals-true-s603" title="Permanent link">#</a></h1>
+<h1 id="subprocess-without-shell-equals-true-s603"><a class="toclink" href="#subprocess-without-shell-equals-true-s603">subprocess-without-shell-equals-true (S603)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-bandit-s">flake8-bandit</a></strong> linter.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Check for method calls that initiate a subprocess without a shell.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Starting a subprocess without a shell can prevent attackers from executing
 arbitrary shell commands; however, it is still error-prone. Consider
 validating the input.</p>
-<h2 id="known-problems">Known problems<a class="headerlink" href="#known-problems" title="Permanent link">#</a></h2>
+<h2 id="known-problems"><a class="toclink" href="#known-problems">Known problems</a></h2>
 <p>Prone to false positives as it is difficult to determine whether the
 passed arguments have been validated (<a href="https://github.com/astral-sh/ruff/issues/4045">#4045</a>).</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">subprocess</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">cmd</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter a command: &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/library/subprocess.html">Python documentation: <code>subprocess</code> — Subprocess management</a></li>
 </ul>

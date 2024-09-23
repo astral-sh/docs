@@ -25,7 +25,7 @@
     
     
 
-<title>binary-op-exception (PLW0711) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              binary-op-exception (PLW0711)
+              
             
           </span>
         </div>
@@ -817,17 +817,17 @@
   
 
 
-<h1 id="binary-op-exception-plw0711">binary-op-exception (PLW0711)<a class="headerlink" href="#binary-op-exception-plw0711" title="Permanent link">#</a></h1>
+<h1 id="binary-op-exception-plw0711"><a class="toclink" href="#binary-op-exception-plw0711">binary-op-exception (PLW0711)</a></h1>
 <p>Derived from the <strong><a href="../#pylint-pl">Pylint</a></strong> linter.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for <code>except</code> clauses that attempt to catch multiple
 exceptions with a binary operation (<code>and</code> or <code>or</code>).</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>A binary operation will not catch multiple exceptions. Instead, the binary
 operation will be evaluated first, and the result of <em>that</em> operation will
 be caught (for an <code>or</code> operation, this is typically the first exception in
 the list). This is almost never the desired behavior.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">try</span><span class="p">:</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="k">pass</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">except</span> <span class="n">A</span> <span class="ow">or</span> <span class="n">B</span><span class="p">:</span>

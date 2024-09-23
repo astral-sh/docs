@@ -25,7 +25,7 @@
     
     
 
-<title>redundant-numeric-union (PYI041) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              redundant-numeric-union (PYI041)
+              
             
           </span>
         </div>
@@ -817,12 +817,12 @@
   
 
 
-<h1 id="redundant-numeric-union-pyi041">redundant-numeric-union (PYI041)<a class="headerlink" href="#redundant-numeric-union-pyi041" title="Permanent link">#</a></h1>
+<h1 id="redundant-numeric-union-pyi041"><a class="toclink" href="#redundant-numeric-union-pyi041">redundant-numeric-union (PYI041)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-pyi-pyi">flake8-pyi</a></strong> linter.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for parameter annotations that contain redundant unions between
 builtin numeric types (e.g., <code>int | float</code>).</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>The <a href="https://typing.readthedocs.io/en/latest/spec/special-types.html#special-cases-for-float-and-complex">typing specification</a> states:</p>
 <blockquote>
 <p>Python’s numeric types <code>complex</code>, <code>float</code> and <code>int</code> are not subtypes of
@@ -836,13 +836,13 @@ argument annotated as having type <code>complex</code>, arguments of type <code>
 specific context of a parameter annotation, as it is equivalent to a union
 that only includes <code>float</code>. For readability and clarity, unions should omit
 redundant elements.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
 </code></pre></div>
 <p>Use instead:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
 </code></pre></div>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/library/numbers.html#the-numeric-tower">The typing specification</a></li>
 <li><a href="https://peps.python.org/pep-0484/#the-numeric-tower">PEP 484: The numeric tower</a></li>

@@ -25,7 +25,7 @@
     
     
 
-<title>non-augmented-assignment (PLR6104) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              non-augmented-assignment (PLR6104)
+              
             
           </span>
         </div>
@@ -817,20 +817,20 @@
   
 
 
-<h1 id="non-augmented-assignment-plr6104">non-augmented-assignment (PLR6104)<a class="headerlink" href="#non-augmented-assignment-plr6104" title="Permanent link">#</a></h1>
+<h1 id="non-augmented-assignment-plr6104"><a class="toclink" href="#non-augmented-assignment-plr6104">non-augmented-assignment (PLR6104)</a></h1>
 <p>Derived from the <strong><a href="../#pylint-pl">Pylint</a></strong> linter.</p>
 <p>Fix is always available.</p>
 <p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for assignments that can be replaced with augmented assignment
 statements.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>If the right-hand side of an assignment statement consists of a binary
 operation in which one operand is the same as the assignment target,
 it can be rewritten as an augmented assignment. For example, <code>x = x + 1 can be rewritten as</code>x += 1`.</p>
 <p>When performing such an operation, an augmented assignment is more concise
 and idiomatic.</p>
-<h2 id="known-problems">Known problems<a class="headerlink" href="#known-problems" title="Permanent link">#</a></h2>
+<h2 id="known-problems"><a class="toclink" href="#known-problems">Known problems</a></h2>
 <p>In some cases, this rule will not detect assignments in which the target
 is on the right-hand side of a binary operation (e.g., <code>x = y + x</code>, as
 opposed to <code>x = x + y</code>), as such operations are not commutative for
@@ -839,13 +839,13 @@ certain data types, like strings.</p>
 while <code>x = 1 + x</code> is equivalent to <code>x += 1</code>.</p>
 <p>If the type of the left-hand side cannot be trivially inferred, the rule
 will ignore the assignment.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
 </code></pre></div>
 <p>Use instead:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">x</span> <span class="o">+=</span> <span class="mi">1</span>
 </code></pre></div>
-<h2 id="fix-safety">Fix safety<a class="headerlink" href="#fix-safety" title="Permanent link">#</a></h2>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
 <p>This rule's fix is marked as unsafe, as augmented assignments have
 different semantics when the target is a mutable data type, like a list or
 dictionary.</p>

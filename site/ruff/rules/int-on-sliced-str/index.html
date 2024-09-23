@@ -25,7 +25,7 @@
     
     
 
-<title>int-on-sliced-str (FURB166) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              int-on-sliced-str (FURB166)
+              
             
           </span>
         </div>
@@ -817,20 +817,20 @@
   
 
 
-<h1 id="int-on-sliced-str-furb166">int-on-sliced-str (FURB166)<a class="headerlink" href="#int-on-sliced-str-furb166" title="Permanent link">#</a></h1>
+<h1 id="int-on-sliced-str-furb166"><a class="toclink" href="#int-on-sliced-str-furb166">int-on-sliced-str (FURB166)</a></h1>
 <p>Derived from the <strong><a href="../#refurb-furb">refurb</a></strong> linter.</p>
 <p>Fix is always available.</p>
 <p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for uses of <code>int</code> with an explicit base in which a string expression
 is stripped of its leading prefix (i.e., <code>0b</code>, <code>0o</code>, or <code>0x</code>).</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Given an integer string with a prefix (e.g., <code>0xABC</code>), Python can automatically
 determine the base of the integer by the prefix without needing to specify
 it explicitly.</p>
 <p>Instead of <code>int(num[2:], 16)</code>, use <code>int(num, 0)</code>, which will automatically
 deduce the base based on the prefix.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">num</span> <span class="o">=</span> <span class="s2">&quot;0xABC&quot;</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">if</span> <span class="n">num</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;0b&quot;</span><span class="p">):</span>
@@ -849,11 +849,11 @@ deduce the base based on the prefix.</p>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="fix-safety">Fix safety<a class="headerlink" href="#fix-safety" title="Permanent link">#</a></h2>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
 <p>The rule's fix is marked as unsafe, as Ruff cannot guarantee that the
 argument to <code>int</code> will remain valid when its base is included in the
 function call.</p>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/library/functions.html#int">Python documentation: <code>int</code></a></li>
 </ul>

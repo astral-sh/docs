@@ -25,7 +25,7 @@
     
     
 
-<title>try-except-in-loop (PERF203) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              try-except-in-loop (PERF203)
+              
             
           </span>
         </div>
@@ -817,12 +817,12 @@
   
 
 
-<h1 id="try-except-in-loop-perf203">try-except-in-loop (PERF203)<a class="headerlink" href="#try-except-in-loop-perf203" title="Permanent link">#</a></h1>
+<h1 id="try-except-in-loop-perf203"><a class="toclink" href="#try-except-in-loop-perf203">try-except-in-loop (PERF203)</a></h1>
 <p>Derived from the <strong><a href="../#perflint-perf">Perflint</a></strong> linter.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for uses of except handling via <code>try</code>-<code>except</code> within <code>for</code> and
 <code>while</code> loops.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Exception handling via <code>try</code>-<code>except</code> blocks incurs some performance
 overhead, regardless of whether an exception is raised.</p>
 <p>To optimize your code, two techniques are possible:</p>
@@ -842,7 +842,7 @@ is raised in the <code>try</code>-<code>except</code> block.</p>
 <p>As with all <code>perflint</code> rules, this is only intended as a
 micro-optimization. In many cases, it will have a negligible impact on
 performance.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">string_numbers</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="s2">&quot;three&quot;</span><span class="p">,</span> <span class="s2">&quot;4&quot;</span><span class="p">,</span> <span class="s2">&quot;5&quot;</span><span class="p">]</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># `try`/`except` that could be moved out of the loop:</span>
@@ -880,7 +880,7 @@ performance.</p>
 <a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
 <a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The name of </span><span class="si">{</span><span class="n">number</span><span class="si">}</span><span class="s2"> is </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="options">Options<a class="headerlink" href="#options" title="Permanent link">#</a></h2>
+<h2 id="options"><a class="toclink" href="#options">Options</a></h2>
 <ul>
 <li><a href="../../settings/#target-version"><code>target-version</code></a></li>
 </ul>

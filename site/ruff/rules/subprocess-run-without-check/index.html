@@ -25,7 +25,7 @@
     
     
 
-<title>subprocess-run-without-check (PLW1510) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              subprocess-run-without-check (PLW1510)
+              
             
           </span>
         </div>
@@ -817,17 +817,17 @@
   
 
 
-<h1 id="subprocess-run-without-check-plw1510">subprocess-run-without-check (PLW1510)<a class="headerlink" href="#subprocess-run-without-check-plw1510" title="Permanent link">#</a></h1>
+<h1 id="subprocess-run-without-check-plw1510"><a class="toclink" href="#subprocess-run-without-check-plw1510">subprocess-run-without-check (PLW1510)</a></h1>
 <p>Derived from the <strong><a href="../#pylint-pl">Pylint</a></strong> linter.</p>
 <p>Fix is always available.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for uses of <code>subprocess.run</code> without an explicit <code>check</code> argument.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>By default, <code>subprocess.run</code> does not check the return code of the process
 it runs. This can lead to silent failures.</p>
 <p>Instead, consider using <code>check=True</code> to raise an exception if the process
 fails, or set <code>check=False</code> explicitly to mark the behavior as intentional.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">subprocess</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="s2">&quot;ls&quot;</span><span class="p">,</span> <span class="s2">&quot;nonexistent&quot;</span><span class="p">])</span>  <span class="c1"># No exception raised.</span>
@@ -842,11 +842,11 @@ fails, or set <code>check=False</code> explicitly to mark the behavior as intent
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="s2">&quot;ls&quot;</span><span class="p">,</span> <span class="s2">&quot;nonexistent&quot;</span><span class="p">],</span> <span class="n">check</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># Explicitly no check.</span>
 </code></pre></div>
-<h2 id="fix-safety">Fix safety<a class="headerlink" href="#fix-safety" title="Permanent link">#</a></h2>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
 <p>This rule's fix is marked as unsafe for function calls that contain
 <code>**kwargs</code>, as adding a <code>check</code> keyword argument to such a call may lead
 to a duplicate keyword argument error.</p>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/library/subprocess.html#subprocess.run">Python documentation: <code>subprocess.run</code></a></li>
 </ul>

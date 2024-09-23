@@ -25,7 +25,7 @@
     
     
 
-<title>single-string-slots (PLC0205) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              single-string-slots (PLC0205)
+              
             
           </span>
         </div>
@@ -817,11 +817,11 @@
   
 
 
-<h1 id="single-string-slots-plc0205">single-string-slots (PLC0205)<a class="headerlink" href="#single-string-slots-plc0205" title="Permanent link">#</a></h1>
+<h1 id="single-string-slots-plc0205"><a class="toclink" href="#single-string-slots-plc0205">single-string-slots (PLC0205)</a></h1>
 <p>Derived from the <strong><a href="../#pylint-pl">Pylint</a></strong> linter.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for single strings assigned to <code>__slots__</code>.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>In Python, the <code>__slots__</code> attribute allows you to explicitly define the
 attributes (instance variables) that a class can have. By default, Python
 uses a dictionary to store an object's attributes, which incurs some memory
@@ -836,7 +836,7 @@ value may expect to iterate over a sequence of attributes, but would instead
 iterate over the characters of the string.</p>
 <p>To use a single string attribute in <code>__slots__</code>, wrap the string in an
 iterable container type, like a <code>tuple</code>.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">class</span> <span class="nc">Person</span><span class="p">:</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="vm">__slots__</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;name&quot;</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
@@ -850,7 +850,7 @@ iterable container type, like a <code>tuple</code>.</p>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
 </code></pre></div>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/reference/datamodel.html#slots">Python documentation: <code>__slots__</code></a></li>
 </ul>

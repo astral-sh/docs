@@ -631,7 +631,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Unsupported Settings
+          
         </span>
       
     </span>
@@ -644,7 +644,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          New Settings
+          
         </span>
       
     </span>
@@ -657,7 +657,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Examples
+          
         </span>
       
     </span>
@@ -946,7 +946,7 @@
   
 
 
-<h1 id="migrating-from-ruff-lsp">Migrating from <code>ruff-lsp</code><a class="headerlink" href="#migrating-from-ruff-lsp" title="Permanent link">#</a></h1>
+<h1 id="migrating-from-ruff-lsp"><a class="toclink" href="#migrating-from-ruff-lsp">Migrating from <code>ruff-lsp</code></a></h1>
 <p>While <code>ruff server</code> supports the same feature set as <a href="https://github.com/astral-sh/ruff-lsp"><code>ruff-lsp</code></a>, migrating to
 <code>ruff server</code> may require changes to your Ruff or language server configuration.</p>
 <div class="admonition note">
@@ -955,7 +955,7 @@
 settings are supported by <code>ruff server</code>. As such, this migration guide is primarily targeted at editors that lack
 explicit documentation for <code>ruff server</code> settings, such as Helix or Neovim.</p>
 </div>
-<h2 id="unsupported-settings">Unsupported Settings<a class="headerlink" href="#unsupported-settings" title="Permanent link">#</a></h2>
+<h2 id="unsupported-settings"><a class="toclink" href="#unsupported-settings">Unsupported Settings</a></h2>
 <p>Several <code>ruff-lsp</code> settings are not supported by <code>ruff server</code>. These are, as follows:</p>
 <ul>
 <li><code>format.args</code></li>
@@ -971,7 +971,7 @@ explicit documentation for <code>ruff server</code> settings, such as Helix or N
 extension. <code>path</code>, in particular, can be used to specify a dedicated binary to use when
 initializing <code>ruff server</code>. But the language server itself will no longer accept such settings.</p>
 </div>
-<h2 id="new-settings">New Settings<a class="headerlink" href="#new-settings" title="Permanent link">#</a></h2>
+<h2 id="new-settings"><a class="toclink" href="#new-settings">New Settings</a></h2>
 <p><code>ruff server</code> introduces several new settings that <code>ruff-lsp</code> does not have. These are, as follows:</p>
 <ul>
 <li><a href="../settings/#configuration"><code>configuration</code></a></li>
@@ -987,7 +987,7 @@ initializing <code>ruff server</code>. But the language server itself will no lo
 <p>Several of these new settings are replacements for the now-unsupported <code>format.args</code> and <code>lint.args</code>. For example, if
 you've been passing <code>--select=&lt;RULES&gt;</code> to <code>lint.args</code>, you can migrate to the new server by using <code>lint.select</code> with a
 value of <code>["&lt;RULES&gt;"]</code>.</p>
-<h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">#</a></h2>
+<h2 id="examples"><a class="toclink" href="#examples">Examples</a></h2>
 <p>Let's say you have these settings in VS Code:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="nt">&quot;ruff.lint.args&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;--select=E,F --line-length 80 --config ~/.config/custom_ruff_config.toml&quot;</span>

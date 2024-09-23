@@ -25,7 +25,7 @@
     
     
 
-<title>string-or-bytes-too-long (PYI053) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              string-or-bytes-too-long (PYI053)
+              
             
           </span>
         </div>
@@ -817,13 +817,13 @@
   
 
 
-<h1 id="string-or-bytes-too-long-pyi053">string-or-bytes-too-long (PYI053)<a class="headerlink" href="#string-or-bytes-too-long-pyi053" title="Permanent link">#</a></h1>
+<h1 id="string-or-bytes-too-long-pyi053"><a class="toclink" href="#string-or-bytes-too-long-pyi053">string-or-bytes-too-long (PYI053)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-pyi-pyi">flake8-pyi</a></strong> linter.</p>
 <p>Fix is always available.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for the use of string and bytes literals longer than 50 characters
 in stub (<code>.pyi</code>) files.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>If a function or variable has a default value where the string or bytes
 representation is greater than 50 characters long, it is likely to be an
 implementation detail or a constant that varies depending on the system
@@ -831,7 +831,7 @@ you're running on.</p>
 <p>Although IDEs may find them useful, default values are ignored by type
 checkers, the primary consumers of stub files. Replace very long constants
 with ellipses (<code>...</code>) to simplify the stub.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">arg</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;51 character stringgggggggggggggggggggggggggggggggg&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
 </code></pre></div>
 <p>Use instead:</p>

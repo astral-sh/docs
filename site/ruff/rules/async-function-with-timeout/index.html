@@ -25,7 +25,7 @@
     
     
 
-<title>async-function-with-timeout (ASYNC109) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              async-function-with-timeout (ASYNC109)
+              
             
           </span>
         </div>
@@ -817,11 +817,11 @@
   
 
 
-<h1 id="async-function-with-timeout-async109">async-function-with-timeout (ASYNC109)<a class="headerlink" href="#async-function-with-timeout-async109" title="Permanent link">#</a></h1>
+<h1 id="async-function-with-timeout-async109"><a class="toclink" href="#async-function-with-timeout-async109">async-function-with-timeout (ASYNC109)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-async-async">flake8-async</a></strong> linter.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for <code>async</code> function definitions with <code>timeout</code> parameters.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Rather than implementing asynchronous timeout behavior manually, prefer
 built-in timeout functionality, such as <code>asyncio.timeout</code>, <code>trio.fail_after</code>,
 or <code>anyio.move_on_after</code>, among others.</p>
@@ -829,7 +829,7 @@ or <code>anyio.move_on_after</code>, among others.</p>
 called <a href="https://vorpus.org/blog/some-thoughts-on-asynchronous-api-design-in-a-post-asyncawait-world/#timeouts-and-cancellation">"structured concurrency"</a> that allows for
 <code>async</code> functions to be oblivious to timeouts,
 instead letting callers to handle the logic with a context manager.</p>
-<h2 id="details">Details<a class="headerlink" href="#details" title="Permanent link">#</a></h2>
+<h2 id="details"><a class="toclink" href="#details">Details</a></h2>
 <p>This rule attempts to detect which async framework your code is using
 by analysing the imports in the file it's checking. If it sees an
 <code>anyio</code> import in your code, it will assume <code>anyio</code> is your framework
@@ -841,7 +841,7 @@ to less than Python 3.11.</p>
 <p>For functions that wrap <code>asyncio.timeout</code>, <code>trio.fail_after</code> or
 <code>anyio.move_on_after</code>, false positives from this rule can be avoided
 by using a different parameter name.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">long_running_task</span><span class="p">(</span><span class="n">timeout</span><span class="p">):</span> <span class="o">...</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
@@ -856,7 +856,7 @@ by using a different parameter name.</p>
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="k">async</span> <span class="k">with</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">timeout</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
 <a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>        <span class="k">await</span> <span class="n">long_running_task</span><span class="p">()</span>
 </code></pre></div>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/library/asyncio-task.html#timeouts"><code>asyncio</code> timeouts</a></li>
 <li><a href="https://anyio.readthedocs.io/en/stable/cancellation.html"><code>anyio</code> timeouts</a></li>

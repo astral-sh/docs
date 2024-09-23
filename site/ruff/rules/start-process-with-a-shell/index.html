@@ -25,7 +25,7 @@
     
     
 
-<title>start-process-with-a-shell (S605) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              start-process-with-a-shell (S605)
+              
             
           </span>
         </div>
@@ -817,12 +817,12 @@
   
 
 
-<h1 id="start-process-with-a-shell-s605">start-process-with-a-shell (S605)<a class="headerlink" href="#start-process-with-a-shell-s605" title="Permanent link">#</a></h1>
+<h1 id="start-process-with-a-shell-s605"><a class="toclink" href="#start-process-with-a-shell-s605">start-process-with-a-shell (S605)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-bandit-s">flake8-bandit</a></strong> linter.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for calls that start a process with a shell, providing guidance on
 whether the usage is safe or not.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Starting a process with a shell can introduce security risks, such as
 code injection vulnerabilities. It's important to be aware of whether the
 usage of the shell is safe or not.</p>
@@ -831,7 +831,7 @@ start processes with a shell. It evaluates whether the provided command
 is a literal string or an expression. If the command is a literal string,
 it's considered safe. If the command is an expression, it's considered
 (potentially) unsafe.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">os</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># Safe usage (literal string)</span>
@@ -842,12 +842,12 @@ it's considered safe. If the command is an expression, it's considered
 <a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">cmd</span> <span class="o">=</span> <span class="n">get_user_input</span><span class="p">()</span>
 <a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="note">Note<a class="headerlink" href="#note" title="Permanent link">#</a></h2>
+<h2 id="note"><a class="toclink" href="#note">Note</a></h2>
 <p>The <code>subprocess</code> module provides more powerful facilities for spawning new
 processes and retrieving their results, and using that module is preferable
 to using <code>os.system</code> or similar functions. Consider replacing such usages
 with <code>subprocess.call</code> or related functions.</p>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/library/subprocess.html">Python documentation: <code>subprocess</code></a></li>
 </ul>

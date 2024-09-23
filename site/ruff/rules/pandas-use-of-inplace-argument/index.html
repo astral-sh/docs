@@ -25,7 +25,7 @@
     
     
 
-<title>pandas-use-of-inplace-argument (PD002) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              pandas-use-of-inplace-argument (PD002)
+              
             
           </span>
         </div>
@@ -817,25 +817,25 @@
   
 
 
-<h1 id="pandas-use-of-inplace-argument-pd002">pandas-use-of-inplace-argument (PD002)<a class="headerlink" href="#pandas-use-of-inplace-argument-pd002" title="Permanent link">#</a></h1>
+<h1 id="pandas-use-of-inplace-argument-pd002"><a class="toclink" href="#pandas-use-of-inplace-argument-pd002">pandas-use-of-inplace-argument (PD002)</a></h1>
 <p>Derived from the <strong><a href="../#pandas-vet-pd">pandas-vet</a></strong> linter.</p>
 <p>Fix is sometimes available.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for <code>inplace=True</code> usages in <code>pandas</code> function and method
 calls.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Using <code>inplace=True</code> encourages mutation rather than immutable data,
 which is harder to reason about and may cause bugs. It also removes the
 ability to use the method chaining style for <code>pandas</code> operations.</p>
 <p>Further, in many cases, <code>inplace=True</code> does not provide a performance
 benefit, as <code>pandas</code> will often copy <code>DataFrames</code> in the background.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;col1&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </code></pre></div>
 <p>Use instead:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">sorted_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;col1&quot;</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://towardsdatascience.com/why-you-should-probably-never-use-pandas-inplace-true-9f9f211849e4"><em>Why You Should Probably Never Use pandas inplace=True</em></a></li>
 </ul>

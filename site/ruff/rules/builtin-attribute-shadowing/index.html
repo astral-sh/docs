@@ -25,7 +25,7 @@
     
     
 
-<title>builtin-attribute-shadowing (A003) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              builtin-attribute-shadowing (A003)
+              
             
           </span>
         </div>
@@ -817,12 +817,12 @@
   
 
 
-<h1 id="builtin-attribute-shadowing-a003">builtin-attribute-shadowing (A003)<a class="headerlink" href="#builtin-attribute-shadowing-a003" title="Permanent link">#</a></h1>
+<h1 id="builtin-attribute-shadowing-a003"><a class="toclink" href="#builtin-attribute-shadowing-a003">builtin-attribute-shadowing (A003)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-builtins-a">flake8-builtins</a></strong> linter.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for class attributes and methods that use the same names as
 Python builtins.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Reusing a builtin name for the name of an attribute increases the
 difficulty of reading and maintaining the code, and can cause
 non-obvious errors, as readers may mistake the attribute for the
@@ -846,7 +846,7 @@ type annotation resolves to the <code>list</code> method, rather than the builti
 converted to the appropriate dunder method. Methods decorated with
 <code>@typing.override</code> or <code>@typing_extensions.override</code> are also
 ignored.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">class</span> <span class="nc">Class</span><span class="p">:</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="nd">@staticmethod</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="k">def</span> <span class="nf">list</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -856,7 +856,7 @@ ignored.</p>
 <a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="k">def</span> <span class="nf">repeat</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">times</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
 <a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>        <span class="k">return</span> <span class="p">[</span><span class="n">value</span><span class="p">]</span> <span class="o">*</span> <span class="n">times</span>
 </code></pre></div>
-<h2 id="options">Options<a class="headerlink" href="#options" title="Permanent link">#</a></h2>
+<h2 id="options"><a class="toclink" href="#options">Options</a></h2>
 <ul>
 <li><a href="../../settings/#lint_flake8-builtins_builtins-ignorelist"><code>lint.flake8-builtins.builtins-ignorelist</code></a></li>
 </ul>

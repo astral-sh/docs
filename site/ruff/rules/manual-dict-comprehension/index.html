@@ -25,7 +25,7 @@
     
     
 
-<title>manual-dict-comprehension (PERF403) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              manual-dict-comprehension (PERF403)
+              
             
           </span>
         </div>
@@ -817,11 +817,11 @@
   
 
 
-<h1 id="manual-dict-comprehension-perf403">manual-dict-comprehension (PERF403)<a class="headerlink" href="#manual-dict-comprehension-perf403" title="Permanent link">#</a></h1>
+<h1 id="manual-dict-comprehension-perf403"><a class="toclink" href="#manual-dict-comprehension-perf403">manual-dict-comprehension (PERF403)</a></h1>
 <p>Derived from the <strong><a href="../#perflint-perf">Perflint</a></strong> linter.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for <code>for</code> loops that can be replaced by a dictionary comprehension.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>When creating or extending a dictionary in a for-loop, prefer a dictionary
 comprehension. Comprehensions are more readable and more performant.</p>
 <p>For example, when comparing <code>{x: x for x in list(range(1000))}</code> to the <code>for</code>
@@ -829,7 +829,7 @@ loop version, the comprehension is ~10% faster on Python 3.11.</p>
 <p>Note that, as with all <code>perflint</code> rules, this is only intended as a
 micro-optimization, and will have a negligible impact on performance in
 most cases.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">pairs</span> <span class="o">=</span> <span class="p">((</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">result</span> <span class="o">=</span> <span class="p">{}</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">pairs</span><span class="p">:</span>

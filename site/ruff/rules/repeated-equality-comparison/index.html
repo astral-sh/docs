@@ -25,7 +25,7 @@
     
     
 
-<title>repeated-equality-comparison (PLR1714) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              repeated-equality-comparison (PLR1714)
+              
             
           </span>
         </div>
@@ -817,13 +817,13 @@
   
 
 
-<h1 id="repeated-equality-comparison-plr1714">repeated-equality-comparison (PLR1714)<a class="headerlink" href="#repeated-equality-comparison-plr1714" title="Permanent link">#</a></h1>
+<h1 id="repeated-equality-comparison-plr1714"><a class="toclink" href="#repeated-equality-comparison-plr1714">repeated-equality-comparison (PLR1714)</a></h1>
 <p>Derived from the <strong><a href="../#pylint-pl">Pylint</a></strong> linter.</p>
 <p>Fix is always available.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for repeated equality comparisons that can rewritten as a membership
 test.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>To check if a variable is equal to one of many values, it is common to
 write a series of equality comparisons (e.g.,
 <code>foo == "bar" or foo == "baz"</code>).</p>
@@ -831,13 +831,13 @@ write a series of equality comparisons (e.g.,
 operator to check for membership, which is more performant and succinct.
 If the items are hashable, use a <code>set</code> for efficiency; otherwise, use a
 <code>tuple</code>.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">foo</span> <span class="o">==</span> <span class="s2">&quot;bar&quot;</span> <span class="ow">or</span> <span class="n">foo</span> <span class="o">==</span> <span class="s2">&quot;baz&quot;</span> <span class="ow">or</span> <span class="n">foo</span> <span class="o">==</span> <span class="s2">&quot;qux&quot;</span>
 </code></pre></div>
 <p>Use instead:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">foo</span> <span class="ow">in</span> <span class="p">{</span><span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="s2">&quot;baz&quot;</span><span class="p">,</span> <span class="s2">&quot;qux&quot;</span><span class="p">}</span>
 </code></pre></div>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/reference/expressions.html#comparisons">Python documentation: Comparisons</a></li>
 <li><a href="https://docs.python.org/3/reference/expressions.html#membership-test-operations">Python documentation: Membership test operations</a></li>

@@ -25,7 +25,7 @@
     
     
 
-<title>direct-logger-instantiation (LOG001) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              direct-logger-instantiation (LOG001)
+              
             
           </span>
         </div>
@@ -817,13 +817,13 @@
   
 
 
-<h1 id="direct-logger-instantiation-log001">direct-logger-instantiation (LOG001)<a class="headerlink" href="#direct-logger-instantiation-log001" title="Permanent link">#</a></h1>
+<h1 id="direct-logger-instantiation-log001"><a class="toclink" href="#direct-logger-instantiation-log001">direct-logger-instantiation (LOG001)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-logging-log">flake8-logging</a></strong> linter.</p>
 <p>Fix is sometimes available.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for direct instantiation of <code>logging.Logger</code>, as opposed to using
 <code>logging.getLogger()</code>.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>The <a href="https://docs.python.org/3/library/logging.html#logger-objects">Logger Objects</a> documentation states that:</p>
 <blockquote>
 <p>Note that Loggers should NEVER be instantiated directly, but always
@@ -833,7 +833,7 @@ through the module-level function <code>logging.getLogger(name)</code>.</p>
 tree, and will bypass all configuration. Messages logged to it will
 only be sent to the "handler of last resort", skipping any filtering
 or formatting.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">logging</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Logger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>

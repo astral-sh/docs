@@ -25,7 +25,7 @@
     
     
 
-<title>redundant-literal-union (PYI051) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              redundant-literal-union (PYI051)
+              
             
           </span>
         </div>
@@ -817,18 +817,18 @@
   
 
 
-<h1 id="redundant-literal-union-pyi051">redundant-literal-union (PYI051)<a class="headerlink" href="#redundant-literal-union-pyi051" title="Permanent link">#</a></h1>
+<h1 id="redundant-literal-union-pyi051"><a class="toclink" href="#redundant-literal-union-pyi051">redundant-literal-union (PYI051)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-pyi-pyi">flake8-pyi</a></strong> linter.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for redundant unions between a <code>Literal</code> and a builtin supertype of
 that <code>Literal</code>.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Using a <code>Literal</code> type in a union with its builtin supertype is redundant,
 as the supertype will be strictly more general than the <code>Literal</code> type.
 For example, <code>Literal["A"] | str</code> is equivalent to <code>str</code>, and
 <code>Literal[1] | int</code> is equivalent to <code>int</code>, as <code>str</code> and <code>int</code> are the
 supertypes of <code>"A"</code> and <code>1</code> respectively.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Literal</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">x</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&quot;B&quot;</span><span class="p">]</span> <span class="o">|</span> <span class="nb">str</span>

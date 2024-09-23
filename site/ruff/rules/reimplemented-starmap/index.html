@@ -25,7 +25,7 @@
     
     
 
-<title>reimplemented-starmap (FURB140) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              reimplemented-starmap (FURB140)
+              
             
           </span>
         </div>
@@ -817,24 +817,24 @@
   
 
 
-<h1 id="reimplemented-starmap-furb140">reimplemented-starmap (FURB140)<a class="headerlink" href="#reimplemented-starmap-furb140" title="Permanent link">#</a></h1>
+<h1 id="reimplemented-starmap-furb140"><a class="toclink" href="#reimplemented-starmap-furb140">reimplemented-starmap (FURB140)</a></h1>
 <p>Derived from the <strong><a href="../#refurb-furb">refurb</a></strong> linter.</p>
 <p>Fix is sometimes available.</p>
 <p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for generator expressions, list and set comprehensions that can
 be replaced with <code>itertools.starmap</code>.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>When unpacking values from iterators to pass them directly to
 a function, prefer <code>itertools.starmap</code>.</p>
 <p>Using <code>itertools.starmap</code> is more concise and readable. Furthermore, it is
 more efficient than generator expressions, and in some versions of Python,
 it is more efficient than comprehensions.</p>
-<h2 id="known-problems">Known problems<a class="headerlink" href="#known-problems" title="Permanent link">#</a></h2>
+<h2 id="known-problems"><a class="toclink" href="#known-problems">Known problems</a></h2>
 <p>Since Python 3.12, <code>itertools.starmap</code> is less efficient than
 comprehensions (<a href="https://github.com/astral-sh/ruff/issues/7771">#7771</a>). This is due to <a href="https://peps.python.org/pep-0709/">PEP 709</a>, which made
 comprehensions faster.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">scores</span> <span class="o">=</span> <span class="p">[</span><span class="mi">85</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">60</span><span class="p">]</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">passing_scores</span> <span class="o">=</span> <span class="p">[</span><span class="mi">60</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">70</span><span class="p">]</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
@@ -862,7 +862,7 @@ comprehensions faster.</p>
 <a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
 <a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="n">passed_all_tests</span> <span class="o">=</span> <span class="nb">all</span><span class="p">(</span><span class="n">starmap</span><span class="p">(</span><span class="n">passed_test</span><span class="p">,</span> <span class="nb">zip</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">passing_scores</span><span class="p">)))</span>
 </code></pre></div>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/library/itertools.html#itertools.starmap">Python documentation: <code>itertools.starmap</code></a></li>
 </ul>

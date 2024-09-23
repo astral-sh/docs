@@ -25,7 +25,7 @@
     
     
 
-<title>unused-import (F401) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              unused-import (F401)
+              
             
           </span>
         </div>
@@ -817,12 +817,12 @@
   
 
 
-<h1 id="unused-import-f401">unused-import (F401)<a class="headerlink" href="#unused-import-f401" title="Permanent link">#</a></h1>
+<h1 id="unused-import-f401"><a class="toclink" href="#unused-import-f401">unused-import (F401)</a></h1>
 <p>Derived from the <strong><a href="../#pyflakes-f">Pyflakes</a></strong> linter.</p>
 <p>Fix is sometimes available.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for unused imports.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Unused imports add a performance overhead at runtime, and risk creating
 import cycles. They also increase the cognitive load of reading the code.</p>
 <p>If an import statement is used to check for the availability or existence
@@ -840,7 +840,7 @@ interface, as in:</p>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;some_module&quot;</span><span class="p">]</span>
 </code></pre></div>
-<h2 id="fix-safety">Fix safety<a class="headerlink" href="#fix-safety" title="Permanent link">#</a></h2>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
 <p>Fixes to remove unused imports are safe, except in <code>__init__.py</code> files.</p>
 <p>Applying fixes to <code>__init__.py</code> files is currently in preview. The fix offered depends on the
 type of the unused import. Ruff will suggest a safe fix to export first-party imports with
@@ -848,7 +848,7 @@ either a redundant alias or, if already present in the file, an <code>__all__</c
 <code>__all__</code> declarations are present, Ruff will not offer a fix. Ruff will suggest an unsafe fix
 to remove third-party and standard library imports -- the fix is unsafe because the module's
 interface changes.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>  <span class="c1"># unused import</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
@@ -867,11 +867,11 @@ interface changes.</p>
 <a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="k">else</span><span class="p">:</span>
 <a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;numpy is not installed&quot;</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="options">Options<a class="headerlink" href="#options" title="Permanent link">#</a></h2>
+<h2 id="options"><a class="toclink" href="#options">Options</a></h2>
 <ul>
 <li><a href="../../settings/#lint_ignore-init-module-imports"><code>lint.ignore-init-module-imports</code></a></li>
 </ul>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/reference/simple_stmts.html#the-import-statement">Python documentation: <code>import</code></a></li>
 <li><a href="https://docs.python.org/3/library/importlib.html#importlib.util.find_spec">Python documentation: <code>importlib.util.find_spec</code></a></li>

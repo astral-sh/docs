@@ -25,7 +25,7 @@
     
     
 
-<title>open-file-with-context-handler (SIM115) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              open-file-with-context-handler (SIM115)
+              
             
           </span>
         </div>
@@ -817,21 +817,21 @@
   
 
 
-<h1 id="open-file-with-context-handler-sim115">open-file-with-context-handler (SIM115)<a class="headerlink" href="#open-file-with-context-handler-sim115" title="Permanent link">#</a></h1>
+<h1 id="open-file-with-context-handler-sim115"><a class="toclink" href="#open-file-with-context-handler-sim115">open-file-with-context-handler (SIM115)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-simplify-sim">flake8-simplify</a></strong> linter.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for cases where files are opened (e.g., using the builtin <code>open()</code> function)
 without using a context manager.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>If a file is opened without a context manager, it is not guaranteed that
 the file will be closed (e.g., if an exception is raised), which can cause
 resource leaks.</p>
-<h2 id="preview-mode-behavior">Preview-mode behavior<a class="headerlink" href="#preview-mode-behavior" title="Permanent link">#</a></h2>
+<h2 id="preview-mode-behavior"><a class="toclink" href="#preview-mode-behavior">Preview-mode behavior</a></h2>
 <p>If [preview] mode is enabled, this rule will detect a wide array of IO calls where
 context managers could be used, such as <code>tempfile.TemporaryFile()</code> or
 <code>tarfile.TarFile(...).gzopen()</code>. If preview mode is not enabled, only <code>open()</code>,
 <code>builtins.open()</code> and <code>pathlib.Path(...).open()</code> are detected.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;foo.txt&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="o">...</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
@@ -840,7 +840,7 @@ context managers could be used, such as <code>tempfile.TemporaryFile()</code> or
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;foo.txt&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="o">...</span>
 </code></pre></div>
-<h1 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h1>
+<h1 id="references"><a class="toclink" href="#references">References</a></h1>
 <ul>
 <li><a href="https://docs.python.org/3/library/functions.html#open">Python documentation: <code>open</code></a></li>
 </ul>

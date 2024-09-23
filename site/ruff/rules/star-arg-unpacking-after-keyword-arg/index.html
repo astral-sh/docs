@@ -25,7 +25,7 @@
     
     
 
-<title>star-arg-unpacking-after-keyword-arg (B026) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              star-arg-unpacking-after-keyword-arg (B026)
+              
             
           </span>
         </div>
@@ -817,17 +817,17 @@
   
 
 
-<h1 id="star-arg-unpacking-after-keyword-arg-b026">star-arg-unpacking-after-keyword-arg (B026)<a class="headerlink" href="#star-arg-unpacking-after-keyword-arg-b026" title="Permanent link">#</a></h1>
+<h1 id="star-arg-unpacking-after-keyword-arg-b026"><a class="toclink" href="#star-arg-unpacking-after-keyword-arg-b026">star-arg-unpacking-after-keyword-arg (B026)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-bugbear-b">flake8-bugbear</a></strong> linter.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for function calls that use star-argument unpacking after providing a
 keyword argument</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>In Python, you can use star-argument unpacking to pass a list or tuple of
 arguments to a function.</p>
 <p>Providing a star-argument after a keyword argument can lead to confusing
 behavior, and is only supported for backwards compatibility.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
@@ -848,7 +848,7 @@ behavior, and is only supported for backwards compatibility.</p>
 <a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="n">foo</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>  <span class="c1"># (1, 2, 3)</span>
 <a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">foo</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="mi">3</span><span class="p">)</span>  <span class="c1"># (1, 2, 3)</span>
 </code></pre></div>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/reference/expressions.html#calls">Python documentation: Calls</a></li>
 <li><a href="https://github.com/python/cpython/issues/82741">Disallow iterable argument unpacking after a keyword argument?</a></li>

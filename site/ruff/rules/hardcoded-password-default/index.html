@@ -25,7 +25,7 @@
     
     
 
-<title>hardcoded-password-default (S107) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              hardcoded-password-default (S107)
+              
             
           </span>
         </div>
@@ -817,19 +817,19 @@
   
 
 
-<h1 id="hardcoded-password-default-s107">hardcoded-password-default (S107)<a class="headerlink" href="#hardcoded-password-default-s107" title="Permanent link">#</a></h1>
+<h1 id="hardcoded-password-default-s107"><a class="toclink" href="#hardcoded-password-default-s107">hardcoded-password-default (S107)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-bandit-s">flake8-bandit</a></strong> linter.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for potential uses of hardcoded passwords in function argument
 defaults.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Including a hardcoded password in source code is a security risk, as an
 attacker could discover the password and use it to gain unauthorized
 access.</p>
 <p>Instead, store passwords and other secrets in configuration files,
 environment variables, or other sources that are excluded from version
 control.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span> <span class="nf">connect_to_server</span><span class="p">(</span><span class="n">password</span><span class="o">=</span><span class="s2">&quot;hunter2&quot;</span><span class="p">):</span> <span class="o">...</span>
 </code></pre></div>
 <p>Use instead:</p>
@@ -838,7 +838,7 @@ control.</p>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">def</span> <span class="nf">connect_to_server</span><span class="p">(</span><span class="n">password</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;PASSWORD&quot;</span><span class="p">]):</span> <span class="o">...</span>
 </code></pre></div>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://cwe.mitre.org/data/definitions/259.html">Common Weakness Enumeration: CWE-259</a></li>
 </ul>
