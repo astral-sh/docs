@@ -1787,7 +1787,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Resolver
+          
         </span>
       
     </span>
@@ -1800,7 +1800,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Forking
+          
         </span>
       
     </span>
@@ -1813,7 +1813,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Requires-python
+          
         </span>
       
     </span>
@@ -1826,7 +1826,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Wheel tags
+          
         </span>
       
     </span>
@@ -1959,7 +1959,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Resolver
+          
         </span>
       
     </span>
@@ -1972,7 +1972,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Forking
+          
         </span>
       
     </span>
@@ -1985,7 +1985,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Requires-python
+          
         </span>
       
     </span>
@@ -1998,7 +1998,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Wheel tags
+          
         </span>
       
     </span>
@@ -2025,13 +2025,13 @@
   
 
 
-<h1 id="resolver-internals">Resolver internals<a class="headerlink" href="#resolver-internals" title="Permanent link">#</a></h1>
+<h1 id="resolver-internals"><a class="toclink" href="#resolver-internals">Resolver internals</a></h1>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>This document focuses on the internal workings of uv's resolver. For using uv, see the
 <a href="../../concepts/resolution/">resolution concept</a> documentation.</p>
 </div>
-<h2 id="resolver">Resolver<a class="headerlink" href="#resolver" title="Permanent link">#</a></h2>
+<h2 id="resolver"><a class="toclink" href="#resolver">Resolver</a></h2>
 <p>As defined in a textbook, resolution, or finding a set of version to install from a given set of
 requirements, is equivalent to the
 <a href="https://en.wikipedia.org/wiki/Boolean_satisfiability_problem">SAT problem</a> and thereby NP-complete:
@@ -2087,7 +2087,7 @@ involved packages.</p>
 <p>For more details on the PubGrub algorithm, see <a href="https://pubgrub-rs-guide.pages.dev/internals/intro">Internals of the PubGrub
 algorithm</a>.</p>
 </div>
-<h2 id="forking">Forking<a class="headerlink" href="#forking" title="Permanent link">#</a></h2>
+<h2 id="forking"><a class="toclink" href="#forking">Forking</a></h2>
 <p>Python resolvers historically didn't support backtracking, and even with backtracking, resolution
 was usually limited to single environment, which one specific architecture, operating system, Python
 version, and Python implementation. Some packages use contradictory requirements for different
@@ -2124,7 +2124,7 @@ fork points. To avoid this, the <code>resolution-markers</code> of each fork and
 between forks is written to the lockfile. When performing a new resolution, the forks from the
 lockfile are used to ensure the resolution is stable. When requirements change, new forks may be
 added to the saved forks.</p>
-<h2 id="requires-python">Requires-python<a class="headerlink" href="#requires-python" title="Permanent link">#</a></h2>
+<h2 id="requires-python"><a class="toclink" href="#requires-python">Requires-python</a></h2>
 <p>To ensure that a resolution with <code>requires-python = "&gt;=3.9"</code> can actually be installed for the
 included Python versions, uv requires that all dependencies have the same minimum Python version.
 Package versions that declare a higher minimum Python version, e.g., <code>requires-python = "&gt;=3.10"</code>,
@@ -2132,7 +2132,7 @@ are rejected, because a resolution with that version can't be installed on Pytho
 simplicity and forward compatibility, only lower bounds in <code>requires-python</code> are respected. For
 example, if a package declares <code>requires-python = "&gt;=3.8,&lt;4"</code>, the <code>&lt;4</code> marker is not propagated to
 the entire resolution.</p>
-<h2 id="wheel-tags">Wheel tags<a class="headerlink" href="#wheel-tags" title="Permanent link">#</a></h2>
+<h2 id="wheel-tags"><a class="toclink" href="#wheel-tags">Wheel tags</a></h2>
 <p>While uv's resolution is universal with respect to environment markers, this doesn't extend to wheel
 tags. Wheel tags can encode the Python version, Python implementation, operating system, and
 architecture. For example, <code>torch-2.4.0-cp312-cp312-manylinux2014_aarch64.whl</code> is only compatible

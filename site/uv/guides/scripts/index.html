@@ -658,7 +658,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Running a script without dependencies
+          
         </span>
       
     </span>
@@ -671,7 +671,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Running a script with dependencies
+          
         </span>
       
     </span>
@@ -684,7 +684,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Declaring script dependencies
+          
         </span>
       
     </span>
@@ -697,7 +697,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Improving reproducibility
+          
         </span>
       
     </span>
@@ -710,7 +710,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Using different Python versions
+          
         </span>
       
     </span>
@@ -723,7 +723,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Using GUI scripts
+          
         </span>
       
     </span>
@@ -736,7 +736,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Next steps
+          
         </span>
       
     </span>
@@ -1998,7 +1998,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Running a script without dependencies
+          
         </span>
       
     </span>
@@ -2011,7 +2011,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Running a script with dependencies
+          
         </span>
       
     </span>
@@ -2024,7 +2024,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Declaring script dependencies
+          
         </span>
       
     </span>
@@ -2037,7 +2037,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Improving reproducibility
+          
         </span>
       
     </span>
@@ -2050,7 +2050,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Using different Python versions
+          
         </span>
       
     </span>
@@ -2063,7 +2063,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Using GUI scripts
+          
         </span>
       
     </span>
@@ -2076,7 +2076,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Next steps
+          
         </span>
       
     </span>
@@ -2103,7 +2103,7 @@
   
 
 
-<h1 id="running-scripts">Running scripts<a class="headerlink" href="#running-scripts" title="Permanent link">#</a></h1>
+<h1 id="running-scripts"><a class="toclink" href="#running-scripts">Running scripts</a></h1>
 <p>A Python script is a file intended for standalone execution, e.g., with <code>python &lt;script&gt;.py</code>. Using
 uv to execute scripts ensures that script dependencies are managed without manually managing
 environments.</p>
@@ -2114,7 +2114,7 @@ that packages can be installed in. Typically, creating <a href="https://docs.pyt
 isolate packages required by each script. uv automatically manages virtual environments for you
 and prefers a <a href="#declaring-script-dependencies">declarative</a> approach to dependencies.</p>
 </div>
-<h2 id="running-a-script-without-dependencies">Running a script without dependencies<a class="headerlink" href="#running-a-script-without-dependencies" title="Permanent link">#</a></h2>
+<h2 id="running-a-script-without-dependencies"><a class="toclink" href="#running-a-script-without-dependencies">Running a script without dependencies</a></h2>
 <p>If your script has no dependencies, you can execute it with <code>uv run</code>:</p>
 <div class="highlight"><span class="filename">example.py</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello world&quot;</span><span class="p">)</span>
 </code></pre></div>
@@ -2157,7 +2157,7 @@ project, use the <code>--no-project</code> flag to skip this:</p>
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>--no-project<span class="w"> </span>example.py
 </code></pre></div>
 <p>See the <a href="../projects/">projects guide</a> for more details on working in projects.</p>
-<h2 id="running-a-script-with-dependencies">Running a script with dependencies<a class="headerlink" href="#running-a-script-with-dependencies" title="Permanent link">#</a></h2>
+<h2 id="running-a-script-with-dependencies"><a class="toclink" href="#running-a-script-with-dependencies">Running a script with dependencies</a></h2>
 <p>When your script requires other packages, they must be installed into the environment that the
 script runs in. uv prefers to create these environments on-demand instead of using a long-lived
 virtual environment with manually managed dependencies. This requires explicit declaration of
@@ -2188,7 +2188,7 @@ dependencies, but uv supports requesting dependencies per invocation as well.</p
 <p>Multiple dependencies can be requested by repeating with <code>--with</code> option.</p>
 <p>Note that if <code>uv run</code> is used in a <em>project</em>, these dependencies will be included <em>in addition</em> to
 the project's dependencies. To opt-out of this behavior, use the <code>--no-project</code> flag.</p>
-<h2 id="declaring-script-dependencies">Declaring script dependencies<a class="headerlink" href="#declaring-script-dependencies" title="Permanent link">#</a></h2>
+<h2 id="declaring-script-dependencies"><a class="toclink" href="#declaring-script-dependencies">Declaring script dependencies</a></h2>
 <p>Python recently added a standard format for
 <a href="https://packaging.python.org/en/latest/specifications/inline-script-metadata/#inline-script-metadata">inline script metadata</a>.
 This allows the dependencies for a script to be declared in the script itself.</p>
@@ -2247,7 +2247,7 @@ dependencies for the script:</p>
 <p><code>uv run</code> will search for and use the required Python version. The Python version will download if it
 is not installed — see the documentation on <a href="../../concepts/python-versions/">Python versions</a> for
 more details.</p>
-<h2 id="improving-reproducibility">Improving reproducibility<a class="headerlink" href="#improving-reproducibility" title="Permanent link">#</a></h2>
+<h2 id="improving-reproducibility"><a class="toclink" href="#improving-reproducibility">Improving reproducibility</a></h2>
 <p>uv supports an <code>exclude-newer</code> field in the <code>tool.uv</code> section of inline script metadata to limit uv
 to only considering distributions released before a specific date. This is useful for improving the
 reproducibility of your script when run at a later point in time.</p>
@@ -2265,7 +2265,7 @@ reproducibility of your script when run at a later point in time.</p>
 <a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>
 <a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="nb">print</span><span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="using-different-python-versions">Using different Python versions<a class="headerlink" href="#using-different-python-versions" title="Permanent link">#</a></h2>
+<h2 id="using-different-python-versions"><a class="toclink" href="#using-different-python-versions">Using different Python versions</a></h2>
 <p>uv allows arbitrary Python versions to be requested on each script invocation, for example:</p>
 <div class="highlight"><span class="filename">example.py</span><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="kn">import</span> <span class="nn">sys</span>
 <a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>
@@ -2281,7 +2281,7 @@ reproducibility of your script when run at a later point in time.</p>
 </code></pre></div>
 <p>See the <a href="../../concepts/python-versions/#requesting-a-version">Python version request</a> documentation
 for more details on requesting Python versions.</p>
-<h2 id="using-gui-scripts">Using GUI scripts<a class="headerlink" href="#using-gui-scripts" title="Permanent link">#</a></h2>
+<h2 id="using-gui-scripts"><a class="toclink" href="#using-gui-scripts">Using GUI scripts</a></h2>
 <p>On Windows <code>uv</code> will run your script ending with <code>.pyw</code> extension using <code>pythonw</code>:</p>
 <div class="highlight"><span class="filename">example.pyw</span><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">Tk</span><span class="p">,</span> <span class="n">ttk</span>
 <a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>
@@ -2316,7 +2316,7 @@ for more details on requesting Python versions.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="go">PS&gt; uv run --with PyQt5 example_pyqt.pyw</span>
 </code></pre></div>
 <p><img alt="Run Result" src="../../assets/uv_gui_script_hello_world_pyqt.png" style="height:50px;width:150px" /></p>
-<h2 id="next-steps">Next steps<a class="headerlink" href="#next-steps" title="Permanent link">#</a></h2>
+<h2 id="next-steps"><a class="toclink" href="#next-steps">Next steps</a></h2>
 <p>To learn more about <code>uv run</code>, see the <a href="../../reference/cli/#uv-run">command reference</a>.</p>
 <p>Or, read on to learn how to <a href="../tools/">run and install tools</a> with uv.</p>
 

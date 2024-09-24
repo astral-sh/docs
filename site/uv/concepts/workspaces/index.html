@@ -897,7 +897,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Getting started
+          
         </span>
       
     </span>
@@ -910,7 +910,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Workspace sources
+          
         </span>
       
     </span>
@@ -923,7 +923,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Workspace layouts
+          
         </span>
       
     </span>
@@ -936,7 +936,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          When (not) to use workspaces
+          
         </span>
       
     </span>
@@ -1959,7 +1959,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Getting started
+          
         </span>
       
     </span>
@@ -1972,7 +1972,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Workspace sources
+          
         </span>
       
     </span>
@@ -1985,7 +1985,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Workspace layouts
+          
         </span>
       
     </span>
@@ -1998,7 +1998,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          When (not) to use workspaces
+          
         </span>
       
     </span>
@@ -2025,7 +2025,7 @@
   
 
 
-<h1 id="workspaces">Workspaces<a class="headerlink" href="#workspaces" title="Permanent link">#</a></h1>
+<h1 id="workspaces"><a class="toclink" href="#workspaces">Workspaces</a></h1>
 <p>Inspired by the <a href="https://doc.rust-lang.org/cargo/reference/workspaces.html">Cargo</a> concept of the
 same name, a workspace is "a collection of one or more packages, called <em>workspace members</em>, that
 are managed together."</p>
@@ -2037,7 +2037,7 @@ lockfile, ensuring that the workspace operates with a consistent set of dependen
 <p>As such, <code>uv lock</code> operates on the entire workspace at once, while <code>uv run</code> and <code>uv sync</code> operate on
 the workspace root by default, though both accept a <code>--package</code> argument, allowing you to run a
 command in a particular workspace member from any workspace directory.</p>
-<h2 id="getting-started">Getting started<a class="headerlink" href="#getting-started" title="Permanent link">#</a></h2>
+<h2 id="getting-started"><a class="toclink" href="#getting-started">Getting started</a></h2>
 <p>To create a workspace, add a <code>tool.uv.workspace</code> table to a <code>pyproject.toml</code>, which will implicitly
 create a workspace rooted at that package.</p>
 <div class="admonition tip">
@@ -2074,7 +2074,7 @@ directory, with the exception of <code>seeds</code>.</p>
 <p>By default, <code>uv run</code> and <code>uv sync</code> operates on the workspace root. For example, in the above
 example, <code>uv run</code> and <code>uv run --package albatross</code> would be equivalent, while
 <code>uv run --package bird-feeder</code> would run the command in the <code>bird-feeder</code> package.</p>
-<h2 id="workspace-sources">Workspace sources<a class="headerlink" href="#workspace-sources" title="Permanent link">#</a></h2>
+<h2 id="workspace-sources"><a class="toclink" href="#workspace-sources">Workspace sources</a></h2>
 <p>Within a workspace, dependencies on workspace members are facilitated via
 <a href="../dependencies/"><code>tool.uv.sources</code></a>, as in:</p>
 <div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">[project]</span>
@@ -2118,7 +2118,7 @@ the <code>tool.uv.sources</code> of a specific member. For example, given the fo
 </code></pre></div>
 <p>Every workspace member would, by default, install <code>tqdm</code> from GitHub, unless a specific member
 overrides the <code>tqdm</code> entry in its own <code>tool.uv.sources</code> table.</p>
-<h2 id="workspace-layouts">Workspace layouts<a class="headerlink" href="#workspace-layouts" title="Permanent link">#</a></h2>
+<h2 id="workspace-layouts"><a class="toclink" href="#workspace-layouts">Workspace layouts</a></h2>
 <p>The most common workspace layout can be thought of as a root project with a series of accompanying
 libraries.</p>
 <p>For example, continuing with the above example, this workspace has an explicit root at <code>albatross</code>,
@@ -2146,7 +2146,7 @@ with two libraries (<code>bird-feeder</code> and <code>seeds</code>) in the <cod
 </code></pre></div>
 <p>Since <code>seeds</code> was excluded in the <code>pyproject.toml</code>, the workspace has two members total: <code>albatross</code>
 (the root) and <code>bird-feeder</code>.</p>
-<h2 id="when-not-to-use-workspaces">When (not) to use workspaces<a class="headerlink" href="#when-not-to-use-workspaces" title="Permanent link">#</a></h2>
+<h2 id="when-not-to-use-workspaces"><a class="toclink" href="#when-not-to-use-workspaces">When (not) to use workspaces</a></h2>
 <p>Workspaces are intended to facilitate the development of multiple interconnected packages within a
 single repository. As a codebase grows in complexity, it can be helpful to split it into smaller,
 composable packages, each with their own dependencies and version constraints.</p>
