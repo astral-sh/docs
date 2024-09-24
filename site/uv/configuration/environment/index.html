@@ -1877,7 +1877,7 @@
   
 
 
-<h1 id="environment-variables">Environment variables<a class="headerlink" href="#environment-variables" title="Permanent link">#</a></h1>
+<h1 id="environment-variables"><a class="toclink" href="#environment-variables">Environment variables</a></h1>
 <p>uv accepts the following command-line arguments as environment variables:</p>
 <ul>
 <li><code>UV_INDEX_URL</code>: Equivalent to the <code>--index-url</code> command-line argument. If set, uv will use this
@@ -1941,6 +1941,14 @@
   <code>--no-python-downloads</code> option. Whether uv should allow Python downloads.</li>
 <li><code>UV_COMPILE_BYTECODE</code>: Equivalent to the <code>--compile-bytecode</code> command-line argument. If set, uv
   will compile Python source files to bytecode after installation.</li>
+<li><code>UV_PUBLISH_URL</code>: Equivalent to the <code>--publish-url</code> command-line argument. The URL of the upload
+  endpoint of the index to use with <code>uv publish</code>.</li>
+<li><code>UV_PUBLISH_TOKEN</code>: Equivalent to the <code>--token</code> command-line argument in <code>uv publish</code>. If set, uv
+  will use this token (with the username <code>__token__</code>) for publishing.</li>
+<li><code>UV_PUBLISH_USERNAME</code>: Equivalent to the <code>--username</code> command-line argument in <code>uv publish</code>. If
+  set, uv will use this username for publishing.</li>
+<li><code>UV_PUBLISH_PASSWORD</code>: Equivalent to the <code>--password</code> command-line argument in <code>uv publish</code>. If
+  set, uv will use this password for publishing.</li>
 </ul>
 <p>In each case, the corresponding command-line argument takes precedence over an environment variable.</p>
 <p>In addition, uv respects the following environment variables:</p>
@@ -1994,6 +2002,8 @@
 <li><code>VIRTUAL_ENV</code>: Used to detect an activated virtual environment.</li>
 <li><code>CONDA_PREFIX</code>: Used to detect an activated Conda environment.</li>
 <li><code>PROMPT</code>: Used to detect the use of the Windows Command Prompt (as opposed to PowerShell).</li>
+<li><code>VIRTUAL_ENV_DISABLE_PROMPT</code>: If set to <code>1</code> before a virtual environment is activated, then the
+  virtual environment name will not be prepended to the terminal prompt.</li>
 <li><code>NU_VERSION</code>: Used to detect the use of NuShell.</li>
 <li><code>FISH_VERSION</code>: Used to detect the use of the Fish shell.</li>
 <li><code>BASH_VERSION</code>: Used to detect the use of the Bash shell.</li>
