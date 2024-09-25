@@ -25,7 +25,7 @@
     
     
 
-<title>verbose-raise (TRY201) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              verbose-raise (TRY201)
+              
             
           </span>
         </div>
@@ -817,15 +817,15 @@
   
 
 
-<h1 id="verbose-raise-try201">verbose-raise (TRY201)<a class="headerlink" href="#verbose-raise-try201" title="Permanent link">#</a></h1>
+<h1 id="verbose-raise-try201"><a class="toclink" href="#verbose-raise-try201">verbose-raise (TRY201)</a></h1>
 <p>Derived from the <strong><a href="../#tryceratops-try">tryceratops</a></strong> linter.</p>
 <p>Fix is always available.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for needless exception names in <code>raise</code> statements.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>It's redundant to specify the exception name in a <code>raise</code> statement if the
 exception is being re-raised.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="k">try</span><span class="p">:</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>        <span class="o">...</span>
@@ -839,7 +839,7 @@ exception is being re-raised.</p>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>        <span class="k">raise</span>
 </code></pre></div>
-<h2 id="fix-safety">Fix safety<a class="headerlink" href="#fix-safety" title="Permanent link">#</a></h2>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
 <p>This rule's fix is marked as unsafe, as it doesn't properly handle bound
 exceptions that are shadowed between the <code>except</code> and <code>raise</code> statements.</p>
 

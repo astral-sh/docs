@@ -25,7 +25,7 @@
     
     
 
-<title>unnecessary-iterable-allocation-for-first-element (RUF015) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              unnecessary-iterable-allocation-for-first-element (RUF015)
+              
             
           </span>
         </div>
@@ -817,9 +817,9 @@
   
 
 
-<h1 id="unnecessary-iterable-allocation-for-first-element-ruf015">unnecessary-iterable-allocation-for-first-element (RUF015)<a class="headerlink" href="#unnecessary-iterable-allocation-for-first-element-ruf015" title="Permanent link">#</a></h1>
+<h1 id="unnecessary-iterable-allocation-for-first-element-ruf015"><a class="toclink" href="#unnecessary-iterable-allocation-for-first-element-ruf015">unnecessary-iterable-allocation-for-first-element (RUF015)</a></h1>
 <p>Fix is always available.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks the following constructs, all of which can be replaced by
 <code>next(iter(...))</code>:</p>
 <ul>
@@ -829,13 +829,13 @@
 <li><code>[i for i in ...][0]</code></li>
 <li><code>list(...).pop(0)</code></li>
 </ul>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Calling e.g. <code>list(...)</code> will create a new list of the entire collection,
 which can be very expensive for large collections. If you only need the
 first element of the collection, you can use <code>next(...)</code> or
 <code>next(iter(...)</code> to lazily fetch the first element. The same is true for
 the other constructs.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">head</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">x</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">head</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="o">*</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)][</span><span class="mi">0</span><span class="p">]</span>
 </code></pre></div>
@@ -843,7 +843,7 @@ the other constructs.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">head</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">head</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
 </code></pre></div>
-<h2 id="fix-safety">Fix safety<a class="headerlink" href="#fix-safety" title="Permanent link">#</a></h2>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
 <p>This rule's fix is marked as unsafe, as migrating from (e.g.) <code>list(...)[0]</code>
 to <code>next(iter(...))</code> can change the behavior of your program in two ways:</p>
 <ol>
@@ -855,7 +855,7 @@ to <code>next(iter(...))</code> can change the behavior of your program in two w
     <code>[0]</code> of the <code>pop()</code> function will raise <code>IndexError</code> if the collection
     is empty, while <code>next(iter(...))</code> will raise <code>StopIteration</code>.</li>
 </ol>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://realpython.com/python-iterators-iterables/#when-to-use-an-iterator-in-python">Iterators and Iterables in Python: Run Efficient Iterations</a></li>
 </ul>

@@ -25,7 +25,7 @@
     
     
 
-<title>unspecified-encoding (PLW1514) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              unspecified-encoding (PLW1514)
+              
             
           </span>
         </div>
@@ -817,14 +817,14 @@
   
 
 
-<h1 id="unspecified-encoding-plw1514">unspecified-encoding (PLW1514)<a class="headerlink" href="#unspecified-encoding-plw1514" title="Permanent link">#</a></h1>
+<h1 id="unspecified-encoding-plw1514"><a class="toclink" href="#unspecified-encoding-plw1514">unspecified-encoding (PLW1514)</a></h1>
 <p>Derived from the <strong><a href="../#pylint-pl">Pylint</a></strong> linter.</p>
 <p>Fix is always available.</p>
 <p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for uses of <code>open</code> and related calls without an explicit <code>encoding</code>
 argument.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Using <code>open</code> in text mode without an explicit encoding can lead to
 non-portable code, with differing behavior across platforms. While readers
 may assume that UTF-8 is the default encoding, in reality, the default
@@ -835,13 +835,13 @@ and suggests that it may become the default in future versions of Python.</p>
 <p>If a local-specific encoding is intended, use <code>encoding="local"</code>  on
 Python 3.10 and later, or <code>locale.getpreferredencoding()</code> on earlier versions,
 to make the encoding explicit.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;file.txt&quot;</span><span class="p">)</span>
 </code></pre></div>
 <p>Use instead:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;file.txt&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/library/functions.html#open">Python documentation: <code>open</code></a></li>
 </ul>

@@ -25,7 +25,7 @@
     
     
 
-<title>unnecessary-literal-within-dict-call (C418) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              unnecessary-literal-within-dict-call (C418)
+              
             
           </span>
         </div>
@@ -817,16 +817,16 @@
   
 
 
-<h1 id="unnecessary-literal-within-dict-call-c418">unnecessary-literal-within-dict-call (C418)<a class="headerlink" href="#unnecessary-literal-within-dict-call-c418" title="Permanent link">#</a></h1>
+<h1 id="unnecessary-literal-within-dict-call-c418"><a class="toclink" href="#unnecessary-literal-within-dict-call-c418">unnecessary-literal-within-dict-call (C418)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-comprehensions-c4">flake8-comprehensions</a></strong> linter.</p>
 <p>Fix is always available.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for <code>dict</code> calls that take unnecessary <code>dict</code> literals or <code>dict</code>
 comprehensions as arguments.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>It's unnecessary to wrap a <code>dict</code> literal or comprehension within a <code>dict</code>
 call, since the literal or comprehension syntax already returns a <code>dict</code>.</p>
-<h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">#</a></h2>
+<h2 id="examples"><a class="toclink" href="#examples">Examples</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">dict</span><span class="p">({})</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">dict</span><span class="p">({</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
 </code></pre></div>
@@ -834,7 +834,7 @@ call, since the literal or comprehension syntax already returns a <code>dict</co
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{}</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
 </code></pre></div>
-<h2 id="fix-safety">Fix safety<a class="headerlink" href="#fix-safety" title="Permanent link">#</a></h2>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
 <p>This rule's fix is marked as unsafe, as it may occasionally drop comments
 when rewriting the call. In most cases, though, comments will be preserved.</p>
 

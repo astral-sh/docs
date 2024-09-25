@@ -381,7 +381,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Getting Started
+          
         </span>
       
     </span>
@@ -394,7 +394,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Configuration
+          
         </span>
       
     </span>
@@ -408,7 +408,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Rule Selection
+          
         </span>
       
     </span>
@@ -421,7 +421,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Ignoring Errors
+          
         </span>
       
     </span>
@@ -434,7 +434,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Adding Rules
+          
         </span>
       
     </span>
@@ -452,7 +452,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Integrations
+          
         </span>
       
     </span>
@@ -951,10 +951,10 @@
   
 
 
-<h1 id="tutorial">Tutorial<a class="headerlink" href="#tutorial" title="Permanent link">#</a></h1>
+<h1 id="tutorial"><a class="toclink" href="#tutorial">Tutorial</a></h1>
 <p>This tutorial will walk you through the process of integrating Ruff's linter and formatter into
 your project. For a more detailed overview, see <a href="../configuration/"><em>Configuring Ruff</em></a>.</p>
-<h2 id="getting-started">Getting Started<a class="headerlink" href="#getting-started" title="Permanent link">#</a></h2>
+<h2 id="getting-started"><a class="toclink" href="#getting-started">Getting Started</a></h2>
 <p>To start, we'll install Ruff through PyPI (or with your <a href="../installation/">preferred package manager</a>):</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">$ </span>pip<span class="w"> </span>install<span class="w"> </span>ruff
 </code></pre></div>
@@ -1026,7 +1026,7 @@ line length limit:</p>
 </code></pre></div>
 <p>Thus far, we've been using Ruff's default configuration. Let's take a look at how we can customize
 Ruff's behavior.</p>
-<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">#</a></h2>
+<h2 id="configuration"><a class="toclink" href="#configuration">Configuration</a></h2>
 <p>To determine the appropriate settings for each Python file, Ruff looks for the first
 <code>pyproject.toml</code>, <code>ruff.toml</code>, or <code>.ruff.toml</code> file in the file's directory or any parent directory.</p>
 <p>To configure Ruff, let's create a configuration file in our project's root directory:</p>
@@ -1093,7 +1093,7 @@ specifically, we'll want to make note of the minimum supported Python version:</
 </div>
 </div>
 </div>
-<h3 id="rule-selection">Rule Selection<a class="headerlink" href="#rule-selection" title="Permanent link">#</a></h3>
+<h3 id="rule-selection"><a class="toclink" href="#rule-selection">Rule Selection</a></h3>
 <p>Ruff supports <a href="../rules/">over 800 lint rules</a> split across over 50 built-in plugins, but
 determining the right set of rules will depend on your project's needs: some rules may be too
 strict, some are framework-specific, and so on.</p>
@@ -1177,7 +1177,7 @@ all functions have docstrings:</p>
 <a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="go">Found 3 errors.</span>
 <a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="go">[*] 1 fixable with the `--fix` option.</span>
 </code></pre></div>
-<h3 id="ignoring-errors">Ignoring Errors<a class="headerlink" href="#ignoring-errors" title="Permanent link">#</a></h3>
+<h3 id="ignoring-errors"><a class="toclink" href="#ignoring-errors">Ignoring Errors</a></h3>
 <p>Any lint rule can be ignored by adding a <code># noqa</code> comment to the line in question. For example,
 let's ignore the <code>UP035</code> rule for the <code>Iterable</code> import:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Iterable</span>  <span class="c1"># noqa: UP035</span>
@@ -1204,7 +1204,7 @@ in the file, preferably towards the top, like so:</p>
 <a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">num</span> <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">numbers</span> <span class="k">if</span> <span class="n">num</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
 </code></pre></div>
 <p>For more in-depth instructions on ignoring errors, please see <a href="../linter/#error-suppression"><em>Error suppression</em></a>.</p>
-<h3 id="adding-rules">Adding Rules<a class="headerlink" href="#adding-rules" title="Permanent link">#</a></h3>
+<h3 id="adding-rules"><a class="toclink" href="#adding-rules">Adding Rules</a></h3>
 <p>When enabling a new rule on an existing codebase, you may want to ignore all <em>existing</em>
 violations of that rule and instead focus on enforcing it going forward.</p>
 <p>Ruff enables this workflow via the <code>--add-noqa</code> flag, which will add a <code># noqa</code> directive to each
@@ -1225,7 +1225,7 @@ flag to add <code># noqa</code> directives to all existing <code>UP035</code> vi
 <a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a>
 <a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a><span class="w"> </span>def sum_even_numbers(numbers: Iterable[int]) -&gt; int:
 </code></pre></div>
-<h2 id="integrations">Integrations<a class="headerlink" href="#integrations" title="Permanent link">#</a></h2>
+<h2 id="integrations"><a class="toclink" href="#integrations">Integrations</a></h2>
 <p>This tutorial has focused on Ruff's command-line interface, but Ruff can also be used as a
 <a href="https://pre-commit.com">pre-commit</a> hook via <a href="https://github.com/astral-sh/ruff-pre-commit"><code>ruff-pre-commit</code></a>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">repo</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/astral-sh/ruff-pre-commit</span>

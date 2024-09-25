@@ -25,7 +25,7 @@
     
     
 
-<title>assignment-in-assert (RUF018) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              assignment-in-assert (RUF018)
+              
             
           </span>
         </div>
@@ -817,11 +817,11 @@
   
 
 
-<h1 id="assignment-in-assert-ruf018">assignment-in-assert (RUF018)<a class="headerlink" href="#assignment-in-assert-ruf018" title="Permanent link">#</a></h1>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h1 id="assignment-in-assert-ruf018"><a class="toclink" href="#assignment-in-assert-ruf018">assignment-in-assert (RUF018)</a></h1>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for named assignment expressions (e.g., <code>x := 0</code>) in <code>assert</code>
 statements.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Named assignment expressions (also known as "walrus operators") are used to
 assign a value to a variable as part of a larger expression.</p>
 <p>Named assignments are syntactically valid in <code>assert</code> statements. However,
@@ -829,14 +829,14 @@ when the Python interpreter is run under the <code>-O</code> flag, <code>assert<
 are not executed. In this case, the named assignment will also be ignored,
 which may result in unexpected behavior (e.g., undefined variable
 accesses).</p>
-<h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">#</a></h2>
+<h2 id="examples"><a class="toclink" href="#examples">Examples</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">assert</span> <span class="p">(</span><span class="n">x</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
 </code></pre></div>
 <p>Use instead:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">assert</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">0</span>
 </code></pre></div>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/using/cmdline.html#cmdoption-O">Python documentation: <code>-O</code></a></li>
 </ul>

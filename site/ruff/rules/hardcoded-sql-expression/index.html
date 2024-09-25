@@ -25,7 +25,7 @@
     
     
 
-<title>hardcoded-sql-expression (S608) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              hardcoded-sql-expression (S608)
+              
             
           </span>
         </div>
@@ -817,21 +817,21 @@
   
 
 
-<h1 id="hardcoded-sql-expression-s608">hardcoded-sql-expression (S608)<a class="headerlink" href="#hardcoded-sql-expression-s608" title="Permanent link">#</a></h1>
+<h1 id="hardcoded-sql-expression-s608"><a class="toclink" href="#hardcoded-sql-expression-s608">hardcoded-sql-expression (S608)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-bandit-s">flake8-bandit</a></strong> linter.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for strings that resemble SQL statements involved in some form
 string building operation.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>SQL injection is a common attack vector for web applications. Directly
 interpolating user input into SQL statements should always be avoided.
 Instead, favor parameterized queries, in which the SQL statement is
 provided separately from its parameters, as supported by <code>psycopg3</code>
 and other database drivers and ORMs.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;DELETE FROM foo WHERE id = &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="n">identifier</span>
 </code></pre></div>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://bandit.readthedocs.io/en/latest/plugins/b608_hardcoded_sql_expressions.html">B608: Test for SQL injection</a></li>
 <li><a href="https://www.psycopg.org/psycopg3/docs/basic/from_pg2.html#server-side-binding">psycopg3: Server-side binding</a></li>

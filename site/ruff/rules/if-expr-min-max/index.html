@@ -25,7 +25,7 @@
     
     
 
-<title>if-expr-min-max (FURB136) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              if-expr-min-max (FURB136)
+              
             
           </span>
         </div>
@@ -817,24 +817,24 @@
   
 
 
-<h1 id="if-expr-min-max-furb136">if-expr-min-max (FURB136)<a class="headerlink" href="#if-expr-min-max-furb136" title="Permanent link">#</a></h1>
+<h1 id="if-expr-min-max-furb136"><a class="toclink" href="#if-expr-min-max-furb136">if-expr-min-max (FURB136)</a></h1>
 <p>Derived from the <strong><a href="../#refurb-furb">refurb</a></strong> linter.</p>
 <p>Fix is sometimes available.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for <code>if</code> expressions that can be replaced with <code>min()</code> or <code>max()</code>
 calls.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>An <code>if</code> expression that selects the lesser or greater of two
 sub-expressions can be replaced with a <code>min()</code> or <code>max()</code> call
 respectively. When possible, prefer <code>min()</code> and <code>max()</code>, as they're more
 concise and readable than the equivalent <code>if</code> expression.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">highest_score</span> <span class="o">=</span> <span class="n">score1</span> <span class="k">if</span> <span class="n">score1</span> <span class="o">&gt;</span> <span class="n">score2</span> <span class="k">else</span> <span class="n">score2</span>
 </code></pre></div>
 <p>Use instead:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">highest_score</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">score2</span><span class="p">,</span> <span class="n">score1</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3.11/library/functions.html#min">Python documentation: <code>min</code></a></li>
 <li><a href="https://docs.python.org/3.11/library/functions.html#max">Python documentation: <code>max</code></a></li>

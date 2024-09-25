@@ -25,7 +25,7 @@
     
     
 
-<title>custom-type-var-return-type (PYI019) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              custom-type-var-return-type (PYI019)
+              
             
           </span>
         </div>
@@ -817,19 +817,19 @@
   
 
 
-<h1 id="custom-type-var-return-type-pyi019">custom-type-var-return-type (PYI019)<a class="headerlink" href="#custom-type-var-return-type-pyi019" title="Permanent link">#</a></h1>
+<h1 id="custom-type-var-return-type-pyi019"><a class="toclink" href="#custom-type-var-return-type-pyi019">custom-type-var-return-type (PYI019)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-pyi-pyi">flake8-pyi</a></strong> linter.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for methods that define a custom <code>TypeVar</code> for their return type
 annotation instead of using <code>typing_extensions.Self</code>.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>While the semantics are often identical, using <code>typing_extensions.Self</code> is
 more intuitive and succinct (per <a href="https://peps.python.org/pep-0673/#motivation">PEP 673</a>) than a custom <code>TypeVar</code>. For
 example, the use of <code>Self</code> will typically allow for the omission of type
 parameters on the <code>self</code> and <code>cls</code> arguments.</p>
 <p>This check currently applies to instance methods that return <code>self</code>, class
 methods that return an instance of <code>cls</code>, and <code>__new__</code> methods.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">class</span> <span class="nc">Foo</span><span class="p">:</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">_S</span><span class="p">],</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_S</span><span class="p">:</span> <span class="o">...</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">_S</span><span class="p">,</span> <span class="n">arg</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_S</span><span class="p">:</span> <span class="o">...</span>

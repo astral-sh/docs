@@ -826,7 +826,7 @@
 <p>This document enumerates the known, intentional differences in code style between Black and Ruff's
 formatter.</p>
 <p>For a list of unintentional deviations, see <a href="https://github.com/astral-sh/ruff/issues?q=is%3Aopen+is%3Aissue+label%3Aformatter">issue tracker</a>.</p>
-<h3 id="trailing-end-of-line-comments">Trailing end-of-line comments<a class="headerlink" href="#trailing-end-of-line-comments" title="Permanent link">#</a></h3>
+<h3 id="trailing-end-of-line-comments"><a class="toclink" href="#trailing-end-of-line-comments">Trailing end-of-line comments</a></h3>
 <p>Black's priority is to fit an entire statement on a line, even if it contains end-of-line comments.
 In such cases, Black collapses the statement, and moves the comment to the end of the collapsed
 statement:</p>
@@ -847,7 +847,7 @@ above. This ensures that the comments remain close to their original position an
 original intent, at the cost of retaining additional vertical space.</p>
 <p>This deviation only impacts unformatted code, in that Ruff's output should not deviate for code that
 has already been formatted by Black.</p>
-<h3 id="pragma-comments-are-ignored-when-computing-line-width">Pragma comments are ignored when computing line width<a class="headerlink" href="#pragma-comments-are-ignored-when-computing-line-width" title="Permanent link">#</a></h3>
+<h3 id="pragma-comments-are-ignored-when-computing-line-width"><a class="toclink" href="#pragma-comments-are-ignored-when-computing-line-width">Pragma comments are ignored when computing line width</a></h3>
 <p>Pragma comments (<code># type</code>, <code># noqa</code>, <code># pyright</code>, <code># pylint</code>, etc.) are ignored when computing the width of a line.
 This prevents Ruff from moving pragma comments around, thereby modifying their meaning and behavior:</p>
 <p>See Ruff's <a href="https://github.com/astral-sh/ruff/discussions/6670">pragma comment handling proposal</a>
@@ -873,10 +873,10 @@ on both <code>first()</code> and <code>second()</code>:</p>
 <a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    <span class="n">second</span><span class="p">(),</span>
 <a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="p">]</span>
 </code></pre></div>
-<h3 id="line-width-vs-line-length">Line width vs. line length<a class="headerlink" href="#line-width-vs-line-length" title="Permanent link">#</a></h3>
+<h3 id="line-width-vs-line-length"><a class="toclink" href="#line-width-vs-line-length">Line width vs. line length</a></h3>
 <p>Ruff uses the Unicode width of a line to determine if a line fits. Black uses Unicode width for strings,
 and character width for all other tokens. Ruff <em>also</em> uses Unicode width for identifiers and comments.</p>
-<h3 id="parenthesizing-long-nested-expressions">Parenthesizing long nested-expressions<a class="headerlink" href="#parenthesizing-long-nested-expressions" title="Permanent link">#</a></h3>
+<h3 id="parenthesizing-long-nested-expressions"><a class="toclink" href="#parenthesizing-long-nested-expressions">Parenthesizing long nested-expressions</a></h3>
 <p>Black 24 and newer parenthesizes long conditional expressions and type annotations in function parameters:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Black</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="p">[</span>
@@ -927,7 +927,7 @@ and character width for all other tokens. Ruff <em>also</em> uses Unicode width 
 <a id="__codelineno-2-47" name="__codelineno-2-47" href="#__codelineno-2-47"></a>    <span class="k">pass</span>
 </code></pre></div>
 <p>We agree that Ruff's formatting (that matches Black's 23) is hard to read and needs improvement. But we aren't convinced that parenthesizing long nested expressions is the best solution, especially when considering expression formatting holistically. That's why we want to defer the decision until we've explored alternative nested expression formatting styles. See <a href="https://github.com/psf/black/issues/4123">psf/Black#4123</a> for an in-depth explanation of our concerns and an outline of possible alternatives.</p>
-<h3 id="call-expressions-with-a-single-multiline-string-argument">Call expressions with a single multiline string argument<a class="headerlink" href="#call-expressions-with-a-single-multiline-string-argument" title="Permanent link">#</a></h3>
+<h3 id="call-expressions-with-a-single-multiline-string-argument"><a class="toclink" href="#call-expressions-with-a-single-multiline-string-argument">Call expressions with a single multiline string argument</a></h3>
 <p>Unlike Black, Ruff preserves the indentation of a single multiline-string argument in a call expression:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Input</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">call</span><span class="p">(</span>
@@ -972,7 +972,7 @@ and character width for all other tokens. Ruff <em>also</em> uses Unicode width 
 <a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a><span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
 </code></pre></div>
 <p>Black intended to ship a similar style change as part of the 2024 style that always removes the indent. It turned out that this change was too disruptive to justify the cases where it improved formatting. Ruff introduced the new heuristic of preserving the indent. We believe it's a good compromise that improves formatting but minimizes disruption for users.</p>
-<h3 id="blank-lines-at-the-start-of-a-block">Blank lines at the start of a block<a class="headerlink" href="#blank-lines-at-the-start-of-a-block" title="Permanent link">#</a></h3>
+<h3 id="blank-lines-at-the-start-of-a-block"><a class="toclink" href="#blank-lines-at-the-start-of-a-block">Blank lines at the start of a block</a></h3>
 <p>Black 24 and newer allows blank lines at the start of a block, where Ruff always removes them:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Black</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">if</span> <span class="n">x</span><span class="p">:</span>
@@ -984,7 +984,7 @@ and character width for all other tokens. Ruff <em>also</em> uses Unicode width 
 <a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>  <span class="n">a</span> <span class="o">=</span> <span class="mi">123</span>
 </code></pre></div>
 <p>Currently, we are concerned that allowing blank lines at the start of a block leads <a href="https://github.com/astral-sh/ruff/issues/8893#issuecomment-1867259744">to unintentional blank lines when refactoring or moving code</a>. However, we will consider adopting Black's formatting at a later point with an improved heuristic. The style change is tracked in <a href="https://github.com/astral-sh/ruff/issues/9745">#9745</a>.</p>
-<h3 id="hex-codes-and-unicode-sequences">Hex codes and Unicode sequences<a class="headerlink" href="#hex-codes-and-unicode-sequences" title="Permanent link">#</a></h3>
+<h3 id="hex-codes-and-unicode-sequences"><a class="toclink" href="#hex-codes-and-unicode-sequences">Hex codes and Unicode sequences</a></h3>
 <p>Ruff normalizes hex codes and Unicode sequences in strings (<a href="https://github.com/astral-sh/ruff/pull/9280">#9280</a>). Black intended to ship this change as part of the 2024 style but accidentally didn't.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Black</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">a</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\x1B</span><span class="s2">&quot;</span>
@@ -998,7 +998,7 @@ and character width for all other tokens. Ruff <em>also</em> uses Unicode width 
 <a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="n">c</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\U0001f977</span><span class="s2">&quot;</span>
 <a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="n">d</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\N{CYRILLIC SMALL LETTER BYELORUSSIAN-UKRAINIAN I}</span><span class="s2">&quot;</span>
 </code></pre></div>
-<h3 id="module-docstrings">Module docstrings<a class="headerlink" href="#module-docstrings" title="Permanent link">#</a></h3>
+<h3 id="module-docstrings"><a class="toclink" href="#module-docstrings">Module docstrings</a></h3>
 <p>Ruff formats module docstrings similar to class or function docstrings, whereas Black does not.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Input</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="sd">&quot;&quot;&quot;Module docstring</span>
@@ -1013,7 +1013,7 @@ and character width for all other tokens. Ruff <em>also</em> uses Unicode width 
 <a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="c1"># Ruff</span>
 <a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="sd">&quot;&quot;&quot;Module docstring&quot;&quot;&quot;</span>
 </code></pre></div>
-<h3 id="walruses-in-slice-expressions">Walruses in slice expressions<a class="headerlink" href="#walruses-in-slice-expressions" title="Permanent link">#</a></h3>
+<h3 id="walruses-in-slice-expressions"><a class="toclink" href="#walruses-in-slice-expressions">Walruses in slice expressions</a></h3>
 <p>Black avoids inserting space around <code>:=</code> operators within slices. For example, the following adheres
 to Black stable style:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Input</span>
@@ -1030,7 +1030,7 @@ to Black stable style:</p>
 <a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="n">x</span><span class="p">[</span><span class="n">y</span> <span class="o">:=</span> <span class="mi">1</span><span class="p">]</span>
 </code></pre></div>
 <p>This will likely be incorporated into Black's preview style (<a href="https://github.com/psf/black/pull/3823">#3823</a>).</p>
-<h3 id="global-and-nonlocal-names-are-broken-across-multiple-lines-by-continuations"><code>global</code> and <code>nonlocal</code> names are broken across multiple lines by continuations<a class="headerlink" href="#global-and-nonlocal-names-are-broken-across-multiple-lines-by-continuations" title="Permanent link">#</a></h3>
+<h3 id="global-and-nonlocal-names-are-broken-across-multiple-lines-by-continuations"><a class="toclink" href="#global-and-nonlocal-names-are-broken-across-multiple-lines-by-continuations"><code>global</code> and <code>nonlocal</code> names are broken across multiple lines by continuations</a></h3>
 <p>If a <code>global</code> or <code>nonlocal</code> statement includes multiple names, and exceeds the configured line
 width, Ruff will break them across multiple lines using continuations:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># Input</span>
@@ -1044,7 +1044,7 @@ width, Ruff will break them across multiple lines using continuations:</p>
 <a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>    <span class="n">analyze_motions_layer</span><span class="p">,</span> \
 <a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>    <span class="n">analyze_size_model</span>
 </code></pre></div>
-<h3 id="newlines-are-inserted-after-all-class-docstrings">Newlines are inserted after all class docstrings<a class="headerlink" href="#newlines-are-inserted-after-all-class-docstrings" title="Permanent link">#</a></h3>
+<h3 id="newlines-are-inserted-after-all-class-docstrings"><a class="toclink" href="#newlines-are-inserted-after-all-class-docstrings">Newlines are inserted after all class docstrings</a></h3>
 <p>Black typically enforces a single newline after a class docstring. However, it does not apply such
 formatting if the docstring is single-quoted rather than triple-quoted, while Ruff enforces a
 single newline in both cases:</p>
@@ -1070,7 +1070,7 @@ single newline in both cases:</p>
 <a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a>    <span class="n">restype</span> <span class="o">=</span> <span class="n">c_int</span>
 <a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a>    <span class="n">errcheck</span> <span class="o">=</span> <span class="nb">staticmethod</span><span class="p">(</span><span class="n">check_minus_one</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="trailing-own-line-comments-on-imports-are-not-moved-to-the-next-line">Trailing own-line comments on imports are not moved to the next line<a class="headerlink" href="#trailing-own-line-comments-on-imports-are-not-moved-to-the-next-line" title="Permanent link">#</a></h3>
+<h3 id="trailing-own-line-comments-on-imports-are-not-moved-to-the-next-line"><a class="toclink" href="#trailing-own-line-comments-on-imports-are-not-moved-to-the-next-line">Trailing own-line comments on imports are not moved to the next line</a></h3>
 <p>Black enforces a single empty line between an import and a trailing own-line comment. Ruff leaves
 such comments in-place:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># Input</span>
@@ -1092,7 +1092,7 @@ such comments in-place:</p>
 <a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a>
 <a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a><span class="kn">import</span> <span class="nn">sys</span>
 </code></pre></div>
-<h3 id="parentheses-around-awaited-collections-are-not-preserved">Parentheses around awaited collections are not preserved<a class="headerlink" href="#parentheses-around-awaited-collections-are-not-preserved" title="Permanent link">#</a></h3>
+<h3 id="parentheses-around-awaited-collections-are-not-preserved"><a class="toclink" href="#parentheses-around-awaited-collections-are-not-preserved">Parentheses around awaited collections are not preserved</a></h3>
 <p>Black preserves parentheses around awaited collections:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">await</span> <span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
 </code></pre></div>
@@ -1102,7 +1102,7 @@ such comments in-place:</p>
 <p>This is more consistent to the formatting of other awaited expressions: Ruff and Black both
 remove parentheses around, e.g., <code>await (1)</code>, only retaining them when syntactically required,
 as in, e.g., <code>await (x := 1)</code>.</p>
-<h3 id="implicit-string-concatenations-in-attribute-accesses">Implicit string concatenations in attribute accesses<a class="headerlink" href="#implicit-string-concatenations-in-attribute-accesses" title="Permanent link">#</a></h3>
+<h3 id="implicit-string-concatenations-in-attribute-accesses"><a class="toclink" href="#implicit-string-concatenations-in-attribute-accesses">Implicit string concatenations in attribute accesses</a></h3>
 <p>Given the following unformatted code:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;aaaaaaaaaaaaaaaa&quot;</span> <span class="s2">&quot;aaaaaaaaaaaaaaaa&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">bbbbbbbbbbbbbbbbbb</span> <span class="o">+</span> <span class="n">bbbbbbbbbbbbbbbbbb</span><span class="p">))</span>
 </code></pre></div>
@@ -1130,7 +1130,7 @@ would instead format the above as:</p>
 <p>In general, Black splits implicit string concatenations over multiple lines more often than Ruff,
 even if those concatenations <em>can</em> fit on a single line. Ruff instead avoids splitting such
 concatenations unless doing so is necessary to fit within the configured line width.</p>
-<h3 id="own-line-comments-on-expressions-dont-cause-the-expression-to-expand">Own-line comments on expressions don't cause the expression to expand<a class="headerlink" href="#own-line-comments-on-expressions-dont-cause-the-expression-to-expand" title="Permanent link">#</a></h3>
+<h3 id="own-line-comments-on-expressions-dont-cause-the-expression-to-expand"><a class="toclink" href="#own-line-comments-on-expressions-dont-cause-the-expression-to-expand">Own-line comments on expressions don't cause the expression to expand</a></h3>
 <p>Given an expression like:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="p">(</span>
 <a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>    <span class="c1"># A comment in the middle</span>
@@ -1151,7 +1151,7 @@ initial formatting:</p>
 <a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>    <span class="n">some_example_var</span> <span class="ow">and</span> <span class="n">some_example_var</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">some_example_var</span>
 <a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="p">)</span>
 </code></pre></div>
-<h3 id="tuples-are-parenthesized-when-expanded">Tuples are parenthesized when expanded<a class="headerlink" href="#tuples-are-parenthesized-when-expanded" title="Permanent link">#</a></h3>
+<h3 id="tuples-are-parenthesized-when-expanded"><a class="toclink" href="#tuples-are-parenthesized-when-expanded">Tuples are parenthesized when expanded</a></h3>
 <p>Ruff tends towards parenthesizing tuples (with a few exceptions), while Black tends to remove tuple
 parentheses more often.</p>
 <p>In particular, Ruff will always insert parentheses around tuples that expand over multiple lines:</p>
@@ -1193,7 +1193,7 @@ parentheses:</p>
 <a id="__codelineno-22-16" name="__codelineno-22-16" href="#__codelineno-22-16"></a><span class="p">]</span> <span class="ow">in</span> <span class="n">c</span><span class="p">:</span>
 <a id="__codelineno-22-17" name="__codelineno-22-17" href="#__codelineno-22-17"></a>    <span class="k">pass</span>
 </code></pre></div>
-<h3 id="single-element-tuples-are-always-parenthesized">Single-element tuples are always parenthesized<a class="headerlink" href="#single-element-tuples-are-always-parenthesized" title="Permanent link">#</a></h3>
+<h3 id="single-element-tuples-are-always-parenthesized"><a class="toclink" href="#single-element-tuples-are-always-parenthesized">Single-element tuples are always parenthesized</a></h3>
 <p>Ruff always inserts parentheses around single-element tuples, while Black will omit them in some
 cases:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="c1"># Input</span>
@@ -1207,7 +1207,7 @@ cases:</p>
 </code></pre></div>
 <p>Adding parentheses around single-element tuples adds visual distinction and helps avoid "accidental"
 tuples created by extraneous trailing commas (see, e.g., <a href="https://github.com/django/django/pull/17181">#17181</a>).</p>
-<h3 id="trailing-commas-are-inserted-when-expanding-a-function-definition-with-a-single-argument">Trailing commas are inserted when expanding a function definition with a single argument<a class="headerlink" href="#trailing-commas-are-inserted-when-expanding-a-function-definition-with-a-single-argument" title="Permanent link">#</a></h3>
+<h3 id="trailing-commas-are-inserted-when-expanding-a-function-definition-with-a-single-argument"><a class="toclink" href="#trailing-commas-are-inserted-when-expanding-a-function-definition-with-a-single-argument">Trailing commas are inserted when expanding a function definition with a single argument</a></h3>
 <p>When a function definition with a single argument is expanded over multiple lines, Black
 will add a trailing comma in some cases, depending on whether the argument includes a type
 annotation and/or a default value.</p>
@@ -1234,7 +1234,7 @@ but not the third:</p>
 <a id="__codelineno-24-19" name="__codelineno-24-19" href="#__codelineno-24-19"></a>    <span class="o">...</span>
 </code></pre></div>
 <p>Ruff will instead insert a trailing comma in all such cases for consistency.</p>
-<h3 id="parentheses-around-call-chain-assignment-values-are-not-preserved">Parentheses around call-chain assignment values are not preserved<a class="headerlink" href="#parentheses-around-call-chain-assignment-values-are-not-preserved" title="Permanent link">#</a></h3>
+<h3 id="parentheses-around-call-chain-assignment-values-are-not-preserved"><a class="toclink" href="#parentheses-around-call-chain-assignment-values-are-not-preserved">Parentheses around call-chain assignment values are not preserved</a></h3>
 <p>Given:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="k">def</span> <span class="nf">update_emission_strength</span><span class="p">():</span>
 <a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>    <span class="p">(</span>
@@ -1259,7 +1259,7 @@ them.</p>
 <a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a><span class="k">def</span> <span class="nf">update_emission_strength</span><span class="p">():</span>
 <a id="__codelineno-26-11" name="__codelineno-26-11" href="#__codelineno-26-11"></a>    <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">emission_strength</span> <span class="o">*</span> <span class="mi">2</span>
 </code></pre></div>
-<h3 id="call-chain-calls-break-differently-in-some-cases">Call chain calls break differently in some cases<a class="headerlink" href="#call-chain-calls-break-differently-in-some-cases" title="Permanent link">#</a></h3>
+<h3 id="call-chain-calls-break-differently-in-some-cases"><a class="toclink" href="#call-chain-calls-break-differently-in-some-cases">Call chain calls break differently in some cases</a></h3>
 <p>Black occasionally breaks call chains differently than Ruff; in particular, Black occasionally
 expands the arguments for the last call in the chain, as in:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="c1"># Input</span>
@@ -1338,7 +1338,7 @@ Black, if doing so allows the expression to fit within the configured line width
 <a id="__codelineno-29-14" name="__codelineno-29-14" href="#__codelineno-29-14"></a>    <span class="n">foooooo</span> <span class="o">+</span> <span class="mi">1</span>
 <a id="__codelineno-29-15" name="__codelineno-29-15" href="#__codelineno-29-15"></a><span class="p">)</span> <span class="o">*</span> <span class="n">foooooo</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">foo</span><span class="p">(</span><span class="n">bar</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">foo</span><span class="p">),</span> <span class="n">foo</span><span class="p">)))</span>
 </code></pre></div>
-<h3 id="the-last-context-manager-in-a-with-statement-may-be-collapsed-onto-a-single-line">The last context manager in a <code>with</code> statement may be collapsed onto a single line<a class="headerlink" href="#the-last-context-manager-in-a-with-statement-may-be-collapsed-onto-a-single-line" title="Permanent link">#</a></h3>
+<h3 id="the-last-context-manager-in-a-with-statement-may-be-collapsed-onto-a-single-line"><a class="toclink" href="#the-last-context-manager-in-a-with-statement-may-be-collapsed-onto-a-single-line">The last context manager in a <code>with</code> statement may be collapsed onto a single line</a></h3>
 <p>When using a <code>with</code> statement with multiple unparenthesized context managers, Ruff may collapse the
 last context manager onto a single line, if doing so allows the <code>with</code> statement to fit within the
 configured line width.</p>

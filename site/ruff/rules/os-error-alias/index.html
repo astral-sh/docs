@@ -25,7 +25,7 @@
     
     
 
-<title>os-error-alias (UP024) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              os-error-alias (UP024)
+              
             
           </span>
         </div>
@@ -817,25 +817,25 @@
   
 
 
-<h1 id="os-error-alias-up024">os-error-alias (UP024)<a class="headerlink" href="#os-error-alias-up024" title="Permanent link">#</a></h1>
+<h1 id="os-error-alias-up024"><a class="toclink" href="#os-error-alias-up024">os-error-alias (UP024)</a></h1>
 <p>Derived from the <strong><a href="../#pyupgrade-up">pyupgrade</a></strong> linter.</p>
 <p>Fix is always available.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for uses of exceptions that alias <code>OSError</code>.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p><code>OSError</code> is the builtin error type used for exceptions that relate to the
 operating system.</p>
 <p>In Python 3.3, a variety of other exceptions, like <code>WindowsError</code> were
 aliased to <code>OSError</code>. These aliases remain in place for compatibility with
 older versions of Python, but may be removed in future versions.</p>
 <p>Prefer using <code>OSError</code> directly, as it is more idiomatic and future-proof.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">raise</span> <span class="ne">IOError</span>
 </code></pre></div>
 <p>Use instead:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">raise</span> <span class="ne">OSError</span>
 </code></pre></div>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/library/exceptions.html#OSError">Python documentation: <code>OSError</code></a></li>
 </ul>

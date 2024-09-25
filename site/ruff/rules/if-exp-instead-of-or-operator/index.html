@@ -25,7 +25,7 @@
     
     
 
-<title>if-exp-instead-of-or-operator (FURB110) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              if-exp-instead-of-or-operator (FURB110)
+              
             
           </span>
         </div>
@@ -817,23 +817,23 @@
   
 
 
-<h1 id="if-exp-instead-of-or-operator-furb110">if-exp-instead-of-or-operator (FURB110)<a class="headerlink" href="#if-exp-instead-of-or-operator-furb110" title="Permanent link">#</a></h1>
+<h1 id="if-exp-instead-of-or-operator-furb110"><a class="toclink" href="#if-exp-instead-of-or-operator-furb110">if-exp-instead-of-or-operator (FURB110)</a></h1>
 <p>Derived from the <strong><a href="../#refurb-furb">refurb</a></strong> linter.</p>
 <p>Fix is sometimes available.</p>
 <p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for ternary <code>if</code> expressions that can be replaced with the <code>or</code>
 operator.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Ternary <code>if</code> expressions are more verbose than <code>or</code> expressions while
 providing the same functionality.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">z</span> <span class="o">=</span> <span class="n">x</span> <span class="k">if</span> <span class="n">x</span> <span class="k">else</span> <span class="n">y</span>
 </code></pre></div>
 <p>Use instead:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">z</span> <span class="o">=</span> <span class="n">x</span> <span class="ow">or</span> <span class="n">y</span>
 </code></pre></div>
-<h2 id="fix-safety">Fix safety<a class="headerlink" href="#fix-safety" title="Permanent link">#</a></h2>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
 <p>This rule's fix is marked as unsafe in the event that the body of the
 <code>if</code> expression contains side effects.</p>
 <p>For example, <code>foo</code> will be called twice in <code>foo() if foo() else bar()</code>

@@ -25,7 +25,7 @@
     
     
 
-<title>future-required-type-annotation (FA102) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              future-required-type-annotation (FA102)
+              
             
           </span>
         </div>
@@ -817,14 +817,14 @@
   
 
 
-<h1 id="future-required-type-annotation-fa102">future-required-type-annotation (FA102)<a class="headerlink" href="#future-required-type-annotation-fa102" title="Permanent link">#</a></h1>
+<h1 id="future-required-type-annotation-fa102"><a class="toclink" href="#future-required-type-annotation-fa102">future-required-type-annotation (FA102)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-future-annotations-fa">flake8-future-annotations</a></strong> linter.</p>
 <p>Fix is always available.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for uses of PEP 585- and PEP 604-style type annotations in Python
 modules that lack the required <code>from __future__ import annotations</code> import
 for compatibility with older Python versions.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Using PEP 585 and PEP 604 style annotations without a <code>from __future__ import annotations</code> import will cause runtime errors on Python versions prior to
 3.9 and 3.10, respectively.</p>
 <p>By adding the <code>__future__</code> import, the interpreter will no longer interpret
@@ -835,7 +835,7 @@ project targets Python 3.10 and above, adding <code>from __future__ import annot
 does not impact your ability to leverage PEP 604-style unions (e.g., to
 convert <code>Optional[str]</code> to <code>str | None</code>). As such, this rule will only
 flag such usages if your project targets Python 3.9 or below.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">obj</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
 </code></pre></div>
 <p>Use instead:</p>
@@ -844,10 +844,10 @@ flag such usages if your project targets Python 3.9 or below.</p>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">obj</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
 </code></pre></div>
-<h2 id="fix-safety">Fix safety<a class="headerlink" href="#fix-safety" title="Permanent link">#</a></h2>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
 <p>This rule's fix is marked as unsafe, as adding <code>from __future__ import annotations</code>
 may change the semantics of the program.</p>
-<h2 id="options">Options<a class="headerlink" href="#options" title="Permanent link">#</a></h2>
+<h2 id="options"><a class="toclink" href="#options">Options</a></h2>
 <ul>
 <li><a href="../../settings/#target-version"><code>target-version</code></a></li>
 </ul>

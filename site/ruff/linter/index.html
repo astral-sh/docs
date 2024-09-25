@@ -444,7 +444,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Rule selection
+          
         </span>
       
     </span>
@@ -457,7 +457,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Fixes
+          
         </span>
       
     </span>
@@ -471,7 +471,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Fix safety
+          
         </span>
       
     </span>
@@ -484,7 +484,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Disabling fixes
+          
         </span>
       
     </span>
@@ -502,7 +502,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Error suppression
+          
         </span>
       
     </span>
@@ -516,7 +516,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Detecting unused suppression comments
+          
         </span>
       
     </span>
@@ -529,7 +529,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Inserting necessary suppression comments
+          
         </span>
       
     </span>
@@ -542,7 +542,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Action comments
+          
         </span>
       
     </span>
@@ -560,7 +560,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Exit codes
+          
         </span>
       
     </span>
@@ -1009,12 +1009,12 @@
   
 
 
-<h1 id="the-ruff-linter">The Ruff Linter<a class="headerlink" href="#the-ruff-linter" title="Permanent link">#</a></h1>
+<h1 id="the-ruff-linter"><a class="toclink" href="#the-ruff-linter">The Ruff Linter</a></h1>
 <p>The Ruff Linter is an extremely fast Python linter designed as a drop-in replacement for <a href="https://pypi.org/project/flake8/">Flake8</a>
 (plus dozens of plugins), <a href="https://pypi.org/project/isort/">isort</a>, <a href="https://pypi.org/project/pydocstyle/">pydocstyle</a>,
 <a href="https://pypi.org/project/pyupgrade/">pyupgrade</a>, <a href="https://pypi.org/project/autoflake/">autoflake</a>,
 and more.</p>
-<h2 id="ruff-check"><code>ruff check</code><a class="headerlink" href="#ruff-check" title="Permanent link">#</a></h2>
+<h2 id="ruff-check"><a class="toclink" href="#ruff-check"><code>ruff check</code></a></h2>
 <p><code>ruff check</code> is the primary entrypoint to the Ruff linter. It accepts a list of files or
 directories, and lints all discovered Python files, optionally fixing any fixable errors:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">$ </span>ruff<span class="w"> </span>check<span class="w">                  </span><span class="c1"># Lint all files in the current directory.</span>
@@ -1029,7 +1029,7 @@ directories, and lints all discovered Python files, optionally fixing any fixabl
 On older versions, you must provide this manually e.g. <code>ruff check .</code>.
 See <a href="../configuration/#python-file-discovery">the file discovery documentation</a> for details.</p>
 </div>
-<h2 id="rule-selection">Rule selection<a class="headerlink" href="#rule-selection" title="Permanent link">#</a></h2>
+<h2 id="rule-selection"><a class="toclink" href="#rule-selection">Rule selection</a></h2>
 <p>The set of enabled rules is controlled via the <a href="../settings/#lint_select"><code>lint.select</code></a>,
 <a href="../settings/#lint_extend-select"><code>lint.extend-select</code></a>, and <a href="../settings/#lint_ignore"><code>lint.ignore</code></a> settings.</p>
 <p>Ruff's linter mirrors Flake8's rule code system, in which each rule code consists of a one-to-three
@@ -1137,7 +1137,7 @@ inherited <code>pyproject.toml</code> files.</p>
 <p>Running <code>ruff check --select F401</code> would result in Ruff enforcing <code>F401</code>, and no other rules.</p>
 <p>Running <code>ruff check --extend-select B</code> would result in Ruff enforcing the <code>E</code>, <code>F</code>, and <code>B</code> rules,
 with the exception of <code>F401</code>.</p>
-<h2 id="fixes">Fixes<a class="headerlink" href="#fixes" title="Permanent link">#</a></h2>
+<h2 id="fixes"><a class="toclink" href="#fixes">Fixes</a></h2>
 <p>Ruff supports automatic fixes for a variety of lint errors. For example, Ruff can remove unused
 imports, reformat docstrings, rewrite type annotations to use newer Python syntax, and more.</p>
 <p>To enable fixes, pass the <code>--fix</code> flag to <code>ruff check</code>:</p>
@@ -1145,7 +1145,7 @@ imports, reformat docstrings, rewrite type annotations to use newer Python synta
 </code></pre></div>
 <p>By default, Ruff will fix all violations for which safe fixes are available; to determine
 whether a rule supports fixing, see <a href="../rules/"><em>Rules</em></a>.</p>
-<h3 id="fix-safety">Fix safety<a class="headerlink" href="#fix-safety" title="Permanent link">#</a></h3>
+<h3 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h3>
 <p>Ruff labels fixes as "safe" and "unsafe". The meaning and intent of your code will be retained when
 applying safe fixes, but the meaning could be changed when applying unsafe fixes.</p>
 <p>For example, <a href="../rules/unnecessary-iterable-allocation-for-first-element/"><code>unnecessary-iterable-allocation-for-first-element</code></a>
@@ -1201,7 +1201,7 @@ by setting the <a href="../settings/#unsafe-fixes"><code>unsafe-fixes</code></a>
 <p class="admonition-title">Note</p>
 <p>All fixes will always be displayed by Ruff when using the <code>json</code> output format. The safety of each fix is available under the <code>applicability</code> field.</p>
 </div>
-<h3 id="disabling-fixes">Disabling fixes<a class="headerlink" href="#disabling-fixes" title="Permanent link">#</a></h3>
+<h3 id="disabling-fixes"><a class="toclink" href="#disabling-fixes">Disabling fixes</a></h3>
 <p>To limit the set of rules that Ruff should fix, use the <a href="../settings/#lint_fixable"><code>lint.fixable</code></a>
 or <a href="../settings/#lint_extend-fixable"><code>lint.extend-fixable</code></a>, and <a href="../settings/#lint_unfixable"><code>lint.unfixable</code></a> settings.</p>
 <p>For example, the following configuration would enable fixes for all rules except
@@ -1237,7 +1237,7 @@ or <a href="../settings/#lint_extend-fixable"><code>lint.extend-fixable</code></
 </div>
 </div>
 </div>
-<h2 id="error-suppression">Error suppression<a class="headerlink" href="#error-suppression" title="Permanent link">#</a></h2>
+<h2 id="error-suppression"><a class="toclink" href="#error-suppression">Error suppression</a></h2>
 <p>Ruff supports several mechanisms for suppressing lint errors, be they false positives or
 permissible violations.</p>
 <p>To omit a lint rule entirely, add it to the "ignore" list via the <a href="../settings/#lint_ignore"><code>lint.ignore</code></a>
@@ -1279,18 +1279,18 @@ functionality from within your <code>pyproject.toml</code> or <code>ruff.toml</c
 violations on a single line.</p>
 <p>Note that Ruff will also respect Flake8's <code># flake8: noqa</code> directive, and will treat it as
 equivalent to <code># ruff: noqa</code>.</p>
-<h3 id="detecting-unused-suppression-comments">Detecting unused suppression comments<a class="headerlink" href="#detecting-unused-suppression-comments" title="Permanent link">#</a></h3>
+<h3 id="detecting-unused-suppression-comments"><a class="toclink" href="#detecting-unused-suppression-comments">Detecting unused suppression comments</a></h3>
 <p>Ruff implements a special rule, <a href="https://docs.astral.sh/ruff/rules/unused-noqa/"><code>unused-noqa</code></a>,
 under the <code>RUF100</code> code, to enforce that your <code>noqa</code> directives are "valid", in that the violations
 they <em>say</em> they ignore are actually being triggered on that line (and thus suppressed). To flag
 unused <code>noqa</code> directives, run: <code>ruff check /path/to/file.py --extend-select RUF100</code>.</p>
 <p>Ruff can also <em>remove</em> any unused <code>noqa</code> directives via its fix functionality. To remove any
 unused <code>noqa</code> directives, run: <code>ruff check /path/to/file.py --extend-select RUF100 --fix</code>.</p>
-<h3 id="inserting-necessary-suppression-comments">Inserting necessary suppression comments<a class="headerlink" href="#inserting-necessary-suppression-comments" title="Permanent link">#</a></h3>
+<h3 id="inserting-necessary-suppression-comments"><a class="toclink" href="#inserting-necessary-suppression-comments">Inserting necessary suppression comments</a></h3>
 <p>Ruff can <em>automatically add</em> <code>noqa</code> directives to all lines that contain violations, which is
 useful when migrating a new codebase to Ruff. To automatically add <code>noqa</code> directives to all
 relevant lines (with the appropriate rule codes), run: <code>ruff check /path/to/file.py --add-noqa</code>.</p>
-<h3 id="action-comments">Action comments<a class="headerlink" href="#action-comments" title="Permanent link">#</a></h3>
+<h3 id="action-comments"><a class="toclink" href="#action-comments">Action comments</a></h3>
 <p>Ruff respects isort's <a href="https://pycqa.github.io/isort/docs/configuration/action_comments.html">action comments</a>
 (<code># isort: skip_file</code>, <code># isort: on</code>, <code># isort: off</code>, <code># isort: skip</code>, and <code># isort: split</code>), which
 enable selectively enabling and disabling import sorting for blocks of code and other inline
@@ -1302,7 +1302,7 @@ isort variants.</p>
 <p>Unlike isort, Ruff does not respect action comments within docstrings.</p>
 <p>See the <a href="https://pycqa.github.io/isort/docs/configuration/action_comments.html">isort documentation</a>
 for more.</p>
-<h2 id="exit-codes">Exit codes<a class="headerlink" href="#exit-codes" title="Permanent link">#</a></h2>
+<h2 id="exit-codes"><a class="toclink" href="#exit-codes">Exit codes</a></h2>
 <p>By default, <code>ruff check</code> exits with the following status codes:</p>
 <ul>
 <li><code>0</code> if no violations were found, or if all present violations were fixed automatically.</li>

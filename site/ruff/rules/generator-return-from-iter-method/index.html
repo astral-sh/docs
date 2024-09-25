@@ -25,7 +25,7 @@
     
     
 
-<title>generator-return-from-iter-method (PYI058) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              generator-return-from-iter-method (PYI058)
+              
             
           </span>
         </div>
@@ -817,13 +817,13 @@
   
 
 
-<h1 id="generator-return-from-iter-method-pyi058">generator-return-from-iter-method (PYI058)<a class="headerlink" href="#generator-return-from-iter-method-pyi058" title="Permanent link">#</a></h1>
+<h1 id="generator-return-from-iter-method-pyi058"><a class="toclink" href="#generator-return-from-iter-method-pyi058">generator-return-from-iter-method (PYI058)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-pyi-pyi">flake8-pyi</a></strong> linter.</p>
 <p>Fix is sometimes available.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for simple <code>__iter__</code> methods that return <code>Generator</code>, and for
 simple <code>__aiter__</code> methods that return <code>AsyncGenerator</code>.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Using <code>(Async)Iterator</code> for these methods is simpler and more elegant. More
 importantly, it also reflects the fact that the precise kind of iterator
 returned from an <code>__iter__</code> method is usually an implementation detail that
@@ -856,7 +856,7 @@ function; implementation details should not leak into that contract.</p>
 <a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>        <span class="k">yield from</span> <span class="s2">&quot;abdefg&quot;</span>
 </code></pre></div>
-<h2 id="fix-safety">Fix safety<a class="headerlink" href="#fix-safety" title="Permanent link">#</a></h2>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
 <p>This rule tries hard to avoid false-positive errors, and the rule's fix
 should always be safe for <code>.pyi</code> stub files. However, there is a slightly
 higher chance that a false positive might be emitted by this rule when

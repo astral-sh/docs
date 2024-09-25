@@ -25,7 +25,7 @@
     
     
 
-<title>useless-comparison (B015) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              useless-comparison (B015)
+              
             
           </span>
         </div>
@@ -817,25 +817,25 @@
   
 
 
-<h1 id="useless-comparison-b015">useless-comparison (B015)<a class="headerlink" href="#useless-comparison-b015" title="Permanent link">#</a></h1>
+<h1 id="useless-comparison-b015"><a class="toclink" href="#useless-comparison-b015">useless-comparison (B015)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-bugbear-b">flake8-bugbear</a></strong> linter.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for useless comparisons.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Useless comparisons have no effect on the program, and are often included
 by mistake. If the comparison is intended to enforce an invariant, prepend
 the comparison with an <code>assert</code>. Otherwise, remove it entirely.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">foo</span> <span class="o">==</span> <span class="n">bar</span>
 </code></pre></div>
 <p>Use instead:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">assert</span> <span class="n">foo</span> <span class="o">==</span> <span class="n">bar</span><span class="p">,</span> <span class="s2">&quot;`foo` and `bar` should be equal.&quot;</span>
 </code></pre></div>
-<h2 id="notebook-behavior">Notebook behavior<a class="headerlink" href="#notebook-behavior" title="Permanent link">#</a></h2>
+<h2 id="notebook-behavior"><a class="toclink" href="#notebook-behavior">Notebook behavior</a></h2>
 <p>For Jupyter Notebooks, this rule is not applied to the last top-level expression in a cell.
 This is because it's common to have a notebook cell that ends with an expression,
 which will result in the <code>repr</code> of the evaluated expression being printed as the cell's output.</p>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/reference/simple_stmts.html#the-assert-statement">Python documentation: <code>assert</code> statement</a></li>
 </ul>

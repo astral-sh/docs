@@ -25,7 +25,7 @@
     
     
 
-<title>typing-only-third-party-import (TCH002) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              typing-only-third-party-import (TCH002)
+              
             
           </span>
         </div>
@@ -817,13 +817,13 @@
   
 
 
-<h1 id="typing-only-third-party-import-tch002">typing-only-third-party-import (TCH002)<a class="headerlink" href="#typing-only-third-party-import-tch002" title="Permanent link">#</a></h1>
+<h1 id="typing-only-third-party-import-tch002"><a class="toclink" href="#typing-only-third-party-import-tch002">typing-only-third-party-import (TCH002)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-type-checking-tch">flake8-type-checking</a></strong> linter.</p>
 <p>Fix is sometimes available.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for third-party imports that are only used for type annotations, but
 aren't defined in a type-checking block.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Unused imports add a performance overhead at runtime, and risk creating
 import cycles. If an import is <em>only</em> used in typing-only contexts, it can
 instead be imported conditionally under an <code>if TYPE_CHECKING:</code> block to
@@ -836,7 +836,7 @@ the case for Pydantic, SQLAlchemy, and other libraries), consider using
 the <a href="../../settings/#lint_flake8-type-checking_runtime-evaluated-base-classes"><code>lint.flake8-type-checking.runtime-evaluated-base-classes</code></a> and
 <a href="../../settings/#lint_flake8-type-checking_runtime-evaluated-decorators"><code>lint.flake8-type-checking.runtime-evaluated-decorators</code></a> settings to mark them
 as such.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -857,14 +857,14 @@ as such.</p>
 <a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="options">Options<a class="headerlink" href="#options" title="Permanent link">#</a></h2>
+<h2 id="options"><a class="toclink" href="#options">Options</a></h2>
 <ul>
 <li><a href="../../settings/#lint_flake8-type-checking_quote-annotations"><code>lint.flake8-type-checking.quote-annotations</code></a></li>
 <li><a href="../../settings/#lint_flake8-type-checking_runtime-evaluated-base-classes"><code>lint.flake8-type-checking.runtime-evaluated-base-classes</code></a></li>
 <li><a href="../../settings/#lint_flake8-type-checking_runtime-evaluated-decorators"><code>lint.flake8-type-checking.runtime-evaluated-decorators</code></a></li>
 <li><a href="../../settings/#lint_typing-modules"><code>lint.typing-modules</code></a></li>
 </ul>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://peps.python.org/pep-0563/#runtime-annotation-resolution-and-type-checking">PEP 536</a></li>
 </ul>

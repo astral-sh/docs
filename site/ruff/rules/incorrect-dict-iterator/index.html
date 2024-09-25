@@ -25,7 +25,7 @@
     
     
 
-<title>incorrect-dict-iterator (PERF102) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              incorrect-dict-iterator (PERF102)
+              
             
           </span>
         </div>
@@ -817,13 +817,13 @@
   
 
 
-<h1 id="incorrect-dict-iterator-perf102">incorrect-dict-iterator (PERF102)<a class="headerlink" href="#incorrect-dict-iterator-perf102" title="Permanent link">#</a></h1>
+<h1 id="incorrect-dict-iterator-perf102"><a class="toclink" href="#incorrect-dict-iterator-perf102">incorrect-dict-iterator (PERF102)</a></h1>
 <p>Derived from the <strong><a href="../#perflint-perf">Perflint</a></strong> linter.</p>
 <p>Fix is always available.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for uses of <code>dict.items()</code> that discard either the key or the value
 when iterating over the dictionary.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>If you only need the keys or values of a dictionary, you should use
 <code>dict.keys()</code> or <code>dict.values()</code> respectively, instead of <code>dict.items()</code>.
 These specialized methods are more efficient than <code>dict.items()</code>, as they
@@ -832,7 +832,7 @@ communicate the intent of the code more clearly.</p>
 <p>Note that, as with all <code>perflint</code> rules, this is only intended as a
 micro-optimization, and will have a negligible impact on performance in
 most cases.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">obj</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">obj</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
@@ -842,7 +842,7 @@ most cases.</p>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">obj</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="fix-safety">Fix safety<a class="headerlink" href="#fix-safety" title="Permanent link">#</a></h2>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
 <p>The fix does not perform any type analysis and, as such, may suggest an
 incorrect fix if the object in question does not duck-type as a mapping
 (e.g., if it is missing a <code>.keys()</code> or <code>.values()</code> method, or if those

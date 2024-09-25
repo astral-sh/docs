@@ -25,7 +25,7 @@
     
     
 
-<title>sys-version-cmp-str10 (YTT302) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              sys-version-cmp-str10 (YTT302)
+              
             
           </span>
         </div>
@@ -817,20 +817,20 @@
   
 
 
-<h1 id="sys-version-cmp-str10-ytt302">sys-version-cmp-str10 (YTT302)<a class="headerlink" href="#sys-version-cmp-str10-ytt302" title="Permanent link">#</a></h1>
+<h1 id="sys-version-cmp-str10-ytt302"><a class="toclink" href="#sys-version-cmp-str10-ytt302">sys-version-cmp-str10 (YTT302)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-2020-ytt">flake8-2020</a></strong> linter.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for comparisons that test <code>sys.version</code> against string literals,
 such that the comparison would fail if the major version number were
 ever incremented to Python 10 or higher.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Comparing <code>sys.version</code> to a string is error-prone and may cause subtle
 bugs, as the comparison will be performed lexicographically, not
 semantically.</p>
 <p>Instead, use <code>sys.version_info</code> to access the current major and minor
 version numbers as a tuple, which can be compared to other tuples
 without issue.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">sys</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">sys</span><span class="o">.</span><span class="n">version</span> <span class="o">&gt;=</span> <span class="s2">&quot;3&quot;</span>  <span class="c1"># `False` on Python 10.</span>
@@ -840,7 +840,7 @@ without issue.</p>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span>  <span class="c1"># `True` on Python 10.</span>
 </code></pre></div>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/library/sys.html#sys.version">Python documentation: <code>sys.version</code></a></li>
 <li><a href="https://docs.python.org/3/library/sys.html#sys.version_info">Python documentation: <code>sys.version_info</code></a></li>

@@ -25,7 +25,7 @@
     
     
 
-<title>zip-without-explicit-strict (B905) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              zip-without-explicit-strict (B905)
+              
             
           </span>
         </div>
@@ -817,29 +817,29 @@
   
 
 
-<h1 id="zip-without-explicit-strict-b905">zip-without-explicit-strict (B905)<a class="headerlink" href="#zip-without-explicit-strict-b905" title="Permanent link">#</a></h1>
+<h1 id="zip-without-explicit-strict-b905"><a class="toclink" href="#zip-without-explicit-strict-b905">zip-without-explicit-strict (B905)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-bugbear-b">flake8-bugbear</a></strong> linter.</p>
 <p>Fix is always available.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for <code>zip</code> calls without an explicit <code>strict</code> parameter.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>By default, if the iterables passed to <code>zip</code> are of different lengths, the
 resulting iterator will be silently truncated to the length of the shortest
 iterable. This can lead to subtle bugs.</p>
 <p>Use the <code>strict</code> parameter to raise a <code>ValueError</code> if the iterables are of
 non-uniform length. If the iterables are intentionally different lengths, the
 parameter should be explicitly set to <code>False</code>.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">zip</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 </code></pre></div>
 <p>Use instead:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">zip</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="fix-safety">Fix safety<a class="headerlink" href="#fix-safety" title="Permanent link">#</a></h2>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
 <p>This rule's fix is marked as unsafe for <code>zip</code> calls that contain
 <code>**kwargs</code>, as adding a <code>strict</code> keyword argument to such a call may lead
 to a duplicate keyword argument error.</p>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/library/functions.html#zip">Python documentation: <code>zip</code></a></li>
 </ul>

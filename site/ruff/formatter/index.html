@@ -469,7 +469,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Philosophy
+          
         </span>
       
     </span>
@@ -482,7 +482,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Configuration
+          
         </span>
       
     </span>
@@ -495,7 +495,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Docstring formatting
+          
         </span>
       
     </span>
@@ -508,7 +508,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Format suppression
+          
         </span>
       
     </span>
@@ -521,7 +521,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Conflicting lint rules
+          
         </span>
       
     </span>
@@ -534,7 +534,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Exit codes
+          
         </span>
       
     </span>
@@ -547,7 +547,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Black compatibility
+          
         </span>
       
     </span>
@@ -561,7 +561,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Intentional deviations
+          
         </span>
       
     </span>
@@ -574,7 +574,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Preview style
+          
         </span>
       
     </span>
@@ -592,7 +592,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Sorting imports
+          
         </span>
       
     </span>
@@ -1016,11 +1016,11 @@
   
 
 
-<h1 id="the-ruff-formatter">The Ruff Formatter<a class="headerlink" href="#the-ruff-formatter" title="Permanent link">#</a></h1>
+<h1 id="the-ruff-formatter"><a class="toclink" href="#the-ruff-formatter">The Ruff Formatter</a></h1>
 <p>The Ruff formatter is an extremely fast Python code formatter designed as a drop-in replacement for
 <a href="https://pypi.org/project/black/">Black</a>, available as part of the <code>ruff</code> CLI via <code>ruff format</code>.</p>
 <p>The Ruff formatter is available as of Ruff <a href="https://astral.sh/blog/the-ruff-formatter">v0.1.2</a>.</p>
-<h2 id="ruff-format"><code>ruff format</code><a class="headerlink" href="#ruff-format" title="Permanent link">#</a></h2>
+<h2 id="ruff-format"><a class="toclink" href="#ruff-format"><code>ruff format</code></a></h2>
 <p><code>ruff format</code> is the primary entrypoint to the formatter. It accepts a list of files or
 directories, and formats all discovered Python files:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ruff<span class="w"> </span>format<span class="w">                   </span><span class="c1"># Format all files in the current directory.</span>
@@ -1036,7 +1036,7 @@ and instead exit with a non-zero status code upon detecting any unformatted file
 <p>As of Ruff v0.1.7 the <code>ruff format</code> command uses the current working directory (<code>.</code>) as the default path to format.
 See <a href="../configuration/#python-file-discovery">the file discovery documentation</a> for details.</p>
 </div>
-<h2 id="philosophy">Philosophy<a class="headerlink" href="#philosophy" title="Permanent link">#</a></h2>
+<h2 id="philosophy"><a class="toclink" href="#philosophy">Philosophy</a></h2>
 <p>The initial goal of the Ruff formatter is <em>not</em> to innovate on code style, but rather, to innovate
 on performance, and provide a unified toolchain across Ruff's linter, formatter, and any and all
 future tools.</p>
@@ -1100,7 +1100,7 @@ significantly simpler to support (with negligible end-user impact) given the dif
 underlying implementations between Black and Ruff.</p>
 <p>Going forward, the Ruff Formatter will support Black's preview style under Ruff's own
 <a href="../preview/">preview</a> mode.</p>
-<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">#</a></h2>
+<h2 id="configuration"><a class="toclink" href="#configuration">Configuration</a></h2>
 <p>The Ruff Formatter exposes a small set of configuration options, some of which are also supported
 by Black (like line width), some of which are unique to Ruff (like quote, indentation style and
 formatting code examples in docstrings).</p>
@@ -1134,7 +1134,7 @@ following to your configuration file:</p>
 configuring Ruff via <code>pyproject.toml</code>, see <a href="../configuration/"><em>Configuring Ruff</em></a>.</p>
 <p>Given the focus on Black compatibility (and unlike formatters like <a href="https://github.com/google/yapf">YAPF</a>),
 Ruff does not currently expose any other configuration options.</p>
-<h2 id="docstring-formatting">Docstring formatting<a class="headerlink" href="#docstring-formatting" title="Permanent link">#</a></h2>
+<h2 id="docstring-formatting"><a class="toclink" href="#docstring-formatting">Docstring formatting</a></h2>
 <p>The Ruff formatter provides an opt-in feature for automatically formatting
 Python code examples in docstrings. The Ruff formatter currently recognizes
 code examples in the following formats:</p>
@@ -1210,7 +1210,7 @@ to their defaults) as:</p>
 <a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="sd">    &quot;&quot;&quot;</span>
 <a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>    <span class="k">pass</span>
 </code></pre></div>
-<h2 id="format-suppression">Format suppression<a class="headerlink" href="#format-suppression" title="Permanent link">#</a></h2>
+<h2 id="format-suppression"><a class="toclink" href="#format-suppression">Format suppression</a></h2>
 <p>Like Black, Ruff supports <code># fmt: on</code>, <code># fmt: off</code>, and <code># fmt: skip</code> pragma comments, which can
 be used to temporarily disable formatting for a given code block.</p>
 <p><code># fmt: on</code> and <code># fmt: off</code> comments are enforced at the statement level:</p>
@@ -1273,7 +1273,7 @@ the following example, the list entry <code>'1'</code> will be formatted, despit
 <a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>  <span class="n">b</span>
 <a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="p">)</span>  <span class="c1"># fmt: skip</span>
 </code></pre></div>
-<h2 id="conflicting-lint-rules">Conflicting lint rules<a class="headerlink" href="#conflicting-lint-rules" title="Permanent link">#</a></h2>
+<h2 id="conflicting-lint-rules"><a class="toclink" href="#conflicting-lint-rules">Conflicting lint rules</a></h2>
 <p>Ruff's formatter is designed to be used alongside the linter. However, the linter includes
 some rules that, when enabled, can cause conflicts with the formatter, leading to unexpected
 behavior. When configured appropriately, the goal of Ruff's formatter-linter compatibility is
@@ -1315,7 +1315,7 @@ formatter's treatment of import statements when set to non-default values:</p>
 them from your Ruff configuration.</p>
 <p>When an incompatible lint rule or setting is enabled, <code>ruff format</code> will emit a warning. If your
 <code>ruff format</code> is free of warnings, you're good to go!</p>
-<h2 id="exit-codes">Exit codes<a class="headerlink" href="#exit-codes" title="Permanent link">#</a></h2>
+<h2 id="exit-codes"><a class="toclink" href="#exit-codes">Exit codes</a></h2>
 <p><code>ruff format</code> exits with the following status codes:</p>
 <ul>
 <li><code>0</code> if Ruff terminates successfully, regardless of whether any files were formatted.</li>
@@ -1331,7 +1331,7 @@ them from your Ruff configuration.</p>
 <li><code>2</code> if Ruff terminates abnormally due to invalid configuration, invalid CLI options, or an
     internal error.</li>
 </ul>
-<h2 id="black-compatibility">Black compatibility<a class="headerlink" href="#black-compatibility" title="Permanent link">#</a></h2>
+<h2 id="black-compatibility"><a class="toclink" href="#black-compatibility">Black compatibility</a></h2>
 <p>The formatter is designed to be a drop-in replacement for <a href="https://github.com/psf/black">Black</a>.</p>
 <p>Specifically, the formatter is intended to emit near-identical output when run over Black-formatted
 code. When run over extensive Black-formatted projects like Django and Zulip, &gt; 99.9% of lines
@@ -1342,13 +1342,13 @@ and so more deviations should be expected, especially around the treatment of en
 <p>If you identify deviations in your project, spot-check them against the <a href="black/">known deviations</a>,
 as well as the <a href="https://github.com/astral-sh/ruff/issues?q=is%3Aopen+is%3Aissue+label%3Aformatter">unintentional deviations</a>
 filed in the issue tracker. If you've identified a new deviation, please <a href="https://github.com/astral-sh/ruff/issues/new">file an issue</a>.</p>
-<h3 id="intentional-deviations">Intentional deviations<a class="headerlink" href="#intentional-deviations" title="Permanent link">#</a></h3>
+<h3 id="intentional-deviations"><a class="toclink" href="#intentional-deviations">Intentional deviations</a></h3>
 <p>While the Ruff formatter aims to be a drop-in replacement for Black, it does differ from Black
 in a few known ways. Some of these differences emerge from conscious attempts to improve upon
 Black's code style, while others fall out of differences in the underlying implementations.</p>
 <p>For a complete enumeration of these intentional deviations, see <a href="black/"><em>Known deviations</em></a>.</p>
 <p>Unintentional deviations from Black are tracked in the <a href="https://github.com/astral-sh/ruff/issues?q=is%3Aopen+is%3Aissue+label%3Aformatter">issue tracker</a>.</p>
-<h3 id="preview-style">Preview style<a class="headerlink" href="#preview-style" title="Permanent link">#</a></h3>
+<h3 id="preview-style"><a class="toclink" href="#preview-style">Preview style</a></h3>
 <p>Black gates formatting changes behind a <a href="https://black.readthedocs.io/en/stable/the_black_code_style/future_style.html#preview-style"><code>preview</code></a>
 flag. The formatter does not yet support Black's preview style, though the intention is to support
 it within the coming months behind Ruff's own <a href="https://docs.astral.sh/ruff/settings/#preview"><code>preview</code></a>
@@ -1356,7 +1356,7 @@ flag.</p>
 <p>Black promotes some of its preview styling to stable at the end of each year. Ruff will similarly
 implement formatting changes under the <a href="https://docs.astral.sh/ruff/settings/#preview"><code>preview</code></a>
 flag, promoting them to stable through minor releases, in accordance with our <a href="https://github.com/astral-sh/ruff/discussions/6998#discussioncomment-7016766">versioning policy</a>.</p>
-<h2 id="sorting-imports">Sorting imports<a class="headerlink" href="#sorting-imports" title="Permanent link">#</a></h2>
+<h2 id="sorting-imports"><a class="toclink" href="#sorting-imports">Sorting imports</a></h2>
 <p>Currently, the Ruff formatter does not sort imports. In order to both sort imports and format,
 call the Ruff linter and then the formatter:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>ruff<span class="w"> </span>check<span class="w"> </span>--select<span class="w"> </span>I<span class="w"> </span>--fix

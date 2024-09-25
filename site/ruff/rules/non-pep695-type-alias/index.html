@@ -25,7 +25,7 @@
     
     
 
-<title>non-pep695-type-alias (UP040) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              non-pep695-type-alias (UP040)
+              
             
           </span>
         </div>
@@ -817,17 +817,17 @@
   
 
 
-<h1 id="non-pep695-type-alias-up040">non-pep695-type-alias (UP040)<a class="headerlink" href="#non-pep695-type-alias-up040" title="Permanent link">#</a></h1>
+<h1 id="non-pep695-type-alias-up040"><a class="toclink" href="#non-pep695-type-alias-up040">non-pep695-type-alias (UP040)</a></h1>
 <p>Derived from the <strong><a href="../#pyupgrade-up">pyupgrade</a></strong> linter.</p>
 <p>Fix is always available.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for use of <code>TypeAlias</code> annotations and <code>TypeAliasType</code> assignments
 for declaring type aliases.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>The <code>type</code> keyword was introduced in Python 3.12 by <a href="https://peps.python.org/pep-0695/">PEP 695</a> for defining
 type aliases. The <code>type</code> keyword is easier to read and provides cleaner
 support for generics.</p>
-<h2 id="known-problems">Known problems<a class="headerlink" href="#known-problems" title="Permanent link">#</a></h2>
+<h2 id="known-problems"><a class="toclink" href="#known-problems">Known problems</a></h2>
 <p><a href="https://peps.python.org/pep-0695/">PEP 695</a> uses inferred variance for type parameters, instead of the
 <code>covariant</code> and <code>contravariant</code> keywords used by <code>TypeParam</code> variables. As
 such, rewriting a <code>TypeParam</code> variable to a <code>type</code> alias may change its
@@ -836,7 +836,7 @@ variance.</p>
 at runtime. For example, calling <code>isinstance</code> on a <code>type</code> alias will throw
 a <code>TypeError</code>. As such, rewriting a <code>TypeParam</code> via the <code>type</code> keyword will
 cause issues for parameters that are used for such runtime checks.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">ListOfInt</span><span class="p">:</span> <span class="n">TypeAlias</span> <span class="o">=</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">PositiveInt</span> <span class="o">=</span> <span class="n">TypeAliasType</span><span class="p">(</span><span class="s2">&quot;PositiveInt&quot;</span><span class="p">,</span> <span class="n">Annotated</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Gt</span><span class="p">(</span><span class="mi">0</span><span class="p">)])</span>
 </code></pre></div>

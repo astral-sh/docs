@@ -25,7 +25,7 @@
     
     
 
-<title>django-non-leading-receiver-decorator (DJ013) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              django-non-leading-receiver-decorator (DJ013)
+              
             
           </span>
         </div>
@@ -817,17 +817,17 @@
   
 
 
-<h1 id="django-non-leading-receiver-decorator-dj013">django-non-leading-receiver-decorator (DJ013)<a class="headerlink" href="#django-non-leading-receiver-decorator-dj013" title="Permanent link">#</a></h1>
+<h1 id="django-non-leading-receiver-decorator-dj013"><a class="toclink" href="#django-non-leading-receiver-decorator-dj013">django-non-leading-receiver-decorator (DJ013)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-django-dj">flake8-django</a></strong> linter.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks that Django's <code>@receiver</code> decorator is listed first, prior to
 any other decorators.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Django's <code>@receiver</code> decorator is special in that it does not return
 a wrapped function. Rather, <code>@receiver</code> connects the decorated function
 to a signal. If any other decorators are listed before <code>@receiver</code>,
 the decorated function will not be connected to the signal.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">django.dispatch</span> <span class="kn">import</span> <span class="n">receiver</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span> <span class="nn">django.db.models.signals</span> <span class="kn">import</span> <span class="n">post_save</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>

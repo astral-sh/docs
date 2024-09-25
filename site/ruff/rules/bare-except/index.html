@@ -25,7 +25,7 @@
     
     
 
-<title>bare-except (E722) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              bare-except (E722)
+              
             
           </span>
         </div>
@@ -817,16 +817,16 @@
   
 
 
-<h1 id="bare-except-e722">bare-except (E722)<a class="headerlink" href="#bare-except-e722" title="Permanent link">#</a></h1>
+<h1 id="bare-except-e722"><a class="toclink" href="#bare-except-e722">bare-except (E722)</a></h1>
 <p>Derived from the <strong><a href="../#pycodestyle-e-w">pycodestyle</a></strong> linter.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for bare <code>except</code> catches in <code>try</code>-<code>except</code> statements.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>A bare <code>except</code> catches <code>BaseException</code> which includes
 <code>KeyboardInterrupt</code>, <code>SystemExit</code>, <code>Exception</code>, and others. Catching
 <code>BaseException</code> can make it hard to interrupt the program (e.g., with
 Ctrl-C) and can disguise other problems.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">try</span><span class="p">:</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="k">raise</span> <span class="ne">KeyboardInterrupt</span><span class="p">(</span><span class="s2">&quot;You probably don&#39;t mean to break CTRL-C.&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">except</span><span class="p">:</span>
@@ -846,7 +846,7 @@ catch regular program errors but not important system exceptions.</p>
 <a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
 <a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;How exceptional! </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/library/exceptions.html#exception-hierarchy">Python documentation: Exception hierarchy</a></li>
 <li><a href="https://google.github.io/styleguide/pyguide.html#24-exceptions">Google Python Style Guide: "Exceptions"</a></li>

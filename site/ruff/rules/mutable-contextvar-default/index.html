@@ -25,7 +25,7 @@
     
     
 
-<title>mutable-contextvar-default (B039) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              mutable-contextvar-default (B039)
+              
             
           </span>
         </div>
@@ -817,12 +817,12 @@
   
 
 
-<h1 id="mutable-contextvar-default-b039">mutable-contextvar-default (B039)<a class="headerlink" href="#mutable-contextvar-default-b039" title="Permanent link">#</a></h1>
+<h1 id="mutable-contextvar-default-b039"><a class="toclink" href="#mutable-contextvar-default-b039">mutable-contextvar-default (B039)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-bugbear-b">flake8-bugbear</a></strong> linter.</p>
 <p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for uses of mutable objects as <code>ContextVar</code> defaults.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>The <code>ContextVar</code> default is evaluated once, when the <code>ContextVar</code> is defined.</p>
 <p>The same mutable object is then shared across all <code>.get()</code> method calls to
 the <code>ContextVar</code>. If the object is modified, those modifications will persist
@@ -832,7 +832,7 @@ default, and initialize a new mutable object inside for each call using the
 <code>.set()</code> method.</p>
 <p>Types outside the standard library can be marked as immutable with the
 <a href="../../settings/#lint_flake8-bugbear_extend-immutable-calls"><code>lint.flake8-bugbear.extend-immutable-calls</code></a> configuration option.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">contextvars</span> <span class="kn">import</span> <span class="n">ContextVar</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
@@ -849,11 +849,11 @@ default, and initialize a new mutable object inside for each call using the
 <a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="k">if</span> <span class="n">cv</span><span class="o">.</span><span class="n">get</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
 <a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="n">cv</span><span class="o">.</span><span class="n">set</span><span class="p">([])</span>
 </code></pre></div>
-<h2 id="options">Options<a class="headerlink" href="#options" title="Permanent link">#</a></h2>
+<h2 id="options"><a class="toclink" href="#options">Options</a></h2>
 <ul>
 <li><a href="../../settings/#lint_flake8-bugbear_extend-immutable-calls"><code>lint.flake8-bugbear.extend-immutable-calls</code></a></li>
 </ul>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li>[Python documentation: <a href="https://docs.python.org/3/library/contextvars.html"><code>contextvars</code> — Context Variables</a></li>
 </ul>

@@ -25,7 +25,7 @@
     
     
 
-<title>quadratic-list-summation (RUF017) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              quadratic-list-summation (RUF017)
+              
             
           </span>
         </div>
@@ -817,12 +817,12 @@
   
 
 
-<h1 id="quadratic-list-summation-ruf017">quadratic-list-summation (RUF017)<a class="headerlink" href="#quadratic-list-summation-ruf017" title="Permanent link">#</a></h1>
+<h1 id="quadratic-list-summation-ruf017"><a class="toclink" href="#quadratic-list-summation-ruf017">quadratic-list-summation (RUF017)</a></h1>
 <p>Fix is always available.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for the use of <code>sum()</code> to flatten lists of lists, which has
 quadratic complexity.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>The use of <code>sum()</code> to flatten lists of lists is quadratic in the number of
 lists, as <code>sum()</code> creates a new list for each element in the summation.</p>
 <p>Instead, consider using another method of flattening lists to avoid
@@ -835,7 +835,7 @@ lists:</p>
 </ul>
 <p>When fixing relevant violations, Ruff defaults to the <code>functools.reduce</code>
 form, which outperforms the other methods in <a href="https://github.com/astral-sh/ruff/issues/5073#issuecomment-1591836349">microbenchmarks</a>.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">lists</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]]</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">joined</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">lists</span><span class="p">,</span> <span class="p">[])</span>
 </code></pre></div>
@@ -847,7 +847,7 @@ form, which outperforms the other methods in <a href="https://github.com/astral-
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">lists</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]]</span>
 <a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">functools</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">operator</span><span class="o">.</span><span class="n">iadd</span><span class="p">,</span> <span class="n">lists</span><span class="p">,</span> <span class="p">[])</span>
 </code></pre></div>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://mathieularose.com/how-not-to-flatten-a-list-of-lists-in-python"><em>How Not to Flatten a List of Lists in Python</em></a></li>
 <li><a href="https://stackoverflow.com/questions/952914/how-do-i-make-a-flat-list-out-of-a-list-of-lists/953097#953097"><em>How do I make a flat list out of a list of lists?</em></a></li>

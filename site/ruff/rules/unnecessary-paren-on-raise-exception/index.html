@@ -25,7 +25,7 @@
     
     
 
-<title>unnecessary-paren-on-raise-exception (RSE102) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              unnecessary-paren-on-raise-exception (RSE102)
+              
             
           </span>
         </div>
@@ -817,17 +817,17 @@
   
 
 
-<h1 id="unnecessary-paren-on-raise-exception-rse102">unnecessary-paren-on-raise-exception (RSE102)<a class="headerlink" href="#unnecessary-paren-on-raise-exception-rse102" title="Permanent link">#</a></h1>
+<h1 id="unnecessary-paren-on-raise-exception-rse102"><a class="toclink" href="#unnecessary-paren-on-raise-exception-rse102">unnecessary-paren-on-raise-exception (RSE102)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-raise-rse">flake8-raise</a></strong> linter.</p>
 <p>Fix is always available.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for unnecessary parentheses on raised exceptions.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>If an exception is raised without any arguments, parentheses are not
 required, as the <code>raise</code> statement accepts either an exception instance
 or an exception class (which is then implicitly instantiated).</p>
 <p>Removing the parentheses makes the code more concise.</p>
-<h2 id="known-problems">Known problems<a class="headerlink" href="#known-problems" title="Permanent link">#</a></h2>
+<h2 id="known-problems"><a class="toclink" href="#known-problems">Known problems</a></h2>
 <p>Parentheses can only be omitted if the exception is a class, as opposed to
 a function call. This rule isn't always capable of distinguishing between
 the two.</p>
@@ -835,13 +835,13 @@ the two.</p>
 module, and <code>module.get_exception</code> returns an exception object, this rule will
 incorrectly mark the parentheses in <code>raise module.get_exception()</code> as
 unnecessary.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">raise</span> <span class="ne">TypeError</span><span class="p">()</span>
 </code></pre></div>
 <p>Use instead:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">raise</span> <span class="ne">TypeError</span>
 </code></pre></div>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/reference/simple_stmts.html#the-raise-statement">Python documentation: The <code>raise</code> statement</a></li>
 </ul>

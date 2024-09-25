@@ -25,7 +25,7 @@
     
     
 
-<title>bad-version-info-comparison (PYI006) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              bad-version-info-comparison (PYI006)
+              
             
           </span>
         </div>
@@ -817,13 +817,13 @@
   
 
 
-<h1 id="bad-version-info-comparison-pyi006">bad-version-info-comparison (PYI006)<a class="headerlink" href="#bad-version-info-comparison-pyi006" title="Permanent link">#</a></h1>
+<h1 id="bad-version-info-comparison-pyi006"><a class="toclink" href="#bad-version-info-comparison-pyi006">bad-version-info-comparison (PYI006)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-pyi-pyi">flake8-pyi</a></strong> linter.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for uses of comparators other than <code>&lt;</code> and <code>&gt;=</code> for
 <code>sys.version_info</code> checks in <code>.pyi</code> files. All other comparators, such
 as <code>&gt;</code>, <code>&lt;=</code>, and <code>==</code>, are banned.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Comparing <code>sys.version_info</code> with <code>==</code> or <code>&lt;=</code> has unexpected behavior
 and can lead to bugs.</p>
 <p>For example, <code>sys.version_info &gt; (3, 8)</code> will also match <code>3.8.10</code>,
@@ -840,7 +840,7 @@ while <code>sys.version_info &lt;= (3, 8)</code> will <em>not</em> match <code>3
 <a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 <a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="kc">False</span>
 </code></pre></div>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span> <span class="nn">sys</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">):</span> <span class="o">...</span>

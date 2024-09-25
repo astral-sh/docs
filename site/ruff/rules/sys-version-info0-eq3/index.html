@@ -25,7 +25,7 @@
     
     
 
-<title>sys-version-info0-eq3 (YTT201) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              sys-version-info0-eq3 (YTT201)
+              
             
           </span>
         </div>
@@ -817,12 +817,12 @@
   
 
 
-<h1 id="sys-version-info0-eq3-ytt201">sys-version-info0-eq3 (YTT201)<a class="headerlink" href="#sys-version-info0-eq3-ytt201" title="Permanent link">#</a></h1>
+<h1 id="sys-version-info0-eq3-ytt201"><a class="toclink" href="#sys-version-info0-eq3-ytt201">sys-version-info0-eq3 (YTT201)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-2020-ytt">flake8-2020</a></strong> linter.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for equality comparisons against the major version returned by
 <code>sys.version_info</code> (e.g., <code>sys.version_info[0] == 3</code>).</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Using <code>sys.version_info[0] == 3</code> to verify that the major version is
 Python 3 or greater will fail if the major version number is ever
 incremented (e.g., to Python 4). This is likely unintended, as code
@@ -830,7 +830,7 @@ that uses this comparison is likely intended to be run on Python 2,
 but would now run on Python 4 too.</p>
 <p>Instead, use <code>&gt;=</code> to check if the major version number is 3 or greater,
 to future-proof the code.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">sys</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
@@ -846,7 +846,7 @@ to future-proof the code.</p>
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">else</span><span class="p">:</span>
 <a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Python 2&quot;</span><span class="p">)</span>  <span class="c1"># This will not be printed on Python 4.</span>
 </code></pre></div>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/library/sys.html#sys.version">Python documentation: <code>sys.version</code></a></li>
 <li><a href="https://docs.python.org/3/library/sys.html#sys.version_info">Python documentation: <code>sys.version_info</code></a></li>

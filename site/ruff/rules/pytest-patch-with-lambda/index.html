@@ -25,7 +25,7 @@
     
     
 
-<title>pytest-patch-with-lambda (PT008) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              pytest-patch-with-lambda (PT008)
+              
             
           </span>
         </div>
@@ -817,12 +817,12 @@
   
 
 
-<h1 id="pytest-patch-with-lambda-pt008">pytest-patch-with-lambda (PT008)<a class="headerlink" href="#pytest-patch-with-lambda-pt008" title="Permanent link">#</a></h1>
+<h1 id="pytest-patch-with-lambda-pt008"><a class="toclink" href="#pytest-patch-with-lambda-pt008">pytest-patch-with-lambda (PT008)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-pytest-style-pt">flake8-pytest-style</a></strong> linter.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for mocked calls that use a dummy <code>lambda</code> function instead of
 <code>return_value</code>.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>When patching calls, an explicit <code>return_value</code> better conveys the intent
 than a <code>lambda</code> function, assuming the <code>lambda</code> does not use the arguments
 passed to it.</p>
@@ -831,7 +831,7 @@ signature, and enables additional assertions to verify behavior. For
 example, <code>return_value</code> allows for verification of the number of calls or
 the arguments passed to the patched function via <code>assert_called_once_with</code>
 and related methods.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span> <span class="nf">test_foo</span><span class="p">(</span><span class="n">mocker</span><span class="p">):</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">mocker</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="s2">&quot;module.target&quot;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="mi">7</span><span class="p">)</span>
 </code></pre></div>
@@ -842,7 +842,7 @@ and related methods.</p>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="c1"># If the lambda makes use of the arguments, no diagnostic is emitted.</span>
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="n">mocker</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="s2">&quot;module.other_target&quot;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/library/unittest.mock.html#unittest.mock.patch">Python documentation: <code>unittest.mock.patch</code></a></li>
 <li><a href="https://pypi.org/project/pytest-mock/"><code>pytest-mock</code></a></li>

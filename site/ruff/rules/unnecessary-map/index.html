@@ -25,7 +25,7 @@
     
     
 
-<title>unnecessary-map (C417) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              unnecessary-map (C417)
+              
             
           </span>
         </div>
@@ -817,12 +817,12 @@
   
 
 
-<h1 id="unnecessary-map-c417">unnecessary-map (C417)<a class="headerlink" href="#unnecessary-map-c417" title="Permanent link">#</a></h1>
+<h1 id="unnecessary-map-c417"><a class="toclink" href="#unnecessary-map-c417">unnecessary-map (C417)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-comprehensions-c4">flake8-comprehensions</a></strong> linter.</p>
 <p>Fix is sometimes available.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for unnecessary <code>map</code> calls with <code>lambda</code> functions.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Using <code>map(func, iterable)</code> when <code>func</code> is a <code>lambda</code> is slower than
 using a generator expression or a comprehension, as the latter approach
 avoids the function call overhead, in addition to being more readable.</p>
@@ -836,13 +836,13 @@ calls. For example:</p>
 <li>Instead of <code>dict(map(lambda v: (v, v ** 2), values))</code>, use
     <code>{v: v ** 2 for v in values}</code>.</li>
 </ul>
-<h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">#</a></h2>
+<h2 id="examples"><a class="toclink" href="#examples">Examples</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">iterable</span><span class="p">)</span>
 </code></pre></div>
 <p>Use instead:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">iterable</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="fix-safety">Fix safety<a class="headerlink" href="#fix-safety" title="Permanent link">#</a></h2>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
 <p>This rule's fix is marked as unsafe, as it may occasionally drop comments
 when rewriting the call. In most cases, though, comments will be preserved.</p>
 

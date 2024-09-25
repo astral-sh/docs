@@ -25,7 +25,7 @@
     
     
 
-<title>call-with-shell-equals-true (S604) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              call-with-shell-equals-true (S604)
+              
             
           </span>
         </div>
@@ -817,12 +817,12 @@
   
 
 
-<h1 id="call-with-shell-equals-true-s604">call-with-shell-equals-true (S604)<a class="headerlink" href="#call-with-shell-equals-true-s604" title="Permanent link">#</a></h1>
+<h1 id="call-with-shell-equals-true-s604"><a class="toclink" href="#call-with-shell-equals-true-s604">call-with-shell-equals-true (S604)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-bandit-s">flake8-bandit</a></strong> linter.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for method calls that set the <code>shell</code> parameter to <code>true</code> or another
 truthy value when invoking a subprocess.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Setting the <code>shell</code> parameter to <code>true</code> or another truthy value when
 invoking a subprocess can introduce security vulnerabilities, as it allows
 shell metacharacters and whitespace to be passed to child processes,
@@ -830,16 +830,16 @@ potentially leading to shell injection attacks.</p>
 <p>It is recommended to avoid using <code>shell=True</code> unless absolutely necessary
 and, when used, to ensure that all inputs are properly sanitized and quoted
 to prevent such vulnerabilities.</p>
-<h2 id="known-problems">Known problems<a class="headerlink" href="#known-problems" title="Permanent link">#</a></h2>
+<h2 id="known-problems"><a class="toclink" href="#known-problems">Known problems</a></h2>
 <p>Prone to false positives as it is triggered on any function call with a
 <code>shell=True</code> parameter.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">subprocess</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">user_input</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter a command: &quot;</span><span class="p">)</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">user_input</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/library/subprocess.html#security-considerations">Python documentation: Security Considerations</a></li>
 </ul>

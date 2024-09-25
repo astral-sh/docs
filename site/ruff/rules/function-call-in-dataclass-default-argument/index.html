@@ -25,7 +25,7 @@
     
     
 
-<title>function-call-in-dataclass-default-argument (RUF009) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              function-call-in-dataclass-default-argument (RUF009)
+              
             
           </span>
         </div>
@@ -817,17 +817,17 @@
   
 
 
-<h1 id="function-call-in-dataclass-default-argument-ruf009">function-call-in-dataclass-default-argument (RUF009)<a class="headerlink" href="#function-call-in-dataclass-default-argument-ruf009" title="Permanent link">#</a></h1>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h1 id="function-call-in-dataclass-default-argument-ruf009"><a class="toclink" href="#function-call-in-dataclass-default-argument-ruf009">function-call-in-dataclass-default-argument (RUF009)</a></h1>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for function calls in dataclass attribute defaults.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Function calls are only performed once, at definition time. The returned
 value is then reused by all instances of the dataclass. This can lead to
 unexpected behavior when the function call returns a mutable object, as
 changes to the object will be shared across all instances.</p>
 <p>If a field needs to be initialized with a mutable object, use the
 <code>field(default_factory=...)</code> pattern.</p>
-<h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">#</a></h2>
+<h2 id="examples"><a class="toclink" href="#examples">Examples</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
@@ -851,7 +851,7 @@ changes to the object will be shared across all instances.</p>
 <a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="k">class</span> <span class="nc">A</span><span class="p">:</span>
 <a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="n">mutable_default</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="n">creating_list</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="options">Options<a class="headerlink" href="#options" title="Permanent link">#</a></h2>
+<h2 id="options"><a class="toclink" href="#options">Options</a></h2>
 <ul>
 <li><a href="../../settings/#lint_flake8-bugbear_extend-immutable-calls"><code>lint.flake8-bugbear.extend-immutable-calls</code></a></li>
 </ul>

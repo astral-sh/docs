@@ -25,7 +25,7 @@
     
     
 
-<title>bad-str-strip-call (PLE1310) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              bad-str-strip-call (PLE1310)
+              
             
           </span>
         </div>
@@ -817,18 +817,18 @@
   
 
 
-<h1 id="bad-str-strip-call-ple1310">bad-str-strip-call (PLE1310)<a class="headerlink" href="#bad-str-strip-call-ple1310" title="Permanent link">#</a></h1>
+<h1 id="bad-str-strip-call-ple1310"><a class="toclink" href="#bad-str-strip-call-ple1310">bad-str-strip-call (PLE1310)</a></h1>
 <p>Derived from the <strong><a href="../#pylint-pl">Pylint</a></strong> linter.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks duplicate characters in <code>str.strip</code> calls.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>All characters in <code>str.strip</code> calls are removed from both the leading and
 trailing ends of the string. Including duplicate characters in the call
 is redundant and often indicative of a mistake.</p>
 <p>In Python 3.9 and later, you can use <code>str.removeprefix</code> and
 <code>str.removesuffix</code> to remove an exact prefix or suffix from a string,
 respectively, which should be preferred when possible.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Evaluates to &quot;foo&quot;.</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="s2">&quot;bar foo baz&quot;</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;bar baz &quot;</span><span class="p">)</span>
 </code></pre></div>
@@ -840,11 +840,11 @@ respectively, which should be preferred when possible.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Evaluates to &quot;foo&quot;.</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="s2">&quot;bar foo baz&quot;</span><span class="o">.</span><span class="n">removeprefix</span><span class="p">(</span><span class="s2">&quot;bar &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">removesuffix</span><span class="p">(</span><span class="s2">&quot; baz&quot;</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="options">Options<a class="headerlink" href="#options" title="Permanent link">#</a></h2>
+<h2 id="options"><a class="toclink" href="#options">Options</a></h2>
 <ul>
 <li><a href="../../settings/#target-version"><code>target-version</code></a></li>
 </ul>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/library/stdtypes.html?highlight=strip#str.strip">Python documentation: <code>str.strip</code></a></li>
 </ul>

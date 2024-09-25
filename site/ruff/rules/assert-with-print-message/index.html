@@ -25,7 +25,7 @@
     
     
 
-<title>assert-with-print-message (RUF030) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              assert-with-print-message (RUF030)
+              
             
           </span>
         </div>
@@ -817,29 +817,29 @@
   
 
 
-<h1 id="assert-with-print-message-ruf030">assert-with-print-message (RUF030)<a class="headerlink" href="#assert-with-print-message-ruf030" title="Permanent link">#</a></h1>
+<h1 id="assert-with-print-message-ruf030"><a class="toclink" href="#assert-with-print-message-ruf030">assert-with-print-message (RUF030)</a></h1>
 <p>Fix is always available.</p>
 <p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for uses of <code>assert expression, print(message)</code>.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>The return value of the second expression is used as the contents of the
 <code>AssertionError</code> raised by the <code>assert</code> statement. Using a <code>print</code> expression
 in this context will output the message to <code>stdout</code>, before raising an
 empty <code>AssertionError(None)</code>.</p>
 <p>Instead, remove the <code>print</code> and pass the message directly as the second
 expression, allowing <code>stderr</code> to capture the message in a well-formatted context.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">assert</span> <span class="kc">False</span><span class="p">,</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This is a message&quot;</span><span class="p">)</span>
 </code></pre></div>
 <p>Use instead:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">assert</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;This is a message&quot;</span>
 </code></pre></div>
-<h2 id="fix-safety">Fix safety<a class="headerlink" href="#fix-safety" title="Permanent link">#</a></h2>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
 <p>This rule's fix is marked as unsafe, as changing the second expression
 will result in a different <code>AssertionError</code> message being raised, as well as
 a change in <code>stdout</code> output.</p>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/reference/simple_stmts.html#the-assert-statement">Python documentation: <code>assert</code></a></li>
 </ul>

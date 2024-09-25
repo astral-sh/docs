@@ -25,7 +25,7 @@
     
     
 
-<title>strip-with-multi-characters (B005) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              strip-with-multi-characters (B005)
+              
             
           </span>
         </div>
@@ -817,12 +817,12 @@
   
 
 
-<h1 id="strip-with-multi-characters-b005">strip-with-multi-characters (B005)<a class="headerlink" href="#strip-with-multi-characters-b005" title="Permanent link">#</a></h1>
+<h1 id="strip-with-multi-characters-b005"><a class="toclink" href="#strip-with-multi-characters-b005">strip-with-multi-characters (B005)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-bugbear-b">flake8-bugbear</a></strong> linter.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for uses of multi-character strings in <code>.strip()</code>, <code>.lstrip()</code>, and
 <code>.rstrip()</code> calls.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>All characters in the call to <code>.strip()</code>, <code>.lstrip()</code>, or <code>.rstrip()</code> are
 removed from the leading and trailing ends of the string. If the string
 contains multiple characters, the reader may be misled into thinking that
@@ -830,7 +830,7 @@ a prefix or suffix is being removed, rather than a set of characters.</p>
 <p>In Python 3.9 and later, you can use <code>str.removeprefix</code> and
 <code>str.removesuffix</code> to remove an exact prefix or suffix from a string,
 respectively, which should be preferred when possible.</p>
-<h2 id="known-problems">Known problems<a class="headerlink" href="#known-problems" title="Permanent link">#</a></h2>
+<h2 id="known-problems"><a class="toclink" href="#known-problems">Known problems</a></h2>
 <p>As a heuristic, this rule only flags multi-character strings that contain
 duplicate characters. This allows usages like <code>.strip("xyz")</code>, which
 removes all occurrences of the characters <code>x</code>, <code>y</code>, and <code>z</code> from the
@@ -839,13 +839,13 @@ leading and trailing ends of the string, but not <code>.strip("foo")</code>.</p>
 consistent with the intent of <code>.strip()</code>, <code>.lstrip()</code>, or <code>.rstrip()</code>,
 while the use of duplicate-character strings is very likely to be a
 mistake.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="s2">&quot;text.txt&quot;</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;.txt&quot;</span><span class="p">)</span>  <span class="c1"># &quot;e&quot;</span>
 </code></pre></div>
 <p>Use instead:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="s2">&quot;text.txt&quot;</span><span class="o">.</span><span class="n">removesuffix</span><span class="p">(</span><span class="s2">&quot;.txt&quot;</span><span class="p">)</span>  <span class="c1"># &quot;text&quot;</span>
 </code></pre></div>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/library/stdtypes.html#str.strip">Python documentation: <code>str.strip</code></a></li>
 </ul>

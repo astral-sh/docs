@@ -25,7 +25,7 @@
     
     
 
-<title>mutable-class-default (RUF012) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              mutable-class-default (RUF012)
+              
             
           </span>
         </div>
@@ -817,10 +817,10 @@
   
 
 
-<h1 id="mutable-class-default-ruf012">mutable-class-default (RUF012)<a class="headerlink" href="#mutable-class-default-ruf012" title="Permanent link">#</a></h1>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h1 id="mutable-class-default-ruf012"><a class="toclink" href="#mutable-class-default-ruf012">mutable-class-default (RUF012)</a></h1>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for mutable default values in class attributes.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Mutable default values share state across all instances of the class,
 while not being obvious. This can lead to bugs when the attributes are
 changed in one instance, as those changes will unexpectedly affect all
@@ -828,7 +828,7 @@ other instances.</p>
 <p>When mutable values are intended, they should be annotated with
 <code>typing.ClassVar</code>. When mutability is not required, values should be
 immutable types, like <code>tuple</code> or <code>frozenset</code>.</p>
-<h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">#</a></h2>
+<h2 id="examples"><a class="toclink" href="#examples">Examples</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">class</span> <span class="nc">A</span><span class="p">:</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">mutable_default</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">immutable_default</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>

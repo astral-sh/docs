@@ -25,7 +25,7 @@
     
     
 
-<title>any-eq-ne-annotation (PYI032) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              any-eq-ne-annotation (PYI032)
+              
             
           </span>
         </div>
@@ -817,13 +817,13 @@
   
 
 
-<h1 id="any-eq-ne-annotation-pyi032">any-eq-ne-annotation (PYI032)<a class="headerlink" href="#any-eq-ne-annotation-pyi032" title="Permanent link">#</a></h1>
+<h1 id="any-eq-ne-annotation-pyi032"><a class="toclink" href="#any-eq-ne-annotation-pyi032">any-eq-ne-annotation (PYI032)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-pyi-pyi">flake8-pyi</a></strong> linter.</p>
 <p>Fix is always available.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for <code>__eq__</code> and <code>__ne__</code> implementations that use <code>typing.Any</code> as
 the type annotation for their second parameter.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>The Python documentation recommends the use of <code>object</code> to "indicate that a
 value could be any type in a typesafe manner". <code>Any</code>, on the other hand,
 should be seen as an "escape hatch when you need to mix dynamically and
@@ -836,7 +836,7 @@ fully expressed in the type system and does not involve requesting unsound
 behaviour from a type checker. As such, <code>object</code> is a more appropriate
 annotation than <code>Any</code> for the second parameter of the methods implementing
 these comparison operators -- <code>__eq__</code> and <code>__ne__</code>.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">class</span> <span class="nc">Foo</span><span class="p">:</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span> <span class="o">...</span>
 </code></pre></div>
@@ -844,7 +844,7 @@ these comparison operators -- <code>__eq__</code> and <code>__ne__</code>.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">class</span> <span class="nc">Foo</span><span class="p">:</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span> <span class="o">...</span>
 </code></pre></div>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/library/typing.html#the-any-type">Python documentation: The <code>Any</code> type</a></li>
 <li><a href="https://mypy.readthedocs.io/en/latest/dynamic_typing.html#any-vs-object">Mypy documentation: Any vs. object</a></li>

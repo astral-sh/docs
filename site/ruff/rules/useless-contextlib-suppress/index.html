@@ -25,7 +25,7 @@
     
     
 
-<title>useless-contextlib-suppress (B022) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              useless-contextlib-suppress (B022)
+              
             
           </span>
         </div>
@@ -817,18 +817,18 @@
   
 
 
-<h1 id="useless-contextlib-suppress-b022">useless-contextlib-suppress (B022)<a class="headerlink" href="#useless-contextlib-suppress-b022" title="Permanent link">#</a></h1>
+<h1 id="useless-contextlib-suppress-b022"><a class="toclink" href="#useless-contextlib-suppress-b022">useless-contextlib-suppress (B022)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-bugbear-b">flake8-bugbear</a></strong> linter.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for <code>contextlib.suppress</code> without arguments.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p><code>contextlib.suppress</code> is a context manager that suppresses exceptions. It takes,
 as arguments, the exceptions to suppress within the enclosed block. If no
 exceptions are specified, then the context manager won't suppress any
 exceptions, and is thus redundant.</p>
 <p>Consider adding exceptions to the <code>contextlib.suppress</code> call, or removing the
 context manager entirely.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">contextlib</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">with</span> <span class="n">contextlib</span><span class="o">.</span><span class="n">suppress</span><span class="p">():</span>
@@ -840,7 +840,7 @@ context manager entirely.</p>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">with</span> <span class="n">contextlib</span><span class="o">.</span><span class="n">suppress</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="n">foo</span><span class="p">()</span>
 </code></pre></div>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/library/contextlib.html#contextlib.suppress">Python documentation: contextlib.suppress</a></li>
 </ul>

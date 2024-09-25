@@ -25,7 +25,7 @@
     
     
 
-<title>unrecognized-platform-name (PYI008) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              unrecognized-platform-name (PYI008)
+              
             
           </span>
         </div>
@@ -817,23 +817,23 @@
   
 
 
-<h1 id="unrecognized-platform-name-pyi008">unrecognized-platform-name (PYI008)<a class="headerlink" href="#unrecognized-platform-name-pyi008" title="Permanent link">#</a></h1>
+<h1 id="unrecognized-platform-name-pyi008"><a class="toclink" href="#unrecognized-platform-name-pyi008">unrecognized-platform-name (PYI008)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-pyi-pyi">flake8-pyi</a></strong> linter.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Check for unrecognized platform names in <code>sys.platform</code> checks.</p>
 <p><strong>Note</strong>: this rule is only enabled in <code>.pyi</code> stub files.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>If a <code>sys.platform</code> check compares to a platform name outside of a
 small set of known platforms (e.g. "linux", "win32", etc.), it's likely
 a typo or a platform name that is not recognized by type checkers.</p>
 <p>The list of known platforms is: "linux", "win32", "cygwin", "darwin".</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">==</span> <span class="s2">&quot;linus&quot;</span><span class="p">:</span> <span class="o">...</span>
 </code></pre></div>
 <p>Use instead:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">==</span> <span class="s2">&quot;linux&quot;</span><span class="p">:</span> <span class="o">...</span>
 </code></pre></div>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://typing.readthedocs.io/en/latest/source/stubs.html#version-and-platform-checks">Typing stubs documentation: Version and Platform Checks</a></li>
 </ul>

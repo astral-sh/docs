@@ -25,7 +25,7 @@
     
     
 
-<title>re-sub-positional-args (B034) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              re-sub-positional-args (B034)
+              
             
           </span>
         </div>
@@ -817,18 +817,18 @@
   
 
 
-<h1 id="re-sub-positional-args-b034">re-sub-positional-args (B034)<a class="headerlink" href="#re-sub-positional-args-b034" title="Permanent link">#</a></h1>
+<h1 id="re-sub-positional-args-b034"><a class="toclink" href="#re-sub-positional-args-b034">re-sub-positional-args (B034)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-bugbear-b">flake8-bugbear</a></strong> linter.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for calls to <code>re.sub</code>, <code>re.subn</code>, and <code>re.split</code> that pass <code>count</code>,
 <code>maxsplit</code>, or <code>flags</code> as positional arguments.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Passing <code>count</code>, <code>maxsplit</code>, or <code>flags</code> as positional arguments to
 <code>re.sub</code>, <code>re.subn</code>, or <code>re.split</code> can lead to confusion, as most methods in
 the <code>re</code> module accept <code>flags</code> as the third positional argument, while
 <code>re.sub</code>, <code>re.subn</code>, and <code>re.split</code> have different signatures.</p>
 <p>Instead, pass <code>count</code>, <code>maxsplit</code>, and <code>flags</code> as keyword arguments.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">re</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;pattern&quot;</span><span class="p">,</span> <span class="s2">&quot;replacement&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
@@ -838,7 +838,7 @@ the <code>re</code> module accept <code>flags</code> as the third positional arg
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;pattern&quot;</span><span class="p">,</span> <span class="s2">&quot;replacement&quot;</span><span class="p">,</span> <span class="n">maxsplit</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/library/re.html#re.sub">Python documentation: <code>re.sub</code></a></li>
 <li><a href="https://docs.python.org/3/library/re.html#re.subn">Python documentation: <code>re.subn</code></a></li>

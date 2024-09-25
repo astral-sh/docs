@@ -662,7 +662,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Config file discovery
+          
         </span>
       
     </span>
@@ -675,7 +675,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Python file discovery
+          
         </span>
       
     </span>
@@ -689,7 +689,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Default inclusions
+          
         </span>
       
     </span>
@@ -707,7 +707,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Jupyter Notebook discovery
+          
         </span>
       
     </span>
@@ -720,7 +720,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Command-line interface
+          
         </span>
       
     </span>
@@ -747,7 +747,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Full command-line interface
+          
         </span>
       
     </span>
@@ -765,7 +765,7 @@
     <span class="md-ellipsis">
       
         <span class="md-typeset">
-          Shell autocompletion
+          
         </span>
       
     </span>
@@ -983,7 +983,7 @@
   
 
 
-<h1 id="configuring-ruff">Configuring Ruff<a class="headerlink" href="#configuring-ruff" title="Permanent link">#</a></h1>
+<h1 id="configuring-ruff"><a class="toclink" href="#configuring-ruff">Configuring Ruff</a></h1>
 <p>Ruff can be configured through a <code>pyproject.toml</code>, <code>ruff.toml</code>, or <code>.ruff.toml</code> file.</p>
 <p>Whether you're using Ruff as a linter, formatter, or both, the underlying configuration strategy and
 semantics are the same.</p>
@@ -1228,7 +1228,7 @@ semantics are the same.</p>
 equivalent schema (though in the <code>ruff.toml</code> and <code>.ruff.toml</code> versions, the <code>[tool.ruff]</code> header and
 <code>tool.ruff</code> section prefix is omitted).</p>
 <p>For a complete enumeration of the available configuration options, see <a href="../settings/"><em>Settings</em></a>.</p>
-<h2 id="config-file-discovery">Config file discovery<a class="headerlink" href="#config-file-discovery" title="Permanent link">#</a></h2>
+<h2 id="config-file-discovery"><a class="toclink" href="#config-file-discovery">Config file discovery</a></h2>
 <p>Similar to <a href="https://eslint.org/docs/latest/use/configure/configuration-files#cascading-configuration-objects">ESLint</a>,
 Ruff supports hierarchical configuration, such that the "closest" config file in the
 directory hierarchy is used for every individual file, with all paths in the config file
@@ -1279,7 +1279,7 @@ config file, like so:</p>
 If Ruff detects multiple configuration files in the same directory, the <code>.ruff.toml</code> file will take
 precedence over the <code>ruff.toml</code> file, and the <code>ruff.toml</code> file will take precedence over
 the <code>pyproject.toml</code> file.</p>
-<h2 id="python-file-discovery">Python file discovery<a class="headerlink" href="#python-file-discovery" title="Permanent link">#</a></h2>
+<h2 id="python-file-discovery"><a class="toclink" href="#python-file-discovery">Python file discovery</a></h2>
 <p>When passed a path on the command-line, Ruff will automatically discover all Python files in that
 path, taking into account the <a href="../settings/#exclude"><code>exclude</code></a> and <a href="../settings/#extend-exclude"><code>extend-exclude</code></a>
 settings in each directory's configuration file.</p>
@@ -1304,7 +1304,7 @@ formatting <code>.pyi</code> files, but would continue to include them in lintin
 <code>.git/info/exclude</code>, and global <code>gitignore</code> files (see: <a href="../settings/#respect-gitignore"><code>respect-gitignore</code></a>).</p>
 <p>Files that are passed to <code>ruff</code> directly are always analyzed, regardless of the above criteria.
 For example, <code>ruff check /path/to/excluded/file.py</code> will always lint <code>file.py</code>.</p>
-<h3 id="default-inclusions">Default inclusions<a class="headerlink" href="#default-inclusions" title="Permanent link">#</a></h3>
+<h3 id="default-inclusions"><a class="toclink" href="#default-inclusions">Default inclusions</a></h3>
 <p>By default, Ruff will discover files matching <code>*.py</code>, <code>*.pyi</code>, <code>*.ipynb</code>, or <code>pyproject.toml</code>.</p>
 <p>To lint or format files with additional file extensions, use the <a href="../settings/#extend-include"><code>extend-include</code></a> setting.
 You can also change the default selection using the <a href="../settings/#include"><code>include</code></a> setting.</p>
@@ -1326,7 +1326,7 @@ You can also change the default selection using the <a href="../settings/#includ
 <p>Paths provided to <code>include</code> <em>must</em> match files. For example, <code>include = ["src"]</code> will fail since it
 matches a directory.</p>
 </div>
-<h2 id="jupyter-notebook-discovery">Jupyter Notebook discovery<a class="headerlink" href="#jupyter-notebook-discovery" title="Permanent link">#</a></h2>
+<h2 id="jupyter-notebook-discovery"><a class="toclink" href="#jupyter-notebook-discovery">Jupyter Notebook discovery</a></h2>
 <p>Ruff has built-in support for linting and formatting <a href="https://jupyter.org/">Jupyter Notebooks</a>,
 which are linted and formatted by default on version <code>0.6.0</code> and higher.</p>
 <p>If you'd prefer to either only lint or only format Jupyter Notebook files, you can use the
@@ -1398,7 +1398,7 @@ example, when applied to <code>.py</code> files the
 rule detect imports at the top of a file, but for notebooks it detects imports at the top of a
 <strong>cell</strong>. For a given rule, the rule's documentation will always specify if it has different
 behavior when applied to Jupyter Notebook files.</p>
-<h2 id="command-line-interface">Command-line interface<a class="headerlink" href="#command-line-interface" title="Permanent link">#</a></h2>
+<h2 id="command-line-interface"><a class="toclink" href="#command-line-interface">Command-line interface</a></h2>
 <p>Some configuration options can be provided or overridden via dedicated flags on the command line.
 This includes those related to rule enablement and disablement,
 file discovery, logging level, and more:</p>
@@ -1406,7 +1406,7 @@ file discovery, logging level, and more:</p>
 </code></pre></div>
 <p>All other configuration options can be set via the command line
 using the <code>--config</code> flag, detailed below.</p>
-<h3 id="the-config-cli-flag">The <code>--config</code> CLI flag<a class="headerlink" href="#the-config-cli-flag" title="Permanent link">#</a></h3>
+<h3 id="the-config-cli-flag"><a class="toclink" href="#the-config-cli-flag">The <code>--config</code> CLI flag</a></h3>
 <p>The <code>--config</code> flag has two uses. It is most often used to point to the
 configuration file that you would like Ruff to use, for example:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="gp">$ </span>ruff<span class="w"> </span>check<span class="w"> </span>path/to/directory<span class="w"> </span>--config<span class="w"> </span>path/to/ruff.toml
@@ -1442,7 +1442,7 @@ the same effect as specifying <code>--line-length=90</code>,
 which will similarly override the <code>line-length</code> setting from
 all configuration files detected by Ruff, regardless of where
 a specific configuration file is located.</p>
-<h3 id="full-command-line-interface">Full command-line interface<a class="headerlink" href="#full-command-line-interface" title="Permanent link">#</a></h3>
+<h3 id="full-command-line-interface"><a class="toclink" href="#full-command-line-interface">Full command-line interface</a></h3>
 <p>See <code>ruff help</code> for the full list of Ruff's top-level commands:</p>
 <!-- Begin auto-generated command help. -->
 
@@ -1697,7 +1697,7 @@ a specific configuration file is located.</p>
 </code></pre></div>
 <!-- End auto-generated format help. -->
 
-<h2 id="shell-autocompletion">Shell autocompletion<a class="headerlink" href="#shell-autocompletion" title="Permanent link">#</a></h2>
+<h2 id="shell-autocompletion"><a class="toclink" href="#shell-autocompletion">Shell autocompletion</a></h2>
 <p>Ruff supports autocompletion for most shells. A shell-specific completion script can be generated
 by <code>ruff generate-shell-completion &lt;SHELL&gt;</code>, where <code>&lt;SHELL&gt;</code> is one of <code>bash</code>, <code>elvish</code>, <code>fig</code>, <code>fish</code>,
 <code>powershell</code>, or <code>zsh</code>.</p>

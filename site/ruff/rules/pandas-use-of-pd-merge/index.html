@@ -25,7 +25,7 @@
     
     
 
-<title>pandas-use-of-pd-merge (PD015) | Ruff</title>
+<title>Ruff</title>
 
 
     
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              pandas-use-of-pd-merge (PD015)
+              
             
           </span>
         </div>
@@ -817,18 +817,18 @@
   
 
 
-<h1 id="pandas-use-of-pd-merge-pd015">pandas-use-of-pd-merge (PD015)<a class="headerlink" href="#pandas-use-of-pd-merge-pd015" title="Permanent link">#</a></h1>
+<h1 id="pandas-use-of-pd-merge-pd015"><a class="toclink" href="#pandas-use-of-pd-merge-pd015">pandas-use-of-pd-merge (PD015)</a></h1>
 <p>Derived from the <strong><a href="../#pandas-vet-pd">pandas-vet</a></strong> linter.</p>
-<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">#</a></h2>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for uses of <code>pd.merge</code> on Pandas objects.</p>
-<h2 id="why-is-this-bad">Why is this bad?<a class="headerlink" href="#why-is-this-bad" title="Permanent link">#</a></h2>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>In Pandas, the <code>.merge</code> method (exposed on, e.g., DataFrame objects) and
 the <code>pd.merge</code> function (exposed on the Pandas module) are equivalent.</p>
 <p>For consistency, prefer calling <code>.merge</code> on an object over calling
 <code>pd.merge</code> on the Pandas module, as the former is more idiomatic.</p>
 <p>Further, <code>pd.merge</code> is not a method, but a function, which prohibits it
 from being used in method chains, a common pattern in Pandas code.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h2>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">cats_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;cats.csv&quot;</span><span class="p">)</span>
@@ -844,7 +844,7 @@ from being used in method chains, a common pattern in Pandas code.</p>
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">rabbits_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;rabbits.csv&quot;</span><span class="p">)</span>
 <a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">pets_df</span> <span class="o">=</span> <span class="n">cats_df</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">dogs_df</span><span class="p">)</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">rabbits_df</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h2>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.merge.html#pandas.DataFrame.merge">Pandas documentation: <code>merge</code></a></li>
 <li><a href="https://pandas.pydata.org/docs/reference/api/pandas.merge.html#pandas.merge">Pandas documentation: <code>pd.merge</code></a></li>
