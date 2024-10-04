@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Checks for lambda expressions and function definitions that can be replaced">
+        <meta name="description" content="Checks for lambda expressions and function definitions that can be replaced with a function from">
       
       
         <meta name="author" content="charliermarsh">
@@ -822,13 +822,13 @@
 <p>Fix is sometimes available.</p>
 <p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
-<p>Checks for lambda expressions and function definitions that can be replaced
-with a function from the <code>operator</code> module.</p>
+<p>Checks for lambda expressions and function definitions that can be replaced with a function from
+the <code>operator</code> module.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
-<p>The <code>operator</code> module provides functions that implement the same functionality
-as the corresponding operators. For example, <code>operator.add</code> is equivalent to
-<code>lambda x, y: x + y</code>. Using the functions from the <code>operator</code> module is more
-concise and communicates the intent of the code more clearly.</p>
+<p>The <code>operator</code> module provides functions that implement the same functionality as the
+corresponding operators. For example, <code>operator.add</code> is equivalent to <code>lambda x, y: x + y</code>.
+Using the functions from the <code>operator</code> module is more concise and communicates the intent of
+the code more clearly.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">functools</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
@@ -842,6 +842,11 @@ concise and communicates the intent of the code more clearly.</p>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">nums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">total</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">operator</span><span class="o">.</span><span class="n">add</span><span class="p">,</span> <span class="n">nums</span><span class="p">)</span>
 </code></pre></div>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
+<p>This fix is usually safe, but if the lambda is called with keyword arguments, e.g.,
+<code>add = lambda x, y: x + y; add(x=1, y=2)</code>, replacing the lambda with an operator function, e.g.,
+<code>operator.add</code>, will cause the call to raise a <code>TypeError</code>, as functions in <code>operator</code> do not allow
+keyword arguments.</p>
 
   
   
