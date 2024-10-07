@@ -2753,11 +2753,13 @@ However, this may require changes to the project directory structure, depending 
 backend.</p>
 </div>
 <h2 id="project-environments"><a class="toclink" href="#project-environments">Project environments</a></h2>
-<p>uv creates a virtual environment in a <code>.venv</code> directory next to the <code>pyproject.toml</code>. This virtual
-environment contains the project and its dependencies. It is stored inside the project to make it
-easy for editors to find — they need the environment to give code completions and type hints. It is
-not recommended to include the <code>.venv</code> directory in version control; it is automatically excluded
-from <code>git</code> with an internal <code>.gitignore</code> file.</p>
+<p>When working on a project with uv, uv will create a virtual environment as needed. While some uv
+commands will create a temporary environment (e.g., <code>uv run --isolated</code>), uv also manages a
+persistent environment with the project and its dependencies in a <code>.venv</code> directory next to the
+<code>pyproject.toml</code>. It is stored inside the project to make it easy for editors to find — they need
+the environment to give code completions and type hints. It is not recommended to include the
+<code>.venv</code> directory in version control; it is automatically excluded from <code>git</code> with an internal
+<code>.gitignore</code> file.</p>
 <p>To run a command in the project environment, use <code>uv run</code>. Alternatively the project environment can
 be activated as normal for a virtual environment.</p>
 <p>When <code>uv run</code> is invoked, it will create the project environment if it does not exist yet or ensure
