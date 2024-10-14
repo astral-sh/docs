@@ -2602,6 +2602,12 @@ packages.</p>
 <p>To ensure reproducibility, messages for unsatisfiable resolutions will not mention that
 distributions were excluded due to the <code>--exclude-newer</code> flag — newer distributions will be treated
 as if they do not exist.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code>--exclude-newer</code> option is only applied to packages that are read from a registry (as opposed to, e.g., Git
+dependencies). Further, when using the <code>uv pip</code> interface, uv will not downgrade previously installed packages
+unless the <code>--reinstall</code> flag is provided, in which case uv will perform a new resolution.</p>
+</div>
 <h2 id="source-distribution"><a class="toclink" href="#source-distribution">Source distribution</a></h2>
 <p><a href="https://peps.python.org/pep-0625/">PEP 625</a> specifies that packages must distribute source
 distributions as gzip tarball (<code>.tar.gz</code>) archives. Prior to this specification, other archive

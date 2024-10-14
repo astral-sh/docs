@@ -3041,7 +3041,7 @@
 <h2 id="uv-run"><a class="toclink" href="#uv-run">uv run</a></h2>
 <p>Run a command or script.</p>
 <p>Ensures that the command runs in a Python environment.</p>
-<p>When used with a file ending in <code>.py</code>, the file will be treated as a script and run with a Python interpreter, i.e., <code>uv run file.py</code> is equivalent to <code>uv run python file.py</code>. If the script contains inline dependency metadata, it will be installed into an isolated, ephemeral environment. When used with <code>-</code>, the input will be read from stdin, and treated as a Python script.</p>
+<p>When used with a file ending in <code>.py</code> or an HTTP(S) URL, the file will be treated as a script and run with a Python interpreter, i.e., <code>uv run file.py</code> is equivalent to <code>uv run python file.py</code>. For URLs, the script is temporarily downloaded before execution. If the script contains inline dependency metadata, it will be installed into an isolated, ephemeral environment. When used with <code>-</code>, the input will be read from stdin, and treated as a Python script.</p>
 <p>When used in a project, the project environment will be created and updated before invoking the command.</p>
 <p>When used outside a project, if a virtual environment can be found in the current directory or a parent directory, the command will be run in that environment. Otherwise, the command will be run in the environment of the discovered interpreter.</p>
 <p>Arguments following the command (or script) are not interpreted as arguments to uv. All options to uv must be provided before the command, e.g., <code>uv run --verbose foo</code>. A <code>--</code> can be used to separate the command from uv options for clarity, e.g., <code>uv run --python 3.12 -- python</code>.</p>
@@ -4971,6 +4971,8 @@
 
 </dd><dt><code>--no-hashes</code></dt><dd><p>Omit hashes in the generated output</p>
 
+</dd><dt><code>--no-header</code></dt><dd><p>Exclude the comment header at the top of the generated output file</p>
+
 </dd><dt><code>--no-index</code></dt><dd><p>Ignore the registry index (e.g., PyPI), instead relying on direct URL dependencies and those provided via <code>--find-links</code></p>
 
 </dd><dt><code>--no-progress</code></dt><dd><p>Hide all progress outputs.</p>
@@ -5251,6 +5253,8 @@
 
 <p>May also be set with the <code>UV_NO_CONFIG</code> environment variable.</p>
 </dd><dt><code>--no-dedupe</code></dt><dd><p>Do not de-duplicate repeated dependencies. Usually, when a package has already displayed its dependencies, further occurrences will not re-display its dependencies, and will include a (*) to indicate it has already been shown. This flag will cause those duplicates to be repeated</p>
+
+</dd><dt><code>--no-dev</code></dt><dd><p>Omit development dependencies</p>
 
 </dd><dt><code>--no-index</code></dt><dd><p>Ignore the registry index (e.g., PyPI), instead relying on direct URL dependencies and those provided via <code>--find-links</code></p>
 
@@ -8254,6 +8258,10 @@ uv will exit with an error.</p>
 </dd><dt><code>--dry-run</code></dt><dd><p>Perform a dry run, i.e., don&#8217;t actually install anything but resolve the dependencies and print the resulting plan</p>
 
 </dd><dt><code>--editable</code>, <code>-e</code> <i>editable</i></dt><dd><p>Install the editable package based on the provided local file path</p>
+
+</dd><dt><code>--exact</code></dt><dd><p>Perform an exact sync, removing extraneous packages.</p>
+
+<p>By default, installing will make the minimum necessary changes to satisfy the requirements. When enabled, uv will update the environment to exactly match the requirements, removing packages that are not included in the requirements.</p>
 
 </dd><dt><code>--exclude-newer</code> <i>exclude-newer</i></dt><dd><p>Limit candidate packages to those that were uploaded prior to the given date.</p>
 
