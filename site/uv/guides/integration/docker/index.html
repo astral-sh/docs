@@ -2503,7 +2503,7 @@ container:</p>
 <p>uv provides a distroless Docker image including the <code>uv</code> binary. The following tags are published:</p>
 <ul>
 <li><code>ghcr.io/astral-sh/uv:latest</code></li>
-<li><code>ghcr.io/astral-sh/uv:{major}.{minor}.{patch}</code>, e.g., <code>ghcr.io/astral-sh/uv:0.4.20</code></li>
+<li><code>ghcr.io/astral-sh/uv:{major}.{minor}.{patch}</code>, e.g., <code>ghcr.io/astral-sh/uv:0.4.21</code></li>
 <li><code>ghcr.io/astral-sh/uv:{major}.{minor}</code>, e.g., <code>ghcr.io/astral-sh/uv:0.4</code> (the latest patch
   version)</li>
 </ul>
@@ -2526,6 +2526,7 @@ container:</p>
 </ul>
 </li>
 <li>Based on <code>python3.x-alpine</code>:<ul>
+<li><code>ghcr.io/astral-sh/uv:python3.13-alpine</code></li>
 <li><code>ghcr.io/astral-sh/uv:python3.12-alpine</code></li>
 <li><code>ghcr.io/astral-sh/uv:python3.11-alpine</code></li>
 <li><code>ghcr.io/astral-sh/uv:python3.10-alpine</code></li>
@@ -2534,6 +2535,7 @@ container:</p>
 </ul>
 </li>
 <li>Based on <code>python3.x-bookworm</code>:<ul>
+<li><code>ghcr.io/astral-sh/uv:python3.13-bookworm</code></li>
 <li><code>ghcr.io/astral-sh/uv:python3.12-bookworm</code></li>
 <li><code>ghcr.io/astral-sh/uv:python3.11-bookworm</code></li>
 <li><code>ghcr.io/astral-sh/uv:python3.10-bookworm</code></li>
@@ -2542,6 +2544,7 @@ container:</p>
 </ul>
 </li>
 <li>Based on <code>python3.x-slim-bookworm</code>:<ul>
+<li><code>ghcr.io/astral-sh/uv:python3.13-bookworm-slim</code></li>
 <li><code>ghcr.io/astral-sh/uv:python3.12-bookworm-slim</code></li>
 <li><code>ghcr.io/astral-sh/uv:python3.11-bookworm-slim</code></li>
 <li><code>ghcr.io/astral-sh/uv:python3.10-bookworm-slim</code></li>
@@ -2554,14 +2557,14 @@ container:</p>
 
 <p>As with the distroless image, each image is published with uv version tags as
 <code>ghcr.io/astral-sh/uv:{major}.{minor}.{patch}-{base}</code> and
-<code>ghcr.io/astral-sh/uv:{major}.{minor}-{base}</code>, e.g., <code>ghcr.io/astral-sh/uv:0.4.20-alpine</code>.</p>
+<code>ghcr.io/astral-sh/uv:{major}.{minor}-{base}</code>, e.g., <code>ghcr.io/astral-sh/uv:0.4.21-alpine</code>.</p>
 <p>For more details, see the <a href="https://github.com/astral-sh/uv/pkgs/container/uv">GitHub Container</a>
 page.</p>
 <h3 id="installing-uv"><a class="toclink" href="#installing-uv">Installing uv</a></h3>
 <p>Use one of the above images with uv pre-installed or install uv by copying the binary from the
 official distroless Docker image:</p>
 <div class="highlight"><span class="filename">Dockerfile</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">python:3.12-slim-bookworm</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>ghcr.io/astral-sh/uv:latest<span class="w"> </span>/uv<span class="w"> </span>/bin/uv
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>ghcr.io/astral-sh/uv:latest<span class="w"> </span>/uv<span class="w"> </span>/uvx<span class="w"> </span>/bin/
 </code></pre></div>
 <p>Or, with the installer:</p>
 <div class="highlight"><span class="filename">Dockerfile</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">python:3.12-slim-bookworm</span>
@@ -2580,10 +2583,10 @@ official distroless Docker image:</p>
 </code></pre></div>
 <p>Note this requires <code>curl</code> to be available.</p>
 <p>In either case, it is best practice to pin to a specific uv version, e.g., with:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>ghcr.io/astral-sh/uv:0.4.20<span class="w"> </span>/uv<span class="w"> </span>/bin/uv
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>ghcr.io/astral-sh/uv:0.4.21<span class="w"> </span>/uv<span class="w"> </span>/uvx<span class="w"> </span>/bin/
 </code></pre></div>
 <p>Or, with the installer:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">ADD</span><span class="w"> </span>https://astral.sh/uv/0.4.20/install.sh<span class="w"> </span>/uv-installer.sh
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">ADD</span><span class="w"> </span>https://astral.sh/uv/0.4.21/install.sh<span class="w"> </span>/uv-installer.sh
 </code></pre></div>
 <h3 id="installing-a-project"><a class="toclink" href="#installing-a-project">Installing a project</a></h3>
 <p>If you're using uv to manage your project, you can copy it into the image and install it:</p>
@@ -2754,7 +2757,7 @@ itself. Since the project changes frequently, but its dependencies are generally
 a big time saver.</p>
 <div class="highlight"><span class="filename">Dockerfile</span><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c"># Install uv</span>
 <a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="k">FROM</span><span class="w"> </span><span class="s">python:3.12-slim</span>
-<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>ghcr.io/astral-sh/uv:latest<span class="w"> </span>/uv<span class="w"> </span>/bin/uv
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>ghcr.io/astral-sh/uv:latest<span class="w"> </span>/uv<span class="w"> </span>/uvx<span class="w"> </span>/bin/
 <a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>
 <a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="c"># Change the working directory to the `app` directory</span>
 <a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
@@ -2791,7 +2794,7 @@ source code) into the final image.</p>
 <p>For example:</p>
 <div class="highlight"><span class="filename">Dockerfile</span><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c"># Install uv</span>
 <a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="k">FROM</span><span class="w"> </span><span class="s">python:3.12-slim</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s">builder</span>
-<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>ghcr.io/astral-sh/uv:latest<span class="w"> </span>/uv<span class="w"> </span>/bin/uv
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>ghcr.io/astral-sh/uv:latest<span class="w"> </span>/uv<span class="w"> </span>/uvx<span class="w"> </span>/bin/
 <a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>
 <a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="c"># Change the working directory to the `app` directory</span>
 <a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
