@@ -983,10 +983,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#pep-508" class="md-nav__link">
+  <a href="#build-dependencies" class="md-nav__link">
     <span class="md-ellipsis">
       
-        PEP 508
+        Build dependencies
       
     </span>
   </a>
@@ -998,6 +998,17 @@
     <span class="md-ellipsis">
       
         Editable dependencies
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pep-508" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PEP 508
       
     </span>
   </a>
@@ -2213,10 +2224,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#pep-508" class="md-nav__link">
+  <a href="#build-dependencies" class="md-nav__link">
     <span class="md-ellipsis">
       
-        PEP 508
+        Build dependencies
       
     </span>
   </a>
@@ -2228,6 +2239,17 @@
     <span class="md-ellipsis">
       
         Editable dependencies
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pep-508" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PEP 508
       
     </span>
   </a>
@@ -2489,6 +2511,53 @@ are included under <code>[tool.uv]</code> instead of <code>[project]</code>.</p>
 <p>To add a development dependency, include the <code>--dev</code> flag:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>ruff<span class="w"> </span>--dev
 </code></pre></div>
+<h2 id="build-dependencies"><a class="toclink" href="#build-dependencies">Build dependencies</a></h2>
+<p>If a project is structured as <a href="../projects/#build-systems">Python package</a>, it may declare
+dependencies that are required to build the project, but not required to run it. These dependencies
+are specified in the <code>[build-system]</code> table under <code>build-system.requires</code>, following
+<a href="https://peps.python.org/pep-0518/">PEP 518</a>.</p>
+<p>For example, if a project uses <code>setuptools</code> as its build backend, it should declare <code>setuptools</code> as
+a build dependency:</p>
+<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">[project]</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;pandas&quot;</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="k">[build-system]</span>
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="n">requires</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;setuptools&gt;=42&quot;</span><span class="p">]</span>
+<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="n">build-backend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;setuptools.build_meta&quot;</span>
+</code></pre></div>
+<p>By default, uv will respect <code>tool.uv.sources</code> when resolving build dependencies. For example, to use
+a local version of <code>setuptools</code> for building, add the source to <code>tool.uv.sources</code>:</p>
+<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="k">[project]</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;pandas&quot;</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span>
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="k">[build-system]</span>
+<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a><span class="n">requires</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;setuptools&gt;=42&quot;</span><span class="p">]</span>
+<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="n">build-backend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;setuptools.build_meta&quot;</span>
+<a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>
+<a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a><span class="k">[tool.uv.sources]</span>
+<a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a><span class="n">setuptools</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;./packages/setuptools&quot;</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>When publishing a package, we recommend running <code>uv build --no-sources</code> to ensure that the package
+builds correctly when <code>tool.uv.sources</code> is disabled, as is the case when using other build tools,
+like <a href="https://github.com/pypa/build"><code>pypa/build</code></a>.</p>
+<h2 id="editable-dependencies"><a class="toclink" href="#editable-dependencies">Editable dependencies</a></h2>
+<p>A regular installation of a directory with a Python package first builds a wheel and then installs
+that wheel into your virtual environment, copying all source files. When the package source files
+are edited, the virtual environment will contain outdated versions.</p>
+<p>Editable installations solve this problem by adding a link to the project within the virtual
+environment (a <code>.pth</code> file), which instructs the interpreter to include the source files directly.</p>
+<p>There are some limitations to editables (mainly: the build backend needs to support them, and native
+modules aren't recompiled before import), but they are useful for development, as the virtual
+environment will always use the latest changes to the package.</p>
+<p>uv uses editable installation for workspace packages by default.</p>
+<p>To add an editable dependency, use the <code>--editable</code> flag:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>--editable<span class="w"> </span>./path/foo
+</code></pre></div>
+<p>Or, to opt-out of using an editable dependency in a workspace:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>--no-editable<span class="w"> </span>./path/foo
+</code></pre></div>
 <h2 id="pep-508"><a class="toclink" href="#pep-508">PEP 508</a></h2>
 <p><a href="https://peps.python.org/pep-0508/">PEP 508</a> defines a syntax for dependency specification. It is
 composed of, in order:</p>
@@ -2515,22 +2584,6 @@ install <code>colorama</code> on Windows (but omit it on other platforms), use
 <code>aiohttp &gt;=3.7.4,&lt;4; (sys_platform != 'win32' or implementation_name != 'pypy') and python_version &gt;= '3.10'</code>.
 Note that versions within markers must be quoted, while versions <em>outside</em> of markers must <em>not</em> be
 quoted.</p>
-<h2 id="editable-dependencies"><a class="toclink" href="#editable-dependencies">Editable dependencies</a></h2>
-<p>A regular installation of a directory with a Python package first builds a wheel and then installs
-that wheel into your virtual environment, copying all source files. When the package source files
-are edited, the virtual environment will contain outdated versions.</p>
-<p>Editable installations solve this problem by adding a link to the project within the virtual
-environment (a <code>.pth</code> file), which instructs the interpreter to include the source files directly.</p>
-<p>There are some limitations to editables (mainly: the build backend needs to support them, and native
-modules aren't recompiled before import), but they are useful for development, as the virtual
-environment will always use the latest changes to the package.</p>
-<p>uv uses editable installation for workspace packages by default.</p>
-<p>To add an editable dependency, use the <code>--editable</code> flag:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>--editable<span class="w"> </span>./path/foo
-</code></pre></div>
-<p>Or, to opt-out of using an editable dependency in a workspace:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>--no-editable<span class="w"> </span>./path/foo
-</code></pre></div>
 
 
 

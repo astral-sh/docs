@@ -2151,7 +2151,7 @@ Authenticate to a feed using a
 (PAT) or interactively using the <a href="https://github.com/jaraco/keyring"><code>keyring</code></a> package.</p>
 <h3 id="using-a-pat"><a class="toclink" href="#using-a-pat">Using a PAT</a></h3>
 <p>If there is a PAT available (eg
-<a href="https://learn.microsoft.com/en-us/azure/devops/pipelines/build/variables?view=azure-devops&amp;tabs=yaml#systemaccesstoken"> <code>$(System.AccessToken)</code> in an Azure pipeline</a>),
+<a href="https://learn.microsoft.com/en-us/azure/devops/pipelines/build/variables?view=azure-devops&amp;tabs=yaml#systemaccesstoken"><code>$(System.AccessToken)</code> in an Azure pipeline</a>),
 credentials can be provided via the "Basic" HTTP authentication scheme. Include the PAT in the
 password field of the URL. A username must be included as well, but can be any string.</p>
 <p>For example, with the token stored in the <code>$ADO_PAT</code> environment variable, set the index URL with:</p>
@@ -2213,7 +2213,7 @@ default username <code>VssSessionToken</code>.</p>
 described in the <a href="../../publish/">publishing guide</a>. You will need to set <code>UV_PUBLISH_URL</code> separately
 from the credentials:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Configure uv to use AWS CodeArtifact</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">UV_PUBLISH_URL</span><span class="o">=</span><span class="s2">&quot;https://</span><span class="si">${</span><span class="nv">AWS_CODEARTIFACT_TOKEN</span><span class="si">}</span><span class="s2">@</span><span class="si">${</span><span class="nv">AWS_DOMAIN</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">AWS_ACCOUNT_ID</span><span class="si">}</span><span class="s2">.d.codeartifact.</span><span class="si">${</span><span class="nv">AWS_REGION</span><span class="si">}</span><span class="s2">.amazonaws.com/pypi/</span><span class="si">${</span><span class="nv">AWS_CODEARTIFACT_REPOSITORY</span><span class="si">}</span><span class="s2">/&quot;</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">UV_PUBLISH_URL</span><span class="o">=</span><span class="s2">&quot;https://</span><span class="si">${</span><span class="nv">AWS_DOMAIN</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">AWS_ACCOUNT_ID</span><span class="si">}</span><span class="s2">.d.codeartifact.</span><span class="si">${</span><span class="nv">AWS_REGION</span><span class="si">}</span><span class="s2">.amazonaws.com/pypi/</span><span class="si">${</span><span class="nv">AWS_CODEARTIFACT_REPOSITORY</span><span class="si">}</span><span class="s2">/&quot;</span>
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">UV_PUBLISH_USERNAME</span><span class="o">=</span>aws
 <a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="nb">export</span><span class="w"> </span><span class="nv">UV_PUBLISH_PASSWORD</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$AWS_CODEARTIFACT_TOKEN</span><span class="s2">&quot;</span>
 <a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
