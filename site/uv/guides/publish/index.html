@@ -2105,6 +2105,13 @@ the effect of declaring a build system in the
 artifacts in a <code>dist/</code> subdirectory.</p>
 <p>Alternatively, <code>uv build &lt;SRC&gt;</code> will build the package in the specified directory, while
 <code>uv build --package &lt;PACKAGE&gt;</code> will build the specified package within the current workspace.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>By default, <code>uv build</code> respects <code>tool.uv.sources</code> when resolving build dependencies from the
+<code>build-system.requires</code> section of the <code>pyproject.toml</code>. When publishing a package, we recommend
+running <code>uv build --no-sources</code> to ensure that the package builds correctly when <code>tool.uv.sources</code>
+is disabled, as is the case when using other build tools, like <a href="https://github.com/pypa/build"><code>pypa/build</code></a>.</p>
+</div>
 <h2 id="publishing-your-package"><a class="toclink" href="#publishing-your-package">Publishing your package</a></h2>
 <p>Publish your package with <code>uv publish</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="gp">$ </span>uv<span class="w"> </span>publish
