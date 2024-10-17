@@ -10,13 +10,13 @@
         <meta name="author" content="charliermarsh">
       
       
-        <link rel="canonical" href="https://docs.astral.sh/uv/pip/inspection/">
+        <link rel="canonical" href="https://docs.astral.sh/uv/configuration/indexes/">
       
       
-        <link rel="prev" href="../packages/">
+        <link rel="prev" href="../authentication/">
       
       
-        <link rel="next" href="../dependencies/">
+        <link rel="next" href="../../guides/integration/">
       
       
         
@@ -27,7 +27,7 @@
     
     
 
-<title>Inspecting packages | uv</title>
+<title>Package indexes | uv</title>
 
 
     
@@ -104,7 +104,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#inspecting-environments" class="md-skip">
+        <a href="#package-indexes" class="md-skip">
           Skip to content
         </a>
       
@@ -139,7 +139,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Inspecting packages
+              Package indexes
             
           </span>
         </div>
@@ -968,6 +968,8 @@
       
   
   
+    
+  
   
     
     
@@ -988,18 +990,18 @@
     
       
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../configuration/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1021,7 +1023,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1040,7 +1042,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../configuration/files/" class="md-nav__link">
+      <a href="../files/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1066,7 +1068,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../configuration/environment/" class="md-nav__link">
+      <a href="../environment/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1092,7 +1094,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../configuration/authentication/" class="md-nav__link">
+      <a href="../authentication/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1116,9 +1118,35 @@
                 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../configuration/indexes/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    
+  
+    Package indexes
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1133,6 +1161,81 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#defining-an-index" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Defining an index
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pinning-a-package-to-an-index" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pinning a package to an index
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#searching-across-multiple-indexes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Searching across multiple indexes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#providing-credentials" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Providing credentials
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-index-url-and-extra-index-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        --index-url and --extra-index-url
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1442,8 +1545,6 @@
       
   
   
-    
-  
   
     
     
@@ -1468,18 +1569,18 @@
     
       
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
         
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../" class="md-nav__link ">
+            <a href="../../pip/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1501,7 +1602,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1520,7 +1621,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../environments/" class="md-nav__link">
+      <a href="../../pip/environments/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1546,7 +1647,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../packages/" class="md-nav__link">
+      <a href="../../pip/packages/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1570,35 +1671,9 @@
                 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    
-  
-    Inspecting packages
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../pip/inspection/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1613,59 +1688,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#listing-installed-packages" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Listing installed packages
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#inspecting-a-package" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Inspecting a package
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#verifying-an-environment" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Verifying an environment
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1677,7 +1699,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../dependencies/" class="md-nav__link">
+      <a href="../../pip/dependencies/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1703,7 +1725,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../compile/" class="md-nav__link">
+      <a href="../../pip/compile/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1729,7 +1751,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../compatibility/" class="md-nav__link">
+      <a href="../../pip/compatibility/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2020,10 +2042,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#listing-installed-packages" class="md-nav__link">
+  <a href="#defining-an-index" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Listing installed packages
+        Defining an index
       
     </span>
   </a>
@@ -2031,10 +2053,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#inspecting-a-package" class="md-nav__link">
+  <a href="#pinning-a-package-to-an-index" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Inspecting a package
+        Pinning a package to an index
       
     </span>
   </a>
@@ -2042,10 +2064,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#verifying-an-environment" class="md-nav__link">
+  <a href="#searching-across-multiple-indexes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Verifying an environment
+        Searching across multiple indexes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#providing-credentials" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Providing credentials
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-index-url-and-extra-index-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        --index-url and --extra-index-url
       
     </span>
   </a>
@@ -2071,28 +2115,140 @@
   
 
 
-<h1 id="inspecting-environments"><a class="toclink" href="#inspecting-environments">Inspecting environments</a></h1>
-<h2 id="listing-installed-packages"><a class="toclink" href="#listing-installed-packages">Listing installed packages</a></h2>
-<p>To list all of the packages in the environment:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">$ </span>uv<span class="w"> </span>pip<span class="w"> </span>list
+<h1 id="package-indexes"><a class="toclink" href="#package-indexes">Package indexes</a></h1>
+<p>By default, uv uses the <a href="https://pypi.org">Python Package Index (PyPI)</a> for dependency resolution
+and package installation. However, uv can be configured to use other package indexes, including
+private indexes, via the <code>[[tool.uv.index]]</code> configuration option (and <code>--index</code>, the analogous
+command-line option).</p>
+<h2 id="defining-an-index"><a class="toclink" href="#defining-an-index">Defining an index</a></h2>
+<p>To include an additional index when resolving dependencies, add a <code>[[tool.uv.index]]</code> entry to your
+<code>pyproject.toml</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">[[tool.uv.index]]</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># Optional name for the index.</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;pytorch&quot;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># Required URL for the index.</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://download.pytorch.org/whl/cpu&quot;</span>
 </code></pre></div>
-<p>To list the packages in a JSON format:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="gp">$ </span>uv<span class="w"> </span>pip<span class="w"> </span>list<span class="w"> </span>--format<span class="w"> </span>json
+<p>Indexes are prioritized in the order in which they’re defined, such that the first index listed in
+the configuration file is the first index consulted when resolving dependencies, with indexes
+provided via the command line taking precedence over those in the configuration file.</p>
+<p>By default, uv includes the Python Package Index (PyPI) as the "default" index, i.e., the index used
+when a package is not found on any other index. To exclude PyPI from the list of indexes, set
+<code>default = true</code> on another index entry (or use the <code>--default-index</code> command-line option):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">[[tool.uv.index]]</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;pytorch&quot;</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://download.pytorch.org/whl/cpu&quot;</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">default</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 </code></pre></div>
-<p>To list all of the packages in the environment in a <code>requirements.txt</code> format:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="gp">$ </span>uv<span class="w"> </span>pip<span class="w"> </span>freeze
+<p>The default index is always treated as lowest priority, regardless of its position in the list of
+indexes.</p>
+<h2 id="pinning-a-package-to-an-index"><a class="toclink" href="#pinning-a-package-to-an-index">Pinning a package to an index</a></h2>
+<p>A package can be pinned to a specific index by specifying the index in its <code>tool.uv.sources</code> entry.
+For example, to ensure that <code>torch</code> is <em>always</em> installed from the <code>pytorch</code> index, add the
+following to your <code>pyproject.toml</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">[tool.uv.sources]</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">torch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;pytorch&quot;</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">[[tool.uv.index]]</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;pytorch&quot;</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://download.pytorch.org/whl/cpu&quot;</span>
 </code></pre></div>
-<h2 id="inspecting-a-package"><a class="toclink" href="#inspecting-a-package">Inspecting a package</a></h2>
-<p>To show information about an installed package, e.g., <code>numpy</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="gp">$ </span>uv<span class="w"> </span>pip<span class="w"> </span>show<span class="w"> </span>numpy
+<p>Similarly, to pull from a different index based on the platform, you can provide a list of sources
+disambiguated by environment markers:</p>
+<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">[project]</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;pytorch&quot;</span><span class="p">]</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">[tool.uv.sources]</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="n">pytorch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;torch-cu118&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">marker</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;sys_platform == &#39;darwin&#39;&quot;</span><span class="p">},</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;torch-cu124&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">marker</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;sys_platform != &#39;darwin&#39;&quot;</span><span class="p">},</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="p">]</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="k">[[tool.uv.index]]</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;torch-cu118&quot;</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://download.pytorch.org/whl/cu118&quot;</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="k">[[tool.uv.index]]</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;torch-cu124&quot;</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://download.pytorch.org/whl/cu124&quot;</span>
 </code></pre></div>
-<p>Multiple packages can be inspected at once.</p>
-<h2 id="verifying-an-environment"><a class="toclink" href="#verifying-an-environment">Verifying an environment</a></h2>
-<p>It is possible to install packages with conflicting requirements into an environment if installed in
-multiple steps.</p>
-<p>To check for conflicts or missing dependencies in the environment:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="gp">$ </span>uv<span class="w"> </span>pip<span class="w"> </span>check
+<p>An index can be marked as <code>explicit = true</code> to prevent packages from being installed from that index
+unless explicitly pinned to it. For example, to ensure that <code>torch</code> is installed from the <code>pytorch</code>
+index, but all other packages are installed from PyPI, add the following to your <code>pyproject.toml</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">[tool.uv.sources]</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">torch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;pytorch&quot;</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="k">[[tool.uv.index]]</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;pytorch&quot;</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://download.pytorch.org/whl/cpu&quot;</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="n">explicit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 </code></pre></div>
+<p>Named indexes referenced via <code>tool.uv.sources</code> must be defined within the project's <code>pyproject.toml</code>
+file; indexes provided via the command-line, environment variables, or user-level configuration will
+not be recognized.</p>
+<h2 id="searching-across-multiple-indexes"><a class="toclink" href="#searching-across-multiple-indexes">Searching across multiple indexes</a></h2>
+<p>By default, uv will stop at the first index on which a given package is available, and limit
+resolutions to those present on that first index (<code>first-match</code>).</p>
+<p>For example, if an internal index is specified via <code>[[tool.uv.index]]</code>, uv's behavior is such that
+if a package exists on that internal index, it will <em>always</em> be installed from that internal index,
+and never from PyPI. The intent is to prevent "dependency confusion" attacks, in which an attacker
+publishes a malicious package on PyPI with the same name as an internal package, thus causing the
+malicious package to be installed instead of the internal package. See, for example,
+<a href="https://pytorch.org/blog/compromised-nightly-dependency/">the <code>torchtriton</code> attack</a> from
+December 2022.</p>
+<p>Users can opt in to alternate index behaviors via the<code>--index-strategy</code> command-line option, or the
+<code>UV_INDEX_STRATEGY</code> environment variable, which supports the following values:</p>
+<ul>
+<li><code>first-match</code> (default): Search for each package across all indexes, limiting the candidate
+  versions to those present in the first index that contains the package.</li>
+<li><code>unsafe-first-match</code>: Search for each package across all indexes, but prefer the first index with
+  a compatible version, even if newer versions are available on other indexes.</li>
+<li><code>unsafe-best-match</code>: Search for each package across all indexes, and select the best version from
+  the combined set of candidate versions.</li>
+</ul>
+<p>While <code>unsafe-best-match</code> is the closest to pip's behavior, it exposes users to the risk of
+"dependency confusion" attacks.</p>
+<h2 id="providing-credentials"><a class="toclink" href="#providing-credentials">Providing credentials</a></h2>
+<p>Most private registries require authentication to access packages, typically via a username and
+password (or access token).</p>
+<p>To authenticate with a provide index, either provide credentials via environment variables or embed
+them in the URL.</p>
+<p>For example, given an index named <code>internal</code> that requires a username (<code>public</code>) and password
+(<code>koala</code>), define the index (without credentials) in your <code>pyproject.toml</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">[[tool.uv.index]]</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;internal&quot;</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://example.com/simple&quot;</span>
+</code></pre></div>
+<p>From there, you can set the <code>UV_INDEX_INTERNAL_USERNAME</code> and <code>UV_INDEX_INTERNAL_PASSWORD</code>
+environment variables, where <code>INTERNAL</code> is the uppercase version of the index name:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">UV_INDEX_INTERNAL_USERNAME</span><span class="o">=</span>public
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">UV_INDEX_INTERNAL_PASSWORD</span><span class="o">=</span>koala
+</code></pre></div>
+<p>By providing credentials via environment variables, you can avoid storing sensitive information in
+the plaintext <code>pyproject.toml</code> file.</p>
+<p>Alternatively, credentials can be embedded directly in the index definition:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">[[tool.uv.index]]</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;internal&quot;</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://public:koala@https://pypi-proxy.corp.dev/simple&quot;</span>
+</code></pre></div>
+<p>For security purposes, credentials are <em>never</em> stored in the <code>uv.lock</code> file; as such, uv <em>must</em> have
+access to the authenticated URL at installation time.</p>
+<h2 id="-index-url-and-extra-index-url"><a class="toclink" href="#-index-url-and-extra-index-url"><code>--index-url</code> and <code>--extra-index-url</code></a></h2>
+<p>In addition to the <code>[[tool.uv.index]]</code> configuration option, uv supports pip-style <code>--index-url</code> and
+<code>--extra-index-url</code> command-line options for compatibility, where <code>--index-url</code> defines the default
+index and <code>--extra-index-url</code> defines additional indexes.</p>
+<p>These options can be used in conjunction with the <code>[[tool.uv.index]]</code> configuration option, and
+follow the same prioritization rules:</p>
+<ul>
+<li>The default index is always treated as lowest priority, whether defined via the legacy
+  <code>--index-url</code> argument, the recommended <code>--default-index</code> argument, or a <code>[[tool.uv.index]]</code> entry
+  with <code>default = true</code>.</li>
+<li>Indexes are consulted in the order in which they’re defined, either via the legacy
+  <code>--extra-index-url</code> argument, the recommended <code>--index</code> argument, or <code>[[tool.uv.index]]</code> entries.</li>
+</ul>
+<p>In effect, <code>--index-url</code> and <code>--extra-index-url</code> can be thought of as unnamed <code>[[tool.uv.index]]</code>
+entries, with <code>default = true</code> enabled for the former. In that context, <code>--index-url</code> maps to
+<code>--default-index</code>, and <code>--extra-index-url</code> maps to <code>--index</code>.</p>
 
 
 
@@ -2126,7 +2282,7 @@ multiple steps.</p>
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../packages/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Managing packages" rel="prev">
+          <a href="../authentication/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Authentication" rel="prev">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
@@ -2136,20 +2292,20 @@ multiple steps.</p>
                 Previous
               </span>
               <div class="md-ellipsis">
-                Managing packages
+                Authentication
               </div>
             </div>
           </a>
         
         
           
-          <a href="../dependencies/" class="md-footer__link md-footer__link--next" aria-label="Next: Declaring dependencies" rel="next">
+          <a href="../../guides/integration/" class="md-footer__link md-footer__link--next" aria-label="Next: Index" rel="next">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Declaring dependencies
+                Index
               </div>
             </div>
             <div class="md-footer__button md-icon">
