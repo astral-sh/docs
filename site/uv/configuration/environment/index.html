@@ -984,6 +984,8 @@
       
         
       
+        
+      
     
     
       
@@ -1109,6 +1111,32 @@
     
   
     Authentication
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../indexes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Package indexes
   
 
     
@@ -1936,10 +1964,16 @@
 <h1 id="environment-variables"><a class="toclink" href="#environment-variables">Environment variables</a></h1>
 <p>uv accepts the following command-line arguments as environment variables:</p>
 <ul>
+<li><code>UV_INDEX</code>: Equivalent to the <code>--index</code> command-line argument. If set, uv will use this
+  space-separated list of URLs as additional indexes when searching for packages.</li>
+<li><code>UV_DEFAULT_INDEX</code>: Equivalent to the <code>--default-index</code> command-line argument. If set, uv will use
+  this URL as the default index when searching for packages.</li>
 <li><code>UV_INDEX_URL</code>: Equivalent to the <code>--index-url</code> command-line argument. If set, uv will use this
-  URL as the base index for searching for packages.</li>
+  URL as the default index when searching for packages. (Deprecated: use <code>UV_DEFAULT_INDEX</code>
+  instead.)</li>
 <li><code>UV_EXTRA_INDEX_URL</code>: Equivalent to the <code>--extra-index-url</code> command-line argument. If set, uv will
-  use this space-separated list of URLs as additional indexes when searching for packages.</li>
+  use this space-separated list of URLs as additional indexes when searching for packages.
+  (Deprecated: use <code>UV_INDEX</code> instead.)</li>
 <li><code>UV_FIND_LINKS</code>: Equivalent to the <code>--find-links</code> command-line argument. If set, uv will use this
   comma-separated list of additional locations to search for packages.</li>
 <li><code>UV_CACHE_DIR</code>: Equivalent to the <code>--cache-dir</code> command-line argument. If set, uv will use this
