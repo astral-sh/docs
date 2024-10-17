@@ -822,19 +822,23 @@
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for functions that start a process without a shell.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
-<p>The <code>subprocess</code> module provides more powerful facilities for spawning new
-processes and retrieving their results; using that module is preferable to
-using these functions.</p>
+<p>Invoking any kind of external executable via a function call can pose
+security risks if arbitrary variables are passed to the executable, or if
+the input is otherwise unsanitised or unvalidated.</p>
+<p>This rule specifically flags functions in the <code>os</code> module that spawn
+subprocesses <em>without</em> the use of a shell. Note that these typically pose a
+much smaller security risk than subprocesses that are started <em>with</em> a
+shell, which are flagged by <a href="https://docs.astral.sh/ruff/rules/start-process-with-a-shell/#start-process-with-a-shell-s605"><code>start-process-with-a-shell</code></a> (<code>S605</code>). This
+gives you the option of enabling one rule while disabling the other if you
+decide that the security risk from these functions is acceptable for your
+use case.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">os</span><span class="o">.</span><span class="n">spawnlp</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">P_NOWAIT</span><span class="p">,</span> <span class="s2">&quot;/bin/mycmd&quot;</span><span class="p">,</span> <span class="s2">&quot;mycmd&quot;</span><span class="p">,</span> <span class="s2">&quot;myarg&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">os</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">def</span> <span class="nf">insecure_function</span><span class="p">(</span><span class="n">arbitrary_user_input</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">os</span><span class="o">.</span><span class="n">spawnlp</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">P_NOWAIT</span><span class="p">,</span> <span class="s2">&quot;/bin/mycmd&quot;</span><span class="p">,</span> <span class="s2">&quot;mycmd&quot;</span><span class="p">,</span> <span class="n">arbitrary_user_input</span><span class="p">)</span>
 </code></pre></div>
-<p>Use instead:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">([</span><span class="s2">&quot;/bin/mycmd&quot;</span><span class="p">,</span> <span class="s2">&quot;myarg&quot;</span><span class="p">])</span>
-</code></pre></div>
-<h2 id="references"><a class="toclink" href="#references">References</a></h2>
-<ul>
-<li><a href="https://docs.python.org/3/library/subprocess.html#replacing-the-os-spawn-family">Python documentation: Replacing the <code>os.spawn</code> family</a></li>
-</ul>
 
   
   
