@@ -2129,6 +2129,7 @@ command-line option).</p>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># Required URL for the index.</span>
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://download.pytorch.org/whl/cpu&quot;</span>
 </code></pre></div>
+<p>Index names must only contain alphanumeric characters, dashes, or underscores.</p>
 <p>Indexes are prioritized in the order in which they’re defined, such that the first index listed in
 the configuration file is the first index consulted when resolving dependencies, with indexes
 provided via the command line taking precedence over those in the configuration file.</p>
@@ -2229,7 +2230,7 @@ the plaintext <code>pyproject.toml</code> file.</p>
 <p>Alternatively, credentials can be embedded directly in the index definition:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">[[tool.uv.index]]</span>
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;internal&quot;</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://public:koala@https://pypi-proxy.corp.dev/simple&quot;</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://public:koala@pypi-proxy.corp.dev/simple&quot;</span>
 </code></pre></div>
 <p>For security purposes, credentials are <em>never</em> stored in the <code>uv.lock</code> file; as such, uv <em>must</em> have
 access to the authenticated URL at installation time.</p>
