@@ -1802,6 +1802,8 @@
       
         
       
+        
+      
     
     
       
@@ -1891,6 +1893,32 @@
     
   
     Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/build_failures/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Build Failures
   
 
     
@@ -2129,7 +2157,6 @@ command-line option).</p>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># Required URL for the index.</span>
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://download.pytorch.org/whl/cpu&quot;</span>
 </code></pre></div>
-<p>Index names must only contain alphanumeric characters, dashes, or underscores.</p>
 <p>Indexes are prioritized in the order in which they’re defined, such that the first index listed in
 the configuration file is the first index consulted when resolving dependencies, with indexes
 provided via the command line taking precedence over those in the configuration file.</p>
@@ -2143,6 +2170,8 @@ when a package is not found on any other index. To exclude PyPI from the list of
 </code></pre></div>
 <p>The default index is always treated as lowest priority, regardless of its position in the list of
 indexes.</p>
+<p>Index names many only contain alphanumeric characters, dashes, underscores, and periods, and must be
+valid ASCII.</p>
 <h2 id="pinning-a-package-to-an-index"><a class="toclink" href="#pinning-a-package-to-an-index">Pinning a package to an index</a></h2>
 <p>A package can be pinned to a specific index by specifying the index in its <code>tool.uv.sources</code> entry.
 For example, to ensure that <code>torch</code> is <em>always</em> installed from the <code>pytorch</code> index, add the
@@ -2214,14 +2243,15 @@ December 2022.</p>
 password (or access token).</p>
 <p>To authenticate with a provide index, either provide credentials via environment variables or embed
 them in the URL.</p>
-<p>For example, given an index named <code>internal</code> that requires a username (<code>public</code>) and password
+<p>For example, given an index named <code>internal-proxy</code> that requires a username (<code>public</code>) and password
 (<code>koala</code>), define the index (without credentials) in your <code>pyproject.toml</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">[[tool.uv.index]]</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;internal&quot;</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;internal-proxy&quot;</span>
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://example.com/simple&quot;</span>
 </code></pre></div>
-<p>From there, you can set the <code>UV_INDEX_INTERNAL_USERNAME</code> and <code>UV_INDEX_INTERNAL_PASSWORD</code>
-environment variables, where <code>INTERNAL</code> is the uppercase version of the index name:</p>
+<p>From there, you can set the <code>UV_INDEX_INTERNAL_PROXY_USERNAME</code> and
+<code>UV_INDEX_INTERNAL_PROXY_PASSWORD</code> environment variables, where <code>INTERNAL</code> is the uppercase version
+of the index name, with non-alphanumeric characters replaced by underscores:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">UV_INDEX_INTERNAL_USERNAME</span><span class="o">=</span>public
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">UV_INDEX_INTERNAL_PASSWORD</span><span class="o">=</span>koala
 </code></pre></div>

@@ -1769,6 +1769,8 @@
       
         
       
+        
+      
     
     
       
@@ -1858,6 +1860,32 @@
     
   
     Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/build_failures/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Build Failures
   
 
     
@@ -2057,7 +2085,7 @@ in the nearest parent directory.</p>
 <p class="admonition-title">Note</p>
 <p>For <code>tool</code> commands, which operate at the user level, local configuration
 files will be ignored. Instead, uv will exclusively read from user-level configuration
-(e.g., <code>~/.config/uv/uv.toml</code>).</p>
+(e.g., <code>~/.config/uv/uv.toml</code>) and system-level configuration (e.g., <code>/etc/uv/uv.toml</code>).</p>
 </div>
 <p>In workspaces, uv will begin its search at the workspace root, ignoring any configuration defined in
 workspace members. Since the workspace is locked as a single unit, configuration is shared across
@@ -2080,12 +2108,18 @@ searching in the directory hierarchy.)</p>
 <code>[tool.uv]</code> section in the accompanying <code>pyproject.toml</code> will be ignored.</p>
 </div>
 <p>uv will also discover user-level configuration at <code>~/.config/uv/uv.toml</code> (or
-<code>$XDG_CONFIG_HOME/uv/uv.toml</code>) on macOS and Linux, or <code>%APPDATA%\uv\uv.toml</code> on Windows. User-level
-configuration must use the <code>uv.toml</code> format, rather than the <code>pyproject.toml</code> format, as a
-<code>pyproject.toml</code> is intended to define a Python <em>project</em>.</p>
-<p>If both project- and user-level configuration are found, the settings will be merged, with the
-project-level configuration taking precedence. Specifically, if a string, number, or boolean is
-present in both tables, the project-level value will be used, and the user-level value will be
+<code>$XDG_CONFIG_HOME/uv/uv.toml</code>) on macOS and Linux, or <code>%APPDATA%\uv\uv.toml</code> on Windows; and
+system-level configuration at <code>/etc/uv/uv.toml</code> (or <code>$XDG_CONFIG_DIRS/uv/uv.toml</code>) on macOS and
+Linux, or <code>%SYSTEMDRIVE%\ProgramData\uv\uv.toml</code> on Windows.</p>
+<p>User-and system-level configuration must use the <code>uv.toml</code> format, rather than the <code>pyproject.toml</code>
+format, as a <code>pyproject.toml</code> is intended to define a Python <em>project</em>.</p>
+<p>If project-, user-, and system-level configuration files are found, the settings will be merged,
+with project-level configuration taking precedence over the user-level configuration, and user-level
+configuration taking precedence over the system-level configuration. (If multiple system-level
+configuration files are found, e.g., at both <code>/etc/uv/uv.toml</code> and <code>$XDG_CONFIG_DIRS/uv/uv.toml</code>,
+only the first-discovered file will be used, with XDG taking priority.)</p>
+<p>For example, if a string, number, or boolean is present in both the project- and user-level
+configuration tables, the project-level value will be used, and the user-level value will be
 ignored. If an array is present in both tables, the arrays will be concatenated, with the
 project-level settings appearing earlier in the merged array.</p>
 <p>Settings provided via environment variables take precedence over persistent configuration, and
