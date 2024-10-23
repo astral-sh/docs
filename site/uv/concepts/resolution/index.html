@@ -1912,6 +1912,8 @@
       
         
       
+        
+      
     
     
       
@@ -2001,6 +2003,32 @@
     
   
     Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/build_failures/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Build Failures
   
 
     
@@ -2586,15 +2614,30 @@ cases, it may be easier to declare the package metadata upfront, rather than cre
 environment prior to resolving the package.</p>
 <p>For example, you can declare the metadata for <code>flash-attn</code>, allowing uv to resolve without building
 the package from source (which itself requires installing <code>torch</code>):</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">[[tool.uv.dependency-metadata]]</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;flash-attn&quot;</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2.6.3&quot;</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">requires-dist</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;torch&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;einops&quot;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">[project]</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;project&quot;</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">requires-python</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&gt;=3.12&quot;</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;flash-attn&quot;</span><span class="p">]</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="k">[tool.uv.sources]</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="n">flash-attn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">git</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;https://github.com/Dao-AILab/flash-attention&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">tag</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;v2.6.3&quot;</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="k">[[tool.uv.dependency-metadata]]</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;flash-attn&quot;</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2.6.3&quot;</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="n">requires-dist</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;torch&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;einops&quot;</span><span class="p">]</span>
 </code></pre></div>
 <p>Like dependency overrides, <code>tool.uv.dependency-metadata</code> can also be used for cases in which a
 package's metadata is incorrect or incomplete, or when a package is not available in the package
 index. While dependency overrides allow overriding the allowed versions of a package globally,
 metadata overrides allow overriding the declared metadata of a <em>specific package</em>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code>version</code> field in <code>tool.uv.dependency-metadata</code> is optional for registry-based
+dependencies (when omitted, uv will assume the metadata applies to all versions of the package),
+but <em>required</em> for direct URL dependencies (like Git dependencies).</p>
+</div>
 <p>Entries in the <code>tool.uv.dependency-metadata</code> table follow the
 <a href="https://packaging.python.org/en/latest/specifications/core-metadata/">Metadata 2.3</a> specification,
 though only <code>name</code>, <code>version</code>, <code>requires-dist</code>, <code>requires-python</code>, and <code>provides-extra</code> are read by
