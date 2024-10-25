@@ -1135,6 +1135,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#lockfile-versioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lockfile versioning
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1187,6 +1198,8 @@
       
         
           
+        
+      
         
       
         
@@ -1338,6 +1351,32 @@
     
   
     Package indexes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configuration/installer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Installer
   
 
     
@@ -2344,6 +2383,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#lockfile-versioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lockfile versioning
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2696,6 +2746,19 @@ reading and extracting archives in the following formats:</p>
 <h2 id="learn-more"><a class="toclink" href="#learn-more">Learn more</a></h2>
 <p>For more details about the internals of the resolver, see the
 <a href="../../reference/resolver-internals/">resolver reference</a> documentation.</p>
+<h2 id="lockfile-versioning"><a class="toclink" href="#lockfile-versioning">Lockfile versioning</a></h2>
+<p>The <code>uv.lock</code> file uses a versioned schema. The schema version is included in the <code>version</code> field of
+the lockfile.</p>
+<p>Any given version of uv can read and write lockfiles with the same schema version, but will reject
+lockfiles with a greater schema version. For example, if your uv version supports schema v1,
+<code>uv lock</code> will error if it encounters an existing lockfile with schema v2.</p>
+<p>uv versions that support schema v2 <em>may</em> be able to read lockfiles with schema v1 if the schema
+update was backwards-compatible. However, this is not guaranteed, and uv may exit with an error if
+it encounters a lockfile with an outdated schema version.</p>
+<p>The schema version is considered part of the public API, and so is only bumped in minor releases, as
+a breaking change (see <a href="../../reference/versioning/">Versioning</a>). As such, all uv patch versions
+within a given minor uv release are guaranteed to have full lockfile compatibility. In other words,
+lockfiles may only be rejected across minor releases.</p>
 
 
 

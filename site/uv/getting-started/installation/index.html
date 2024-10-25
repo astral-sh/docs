@@ -465,23 +465,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Standalone installer">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#configuring-installation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Configuring installation
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
           <li class="md-nav__item">
@@ -1187,6 +1170,8 @@
       
         
       
+        
+      
     
     
       
@@ -1328,6 +1313,32 @@
     
   
     Package indexes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configuration/installer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Installer
   
 
     
@@ -2190,23 +2201,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Standalone installer">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#configuring-installation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Configuring installation
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
           <li class="md-nav__item">
@@ -2390,41 +2384,15 @@
 </div>
 <p>Alternatively, the installer or binaries can be downloaded directly from <a href="#github-releases">GitHub</a>.</p>
 </div>
-<h4 id="configuring-installation"><a class="toclink" href="#configuring-installation">Configuring installation</a></h4>
-<p>By default, uv is installed to <code>~/.cargo/bin</code>. To change the installation path, use
-<code>UV_INSTALL_DIR</code>:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">macOS and Linux</label><label for="__tabbed_4_2">Windows</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="gp">$ </span>curl<span class="w"> </span>-LsSf<span class="w"> </span>https://astral.sh/uv/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>env<span class="w"> </span><span class="nv">UV_INSTALL_DIR</span><span class="o">=</span><span class="s2">&quot;/custom/path&quot;</span><span class="w"> </span>sh
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nv">$env:UV_INSTALL_DIR</span> <span class="p">=</span> <span class="s2">&quot;C:\Custom\Path&quot;</span> <span class="n">powershell</span> <span class="n">-ExecutionPolicy</span> <span class="n">ByPass</span> <span class="n">-c</span> <span class="s2">&quot;irm https://astral.sh/uv/install.ps1 | iex&quot;</span>
-</code></pre></div>
-</div>
-</div>
-</div>
-<p>The installer will also update your shell profiles to ensure the uv binary is on your <code>PATH</code>. To
-disable this behavior, use <code>INSTALLER_NO_MODIFY_PATH</code>. For example:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="gp">$ </span>curl<span class="w"> </span>-LsSf<span class="w"> </span>https://astral.sh/uv/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>env<span class="w"> </span><span class="nv">INSTALLER_NO_MODIFY_PATH</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>sh
-</code></pre></div>
-<p>Using environment variables is recommended because they are consistent across platforms. However,
-options can be passed directly to the install script. For example, to see the available options:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="gp">$ </span>curl<span class="w"> </span>-LsSf<span class="w"> </span>https://astral.sh/uv/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh<span class="w"> </span>-s<span class="w"> </span>--<span class="w"> </span>--help
-</code></pre></div>
-<p>In ephemeral environments like CI, use <code>UV_UNMANAGED_INSTALL</code> to install uv to a specific path while
-preventing the installer from modifying shell profiles or environment variables:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="gp">$ </span>curl<span class="w"> </span>-LsSf<span class="w"> </span>https://astral.sh/uv/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>env<span class="w"> </span><span class="nv">UV_UNMANAGED_INSTALL</span><span class="o">=</span><span class="s2">&quot;/custom/path&quot;</span><span class="w"> </span>sh
-</code></pre></div>
-<p>The use of <code>UV_UNMANAGED_INSTALL</code> will also disable self-updates (via <code>uv self update</code>).</p>
+<p>See the documentation on <a href="../../configuration/installer/">installer configuration</a> for details on
+customizing your uv installation.</p>
 <h3 id="pypi"><a class="toclink" href="#pypi">PyPI</a></h3>
 <p>For convenience, uv is published to <a href="https://pypi.org/project/uv/">PyPI</a>.</p>
 <p>If installing from PyPI, we recommend installing uv into an isolated environment, e.g., with <code>pipx</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="gp">$ </span>pipx<span class="w"> </span>install<span class="w"> </span>uv
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="gp">$ </span>pipx<span class="w"> </span>install<span class="w"> </span>uv
 </code></pre></div>
 <p>However, <code>pip</code> can also be used:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="gp">$ </span>pip<span class="w"> </span>install<span class="w"> </span>uv
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="gp">$ </span>pip<span class="w"> </span>install<span class="w"> </span>uv
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -2436,15 +2404,15 @@ for details on building uv from source.</p>
 <h3 id="cargo"><a class="toclink" href="#cargo">Cargo</a></h3>
 <p>uv is available via Cargo, but must be built from Git rather than <a href="https://crates.io">crates.io</a> due
 to its dependency on unpublished crates.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="gp">$ </span>cargo<span class="w"> </span>install<span class="w"> </span>--git<span class="w"> </span>https://github.com/astral-sh/uv<span class="w"> </span>uv
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="gp">$ </span>cargo<span class="w"> </span>install<span class="w"> </span>--git<span class="w"> </span>https://github.com/astral-sh/uv<span class="w"> </span>uv
 </code></pre></div>
 <h3 id="homebrew"><a class="toclink" href="#homebrew">Homebrew</a></h3>
 <p>uv is available in the core Homebrew packages.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="gp">$ </span>brew<span class="w"> </span>install<span class="w"> </span>uv
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="gp">$ </span>brew<span class="w"> </span>install<span class="w"> </span>uv
 </code></pre></div>
 <h3 id="winget"><a class="toclink" href="#winget">Winget</a></h3>
 <p>uv is available via <a href="https://winstall.app/apps/astral-sh.uv">winget</a>.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="gp">$ </span>winget<span class="w"> </span>install<span class="w"> </span>--id<span class="o">=</span>astral-sh.uv<span class="w">  </span>-e
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="gp">$ </span>winget<span class="w"> </span>install<span class="w"> </span>--id<span class="o">=</span>astral-sh.uv<span class="w">  </span>-e
 </code></pre></div>
 <h3 id="docker"><a class="toclink" href="#docker">Docker</a></h3>
 <p>uv provides a Docker image at
@@ -2457,7 +2425,7 @@ to its dependency on unpublished crates.</p>
 the standalone installer via <code>github.com</code> instead of <code>astral.sh</code>.</p>
 <h2 id="upgrading-uv"><a class="toclink" href="#upgrading-uv">Upgrading uv</a></h2>
 <p>When uv is installed via the standalone installer, it can update itself on-demand:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="gp">$ </span>uv<span class="w"> </span>self<span class="w"> </span>update
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="gp">$ </span>uv<span class="w"> </span>self<span class="w"> </span>update
 </code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -2466,39 +2434,39 @@ behavior, set <code>INSTALLER_NO_MODIFY_PATH=1</code>.</p>
 </div>
 <p>When another installation method is used, self-updates are disabled. Use the package manager's
 upgrade method instead. For example, with <code>pip</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="gp">$ </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>uv
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="gp">$ </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>uv
 </code></pre></div>
 <h2 id="shell-autocompletion"><a class="toclink" href="#shell-autocompletion">Shell autocompletion</a></h2>
 <p>To enable shell autocompletion for uv commands, run one of the following:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Linux and macOS</label><label for="__tabbed_5_2">Windows</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Linux and macOS</label><label for="__tabbed_4_2">Windows</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># Determine your shell (e.g., with `echo $SHELL`), then run one of:</span>
-<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;eval &quot;$(uv generate-shell-completion bash)&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
-<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;eval &quot;$(uv generate-shell-completion zsh)&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.zshrc
-<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;uv generate-shell-completion fish | source&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.config/fish/config.fish
-<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;eval (uv generate-shell-completion elvish | slurp)&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.elvish/rc.elv
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># Determine your shell (e.g., with `echo $SHELL`), then run one of:</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;eval &quot;$(uv generate-shell-completion bash)&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;eval &quot;$(uv generate-shell-completion zsh)&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.zshrc
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;uv generate-shell-completion fish | source&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.config/fish/config.fish
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;eval (uv generate-shell-completion elvish | slurp)&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.elvish/rc.elv
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nb">Add-Content</span> <span class="n">-Path</span> <span class="nv">$PROFILE</span> <span class="n">-Value</span> <span class="s1">&#39;(&amp; uv generate-shell-completion powershell) | Out-String | Invoke-Expression&#39;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nb">Add-Content</span> <span class="n">-Path</span> <span class="nv">$PROFILE</span> <span class="n">-Value</span> <span class="s1">&#39;(&amp; uv generate-shell-completion powershell) | Out-String | Invoke-Expression&#39;</span>
 </code></pre></div>
 </div>
 </div>
 </div>
 <p>To enable shell autocompletion for uvx, run one of the following:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">Linux and macOS</label><label for="__tabbed_6_2">Windows</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Linux and macOS</label><label for="__tabbed_5_2">Windows</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1"># Determine your shell (e.g., with `echo $SHELL`), then run one of:</span>
-<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;eval &quot;$(uvx --generate-shell-completion bash)&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
-<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;eval &quot;$(uvx --generate-shell-completion zsh)&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.zshrc
-<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;uvx --generate-shell-completion fish | source&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.config/fish/config.fish
-<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;eval (uvx --generate-shell-completion elvish | slurp)&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.elvish/rc.elv
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># Determine your shell (e.g., with `echo $SHELL`), then run one of:</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;eval &quot;$(uvx --generate-shell-completion bash)&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;eval &quot;$(uvx --generate-shell-completion zsh)&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.zshrc
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;uvx --generate-shell-completion fish | source&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.config/fish/config.fish
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;eval (uvx --generate-shell-completion elvish | slurp)&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.elvish/rc.elv
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="nb">Add-Content</span> <span class="n">-Path</span> <span class="nv">$PROFILE</span> <span class="n">-Value</span> <span class="s1">&#39;(&amp; uvx --generate-shell-completion powershell) | Out-String | Invoke-Expression&#39;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nb">Add-Content</span> <span class="n">-Path</span> <span class="nv">$PROFILE</span> <span class="n">-Value</span> <span class="s1">&#39;(&amp; uvx --generate-shell-completion powershell) | Out-String | Invoke-Expression&#39;</span>
 </code></pre></div>
 </div>
 </div>
@@ -2506,15 +2474,15 @@ upgrade method instead. For example, with <code>pip</code>:</p>
 <p>Then restart the shell or source the shell config file.</p>
 <h2 id="uninstallation"><a class="toclink" href="#uninstallation">Uninstallation</a></h2>
 <p>If you need to remove uv from your system, just remove the <code>uv</code> and <code>uvx</code> binaries:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">macOS and Linux</label><label for="__tabbed_7_2">Windows</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">macOS and Linux</label><label for="__tabbed_6_2">Windows</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="gp">$ </span>rm<span class="w"> </span>~/.cargo/bin/uv<span class="w"> </span>~/.cargo/bin/uvx
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="gp">$ </span>rm<span class="w"> </span>~/.cargo/bin/uv<span class="w"> </span>~/.cargo/bin/uvx
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="p">$</span> <span class="nb">rm </span><span class="nv">$HOME</span><span class="p">\.</span><span class="n">cargo</span><span class="p">\</span><span class="n">bin</span><span class="p">\</span><span class="n">uv</span><span class="p">.</span><span class="n">exe</span>
-<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="p">$</span> <span class="nb">rm </span><span class="nv">$HOME</span><span class="p">\.</span><span class="n">cargo</span><span class="p">\</span><span class="n">bin</span><span class="p">\</span><span class="n">uvx</span><span class="p">.</span><span class="n">exe</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="p">$</span> <span class="nb">rm </span><span class="nv">$HOME</span><span class="p">\.</span><span class="n">cargo</span><span class="p">\</span><span class="n">bin</span><span class="p">\</span><span class="n">uv</span><span class="p">.</span><span class="n">exe</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="p">$</span> <span class="nb">rm </span><span class="nv">$HOME</span><span class="p">\.</span><span class="n">cargo</span><span class="p">\</span><span class="n">bin</span><span class="p">\</span><span class="n">uvx</span><span class="p">.</span><span class="n">exe</span>
 </code></pre></div>
 </div>
 </div>
@@ -2522,9 +2490,9 @@ upgrade method instead. For example, with <code>pip</code>:</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>You may want to remove data that uv has stored before removing the binaries:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="gp">$ </span>uv<span class="w"> </span>cache<span class="w"> </span>clean
-<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="gp">$ </span>rm<span class="w"> </span>-r<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>uv<span class="w"> </span>python<span class="w"> </span>dir<span class="k">)</span><span class="s2">&quot;</span>
-<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="gp">$ </span>rm<span class="w"> </span>-r<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>uv<span class="w"> </span>tool<span class="w"> </span>dir<span class="k">)</span><span class="s2">&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="gp">$ </span>uv<span class="w"> </span>cache<span class="w"> </span>clean
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="gp">$ </span>rm<span class="w"> </span>-r<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>uv<span class="w"> </span>python<span class="w"> </span>dir<span class="k">)</span><span class="s2">&quot;</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="gp">$ </span>rm<span class="w"> </span>-r<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>uv<span class="w"> </span>tool<span class="w"> </span>dir<span class="k">)</span><span class="s2">&quot;</span>
 </code></pre></div>
 </div>
 <h2 id="next-steps"><a class="toclink" href="#next-steps">Next steps</a></h2>

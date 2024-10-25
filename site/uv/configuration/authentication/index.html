@@ -986,6 +986,8 @@
       
         
       
+        
+      
     
     
       
@@ -1217,6 +1219,32 @@
     
   
     Package indexes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Installer
   
 
     
@@ -2150,14 +2178,16 @@ credentials, you will be prompted to enter them.</p>
 <p>Authentication can come from the following sources, in order of precedence:</p>
 <ul>
 <li>The URL, e.g., <code>https://&lt;user&gt;:&lt;password&gt;@&lt;hostname&gt;/...</code></li>
-<li>A <a href="https://everything.curl.dev/usingcurl/netrc"><code>netrc</code></a> configuration file</li>
+<li>A <a href="https://everything.curl.dev/usingcurl/netrc"><code>.netrc</code></a> configuration file</li>
 <li>A <a href="https://github.com/jaraco/keyring">keyring</a> provider (requires opt-in)</li>
 </ul>
 <p>If authentication is found for a single net location (scheme, host, and port), it will be cached for
 the duration of the command and used for other queries to that net location. Authentication is not
 cached across invocations of uv.</p>
-<p>Note <code>--keyring-provider subprocess</code> or <code>UV_KEYRING_PROVIDER=subprocess</code> must be provided to enable
-keyring-based authentication.</p>
+<p><code>.netrc</code> authentication is enabled by default, and will respect the <code>NETRC</code> environment variable if
+defined, falling back to <code>~/.netrc</code> if not.</p>
+<p>To enable keyring-based authentication, pass the <code>--keyring-provider subprocess</code> command-line
+argument to uv, or set <code>UV_KEYRING_PROVIDER=subprocess</code>.</p>
 <p>Authentication may be used for hosts specified in the following contexts:</p>
 <ul>
 <li><code>index-url</code></li>
