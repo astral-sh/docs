@@ -2419,10 +2419,10 @@ versions that fulfill the requirements. Resolution requires recursively searchin
 versions of packages, ensuring that the requested requirements are fulfilled and that the
 requirements of the requested packages are compatible.</p>
 <h2 id="dependencies"><a class="toclink" href="#dependencies">Dependencies</a></h2>
-<p>Most projects and packages have dependencies. Dependencies are other packages that are needed in
+<p>Most projects and packages have dependencies. Dependencies are other packages that are necessary in
 order for the current package to work. A package defines its dependencies as <em>requirements</em>, roughly
 a combination of a package name and acceptable versions. The dependencies defined by the current
-project are called <em>direct dependencies</em>. The requirements added by each dependency of the current
+project are called <em>direct dependencies</em>. The dependencies added by each dependency of the current
 project are called <em>indirect</em> or <em>transitive dependencies</em>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -2448,9 +2448,9 @@ in the Python Packaging documentation for details about dependencies.</p>
 <p>In this example, the resolver must find a set of package versions which satisfies the project
 requirements. Since there is only one version of both <code>foo</code> and <code>bar</code>, those will be used. The
 resolution must also include the transitive dependencies, so a version of <code>lib</code> must be chosen.
-<code>foo 1.0.0</code> allows all of the available versions of <code>lib</code>, but <code>bar 1.0.0</code> requires <code>lib&gt;=2.0.0</code> so
+<code>foo 1.0.0</code> allows all available versions of <code>lib</code>, but <code>bar 1.0.0</code> requires <code>lib&gt;=2.0.0</code> so
 <code>lib 2.0.0</code> must be used.</p>
-<p>In some resolutions, there is more than one solution. Consider the following dependencies:</p>
+<p>In some resolutions, there may be more than one valid solution. Consider the following dependencies:</p>
 <!-- prettier-ignore -->
 <ul>
 <li>The project depends on <code>foo</code> and <code>bar</code>.</li>
@@ -2466,18 +2466,18 @@ resolution must also include the transitive dependencies, so a version of <code>
 </li>
 <li><code>lib</code> has two versions, 1.0.0 and 2.0.0. Both versions have no dependencies.</li>
 </ul>
-<p>In this example, some version of both <code>foo</code> and <code>bar</code> must be picked, however, determining which
+<p>In this example, some version of both <code>foo</code> and <code>bar</code> must be selected; however, determining which
 version requires considering the dependencies of each version of <code>foo</code> and <code>bar</code>. <code>foo 2.0.0</code> and
-<code>bar 2.0.0</code> cannot be installed together because they conflict on their required version of <code>lib</code>,
-so the resolver must select either <code>foo 1.0.0</code> or <code>bar 1.0.0</code>. Both are valid solutions, and
-different resolution algorithms may give either result.</p>
+<code>bar 2.0.0</code> cannot be installed together as they conflict on their required version of <code>lib</code>, so the
+resolver must select either <code>foo 1.0.0</code> (along with <code>bar 2.0.0</code>) or <code>bar 1.0.0</code> (along with
+<code>foo 1.0.0</code>). Both are valid solutions, and different resolution algorithms may yield either result.</p>
 <h2 id="platform-markers"><a class="toclink" href="#platform-markers">Platform markers</a></h2>
 <p>Markers allow attaching an expression to requirements that indicate when the dependency should be
-used. For example <code>bar; python_version&lt;"3.9"</code> can be used to only require <code>bar</code> on Python 3.8 and
-older.</p>
-<p>Markers are used to adjust a package's dependencies depending on the current environment or
-platform. For example, markers can be used to change dependencies based on the operating system, the
-CPU architecture, the Python version, the Python implementation, and more.</p>
+used. For example <code>bar ; python_version &lt; "3.9"</code> indicates that <code>bar</code> should only be installed on
+Python 3.8 and earlier.</p>
+<p>Markers are used to adjust a package's dependencies based on the current environment or platform.
+For example, markers can be used to modify dependencies by operating system, CPU architecture,
+Python version, Python implementation, and more.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>See the <a href="https://packaging.python.org/en/latest/specifications/dependency-specifiers/#environment-markers">environment
@@ -2505,15 +2505,18 @@ if different versions are needed for different platforms — the markers determi
 be used. A universal resolution is often more constrained than a platform-specific resolution, since
 we need to take the requirements for all markers into account.</p>
 <p>During universal resolution, a minimum Python version must be specified. Project commands read the
-minimum required version from <code>project.requires-python</code> in the <code>pyproject.toml</code>. When using the pip
-interface, provide a value with the <code>--python-version</code> option, otherwise the current Python version
-will be treated as a lower bound. For example, <code>--universal --python-version 3.9</code> writes a universal
-resolution for Python 3.9 and later.</p>
-<p>Setting the minimum Python version is important because all package versions we select have to be
-compatible with the Python version range. For example, a universal resolution of <code>numpy&lt;2</code> with
-<code>--python-version 3.8</code> resolves to <code>numpy==1.24.4</code>, while <code>--python-version 3.9</code> resolves to
-<code>numpy==1.26.4</code>, as <code>numpy</code> releases after 1.26.4 require at Python 3.9+. Note that we only consider
-the lower bound of any Python requirement, upper bounds are always ignored.</p>
+minimum required version from <code>project.requires-python</code> in the <code>pyproject.toml</code>. When using uv's pip
+interface, provide a value with the <code>--python-version</code> option; otherwise, the current Python version
+will be treated as a lower bound. For example, <code>--universal --python-version 3.9</code> performs a
+universal resolution for Python 3.9 and later.</p>
+<p>During universal resolution, all selected dependency versions must be compatible with the <em>entire</em>
+<code>requires-python</code> range declared in the <code>pyproject.toml</code>. For example, if a project's
+<code>requires-python</code> is <code>&gt;=3.8</code>, then uv will not allow <em>any</em> dependency versions that are limited to,
+e.g., Python 3.9 and later, as they are not compatible with Python 3.8, the lower bound of the
+project's supported range. In other words, the project's <code>requires-python</code> must be a subset of the
+<code>requires-python</code> of all its dependencies.</p>
+<p>When evaluating <code>requires-python</code> ranges for dependencies, uv only considers lower bounds and
+ignores upper bounds entirely. For example, <code>&gt;=3.8, &lt;4</code> is treated as <code>&gt;=3.8</code>.</p>
 <h2 id="platform-specific-resolution"><a class="toclink" href="#platform-specific-resolution">Platform-specific resolution</a></h2>
 <p>By default, uv's pip interface, i.e., <a href="../../pip/compile/"><code>uv pip compile</code></a>, produces a resolution
 that is platform-specific, like <code>pip-tools</code>. There is no way to use platform-specific resolution in
@@ -2616,9 +2619,9 @@ transitive dependency. Constraints are useful for reducing the range of availabl
 transitive dependency. They can also be used to keep a resolution in sync with some other set of
 resolved versions, regardless of which packages are overlapping between the two.</p>
 <h2 id="dependency-overrides"><a class="toclink" href="#dependency-overrides">Dependency overrides</a></h2>
-<p>Dependency overrides allow bypassing failing or undesirable resolutions by overriding a package's
-declared dependencies. Overrides are a useful last resort for cases in which you <em>know</em> that a
-dependency is compatible with a certain version of a package, despite the metadata indicating
+<p>Dependency overrides allow bypassing unsuccessful or undesirable resolutions by overriding a
+package's declared dependencies. Overrides are a useful last resort for cases in which you <em>know</em>
+that a dependency is compatible with a certain version of a package, despite the metadata indicating
 otherwise.</p>
 <p>For example, if a transitive dependency declares the requirement <code>pydantic&gt;=1.0,&lt;2.0</code>, but <em>does</em>
 work with <code>pydantic&gt;=2.0</code>, the user can override the declared dependency by including
