@@ -1512,6 +1512,45 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#google-artifact-registry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Google Artifact Registry
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Google Artifact Registry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#password-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Password authentication
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-keyring_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using keyring
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#aws-codeartifact" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2160,6 +2199,45 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#google-artifact-registry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Google Artifact Registry
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Google Artifact Registry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#password-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Password authentication
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-keyring_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using keyring
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#aws-codeartifact" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2266,6 +2344,45 @@ default username <code>VssSessionToken</code>.</p>
 <a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="gp">$ </span><span class="c1"># Configure the index URL with the username</span>
 <a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="gp">$ </span><span class="nb">export</span><span class="w"> </span><span class="nv">UV_EXTRA_INDEX_URL</span><span class="o">=</span>https://VssSessionToken@pkgs.dev.azure.com/<span class="o">{</span>organisation<span class="o">}</span>/<span class="o">{</span>project<span class="o">}</span>/_packaging/<span class="o">{</span>feedName<span class="o">}</span>/pypi/simple/
 </code></pre></div>
+<h2 id="google-artifact-registry"><a class="toclink" href="#google-artifact-registry">Google Artifact Registry</a></h2>
+<p>uv can install packages from
+<a href="https://cloud.google.com/artifact-registry/docs">Google Artifact Registry</a>. Authenticate to a
+repository using password authentication or using <a href="https://github.com/jaraco/keyring"><code>keyring</code></a>
+package.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This guide assumes <code>gcloud</code> CLI has previously been installed and setup.</p>
+</div>
+<h3 id="password-authentication"><a class="toclink" href="#password-authentication">Password authentication</a></h3>
+<p>Credentials can be provided via "Basic" HTTP authentication scheme. Include access token in the
+password field of the URL. Username must be <code>oauth2accesstoken</code>, otherwise authentication will fail.</p>
+<p>For example, with the token stored in the <code>$ARTIFACT_REGISTRY_TOKEN</code> environment variable, set the
+index URL with:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ARTIFACT_REGISTRY_TOKEN</span><span class="o">=</span><span class="k">$(</span>gcloud<span class="w"> </span>auth<span class="w"> </span>application-default<span class="w"> </span>print-access-token<span class="k">)</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">UV_EXTRA_INDEX_URL</span><span class="o">=</span>https://oauth2accesstoken:<span class="nv">$ARTIFACT_REGISTRY_TOKEN</span>@<span class="o">{</span>region<span class="o">}</span>-python.pkg.dev/<span class="o">{</span>projectId<span class="o">}</span>/<span class="o">{</span>repositoryName<span class="o">}</span>/simple
+</code></pre></div>
+<h3 id="using-keyring_1"><a class="toclink" href="#using-keyring_1">Using <code>keyring</code></a></h3>
+<p>You can also authenticate to Artifact Registry using <a href="https://github.com/jaraco/keyring"><code>keyring</code></a>
+package with
+<a href="https://github.com/GoogleCloudPlatform/artifact-registry-python-tools"><code>keyrings.google-artifactregistry-auth</code> plugin</a>.
+Because these two packages are required to authenticate to Artifact Registry, they must be
+pre-installed from a source other than Artifact Registry.</p>
+<p>The <code>artifacts-keyring</code> plugin wraps <a href="https://cloud.google.com/sdk/gcloud">gcloud CLI</a> to generate
+short-lived access tokens, securely store them in system keyring and refresh them when they are
+expired.</p>
+<p>uv only supports using the <code>keyring</code> package in
+<a href="https://github.com/astral-sh/uv/blob/main/PIP_COMPATIBILITY.md#registry-authentication">subprocess mode</a>.
+The <code>keyring</code> executable must be in the <code>PATH</code>, i.e., installed globally or in the active
+environment. The <code>keyring</code> CLI requires a username in the URL and it must be <code>oauth2accesstoken</code>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Pre-install keyring and Artifact Registry plugin from the public PyPI</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>keyring<span class="w"> </span>--with<span class="w"> </span>keyrings.google-artifactregistry-auth
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># Enable keyring authentication</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="nb">export</span><span class="w"> </span><span class="nv">UV_KEYRING_PROVIDER</span><span class="o">=</span>subprocess
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1"># Configure the index URL with the username</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="nb">export</span><span class="w"> </span><span class="nv">UV_EXTRA_INDEX_URL</span><span class="o">=</span>https://oauth2accesstoken@<span class="o">{</span>region<span class="o">}</span>-python.pkg.dev/<span class="o">{</span>projectId<span class="o">}</span>/<span class="o">{</span>repositoryName<span class="o">}</span>/simple
+</code></pre></div>
 <h2 id="aws-codeartifact"><a class="toclink" href="#aws-codeartifact">AWS CodeArtifact</a></h2>
 <p>uv can install packages from
 <a href="https://docs.aws.amazon.com/codeartifact/latest/ug/using-python.html">AWS CodeArtifact</a>.</p>
@@ -2275,37 +2392,37 @@ default username <code>VssSessionToken</code>.</p>
 <p>This guide assumes the AWS CLI has previously been authenticated.</p>
 </div>
 <p>First, declare some constants for your CodeArtifact repository:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AWS_DOMAIN</span><span class="o">=</span><span class="s2">&quot;&lt;your-domain&gt;&quot;</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AWS_ACCOUNT_ID</span><span class="o">=</span><span class="s2">&quot;&lt;your-account-id&gt;&quot;</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AWS_REGION</span><span class="o">=</span><span class="s2">&quot;&lt;your-region&gt;&quot;</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AWS_CODEARTIFACT_REPOSITORY</span><span class="o">=</span><span class="s2">&quot;&lt;your-repository&gt;&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AWS_DOMAIN</span><span class="o">=</span><span class="s2">&quot;&lt;your-domain&gt;&quot;</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AWS_ACCOUNT_ID</span><span class="o">=</span><span class="s2">&quot;&lt;your-account-id&gt;&quot;</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AWS_REGION</span><span class="o">=</span><span class="s2">&quot;&lt;your-region&gt;&quot;</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AWS_CODEARTIFACT_REPOSITORY</span><span class="o">=</span><span class="s2">&quot;&lt;your-repository&gt;&quot;</span>
 </code></pre></div>
 <p>Then, retrieve a token from the <code>awscli</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AWS_CODEARTIFACT_TOKEN</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span>aws<span class="w"> </span>codeartifact<span class="w"> </span>get-authorization-token<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span>--domain<span class="w"> </span><span class="nv">$AWS_DOMAIN</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span>--domain-owner<span class="w"> </span><span class="nv">$AWS_ACCOUNT_ID</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span>--query<span class="w"> </span>authorizationToken<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span>--output<span class="w"> </span>text
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="k">)</span><span class="s2">&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AWS_CODEARTIFACT_TOKEN</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span>aws<span class="w"> </span>codeartifact<span class="w"> </span>get-authorization-token<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span>--domain<span class="w"> </span><span class="nv">$AWS_DOMAIN</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span>--domain-owner<span class="w"> </span><span class="nv">$AWS_ACCOUNT_ID</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span>--query<span class="w"> </span>authorizationToken<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">    </span>--output<span class="w"> </span>text
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="k">)</span><span class="s2">&quot;</span>
 </code></pre></div>
 <p>And configure the index URL:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">UV_EXTRA_INDEX_URL</span><span class="o">=</span><span class="s2">&quot;https://aws:</span><span class="si">${</span><span class="nv">AWS_CODEARTIFACT_TOKEN</span><span class="si">}</span><span class="s2">@</span><span class="si">${</span><span class="nv">AWS_DOMAIN</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">AWS_ACCOUNT_ID</span><span class="si">}</span><span class="s2">.d.codeartifact.</span><span class="si">${</span><span class="nv">AWS_REGION</span><span class="si">}</span><span class="s2">.amazonaws.com/pypi/</span><span class="si">${</span><span class="nv">AWS_CODEARTIFACT_REPOSITORY</span><span class="si">}</span><span class="s2">/simple/&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">UV_EXTRA_INDEX_URL</span><span class="o">=</span><span class="s2">&quot;https://aws:</span><span class="si">${</span><span class="nv">AWS_CODEARTIFACT_TOKEN</span><span class="si">}</span><span class="s2">@</span><span class="si">${</span><span class="nv">AWS_DOMAIN</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">AWS_ACCOUNT_ID</span><span class="si">}</span><span class="s2">.d.codeartifact.</span><span class="si">${</span><span class="nv">AWS_REGION</span><span class="si">}</span><span class="s2">.amazonaws.com/pypi/</span><span class="si">${</span><span class="nv">AWS_CODEARTIFACT_REPOSITORY</span><span class="si">}</span><span class="s2">/simple/&quot;</span>
 </code></pre></div>
 <h3 id="publishing-packages"><a class="toclink" href="#publishing-packages">Publishing packages</a></h3>
 <p>If you also want to publish your own packages to AWS CodeArtifact, you can use <code>uv publish</code> as
 described in the <a href="../../publish/">publishing guide</a>. You will need to set <code>UV_PUBLISH_URL</code> separately
 from the credentials:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Configure uv to use AWS CodeArtifact</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">UV_PUBLISH_URL</span><span class="o">=</span><span class="s2">&quot;https://</span><span class="si">${</span><span class="nv">AWS_DOMAIN</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">AWS_ACCOUNT_ID</span><span class="si">}</span><span class="s2">.d.codeartifact.</span><span class="si">${</span><span class="nv">AWS_REGION</span><span class="si">}</span><span class="s2">.amazonaws.com/pypi/</span><span class="si">${</span><span class="nv">AWS_CODEARTIFACT_REPOSITORY</span><span class="si">}</span><span class="s2">/&quot;</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">UV_PUBLISH_USERNAME</span><span class="o">=</span>aws
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="nb">export</span><span class="w"> </span><span class="nv">UV_PUBLISH_PASSWORD</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$AWS_CODEARTIFACT_TOKEN</span><span class="s2">&quot;</span>
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
-<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="c1"># Publish the package</span>
-<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>uv<span class="w"> </span>publish
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Configure uv to use AWS CodeArtifact</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">UV_PUBLISH_URL</span><span class="o">=</span><span class="s2">&quot;https://</span><span class="si">${</span><span class="nv">AWS_DOMAIN</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">AWS_ACCOUNT_ID</span><span class="si">}</span><span class="s2">.d.codeartifact.</span><span class="si">${</span><span class="nv">AWS_REGION</span><span class="si">}</span><span class="s2">.amazonaws.com/pypi/</span><span class="si">${</span><span class="nv">AWS_CODEARTIFACT_REPOSITORY</span><span class="si">}</span><span class="s2">/&quot;</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">UV_PUBLISH_USERNAME</span><span class="o">=</span>aws
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="nb">export</span><span class="w"> </span><span class="nv">UV_PUBLISH_PASSWORD</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$AWS_CODEARTIFACT_TOKEN</span><span class="s2">&quot;</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="c1"># Publish the package</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>uv<span class="w"> </span>publish
 </code></pre></div>
 <h2 id="other-indexes"><a class="toclink" href="#other-indexes">Other indexes</a></h2>
-<p>uv is also known to work with JFrog's Artifactory and the Google Cloud Artifact Registry.</p>
+<p>uv is also known to work with JFrog's Artifactory.</p>
 
 
 
