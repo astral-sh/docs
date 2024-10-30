@@ -7297,9 +7297,9 @@ uv will exit with an error.</p>
 <h3 id="uv-python-install"><a class="toclink" href="#uv-python-install">uv python install</a></h3>
 <p>Download and install Python versions.</p>
 <p>Multiple Python versions may be requested.</p>
-<p>Supports CPython and PyPy.</p>
-<p>CPython distributions are downloaded from the <code>python-build-standalone</code> project.</p>
-<p>Python versions are installed into the uv Python directory, which can be retrieved with <code>uv python dir</code>. A <code>python</code> executable is not made globally available, managed Python versions are only used in uv commands or in active virtual environments.</p>
+<p>Supports CPython and PyPy. CPython distributions are downloaded from the <code>python-build-standalone</code> project. PyPy distributions are downloaded from <code>python.org</code>.</p>
+<p>Python versions are installed into the uv Python directory, which can be retrieved with <code>uv python dir</code>.</p>
+<p>A <code>python</code> executable is not made globally available, managed Python versions are only used in uv commands or in active virtual environments. There is experimental support for adding Python executables to the <code>PATH</code> — use the <code>--preview</code> flag to enable this behavior.</p>
 <p>See <code>uv help python</code> to view supported request formats.</p>
 <h3 class="cli-reference">Usage</h3>
 
@@ -7666,13 +7666,30 @@ uv will exit with an error.</p>
 <p>Show the uv Python installation directory.</p>
 <p>By default, Python installations are stored in the uv data directory at <code>$XDG_DATA_HOME/uv/python</code> or <code>$HOME/.local/share/uv/python</code> on Unix and <code>%APPDATA%\uv\data\python</code> on Windows.</p>
 <p>The Python installation directory may be overridden with <code>$UV_PYTHON_INSTALL_DIR</code>.</p>
+<p>To view the directory where uv installs Python executables instead, use the <code>--bin</code> flag. Note that Python executables are only installed when preview mode is enabled.</p>
 <h3 class="cli-reference">Usage</h3>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>uv python dir [OPTIONS]
 </code></pre></div>
 <h3 class="cli-reference">Options</h3>
 
-<dl class="cli-reference"><dt><code>--cache-dir</code> <i>cache-dir</i></dt><dd><p>Path to the cache directory.</p>
+<dl class="cli-reference"><dt><code>--bin</code></dt><dd><p>Show the directory into which <code>uv python</code> will install Python executables.</p>
+
+<p>Note that this directory is only used when installing Python with preview mode enabled.</p>
+
+<p>The Python executable directory is determined according to the XDG standard and is derived from the following environment variables, in order of preference:</p>
+
+<ul>
+<li><code>$UV_PYTHON_BIN_DIR</code></li>
+
+<li><code>$XDG_BIN_HOME</code></li>
+
+<li><code>$XDG_DATA_HOME/../bin</code></li>
+
+<li><code>$HOME/.local/bin</code></li>
+</ul>
+
+</dd><dt><code>--cache-dir</code> <i>cache-dir</i></dt><dd><p>Path to the cache directory.</p>
 
 <p>Defaults to <code>$XDG_CACHE_HOME/uv</code> or <code>$HOME/.cache/uv</code> on macOS and Linux, and <code>%LOCALAPPDATA%\uv\cache</code> on Windows.</p>
 
