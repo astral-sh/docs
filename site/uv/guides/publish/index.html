@@ -2201,18 +2201,23 @@ is disabled, as is the case when using other build tools, like <a href="https://
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="gp">$ </span>uv<span class="w"> </span>publish
 </code></pre></div>
 <p>Set a PyPI token with <code>--token</code> or <code>UV_PUBLISH_TOKEN</code>, or set a username with <code>--username</code> or
-<code>UV_PUBLISH_USERNAME</code> and password with <code>--password</code> or <code>UV_PUBLISH_PASSWORD</code>.</p>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>For publishing to PyPI from GitHub Actions, you don't need to set any credentials. Instead,
+<code>UV_PUBLISH_USERNAME</code> and password with <code>--password</code> or <code>UV_PUBLISH_PASSWORD</code>. For publishing to
+PyPI from GitHub Actions, you don't need to set any credentials. Instead,
 <a href="https://docs.pypi.org/trusted-publishers/adding-a-publisher/">add a trusted publisher to the PyPI project</a>.</p>
-</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>PyPI does not support publishing with username and password anymore, instead you need to
 generate a token. Using a token is equivalent to setting <code>--username __token__</code> and using the
 token as password.</p>
 </div>
+<p>Even though <code>uv publish</code> retries failed uploads, it can happen that publishing fails in the middle,
+with some files uploaded and some files still missing. With PyPI, you can retry the exact same
+command, existing identical files will be ignored. With other registries, use
+<code>--check-url &lt;index url&gt;</code> with the index URL (not the publish URL) the packages belong to. uv will
+skip uploading files that are identical to files in the registry, and it will also handle raced
+parallel uploads. Note that existing files need to match exactly with those previously uploaded to
+the registry, this avoids accidentally publishing source distribution and wheels with different
+contents for the same version.</p>
 <h2 id="installing-your-package"><a class="toclink" href="#installing-your-package">Installing your package</a></h2>
 <p>Test that the package can be installed and imported with <code>uv run</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>--with<span class="w"> </span>&lt;PACKAGE&gt;<span class="w"> </span>--no-project<span class="w"> </span>--<span class="w"> </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import &lt;PACKAGE&gt;&quot;</span>

@@ -2018,159 +2018,182 @@
 
 
 <h1 id="environment-variables"><a class="toclink" href="#environment-variables">Environment variables</a></h1>
-<p>uv accepts the following command-line arguments as environment variables:</p>
+<p>uv respects the following environment variables:</p>
 <ul>
-<li><code>UV_INDEX</code>: Equivalent to the <code>--index</code> command-line argument. If set, uv will use this
-  space-separated list of URLs as additional indexes when searching for packages.</li>
-<li><code>UV_DEFAULT_INDEX</code>: Equivalent to the <code>--default-index</code> command-line argument. If set, uv will use
+<li><a id="UV_DEFAULT_INDEX"></a> <a href="#UV_DEFAULT_INDEX"><code>UV_DEFAULT_INDEX</code></a>: Equivalent to the <code>--default-index</code> command-line argument. If set, uv will use
   this URL as the default index when searching for packages.</li>
-<li><code>UV_INDEX_URL</code>: Equivalent to the <code>--index-url</code> command-line argument. If set, uv will use this
-  URL as the default index when searching for packages. (Deprecated: use <code>UV_DEFAULT_INDEX</code>
-  instead.)</li>
-<li><code>UV_EXTRA_INDEX_URL</code>: Equivalent to the <code>--extra-index-url</code> command-line argument. If set, uv will
+<li><a id="UV_INDEX"></a> <a href="#UV_INDEX"><code>UV_INDEX</code></a>: Equivalent to the <code>--index</code> command-line argument. If set, uv will use this
+  space-separated list of URLs as additional indexes when searching for packages.</li>
+<li><a id="UV_INDEX_URL"></a> <a href="#UV_INDEX_URL"><code>UV_INDEX_URL</code></a>: Equivalent to the <code>--index-url</code> command-line argument. If set, uv will use this
+  URL as the default index when searching for packages.
+  (Deprecated: use <code>UV_DEFAULT_INDEX</code> instead.)</li>
+<li><a id="UV_EXTRA_INDEX_URL"></a> <a href="#UV_EXTRA_INDEX_URL"><code>UV_EXTRA_INDEX_URL</code></a>: Equivalent to the <code>--extra-index-url</code> command-line argument. If set, uv will
   use this space-separated list of URLs as additional indexes when searching for packages.
   (Deprecated: use <code>UV_INDEX</code> instead.)</li>
-<li><code>UV_FIND_LINKS</code>: Equivalent to the <code>--find-links</code> command-line argument. If set, uv will use this
+<li><a id="UV_FIND_LINKS"></a> <a href="#UV_FIND_LINKS"><code>UV_FIND_LINKS</code></a>: Equivalent to the <code>--find-links</code> command-line argument. If set, uv will use this
   comma-separated list of additional locations to search for packages.</li>
-<li><code>UV_CACHE_DIR</code>: Equivalent to the <code>--cache-dir</code> command-line argument. If set, uv will use this
+<li><a id="UV_CACHE_DIR"></a> <a href="#UV_CACHE_DIR"><code>UV_CACHE_DIR</code></a>: Equivalent to the <code>--cache-dir</code> command-line argument. If set, uv will use this
   directory for caching instead of the default cache directory.</li>
-<li><code>UV_NO_CACHE</code>: Equivalent to the <code>--no-cache</code> command-line argument. If set, uv will not use the
+<li><a id="UV_NO_CACHE"></a> <a href="#UV_NO_CACHE"><code>UV_NO_CACHE</code></a>: Equivalent to the <code>--no-cache</code> command-line argument. If set, uv will not use the
   cache for any operations.</li>
-<li><code>UV_RESOLUTION</code>: Equivalent to the <code>--resolution</code> command-line argument. For example, if set to
+<li><a id="UV_RESOLUTION"></a> <a href="#UV_RESOLUTION"><code>UV_RESOLUTION</code></a>: Equivalent to the <code>--resolution</code> command-line argument. For example, if set to
   <code>lowest-direct</code>, uv will install the lowest compatible versions of all direct dependencies.</li>
-<li><code>UV_PRERELEASE</code>: Equivalent to the <code>--prerelease</code> command-line argument. For example, if set to
+<li><a id="UV_PRERELEASE"></a> <a href="#UV_PRERELEASE"><code>UV_PRERELEASE</code></a>: Equivalent to the <code>--prerelease</code> command-line argument. For example, if set to
   <code>allow</code>, uv will allow pre-release versions for all dependencies.</li>
-<li><code>UV_SYSTEM_PYTHON</code>: Equivalent to the <code>--system</code> command-line argument. If set to <code>true</code>, uv will
-  use the first Python interpreter found in the system <code>PATH</code>. WARNING: <code>UV_SYSTEM_PYTHON=true</code> is
-  intended for use in continuous integration (CI) or containerized environments and should be used
-  with caution, as modifying the system Python can lead to unexpected behavior.</li>
-<li><code>UV_PYTHON</code>: Equivalent to the <code>--python</code> command-line argument. If set to a path, uv will use
+<li><a id="UV_SYSTEM_PYTHON"></a> <a href="#UV_SYSTEM_PYTHON"><code>UV_SYSTEM_PYTHON</code></a>: Equivalent to the <code>--system</code> command-line argument. If set to <code>true</code>, uv will
+  use the first Python interpreter found in the system <code>PATH</code>.
+  WARNING: <code>UV_SYSTEM_PYTHON=true</code> is intended for use in continuous integration (CI)
+  or containerized environments and should be used with caution, as modifying the system
+  Python can lead to unexpected behavior.</li>
+<li><a id="UV_PYTHON"></a> <a href="#UV_PYTHON"><code>UV_PYTHON</code></a>: Equivalent to the <code>--python</code> command-line argument. If set to a path, uv will use
   this Python interpreter for all operations.</li>
-<li><code>UV_BREAK_SYSTEM_PACKAGES</code>: Equivalent to the <code>--break-system-packages</code> command-line argument. If
-  set to <code>true</code>, uv will allow the installation of packages that conflict with system-installed
-  packages. WARNING: <code>UV_BREAK_SYSTEM_PACKAGES=true</code> is intended for use in continuous integration
-  (CI) or containerized environments and should be used with caution, as modifying the system Python
-  can lead to unexpected behavior.</li>
-<li><code>UV_NATIVE_TLS</code>: Equivalent to the <code>--native-tls</code> command-line argument. If set to <code>true</code>, uv will
+<li><a id="UV_BREAK_SYSTEM_PACKAGES"></a> <a href="#UV_BREAK_SYSTEM_PACKAGES"><code>UV_BREAK_SYSTEM_PACKAGES</code></a>: Equivalent to the <code>--break-system-packages</code> command-line argument. If set to <code>true</code>,
+  uv will allow the installation of packages that conflict with system-installed packages.
+  WARNING: <code>UV_BREAK_SYSTEM_PACKAGES=true</code> is intended for use in continuous integration
+  (CI) or containerized environments and should be used with caution, as modifying the system
+  Python can lead to unexpected behavior.</li>
+<li><a id="UV_NATIVE_TLS"></a> <a href="#UV_NATIVE_TLS"><code>UV_NATIVE_TLS</code></a>: Equivalent to the <code>--native-tls</code> command-line argument. If set to <code>true</code>, uv will
   use the system's trust store instead of the bundled <code>webpki-roots</code> crate.</li>
-<li><code>UV_INDEX_STRATEGY</code>: Equivalent to the <code>--index-strategy</code> command-line argument. For example, if
+<li><a id="UV_INDEX_STRATEGY"></a> <a href="#UV_INDEX_STRATEGY"><code>UV_INDEX_STRATEGY</code></a>: Equivalent to the <code>--index-strategy</code> command-line argument. For example, if
   set to <code>unsafe-any-match</code>, uv will consider versions of a given package available across all index
   URLs, rather than limiting its search to the first index URL that contains the package.</li>
-<li><code>UV_REQUIRE_HASHES</code>: Equivalent to the <code>--require-hashes</code> command-line argument. If set to <code>true</code>,
+<li><a id="UV_REQUIRE_HASHES"></a> <a href="#UV_REQUIRE_HASHES"><code>UV_REQUIRE_HASHES</code></a>: Equivalent to the <code>--require-hashes</code> command-line argument. If set to <code>true</code>,
   uv will require that all dependencies have a hash specified in the requirements file.</li>
-<li><code>UV_CONSTRAINT</code>: Equivalent to the <code>--constraint</code> command-line argument. If set, uv will use this
+<li><a id="UV_CONSTRAINT"></a> <a href="#UV_CONSTRAINT"><code>UV_CONSTRAINT</code></a>: Equivalent to the <code>--constraint</code> command-line argument. If set, uv will use this
   file as the constraints file. Uses space-separated list of files.</li>
-<li><code>UV_BUILD_CONSTRAINT</code>: Equivalent to the <code>--build-constraint</code> command-line argument. If set, uv
-  will use this file as constraints for any source distribution builds. Uses space-separated list of
-  files.</li>
-<li><code>UV_OVERRIDE</code>: Equivalent to the <code>--override</code> command-line argument. If set, uv will use this file
+<li><a id="UV_BUILD_CONSTRAINT"></a> <a href="#UV_BUILD_CONSTRAINT"><code>UV_BUILD_CONSTRAINT</code></a>: Equivalent to the <code>--build-constraint</code> command-line argument. If set, uv will use this file
+  as constraints for any source distribution builds. Uses space-separated list of files.</li>
+<li><a id="UV_OVERRIDE"></a> <a href="#UV_OVERRIDE"><code>UV_OVERRIDE</code></a>: Equivalent to the <code>--override</code> command-line argument. If set, uv will use this file
   as the overrides file. Uses space-separated list of files.</li>
-<li><code>UV_LINK_MODE</code>: Equivalent to the <code>--link-mode</code> command-line argument. If set, uv will use this as
+<li><a id="UV_LINK_MODE"></a> <a href="#UV_LINK_MODE"><code>UV_LINK_MODE</code></a>: Equivalent to the <code>--link-mode</code> command-line argument. If set, uv will use this as
   a link mode.</li>
-<li><code>UV_NO_BUILD_ISOLATION</code>: Equivalent to the <code>--no-build-isolation</code> command-line argument. If set,
-  uv will skip isolation when building source distributions.</li>
-<li><code>UV_CUSTOM_COMPILE_COMMAND</code>: Equivalent to the <code>--custom-compile-command</code> command-line argument.
+<li><a id="UV_NO_BUILD_ISOLATION"></a> <a href="#UV_NO_BUILD_ISOLATION"><code>UV_NO_BUILD_ISOLATION</code></a>: Equivalent to the <code>--no-build-isolation</code> command-line argument. If set, uv will
+  skip isolation when building source distributions.</li>
+<li><a id="UV_CUSTOM_COMPILE_COMMAND"></a> <a href="#UV_CUSTOM_COMPILE_COMMAND"><code>UV_CUSTOM_COMPILE_COMMAND</code></a>: Equivalent to the <code>--custom-compile-command</code> command-line argument.
   Used to override uv in the output header of the <code>requirements.txt</code> files generated by
   <code>uv pip compile</code>. Intended for use-cases in which <code>uv pip compile</code> is called from within a wrapper
   script, to include the name of the wrapper script in the output file.</li>
-<li><code>UV_KEYRING_PROVIDER</code>: Equivalent to the <code>--keyring-provider</code> command-line argument. If set, uv
+<li><a id="UV_KEYRING_PROVIDER"></a> <a href="#UV_KEYRING_PROVIDER"><code>UV_KEYRING_PROVIDER</code></a>: Equivalent to the <code>--keyring-provider</code> command-line argument. If set, uv
   will use this value as the keyring provider.</li>
-<li><code>UV_CONFIG_FILE</code>: Equivalent to the <code>--config-file</code> command-line argument. Expects a path to a
+<li><a id="UV_CONFIG_FILE"></a> <a href="#UV_CONFIG_FILE"><code>UV_CONFIG_FILE</code></a>: Equivalent to the <code>--config-file</code> command-line argument. Expects a path to a
   local <code>uv.toml</code> file to use as the configuration file.</li>
-<li><code>UV_NO_CONFIG</code>: Equivalent to the <code>--no-config</code> command-line argument. If set, uv will not read
+<li><a id="UV_NO_CONFIG"></a> <a href="#UV_NO_CONFIG"><code>UV_NO_CONFIG</code></a>: Equivalent to the <code>--no-config</code> command-line argument. If set, uv will not read
   any configuration files from the current directory, parent directories, or user configuration
   directories.</li>
-<li><code>UV_EXCLUDE_NEWER</code>: Equivalent to the <code>--exclude-newer</code> command-line argument. If set, uv will
+<li><a id="UV_EXCLUDE_NEWER"></a> <a href="#UV_EXCLUDE_NEWER"><code>UV_EXCLUDE_NEWER</code></a>: Equivalent to the <code>--exclude-newer</code> command-line argument. If set, uv will
   exclude distributions published after the specified date.</li>
-<li><code>UV_PYTHON_PREFERENCE</code>: Equivalent to the <code>--python-preference</code> command-line argument. Whether uv
+<li><a id="UV_PYTHON_PREFERENCE"></a> <a href="#UV_PYTHON_PREFERENCE"><code>UV_PYTHON_PREFERENCE</code></a>: Equivalent to the <code>--python-preference</code> command-line argument. Whether uv
   should prefer system or managed Python versions.</li>
-<li><code>UV_PYTHON_DOWNLOADS</code>: Equivalent to the
+<li><a id="UV_PYTHON_DOWNLOADS"></a> <a href="#UV_PYTHON_DOWNLOADS"><code>UV_PYTHON_DOWNLOADS</code></a>: Equivalent to the
   <a href="../../reference/settings/#python-downloads"><code>python-downloads</code></a> setting and, when disabled, the
   <code>--no-python-downloads</code> option. Whether uv should allow Python downloads.</li>
-<li><code>UV_COMPILE_BYTECODE</code>: Equivalent to the <code>--compile-bytecode</code> command-line argument. If set, uv
+<li><a id="UV_COMPILE_BYTECODE"></a> <a href="#UV_COMPILE_BYTECODE"><code>UV_COMPILE_BYTECODE</code></a>: Equivalent to the <code>--compile-bytecode</code> command-line argument. If set, uv
   will compile Python source files to bytecode after installation.</li>
-<li><code>UV_PUBLISH_URL</code>: Equivalent to the <code>--publish-url</code> command-line argument. The URL of the upload
+<li><a id="UV_PUBLISH_URL"></a> <a href="#UV_PUBLISH_URL"><code>UV_PUBLISH_URL</code></a>: Equivalent to the <code>--publish-url</code> command-line argument. The URL of the upload
   endpoint of the index to use with <code>uv publish</code>.</li>
-<li><code>UV_PUBLISH_TOKEN</code>: Equivalent to the <code>--token</code> command-line argument in <code>uv publish</code>. If set, uv
+<li><a id="UV_PUBLISH_TOKEN"></a> <a href="#UV_PUBLISH_TOKEN"><code>UV_PUBLISH_TOKEN</code></a>: Equivalent to the <code>--token</code> command-line argument in <code>uv publish</code>. If set, uv
   will use this token (with the username <code>__token__</code>) for publishing.</li>
-<li><code>UV_PUBLISH_USERNAME</code>: Equivalent to the <code>--username</code> command-line argument in <code>uv publish</code>. If
+<li><a id="UV_PUBLISH_USERNAME"></a> <a href="#UV_PUBLISH_USERNAME"><code>UV_PUBLISH_USERNAME</code></a>: Equivalent to the <code>--username</code> command-line argument in <code>uv publish</code>. If
   set, uv will use this username for publishing.</li>
-<li><code>UV_PUBLISH_PASSWORD</code>: Equivalent to the <code>--password</code> command-line argument in <code>uv publish</code>. If
+<li><a id="UV_PUBLISH_PASSWORD"></a> <a href="#UV_PUBLISH_PASSWORD"><code>UV_PUBLISH_PASSWORD</code></a>: Equivalent to the <code>--password</code> command-line argument in <code>uv publish</code>. If
   set, uv will use this password for publishing.</li>
-<li><code>UV_NO_SYNC</code>: Equivalent to the <code>--no-sync</code> command-line argument. If set, uv will skip updating
+<li><a id="UV_PUBLISH_CHECK_URL"></a> <a href="#UV_PUBLISH_CHECK_URL"><code>UV_PUBLISH_CHECK_URL</code></a>: Don't upload a file if it already exists on the index. The value is the URL of the index.</li>
+<li><a id="UV_NO_SYNC"></a> <a href="#UV_NO_SYNC"><code>UV_NO_SYNC</code></a>: Equivalent to the <code>--no-sync</code> command-line argument. If set, uv will skip updating
   the environment.</li>
-<li><code>UV_LOCKED</code>: Equivalent to the <code>--locked</code> command-line argument. If set, uv will assert that the
+<li><a id="UV_LOCKED"></a> <a href="#UV_LOCKED"><code>UV_LOCKED</code></a>: Equivalent to the <code>--locked</code> command-line argument. If set, uv will assert that the
   <code>uv.lock</code> remains unchanged.</li>
-<li><code>UV_FROZEN</code>: Equivalent to the <code>--frozen</code> command-line argument. If set, uv will run without
+<li><a id="UV_FROZEN"></a> <a href="#UV_FROZEN"><code>UV_FROZEN</code></a>: Equivalent to the <code>--frozen</code> command-line argument. If set, uv will run without
   updating the <code>uv.lock</code> file.</li>
-</ul>
-<p>In each case, the corresponding command-line argument takes precedence over an environment variable.</p>
-<p>In addition, uv respects the following environment variables:</p>
-<ul>
-<li><code>UV_CONCURRENT_DOWNLOADS</code>: Sets the maximum number of in-flight concurrent downloads that uv will
+<li><a id="UV_PREVIEW"></a> <a href="#UV_PREVIEW"><code>UV_PREVIEW</code></a>: Equivalent to the <code>--preview</code> argument. Enables preview mode.</li>
+<li><a id="UV_GITHUB_TOKEN"></a> <a href="#UV_GITHUB_TOKEN"><code>UV_GITHUB_TOKEN</code></a>: Equivalent to the <code>--token</code> argument for self update. A GitHub token for authentication.</li>
+<li><a id="UV_VERIFY_HASHES"></a> <a href="#UV_VERIFY_HASHES"><code>UV_VERIFY_HASHES</code></a>: Equivalent to the <code>--verify-hashes</code> argument. Verifies included hashes.</li>
+<li><a id="UV_INSECURE_HOST"></a> <a href="#UV_INSECURE_HOST"><code>UV_INSECURE_HOST</code></a>: Equivalent to the <code>--allow-insecure-host</code> argument.</li>
+<li><a id="UV_CONCURRENT_DOWNLOADS"></a> <a href="#UV_CONCURRENT_DOWNLOADS"><code>UV_CONCURRENT_DOWNLOADS</code></a>: Sets the maximum number of in-flight concurrent downloads that uv will
   perform at any given time.</li>
-<li><code>UV_CONCURRENT_BUILDS</code>: Sets the maximum number of source distributions that uv will build
+<li><a id="UV_CONCURRENT_BUILDS"></a> <a href="#UV_CONCURRENT_BUILDS"><code>UV_CONCURRENT_BUILDS</code></a>: Sets the maximum number of source distributions that uv will build
   concurrently at any given time.</li>
-<li><code>UV_CONCURRENT_INSTALLS</code>: Used to control the number of threads used when installing and unzipping
+<li><a id="UV_CONCURRENT_INSTALLS"></a> <a href="#UV_CONCURRENT_INSTALLS"><code>UV_CONCURRENT_INSTALLS</code></a>: Controls the number of threads used when installing and unzipping
   packages.</li>
-<li><code>UV_TOOL_DIR</code>: Used to specify the directory where uv will store managed tools.</li>
-<li><code>UV_TOOL_BIN_DIR</code>: Used to specify the "bin" directory where uv will install tool executables.</li>
-<li><code>UV_PROJECT_ENVIRONMENT</code>: Use to specify the path to the directory to use for a project virtual
-  environment. See the
-  <a href="../../concepts/projects/#configuring-the-project-environment-path">project documentation</a> for more
-  details.</li>
-<li><code>UV_PYTHON_INSTALL_DIR</code>: Used to specify the directory where uv will store managed Python
-  installations.</li>
-<li><code>UV_PYTHON_INSTALL_MIRROR</code>: Managed Python installations are downloaded from
-  <a href="https://github.com/indygreg/python-build-standalone"><code>python-build-standalone</code></a>. This variable
-  can be set to a mirror URL to use a different source for Python installations. The provided URL
-  will replace <code>https://github.com/indygreg/python-build-standalone/releases/download</code> in, e.g.,
+<li><a id="UV_NO_PROGRESS"></a> <a href="#UV_NO_PROGRESS"><code>UV_NO_PROGRESS</code></a>: Disables all progress output. For example, spinners and progress bars.</li>
+<li><a id="UV_TOOL_DIR"></a> <a href="#UV_TOOL_DIR"><code>UV_TOOL_DIR</code></a>: Specifies the directory where uv stores managed tools.</li>
+<li><a id="UV_TOOL_BIN_DIR"></a> <a href="#UV_TOOL_BIN_DIR"><code>UV_TOOL_BIN_DIR</code></a>: Specifies the "bin" directory for installing tool executables.</li>
+<li><a id="UV_PROJECT_ENVIRONMENT"></a> <a href="#UV_PROJECT_ENVIRONMENT"><code>UV_PROJECT_ENVIRONMENT</code></a>: Specifies the path to the directory to use for a project virtual environment.
+  See the <a href="../../concepts/projects/#configuring-the-project-environment-path">project documentation</a>
+  for more details.</li>
+<li><a id="UV_PYTHON_BIN_DIR"></a> <a href="#UV_PYTHON_BIN_DIR"><code>UV_PYTHON_BIN_DIR</code></a>: Specifies the directory to place links to installed, managed Python executables.</li>
+<li><a id="UV_PYTHON_INSTALL_DIR"></a> <a href="#UV_PYTHON_INSTALL_DIR"><code>UV_PYTHON_INSTALL_DIR</code></a>: Specifies the directory for storing managed Python installations.</li>
+<li><a id="UV_PYTHON_INSTALL_MIRROR"></a> <a href="#UV_PYTHON_INSTALL_MIRROR"><code>UV_PYTHON_INSTALL_MIRROR</code></a>: Managed Python installations are downloaded from
+  <a href="https://github.com/indygreg/python-build-standalone"><code>python-build-standalone</code></a>.
+  This variable can be set to a mirror URL to use a different source for Python installations.
+  The provided URL will replace <code>https://github.com/indygreg/python-build-standalone/releases/download</code> in, e.g.,
   <code>https://github.com/indygreg/python-build-standalone/releases/download/20240713/cpython-3.12.4%2B20240713-aarch64-apple-darwin-install_only.tar.gz</code>.
   Distributions can be read from a local directory by using the <code>file://</code> URL scheme.</li>
-<li><code>UV_PYPY_INSTALL_MIRROR</code>: Managed PyPy installations are downloaded from
+<li><a id="UV_PYPY_INSTALL_MIRROR"></a> <a href="#UV_PYPY_INSTALL_MIRROR"><code>UV_PYPY_INSTALL_MIRROR</code></a>: Managed PyPy installations are downloaded from
   <a href="https://downloads.python.org/">python.org</a>. This variable can be set to a mirror URL to use a
   different source for PyPy installations. The provided URL will replace
   <code>https://downloads.python.org/pypy</code> in, e.g.,
-  <code>https://downloads.python.org/pypy/pypy3.8-v7.3.7-osx64.tar.bz2</code>. Distributions can be read from a
-  local directory by using the <code>file://</code> URL scheme.</li>
-<li><code>XDG_CONFIG_HOME</code>: Used to specify the path to uv user-level configuration directory on Unix
-  systems.</li>
-<li><code>XDG_CACHE_HOME</code>: Used to specify the directory where uv stores cache files on Unix systems.</li>
-<li><code>XDG_DATA_HOME</code>: Used to specify the directory where uv stores managed Python installations and
-  managed tools on Unix systems.</li>
-<li><code>XDG_BIN_HOME</code>: Used to specify the directory where executables are installed into.</li>
-<li><code>SSL_CERT_FILE</code>: If set, uv will use this file as the certificate bundle instead of the system's
-  trust store.</li>
-<li><code>SSL_CLIENT_CERT</code>: If set, uv will use this file for mTLS authentication. This should be a single
-  file containing both the certificate and the private key in PEM format.</li>
-<li><code>RUST_LOG</code>: If set, uv will use this value as the log level for its <code>--verbose</code> output. Accepts
-  any filter compatible with the <code>tracing_subscriber</code> crate. For example, <code>RUST_LOG=trace</code> will
-  enable trace-level logging. See the
-  <a href="https://docs.rs/tracing-subscriber/latest/tracing_subscriber/filter/struct.EnvFilter.html#example-syntax">tracing documentation</a>
-  for more.</li>
-<li><code>HTTP_PROXY</code>, <code>HTTPS_PROXY</code>, <code>ALL_PROXY</code>: The proxy to use for all HTTP/HTTPS requests.</li>
-<li><code>HTTP_TIMEOUT</code> (or <code>UV_HTTP_TIMEOUT</code>): If set, uv will use this value (in seconds) as the timeout
-  for HTTP reads (default: 30 s).</li>
-<li><code>NETRC</code>: If set, uv will read authentication information from this file instead of <code>~/.netrc</code>.</li>
-<li><code>PYC_INVALIDATION_MODE</code>: The validation modes to use when run with <code>--compile</code>. See:
-  <a href="https://docs.python.org/3/library/py_compile.html#py_compile.PycInvalidationMode"><code>PycInvalidationMode</code></a>.</li>
-<li><code>VIRTUAL_ENV</code>: Used to detect an activated virtual environment.</li>
-<li><code>CONDA_PREFIX</code>: Used to detect an activated Conda environment.</li>
-<li><code>PROMPT</code>: Used to detect the use of the Windows Command Prompt (as opposed to PowerShell).</li>
-<li><code>VIRTUAL_ENV_DISABLE_PROMPT</code>: If set to <code>1</code> before a virtual environment is activated, then the
+  <code>https://downloads.python.org/pypy/pypy3.8-v7.3.7-osx64.tar.bz2</code>.
+  Distributions can be read from a local directory by using the <code>file://</code> URL scheme.</li>
+<li><a id="UV_NO_WRAP"></a> <a href="#UV_NO_WRAP"><code>UV_NO_WRAP</code></a>: Use to disable line wrapping for diagnostics.</li>
+<li><a id="UV_STACK_SIZE"></a> <a href="#UV_STACK_SIZE"><code>UV_STACK_SIZE</code></a>: Use to control the stack size used by uv. Typically more relevant for Windows in debug mode.</li>
+<li><a id="UV_INDEX_{name}_USERNAME"></a> <a href="#UV_INDEX_{name}_USERNAME"><code>UV_INDEX_{name}_USERNAME</code></a>: Generates the environment variable key for the HTTP Basic authentication username.</li>
+<li><a id="UV_INDEX_{name}_PASSWORD"></a> <a href="#UV_INDEX_{name}_PASSWORD"><code>UV_INDEX_{name}_PASSWORD</code></a>: Generates the environment variable key for the HTTP Basic authentication password.</li>
+<li><a id="XDG_CONFIG_DIRS"></a> <a href="#XDG_CONFIG_DIRS"><code>XDG_CONFIG_DIRS</code></a>: Path to system-level configuration directory on Unix systems.</li>
+<li><a id="SYSTEMDRIVE"></a> <a href="#SYSTEMDRIVE"><code>SYSTEMDRIVE</code></a>: Path to system-level configuration directory on Windows systems.</li>
+<li><a id="XDG_CONFIG_HOME"></a> <a href="#XDG_CONFIG_HOME"><code>XDG_CONFIG_HOME</code></a>: Path to user-level configuration directory on Unix systems.</li>
+<li><a id="XDG_CACHE_HOME"></a> <a href="#XDG_CACHE_HOME"><code>XDG_CACHE_HOME</code></a>: Path to cache directory on Unix systems.</li>
+<li><a id="XDG_DATA_HOME"></a> <a href="#XDG_DATA_HOME"><code>XDG_DATA_HOME</code></a>: Path to directory for storing managed Python installations and tools.</li>
+<li><a id="XDG_BIN_HOME"></a> <a href="#XDG_BIN_HOME"><code>XDG_BIN_HOME</code></a>: Path to directory where executables are installed.</li>
+<li><a id="SSL_CERT_FILE"></a> <a href="#SSL_CERT_FILE"><code>SSL_CERT_FILE</code></a>: Custom certificate bundle file path for SSL connections.</li>
+<li><a id="SSL_CLIENT_CERT"></a> <a href="#SSL_CLIENT_CERT"><code>SSL_CLIENT_CERT</code></a>: If set, uv will use this file for mTLS authentication.
+  This should be a single file containing both the certificate and the private key in PEM format.</li>
+<li><a id="HTTP_PROXY"></a> <a href="#HTTP_PROXY"><code>HTTP_PROXY</code></a>: Proxy for HTTP requests.</li>
+<li><a id="HTTPS_PROXY"></a> <a href="#HTTPS_PROXY"><code>HTTPS_PROXY</code></a>: Proxy for HTTPS requests.</li>
+<li><a id="ALL_PROXY"></a> <a href="#ALL_PROXY"><code>ALL_PROXY</code></a>: General proxy for all network requests.</li>
+<li><a id="UV_HTTP_TIMEOUT"></a> <a href="#UV_HTTP_TIMEOUT"><code>UV_HTTP_TIMEOUT</code></a>: Timeout (in seconds) for HTTP requests. (default: 30 s)</li>
+<li><a id="UV_REQUEST_TIMEOUT"></a> <a href="#UV_REQUEST_TIMEOUT"><code>UV_REQUEST_TIMEOUT</code></a>: Timeout (in seconds) for HTTP requests. Equivalent to <code>UV_HTTP_TIMEOUT</code>.</li>
+<li><a id="HTTP_TIMEOUT"></a> <a href="#HTTP_TIMEOUT"><code>HTTP_TIMEOUT</code></a>: Timeout (in seconds) for HTTP requests. Equivalent to <code>UV_HTTP_TIMEOUT</code>.</li>
+<li><a id="PYC_INVALIDATION_MODE"></a> <a href="#PYC_INVALIDATION_MODE"><code>PYC_INVALIDATION_MODE</code></a>: The validation modes to use when run with <code>--compile</code>.
+  See <a href="https://docs.python.org/3/library/py_compile.html#py_compile.PycInvalidationMode"><code>PycInvalidationMode</code></a>.</li>
+<li><a id="VIRTUAL_ENV"></a> <a href="#VIRTUAL_ENV"><code>VIRTUAL_ENV</code></a>: Used to detect an activated virtual environment.</li>
+<li><a id="CONDA_PREFIX"></a> <a href="#CONDA_PREFIX"><code>CONDA_PREFIX</code></a>: Used to detect an activated Conda environment.</li>
+<li><a id="VIRTUAL_ENV_DISABLE_PROMPT"></a> <a href="#VIRTUAL_ENV_DISABLE_PROMPT"><code>VIRTUAL_ENV_DISABLE_PROMPT</code></a>: If set to <code>1</code> before a virtual environment is activated, then the
   virtual environment name will not be prepended to the terminal prompt.</li>
-<li><code>NU_VERSION</code>: Used to detect the use of NuShell.</li>
-<li><code>FISH_VERSION</code>: Used to detect the use of the Fish shell.</li>
-<li><code>BASH_VERSION</code>: Used to detect the use of the Bash shell.</li>
-<li><code>ZSH_VERSION</code>: Used to detect the use of the Zsh shell.</li>
-<li><code>MACOSX_DEPLOYMENT_TARGET</code>: Used with <code>--python-platform macos</code> and related variants to set the
-  deployment target (i.e., the minimum supported macOS version). Defaults to <code>12.0</code>, the
-  least-recent non-EOL macOS version at time of writing.</li>
-<li><code>NO_COLOR</code>: Disable colors. Takes precedence over <code>FORCE_COLOR</code>. See
-  <a href="https://no-color.org">no-color.org</a>.</li>
-<li><code>UV_NO_PROGRESS</code>: Disable progress indicators like spinners and progress bars.</li>
-<li><code>FORCE_COLOR</code>: Enforce colors regardless of TTY support. See
-  <a href="https://force-color.org">force-color.org</a>.</li>
+<li><a id="PROMPT"></a> <a href="#PROMPT"><code>PROMPT</code></a>: Used to detect the use of the Windows Command Prompt (as opposed to PowerShell).</li>
+<li><a id="NU_VERSION"></a> <a href="#NU_VERSION"><code>NU_VERSION</code></a>: Used to detect <code>NuShell</code> usage.</li>
+<li><a id="FISH_VERSION"></a> <a href="#FISH_VERSION"><code>FISH_VERSION</code></a>: Used to detect Fish shell usage.</li>
+<li><a id="BASH_VERSION"></a> <a href="#BASH_VERSION"><code>BASH_VERSION</code></a>: Used to detect Bash shell usage.</li>
+<li><a id="ZSH_VERSION"></a> <a href="#ZSH_VERSION"><code>ZSH_VERSION</code></a>: Used to detect Zsh shell usage.</li>
+<li><a id="ZDOTDIR"></a> <a href="#ZDOTDIR"><code>ZDOTDIR</code></a>: Used to determine which <code>.zshenv</code> to use when Zsh is being used.</li>
+<li><a id="KSH_VERSION"></a> <a href="#KSH_VERSION"><code>KSH_VERSION</code></a>: Used to detect Ksh shell usage.</li>
+<li><a id="MACOSX_DEPLOYMENT_TARGET"></a> <a href="#MACOSX_DEPLOYMENT_TARGET"><code>MACOSX_DEPLOYMENT_TARGET</code></a>: Used with <code>--python-platform macos</code> and related variants to set the
+  deployment target (i.e., the minimum supported macOS version).
+  Defaults to <code>12.0</code>, the least-recent non-EOL macOS version at time of writing.</li>
+<li><a id="NO_COLOR"></a> <a href="#NO_COLOR"><code>NO_COLOR</code></a>: Disables colored output (takes precedence over <code>FORCE_COLOR</code>).
+  See <a href="https://no-color.org">no-color.org</a>.</li>
+<li><a id="FORCE_COLOR"></a> <a href="#FORCE_COLOR"><code>FORCE_COLOR</code></a>: Forces colored output regardless of terminal support.
+  See <a href="https://force-color.org">force-color.org</a>.</li>
+<li><a id="CLICOLOR_FORCE"></a> <a href="#CLICOLOR_FORCE"><code>CLICOLOR_FORCE</code></a>: Use to control color via <code>anstyle</code>.</li>
+<li><a id="PATH"></a> <a href="#PATH"><code>PATH</code></a>: The standard <code>PATH</code> env var.</li>
+<li><a id="HOME"></a> <a href="#HOME"><code>HOME</code></a>: The standard <code>HOME</code> env var.</li>
+<li><a id="SHELL"></a> <a href="#SHELL"><code>SHELL</code></a>: The standard <code>SHELL</code> posix env var.</li>
+<li><a id="PWD"></a> <a href="#PWD"><code>PWD</code></a>: The standard <code>PWD</code> posix env var.</li>
+<li><a id="LOCALAPPDATA"></a> <a href="#LOCALAPPDATA"><code>LOCALAPPDATA</code></a>: Used to look for Microsoft Store Pythons installations.</li>
+<li><a id="GITHUB_ACTIONS"></a> <a href="#GITHUB_ACTIONS"><code>GITHUB_ACTIONS</code></a>: Used for trusted publishing via <code>uv publish</code>.</li>
+<li><a id="ACTIONS_ID_TOKEN_REQUEST_URL"></a> <a href="#ACTIONS_ID_TOKEN_REQUEST_URL"><code>ACTIONS_ID_TOKEN_REQUEST_URL</code></a>: Used for trusted publishing via <code>uv publish</code>. Contains the oidc token url.</li>
+<li><a id="ACTIONS_ID_TOKEN_REQUEST_TOKEN"></a> <a href="#ACTIONS_ID_TOKEN_REQUEST_TOKEN"><code>ACTIONS_ID_TOKEN_REQUEST_TOKEN</code></a>: Used for trusted publishing via <code>uv publish</code>. Contains the oidc request token.</li>
+<li><a id="PYTHONPATH"></a> <a href="#PYTHONPATH"><code>PYTHONPATH</code></a>: Adds directories to Python module search path (e.g., PYTHONPATH=/path/to/modules).</li>
+<li><a id="NETRC"></a> <a href="#NETRC"><code>NETRC</code></a>: Use to set the .netrc file location.</li>
+<li><a id="PAGER"></a> <a href="#PAGER"><code>PAGER</code></a>: The standard <code>PAGER</code> posix env var. Used by <code>uv</code> to configure the appropriate pager.</li>
+<li><a id="JPY_SESSION_NAME"></a> <a href="#JPY_SESSION_NAME"><code>JPY_SESSION_NAME</code></a>: Used to detect when running inside a Jupyter notebook.</li>
+<li><a id="TRACING_DURATIONS_FILE"></a> <a href="#TRACING_DURATIONS_FILE"><code>TRACING_DURATIONS_FILE</code></a>: Use to create the tracing durations file via the <code>tracing-durations-export</code> feature.</li>
+<li><a id="RUST_LOG"></a> <a href="#RUST_LOG"><code>RUST_LOG</code></a>: If set, uv will use this value as the log level for its <code>--verbose</code> output. Accepts
+  any filter compatible with the <code>tracing_subscriber</code> crate.
+  For example, <code>RUST_LOG=trace</code> will enable trace-level logging.
+  See the <a href="https://docs.rs/tracing-subscriber/latest/tracing_subscriber/filter/struct.EnvFilter.html#example-syntax">tracing documentation</a>
+  for more.</li>
+<li><a id="UV_ENV_FILE"></a> <a href="#UV_ENV_FILE"><code>UV_ENV_FILE</code></a>: <code>.env</code> files from which to load environment variables when executing <code>uv run</code> commands.</li>
+<li><a id="UV_NO_ENV_FILE"></a> <a href="#UV_NO_ENV_FILE"><code>UV_NO_ENV_FILE</code></a>: Ignore <code>.env</code> files when executing <code>uv run</code> commands.</li>
 </ul>
 
 

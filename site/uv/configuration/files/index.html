@@ -1113,6 +1113,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#env" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        .env
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#configuring-the-pip-interface" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2076,6 +2087,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#env" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        .env
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#configuring-the-pip-interface" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2159,6 +2181,22 @@ as the configuration file. When provided, this file will be used in place of <em
 configuration files (e.g., user-level configuration will be ignored).</p>
 <h2 id="settings"><a class="toclink" href="#settings">Settings</a></h2>
 <p>See the <a href="../../reference/settings/">settings reference</a> for an enumeration of the available settings.</p>
+<h2 id="env"><a class="toclink" href="#env"><code>.env</code></a></h2>
+<p><code>uv run</code> can load environment variables from dotenv files (e.g., <code>.env</code>, <code>.env.local</code>,
+<code>.env.development</code>), powered by the <a href="https://github.com/allan2/dotenvy"><code>dotenvy</code></a> crate.</p>
+<p>To load a <code>.env</code> file from a dedicated location, set the <code>UV_ENV_FILE</code> environment variable, or pass
+the <code>--env-file</code> flag to <code>uv run</code>.</p>
+<p>For example, to load environment variables from a <code>.env</code> file in the current working directory:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>--env-file<span class="w"> </span>.env<span class="w"> </span>--<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$MY_ENV_VAR</span>
+</code></pre></div>
+<p>The <code>--env-file</code> flag can be provided multiple times, with subsequent files overriding values
+defined in previous files. To provide multiple files via the <code>UV_ENV_FILE</code> environment variable,
+separate the paths with a space (e.g., <code>UV_ENV_FILE="/path/to/file1 /path/to/file2"</code>).</p>
+<p>To disable dotenv loading (e.g., to override <code>UV_ENV_FILE</code> or the <code>--env-file</code> command-line
+argument), set the <code>UV_NO_ENV_FILE</code> environment variable to <code>1</code>, or pass the<code>--no-env-file</code> flag to
+<code>uv run</code>.</p>
+<p>If the same variable is defined in the environment and in a <code>.env</code> file, the value from the
+environment will take precedence.</p>
 <h2 id="configuring-the-pip-interface"><a class="toclink" href="#configuring-the-pip-interface">Configuring the pip interface</a></h2>
 <p>A dedicated <a href="../../reference/settings/#pip"><code>[tool.uv.pip]</code></a> section is provided for configuring
 <em>just</em> the <code>uv pip</code> command line interface. Settings in this section will not apply to <code>uv</code> commands
@@ -2171,8 +2209,8 @@ to retain compatibility while allowing the global settings to use alternate desi
 <p>As an example, setting the <code>index-url</code> under <code>[tool.uv.pip]</code>, as in the following <code>pyproject.toml</code>,
 would only affect the <code>uv pip</code> subcommands (e.g., <code>uv pip install</code>, but not <code>uv sync</code>, <code>uv lock</code>, or
 <code>uv run</code>):</p>
-<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">[tool.uv.pip]</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">index-url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://test.pypi.org/simple&quot;</span>
+<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">[tool.uv.pip]</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">index-url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://test.pypi.org/simple&quot;</span>
 </code></pre></div>
 
 
