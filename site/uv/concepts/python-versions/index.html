@@ -964,6 +964,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Requesting a version">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#python-version-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Python version files
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2228,6 +2245,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Requesting a version">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#python-version-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Python version files
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2434,6 +2468,14 @@ create the virtual environment with it.</p>
 <p>By default, uv will automatically download Python versions if they cannot be found on the system.
 This behavior can be
 <a href="#disabling-automatic-python-downloads">disabled with the <code>python-downloads</code> option</a>.</p>
+<h3 id="python-version-files"><a class="toclink" href="#python-version-files">Python version files</a></h3>
+<p>The <code>.python-version</code> file can be used to create a default Python version request. uv searches for a
+<code>.python-version</code> file in the working directory and each of its parents. Any of the request formats
+described above can be used, though use of a version number is recommended for interopability with
+other tools.</p>
+<p>A <code>.python-version</code> file can be created in the current directory with the <code>uv python pin</code> command.</p>
+<p>Discovery of <code>.python-version</code> files can be disabled with <code>--no-config</code>.</p>
+<p>uv will not search for <code>.python-version</code> files beyond project or workspace boundaries.</p>
 <h2 id="installing-a-python-version"><a class="toclink" href="#installing-a-python-version">Installing a Python version</a></h2>
 <p>uv bundles a list of downloadable CPython and PyPy distributions for macOS, Linux, and Windows.</p>
 <div class="admonition tip">
@@ -2458,16 +2500,15 @@ This behavior can be
 </code></pre></div>
 <p>All of the <a href="#requesting-a-version">Python version request</a> formats are supported except those that
 are used for requesting local interpreters such as a file path.</p>
-<h2 id="project-python-versions"><a class="toclink" href="#project-python-versions">Project Python versions</a></h2>
 <p>By default <code>uv python install</code> will verify that a managed Python version is installed or install the
-latest version.</p>
-<p>However, a project may include a <code>.python-version</code> file specifying a default Python version. If
-present, uv will install the Python version listed in the file.</p>
-<p>Alternatively, a project that requires multiple Python versions may also define a <code>.python-versions</code>
-file. If present, uv will install all of the Python versions listed in the file. This file takes
-precedence over the <code>.python-version</code> file.</p>
-<p>uv will also respect Python requirements defined in a <code>pyproject.toml</code> file during project command
-invocations.</p>
+latest version. If a <code>.python-version</code> file is present, uv will install the Python version listed in
+the file. A project that requires multiple Python versions may define a <code>.python-versions</code> file. If
+present, uv will install all of the Python versions listed in the file.</p>
+<h2 id="project-python-versions"><a class="toclink" href="#project-python-versions">Project Python versions</a></h2>
+<p>uv will respect Python requirements defined in <code>requires-python</code> in the <code>pyproject.toml</code> file during
+project command invocations. The first Python version that is compatible with the requirement will
+be used, unless a version is otherwise requested, e.g., via a <code>.python-version</code> file or the
+<code>--python</code> flag.</p>
 <h2 id="viewing-available-python-versions"><a class="toclink" href="#viewing-available-python-versions">Viewing available Python versions</a></h2>
 <p>To list installed and available Python versions:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>list

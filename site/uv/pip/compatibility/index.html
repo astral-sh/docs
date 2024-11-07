@@ -1758,17 +1758,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#local-version-identifiers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Local version identifiers
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#packages-that-exist-on-multiple-indexes" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2307,17 +2296,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#local-version-identifiers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Local version identifiers
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#packages-that-exist-on-multiple-indexes" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2607,31 +2585,6 @@ likely contingent on evolution in the Python packaging specifications. The exist
 and are instead focused on behavior for a <em>single</em> version specifier. As such, there are unresolved
 questions around the correct and intended behavior for pre-releases in the packaging ecosystem more
 broadly.</p>
-<h2 id="local-version-identifiers"><a class="toclink" href="#local-version-identifiers">Local version identifiers</a></h2>
-<p>uv does not implement spec-compliant handling of local version identifiers (e.g., <code>1.2.3+local</code>).
-This is considered a known limitation. Although local version identifiers are rare in published
-packages (and, e.g., disallowed on PyPI), they're common in the PyTorch ecosystem, and uv's approach
-to local versions <em>does</em> support typical PyTorch workflows to succeed out-of-the-box.</p>
-<p><a href="https://peps.python.org/pep-0440/#version-specifiers">PEP 440</a> specifies that the local version
-segment should typically be ignored when evaluating version specifiers, with a few exceptions. For
-example, <code>foo==1.2.3</code> should accept <code>1.2.3+local</code>, but <code>foo==1.2.3+local</code> should <em>not</em> accept
-<code>1.2.3</code>. These asymmetries are hard to model in a resolution algorithm. As such, uv treats <code>1.2.3</code>
-and <code>1.2.3+local</code> as entirely separate versions, but respects local versions provided as direct
-dependencies throughout the resolution, such that if you provide <code>foo==1.2.3+local</code> as a direct
-dependency, <code>1.2.3+local</code> <em>will</em> be accepted for any transitive dependencies that request
-<code>foo==1.2.3</code>.</p>
-<p>To take an example from the PyTorch ecosystem, it's common to specify <code>torch==2.0.0+cu118</code> and
-<code>torchvision==0.15.1+cu118</code> as direct dependencies. <code>torchvision @ 0.15.1+cu118</code> declares a
-dependency on <code>torch==2.0.0</code>. In this case, uv would recognize that <code>torch==2.0.0+cu118</code> satisfies
-the specifier, since it was provided as a direct dependency.</p>
-<p>As compared to pip, the main differences in observed behavior are as follows:</p>
-<ul>
-<li>In general, local versions must be provided as direct dependencies. Resolution may succeed for
-  transitive dependencies that request a non-local version, but this is not guaranteed.</li>
-<li>If <em>only</em> local versions exist for a package <code>foo</code> at a given version (e.g., <code>1.2.3+local</code> exists,
-  but <code>1.2.3</code> does not), <code>uv pip install foo==1.2.3</code> will fail, while <code>pip install foo==1.2.3</code> will
-  resolve to an arbitrary local version.</li>
-</ul>
 <h2 id="packages-that-exist-on-multiple-indexes"><a class="toclink" href="#packages-that-exist-on-multiple-indexes">Packages that exist on multiple indexes</a></h2>
 <p>In both uv and <code>pip</code>, users can specify multiple package indexes from which to search for the
 available versions of a given package. However, uv and <code>pip</code> differ in how they handle packages that
@@ -2850,8 +2803,8 @@ does not create or populate <code>__pycache__</code> directories). To enable byt
 installs, pass the <code>--compile-bytecode</code> flag to <code>uv pip install</code> or <code>uv pip sync</code>.</p>
 <h2 id="strictness-and-spec-enforcement"><a class="toclink" href="#strictness-and-spec-enforcement">Strictness and spec enforcement</a></h2>
 <p>uv tends to be stricter than <code>pip</code>, and will often reject packages that <code>pip</code> would install. For
-example, uv omits packages with invalid version specifiers in its metadata, which <code>pip</code> similarly
-plans to exclude in a <a href="https://github.com/pypa/pip/issues/12063">future release</a>.</p>
+example, uv rejects HTML indexes with invalid URL fragments (see:
+<a href="https://peps.python.org/pep-0503/">PEP 503</a>), while <code>pip</code> will ignore such fragments.</p>
 <p>In some cases, uv implements lenient behavior for popular packages that are known to have specific
 spec compliance issues.</p>
 <p>If uv rejects a package that <code>pip</code> would install due to a spec violation, the best course of action
