@@ -2157,6 +2157,7 @@
   See <a href="https://docs.python.org/3/library/py_compile.html#py_compile.PycInvalidationMode"><code>PycInvalidationMode</code></a>.</li>
 <li><a id="VIRTUAL_ENV"></a> <a href="#VIRTUAL_ENV"><code>VIRTUAL_ENV</code></a>: Used to detect an activated virtual environment.</li>
 <li><a id="CONDA_PREFIX"></a> <a href="#CONDA_PREFIX"><code>CONDA_PREFIX</code></a>: Used to detect an activated Conda environment.</li>
+<li><a id="CONDA_DEFAULT_ENV"></a> <a href="#CONDA_DEFAULT_ENV"><code>CONDA_DEFAULT_ENV</code></a>: Used to determine if an active Conda environment is the base environment or not.</li>
 <li><a id="VIRTUAL_ENV_DISABLE_PROMPT"></a> <a href="#VIRTUAL_ENV_DISABLE_PROMPT"><code>VIRTUAL_ENV_DISABLE_PROMPT</code></a>: If set to <code>1</code> before a virtual environment is activated, then the
   virtual environment name will not be prepended to the terminal prompt.</li>
 <li><a id="PROMPT"></a> <a href="#PROMPT"><code>PROMPT</code></a>: Used to detect the use of the Windows Command Prompt (as opposed to PowerShell).</li>
@@ -2182,18 +2183,30 @@
 <li><a id="GITHUB_ACTIONS"></a> <a href="#GITHUB_ACTIONS"><code>GITHUB_ACTIONS</code></a>: Used for trusted publishing via <code>uv publish</code>.</li>
 <li><a id="ACTIONS_ID_TOKEN_REQUEST_URL"></a> <a href="#ACTIONS_ID_TOKEN_REQUEST_URL"><code>ACTIONS_ID_TOKEN_REQUEST_URL</code></a>: Used for trusted publishing via <code>uv publish</code>. Contains the oidc token url.</li>
 <li><a id="ACTIONS_ID_TOKEN_REQUEST_TOKEN"></a> <a href="#ACTIONS_ID_TOKEN_REQUEST_TOKEN"><code>ACTIONS_ID_TOKEN_REQUEST_TOKEN</code></a>: Used for trusted publishing via <code>uv publish</code>. Contains the oidc request token.</li>
-<li><a id="PYTHONPATH"></a> <a href="#PYTHONPATH"><code>PYTHONPATH</code></a>: Adds directories to Python module search path (e.g., PYTHONPATH=/path/to/modules).</li>
+<li><a id="PYTHONPATH"></a> <a href="#PYTHONPATH"><code>PYTHONPATH</code></a>: Adds directories to Python module search path (e.g., <code>PYTHONPATH=/path/to/modules</code>).</li>
 <li><a id="NETRC"></a> <a href="#NETRC"><code>NETRC</code></a>: Use to set the .netrc file location.</li>
 <li><a id="PAGER"></a> <a href="#PAGER"><code>PAGER</code></a>: The standard <code>PAGER</code> posix env var. Used by <code>uv</code> to configure the appropriate pager.</li>
 <li><a id="JPY_SESSION_NAME"></a> <a href="#JPY_SESSION_NAME"><code>JPY_SESSION_NAME</code></a>: Used to detect when running inside a Jupyter notebook.</li>
 <li><a id="TRACING_DURATIONS_FILE"></a> <a href="#TRACING_DURATIONS_FILE"><code>TRACING_DURATIONS_FILE</code></a>: Use to create the tracing durations file via the <code>tracing-durations-export</code> feature.</li>
 <li><a id="RUST_LOG"></a> <a href="#RUST_LOG"><code>RUST_LOG</code></a>: If set, uv will use this value as the log level for its <code>--verbose</code> output. Accepts
   any filter compatible with the <code>tracing_subscriber</code> crate.
-  For example, <code>RUST_LOG=trace</code> will enable trace-level logging.
+  For example:</li>
+<li><code>RUST_LOG=uv=debug</code> is the equivalent of adding <code>--verbose</code> to the command line</li>
+<li><code>RUST_LOG=trace</code> will enable trace-level logging.
   See the <a href="https://docs.rs/tracing-subscriber/latest/tracing_subscriber/filter/struct.EnvFilter.html#example-syntax">tracing documentation</a>
   for more.</li>
 <li><a id="UV_ENV_FILE"></a> <a href="#UV_ENV_FILE"><code>UV_ENV_FILE</code></a>: <code>.env</code> files from which to load environment variables when executing <code>uv run</code> commands.</li>
 <li><a id="UV_NO_ENV_FILE"></a> <a href="#UV_NO_ENV_FILE"><code>UV_NO_ENV_FILE</code></a>: Ignore <code>.env</code> files when executing <code>uv run</code> commands.</li>
+<li><a id="UV_INSTALLER_GITHUB_BASE_URL"></a> <a href="#UV_INSTALLER_GITHUB_BASE_URL"><code>UV_INSTALLER_GITHUB_BASE_URL</code></a>: The URL from which to download uv using the standalone installer and <code>self update</code> feature,
+  in lieu of the default GitHub URL.</li>
+<li><a id="UV_INSTALLER_GHE_BASE_URL"></a> <a href="#UV_INSTALLER_GHE_BASE_URL"><code>UV_INSTALLER_GHE_BASE_URL</code></a>: The URL from which to download uv using the standalone installer and <code>self update</code> feature,
+  in lieu of the default GitHub Enterprise URL.</li>
+<li><a id="UV_INSTALL_DIR"></a> <a href="#UV_INSTALL_DIR"><code>UV_INSTALL_DIR</code></a>: The directory in which to install uv using the standalone installer and <code>self update</code> feature.
+  Defaults to <code>~/.cargo/bin</code>.</li>
+<li><a id="UV_UNMANAGED_INSTALL"></a> <a href="#UV_UNMANAGED_INSTALL"><code>UV_UNMANAGED_INSTALL</code></a>: Used ephemeral environments like CI to install uv to a specific path while preventing
+  the installer from modifying shell profiles or environment variables.</li>
+<li><a id="INSTALLER_NO_MODIFY_PATH"></a> <a href="#INSTALLER_NO_MODIFY_PATH"><code>INSTALLER_NO_MODIFY_PATH</code></a>: Avoid modifying the <code>PATH</code> environment variable when installing uv using the standalone
+  installer and <code>self update</code> feature.</li>
 </ul>
 
 

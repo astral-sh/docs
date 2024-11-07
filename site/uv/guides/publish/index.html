@@ -2181,9 +2181,21 @@ distribution.</p>
 build it by default. This means that your project may not be ready for distribution. Read more about
 the effect of declaring a build system in the
 <a href="../../concepts/projects/#build-systems">project concept</a> documentation.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you have internal packages that you do not want to be published, you can mark them as
+private:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">[project]</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">classifiers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Private :: Do Not Upload&quot;</span><span class="p">]</span>
+</code></pre></div>
+<p>This setting makes PyPI reject your uploaded package from publishing. It does not affect
+security or privacy settings on alternative registries.</p>
+<p>We also recommend only generating per-project tokens: Without a PyPI token matching the project,
+it can't be accidentally published.</p>
+</div>
 <h2 id="building-your-package"><a class="toclink" href="#building-your-package">Building your package</a></h2>
 <p>Build your package with <code>uv build</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">$ </span>uv<span class="w"> </span>build
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="gp">$ </span>uv<span class="w"> </span>build
 </code></pre></div>
 <p>By default, <code>uv build</code> will build the project in the current directory, and place the built
 artifacts in a <code>dist/</code> subdirectory.</p>
@@ -2198,7 +2210,7 @@ is disabled, as is the case when using other build tools, like <a href="https://
 </div>
 <h2 id="publishing-your-package"><a class="toclink" href="#publishing-your-package">Publishing your package</a></h2>
 <p>Publish your package with <code>uv publish</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="gp">$ </span>uv<span class="w"> </span>publish
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="gp">$ </span>uv<span class="w"> </span>publish
 </code></pre></div>
 <p>Set a PyPI token with <code>--token</code> or <code>UV_PUBLISH_TOKEN</code>, or set a username with <code>--username</code> or
 <code>UV_PUBLISH_USERNAME</code> and password with <code>--password</code> or <code>UV_PUBLISH_PASSWORD</code>. For publishing to
@@ -2220,7 +2232,7 @@ the registry, this avoids accidentally publishing source distribution and wheels
 contents for the same version.</p>
 <h2 id="installing-your-package"><a class="toclink" href="#installing-your-package">Installing your package</a></h2>
 <p>Test that the package can be installed and imported with <code>uv run</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>--with<span class="w"> </span>&lt;PACKAGE&gt;<span class="w"> </span>--no-project<span class="w"> </span>--<span class="w"> </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import &lt;PACKAGE&gt;&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>--with<span class="w"> </span>&lt;PACKAGE&gt;<span class="w"> </span>--no-project<span class="w"> </span>--<span class="w"> </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import &lt;PACKAGE&gt;&quot;</span>
 </code></pre></div>
 <p>The <code>--no-project</code> flag is used to avoid installing the package from your local project directory.</p>
 <div class="admonition tip">

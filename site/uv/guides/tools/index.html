@@ -2302,9 +2302,18 @@ provided by <code>httpie</code>:</p>
 <p>For example, to pull from git:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="gp">$ </span>uvx<span class="w"> </span>--from<span class="w"> </span>git+https://github.com/httpie/cli<span class="w"> </span>httpie
 </code></pre></div>
+<p>You can also pull the latest commit from a specific named branch:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="gp">$ </span>uvx<span class="w"> </span>--from<span class="w"> </span>git+https://github.com/httpie/cli@master<span class="w"> </span>httpie
+</code></pre></div>
+<p>Or pull a specific tag:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="gp">$ </span>uvx<span class="w"> </span>--from<span class="w"> </span>git+https://github.com/httpie/cli@3.2.4<span class="w"> </span>httpie
+</code></pre></div>
+<p>Or even a specific commit:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="gp">$ </span>uvx<span class="w"> </span>--from<span class="w"> </span>git+https://github.com/httpie/cli@2843b87<span class="w"> </span>httpie
+</code></pre></div>
 <h2 id="commands-with-plugins"><a class="toclink" href="#commands-with-plugins">Commands with plugins</a></h2>
 <p>Additional dependencies can be included, e.g., to include <code>mkdocs-material</code> when running <code>mkdocs</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="gp">$ </span>uvx<span class="w"> </span>--with<span class="w"> </span>mkdocs-material<span class="w"> </span>mkdocs<span class="w"> </span>--help
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="gp">$ </span>uvx<span class="w"> </span>--with<span class="w"> </span>mkdocs-material<span class="w"> </span>mkdocs<span class="w"> </span>--help
 </code></pre></div>
 <h2 id="installing-tools"><a class="toclink" href="#installing-tools">Installing tools</a></h2>
 <p>If a tool is used often, it is useful to install it to a persistent environment and add it to the
@@ -2315,46 +2324,46 @@ provided by <code>httpie</code>:</p>
 tools require the full <code>uv tool</code> prefix.</p>
 </div>
 <p>To install <code>ruff</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="gp">$ </span>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>ruff
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="gp">$ </span>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>ruff
 </code></pre></div>
 <p>When a tool is installed, its executables are placed in a <code>bin</code> directory in the <code>PATH</code> which allows
 the tool to be run without uv. If it's not on the <code>PATH</code>, a warning will be displayed and
 <code>uv tool update-shell</code> can be used to add it to the <code>PATH</code>.</p>
 <p>After installing <code>ruff</code>, it should be available:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="gp">$ </span>ruff<span class="w"> </span>--version
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="gp">$ </span>ruff<span class="w"> </span>--version
 </code></pre></div>
 <p>Unlike <code>uv pip install</code>, installing a tool does not make its modules available in the current
 environment. For example, the following command will fail:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="gp">$ </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import ruff&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="gp">$ </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import ruff&quot;</span>
 </code></pre></div>
 <p>This isolation is important for reducing interactions and conflicts between dependencies of tools,
 scripts, and projects.</p>
 <p>Unlike <code>uvx</code>, <code>uv tool install</code> operates on a <em>package</em> and will install all executables provided by
 the tool.</p>
 <p>For example, the following will install the <code>http</code>, <code>https</code>, and <code>httpie</code> executables:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="gp">$ </span>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>httpie
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="gp">$ </span>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>httpie
 </code></pre></div>
 <p>Additionally, package versions can be included without <code>--from</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="gp">$ </span>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span><span class="s1">&#39;httpie&gt;0.1.0&#39;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="gp">$ </span>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span><span class="s1">&#39;httpie&gt;0.1.0&#39;</span>
 </code></pre></div>
 <p>And, similarly, for package sources:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="gp">$ </span>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>git+https://github.com/httpie/cli
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="gp">$ </span>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>git+https://github.com/httpie/cli
 </code></pre></div>
 <p>As with <code>uvx</code>, installations can include additional packages:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="gp">$ </span>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>mkdocs<span class="w"> </span>--with<span class="w"> </span>mkdocs-material
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="gp">$ </span>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>mkdocs<span class="w"> </span>--with<span class="w"> </span>mkdocs-material
 </code></pre></div>
 <h2 id="upgrading-tools"><a class="toclink" href="#upgrading-tools">Upgrading tools</a></h2>
 <p>To upgrade a tool, use <code>uv tool upgrade</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="gp">$ </span>uv<span class="w"> </span>tool<span class="w"> </span>upgrade<span class="w"> </span>ruff
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="gp">$ </span>uv<span class="w"> </span>tool<span class="w"> </span>upgrade<span class="w"> </span>ruff
 </code></pre></div>
 <p>Tool upgrades will respect the version constraints provided when installing the tool. For example,
 <code>uv tool install ruff &gt;=0.3,&lt;0.4</code> followed by <code>uv tool upgrade ruff</code> will upgrade Ruff to the latest
 version in the range <code>&gt;=0.3,&lt;0.4</code>.</p>
 <p>To instead replace the version constraints, re-install the tool with <code>uv tool install</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="gp">$ </span>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>ruff&gt;<span class="o">=</span><span class="m">0</span>.4
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="gp">$ </span>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>ruff&gt;<span class="o">=</span><span class="m">0</span>.4
 </code></pre></div>
 <p>To instead upgrade all tools:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="gp">$ </span>uv<span class="w"> </span>tool<span class="w"> </span>upgrade<span class="w"> </span>--all
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="gp">$ </span>uv<span class="w"> </span>tool<span class="w"> </span>upgrade<span class="w"> </span>--all
 </code></pre></div>
 <h2 id="next-steps"><a class="toclink" href="#next-steps">Next steps</a></h2>
 <p>To learn more about managing tools with uv, see the <a href="../../concepts/tools/">Tools concept</a> page and
