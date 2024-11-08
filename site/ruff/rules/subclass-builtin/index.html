@@ -6,13 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Checks for packages that are missing an `__init__.py` file.">
+        <meta name="description" content="Checks for subclasses of `dict`, `list` or `str`.">
       
       
         <meta name="author" content="charliermarsh">
       
       
-        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/implicit-namespace-package/">
+        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/subclass-builtin/">
       
       
       
@@ -25,7 +25,7 @@
     
     
 
-<title>implicit-namespace-package (INP001) | Ruff</title>
+<title>subclass-builtin (FURB189) | Ruff</title>
 
 
     
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#implicit-namespace-package-inp001" class="md-skip">
+        <a href="#subclass-builtin-furb189" class="md-skip">
           Skip to content
         </a>
       
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              implicit-namespace-package (INP001)
+              subclass-builtin (FURB189)
             
           </span>
         </div>
@@ -817,24 +817,39 @@
   
 
 
-<h1 id="implicit-namespace-package-inp001"><a class="toclink" href="#implicit-namespace-package-inp001">implicit-namespace-package (INP001)</a></h1>
-<p>Derived from the <strong><a href="../#flake8-no-pep420-inp">flake8-no-pep420</a></strong> linter.</p>
+<h1 id="subclass-builtin-furb189"><a class="toclink" href="#subclass-builtin-furb189">subclass-builtin (FURB189)</a></h1>
+<p>Derived from the <strong><a href="../#refurb-furb">refurb</a></strong> linter.</p>
+<p>Fix is always available.</p>
+<p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
-<p>Checks for packages that are missing an <code>__init__.py</code> file.</p>
+<p>Checks for subclasses of <code>dict</code>, <code>list</code> or <code>str</code>.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
-<p>Python packages are directories that contain a file named <code>__init__.py</code>.
-The existence of this file indicates that the directory is a Python
-package, and so it can be imported the same way a module can be
-imported.</p>
-<p>Directories that lack an <code>__init__.py</code> file can still be imported, but
-they're indicative of a special kind of package, known as a "namespace
-package" (see: <a href="https://peps.python.org/pep-0420/">PEP 420</a>).
-Namespace packages are less widely used, so a package that lacks an
-<code>__init__.py</code> file is typically meant to be a regular package, and
-the absence of the <code>__init__.py</code> file is probably an oversight.</p>
-<h2 id="options"><a class="toclink" href="#options">Options</a></h2>
+<p>Subclassing <code>dict</code>, <code>list</code>, or <code>str</code> objects can be error prone, use the
+<code>UserDict</code>, <code>UserList</code>, and <code>UserStr</code> objects from the <code>collections</code> module
+instead.</p>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">class</span> <span class="nc">CaseInsensitiveDict</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span> <span class="o">...</span>
+</code></pre></div>
+<p>Use instead:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">UserDict</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">class</span> <span class="nc">CaseInsensitiveDict</span><span class="p">(</span><span class="n">UserDict</span><span class="p">):</span> <span class="o">...</span>
+</code></pre></div>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
+<p>This fix is marked as unsafe because <code>isinstance()</code> checks for <code>dict</code>,
+<code>list</code>, and <code>str</code> types will fail when using the corresponding User class.
+If you need to pass custom <code>dict</code> or <code>list</code> objects to code you don't
+control, ignore this check. If you do control the code, consider using
+the following type checks instead:</p>
 <ul>
-<li><a href="../../settings/#namespace-packages"><code>namespace-packages</code></a></li>
+<li><code>dict</code> -&gt; <code>collections.abc.MutableMapping</code></li>
+<li><code>list</code> -&gt; <code>collections.abc.MutableSequence</code></li>
+<li><code>str</code> -&gt; No such conversion exists</li>
+</ul>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
+<ul>
+<li><a href="https://docs.python.org/3/library/collections.html">Python documentation: <code>collections</code></a></li>
 </ul>
 
   
