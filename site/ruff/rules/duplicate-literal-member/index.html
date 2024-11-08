@@ -819,7 +819,7 @@
 
 <h1 id="duplicate-literal-member-pyi062"><a class="toclink" href="#duplicate-literal-member-pyi062">duplicate-literal-member (PYI062)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-pyi-pyi">flake8-pyi</a></strong> linter.</p>
-<p>Fix is sometimes available.</p>
+<p>Fix is always available.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for duplicate members in a <code>typing.Literal[]</code> slice.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
@@ -830,6 +830,9 @@
 <p>Use instead:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">foo</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">]</span>
 </code></pre></div>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
+<p>This rule's fix is marked as safe; however, the fix will flatten nested
+literals into a single top-level literal.</p>
 <h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/library/typing.html#typing.Literal">Python documentation: <code>typing.Literal</code></a></li>
