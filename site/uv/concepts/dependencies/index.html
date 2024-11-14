@@ -2757,6 +2757,11 @@ from extra name to its dependencies, following
 <p>To add an optional dependency, use the <code>--optional &lt;extra&gt;</code> option:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>httpx<span class="w"> </span>--optional<span class="w"> </span>network
 </code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you have optional dependencies that conflict with one another, resolution will fail
+unless you explicitly <a href="../projects/#optional-dependencies">declare them as conflicting</a>.</p>
+</div>
 <h2 id="development-dependencies"><a class="toclink" href="#development-dependencies">Development dependencies</a></h2>
 <p>Unlike optional dependencies, development dependencies are local-only and will <em>not</em> be included in
 the project requirements when published to PyPI or other indexes. As such, development dependencies
@@ -2802,8 +2807,8 @@ together when creating the lockfile.</p>
 to resolve the requirements of the project with an error.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>There is currently no way to declare conflicting dependency groups. See
-<a href="https://github.com/astral-sh/uv/issues/6981">astral.sh/uv#6981</a> to track support.</p>
+<p>If you have dependency groups that conflict with one another, resolution will fail
+unless you explicitly <a href="../projects/#optional-dependencies">declare them as conflicting</a>.</p>
 </div>
 <h3 id="default-groups"><a class="toclink" href="#default-groups">Default groups</a></h3>
 <p>By default, uv includes the <code>dev</code> dependency group in the environment (e.g., during <code>uv run</code> or
