@@ -2244,6 +2244,9 @@ index, but all other packages are installed from PyPI, add the following to your
 <p>Named indexes referenced via <code>tool.uv.sources</code> must be defined within the project's <code>pyproject.toml</code>
 file; indexes provided via the command-line, environment variables, or user-level configuration will
 not be recognized.</p>
+<p>If an index is marked as both <code>default = true</code> and <code>explicit = true</code>, it will be treated as an
+explicit index (i.e., only usable via <code>tool.uv.sources</code>) while also removing PyPI as the default
+index.</p>
 <h2 id="searching-across-multiple-indexes"><a class="toclink" href="#searching-across-multiple-indexes">Searching across multiple indexes</a></h2>
 <p>By default, uv will stop at the first index on which a given package is available, and limit
 resolutions to those present on that first index (<code>first-match</code>).</p>
