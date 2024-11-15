@@ -2949,6 +2949,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#lint_ruff_extend-markup-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        extend-markup-names
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#lint_ruff_parenthesize-tuple-in-subscript" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -7290,6 +7301,29 @@ runtime:</p>
 </div>
 <hr />
 <h3 id="lintruff"><a class="toclink" href="#lintruff"><code>lint.ruff</code></a></h3>
+<h4 id="lint_ruff_extend-markup-names"><a class="toclink" href="#lint_ruff_extend-markup-names"><a href="#lint_ruff_extend-markup-names"><code>extend-markup-names</code></a></a></h4>
+<p><span id="extend-markup-names"></span></p>
+<p>A list of additional callable names that behave like [<code>markupsafe.Markup</code>].</p>
+<p>Expects to receive a list of fully-qualified names (e.g., <code>webhelpers.html.literal</code>, rather than
+<code>literal</code>).</p>
+<p><strong>Default value</strong>: <code>[]</code></p>
+<p><strong>Type</strong>: <code>list[str]</code></p>
+<p><strong>Example usage</strong>:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="157:2"><input checked="checked" id="__tabbed_157_1" name="__tabbed_157" type="radio" /><input id="__tabbed_157_2" name="__tabbed_157" type="radio" /><div class="tabbed-labels"><label for="__tabbed_157_1">pyproject.toml</label><label for="__tabbed_157_2">ruff.toml</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-340-1" name="__codelineno-340-1" href="#__codelineno-340-1"></a><span class="k">[tool.ruff.lint.ruff]</span>
+<a id="__codelineno-340-2" name="__codelineno-340-2" href="#__codelineno-340-2"></a><span class="n">extend-markup-names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;webhelpers.html.literal&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;my_package.Markup&quot;</span><span class="p">]</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-341-1" name="__codelineno-341-1" href="#__codelineno-341-1"></a><span class="k">[lint.ruff]</span>
+<a id="__codelineno-341-2" name="__codelineno-341-2" href="#__codelineno-341-2"></a><span class="n">extend-markup-names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;webhelpers.html.literal&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;my_package.Markup&quot;</span><span class="p">]</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<hr />
 <h4 id="lint_ruff_parenthesize-tuple-in-subscript"><a class="toclink" href="#lint_ruff_parenthesize-tuple-in-subscript"><a href="#lint_ruff_parenthesize-tuple-in-subscript"><code>parenthesize-tuple-in-subscript</code></a></a></h4>
 <p><span id="parenthesize-tuple-in-subscript"></span></p>
 <p>Whether to prefer accessing items keyed by tuples with
@@ -7297,18 +7331,18 @@ parentheses around the tuple (see <code>RUF031</code>).</p>
 <p><strong>Default value</strong>: <code>false</code></p>
 <p><strong>Type</strong>: <code>bool</code></p>
 <p><strong>Example usage</strong>:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="157:2"><input checked="checked" id="__tabbed_157_1" name="__tabbed_157" type="radio" /><input id="__tabbed_157_2" name="__tabbed_157" type="radio" /><div class="tabbed-labels"><label for="__tabbed_157_1">pyproject.toml</label><label for="__tabbed_157_2">ruff.toml</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="158:2"><input checked="checked" id="__tabbed_158_1" name="__tabbed_158" type="radio" /><input id="__tabbed_158_2" name="__tabbed_158" type="radio" /><div class="tabbed-labels"><label for="__tabbed_158_1">pyproject.toml</label><label for="__tabbed_158_2">ruff.toml</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-340-1" name="__codelineno-340-1" href="#__codelineno-340-1"></a><span class="k">[tool.ruff.lint.ruff]</span>
-<a id="__codelineno-340-2" name="__codelineno-340-2" href="#__codelineno-340-2"></a><span class="c1"># Make it a violation to use a tuple in a subscript without parentheses.</span>
-<a id="__codelineno-340-3" name="__codelineno-340-3" href="#__codelineno-340-3"></a><span class="n">parenthesize-tuple-in-subscript</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-342-1" name="__codelineno-342-1" href="#__codelineno-342-1"></a><span class="k">[tool.ruff.lint.ruff]</span>
+<a id="__codelineno-342-2" name="__codelineno-342-2" href="#__codelineno-342-2"></a><span class="c1"># Make it a violation to use a tuple in a subscript without parentheses.</span>
+<a id="__codelineno-342-3" name="__codelineno-342-3" href="#__codelineno-342-3"></a><span class="n">parenthesize-tuple-in-subscript</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-341-1" name="__codelineno-341-1" href="#__codelineno-341-1"></a><span class="k">[lint.ruff]</span>
-<a id="__codelineno-341-2" name="__codelineno-341-2" href="#__codelineno-341-2"></a><span class="c1"># Make it a violation to use a tuple in a subscript without parentheses.</span>
-<a id="__codelineno-341-3" name="__codelineno-341-3" href="#__codelineno-341-3"></a><span class="n">parenthesize-tuple-in-subscript</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-343-1" name="__codelineno-343-1" href="#__codelineno-343-1"></a><span class="k">[lint.ruff]</span>
+<a id="__codelineno-343-2" name="__codelineno-343-2" href="#__codelineno-343-2"></a><span class="c1"># Make it a violation to use a tuple in a subscript without parentheses.</span>
+<a id="__codelineno-343-3" name="__codelineno-343-3" href="#__codelineno-343-3"></a><span class="n">parenthesize-tuple-in-subscript</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 </code></pre></div>
 </div>
 </div>

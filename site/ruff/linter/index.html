@@ -1127,7 +1127,10 @@ imports, reformat docstrings, rewrite type annotations to use newer Python synta
 whether a rule supports fixing, see <a href="../rules/"><em>Rules</em></a>.</p>
 <h3 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h3>
 <p>Ruff labels fixes as "safe" and "unsafe". The meaning and intent of your code will be retained when
-applying safe fixes, but the meaning could be changed when applying unsafe fixes.</p>
+applying safe fixes, but the meaning could change when applying unsafe fixes.</p>
+<p>Specifically, an unsafe fix could lead to a change in runtime behavior, the removal of comments, or both,
+while safe fixes are intended to preserve runtime behavior and will only remove comments when deleting
+entire statements or expressions (e.g., removing unused imports).</p>
 <p>For example, <a href="../rules/unnecessary-iterable-allocation-for-first-element/"><code>unnecessary-iterable-allocation-for-first-element</code></a>
 (<code>RUF015</code>) is a rule which checks for potentially unperformant use of <code>list(...)[0]</code>. The fix
 replaces this pattern with <code>next(iter(...))</code> which can result in a drastic speedup:</p>
@@ -1137,7 +1140,7 @@ replaces this pattern with <code>next(iter(...))</code> which can result in a dr
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="gp">$ </span>python<span class="w"> </span>-m<span class="w"> </span>timeit<span class="w"> </span><span class="s2">&quot;head = next(iter(range(99999999)))&quot;</span>
 <a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="go">5000000 loops, best of 5: 70.8 nsec per loop</span>
 </code></pre></div>
-<p>However, when the collection is empty, this changes the raised exception from an <code>IndexError</code> to <code>StopIteration</code>:</p>
+<p>However, when the collection is empty, this raised exception changes from an <code>IndexError</code> to <code>StopIteration</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="gp">$ </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;list(range(0))[0]&#39;</span>
 <a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="go">Traceback (most recent call last):</span>
 <a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="go">  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</span>
@@ -1148,7 +1151,7 @@ replaces this pattern with <code>next(iter(...))</code> which can result in a dr
 <a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="go">  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</span>
 <a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="go">StopIteration</span>
 </code></pre></div>
-<p>Since this could break error handling, this fix is categorized as unsafe.</p>
+<p>Since the change in exception type could break error handling upstream, this fix is categorized as unsafe.</p>
 <p>Ruff only enables safe fixes by default. Unsafe fixes can be enabled by settings <a href="../settings/#unsafe-fixes"><code>unsafe-fixes</code></a> in your configuration file or passing the <code>--unsafe-fixes</code> flag to <code>ruff check</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="gp"># </span>Show<span class="w"> </span>unsafe<span class="w"> </span>fixes
 <a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="go">ruff check --unsafe-fixes</span>
