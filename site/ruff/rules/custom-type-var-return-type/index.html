@@ -819,16 +819,17 @@
 
 <h1 id="custom-type-var-return-type-pyi019"><a class="toclink" href="#custom-type-var-return-type-pyi019">custom-type-var-return-type (PYI019)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-pyi-pyi">flake8-pyi</a></strong> linter.</p>
+<p>Fix is sometimes available.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for methods that define a custom <code>TypeVar</code> for their return type
-annotation instead of using <code>typing_extensions.Self</code>.</p>
+annotation instead of using <code>Self</code>.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
-<p>While the semantics are often identical, using <code>typing_extensions.Self</code> is
-more intuitive and succinct (per <a href="https://peps.python.org/pep-0673/#motivation">PEP 673</a>) than a custom <code>TypeVar</code>. For
-example, the use of <code>Self</code> will typically allow for the omission of type
-parameters on the <code>self</code> and <code>cls</code> arguments.</p>
-<p>This check currently applies to instance methods that return <code>self</code>, class
-methods that return an instance of <code>cls</code>, and <code>__new__</code> methods.</p>
+<p>While the semantics are often identical, using <code>Self</code> is more intuitive
+and succinct (per <a href="https://peps.python.org/pep-0673/#motivation">PEP 673</a>) than a custom <code>TypeVar</code>. For example, the
+use of <code>Self</code> will typically allow for the omission of type parameters
+on the <code>self</code> and <code>cls</code> arguments.</p>
+<p>This check currently applies to instance methods that return <code>self</code>,
+class methods that return an instance of <code>cls</code>, and <code>__new__</code> methods.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">class</span> <span class="nc">Foo</span><span class="p">:</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">_S</span><span class="p">],</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_S</span><span class="p">:</span> <span class="o">...</span>
@@ -845,6 +846,13 @@ methods that return an instance of <code>cls</code>, and <code>__new__</code> me
 <a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="nd">@classmethod</span>
 <a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="k">def</span> <span class="nf">bar</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">arg</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span> <span class="o">...</span>
 </code></pre></div>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
+<p>The fix is only available in stub files.
+It will try to remove all usages and declarations of the custom type variable.
+Pre-[PEP-695]-style declarations will not be removed.</p>
+<p>If a variable's annotation is too complex to handle,
+the fix will be marked as display only.
+Otherwise, it will be marked as safe.</p>
 
   
   
