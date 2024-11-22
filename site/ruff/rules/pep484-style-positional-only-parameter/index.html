@@ -6,13 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Checks for the presence of [PEP 484]-style positional-only arguments.">
+        <meta name="description" content="Checks for the presence of [PEP 484]-style positional-only parameters.">
       
       
         <meta name="author" content="charliermarsh">
       
       
-        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/pre-pep570-positional-argument/">
+        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/pep484-style-positional-only-parameter/">
       
       
       
@@ -25,7 +25,7 @@
     
     
 
-<title>pre-pep570-positional-argument (PYI063) | Ruff</title>
+<title>pep484-style-positional-only-parameter (PYI063) | Ruff</title>
 
 
     
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#pre-pep570-positional-argument-pyi063" class="md-skip">
+        <a href="#pep484-style-positional-only-parameter-pyi063" class="md-skip">
           Skip to content
         </a>
       
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              pre-pep570-positional-argument (PYI063)
+              pep484-style-positional-only-parameter (PYI063)
             
           </span>
         </div>
@@ -817,21 +817,30 @@
   
 
 
-<h1 id="pre-pep570-positional-argument-pyi063"><a class="toclink" href="#pre-pep570-positional-argument-pyi063">pre-pep570-positional-argument (PYI063)</a></h1>
+<h1 id="pep484-style-positional-only-parameter-pyi063"><a class="toclink" href="#pep484-style-positional-only-parameter-pyi063">pep484-style-positional-only-parameter (PYI063)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-pyi-pyi">flake8-pyi</a></strong> linter.</p>
-<p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
-<p>Checks for the presence of <a href="https://peps.python.org/pep-0484/#positional-only-arguments">PEP 484</a>-style positional-only arguments.</p>
+<p>Checks for the presence of <a href="https://peps.python.org/pep-0484/#positional-only-arguments">PEP 484</a>-style positional-only parameters.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
-<p>Historically, <a href="https://peps.python.org/pep-0484/#positional-only-arguments">PEP 484</a> recommended prefixing positional-only arguments
-with a double underscore (<code>__</code>). However, <a href="https://peps.python.org/pep-0570">PEP 570</a> introduced a dedicated
-syntax for positional-only arguments, which should be preferred.</p>
+<p>Historically, <a href="https://peps.python.org/pep-0484/#positional-only-arguments">PEP 484</a> recommended prefixing parameter names with double
+underscores (<code>__</code>) to indicate to a type checker that they were
+positional-only. However, <a href="https://peps.python.org/pep-0570">PEP 570</a> (introduced in Python 3.8) introduced
+dedicated syntax for positional-only arguments. If a forward slash (<code>/</code>) is
+present in a function signature on Python 3.8+, all parameters prior to the
+slash are interpreted as positional-only.</p>
+<p>The new syntax should be preferred as it is more widely used, more concise
+and more readable. It is also respected by Python at runtime, whereas the
+old-style syntax was only understood by type checkers.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">__x</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
 </code></pre></div>
 <p>Use instead:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
 </code></pre></div>
+<h2 id="options"><a class="toclink" href="#options">Options</a></h2>
+<ul>
+<li><a href="../../settings/#target-version"><code>target-version</code></a></li>
+</ul>
 
   
   

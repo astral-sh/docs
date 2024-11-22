@@ -819,16 +819,17 @@
 
 <h1 id="assert-with-print-message-ruf030"><a class="toclink" href="#assert-with-print-message-ruf030">assert-with-print-message (RUF030)</a></h1>
 <p>Fix is always available.</p>
-<p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for uses of <code>assert expression, print(message)</code>.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
-<p>The return value of the second expression is used as the contents of the
-<code>AssertionError</code> raised by the <code>assert</code> statement. Using a <code>print</code> expression
-in this context will output the message to <code>stdout</code>, before raising an
-empty <code>AssertionError(None)</code>.</p>
-<p>Instead, remove the <code>print</code> and pass the message directly as the second
-expression, allowing <code>stderr</code> to capture the message in a well-formatted context.</p>
+<p>If an <code>assert x, y</code> assertion fails, the Python interpreter raises an
+<code>AssertionError</code>, and the evaluated value of <code>y</code> is used as the contents of
+that assertion error. The <code>print</code> function always returns <code>None</code>, however,
+so the evaluated value of a call to <code>print</code> will always be <code>None</code>.</p>
+<p>Using a <code>print</code> call in this context will therefore output the message to
+<code>stdout</code>, before raising an empty <code>AssertionError(None)</code>. Instead, remove
+the <code>print</code> and pass the message directly as the second expression,
+allowing <code>stderr</code> to capture the message in a well-formatted context.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">assert</span> <span class="kc">False</span><span class="p">,</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This is a message&quot;</span><span class="p">)</span>
 </code></pre></div>

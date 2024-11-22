@@ -826,8 +826,9 @@ as <code>&gt;</code>, <code>&lt;=</code>, and <code>==</code>, are banned.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Comparing <code>sys.version_info</code> with <code>==</code> or <code>&lt;=</code> has unexpected behavior
 and can lead to bugs.</p>
-<p>For example, <code>sys.version_info &gt; (3, 8)</code> will also match <code>3.8.10</code>,
-while <code>sys.version_info &lt;= (3, 8)</code> will <em>not</em> match <code>3.8.10</code>:</p>
+<p>For example, <code>sys.version_info &gt; (3, 8, 1)</code> will resolve to <code>True</code> if your
+Python version is 3.8.1; meanwhile, <code>sys.version_info &lt;= (3, 8)</code> will <em>not</em>
+resolve to <code>True</code> if your Python version is 3.8.10:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">sys</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">version_info</span><span class="p">)</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">sys</span><span class="o">.</span><span class="n">version_info</span><span class="p">(</span><span class="n">major</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">minor</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">micro</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">releaselevel</span><span class="o">=</span><span class="s1">&#39;final&#39;</span><span class="p">,</span> <span class="n">serial</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>

@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Checks for unnecessary default type arguments.">
+        <meta name="description" content="Checks for unnecessary default type arguments for `Generator` and">
       
       
         <meta name="author" content="charliermarsh">
@@ -820,14 +820,17 @@
 <h1 id="unnecessary-default-type-args-up043"><a class="toclink" href="#unnecessary-default-type-args-up043">unnecessary-default-type-args (UP043)</a></h1>
 <p>Derived from the <strong><a href="../#pyupgrade-up">pyupgrade</a></strong> linter.</p>
 <p>Fix is always available.</p>
-<p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
-<p>Checks for unnecessary default type arguments.</p>
+<p>Checks for unnecessary default type arguments for <code>Generator</code> and
+<code>AsyncGenerator</code> on Python 3.13+.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Python 3.13 introduced the ability for type parameters to specify default
-values. As such, the default type arguments for some types in the standard
-library (e.g., Generator, AsyncGenerator) are now optional.</p>
-<p>Omitting type parameters that match the default values can make the code
+values. Following this change, several standard-library classes were
+updated to add default values for some of their type parameters. For
+example, <code>Generator[int]</code> is now equivalent to
+<code>Generator[int, None, None]</code>, as the second and third type parameters of
+<code>Generator</code> now default to <code>None</code>.</p>
+<p>Omitting type arguments that match the default values can make the code
 more concise and easier to read.</p>
 <h2 id="examples"><a class="toclink" href="#examples">Examples</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Generator</span><span class="p">,</span> <span class="n">AsyncGenerator</span>
@@ -851,6 +854,12 @@ more concise and easier to read.</p>
 <a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">async_gen</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">AsyncGenerator</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
 <a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="k">yield</span> <span class="mi">42</span>
 </code></pre></div>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
+<p>This rule's fix is marked as safe, unless the type annotation contains comments.</p>
+<h2 id="options"><a class="toclink" href="#options">Options</a></h2>
+<ul>
+<li><a href="../../settings/#target-version"><code>target-version</code></a></li>
+</ul>
 <h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://peps.python.org/pep-0696/">PEP 696 – Type Defaults for Type Parameters</a></li>

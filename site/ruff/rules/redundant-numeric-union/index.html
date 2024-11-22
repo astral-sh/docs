@@ -819,6 +819,7 @@
 
 <h1 id="redundant-numeric-union-pyi041"><a class="toclink" href="#redundant-numeric-union-pyi041">redundant-numeric-union (PYI041)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-pyi-pyi">flake8-pyi</a></strong> linter.</p>
+<p>Fix is sometimes available.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for parameter annotations that contain redundant unions between
 builtin numeric types (e.g., <code>int | float</code>).</p>
@@ -842,6 +843,10 @@ redundant elements.</p>
 <p>Use instead:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
 </code></pre></div>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
+<p>This rule's fix is marked as safe, unless the type annotation contains comments.</p>
+<p>Note that while the fix may flatten nested unions into a single top-level union,
+the semantics of the annotation will remain unchanged.</p>
 <h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/library/numbers.html#the-numeric-tower">Python documentation: The numeric tower</a></li>
