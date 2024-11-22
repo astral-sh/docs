@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Checks for if-else statements with `sys.version_info` comparisons that use">
+        <meta name="description" content="Checks for code that branches on `sys.version_info` comparisons where">
       
       
         <meta name="author" content="charliermarsh">
@@ -819,16 +819,18 @@
 
 <h1 id="bad-version-info-order-pyi066"><a class="toclink" href="#bad-version-info-order-pyi066">bad-version-info-order (PYI066)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-pyi-pyi">flake8-pyi</a></strong> linter.</p>
-<p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
-<p>Checks for if-else statements with <code>sys.version_info</code> comparisons that use
-<code>&lt;</code> comparators.</p>
+<p>Checks for code that branches on <code>sys.version_info</code> comparisons where
+branches corresponding to older Python versions come before branches
+corresponding to newer Python versions.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>As a convention, branches that correspond to newer Python versions should
-come first when using <code>sys.version_info</code> comparisons. This makes it easier
-to understand the desired behavior, which typically corresponds to the
-latest Python versions.</p>
-<p>In <a href="https://docs.astral.sh/ruff/preview/">preview</a>, this rule will also flag non-stub files.</p>
+come first. This makes it easier to understand the desired behavior, which
+typically corresponds to the latest Python versions.</p>
+<p>This rule enforces the convention by checking for <code>if</code> tests that compare
+<code>sys.version_info</code> with <code>&lt;</code> rather than <code>&gt;=</code>.</p>
+<p>By default, this rule only applies to stub files.
+In <a href="https://docs.astral.sh/ruff/preview/">preview</a>, it will also flag this anti-pattern in non-stub files.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">sys</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>

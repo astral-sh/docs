@@ -819,7 +819,6 @@
 
 <h1 id="mutable-contextvar-default-b039"><a class="toclink" href="#mutable-contextvar-default-b039">mutable-contextvar-default (B039)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-bugbear-b">flake8-bugbear</a></strong> linter.</p>
-<p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for uses of mutable objects as <code>ContextVar</code> defaults.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
@@ -827,9 +826,9 @@
 <p>The same mutable object is then shared across all <code>.get()</code> method calls to
 the <code>ContextVar</code>. If the object is modified, those modifications will persist
 across calls, which can lead to unexpected behavior.</p>
-<p>Instead, prefer to use immutable data structures; or, take <code>None</code> as a
-default, and initialize a new mutable object inside for each call using the
-<code>.set()</code> method.</p>
+<p>Instead, prefer to use immutable data structures. Alternatively, take
+<code>None</code> as a default, and initialize a new mutable object inside for each
+call using the <code>.set()</code> method.</p>
 <p>Types outside the standard library can be marked as immutable with the
 <a href="../../settings/#lint_flake8-bugbear_extend-immutable-calls"><code>lint.flake8-bugbear.extend-immutable-calls</code></a> configuration option.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>

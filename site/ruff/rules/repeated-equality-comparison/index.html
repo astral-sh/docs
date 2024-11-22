@@ -831,6 +831,9 @@ write a series of equality comparisons (e.g.,
 operator to check for membership, which is more performant and succinct.
 If the items are hashable, use a <code>set</code> for efficiency; otherwise, use a
 <code>tuple</code>.</p>
+<p>In <a href="https://docs.astral.sh/ruff/preview/">preview</a>, this rule will try to determine if the values are hashable
+and the fix will use a <code>set</code> if they are. If unable to determine, the fix
+will use a <code>tuple</code> and continue to suggest the use of a <code>set</code>.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">foo</span> <span class="o">==</span> <span class="s2">&quot;bar&quot;</span> <span class="ow">or</span> <span class="n">foo</span> <span class="o">==</span> <span class="s2">&quot;baz&quot;</span> <span class="ow">or</span> <span class="n">foo</span> <span class="o">==</span> <span class="s2">&quot;qux&quot;</span>
 </code></pre></div>

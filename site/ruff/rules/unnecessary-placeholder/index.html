@@ -850,6 +850,10 @@ be removed.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">def</span> <span class="nf">func</span><span class="p">():</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Placeholder docstring.&quot;&quot;&quot;</span>
 </code></pre></div>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
+<p>This rule's fix is marked as unsafe in the rare case that the <code>pass</code> or ellipsis
+is followed by a string literal, since removal of the placeholder would convert the
+subsequent string literal into a docstring.</p>
 <h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/reference/simple_stmts.html#the-pass-statement">Python documentation: The <code>pass</code> statement</a></li>

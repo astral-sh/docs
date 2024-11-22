@@ -3632,8 +3632,8 @@ operator can only be used to create union types at runtime on Python
 3.10+. As such, Ruff will often recommend newer features in a stub
 file than it would for an equivalent runtime file with the same target
 version.</p>
-<p><strong>Default value</strong>: <code>"py38"</code></p>
-<p><strong>Type</strong>: <code>"py37" | "py38" | "py39" | "py310" | "py311" | "py312"</code></p>
+<p><strong>Default value</strong>: <code>"py39"</code></p>
+<p><strong>Type</strong>: <code>"py37" | "py38" | "py39" | "py310" | "py311" | "py312" | "py313"</code></p>
 <p><strong>Example usage</strong>:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="20:2"><input checked="checked" id="__tabbed_20_1" name="__tabbed_20" type="radio" /><input id="__tabbed_20_2" name="__tabbed_20" type="radio" /><div class="tabbed-labels"><label for="__tabbed_20_1">pyproject.toml</label><label for="__tabbed_20_2">ruff.toml</label></div>
 <div class="tabbed-content">
@@ -4855,7 +4855,7 @@ disallowed for <code>Exception</code> and <code>BaseException</code>.</p>
 <hr />
 <h4 id="lint_flake8-bandit_hardcoded-tmp-directory"><a class="toclink" href="#lint_flake8-bandit_hardcoded-tmp-directory"><a href="#lint_flake8-bandit_hardcoded-tmp-directory"><code>hardcoded-tmp-directory</code></a></a></h4>
 <p><span id="hardcoded-tmp-directory"></span></p>
-<p>A list of directories to consider temporary.</p>
+<p>A list of directories to consider temporary (see <code>S108</code>).</p>
 <p><strong>Default value</strong>: <code>["/tmp", "/var/tmp", "/dev/shm"]</code></p>
 <p><strong>Type</strong>: <code>list[str]</code></p>
 <p><strong>Example usage</strong>:</p>
@@ -4877,7 +4877,7 @@ disallowed for <code>Exception</code> and <code>BaseException</code>.</p>
 <h4 id="lint_flake8-bandit_hardcoded-tmp-directory-extend"><a class="toclink" href="#lint_flake8-bandit_hardcoded-tmp-directory-extend"><a href="#lint_flake8-bandit_hardcoded-tmp-directory-extend"><code>hardcoded-tmp-directory-extend</code></a></a></h4>
 <p><span id="hardcoded-tmp-directory-extend"></span></p>
 <p>A list of directories to consider temporary, in addition to those
-specified by <a href="#lint_flake8-bandit_hardcoded-tmp-directory"><code>hardcoded-tmp-directory</code></a>.</p>
+specified by <a href="#lint_flake8-bandit_hardcoded-tmp-directory"><code>hardcoded-tmp-directory</code></a> (see <code>S108</code>).</p>
 <p><strong>Default value</strong>: <code>[]</code></p>
 <p><strong>Type</strong>: <code>list[str]</code></p>
 <p><strong>Example usage</strong>:</p>
@@ -6323,7 +6323,7 @@ but applies only to straight imports and doesn't affect <code>from</code> import
 <p>The number of blank lines to place after imports.
 Use <code>-1</code> for automatic determination.</p>
 <p>Ruff uses at most one blank line after imports in typing stub files (files with <code>.pyi</code> extension) in accordance to
-the typing style recommendations (<a href="https://typing.readthedocs.io/en/latest/source/stubs.html#blank-lines">source</a>).</p>
+the typing style recommendations (<a href="https://typing.readthedocs.io/en/latest/guides/writing_stubs.html#blank-lines">source</a>).</p>
 <p>When using the formatter, only the values <code>-1</code>, <code>1</code>, and <code>2</code> are compatible because
 it enforces at least one empty and at most two empty lines after imports.</p>
 <p><strong>Default value</strong>: <code>-1</code></p>
