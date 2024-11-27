@@ -3714,6 +3714,10 @@
 </dd><dt><code>--no-env-file</code></dt><dd><p>Avoid reading environment variables from a <code>.env</code> file</p>
 
 <p>May also be set with the <code>UV_NO_ENV_FILE</code> environment variable.</p>
+</dd><dt><code>--no-extra</code> <i>no-extra</i></dt><dd><p>Exclude the specified optional dependencies, if <code>--all-extras</code> is supplied.</p>
+
+<p>May be provided multiple times.</p>
+
 </dd><dt><code>--no-group</code> <i>no-group</i></dt><dd><p>Exclude dependencies from the specified dependency group.</p>
 
 <p>May be provided multiple times.</p>
@@ -4980,6 +4984,10 @@
 
 </dd><dt><code>--no-editable</code></dt><dd><p>Install any editable dependencies, including the project and any workspace members, as non-editable</p>
 
+</dd><dt><code>--no-extra</code> <i>no-extra</i></dt><dd><p>Exclude the specified optional dependencies, if <code>--all-extras</code> is supplied.</p>
+
+<p>May be provided multiple times.</p>
+
 </dd><dt><code>--no-group</code> <i>no-group</i></dt><dd><p>Exclude dependencies from the specified dependency group.</p>
 
 <p>May be provided multiple times.</p>
@@ -5640,6 +5648,10 @@
 
 <p>By default, all workspace members and their dependencies are included in the exported requirements file, with all of their dependencies. The <code>--no-emit-workspace</code> option allows exclusion of all the workspace members while retaining their dependencies.</p>
 
+</dd><dt><code>--no-extra</code> <i>no-extra</i></dt><dd><p>Exclude the specified optional dependencies, if <code>--all-extras</code> is supplied.</p>
+
+<p>May be provided multiple times.</p>
+
 </dd><dt><code>--no-group</code> <i>no-group</i></dt><dd><p>Exclude dependencies from the specified dependency group.</p>
 
 <p>May be provided multiple times.</p>
@@ -5708,6 +5720,10 @@
 <p>See <code>--directory</code> to change the working directory entirely.</p>
 
 <p>This setting has no effect when used in the <code>uv pip</code> interface.</p>
+
+</dd><dt><code>--prune</code> <i>prune</i></dt><dd><p>Prune the given package from the dependency tree.</p>
+
+<p>Pruned packages will be excluded from the exported requirements file, as will any dependencies that are no longer required after the pruned package is removed.</p>
 
 </dd><dt><code>--python</code>, <code>-p</code> <i>python</i></dt><dd><p>The Python interpreter to use during resolution.</p>
 
@@ -6803,7 +6819,7 @@
 </code></pre></div>
 <h3 class="cli-reference">Arguments</h3>
 
-<dl class="cli-reference"><dt><code>NAME</code></dt><dd><p>The name of the tool to upgrade</p>
+<dl class="cli-reference"><dt><code>NAME</code></dt><dd><p>The name of the tool to upgrade, along with an optional version specifier</p>
 
 </dd></dl>
 
@@ -7065,10 +7081,6 @@
 
 <li><code>lowest-direct</code>:  Resolve the lowest compatible version of any direct dependencies, and the highest compatible version of any transitive dependencies</li>
 </ul>
-</dd><dt><code>--upgrade</code>, <code>-U</code></dt><dd><p>Allow package upgrades, ignoring pinned versions in any existing output file. Implies <code>--refresh</code></p>
-
-</dd><dt><code>--upgrade-package</code>, <code>-P</code> <i>upgrade-package</i></dt><dd><p>Allow upgrades for a specific package, ignoring pinned versions in any existing output file. Implies <code>--refresh-package</code></p>
-
 </dd><dt><code>--verbose</code>, <code>-v</code></dt><dd><p>Use verbose output.</p>
 
 <p>You can configure fine-grained logging using the <code>RUST_LOG</code> environment variable. (&lt;https://docs.rs/tracing-subscriber/latest/tracing_subscriber/filter/struct.EnvFilter.html#directives&gt;)</p>
