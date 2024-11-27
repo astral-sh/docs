@@ -2638,15 +2638,14 @@ backend is required if you want to create a <a href="#projects-with-extension-mo
 <p>Most Python projects are "pure Python", meaning they do not define modules in other languages like
 C, C++, FORTRAN, or Rust. However, projects with extension modules are often used for performance
 sensitive code.</p>
-<p>Creating a project with an extension module requires an choosing an alternative build backend. uv
-supports creating projects with the following build backends that support building extension
-modules:</p>
+<p>Creating a project with an extension module requires choosing an alternative build system. uv
+supports creating projects with the following build systems that support building extension modules:</p>
 <ul>
 <li><a href="https://www.maturin.rs"><code>maturin</code></a> for projects with Rust</li>
-<li><a href="https://scikit-build.readthedocs.io/en/latest/"><code>scikit-build</code></a> for projects with C, C++,
+<li><a href="https://github.com/scikit-build/scikit-build-core"><code>scikit-build-core</code></a> for projects with C, C++,
   FORTRAN, Cython</li>
 </ul>
-<p>Using <code>maturin</code> is recommended for combining Rust and Python:</p>
+<p>Specify the build system with the <code>--build-backend</code> flag:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="gp">$ </span>uv<span class="w"> </span>init<span class="w"> </span>--build-backend<span class="w"> </span>maturin<span class="w"> </span>example-ext
 </code></pre></div>
 <div class="admonition note">
@@ -2667,6 +2666,10 @@ files:</p>
 <a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="go">        ├── __init__.py</span>
 <a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="go">        └── _core.pyi</span>
 </code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If using <code>scikit-build-core</code>, you'll see CMake configuration and a <code>main.cpp</code> file instead.</p>
+</div>
 <p>The Rust library defines a simple function:</p>
 <div class="highlight"><span class="filename">src/lib.rs</span><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">use</span><span class="w"> </span><span class="n">pyo3</span><span class="p">::</span><span class="n">prelude</span><span class="p">::</span><span class="o">*</span><span class="p">;</span>
 <a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>
