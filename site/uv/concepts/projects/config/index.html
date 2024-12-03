@@ -2154,8 +2154,6 @@
       
         
       
-        
-      
     
     
       
@@ -2270,7 +2268,7 @@
   <span class="md-ellipsis">
     
   
-    Build Failures
+    Build failures
   
 
     
@@ -2341,8 +2339,74 @@
   
   
   
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_7" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../reference/policies/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    
+  
+    Policies
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              <label class="md-nav__link " for="__nav_7_7">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Policies
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../../../reference/versioning/" class="md-nav__link">
+      <a href="../../../reference/policies/versioning/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2368,7 +2432,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reference/platforms/" class="md-nav__link">
+      <a href="../../../reference/policies/platforms/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2383,6 +2447,40 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/policies/license/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    License
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -2706,9 +2804,9 @@ table of the <code>pyproject.toml</code>.</p>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The <code>group</code> key can be an arbitrary value, it does need to include the package name or
-"plugins". However, is recommended to namespace the key by the package name to avoid collisions
-with other packages.</p>
+<p>The <code>group</code> key can be an arbitrary value, it does not need to include the package name or
+"plugins". However, it is recommended to namespace the key by the package name to avoid
+collisions with other packages.</p>
 </div>
 <h2 id="build-systems"><a class="toclink" href="#build-systems">Build systems</a></h2>
 <p>A build system determines how the project should be packaged and installed. Projects may declare and
@@ -2726,8 +2824,8 @@ with the default build system.</p>
 the presence of a <code>[build-system]</code> table is not required in other packages. For legacy reasons,
 if a build system is not defined, then <code>setuptools.build_meta:__legacy__</code> is used to build the
 package. Packages you depend on may not explicitly declare their build system but are still
-installable. Similarly, if you add a dependency on a local package, uv will always attempt to
-build and install it.</p>
+installable. Similarly, if you add a dependency on a local package or install it with <code>uv pip</code>,
+uv will always attempt to build and install it.</p>
 </div>
 <h2 id="project-packaging"><a class="toclink" href="#project-packaging">Project packaging</a></h2>
 <p>As discussed in <a href="#build-systems">build systems</a>, a Python project must be built to be installed.
