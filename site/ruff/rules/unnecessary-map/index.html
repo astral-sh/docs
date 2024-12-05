@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Checks for unnecessary `map` calls with `lambda` functions.">
+        <meta name="description" content="Checks for unnecessary `map()` calls with lambda functions.">
       
       
         <meta name="author" content="charliermarsh">
@@ -841,13 +841,13 @@
 <p>Derived from the <strong><a href="../#flake8-comprehensions-c4">flake8-comprehensions</a></strong> linter.</p>
 <p>Fix is sometimes available.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
-<p>Checks for unnecessary <code>map</code> calls with <code>lambda</code> functions.</p>
+<p>Checks for unnecessary <code>map()</code> calls with lambda functions.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
-<p>Using <code>map(func, iterable)</code> when <code>func</code> is a <code>lambda</code> is slower than
+<p>Using <code>map(func, iterable)</code> when <code>func</code> is a lambda is slower than
 using a generator expression or a comprehension, as the latter approach
 avoids the function call overhead, in addition to being more readable.</p>
-<p>This rule also applies to <code>map</code> calls within <code>list</code>, <code>set</code>, and <code>dict</code>
-calls. For example:</p>
+<p>This rule also applies to <code>map()</code> calls within <code>list()</code>, <code>set()</code>, and
+<code>dict()</code> calls. For example:</p>
 <ul>
 <li>Instead of <code>list(map(lambda num: num * 2, nums))</code>, use
     <code>[num * 2 for num in nums]</code>.</li>

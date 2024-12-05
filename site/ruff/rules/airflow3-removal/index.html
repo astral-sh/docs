@@ -6,13 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Checks for uses of `os.stat`.">
+        <meta name="description" content="Checks for uses of deprecated Airflow functions and values.">
       
       
         <meta name="author" content="charliermarsh">
       
       
-        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/os-stat/">
+        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/airflow3-removal/">
       
       
       
@@ -25,7 +25,7 @@
     
     
 
-<title>os-stat (PTH116) | Ruff</title>
+<title>airflow3-removal (AIR302) | Ruff</title>
 
 
     
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#os-stat-pth116" class="md-skip">
+        <a href="#airflow3-removal-air302" class="md-skip">
           Skip to content
         </a>
       
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              os-stat (PTH116)
+              airflow3-removal (AIR302)
             
           </span>
         </div>
@@ -837,47 +837,27 @@
   
 
 
-<h1 id="os-stat-pth116"><a class="toclink" href="#os-stat-pth116">os-stat (PTH116)</a></h1>
-<p>Derived from the <strong><a href="../#flake8-use-pathlib-pth">flake8-use-pathlib</a></strong> linter.</p>
+<h1 id="airflow3-removal-air302"><a class="toclink" href="#airflow3-removal-air302">airflow3-removal (AIR302)</a></h1>
+<p>Derived from the <strong><a href="../#airflow-air">Airflow</a></strong> linter.</p>
+<p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
-<p>Checks for uses of <code>os.stat</code>.</p>
+<p>Checks for uses of deprecated Airflow functions and values.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
-<p><code>pathlib</code> offers a high-level API for path manipulation, as compared to
-the lower-level API offered by <code>os</code>. When possible, using <code>Path</code> object
-methods such as <code>Path.stat()</code> can improve readability over the <code>os</code>
-module's counterparts (e.g., <code>os.path.stat()</code>).</p>
-<h2 id="examples"><a class="toclink" href="#examples">Examples</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">os</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span> <span class="nn">pwd</span> <span class="kn">import</span> <span class="n">getpwuid</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">from</span> <span class="nn">grp</span> <span class="kn">import</span> <span class="n">getgrgid</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">stat</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">stat</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">owner_name</span> <span class="o">=</span> <span class="n">getpwuid</span><span class="p">(</span><span class="n">stat</span><span class="o">.</span><span class="n">st_uid</span><span class="p">)</span><span class="o">.</span><span class="n">pw_name</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">group_name</span> <span class="o">=</span> <span class="n">getgrgid</span><span class="p">(</span><span class="n">stat</span><span class="o">.</span><span class="n">st_gid</span><span class="p">)</span><span class="o">.</span><span class="n">gr_name</span>
+<p>Airflow 3.0 removed various deprecated functions, members, and other
+values. Some have more modern replacements. Others are considered too niche
+and not worth to be maintained in Airflow.</p>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">airflow.utils.dates</span> <span class="kn">import</span> <span class="n">days_ago</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">yesterday</span> <span class="o">=</span> <span class="n">days_ago</span><span class="p">(</span><span class="n">today</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 </code></pre></div>
 <p>Use instead:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">file_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">stat</span> <span class="o">=</span> <span class="n">file_path</span><span class="o">.</span><span class="n">stat</span><span class="p">()</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">owner_name</span> <span class="o">=</span> <span class="n">file_path</span><span class="o">.</span><span class="n">owner</span><span class="p">()</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">group_name</span> <span class="o">=</span> <span class="n">file_path</span><span class="o">.</span><span class="n">group</span><span class="p">()</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">yesterday</span> <span class="o">=</span> <span class="n">today</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="known-issues"><a class="toclink" href="#known-issues">Known issues</a></h2>
-<p>While using <code>pathlib</code> can improve the readability and type safety of your code,
-it can be less performant than the lower-level alternatives that work directly with strings,
-especially on older versions of Python.</p>
-<h2 id="references"><a class="toclink" href="#references">References</a></h2>
-<ul>
-<li><a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path.stat">Python documentation: <code>Path.stat</code></a></li>
-<li><a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path.group">Python documentation: <code>Path.group</code></a></li>
-<li><a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path.owner">Python documentation: <code>Path.owner</code></a></li>
-<li><a href="https://docs.python.org/3/library/os.html#os.stat">Python documentation: <code>os.stat</code></a></li>
-<li><a href="https://peps.python.org/pep-0428/">PEP 428 – The pathlib module – object-oriented filesystem paths</a></li>
-<li><a href="https://docs.python.org/3/library/pathlib.html#correspondence-to-tools-in-the-os-module">Correspondence between <code>os</code> and <code>pathlib</code></a></li>
-<li><a href="https://treyhunner.com/2018/12/why-you-should-be-using-pathlib/">Why you should be using pathlib</a></li>
-<li><a href="https://treyhunner.com/2019/01/no-really-pathlib-is-great/">No really, pathlib is great</a></li>
-</ul>
 
 
 

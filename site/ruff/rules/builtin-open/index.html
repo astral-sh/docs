@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Checks for uses of the `open` builtin.">
+        <meta name="description" content="Checks for uses of the `open()` builtin.">
       
       
         <meta name="author" content="charliermarsh">
@@ -840,7 +840,7 @@
 <h1 id="builtin-open-pth123"><a class="toclink" href="#builtin-open-pth123">builtin-open (PTH123)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-use-pathlib-pth">flake8-use-pathlib</a></strong> linter.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
-<p>Checks for uses of the <code>open</code> builtin.</p>
+<p>Checks for uses of the <code>open()</code> builtin.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p><code>pathlib</code> offers a high-level API for path manipulation. When possible,
 using <code>Path</code> object methods such as <code>Path.open()</code> can improve readability
@@ -855,6 +855,10 @@ over the <code>open</code> builtin.</p>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">with</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;f1.py&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="o">...</span>
 </code></pre></div>
+<h2 id="known-issues"><a class="toclink" href="#known-issues">Known issues</a></h2>
+<p>While using <code>pathlib</code> can improve the readability and type safety of your code,
+it can be less performant than working directly with strings,
+especially on older versions of Python.</p>
 <h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path.open">Python documentation: <code>Path.open</code></a></li>
