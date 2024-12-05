@@ -843,16 +843,14 @@
 <p>Checks for uses of <code>os.path.splitext</code>.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p><code>pathlib</code> offers a high-level API for path manipulation, as compared to
-the lower-level API offered by <code>os</code>. When possible, using <code>Path</code> object
+the lower-level API offered by <code>os.path</code>. When possible, using <code>Path</code> object
 methods such as <code>Path.suffix</code> and <code>Path.stem</code> can improve readability over
-the <code>os</code> module's counterparts (e.g., <code>os.path.splitext()</code>).</p>
+the <code>os.path</code> module's counterparts (e.g., <code>os.path.splitext()</code>).</p>
 <p><code>os.path.splitext()</code> specifically returns a tuple of the file root and
 extension (e.g., given <code>splitext('/foo/bar.py')</code>, <code>os.path.splitext()</code>
 returns <code>("foo/bar", ".py")</code>. These outputs can be reconstructed through a
 combination of <code>Path.suffix</code> (<code>".py"</code>), <code>Path.stem</code> (<code>"bar"</code>), and
 <code>Path.parent</code> (<code>"foo"</code>).</p>
-<p>Note that <code>os</code> functions may be preferable if performance is a concern,
-e.g., in hot loops.</p>
 <h2 id="examples"><a class="toclink" href="#examples">Examples</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">os</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
@@ -865,6 +863,10 @@ e.g., in hot loops.</p>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">root</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="n">path</span><span class="o">.</span><span class="n">stem</span>
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">ext</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">suffix</span>
 </code></pre></div>
+<h2 id="known-issues"><a class="toclink" href="#known-issues">Known issues</a></h2>
+<p>While using <code>pathlib</code> can improve the readability and type safety of your code,
+it can be less performant than the lower-level alternatives that work directly with strings,
+especially on older versions of Python.</p>
 <h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PurePath.suffix">Python documentation: <code>Path.suffix</code></a></li>

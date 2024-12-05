@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Checks for an unquoted type expression in `typing.cast()` calls.">
+        <meta name="description" content="Checks for unquoted type expressions in `typing.cast()` calls.">
       
       
         <meta name="author" content="charliermarsh">
@@ -842,10 +842,19 @@
 <p>Fix is always available.</p>
 <p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
-<p>Checks for an unquoted type expression in <code>typing.cast()</code> calls.</p>
+<p>Checks for unquoted type expressions in <code>typing.cast()</code> calls.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
-<p><code>typing.cast()</code> does not do anything at runtime, so the time spent
-on evaluating the type expression is wasted.</p>
+<p>This rule helps enforce a consistent style across your codebase.</p>
+<p>It's often necessary to quote the first argument passed to <code>cast()</code>,
+as type expressions can involve forward references, or references
+to symbols which are only imported in <code>typing.TYPE_CHECKING</code> blocks.
+This can lead to a visual inconsistency across different <code>cast()</code> calls,
+where some type expressions are quoted but others are not. By enabling
+this rule, you ensure that all type expressions passed to <code>cast()</code> are
+quoted, enforcing stylistic consistency across all of your <code>cast()</code> calls.</p>
+<p>In some cases where <code>cast()</code> is used in a hot loop, this rule may also
+help avoid overhead from repeatedly evaluating complex type expressions at
+runtime.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">cast</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>

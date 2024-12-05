@@ -6,13 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Checks for uses of `os.stat`.">
+        <meta name="description" content="Checks for `int` conversions of values that are already integers.">
       
       
         <meta name="author" content="charliermarsh">
       
       
-        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/os-stat/">
+        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/unnecessary-cast-to-int/">
       
       
       
@@ -25,7 +25,7 @@
     
     
 
-<title>os-stat (PTH116) | Ruff</title>
+<title>unnecessary-cast-to-int (RUF046) | Ruff</title>
 
 
     
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#os-stat-pth116" class="md-skip">
+        <a href="#unnecessary-cast-to-int-ruf046" class="md-skip">
           Skip to content
         </a>
       
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              os-stat (PTH116)
+              unnecessary-cast-to-int (RUF046)
             
           </span>
         </div>
@@ -837,47 +837,30 @@
   
 
 
-<h1 id="os-stat-pth116"><a class="toclink" href="#os-stat-pth116">os-stat (PTH116)</a></h1>
-<p>Derived from the <strong><a href="../#flake8-use-pathlib-pth">flake8-use-pathlib</a></strong> linter.</p>
+<h1 id="unnecessary-cast-to-int-ruf046"><a class="toclink" href="#unnecessary-cast-to-int-ruf046">unnecessary-cast-to-int (RUF046)</a></h1>
+<p>Fix is always available.</p>
+<p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
-<p>Checks for uses of <code>os.stat</code>.</p>
+<p>Checks for <code>int</code> conversions of values that are already integers.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
-<p><code>pathlib</code> offers a high-level API for path manipulation, as compared to
-the lower-level API offered by <code>os</code>. When possible, using <code>Path</code> object
-methods such as <code>Path.stat()</code> can improve readability over the <code>os</code>
-module's counterparts (e.g., <code>os.path.stat()</code>).</p>
-<h2 id="examples"><a class="toclink" href="#examples">Examples</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">os</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span> <span class="nn">pwd</span> <span class="kn">import</span> <span class="n">getpwuid</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">from</span> <span class="nn">grp</span> <span class="kn">import</span> <span class="n">getgrgid</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">stat</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">stat</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">owner_name</span> <span class="o">=</span> <span class="n">getpwuid</span><span class="p">(</span><span class="n">stat</span><span class="o">.</span><span class="n">st_uid</span><span class="p">)</span><span class="o">.</span><span class="n">pw_name</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">group_name</span> <span class="o">=</span> <span class="n">getgrgid</span><span class="p">(</span><span class="n">stat</span><span class="o">.</span><span class="n">st_gid</span><span class="p">)</span><span class="o">.</span><span class="n">gr_name</span>
+<p>Such a conversion is unnecessary.</p>
+<h2 id="known-problems"><a class="toclink" href="#known-problems">Known problems</a></h2>
+<p>This rule may produce false positives for <code>round</code>, <code>math.ceil</code>, <code>math.floor</code>,
+and <code>math.trunc</code> calls when values override the <code>__round__</code>, <code>__ceil__</code>, <code>__floor__</code>,
+or <code>__trunc__</code> operators such that they don't return an integer.</p>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">([]))</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">foo</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
 </code></pre></div>
 <p>Use instead:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">file_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">stat</span> <span class="o">=</span> <span class="n">file_path</span><span class="o">.</span><span class="n">stat</span><span class="p">()</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">owner_name</span> <span class="o">=</span> <span class="n">file_path</span><span class="o">.</span><span class="n">owner</span><span class="p">()</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">group_name</span> <span class="o">=</span> <span class="n">file_path</span><span class="o">.</span><span class="n">group</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">len</span><span class="p">([])</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">round</span><span class="p">(</span><span class="n">foo</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="known-issues"><a class="toclink" href="#known-issues">Known issues</a></h2>
-<p>While using <code>pathlib</code> can improve the readability and type safety of your code,
-it can be less performant than the lower-level alternatives that work directly with strings,
-especially on older versions of Python.</p>
-<h2 id="references"><a class="toclink" href="#references">References</a></h2>
-<ul>
-<li><a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path.stat">Python documentation: <code>Path.stat</code></a></li>
-<li><a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path.group">Python documentation: <code>Path.group</code></a></li>
-<li><a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path.owner">Python documentation: <code>Path.owner</code></a></li>
-<li><a href="https://docs.python.org/3/library/os.html#os.stat">Python documentation: <code>os.stat</code></a></li>
-<li><a href="https://peps.python.org/pep-0428/">PEP 428 – The pathlib module – object-oriented filesystem paths</a></li>
-<li><a href="https://docs.python.org/3/library/pathlib.html#correspondence-to-tools-in-the-os-module">Correspondence between <code>os</code> and <code>pathlib</code></a></li>
-<li><a href="https://treyhunner.com/2018/12/why-you-should-be-using-pathlib/">Why you should be using pathlib</a></li>
-<li><a href="https://treyhunner.com/2019/01/no-really-pathlib-is-great/">No really, pathlib is great</a></li>
-</ul>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
+<p>The fix for <code>round</code>, <code>math.ceil</code>, <code>math.floor</code>, and <code>math.truncate</code> is unsafe
+because removing the <code>int</code> conversion can change the semantics for values
+overriding the <code>__round__</code>, <code>__ceil__</code>, <code>__floor__</code>, or <code>__trunc__</code> dunder methods
+such that they don't return an integer.</p>
 
 
 
