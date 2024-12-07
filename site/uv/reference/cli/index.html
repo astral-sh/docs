@@ -8135,7 +8135,8 @@ uv will exit with an error.</p>
 
 <h3 id="uv-python-pin"><a class="toclink" href="#uv-python-pin">uv python pin</a></h3>
 <p>Pin to a specific Python version.</p>
-<p>Writes the pinned version to a <code>.python-version</code> file, which is then read by other uv commands when determining the required Python version.</p>
+<p>Writes the pinned Python version to a <code>.python-version</code> file, which is used by other uv commands to determine the required Python version.</p>
+<p>If no version is provided, uv will look for an existing <code>.python-version</code> file and display the currently pinned version. If no <code>.python-version</code> file is found, uv will exit with an error.</p>
 <p>See <code>uv help python</code> to view supported request formats.</p>
 <h3 class="cli-reference">Usage</h3>
 
@@ -8146,6 +8147,8 @@ uv will exit with an error.</p>
 <dl class="cli-reference"><dt><code>REQUEST</code></dt><dd><p>The Python version request.</p>
 
 <p>uv supports more formats than other tools that read <code>.python-version</code> files, i.e., <code>pyenv</code>. If compatibility with those tools is needed, only use version numbers instead of complex requests such as <code>cpython@3.10</code>.</p>
+
+<p>If no request is provided, the currently pinned version will be shown.</p>
 
 <p>See <a href="#uv-python">uv python</a> to view supported request formats.</p>
 
@@ -11196,6 +11199,8 @@ uv will exit with an error.</p>
 </dd><dt><code>--no-build-isolation-package</code> <i>no-build-isolation-package</i></dt><dd><p>Disable isolation when building source distributions for a specific package.</p>
 
 <p>Assumes that the packages&#8217; build dependencies specified by PEP 518 are already installed.</p>
+
+</dd><dt><code>--no-build-logs</code></dt><dd><p>Hide logs from the build backend</p>
 
 </dd><dt><code>--no-build-package</code> <i>no-build-package</i></dt><dd><p>Don&#8217;t build source distributions for a specific package</p>
 
