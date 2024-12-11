@@ -2605,17 +2605,29 @@ PyPI from GitHub Actions, you don't need to set any credentials. Instead,
 generate a token. Using a token is equivalent to setting <code>--username __token__</code> and using the
 token as password.</p>
 </div>
+<p>If you're using a custom index through <code>[[tool.uv.index]]</code>, add <code>publish-url</code> and use
+<code>uv publish --index &lt;name&gt;</code>. For example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">[[tool.uv.index]]</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;testpypi&quot;</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://test.pypi.org/simple/&quot;</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">publish-url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://test.pypi.org/legacy/&quot;</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When using <code>uv publish --index &lt;name&gt;</code>, the <code>pyproject.toml</code> must be present, i.e. you need to
+have a checkout step in a publish CI job.</p>
+</div>
 <p>Even though <code>uv publish</code> retries failed uploads, it can happen that publishing fails in the middle,
 with some files uploaded and some files still missing. With PyPI, you can retry the exact same
 command, existing identical files will be ignored. With other registries, use
-<code>--check-url &lt;index url&gt;</code> with the index URL (not the publish URL) the packages belong to. uv will
-skip uploading files that are identical to files in the registry, and it will also handle raced
-parallel uploads. Note that existing files need to match exactly with those previously uploaded to
-the registry, this avoids accidentally publishing source distribution and wheels with different
-contents for the same version.</p>
+<code>--check-url &lt;index url&gt;</code> with the index URL (not the publish URL) the packages belong to. When
+using <code>--index</code>, the index URL is used as check URL. uv will skip uploading files that are identical
+to files in the registry, and it will also handle raced parallel uploads. Note that existing files
+need to match exactly with those previously uploaded to the registry, this avoids accidentally
+publishing source distribution and wheels with different contents for the same version.</p>
 <h2 id="installing-your-package"><a class="toclink" href="#installing-your-package">Installing your package</a></h2>
 <p>Test that the package can be installed and imported with <code>uv run</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>--with<span class="w"> </span>&lt;PACKAGE&gt;<span class="w"> </span>--no-project<span class="w"> </span>--<span class="w"> </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import &lt;PACKAGE&gt;&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>--with<span class="w"> </span>&lt;PACKAGE&gt;<span class="w"> </span>--no-project<span class="w"> </span>--<span class="w"> </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import &lt;PACKAGE&gt;&quot;</span>
 </code></pre></div>
 <p>The <code>--no-project</code> flag is used to avoid installing the package from your local project directory.</p>
 <div class="admonition tip">
