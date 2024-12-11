@@ -2568,19 +2568,23 @@ yourself exporting a <code>uv.lock</code> file, consider opening an issue to dis
 <p>To avoid updating the environment during <code>uv run</code> invocations, use the <code>--no-sync</code> flag.</p>
 <p>To assert the lockfile matches the project metadata, use the <code>--locked</code> flag. If the lockfile is not
 up-to-date, an error will be raised instead of updating the lockfile.</p>
+<p>You can also check if the lockfile is up-to-date by passing the <code>--check</code> flag to <code>uv lock</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="gp">$ </span>uv<span class="w"> </span>lock<span class="w"> </span>--check
+</code></pre></div>
+<p>This is equivalent to the <code>--locked</code> flag for other commands.</p>
 <h3 id="upgrading-locked-package-versions"><a class="toclink" href="#upgrading-locked-package-versions">Upgrading locked package versions</a></h3>
 <p>By default, uv will prefer the locked versions of packages when running <code>uv sync</code> and <code>uv lock</code>.
 Package versions will only change if the project's dependency constraints exclude the previous,
 locked version.</p>
 <p>To upgrade all packages:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="gp">$ </span>uv<span class="w"> </span>lock<span class="w"> </span>--upgrade
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="gp">$ </span>uv<span class="w"> </span>lock<span class="w"> </span>--upgrade
 </code></pre></div>
 <p>To upgrade a single package to the latest version, while retaining the locked versions of all other
 packages:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="gp">$ </span>uv<span class="w"> </span>lock<span class="w"> </span>--upgrade-package<span class="w"> </span>&lt;package&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="gp">$ </span>uv<span class="w"> </span>lock<span class="w"> </span>--upgrade-package<span class="w"> </span>&lt;package&gt;
 </code></pre></div>
 <p>To upgrade a single package to a specific version:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="gp">$ </span>uv<span class="w"> </span>lock<span class="w"> </span>--upgrade-package<span class="w"> </span>&lt;package&gt;<span class="o">==</span>&lt;version&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="gp">$ </span>uv<span class="w"> </span>lock<span class="w"> </span>--upgrade-package<span class="w"> </span>&lt;package&gt;<span class="o">==</span>&lt;version&gt;
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
