@@ -6,13 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Checks for the presence of trailing commas on bare (i.e., unparenthesized)">
+        <meta name="description" content="Checks for `itertools.batched` calls without an explicit `strict` parameter.">
       
       
         <meta name="author" content="charliermarsh">
       
       
-        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/trailing-comma-on-bare-tuple/">
+        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/batched-without-explicit-strict/">
       
       
       
@@ -25,7 +25,7 @@
     
     
 
-<title>trailing-comma-on-bare-tuple (COM818) | Ruff</title>
+<title>batched-without-explicit-strict (B911) | Ruff</title>
 
 
     
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#trailing-comma-on-bare-tuple-com818" class="md-skip">
+        <a href="#batched-without-explicit-strict-b911" class="md-skip">
           Skip to content
         </a>
       
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              trailing-comma-on-bare-tuple (COM818)
+              batched-without-explicit-strict (B911)
             
           </span>
         </div>
@@ -837,32 +837,38 @@
   
 
 
-<h1 id="trailing-comma-on-bare-tuple-com818"><a class="toclink" href="#trailing-comma-on-bare-tuple-com818">trailing-comma-on-bare-tuple (COM818)</a></h1>
-<p>Derived from the <strong><a href="../#flake8-commas-com">flake8-commas</a></strong> linter.</p>
+<h1 id="batched-without-explicit-strict-b911"><a class="toclink" href="#batched-without-explicit-strict-b911">batched-without-explicit-strict (B911)</a></h1>
+<p>Derived from the <strong><a href="../#flake8-bugbear-b">flake8-bugbear</a></strong> linter.</p>
+<p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
-<p>Checks for the presence of trailing commas on bare (i.e., unparenthesized)
-tuples.</p>
+<p>Checks for <code>itertools.batched</code> calls without an explicit <code>strict</code> parameter.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
-<p>The presence of a misplaced comma will cause Python to interpret the value
-as a tuple, which can lead to unexpected behaviour.</p>
+<p>By default, if the length of the iterable is not divisible by
+the second argument to <code>itertools.batched</code>, the last batch
+will be shorter than the rest.</p>
+<p>In Python 3.13, a <code>strict</code> parameter was added which allows controlling if the batches must be of uniform length.
+Pass <code>strict=True</code> to raise a <code>ValueError</code> if the batches are of non-uniform length.
+Otherwise, pass <code>strict=False</code> to make the intention explicit.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">json</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">foo</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">&quot;bar&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}),</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">itertools</span><span class="o">.</span><span class="n">batched</span><span class="p">(</span><span class="n">iterable</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
 </code></pre></div>
-<p>Use instead:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span> <span class="nn">json</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">foo</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">&quot;bar&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+<p>Use instead if the batches must be of uniform length:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">itertools</span><span class="o">.</span><span class="n">batched</span><span class="p">(</span><span class="n">iterable</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </code></pre></div>
-<p>In the event that a tuple is intended, then use instead:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span> <span class="nn">json</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">foo</span> <span class="o">=</span> <span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">&quot;bar&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}),)</span>
+<p>Or if the batches can be of non-uniform length:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">itertools</span><span class="o">.</span><span class="n">batched</span><span class="p">(</span><span class="n">iterable</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </code></pre></div>
+<h2 id="known-deviations"><a class="toclink" href="#known-deviations">Known deviations</a></h2>
+<p>Unlike the upstream <code>B911</code>, this rule will not report infinite iterators
+(e.g., <code>itertools.cycle(...)</code>).</p>
+<h2 id="options"><a class="toclink" href="#options">Options</a></h2>
+<ul>
+<li><a href="../../settings/#target-version"><code>target-version</code></a></li>
+</ul>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
+<ul>
+<li><a href="https://docs.python.org/3/library/itertools.html#batched">Python documentation: <code>batched</code></a></li>
+</ul>
 
 
 

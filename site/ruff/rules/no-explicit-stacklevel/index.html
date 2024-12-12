@@ -839,6 +839,7 @@
 
 <h1 id="no-explicit-stacklevel-b028"><a class="toclink" href="#no-explicit-stacklevel-b028">no-explicit-stacklevel (B028)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-bugbear-b">flake8-bugbear</a></strong> linter.</p>
+<p>Fix is always available.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for <code>warnings.warn</code> calls without an explicit <code>stacklevel</code> keyword
 argument.</p>
@@ -855,6 +856,11 @@ more context about the warning.</p>
 <p>Use instead:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;This is a warning&quot;</span><span class="p">,</span> <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 </code></pre></div>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
+<p>This rule's fix is marked as unsafe because it changes
+the behavior of the code. Moreover, the fix will assign
+a stacklevel of 2, while the user may wish to assign a
+higher stacklevel to address the diagnostic.</p>
 <h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/library/warnings.html#warnings.warn">Python documentation: <code>warnings.warn</code></a></li>
