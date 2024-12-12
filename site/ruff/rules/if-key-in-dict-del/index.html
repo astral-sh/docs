@@ -6,13 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Checks for the presence of trailing commas on bare (i.e., unparenthesized)">
+        <meta name="description" content="An extremely fast Python linter and code formatter, written in Rust.">
       
       
         <meta name="author" content="charliermarsh">
       
       
-        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/trailing-comma-on-bare-tuple/">
+        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/if-key-in-dict-del/">
       
       
       
@@ -25,7 +25,7 @@
     
     
 
-<title>trailing-comma-on-bare-tuple (COM818) | Ruff</title>
+<title>If key in dict del | Ruff</title>
 
 
     
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#trailing-comma-on-bare-tuple-com818" class="md-skip">
+        <a href="#if-key-in-dict-del-ruf051" class="md-skip">
           Skip to content
         </a>
       
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              trailing-comma-on-bare-tuple (COM818)
+              If key in dict del
             
           </span>
         </div>
@@ -837,41 +837,33 @@
   
 
 
-<h1 id="trailing-comma-on-bare-tuple-com818"><a class="toclink" href="#trailing-comma-on-bare-tuple-com818">trailing-comma-on-bare-tuple (COM818)</a></h1>
-<p>Derived from the <strong><a href="../#flake8-commas-com">flake8-commas</a></strong> linter.</p>
+<hr />
+<p>description: Checks for <code>if key in dictionary: del dictionary[key]</code>.
+tags:
+- RUF051</p>
+<hr />
+<h1 id="if-key-in-dict-del-ruf051"><a class="toclink" href="#if-key-in-dict-del-ruf051">if-key-in-dict-del (RUF051)</a></h1>
+<p>Fix is always available.</p>
+<p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
-<p>Checks for the presence of trailing commas on bare (i.e., unparenthesized)
-tuples.</p>
+<p>Checks for <code>if key in dictionary: del dictionary[key]</code>.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
-<p>The presence of a misplaced comma will cause Python to interpret the value
-as a tuple, which can lead to unexpected behaviour.</p>
+<p>To remove a key-value pair from a dictionary, it's more concise to use <code>.pop(..., None)</code>.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">json</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">foo</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">&quot;bar&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}),</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">dictionary</span><span class="p">:</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="k">del</span> <span class="n">dictionary</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
 </code></pre></div>
 <p>Use instead:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span> <span class="nn">json</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">foo</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">&quot;bar&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">dictionary</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 </code></pre></div>
-<p>In the event that a tuple is intended, then use instead:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span> <span class="nn">json</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">foo</span> <span class="o">=</span> <span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">&quot;bar&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}),)</span>
-</code></pre></div>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
+<p>This rule's fix is marked as safe, unless the if statement contains comments.</p>
 
 
 
 
 
 
-
-  
-  
 
 
 

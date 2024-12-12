@@ -3951,7 +3951,7 @@ catches a wide variety of common errors (like unused imports) with zero configur
 <tr>
 <td id="B025">B025</td>
 <td><a href="duplicate-try-block-exception/">duplicate-try-block-exception</a></td>
-<td>try-except block with duplicate exception <code>{name}</code></td>
+<td>try-except* block with duplicate exception <code>{name}</code></td>
 <td style="text-align: right;"><span title='Rule is stable' style='opacity: 0.6'>✔️</span> <span title='Automatic fix not available' style='opacity: 0.1' aria-hidden='true'>🛠️</span></td>
 </tr>
 <tr>
@@ -3970,18 +3970,18 @@ catches a wide variety of common errors (like unused imports) with zero configur
 <td id="B028">B028</td>
 <td><a href="no-explicit-stacklevel/">no-explicit-stacklevel</a></td>
 <td>No explicit <code>stacklevel</code> keyword argument found</td>
-<td style="text-align: right;"><span title='Rule is stable' style='opacity: 0.6'>✔️</span> <span title='Automatic fix not available' style='opacity: 0.1' aria-hidden='true'>🛠️</span></td>
+<td style="text-align: right;"><span title='Rule is stable' style='opacity: 0.6'>✔️</span> <span title='Automatic fix available'>🛠️</span></td>
 </tr>
 <tr>
 <td id="B029">B029</td>
 <td><a href="except-with-empty-tuple/">except-with-empty-tuple</a></td>
-<td>Using <code>except ():</code> with an empty tuple does not catch anything; add exceptions to handle</td>
+<td>Using <code>except* ():</code> with an empty tuple does not catch anything; add exceptions to handle</td>
 <td style="text-align: right;"><span title='Rule is stable' style='opacity: 0.6'>✔️</span> <span title='Automatic fix not available' style='opacity: 0.1' aria-hidden='true'>🛠️</span></td>
 </tr>
 <tr>
 <td id="B030">B030</td>
 <td><a href="except-with-non-exception-classes/">except-with-non-exception-classes</a></td>
-<td><code>except</code> handlers should only be exception classes or tuples of exception classes</td>
+<td><code>except*</code> handlers should only be exception classes or tuples of exception classes</td>
 <td style="text-align: right;"><span title='Rule is stable' style='opacity: 0.6'>✔️</span> <span title='Automatic fix not available' style='opacity: 0.1' aria-hidden='true'>🛠️</span></td>
 </tr>
 <tr>
@@ -4029,7 +4029,7 @@ catches a wide variety of common errors (like unused imports) with zero configur
 <tr>
 <td id="B904">B904</td>
 <td><a href="raise-without-from-inside-except/">raise-without-from-inside-except</a></td>
-<td>Within an <code>except</code> clause, raise exceptions with <code>raise ... from err</code> or <code>raise ... from None</code> to distinguish them from errors in exception handling</td>
+<td>Within an <code>except*</code> clause, raise exceptions with <code>raise ... from err</code> or <code>raise ... from None</code> to distinguish them from errors in exception handling</td>
 <td style="text-align: right;"><span title='Rule is stable' style='opacity: 0.6'>✔️</span> <span title='Automatic fix not available' style='opacity: 0.1' aria-hidden='true'>🛠️</span></td>
 </tr>
 <tr>
@@ -4042,6 +4042,12 @@ catches a wide variety of common errors (like unused imports) with zero configur
 <td id="B909">B909</td>
 <td><a href="loop-iterator-mutation/">loop-iterator-mutation</a></td>
 <td>Mutation to loop iterable <code>{name}</code> during iteration</td>
+<td style="text-align: right;"><span title='Rule is in preview'>🧪</span> <span title='Automatic fix not available' style='opacity: 0.1' aria-hidden='true'>🛠️</span></td>
+</tr>
+<tr>
+<td id="B911">B911</td>
+<td><a href="batched-without-explicit-strict/">batched-without-explicit-strict</a></td>
+<td><code>itertools.batched()</code> without an explicit <code>strict</code> parameter</td>
 <td style="text-align: right;"><span title='Rule is in preview'>🧪</span> <span title='Automatic fix not available' style='opacity: 0.1' aria-hidden='true'>🛠️</span></td>
 </tr>
 </tbody>
@@ -6097,6 +6103,12 @@ catches a wide variety of common errors (like unused imports) with zero configur
 <td>Use <code>pathlib.Path.iterdir()</code> instead.</td>
 <td style="text-align: right;"><span title='Rule is in preview'>🧪</span> <span title='Automatic fix not available' style='opacity: 0.1' aria-hidden='true'>🛠️</span></td>
 </tr>
+<tr>
+<td id="PTH210">PTH210</td>
+<td><a href="dotless-pathlib-with-suffix/">dotless-pathlib-with-suffix</a></td>
+<td>Dotless suffix passed to <code>.with_suffix()</code></td>
+<td style="text-align: right;"><span title='Rule is in preview'>🧪</span> <span title='Automatic fix available'>🛠️</span></td>
+</tr>
 </tbody>
 </table>
 <h2 id="flake8-todos-td"><a class="toclink" href="#flake8-todos-td">flake8-todos (TD)</a></h2>
@@ -7260,7 +7272,7 @@ catches a wide variety of common errors (like unused imports) with zero configur
 <td id="AIR302">AIR302</td>
 <td><a href="airflow3-removal/">airflow3-removal</a></td>
 <td><code>{deprecated}</code> is removed in Airflow 3.0</td>
-<td style="text-align: right;"><span title='Rule is in preview'>🧪</span> <span title='Automatic fix not available' style='opacity: 0.1' aria-hidden='true'>🛠️</span></td>
+<td style="text-align: right;"><span title='Rule is in preview'>🧪</span> <span title='Automatic fix available'>🛠️</span></td>
 </tr>
 </tbody>
 </table>
@@ -7826,6 +7838,12 @@ catches a wide variety of common errors (like unused imports) with zero configur
 <td><a href="map-int-version-parsing/">map-int-version-parsing</a></td>
 <td><code>__version__</code> may contain non-integral-like elements</td>
 <td style="text-align: right;"><span title='Rule is in preview'>🧪</span> <span title='Automatic fix not available' style='opacity: 0.1' aria-hidden='true'>🛠️</span></td>
+</tr>
+<tr>
+<td id="RUF051">RUF051</td>
+<td><a href="if-key-in-dict-del/">if-key-in-dict-del</a></td>
+<td>Use <code>pop</code> instead of <code>key in dict</code> followed by <code>del dict[key]</code></td>
+<td style="text-align: right;"><span title='Rule is in preview'>🧪</span> <span title='Automatic fix available'>🛠️</span></td>
 </tr>
 <tr>
 <td id="RUF052">RUF052</td>

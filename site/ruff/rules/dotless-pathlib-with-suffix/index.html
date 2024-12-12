@@ -6,13 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Checks for the presence of trailing commas on bare (i.e., unparenthesized)">
+        <meta name="description" content="Checks for `pathlib.Path.with_suffix()` calls where">
       
       
         <meta name="author" content="charliermarsh">
       
       
-        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/trailing-comma-on-bare-tuple/">
+        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/dotless-pathlib-with-suffix/">
       
       
       
@@ -25,7 +25,7 @@
     
     
 
-<title>trailing-comma-on-bare-tuple (COM818) | Ruff</title>
+<title>dotless-pathlib-with-suffix (PTH210) | Ruff</title>
 
 
     
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#trailing-comma-on-bare-tuple-com818" class="md-skip">
+        <a href="#dotless-pathlib-with-suffix-pth210" class="md-skip">
           Skip to content
         </a>
       
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              trailing-comma-on-bare-tuple (COM818)
+              dotless-pathlib-with-suffix (PTH210)
             
           </span>
         </div>
@@ -837,32 +837,37 @@
   
 
 
-<h1 id="trailing-comma-on-bare-tuple-com818"><a class="toclink" href="#trailing-comma-on-bare-tuple-com818">trailing-comma-on-bare-tuple (COM818)</a></h1>
-<p>Derived from the <strong><a href="../#flake8-commas-com">flake8-commas</a></strong> linter.</p>
+<h1 id="dotless-pathlib-with-suffix-pth210"><a class="toclink" href="#dotless-pathlib-with-suffix-pth210">dotless-pathlib-with-suffix (PTH210)</a></h1>
+<p>Derived from the <strong><a href="../#flake8-use-pathlib-pth">flake8-use-pathlib</a></strong> linter.</p>
+<p>Fix is always available.</p>
+<p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
-<p>Checks for the presence of trailing commas on bare (i.e., unparenthesized)
-tuples.</p>
+<p>Checks for <code>pathlib.Path.with_suffix()</code> calls where
+the given suffix does not have a leading dot.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
-<p>The presence of a misplaced comma will cause Python to interpret the value
-as a tuple, which can lead to unexpected behaviour.</p>
-<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">json</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">foo</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">&quot;bar&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}),</span>
+<p><code>Path.with_suffix()</code> will raise an error at runtime
+if the given suffix is not prefixed with a dot.</p>
+<h2 id="examples"><a class="toclink" href="#examples">Examples</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">path</span><span class="o">.</span><span class="n">with_suffix</span><span class="p">(</span><span class="s2">&quot;py&quot;</span><span class="p">)</span>
 </code></pre></div>
 <p>Use instead:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span> <span class="nn">json</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">foo</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">&quot;bar&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">path</span><span class="o">.</span><span class="n">with_suffix</span><span class="p">(</span><span class="s2">&quot;.py&quot;</span><span class="p">)</span>
 </code></pre></div>
-<p>In the event that a tuple is intended, then use instead:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span> <span class="nn">json</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">foo</span> <span class="o">=</span> <span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">&quot;bar&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}),)</span>
-</code></pre></div>
+<h2 id="known-problems"><a class="toclink" href="#known-problems">Known problems</a></h2>
+<p>This rule is likely to have false negatives, as Ruff can only emit the
+lint if it can say for sure that a binding refers to a <code>Path</code> object at
+runtime. Due to type inference limitations, Ruff is currently only
+confident about this if it can see that the binding originates from a
+function parameter annotated with <code>Path</code> or from a direct assignment to a
+<code>Path()</code> constructor call.</p>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
+<p>The fix for this rule adds a leading period to the string passed
+to the <code>with_suffix()</code> call. This fix is marked as unsafe, as it
+changes runtime behaviour: the call would previously always have
+raised an exception, but no longer will.</p>
+<p>Moreover, it's impossible to determine if this is the correct fix
+for a given situation (it's possible that the string was correct
+but was being passed to the wrong method entirely, for example).</p>
 
 
 
