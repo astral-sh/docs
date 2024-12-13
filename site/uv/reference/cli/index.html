@@ -3679,6 +3679,20 @@
 <p>If a URL, the page must contain a flat list of links to package files adhering to the formats described above.</p>
 
 <p>May also be set with the <code>UV_FIND_LINKS</code> environment variable.</p>
+</dd><dt><code>--fork-strategy</code> <i>fork-strategy</i></dt><dd><p>The strategy to use when selecting multiple versions of a given package across Python versions and platforms.</p>
+
+<p>By default, uv will optimize for selecting the latest version of each package for each supported Python version (<code>requires-python</code>), while minimizing the number of selected versions across platforms.</p>
+
+<p>Under <code>fewest</code>, uv will minimize the number of selected versions for each package, preferring older versions that are compatible with a wider range of supported Python versions or platforms.</p>
+
+<p>May also be set with the <code>UV_FORK_STRATEGY</code> environment variable.</p>
+<p>Possible values:</p>
+
+<ul>
+<li><code>fewest</code>:  Optimize for selecting the fewest number of versions for each package. Older versions may be preferred if they are compatible with a wider range of supported Python versions or platforms</li>
+
+<li><code>requires-python</code>:  Optimize for selecting latest supported version of each package, for each supported Python version</li>
+</ul>
 </dd><dt><code>--frozen</code></dt><dd><p>Run without updating the <code>uv.lock</code> file.</p>
 
 <p>Instead of checking if the lockfile is up-to-date, uses the versions in the lockfile as the source of truth. If the lockfile is missing, uv will exit with an error. If the <code>pyproject.toml</code> includes changes to dependencies that have not been included in the lockfile yet, they will not be present in the environment.</p>
@@ -3850,6 +3864,7 @@
 
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 
+<p>May also be set with the <code>UV_OFFLINE</code> environment variable.</p>
 </dd><dt><code>--only-dev</code></dt><dd><p>Only include the development dependency group.</p>
 
 <p>Omit other dependencies. The project itself will also be omitted.</p>
@@ -4124,6 +4139,7 @@
 
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 
+<p>May also be set with the <code>UV_OFFLINE</code> environment variable.</p>
 </dd><dt><code>--package</code></dt><dd><p>Set up the project to be built as a Python package.</p>
 
 <p>Defines a <code>[build-system]</code> for the project.</p>
@@ -4300,6 +4316,20 @@
 <p>If a URL, the page must contain a flat list of links to package files adhering to the formats described above.</p>
 
 <p>May also be set with the <code>UV_FIND_LINKS</code> environment variable.</p>
+</dd><dt><code>--fork-strategy</code> <i>fork-strategy</i></dt><dd><p>The strategy to use when selecting multiple versions of a given package across Python versions and platforms.</p>
+
+<p>By default, uv will optimize for selecting the latest version of each package for each supported Python version (<code>requires-python</code>), while minimizing the number of selected versions across platforms.</p>
+
+<p>Under <code>fewest</code>, uv will minimize the number of selected versions for each package, preferring older versions that are compatible with a wider range of supported Python versions or platforms.</p>
+
+<p>May also be set with the <code>UV_FORK_STRATEGY</code> environment variable.</p>
+<p>Possible values:</p>
+
+<ul>
+<li><code>fewest</code>:  Optimize for selecting the fewest number of versions for each package. Older versions may be preferred if they are compatible with a wider range of supported Python versions or platforms</li>
+
+<li><code>requires-python</code>:  Optimize for selecting latest supported version of each package, for each supported Python version</li>
+</ul>
 </dd><dt><code>--frozen</code></dt><dd><p>Add dependencies without re-locking the project.</p>
 
 <p>The project environment will not be synced.</p>
@@ -4428,6 +4458,7 @@
 
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 
+<p>May also be set with the <code>UV_OFFLINE</code> environment variable.</p>
 </dd><dt><code>--optional</code> <i>optional</i></dt><dd><p>Add the requirements to the package&#8217;s optional dependencies for the specified extra.</p>
 
 <p>The group may then be activated when installing the project with the <code>--extra</code> flag.</p>
@@ -4633,6 +4664,20 @@
 <p>If a URL, the page must contain a flat list of links to package files adhering to the formats described above.</p>
 
 <p>May also be set with the <code>UV_FIND_LINKS</code> environment variable.</p>
+</dd><dt><code>--fork-strategy</code> <i>fork-strategy</i></dt><dd><p>The strategy to use when selecting multiple versions of a given package across Python versions and platforms.</p>
+
+<p>By default, uv will optimize for selecting the latest version of each package for each supported Python version (<code>requires-python</code>), while minimizing the number of selected versions across platforms.</p>
+
+<p>Under <code>fewest</code>, uv will minimize the number of selected versions for each package, preferring older versions that are compatible with a wider range of supported Python versions or platforms.</p>
+
+<p>May also be set with the <code>UV_FORK_STRATEGY</code> environment variable.</p>
+<p>Possible values:</p>
+
+<ul>
+<li><code>fewest</code>:  Optimize for selecting the fewest number of versions for each package. Older versions may be preferred if they are compatible with a wider range of supported Python versions or platforms</li>
+
+<li><code>requires-python</code>:  Optimize for selecting latest supported version of each package, for each supported Python version</li>
+</ul>
 </dd><dt><code>--frozen</code></dt><dd><p>Remove dependencies without re-locking the project.</p>
 
 <p>The project environment will not be synced.</p>
@@ -4759,6 +4804,7 @@
 
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 
+<p>May also be set with the <code>UV_OFFLINE</code> environment variable.</p>
 </dd><dt><code>--optional</code> <i>optional</i></dt><dd><p>Remove the packages from the project&#8217;s optional dependencies for the specified extra</p>
 
 </dd><dt><code>--package</code> <i>package</i></dt><dd><p>Remove the dependencies from a specific package in the workspace</p>
@@ -4964,6 +5010,20 @@
 <p>If a URL, the page must contain a flat list of links to package files adhering to the formats described above.</p>
 
 <p>May also be set with the <code>UV_FIND_LINKS</code> environment variable.</p>
+</dd><dt><code>--fork-strategy</code> <i>fork-strategy</i></dt><dd><p>The strategy to use when selecting multiple versions of a given package across Python versions and platforms.</p>
+
+<p>By default, uv will optimize for selecting the latest version of each package for each supported Python version (<code>requires-python</code>), while minimizing the number of selected versions across platforms.</p>
+
+<p>Under <code>fewest</code>, uv will minimize the number of selected versions for each package, preferring older versions that are compatible with a wider range of supported Python versions or platforms.</p>
+
+<p>May also be set with the <code>UV_FORK_STRATEGY</code> environment variable.</p>
+<p>Possible values:</p>
+
+<ul>
+<li><code>fewest</code>:  Optimize for selecting the fewest number of versions for each package. Older versions may be preferred if they are compatible with a wider range of supported Python versions or platforms</li>
+
+<li><code>requires-python</code>:  Optimize for selecting latest supported version of each package, for each supported Python version</li>
+</ul>
 </dd><dt><code>--frozen</code></dt><dd><p>Sync without updating the <code>uv.lock</code> file.</p>
 
 <p>Instead of checking if the lockfile is up-to-date, uses the versions in the lockfile as the source of truth. If the lockfile is missing, uv will exit with an error. If the <code>pyproject.toml</code> includes changes to dependencies that have not been included in the lockfile yet, they will not be present in the environment.</p>
@@ -5121,6 +5181,7 @@
 
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 
+<p>May also be set with the <code>UV_OFFLINE</code> environment variable.</p>
 </dd><dt><code>--only-dev</code></dt><dd><p>Only include the development dependency group.</p>
 
 <p>Omit other dependencies. The project itself will also be omitted.</p>
@@ -5321,6 +5382,20 @@
 <p>If a URL, the page must contain a flat list of links to package files adhering to the formats described above.</p>
 
 <p>May also be set with the <code>UV_FIND_LINKS</code> environment variable.</p>
+</dd><dt><code>--fork-strategy</code> <i>fork-strategy</i></dt><dd><p>The strategy to use when selecting multiple versions of a given package across Python versions and platforms.</p>
+
+<p>By default, uv will optimize for selecting the latest version of each package for each supported Python version (<code>requires-python</code>), while minimizing the number of selected versions across platforms.</p>
+
+<p>Under <code>fewest</code>, uv will minimize the number of selected versions for each package, preferring older versions that are compatible with a wider range of supported Python versions or platforms.</p>
+
+<p>May also be set with the <code>UV_FORK_STRATEGY</code> environment variable.</p>
+<p>Possible values:</p>
+
+<ul>
+<li><code>fewest</code>:  Optimize for selecting the fewest number of versions for each package. Older versions may be preferred if they are compatible with a wider range of supported Python versions or platforms</li>
+
+<li><code>requires-python</code>:  Optimize for selecting latest supported version of each package, for each supported Python version</li>
+</ul>
 </dd><dt><code>--help</code>, <code>-h</code></dt><dd><p>Display the concise help for this command</p>
 
 </dd><dt><code>--index</code> <i>index</i></dt><dd><p>The URLs to use when resolving dependencies, in addition to the default index.</p>
@@ -5434,6 +5509,7 @@
 
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 
+<p>May also be set with the <code>UV_OFFLINE</code> environment variable.</p>
 </dd><dt><code>--prerelease</code> <i>prerelease</i></dt><dd><p>The strategy to use when considering pre-release versions.</p>
 
 <p>By default, uv will accept pre-releases for packages that <em>only</em> publish pre-releases, along with first-party requirements that contain an explicit pre-release marker in the declared specifiers (<code>if-necessary-or-explicit</code>).</p>
@@ -5614,6 +5690,20 @@
 <p>If a URL, the page must contain a flat list of links to package files adhering to the formats described above.</p>
 
 <p>May also be set with the <code>UV_FIND_LINKS</code> environment variable.</p>
+</dd><dt><code>--fork-strategy</code> <i>fork-strategy</i></dt><dd><p>The strategy to use when selecting multiple versions of a given package across Python versions and platforms.</p>
+
+<p>By default, uv will optimize for selecting the latest version of each package for each supported Python version (<code>requires-python</code>), while minimizing the number of selected versions across platforms.</p>
+
+<p>Under <code>fewest</code>, uv will minimize the number of selected versions for each package, preferring older versions that are compatible with a wider range of supported Python versions or platforms.</p>
+
+<p>May also be set with the <code>UV_FORK_STRATEGY</code> environment variable.</p>
+<p>Possible values:</p>
+
+<ul>
+<li><code>fewest</code>:  Optimize for selecting the fewest number of versions for each package. Older versions may be preferred if they are compatible with a wider range of supported Python versions or platforms</li>
+
+<li><code>requires-python</code>:  Optimize for selecting latest supported version of each package, for each supported Python version</li>
+</ul>
 </dd><dt><code>--format</code> <i>format</i></dt><dd><p>The format to which <code>uv.lock</code> should be exported.</p>
 
 <p>At present, only <code>requirements-txt</code> is supported.</p>
@@ -5781,6 +5871,7 @@
 
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 
+<p>May also be set with the <code>UV_OFFLINE</code> environment variable.</p>
 </dd><dt><code>--only-dev</code></dt><dd><p>Only include the development dependency group.</p>
 
 <p>Omit other dependencies. The project itself will also be omitted.</p>
@@ -5970,6 +6061,20 @@
 <p>If a URL, the page must contain a flat list of links to package files adhering to the formats described above.</p>
 
 <p>May also be set with the <code>UV_FIND_LINKS</code> environment variable.</p>
+</dd><dt><code>--fork-strategy</code> <i>fork-strategy</i></dt><dd><p>The strategy to use when selecting multiple versions of a given package across Python versions and platforms.</p>
+
+<p>By default, uv will optimize for selecting the latest version of each package for each supported Python version (<code>requires-python</code>), while minimizing the number of selected versions across platforms.</p>
+
+<p>Under <code>fewest</code>, uv will minimize the number of selected versions for each package, preferring older versions that are compatible with a wider range of supported Python versions or platforms.</p>
+
+<p>May also be set with the <code>UV_FORK_STRATEGY</code> environment variable.</p>
+<p>Possible values:</p>
+
+<ul>
+<li><code>fewest</code>:  Optimize for selecting the fewest number of versions for each package. Older versions may be preferred if they are compatible with a wider range of supported Python versions or platforms</li>
+
+<li><code>requires-python</code>:  Optimize for selecting latest supported version of each package, for each supported Python version</li>
+</ul>
 </dd><dt><code>--frozen</code></dt><dd><p>Display the requirements without locking the project.</p>
 
 <p>If the lockfile is missing, uv will exit with an error.</p>
@@ -6109,6 +6214,7 @@
 
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 
+<p>May also be set with the <code>UV_OFFLINE</code> environment variable.</p>
 </dd><dt><code>--only-dev</code></dt><dd><p>Only include the development dependency group.</p>
 
 <p>Omit other dependencies. The project itself will also be omitted.</p>
@@ -6409,6 +6515,20 @@
 <p>If a URL, the page must contain a flat list of links to package files adhering to the formats described above.</p>
 
 <p>May also be set with the <code>UV_FIND_LINKS</code> environment variable.</p>
+</dd><dt><code>--fork-strategy</code> <i>fork-strategy</i></dt><dd><p>The strategy to use when selecting multiple versions of a given package across Python versions and platforms.</p>
+
+<p>By default, uv will optimize for selecting the latest version of each package for each supported Python version (<code>requires-python</code>), while minimizing the number of selected versions across platforms.</p>
+
+<p>Under <code>fewest</code>, uv will minimize the number of selected versions for each package, preferring older versions that are compatible with a wider range of supported Python versions or platforms.</p>
+
+<p>May also be set with the <code>UV_FORK_STRATEGY</code> environment variable.</p>
+<p>Possible values:</p>
+
+<ul>
+<li><code>fewest</code>:  Optimize for selecting the fewest number of versions for each package. Older versions may be preferred if they are compatible with a wider range of supported Python versions or platforms</li>
+
+<li><code>requires-python</code>:  Optimize for selecting latest supported version of each package, for each supported Python version</li>
+</ul>
 </dd><dt><code>--from</code> <i>from</i></dt><dd><p>Use the given package to provide the command.</p>
 
 <p>By default, the package name is assumed to match the command name.</p>
@@ -6526,6 +6646,7 @@
 
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 
+<p>May also be set with the <code>UV_OFFLINE</code> environment variable.</p>
 </dd><dt><code>--prerelease</code> <i>prerelease</i></dt><dd><p>The strategy to use when considering pre-release versions.</p>
 
 <p>By default, uv will accept pre-releases for packages that <em>only</em> publish pre-releases, along with first-party requirements that contain an explicit pre-release marker in the declared specifiers (<code>if-necessary-or-explicit</code>).</p>
@@ -6720,6 +6841,20 @@
 
 <p>Will replace any existing entry points with the same name in the executable directory.</p>
 
+</dd><dt><code>--fork-strategy</code> <i>fork-strategy</i></dt><dd><p>The strategy to use when selecting multiple versions of a given package across Python versions and platforms.</p>
+
+<p>By default, uv will optimize for selecting the latest version of each package for each supported Python version (<code>requires-python</code>), while minimizing the number of selected versions across platforms.</p>
+
+<p>Under <code>fewest</code>, uv will minimize the number of selected versions for each package, preferring older versions that are compatible with a wider range of supported Python versions or platforms.</p>
+
+<p>May also be set with the <code>UV_FORK_STRATEGY</code> environment variable.</p>
+<p>Possible values:</p>
+
+<ul>
+<li><code>fewest</code>:  Optimize for selecting the fewest number of versions for each package. Older versions may be preferred if they are compatible with a wider range of supported Python versions or platforms</li>
+
+<li><code>requires-python</code>:  Optimize for selecting latest supported version of each package, for each supported Python version</li>
+</ul>
 </dd><dt><code>--help</code>, <code>-h</code></dt><dd><p>Display the concise help for this command</p>
 
 </dd><dt><code>--index</code> <i>index</i></dt><dd><p>The URLs to use when resolving dependencies, in addition to the default index.</p>
@@ -6831,6 +6966,7 @@
 
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 
+<p>May also be set with the <code>UV_OFFLINE</code> environment variable.</p>
 </dd><dt><code>--overrides</code> <i>overrides</i></dt><dd><p>Override versions using the given requirements files.</p>
 
 <p>Overrides files are <code>requirements.txt</code>-like files that force a specific version of a requirement to be installed, regardless of the requirements declared by any constituent package, and regardless of whether this would be considered an invalid resolution.</p>
@@ -7021,6 +7157,20 @@
 <p>If a URL, the page must contain a flat list of links to package files adhering to the formats described above.</p>
 
 <p>May also be set with the <code>UV_FIND_LINKS</code> environment variable.</p>
+</dd><dt><code>--fork-strategy</code> <i>fork-strategy</i></dt><dd><p>The strategy to use when selecting multiple versions of a given package across Python versions and platforms.</p>
+
+<p>By default, uv will optimize for selecting the latest version of each package for each supported Python version (<code>requires-python</code>), while minimizing the number of selected versions across platforms.</p>
+
+<p>Under <code>fewest</code>, uv will minimize the number of selected versions for each package, preferring older versions that are compatible with a wider range of supported Python versions or platforms.</p>
+
+<p>May also be set with the <code>UV_FORK_STRATEGY</code> environment variable.</p>
+<p>Possible values:</p>
+
+<ul>
+<li><code>fewest</code>:  Optimize for selecting the fewest number of versions for each package. Older versions may be preferred if they are compatible with a wider range of supported Python versions or platforms</li>
+
+<li><code>requires-python</code>:  Optimize for selecting latest supported version of each package, for each supported Python version</li>
+</ul>
 </dd><dt><code>--help</code>, <code>-h</code></dt><dd><p>Display the concise help for this command</p>
 
 </dd><dt><code>--index</code> <i>index</i></dt><dd><p>The URLs to use when resolving dependencies, in addition to the default index.</p>
@@ -7132,6 +7282,7 @@
 
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 
+<p>May also be set with the <code>UV_OFFLINE</code> environment variable.</p>
 </dd><dt><code>--prerelease</code> <i>prerelease</i></dt><dd><p>The strategy to use when considering pre-release versions.</p>
 
 <p>By default, uv will accept pre-releases for packages that <em>only</em> publish pre-releases, along with first-party requirements that contain an explicit pre-release marker in the declared specifiers (<code>if-necessary-or-explicit</code>).</p>
@@ -7282,6 +7433,7 @@
 
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 
+<p>May also be set with the <code>UV_OFFLINE</code> environment variable.</p>
 </dd><dt><code>--project</code> <i>project</i></dt><dd><p>Run the command within the given project directory.</p>
 
 <p>All <code>pyproject.toml</code>, <code>uv.toml</code>, and <code>.python-version</code> files will be discovered by walking up the directory tree from the project root, as will the project&#8217;s virtual environment (<code>.venv</code>).</p>
@@ -7389,6 +7541,7 @@
 
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 
+<p>May also be set with the <code>UV_OFFLINE</code> environment variable.</p>
 </dd><dt><code>--project</code> <i>project</i></dt><dd><p>Run the command within the given project directory.</p>
 
 <p>All <code>pyproject.toml</code>, <code>uv.toml</code>, and <code>.python-version</code> files will be discovered by walking up the directory tree from the project root, as will the project&#8217;s virtual environment (<code>.venv</code>).</p>
@@ -7503,6 +7656,7 @@
 
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 
+<p>May also be set with the <code>UV_OFFLINE</code> environment variable.</p>
 </dd><dt><code>--project</code> <i>project</i></dt><dd><p>Run the command within the given project directory.</p>
 
 <p>All <code>pyproject.toml</code>, <code>uv.toml</code>, and <code>.python-version</code> files will be discovered by walking up the directory tree from the project root, as will the project&#8217;s virtual environment (<code>.venv</code>).</p>
@@ -7634,6 +7788,7 @@
 
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 
+<p>May also be set with the <code>UV_OFFLINE</code> environment variable.</p>
 </dd><dt><code>--project</code> <i>project</i></dt><dd><p>Run the command within the given project directory.</p>
 
 <p>All <code>pyproject.toml</code>, <code>uv.toml</code>, and <code>.python-version</code> files will be discovered by walking up the directory tree from the project root, as will the project&#8217;s virtual environment (<code>.venv</code>).</p>
@@ -7815,6 +7970,7 @@ uv will exit with an error.</p>
 
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 
+<p>May also be set with the <code>UV_OFFLINE</code> environment variable.</p>
 </dd><dt><code>--only-downloads</code></dt><dd><p>Only show Python downloads, exclude installed distributions.</p>
 
 <p>By default, available downloads for the current platform are shown.</p>
@@ -7981,6 +8137,7 @@ uv will exit with an error.</p>
 
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 
+<p>May also be set with the <code>UV_OFFLINE</code> environment variable.</p>
 </dd><dt><code>--project</code> <i>project</i></dt><dd><p>Run the command within the given project directory.</p>
 
 <p>All <code>pyproject.toml</code>, <code>uv.toml</code>, and <code>.python-version</code> files will be discovered by walking up the directory tree from the project root, as will the project&#8217;s virtual environment (<code>.venv</code>).</p>
@@ -8117,6 +8274,7 @@ uv will exit with an error.</p>
 
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 
+<p>May also be set with the <code>UV_OFFLINE</code> environment variable.</p>
 </dd><dt><code>--project</code> <i>project</i></dt><dd><p>Run the command within the given project directory.</p>
 
 <p>All <code>pyproject.toml</code>, <code>uv.toml</code>, and <code>.python-version</code> files will be discovered by walking up the directory tree from the project root, as will the project&#8217;s virtual environment (<code>.venv</code>).</p>
@@ -8254,6 +8412,7 @@ uv will exit with an error.</p>
 
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 
+<p>May also be set with the <code>UV_OFFLINE</code> environment variable.</p>
 </dd><dt><code>--project</code> <i>project</i></dt><dd><p>Run the command within the given project directory.</p>
 
 <p>All <code>pyproject.toml</code>, <code>uv.toml</code>, and <code>.python-version</code> files will be discovered by walking up the directory tree from the project root, as will the project&#8217;s virtual environment (<code>.venv</code>).</p>
@@ -8390,6 +8549,7 @@ uv will exit with an error.</p>
 
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 
+<p>May also be set with the <code>UV_OFFLINE</code> environment variable.</p>
 </dd><dt><code>--project</code> <i>project</i></dt><dd><p>Run the command within the given project directory.</p>
 
 <p>All <code>pyproject.toml</code>, <code>uv.toml</code>, and <code>.python-version</code> files will be discovered by walking up the directory tree from the project root, as will the project&#8217;s virtual environment (<code>.venv</code>).</p>
@@ -8514,6 +8674,7 @@ uv will exit with an error.</p>
 
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 
+<p>May also be set with the <code>UV_OFFLINE</code> environment variable.</p>
 </dd><dt><code>--project</code> <i>project</i></dt><dd><p>Run the command within the given project directory.</p>
 
 <p>All <code>pyproject.toml</code>, <code>uv.toml</code>, and <code>.python-version</code> files will be discovered by walking up the directory tree from the project root, as will the project&#8217;s virtual environment (<code>.venv</code>).</p>
@@ -8709,6 +8870,20 @@ uv will exit with an error.</p>
 <p>If a URL, the page must contain a flat list of links to package files adhering to the formats described above.</p>
 
 <p>May also be set with the <code>UV_FIND_LINKS</code> environment variable.</p>
+</dd><dt><code>--fork-strategy</code> <i>fork-strategy</i></dt><dd><p>The strategy to use when selecting multiple versions of a given package across Python versions and platforms.</p>
+
+<p>By default, uv will optimize for selecting the latest version of each package for each supported Python version (<code>requires-python</code>), while minimizing the number of selected versions across platforms.</p>
+
+<p>Under <code>fewest</code>, uv will minimize the number of selected versions for each package, preferring older versions that are compatible with a wider range of supported Python versions or platforms.</p>
+
+<p>May also be set with the <code>UV_FORK_STRATEGY</code> environment variable.</p>
+<p>Possible values:</p>
+
+<ul>
+<li><code>fewest</code>:  Optimize for selecting the fewest number of versions for each package. Older versions may be preferred if they are compatible with a wider range of supported Python versions or platforms</li>
+
+<li><code>requires-python</code>:  Optimize for selecting latest supported version of each package, for each supported Python version</li>
+</ul>
 </dd><dt><code>--generate-hashes</code></dt><dd><p>Include distribution hashes in the output file</p>
 
 </dd><dt><code>--help</code>, <code>-h</code></dt><dd><p>Display the concise help for this command</p>
@@ -8835,6 +9010,7 @@ uv will exit with an error.</p>
 
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 
+<p>May also be set with the <code>UV_OFFLINE</code> environment variable.</p>
 </dd><dt><code>--only-binary</code> <i>only-binary</i></dt><dd><p>Only use pre-built wheels; don&#8217;t build source distributions.</p>
 
 <p>When enabled, resolving will not run code from the given packages. The cached wheels of already-built source distributions will be reused, but operations that require building distributions will exit with an error.</p>
@@ -9254,6 +9430,7 @@ uv will exit with an error.</p>
 
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 
+<p>May also be set with the <code>UV_OFFLINE</code> environment variable.</p>
 </dd><dt><code>--only-binary</code> <i>only-binary</i></dt><dd><p>Only use pre-built wheels; don&#8217;t build source distributions.</p>
 
 <p>When enabled, resolving will not run code from the given packages. The cached wheels of already-built source distributions will be reused, but operations that require building distributions will exit with an error.</p>
@@ -9545,6 +9722,20 @@ uv will exit with an error.</p>
 <p>If a URL, the page must contain a flat list of links to package files adhering to the formats described above.</p>
 
 <p>May also be set with the <code>UV_FIND_LINKS</code> environment variable.</p>
+</dd><dt><code>--fork-strategy</code> <i>fork-strategy</i></dt><dd><p>The strategy to use when selecting multiple versions of a given package across Python versions and platforms.</p>
+
+<p>By default, uv will optimize for selecting the latest version of each package for each supported Python version (<code>requires-python</code>), while minimizing the number of selected versions across platforms.</p>
+
+<p>Under <code>fewest</code>, uv will minimize the number of selected versions for each package, preferring older versions that are compatible with a wider range of supported Python versions or platforms.</p>
+
+<p>May also be set with the <code>UV_FORK_STRATEGY</code> environment variable.</p>
+<p>Possible values:</p>
+
+<ul>
+<li><code>fewest</code>:  Optimize for selecting the fewest number of versions for each package. Older versions may be preferred if they are compatible with a wider range of supported Python versions or platforms</li>
+
+<li><code>requires-python</code>:  Optimize for selecting latest supported version of each package, for each supported Python version</li>
+</ul>
 </dd><dt><code>--help</code>, <code>-h</code></dt><dd><p>Display the concise help for this command</p>
 
 </dd><dt><code>--index</code> <i>index</i></dt><dd><p>The URLs to use when resolving dependencies, in addition to the default index.</p>
@@ -9663,6 +9854,7 @@ uv will exit with an error.</p>
 
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 
+<p>May also be set with the <code>UV_OFFLINE</code> environment variable.</p>
 </dd><dt><code>--only-binary</code> <i>only-binary</i></dt><dd><p>Only use pre-built wheels; don&#8217;t build source distributions.</p>
 
 <p>When enabled, resolving will not run code from the given packages. The cached wheels of already-built source distributions will be reused, but operations that require building distributions will exit with an error.</p>
@@ -9982,6 +10174,7 @@ uv will exit with an error.</p>
 
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 
+<p>May also be set with the <code>UV_OFFLINE</code> environment variable.</p>
 </dd><dt><code>--prefix</code> <i>prefix</i></dt><dd><p>Uninstall packages from the specified <code>--prefix</code> directory</p>
 
 </dd><dt><code>--project</code> <i>project</i></dt><dd><p>Run the command within the given project directory.</p>
@@ -10115,6 +10308,7 @@ uv will exit with an error.</p>
 
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 
+<p>May also be set with the <code>UV_OFFLINE</code> environment variable.</p>
 </dd><dt><code>--project</code> <i>project</i></dt><dd><p>Run the command within the given project directory.</p>
 
 <p>All <code>pyproject.toml</code>, <code>uv.toml</code>, and <code>.python-version</code> files will be discovered by walking up the directory tree from the project root, as will the project&#8217;s virtual environment (<code>.venv</code>).</p>
@@ -10330,6 +10524,7 @@ uv will exit with an error.</p>
 
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 
+<p>May also be set with the <code>UV_OFFLINE</code> environment variable.</p>
 </dd><dt><code>--outdated</code></dt><dd><p>List outdated packages.</p>
 
 <p>The latest version of each package will be shown alongside the installed version. Up-to-date packages will be omitted from the output.</p>
@@ -10469,6 +10664,7 @@ uv will exit with an error.</p>
 
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 
+<p>May also be set with the <code>UV_OFFLINE</code> environment variable.</p>
 </dd><dt><code>--project</code> <i>project</i></dt><dd><p>Run the command within the given project directory.</p>
 
 <p>All <code>pyproject.toml</code>, <code>uv.toml</code>, and <code>.python-version</code> files will be discovered by walking up the directory tree from the project root, as will the project&#8217;s virtual environment (<code>.venv</code>).</p>
@@ -10603,6 +10799,7 @@ uv will exit with an error.</p>
 
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 
+<p>May also be set with the <code>UV_OFFLINE</code> environment variable.</p>
 </dd><dt><code>--outdated</code></dt><dd><p>Show the latest available version of each package in the tree</p>
 
 </dd><dt><code>--package</code> <i>package</i></dt><dd><p>Display only the specified packages</p>
@@ -10738,6 +10935,7 @@ uv will exit with an error.</p>
 
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 
+<p>May also be set with the <code>UV_OFFLINE</code> environment variable.</p>
 </dd><dt><code>--project</code> <i>project</i></dt><dd><p>Run the command within the given project directory.</p>
 
 <p>All <code>pyproject.toml</code>, <code>uv.toml</code>, and <code>.python-version</code> files will be discovered by walking up the directory tree from the project root, as will the project&#8217;s virtual environment (<code>.venv</code>).</p>
@@ -10975,6 +11173,7 @@ uv will exit with an error.</p>
 
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 
+<p>May also be set with the <code>UV_OFFLINE</code> environment variable.</p>
 </dd><dt><code>--project</code> <i>project</i></dt><dd><p>Run the command within the given project directory.</p>
 
 <p>All <code>pyproject.toml</code>, <code>uv.toml</code>, and <code>.python-version</code> files will be discovered by walking up the directory tree from the project root, as will the project&#8217;s virtual environment (<code>.venv</code>).</p>
@@ -10995,7 +11194,7 @@ uv will exit with an error.</p>
 
 <p>During virtual environment creation, uv will not look for Python interpreters in virtual environments.</p>
 
-<p>See <code>uv python help</code> for details on Python discovery and supported request formats.</p>
+<p>See <a href="#uv-python">uv python</a> for details on Python discovery and supported request formats.</p>
 
 <p>May also be set with the <code>UV_PYTHON</code> environment variable.</p>
 </dd><dt><code>--python-preference</code> <i>python-preference</i></dt><dd><p>Whether to prefer uv-managed or system Python installations.</p>
@@ -11142,6 +11341,20 @@ uv will exit with an error.</p>
 
 <p>By default, uv won&#8217;t create a PEP 517 build environment for packages using the uv build backend, but use a fast path that calls into the build backend directly. This option forces always using PEP 517.</p>
 
+</dd><dt><code>--fork-strategy</code> <i>fork-strategy</i></dt><dd><p>The strategy to use when selecting multiple versions of a given package across Python versions and platforms.</p>
+
+<p>By default, uv will optimize for selecting the latest version of each package for each supported Python version (<code>requires-python</code>), while minimizing the number of selected versions across platforms.</p>
+
+<p>Under <code>fewest</code>, uv will minimize the number of selected versions for each package, preferring older versions that are compatible with a wider range of supported Python versions or platforms.</p>
+
+<p>May also be set with the <code>UV_FORK_STRATEGY</code> environment variable.</p>
+<p>Possible values:</p>
+
+<ul>
+<li><code>fewest</code>:  Optimize for selecting the fewest number of versions for each package. Older versions may be preferred if they are compatible with a wider range of supported Python versions or platforms</li>
+
+<li><code>requires-python</code>:  Optimize for selecting latest supported version of each package, for each supported Python version</li>
+</ul>
 </dd><dt><code>--help</code>, <code>-h</code></dt><dd><p>Display the concise help for this command</p>
 
 </dd><dt><code>--index</code> <i>index</i></dt><dd><p>The URLs to use when resolving dependencies, in addition to the default index.</p>
@@ -11262,6 +11475,7 @@ uv will exit with an error.</p>
 
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 
+<p>May also be set with the <code>UV_OFFLINE</code> environment variable.</p>
 </dd><dt><code>--out-dir</code>, <code>-o</code> <i>out-dir</i></dt><dd><p>The output directory to which distributions should be written.</p>
 
 <p>Defaults to the <code>dist</code> subdirectory within the source directory, or the directory containing the source distribution archive.</p>
@@ -11489,6 +11703,7 @@ With these settings, the following two calls are equivalent:</code></pre>
 
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 
+<p>May also be set with the <code>UV_OFFLINE</code> environment variable.</p>
 </dd><dt><code>--password</code>, <code>-p</code> <i>password</i></dt><dd><p>The password for the upload</p>
 
 <p>May also be set with the <code>UV_PUBLISH_PASSWORD</code> environment variable.</p>
@@ -11653,6 +11868,7 @@ With these settings, the following two calls are equivalent:</code></pre>
 
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 
+<p>May also be set with the <code>UV_OFFLINE</code> environment variable.</p>
 </dd><dt><code>--project</code> <i>project</i></dt><dd><p>Run the command within the given project directory.</p>
 
 <p>All <code>pyproject.toml</code>, <code>uv.toml</code>, and <code>.python-version</code> files will be discovered by walking up the directory tree from the project root, as will the project&#8217;s virtual environment (<code>.venv</code>).</p>
@@ -11770,6 +11986,7 @@ With these settings, the following two calls are equivalent:</code></pre>
 
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 
+<p>May also be set with the <code>UV_OFFLINE</code> environment variable.</p>
 </dd><dt><code>--project</code> <i>project</i></dt><dd><p>Run the command within the given project directory.</p>
 
 <p>All <code>pyproject.toml</code>, <code>uv.toml</code>, and <code>.python-version</code> files will be discovered by walking up the directory tree from the project root, as will the project&#8217;s virtual environment (<code>.venv</code>).</p>
@@ -11885,6 +12102,7 @@ With these settings, the following two calls are equivalent:</code></pre>
 
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 
+<p>May also be set with the <code>UV_OFFLINE</code> environment variable.</p>
 </dd><dt><code>--project</code> <i>project</i></dt><dd><p>Run the command within the given project directory.</p>
 
 <p>All <code>pyproject.toml</code>, <code>uv.toml</code>, and <code>.python-version</code> files will be discovered by walking up the directory tree from the project root, as will the project&#8217;s virtual environment (<code>.venv</code>).</p>
@@ -12014,6 +12232,7 @@ With these settings, the following two calls are equivalent:</code></pre>
 
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 
+<p>May also be set with the <code>UV_OFFLINE</code> environment variable.</p>
 </dd><dt><code>--project</code> <i>project</i></dt><dd><p>Run the command within the given project directory.</p>
 
 <p>All <code>pyproject.toml</code>, <code>uv.toml</code>, and <code>.python-version</code> files will be discovered by walking up the directory tree from the project root, as will the project&#8217;s virtual environment (<code>.venv</code>).</p>
@@ -12128,6 +12347,7 @@ With these settings, the following two calls are equivalent:</code></pre>
 
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 
+<p>May also be set with the <code>UV_OFFLINE</code> environment variable.</p>
 </dd><dt><code>--output-format</code> <i>output-format</i></dt><dt><code>--project</code> <i>project</i></dt><dd><p>Run the command within the given project directory.</p>
 
 <p>All <code>pyproject.toml</code>, <code>uv.toml</code>, and <code>.python-version</code> files will be discovered by walking up the directory tree from the project root, as will the project&#8217;s virtual environment (<code>.venv</code>).</p>
@@ -12286,6 +12506,7 @@ With these settings, the following two calls are equivalent:</code></pre>
 
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 
+<p>May also be set with the <code>UV_OFFLINE</code> environment variable.</p>
 </dd><dt><code>--project</code> <i>project</i></dt><dd><p>Run the command within the given project directory.</p>
 
 <p>All <code>pyproject.toml</code>, <code>uv.toml</code>, and <code>.python-version</code> files will be discovered by walking up the directory tree from the project root, as will the project&#8217;s virtual environment (<code>.venv</code>).</p>
