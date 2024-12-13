@@ -1591,6 +1591,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#multi-version-resolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-version resolution
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#dependency-constraints" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2644,6 +2655,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#multi-version-resolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-version resolution
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#dependency-constraints" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2880,18 +2902,13 @@ the same platform the lockfile was created on. To solve this problem, platform-i
 This ensures that dependencies are locked for everyone working on the project, regardless of
 operating system, architecture, and Python version. The uv lockfile is created and modified by
 <a href="../projects/">project</a> commands such as <code>uv lock</code>, <code>uv sync</code>, and <code>uv add</code>.</p>
-<p>universal resolution is also available in uv's pip interface, i.e.,
+<p>Universal resolution is also available in uv's pip interface, i.e.,
 <a href="../../pip/compile/"><code>uv pip compile</code></a>, with the <code>--universal</code> flag. The resulting requirements file
 will contain markers to indicate which platform each dependency is relevant for.</p>
 <p>During universal resolution, a package may be listed multiple times with different versions or URLs
 if different versions are needed for different platforms — the markers determine which version will
 be used. A universal resolution is often more constrained than a platform-specific resolution, since
 we need to take the requirements for all markers into account.</p>
-<p>During universal resolution, a minimum Python version must be specified. Project commands read the
-minimum required version from <code>project.requires-python</code> in the <code>pyproject.toml</code>. When using uv's pip
-interface, provide a value with the <code>--python-version</code> option; otherwise, the current Python version
-will be treated as a lower bound. For example, <code>--universal --python-version 3.9</code> performs a
-universal resolution for Python 3.9 and later.</p>
 <p>During universal resolution, all selected dependency versions must be compatible with the <em>entire</em>
 <code>requires-python</code> range declared in the <code>pyproject.toml</code>. For example, if a project's
 <code>requires-python</code> is <code>&gt;=3.8</code>, then uv will not allow <em>any</em> dependency versions that are limited to,
@@ -2993,6 +3010,30 @@ model, and are a frequent source of bugs in other packaging tools. uv's pre-rele
 <em>intentionally</em> limited and requires user opt-in for pre-releases to ensure correctness.</p>
 <p>For more details, see
 <a href="../../pip/compatibility/#pre-release-compatibility">Pre-release compatibility</a>.</p>
+<h2 id="multi-version-resolution"><a class="toclink" href="#multi-version-resolution">Multi-version resolution</a></h2>
+<p>During universal resolution, a package may be listed multiple times with different versions or URLs
+within the same lockfile, since different versions may be needed for different platforms or Python
+versions.</p>
+<p>The <code>--fork-strategy</code> setting can be used to control how uv trades off between (1) minimizing the
+number of selected versions and (2) selecting the latest-possible version for each platform. The
+former leads to greater consistency across platforms, while the latter leads to use of newer package
+versions where possible.</p>
+<p>By default (<code>--fork-strategy requires-python</code>), uv will optimize for selecting the latest version of
+each package for each supported Python version, while minimizing the number of selected versions
+across platforms.</p>
+<p>For example, when resolving <code>numpy</code> with a Python requirement of <code>&gt;=3.8</code>, uv would select the
+following versions:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>numpy==1.24.4 ; python_version == &quot;3.8&quot;
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>numpy==2.0.2 ; python_version == &quot;3.9&quot;
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>numpy==2.2.0 ; python_version &gt;= &quot;3.10&quot;
+</code></pre></div>
+<p>This resolution reflects the fact that NumPy 2.2.0 and later require at least Python 3.10, while
+earlier versions are compatible with Python 3.8 and 3.9.</p>
+<p>Under <code>--fork-strategy fewest</code>, uv will instead minimize the number of selected versions for each
+package, preferring older versions that are compatible with a wider range of supported Python
+versions or platforms.</p>
+<p>For example, when in the scenario above, uv would select <code>numpy==1.24.4</code> for all Python versions,
+rather than upgrading to <code>numpy==2.0.2</code> for Python 3.9 and <code>numpy==2.2.0</code> for Python 3.10 and later.</p>
 <h2 id="dependency-constraints"><a class="toclink" href="#dependency-constraints">Dependency constraints</a></h2>
 <p>Like pip, uv supports constraint files (<code>--constraint constraints.txt</code>) which narrow the set of
 acceptable versions for the given packages. Constraint files are similar to requirements files, but
@@ -3039,10 +3080,10 @@ scenario, doing so would require building the package, which would fail on non-L
 upfront, thereby allowing uv to skip the build step and use the provided metadata instead.</p>
 <p>For example, to provide metadata for <code>chumpy</code> upfront, include its <code>dependency-metadata</code> in the
 <code>pyproject.toml</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">[[tool.uv.dependency-metadata]]</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;chumpy&quot;</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.70&quot;</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">requires-dist</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;numpy&gt;=1.8.1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;scipy&gt;=0.13.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;six&gt;=1.11.0&quot;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">[[tool.uv.dependency-metadata]]</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;chumpy&quot;</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.70&quot;</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">requires-dist</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;numpy&gt;=1.8.1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;scipy&gt;=0.13.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;six&gt;=1.11.0&quot;</span><span class="p">]</span>
 </code></pre></div>
 <p>These declarations are intended for cases in which a package does <em>not</em> declare static metadata
 upfront, though they are also useful for packages that require disabling build isolation. In such
@@ -3050,19 +3091,19 @@ cases, it may be easier to declare the package metadata upfront, rather than cre
 environment prior to resolving the package.</p>
 <p>For example, you can declare the metadata for <code>flash-attn</code>, allowing uv to resolve without building
 the package from source (which itself requires installing <code>torch</code>):</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">[project]</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;project&quot;</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">requires-python</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&gt;=3.12&quot;</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;flash-attn&quot;</span><span class="p">]</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="k">[tool.uv.sources]</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="n">flash-attn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">git</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;https://github.com/Dao-AILab/flash-attention&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">tag</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;v2.6.3&quot;</span><span class="w"> </span><span class="p">}</span>
-<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
-<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="k">[[tool.uv.dependency-metadata]]</span>
-<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;flash-attn&quot;</span>
-<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2.6.3&quot;</span>
-<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="n">requires-dist</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;torch&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;einops&quot;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">[project]</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;project&quot;</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">requires-python</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&gt;=3.12&quot;</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;flash-attn&quot;</span><span class="p">]</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="k">[tool.uv.sources]</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="n">flash-attn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">git</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;https://github.com/Dao-AILab/flash-attention&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">tag</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;v2.6.3&quot;</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="k">[[tool.uv.dependency-metadata]]</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;flash-attn&quot;</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2.6.3&quot;</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="n">requires-dist</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;torch&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;einops&quot;</span><span class="p">]</span>
 </code></pre></div>
 <p>Like dependency overrides, <code>tool.uv.dependency-metadata</code> can also be used for cases in which a
 package's metadata is incorrect or incomplete, or when a package is not available in the package
