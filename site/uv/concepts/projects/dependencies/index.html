@@ -3026,7 +3026,7 @@ metadata can also be updated by editing the <code>pyproject.toml</code> directly
 table.</p>
 <p>The dependency will include a constraint, e.g., <code>&gt;=0.27.2</code>, for the most recent, compatible version
 of the package. An alternative constraint can be provided:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span><span class="s1">&#39;httpx&gt;=0.20&#39;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span><span class="s2">&quot;httpx&gt;=0.20&quot;</span>
 </code></pre></div>
 <p>When adding a dependency from a source other than a package registry, uv will add an entry in the
 sources table. For example, when adding <code>httpx</code> from GitHub:</p>
@@ -3044,7 +3044,7 @@ sources table. For example, when adding <code>httpx</code> from GitHub:</p>
 </span><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="hll"><span class="n">httpx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">git</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;https://github.com/encode/httpx&quot;</span><span class="w"> </span><span class="p">}</span>
 </span></code></pre></div>
 <p>If a dependency cannot be used, uv will display an error.:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span><span class="s1">&#39;httpx&gt;9999&#39;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span><span class="s2">&quot;httpx&gt;9999&quot;</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="go">  × No solution found when resolving dependencies:</span>
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="go">  ╰─▶ Because only httpx&lt;=1.0.0b0 is available and your project depends on httpx&gt;9999,</span>
 <a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="go">      we can conclude that your project&#39;s requirements are unsatisfiable.</span>
@@ -3059,14 +3059,14 @@ table.</p>
 references to the dependency, it will also be removed.</p>
 <h2 id="changing-dependencies"><a class="toclink" href="#changing-dependencies">Changing dependencies</a></h2>
 <p>To change an existing dependency, e.g., to use a different constraint for <code>httpx</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span><span class="s1">&#39;httpx&gt;0.1.0&#39;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span><span class="s2">&quot;httpx&gt;0.1.0&quot;</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>In this example, we are changing the constraints for the dependency in the <code>pyproject.toml</code>.
 The locked version of the dependency will only change if necessary to satisfy the new
 constraints. To force the package version to update to the latest within the constraints, use <code>--upgrade-package &lt;name&gt;</code>, e.g.:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span><span class="s1">&#39;httpx&gt;0.1.0&#39;</span><span class="w"> </span>--upgrade-package<span class="w"> </span>httpx
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span><span class="s2">&quot;httpx&gt;0.1.0&quot;</span><span class="w"> </span>--upgrade-package<span class="w"> </span>httpx
 </code></pre></div>
 <p>See the <a href="../sync/#upgrading-locked-package-versions">lockfile</a> documentation for more details
 on upgrading packages.</p>
@@ -3079,7 +3079,7 @@ on upgrading packages.</p>
 <p>To ensure that a dependency is only installed on a specific platform or on specific Python versions,
 use <a href="https://peps.python.org/pep-0508/#environment-markers">environment markers</a>.</p>
 <p>For example, to install <code>jax</code> on Linux, but not on Windows or macOS:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span><span class="s1">&#39;jax; sys_platform == &quot;linux&quot;&#39;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span><span class="s2">&quot;jax; sys_platform == &#39;linux&#39;&quot;</span>
 </code></pre></div>
 <p>The resulting <code>pyproject.toml</code> will then include the environment marker in the dependency
 definition:</p>
@@ -3090,7 +3090,7 @@ definition:</p>
 <a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;jax; sys_platform == &#39;linux&#39;&quot;</span><span class="p">]</span>
 </code></pre></div>
 <p>Similarly, to include <code>numpy</code> on Python 3.11 and later:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span><span class="s1">&#39;numpy; python_version &gt;= &quot;3.11&quot;&#39;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span><span class="s2">&quot;numpy; python_version &gt;= &#39;3.11&#39;&quot;</span>
 </code></pre></div>
 <p>See Python's <a href="https://peps.python.org/pep-0508/#environment-markers">environment marker</a>
 documentation for a complete enumeration of the available markers and operators.</p>

@@ -2594,7 +2594,7 @@ also install and manage Python versions for you.</p>
 system. If you've previously installed Python with uv, a new version will not be installed.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Python does not publish official distributable binaries. As such, uv uses third-party distributions from the <a href="https://github.com/indygreg/python-build-standalone"><code>python-build-standalone</code></a> project. The project is partially maintained by the uv maintainers and is used by other prominent Python projects (e.g., <a href="https://github.com/astral-sh/rye">Rye</a>, <a href="https://github.com/bazelbuild/rules_python">Bazel</a>). See the <a href="../../concepts/python-versions/#managed-python-distributions">Python distributions</a> documentation for more details.</p>
+<p>Python does not publish official distributable binaries. As such, uv uses distributions from Astral <a href="https://github.com/astral-sh/python-build-standalone"><code>python-build-standalone</code></a> project. See the <a href="../../concepts/python-versions/#managed-python-distributions">Python distributions</a> documentation for more details.</p>
 </div>
 <!-- TODO(zanieb): Restore when Python shim management is added
 Note that when an automatic Python installation occurs, the `python` command will not be added to the shell. Use `uv python install-shim` to ensure the `python` shim is installed.
@@ -2639,7 +2639,7 @@ documentation for more details.</p>
 <p>Note that Python does not need to be explicitly installed to use uv. By default, uv will
 automatically download Python versions when they are required. For example, the following would
 download Python 3.12 if it was not installed:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>--python<span class="w"> </span><span class="m">3</span>.12<span class="w"> </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;print(&quot;hello world&quot;)&#39;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>--python<span class="w"> </span><span class="m">3</span>.12<span class="w"> </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;print(&#39;hello world&#39;)&quot;</span>
 </code></pre></div>
 <p>Even if a specific Python version is not requested, uv will download the latest version on demand.
 For example, the following will create a new virtual environment and download a managed Python
