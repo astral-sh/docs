@@ -2707,21 +2707,22 @@ uv itself.</p>
 unsupported version of Python:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">$ </span>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-p<span class="w"> </span><span class="m">3</span>.13<span class="w"> </span><span class="s1">&#39;numpy&lt;1.20&#39;</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="go">Resolved 1 package in 62ms</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="go">  × Failed to download and build `numpy==1.19.5`</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="go">  ├─▶ Build backend failed to determine requirements with `build_wheel()` (exit status: 1)</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="go">  │   [stderr]</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="go">  │   Traceback (most recent call last):</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="go">  │     File &quot;&lt;string&gt;&quot;, line 8, in &lt;module&gt;</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="go">  │       from setuptools.build_meta import __legacy__ as backend</span>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="go">  │     File &quot;/Users/example/.cache/uv/builds-v0/.tmp96A0WB/lib/python3.13/site-packages/setuptools/__init__.py&quot;, line 9, in &lt;module&gt;</span>
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="go">  │       import distutils.core</span>
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="go">  │   ModuleNotFoundError: No module named &#39;distutils&#39;</span>
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="go">  ╰─▶ distutils was removed from the standard library in Python 3.12. Consider adding a constraint</span>
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="go">      (like `numpy &gt;1.19.5`) to avoid building a version of numpy that depends on distutils.</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="go">  × Failed to build `numpy==1.19.5`</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="go">  ├─▶ The build backend returned an error</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="go">  ╰─▶ Call to `setuptools.build_meta:__legacy__.build_wheel()` failed (exit status: 1)</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="go">      [stderr]</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="go">      Traceback (most recent call last):</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="go">        File &quot;&lt;string&gt;&quot;, line 8, in &lt;module&gt;</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="go">          from setuptools.build_meta import __legacy__ as backend</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="go">        File &quot;/home/konsti/.cache/uv/builds-v0/.tmpi4bgKb/lib/python3.13/site-packages/setuptools/__init__.py&quot;, line 9, in &lt;module&gt;</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="go">          import distutils.core</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="go">      ModuleNotFoundError: No module named &#39;distutils&#39;</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="go">      hint: `distutils` was removed from the standard library in Python 3.12. Consider adding a constraint (like `numpy &gt;1.19.5`) to avoid building a version of `numpy` that depends</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="go">      on `distutils`.</span>
 </code></pre></div>
-<p>Notice that the error message is prefaced by "Build backend failed to determine requirements".</p>
+<p>Notice that the error message is prefaced by "The build backend returned an error".</p>
 <p>The build failure includes the <code>[stderr]</code> (and <code>[stdout]</code>, if present) from the build backend that
 was used for the build. The error logs are not from uv itself.</p>
 <p>The message following the <code>╰─▶</code> is a hint provided by uv, to help resolve common build failures. A
@@ -2793,24 +2794,25 @@ and Windows.</p>
 <p>If the build error mentions a missing command, for example, <code>gcc</code>:</p>
 <!-- docker run --platform linux/x86_64 -it ghcr.io/astral-sh/uv:python3.10-bookworm-slim /bin/bash -c "uv pip install --system pysha3==1.0.2" -->
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>× Failed to download and build `pysha3==1.0.2`
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>╰─▶ Build backend failed to build wheel through `build_wheel` (exit status: 1)
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    [stdout]
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    running bdist_wheel
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    running build
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    running build_py
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    creating build/lib.linux-x86_64-cpython-310
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    copying sha3.py -&gt; build/lib.linux-x86_64-cpython-310
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    running build_ext
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    building &#39;_pysha3&#39; extension
-<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    creating build/temp.linux-x86_64-cpython-310/Modules/_sha3
-<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>    gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -fPIC -DPY_WITH_KECCAK=1 -I/root/.cache/uv/builds-v0/.tmpxAJdUa/include -I/usr/local/include/python3.10 -c Modules/_sha3/sha3module.c -o
-<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>    build/temp.linux-x86_64-cpython-310/Modules/_sha3/sha3module.o
-<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>
-<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>    [stderr]
-<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="hll">    error: command &#39;gcc&#39; failed: No such file or directory
-</span></code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>× Failed to build `pysha3==1.0.2`
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>├─▶ The build backend returned an error
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>╰─▶ Call to `setuptools.build_meta:__legacy__.build_wheel` failed (exit status: 1)
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    [stdout]
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    running bdist_wheel
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    running build
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    running build_py
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    creating build/lib.linux-x86_64-cpython-310
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    copying sha3.py -&gt; build/lib.linux-x86_64-cpython-310
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    running build_ext
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    building &#39;_pysha3&#39; extension
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>    creating build/temp.linux-x86_64-cpython-310/Modules/_sha3
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>    gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -fPIC -DPY_WITH_KECCAK=1 -I/root/.cache/uv/builds-v0/.tmp8V4iEk/include -I/usr/local/include/python3.10 -c
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>    Modules/_sha3/sha3module.c -o build/temp.linux-x86_64-cpython-310/Modules/_sha3/sha3module.o
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="hll">    [stderr]
+</span><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>    error: command &#39;gcc&#39; failed: No such file or directory
+</code></pre></div>
 <p>Then, you'll need to install it with your system package manager, e.g., to resolve the error above:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="gp">$ </span>apt<span class="w"> </span>install<span class="w"> </span>gcc
 </code></pre></div>
@@ -2829,30 +2831,31 @@ install it with your system package manager.</p>
 <p>For example, installing <code>pygraphviz</code> requires Graphviz to be installed:</p>
 <!-- docker run --platform linux/x86_64 -it ghcr.io/astral-sh/uv:python3.12-bookworm /bin/bash -c "uv pip install --system 'pygraphviz'" -->
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>× Failed to download and build `pygraphviz==1.14`
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>╰─▶ Build backend failed to build wheel through `build_wheel` (exit status: 1)
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>  [stdout]
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>  running bdist_wheel
-<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>  running build
-<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>  running build_py
-<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>  ...
-<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>  gcc -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O3 -Wall -fPIC -DSWIG_PYTHON_STRICT_BYTE_CHAR -I/root/.cache/uv/builds-v0/.tmpgLYPe0/include -I/usr/local/include/python3.12 -c pygraphviz/graphviz_wrap.c -o
-<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>  build/temp.linux-x86_64-cpython-312/pygraphviz/graphviz_wrap.o
-<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>
-<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>  [stderr]
-<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>  ...
-<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>  pygraphviz/graphviz_wrap.c:9: warning: &quot;SWIG_PYTHON_STRICT_BYTE_CHAR&quot; redefined
-<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>      9 | #define SWIG_PYTHON_STRICT_BYTE_CHAR
-<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>        |
-<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>  &lt;command-line&gt;: note: this is the location of the previous definition
-<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="hll">  pygraphviz/graphviz_wrap.c:3023:10: fatal error: graphviz/cgraph.h: No such file or directory
-</span><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="hll">    3023 | #include &quot;graphviz/cgraph.h&quot;
-</span><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>        |          ^~~~~~~~~~~~~~~~~~~
-<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>  compilation terminated.
-<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>  error: command &#39;/usr/bin/gcc&#39; failed with exit code 1
-<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>
-<a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>  hint: This error likely indicates that you need to install a library that provides &quot;graphviz/cgraph.h&quot; for `pygraphviz@1.14`
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>× Failed to build `pygraphviz==1.14`
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>├─▶ The build backend returned an error
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>╰─▶ Call to `setuptools.build_meta.build_wheel` failed (exit status: 1)
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>  [stdout]
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>  running bdist_wheel
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>  running build
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>  running build_py
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>  ...
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>  gcc -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O3 -Wall -fPIC -DSWIG_PYTHON_STRICT_BYTE_CHAR -I/root/.cache/uv/builds-v0/.tmpgLYPe0/include -I/usr/local/include/python3.12 -c pygraphviz/graphviz_wrap.c -o
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>  build/temp.linux-x86_64-cpython-312/pygraphviz/graphviz_wrap.o
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>  [stderr]
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>  ...
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>  pygraphviz/graphviz_wrap.c:9: warning: &quot;SWIG_PYTHON_STRICT_BYTE_CHAR&quot; redefined
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>      9 | #define SWIG_PYTHON_STRICT_BYTE_CHAR
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>        |
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="hll">  &lt;command-line&gt;: note: this is the location of the previous definition
+</span><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="hll">  pygraphviz/graphviz_wrap.c:3023:10: fatal error: graphviz/cgraph.h: No such file or directory
+</span><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>    3023 | #include &quot;graphviz/cgraph.h&quot;
+<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>        |          ^~~~~~~~~~~~~~~~~~~
+<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>  compilation terminated.
+<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>  error: command &#39;/usr/bin/gcc&#39; failed with exit code 1
+<a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>
+<a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>  hint: This error likely indicates that you need to install a library that provides &quot;graphviz/cgraph.h&quot; for `pygraphviz@1.14`
 </code></pre></div>
 <p>To resolve this error on Debian, you'd install the <code>libgraphviz-dev</code> package:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="gp">$ </span>apt<span class="w"> </span>install<span class="w"> </span>libgraphviz-dev
@@ -2870,29 +2873,30 @@ installed.</p>
 dependency:</p>
 <!-- docker run --platform linux/x86_64 -it ghcr.io/astral-sh/uv:python3.12-bookworm-slim /bin/bash -c "uv pip install --system chumpy" -->
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>× Failed to download and build `chumpy==0.70`
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>╰─▶ Build backend failed to determine requirements with `build_wheel()` (exit status: 1)
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>    [stderr]
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    Traceback (most recent call last):
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>      File &quot;&lt;string&gt;&quot;, line 9, in &lt;module&gt;
-<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="hll">    ModuleNotFoundError: No module named &#39;pip&#39;
-</span><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>
-<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>    During handling of the above exception, another exception occurred:
-<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>
-<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>    Traceback (most recent call last):
-<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>      File &quot;&lt;string&gt;&quot;, line 14, in &lt;module&gt;
-<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>      File &quot;/root/.cache/uv/builds-v0/.tmpvvHaxI/lib/python3.12/site-packages/setuptools/build_meta.py&quot;, line 334, in get_requires_for_build_wheel
-<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>        return self._get_build_requires(config_settings, requirements=[])
-<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>      File &quot;/root/.cache/uv/builds-v0/.tmpvvHaxI/lib/python3.12/site-packages/setuptools/build_meta.py&quot;, line 304, in _get_build_requires
-<a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>        self.run_setup()
-<a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>      File &quot;/root/.cache/uv/builds-v0/.tmpvvHaxI/lib/python3.12/site-packages/setuptools/build_meta.py&quot;, line 522, in run_setup
-<a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a>        super().run_setup(setup_script=setup_script)
-<a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a>      File &quot;/root/.cache/uv/builds-v0/.tmpvvHaxI/lib/python3.12/site-packages/setuptools/build_meta.py&quot;, line 320, in run_setup
-<a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a>        exec(code, locals())
-<a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a>      File &quot;&lt;string&gt;&quot;, line 11, in &lt;module&gt;
-<a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a>    ModuleNotFoundError: No module named &#39;pip&#39;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>  × Failed to build `chumpy==0.70`
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>  ├─▶ The build backend returned an error
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>  ╰─▶ Call to `setuptools.build_meta:__legacy__.build_wheel` failed (exit status: 1)
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    [stderr]
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>    Traceback (most recent call last):
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="hll">      File &quot;&lt;string&gt;&quot;, line 9, in &lt;module&gt;
+</span><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>    ModuleNotFoundError: No module named &#39;pip&#39;
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>    During handling of the above exception, another exception occurred:
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>    Traceback (most recent call last):
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>      File &quot;&lt;string&gt;&quot;, line 14, in &lt;module&gt;
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>      File &quot;/root/.cache/uv/builds-v0/.tmpvvHaxI/lib/python3.12/site-packages/setuptools/build_meta.py&quot;, line 334, in get_requires_for_build_wheel
+<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>        return self._get_build_requires(config_settings, requirements=[])
+<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>      File &quot;/root/.cache/uv/builds-v0/.tmpvvHaxI/lib/python3.12/site-packages/setuptools/build_meta.py&quot;, line 304, in _get_build_requires
+<a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>        self.run_setup()
+<a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a>      File &quot;/root/.cache/uv/builds-v0/.tmpvvHaxI/lib/python3.12/site-packages/setuptools/build_meta.py&quot;, line 522, in run_setup
+<a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a>        super().run_setup(setup_script=setup_script)
+<a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a>      File &quot;/root/.cache/uv/builds-v0/.tmpvvHaxI/lib/python3.12/site-packages/setuptools/build_meta.py&quot;, line 320, in run_setup
+<a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a>        exec(code, locals())
+<a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a>      File &quot;&lt;string&gt;&quot;, line 11, in &lt;module&gt;
+<a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a>    ModuleNotFoundError: No module named &#39;pip&#39;
 </code></pre></div>
 <p>To resolve this error, pre-install the build dependencies then disable build isolation for the
 package:</p>
@@ -2914,11 +2918,12 @@ version of <code>apache-beam</code>.</p>
 </code></pre></div>
 <!-- docker run --platform linux/x86_64 -it ghcr.io/astral-sh/uv:python3.10-bookworm-slim /bin/bash -c "printf 'dill<0.3.9,>=0.2.2\napache-beam<=2.49.0' | uv pip compile -" -->
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="hll">× Failed to download and build `apache-beam==2.0.0`
-</span><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>╰─▶ Build backend failed to determine requirements with `build_wheel()` (exit status: 1)
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>    [stderr]
-<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>    ...
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="hll">× Failed to build `apache-beam==2.0.0`
+</span><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>├─▶ The build backend returned an error
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>╰─▶ Call to `setuptools.build_meta:__legacy__.build_wheel` failed (exit status: 1)
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>    [stderr]
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>    ...
 </code></pre></div>
 <p>Adding a lower bound constraint, e.g., <code>apache-beam&lt;=2.49.0,&gt;2.30.0</code>, resolves this build failure as
 uv will avoid using an old version of <code>apache-beam</code>.</p>
