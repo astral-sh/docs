@@ -6,13 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Checks for the use of type comments (e.g., `x = 1  # type: int`) in stub">
+        <meta name="description" content="Checks for uses of Airflow functions and values that have been moved to it providers.">
       
       
         <meta name="author" content="charliermarsh">
       
       
-        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/type-comment-in-stub/">
+        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/airflow3-moved-to-provider/">
       
       
       
@@ -25,7 +25,7 @@
     
     
 
-<title>type-comment-in-stub (PYI033) | Ruff</title>
+<title>airflow3-moved-to-provider (AIR303) | Ruff</title>
 
 
     
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#type-comment-in-stub-pyi033" class="md-skip">
+        <a href="#airflow3-moved-to-provider-air303" class="md-skip">
           Skip to content
         </a>
       
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              type-comment-in-stub (PYI033)
+              airflow3-moved-to-provider (AIR303)
             
           </span>
         </div>
@@ -837,20 +837,21 @@
   
 
 
-<h1 id="type-comment-in-stub-pyi033"><a class="toclink" href="#type-comment-in-stub-pyi033">type-comment-in-stub (PYI033)</a></h1>
-<p>Derived from the <strong><a href="../#flake8-pyi-pyi">flake8-pyi</a></strong> linter.</p>
+<h1 id="airflow3-moved-to-provider-air303"><a class="toclink" href="#airflow3-moved-to-provider-air303">airflow3-moved-to-provider (AIR303)</a></h1>
+<p>Derived from the <strong><a href="../#airflow-air">Airflow</a></strong> linter.</p>
+<p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
-<p>Checks for the use of type comments (e.g., <code>x = 1  # type: int</code>) in stub
-files.</p>
+<p>Checks for uses of Airflow functions and values that have been moved to it providers.
+(e.g., apache-airflow-providers-fab)</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
-<p>Stub (<code>.pyi</code>) files should use type annotations directly, rather
-than type comments, even if they're intended to support Python 2, since
-stub files are not executed at runtime. The one exception is <code># type: ignore</code>.</p>
+<p>Airflow 3.0 moved various deprecated functions, members, and other
+values to its providers. The user needs to install the corresponding provider and replace
+the original usage with the one in the provider</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># type: int</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">airflow.auth.managers.fab.fab_auth_manage</span> <span class="kn">import</span> <span class="n">FabAuthManager</span>
 </code></pre></div>
 <p>Use instead:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">x</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span> <span class="nn">airflow.providers.fab.auth_manager.fab_auth_manage</span> <span class="kn">import</span> <span class="n">FabAuthManager</span>
 </code></pre></div>
 
 
