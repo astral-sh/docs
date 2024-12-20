@@ -1524,6 +1524,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Installing a Python version">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installing-python-executables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installing Python executables
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2610,6 +2627,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Installing a Python version">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installing-python-executables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installing Python executables
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2888,6 +2922,33 @@ are used for requesting local interpreters such as a file path.</p>
 latest version. If a <code>.python-version</code> file is present, uv will install the Python version listed in
 the file. A project that requires multiple Python versions may define a <code>.python-versions</code> file. If
 present, uv will install all of the Python versions listed in the file.</p>
+<h3 id="installing-python-executables"><a class="toclink" href="#installing-python-executables">Installing Python executables</a></h3>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Support for installing Python executables is in <em>preview</em>, this means the behavior is experimental
+and subject to change.</p>
+</div>
+<p>To install Python executables into your <code>PATH</code>, provide the <code>--preview</code> option:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>install<span class="w"> </span><span class="m">3</span>.12<span class="w"> </span>--preview
+</code></pre></div>
+<p>This will install a Python executable for the requested version into <code>~/.local/bin</code>, e.g., as
+<code>python3.12</code>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If <code>~/.local/bin</code> is not in your <code>PATH</code>, you can add it with <code>uv tool update-shell</code>.</p>
+</div>
+<p>To install <code>python</code> and <code>python3</code> executables, include the <code>--default</code> option:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>install<span class="w"> </span><span class="m">3</span>.12<span class="w"> </span>--default<span class="w"> </span>--preview
+</code></pre></div>
+<p>When installing Python executables, uv will only overwrite an existing executable if it is managed
+by uv — e.g., if <code>~/.local/bin/python3.12</code> exists already uv will not overwrite it without the
+<code>--force</code> flag.</p>
+<p>uv will update executables that it manages. However, it will prefer the latest patch version of each
+Python minor version by default. For example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>install<span class="w"> </span><span class="m">3</span>.12.7<span class="w"> </span>--preview<span class="w">  </span><span class="c1"># Adds `python3.12` to `~/.local/bin`</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>install<span class="w"> </span><span class="m">3</span>.12.6<span class="w"> </span>--preview<span class="w">  </span><span class="c1"># Does not update `python3.12`</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>install<span class="w"> </span><span class="m">3</span>.12.8<span class="w"> </span>--preview<span class="w">  </span><span class="c1"># Updates `python3.12` to point to 3.12.8</span>
+</code></pre></div>
 <h2 id="project-python-versions"><a class="toclink" href="#project-python-versions">Project Python versions</a></h2>
 <p>uv will respect Python requirements defined in <code>requires-python</code> in the <code>pyproject.toml</code> file during
 project command invocations. The first Python version that is compatible with the requirement will
@@ -2895,33 +2956,33 @@ be used, unless a version is otherwise requested, e.g., via a <code>.python-vers
 <code>--python</code> flag.</p>
 <h2 id="viewing-available-python-versions"><a class="toclink" href="#viewing-available-python-versions">Viewing available Python versions</a></h2>
 <p>To list installed and available Python versions:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>list
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>list
 </code></pre></div>
 <p>By default, downloads for other platforms and old patch versions are hidden.</p>
 <p>To view all versions:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>list<span class="w"> </span>--all-versions
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>list<span class="w"> </span>--all-versions
 </code></pre></div>
 <p>To view Python versions for other platforms:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>list<span class="w"> </span>--all-platforms
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>list<span class="w"> </span>--all-platforms
 </code></pre></div>
 <p>To exclude downloads and only show installed Python versions:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>list<span class="w"> </span>--only-installed
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>list<span class="w"> </span>--only-installed
 </code></pre></div>
 <h2 id="finding-a-python-executable"><a class="toclink" href="#finding-a-python-executable">Finding a Python executable</a></h2>
 <p>To find a Python executable, use the <code>uv python find</code> command:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>find
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>find
 </code></pre></div>
 <p>By default, this will display the path to the first available Python executable. See the
 <a href="#discovery-of-python-versions">discovery rules</a> for details about how executables are discovered.</p>
 <p>This interface also supports many <a href="#requesting-a-version">request formats</a>, e.g., to find a Python
 executable that has a version of 3.11 or newer:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>find<span class="w"> </span>&gt;<span class="o">=</span><span class="m">3</span>.11
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>find<span class="w"> </span>&gt;<span class="o">=</span><span class="m">3</span>.11
 </code></pre></div>
 <p>By default, <code>uv python find</code> will include Python versions from virtual environments. If a <code>.venv</code>
 directory is found in the working directory or any of the parent directories or the <code>VIRTUAL_ENV</code>
 environment variable is set, it will take precedence over any Python executables on the <code>PATH</code>.</p>
 <p>To ignore virtual environments, use the <code>--system</code> flag:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>find<span class="w"> </span>--system
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>find<span class="w"> </span>--system
 </code></pre></div>
 <h2 id="discovery-of-python-versions"><a class="toclink" href="#discovery-of-python-versions">Discovery of Python versions</a></h2>
 <p>When searching for a Python version, the following locations are checked:</p>

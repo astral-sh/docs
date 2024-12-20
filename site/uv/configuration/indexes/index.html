@@ -2640,7 +2640,7 @@ explicit index (i.e., only usable via <code>tool.uv.sources</code>) while also r
 index.</p>
 <h2 id="searching-across-multiple-indexes"><a class="toclink" href="#searching-across-multiple-indexes">Searching across multiple indexes</a></h2>
 <p>By default, uv will stop at the first index on which a given package is available, and limit
-resolutions to those present on that first index (<code>first-match</code>).</p>
+resolutions to those present on that first index (<code>first-index</code>).</p>
 <p>For example, if an internal index is specified via <code>[[tool.uv.index]]</code>, uv's behavior is such that
 if a package exists on that internal index, it will <em>always</em> be installed from that internal index,
 and never from PyPI. The intent is to prevent "dependency confusion" attacks, in which an attacker
@@ -2651,7 +2651,7 @@ December 2022.</p>
 <p>Users can opt in to alternate index behaviors via the<code>--index-strategy</code> command-line option, or the
 <code>UV_INDEX_STRATEGY</code> environment variable, which supports the following values:</p>
 <ul>
-<li><code>first-match</code> (default): Search for each package across all indexes, limiting the candidate
+<li><code>first-index</code> (default): Search for each package across all indexes, limiting the candidate
   versions to those present in the first index that contains the package.</li>
 <li><code>unsafe-first-match</code>: Search for each package across all indexes, but prefer the first index with
   a compatible version, even if newer versions are available on other indexes.</li>
