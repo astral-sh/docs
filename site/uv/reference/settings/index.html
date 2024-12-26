@@ -5169,7 +5169,7 @@ alternative registry.</p>
 <p><strong>Example usage</strong>:</p>
 <div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">[tool.uv.sources]</span>
 <a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">httpx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">git</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;https://github.com/encode/httpx&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">tag</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;0.27.0&quot;</span><span class="w"> </span><span class="p">}</span>
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="n">pytest</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="n">url</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;https://files.pythonhosted.org/packages/6b/77/7440a06a8ead44c7757a64362dd22df5760f9b12dc5f11b6188cd2fc27a0/pytest-8.3.3-py3-none-any.whl&quot;</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="n">pytest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">url</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;https://files.pythonhosted.org/packages/6b/77/7440a06a8ead44c7757a64362dd22df5760f9b12dc5f11b6188cd2fc27a0/pytest-8.3.3-py3-none-any.whl&quot;</span><span class="w"> </span><span class="p">}</span>
 <a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="n">pydantic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;/path/to/pydantic&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">editable</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
 <hr />
@@ -5265,6 +5265,10 @@ determine whether any files have changed.</p>
 <code>setuptools_scm</code> to read its version from a Git commit, you can specify <code>cache-keys = [{ git = { commit = true }, { file = "pyproject.toml" }]</code>
 to include the current Git commit hash in the cache key (in addition to the
 <code>pyproject.toml</code>). Git tags are also supported via <code>cache-keys = [{ git = { commit = true, tags = true } }]</code>.</p>
+<p>Cache keys can also include environment variables. For example, if a project relies on
+<code>MACOSX_DEPLOYMENT_TARGET</code> or other environment variables to determine its behavior, you can
+specify <code>cache-keys = [{ env = "MACOSX_DEPLOYMENT_TARGET" }]</code> to invalidate the cache
+whenever the environment variable changes.</p>
 <p>Cache keys only affect the project defined by the <code>pyproject.toml</code> in which they're
 specified (as opposed to, e.g., affecting all members in a workspace), and all paths and
 globs are interpreted as relative to the project directory.</p>
