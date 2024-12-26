@@ -2657,11 +2657,16 @@ the following:</p>
 <p>The use of globs can be expensive, as uv may need to walk the filesystem to determine whether any files have changed.
 This may, in turn, requiring traversal of large or deeply nested directories.</p>
 </div>
+<p>Similarly, if a project relies on an environment variable, you can add the following to the
+project's <code>pyproject.toml</code> to invalidate the cache whenever the environment variable changes:</p>
+<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">[tool.uv]</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">cache-keys</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="n">env</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;MY_ENV_VAR&quot;</span><span class="w"> </span><span class="p">}]</span>
+</code></pre></div>
 <p>As an escape hatch, if a project uses <code>dynamic</code> metadata that isn't covered by <code>tool.uv.cache-keys</code>,
 you can instruct uv to <em>always</em> rebuild and reinstall it by adding the project to the
 <code>tool.uv.reinstall-package</code> list:</p>
-<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">[tool.uv]</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">reinstall-package</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;my-package&quot;</span><span class="p">]</span>
+<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">[tool.uv]</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">reinstall-package</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;my-package&quot;</span><span class="p">]</span>
 </code></pre></div>
 <p>This will force uv to rebuild and reinstall <code>my-package</code> on every run, regardless of whether the
 package's <code>pyproject.toml</code>, <code>setup.py</code>, or <code>setup.cfg</code> file has changed.</p>
