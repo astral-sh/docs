@@ -1664,7 +1664,7 @@ which makes it a good target for benchmarking.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>cargo<span class="w"> </span>build<span class="w"> </span>--release<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>hyperfine<span class="w"> </span>--warmup<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">  </span><span class="s2">&quot;./target/release/ruff check ./crates/ruff_linter/resources/test/cpython/ --no-cache -e --select W505,E501&quot;</span>
 </code></pre></div>
-<p>You can run <code>poetry install</code> from <code>./scripts/benchmarks</code> to create a working environment for the
+<p>You can run <code>uv venv --project ./scripts/benchmarks</code>, activate the venv and then run <code>uv sync --project ./scripts/benchmarks</code> to create a working environment for the
 above. All reported benchmarks were computed using the versions specified by
 <code>./scripts/benchmarks/pyproject.toml</code> on Python 3.11.</p>
 <p>To benchmark Pylint, remove the following files from the CPython repository:</p>
