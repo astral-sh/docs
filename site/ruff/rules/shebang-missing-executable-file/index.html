@@ -850,13 +850,15 @@ with the wrong interpreter, or fail to run at all.</p>
 <p>If the file is meant to be executable, add a shebang, as in:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="ch">#!/usr/bin/env python</span>
 </code></pre></div>
-<p>Otherwise, remove the executable bit from the file (e.g., <code>chmod -x __main__.py</code>).</p>
+<p>Otherwise, remove the executable bit from the file
+(e.g., <code>chmod -x __main__.py</code> or <code>git update-index --chmod=-x __main__.py</code>).</p>
 <p>A file is considered executable if it has the executable bit set (i.e., its
 permissions mode intersects with <code>0o111</code>). As such, <em>this rule is only
 available on Unix-like systems</em>, and is not enforced on Windows or WSL.</p>
 <h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/tutorial/appendix.html#executable-python-scripts">Python documentation: Executable Python Scripts</a></li>
+<li><a href="https://git-scm.com/docs/git-update-index#Documentation/git-update-index.txt---chmod-x">Git documentation: <code>git update-index --chmod</code></a></li>
 </ul>
 
 

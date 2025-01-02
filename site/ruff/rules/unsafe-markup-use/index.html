@@ -849,7 +849,8 @@ lead to XSS vulnerabilities.</p>
 <p>Using <a href="../../settings/#lint_ruff_extend-markup-names"><code>lint.ruff.extend-markup-names</code></a> additional objects can be
 treated like <a href="https://markupsafe.palletsprojects.com/en/stable/escaping/#markupsafe.Markup"><code>markupsafe.Markup</code></a>.</p>
 <p>This rule was originally inspired by <a href="https://github.com/vmagamedov/flake8-markupsafe">flake8-markupsafe</a> but doesn't carve
-out any exceptions for i18n related calls.</p>
+out any exceptions for i18n related calls by default.</p>
+<p>You can use <a href="../../settings/#lint_ruff_allowed-markup-calls"><code>lint.ruff.allowed-markup-calls</code></a> to specify exceptions.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <p>Given:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">markupsafe</span> <span class="kn">import</span> <span class="n">Markup</span>
@@ -884,6 +885,7 @@ out any exceptions for i18n related calls.</p>
 <h2 id="options"><a class="toclink" href="#options">Options</a></h2>
 <ul>
 <li><a href="../../settings/#lint_ruff_extend-markup-names"><code>lint.ruff.extend-markup-names</code></a></li>
+<li><a href="../../settings/#lint_ruff_allowed-markup-calls"><code>lint.ruff.allowed-markup-calls</code></a></li>
 </ul>
 <h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
