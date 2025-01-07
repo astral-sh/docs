@@ -6587,10 +6587,10 @@ be correct.</p>
 <hr />
 <h4 id="pip_exclude-newer"><a class="toclink" href="#pip_exclude-newer"><a href="#pip_exclude-newer"><code>exclude-newer</code></a></a></h4>
 <p><span id="exclude-newer"></span></p>
-<p>Limit candidate packages to those that were uploaded prior to the given date.</p>
-<p>Accepts both <a href="https://www.rfc-editor.org/rfc/rfc3339.html">RFC 3339</a> timestamps (e.g.,
-<code>2006-12-02T02:07:43Z</code>) and local dates in the same format (e.g., <code>2006-12-02</code>) in your
-system's configured time zone.</p>
+<p>Limit candidate packages to those that were uploaded prior to a given point in time.</p>
+<p>Accepts a superset of <a href="https://www.rfc-editor.org/rfc/rfc3339.html">RFC 3339</a> (e.g.,
+<code>2006-12-02T02:07:43Z</code>). A full timestamp is required to ensure that the resolver will
+behave consistently across timezones.</p>
 <p><strong>Default value</strong>: <code>None</code></p>
 <p><strong>Type</strong>: <code>str</code></p>
 <p><strong>Example usage</strong>:</p>
@@ -6598,12 +6598,12 @@ system's configured time zone.</p>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-129-1" name="__codelineno-129-1" href="#__codelineno-129-1"></a><span class="k">[tool.uv.pip]</span>
-<a id="__codelineno-129-2" name="__codelineno-129-2" href="#__codelineno-129-2"></a><span class="n">exclude-newer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2006-12-02&quot;</span>
+<a id="__codelineno-129-2" name="__codelineno-129-2" href="#__codelineno-129-2"></a><span class="n">exclude-newer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2006-12-02T02:07:43Z&quot;</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-130-1" name="__codelineno-130-1" href="#__codelineno-130-1"></a><span class="k">[pip]</span>
-<a id="__codelineno-130-2" name="__codelineno-130-2" href="#__codelineno-130-2"></a><span class="n">exclude-newer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2006-12-02&quot;</span>
+<a id="__codelineno-130-2" name="__codelineno-130-2" href="#__codelineno-130-2"></a><span class="n">exclude-newer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2006-12-02T02:07:43Z&quot;</span>
 </code></pre></div>
 </div>
 </div>
