@@ -6,13 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Checks for lambda arguments that use the same names as Python builtins.">
+        <meta name="description" content="Checks for modules that use the same names as Python standard-library">
       
       
         <meta name="author" content="charliermarsh">
       
       
-        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/builtin-lambda-argument-shadowing/">
+        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/stdlib-module-shadowing/">
       
       
       
@@ -25,7 +25,7 @@
     
     
 
-<title>builtin-lambda-argument-shadowing (A006) | Ruff</title>
+<title>stdlib-module-shadowing (A005) | Ruff</title>
 
 
     
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#builtin-lambda-argument-shadowing-a006" class="md-skip">
+        <a href="#stdlib-module-shadowing-a005" class="md-skip">
           Skip to content
         </a>
       
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              builtin-lambda-argument-shadowing (A006)
+              stdlib-module-shadowing (A005)
             
           </span>
         </div>
@@ -837,20 +837,24 @@
   
 
 
-<h1 id="builtin-lambda-argument-shadowing-a006"><a class="toclink" href="#builtin-lambda-argument-shadowing-a006">builtin-lambda-argument-shadowing (A006)</a></h1>
+<h1 id="stdlib-module-shadowing-a005"><a class="toclink" href="#stdlib-module-shadowing-a005">stdlib-module-shadowing (A005)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-builtins-a">flake8-builtins</a></strong> linter.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
-<p>Checks for lambda arguments that use the same names as Python builtins.</p>
+<p>Checks for modules that use the same names as Python standard-library
+modules.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
-<p>Reusing a builtin name for the name of a lambda argument increases the
-difficulty of reading and maintaining the code and can cause
-non-obvious errors. Readers may mistake the variable for the
-builtin, and vice versa.</p>
-<p>Builtins can be marked as exceptions to this rule via the
-<a href="../../settings/#lint_flake8-builtins_builtins-ignorelist"><code>lint.flake8-builtins.builtins-ignorelist</code></a> configuration option.</p>
+<p>Reusing a standard-library module name for the name of a module increases
+the difficulty of reading and maintaining the code, and can cause
+non-obvious errors. Readers may mistake the first-party module for the
+standard-library module and vice versa.</p>
+<p>Standard-library modules can be marked as exceptions to this rule via the
+<a href="../../settings/#lint_flake8-builtins_builtins-allowed-modules"><code>lint.flake8-builtins.builtins-allowed-modules</code></a> configuration option.</p>
+<p>This rule is not applied to stub files, as the name of a stub module is out
+of the control of the author of the stub file. Instead, a stub should aim to
+faithfully emulate the runtime module it is stubbing.</p>
 <h2 id="options"><a class="toclink" href="#options">Options</a></h2>
 <ul>
-<li><a href="../../settings/#lint_flake8-builtins_builtins-ignorelist"><code>lint.flake8-builtins.builtins-ignorelist</code></a></li>
+<li><a href="../../settings/#lint_flake8-builtins_builtins-allowed-modules"><code>lint.flake8-builtins.builtins-allowed-modules</code></a></li>
 </ul>
 
 

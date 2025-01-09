@@ -6,13 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Checks for modules that use the same names as Python builtin modules.">
+        <meta name="description" content="Checks for enum classes which are also decorated with `@dataclass`.">
       
       
         <meta name="author" content="charliermarsh">
       
       
-        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/builtin-module-shadowing/">
+        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/dataclass-enum/">
       
       
       
@@ -25,7 +25,7 @@
     
     
 
-<title>builtin-module-shadowing (A005) | Ruff</title>
+<title>dataclass-enum (RUF049) | Ruff</title>
 
 
     
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#builtin-module-shadowing-a005" class="md-skip">
+        <a href="#dataclass-enum-ruf049" class="md-skip">
           Skip to content
         </a>
       
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              builtin-module-shadowing (A005)
+              dataclass-enum (RUF049)
             
           </span>
         </div>
@@ -837,21 +837,37 @@
   
 
 
-<h1 id="builtin-module-shadowing-a005"><a class="toclink" href="#builtin-module-shadowing-a005">builtin-module-shadowing (A005)</a></h1>
-<p>Derived from the <strong><a href="../#flake8-builtins-a">flake8-builtins</a></strong> linter.</p>
+<h1 id="dataclass-enum-ruf049"><a class="toclink" href="#dataclass-enum-ruf049">dataclass-enum (RUF049)</a></h1>
 <p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
-<p>Checks for modules that use the same names as Python builtin modules.</p>
+<p>Checks for enum classes which are also decorated with <code>@dataclass</code>.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
-<p>Reusing a builtin module name for the name of a module increases the
-difficulty of reading and maintaining the code, and can cause
-non-obvious errors, as readers may mistake the variable for the
-builtin and vice versa.</p>
-<p>Builtin modules can be marked as exceptions to this rule via the
-<a href="../../settings/#lint_flake8-builtins_builtins-allowed-modules"><code>lint.flake8-builtins.builtins-allowed-modules</code></a> configuration option.</p>
-<h2 id="options"><a class="toclink" href="#options">Options</a></h2>
+<p>Decorating an enum with <code>@dataclass()</code> does not cause any errors at runtime,
+but may cause erroneous results:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nd">@dataclass</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">class</span> <span class="nc">E</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">A</span> <span class="o">=</span> <span class="mi">1</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">B</span> <span class="o">=</span> <span class="mi">2</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">E</span><span class="o">.</span><span class="n">A</span> <span class="o">==</span> <span class="n">E</span><span class="o">.</span><span class="n">B</span><span class="p">)</span>  <span class="c1"># True</span>
+</code></pre></div>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="nd">@dataclass</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="k">class</span> <span class="nc">E</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span> <span class="o">...</span>
+</code></pre></div>
+<p>Use instead:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">class</span> <span class="nc">E</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span> <span class="o">...</span>
+</code></pre></div>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
-<li><a href="../../settings/#lint_flake8-builtins_builtins-allowed-modules"><code>lint.flake8-builtins.builtins-allowed-modules</code></a></li>
+<li><a href="https://docs.python.org/3/howto/enum.html#dataclass-support">Python documentation: Enum HOWTO § Dataclass support</a></li>
 </ul>
 
 

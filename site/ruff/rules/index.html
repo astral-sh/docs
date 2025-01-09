@@ -2834,7 +2834,7 @@ catches a wide variety of common errors (like unused imports) with zero configur
 </tr>
 <tr>
 <td id="UP007">UP007</td>
-<td><a href="non-pep604-annotation/">non-pep604-annotation</a></td>
+<td><a href="non-pep604-annotation-union/">non-pep604-annotation-union</a></td>
 <td>Use <code>X | Y</code> for type annotations</td>
 <td style="text-align: right;"><span title='Rule is stable' style='opacity: 0.6'>✔️</span> <span title='Automatic fix available'>🛠️</span></td>
 </tr>
@@ -3052,6 +3052,12 @@ catches a wide variety of common errors (like unused imports) with zero configur
 <td id="UP044">UP044</td>
 <td><a href="non-pep646-unpack/">non-pep646-unpack</a></td>
 <td>Use <code>*</code> for unpacking</td>
+<td style="text-align: right;"><span title='Rule is in preview'>🧪</span> <span title='Automatic fix available'>🛠️</span></td>
+</tr>
+<tr>
+<td id="UP045">UP045</td>
+<td><a href="non-pep604-annotation-optional/">non-pep604-annotation-optional</a></td>
+<td>Use <code>X | None</code> for type annotations</td>
 <td style="text-align: right;"><span title='Rule is in preview'>🧪</span> <span title='Automatic fix available'>🛠️</span></td>
 </tr>
 </tbody>
@@ -4027,6 +4033,12 @@ catches a wide variety of common errors (like unused imports) with zero configur
 <td style="text-align: right;"><span title='Rule is in preview'>🧪</span> <span title='Automatic fix not available' style='opacity: 0.1' aria-hidden='true'>🛠️</span></td>
 </tr>
 <tr>
+<td id="B903">B903</td>
+<td><a href="class-as-data-structure/">class-as-data-structure</a></td>
+<td>Class could be dataclass or namedtuple</td>
+<td style="text-align: right;"><span title='Rule is in preview'>🧪</span> <span title='Automatic fix not available' style='opacity: 0.1' aria-hidden='true'>🛠️</span></td>
+</tr>
+<tr>
 <td id="B904">B904</td>
 <td><a href="raise-without-from-inside-except/">raise-without-from-inside-except</a></td>
 <td>Within an <code>except*</code> clause, raise exceptions with <code>raise ... from err</code> or <code>raise ... from None</code> to distinguish them from errors in exception handling</td>
@@ -4091,15 +4103,15 @@ catches a wide variety of common errors (like unused imports) with zero configur
 </tr>
 <tr>
 <td id="A005">A005</td>
-<td><a href="builtin-module-shadowing/">builtin-module-shadowing</a></td>
-<td>Module <code>{name}</code> is shadowing a Python builtin module</td>
-<td style="text-align: right;"><span title='Rule is in preview'>🧪</span> <span title='Automatic fix not available' style='opacity: 0.1' aria-hidden='true'>🛠️</span></td>
+<td><a href="stdlib-module-shadowing/">stdlib-module-shadowing</a></td>
+<td>Module <code>{name}</code> shadows a Python standard-library module</td>
+<td style="text-align: right;"><span title='Rule is stable' style='opacity: 0.6'>✔️</span> <span title='Automatic fix not available' style='opacity: 0.1' aria-hidden='true'>🛠️</span></td>
 </tr>
 <tr>
 <td id="A006">A006</td>
 <td><a href="builtin-lambda-argument-shadowing/">builtin-lambda-argument-shadowing</a></td>
 <td>Lambda argument <code>{name}</code> is shadowing a Python builtin</td>
-<td style="text-align: right;"><span title='Rule is in preview'>🧪</span> <span title='Automatic fix not available' style='opacity: 0.1' aria-hidden='true'>🛠️</span></td>
+<td style="text-align: right;"><span title='Rule is stable' style='opacity: 0.6'>✔️</span> <span title='Automatic fix not available' style='opacity: 0.1' aria-hidden='true'>🛠️</span></td>
 </tr>
 </tbody>
 </table>
@@ -6842,7 +6854,7 @@ catches a wide variety of common errors (like unused imports) with zero configur
 <td id="PLR1716">PLR1716</td>
 <td><a href="boolean-chained-comparison/">boolean-chained-comparison</a></td>
 <td>Contains chained boolean comparison that can be simplified</td>
-<td style="text-align: right;"><span title='Rule is in preview'>🧪</span> <span title='Automatic fix available'>🛠️</span></td>
+<td style="text-align: right;"><span title='Rule is stable' style='opacity: 0.6'>✔️</span> <span title='Automatic fix available'>🛠️</span></td>
 </tr>
 <tr>
 <td id="PLR1722">PLR1722</td>
@@ -7533,8 +7545,8 @@ catches a wide variety of common errors (like unused imports) with zero configur
 <tr>
 <td id="FURB188">FURB188</td>
 <td><a href="slice-to-remove-prefix-or-suffix/">slice-to-remove-prefix-or-suffix</a></td>
-<td>Prefer <code>removeprefix</code> over conditionally replacing with slice.</td>
-<td style="text-align: right;"><span title='Rule is in preview'>🧪</span> <span title='Automatic fix available'>🛠️</span></td>
+<td>Prefer <code>str.removeprefix()</code> over conditionally replacing with slice.</td>
+<td style="text-align: right;"><span title='Rule is stable' style='opacity: 0.6'>✔️</span> <span title='Automatic fix available'>🛠️</span></td>
 </tr>
 <tr>
 <td id="FURB189">FURB189</td>
@@ -7744,12 +7756,6 @@ catches a wide variety of common errors (like unused imports) with zero configur
 <td style="text-align: right;"><span title='Rule is stable' style='opacity: 0.6'>✔️</span> <span title='Automatic fix available'>🛠️</span></td>
 </tr>
 <tr>
-<td id="RUF025">RUF025</td>
-<td><a href="unnecessary-empty-iterable-within-deque-call/">unnecessary-empty-iterable-within-deque-call</a></td>
-<td>Unnecessary empty iterable within a deque call</td>
-<td style="text-align: right;"><span title='Rule is in preview'>🧪</span> <span title='Automatic fix available'>🛠️</span></td>
-</tr>
-<tr>
 <td id="RUF026">RUF026</td>
 <td><a href="default-factory-kwarg/">default-factory-kwarg</a></td>
 <td><code>default_factory</code> is a positional-only argument to <code>defaultdict</code></td>
@@ -7789,19 +7795,19 @@ catches a wide variety of common errors (like unused imports) with zero configur
 <td id="RUF032">RUF032</td>
 <td><a href="decimal-from-float-literal/">decimal-from-float-literal</a></td>
 <td><code>Decimal()</code> called with float literal argument</td>
-<td style="text-align: right;"><span title='Rule is in preview'>🧪</span> <span title='Automatic fix available'>🛠️</span></td>
+<td style="text-align: right;"><span title='Rule is stable' style='opacity: 0.6'>✔️</span> <span title='Automatic fix available'>🛠️</span></td>
 </tr>
 <tr>
 <td id="RUF033">RUF033</td>
 <td><a href="post-init-default/">post-init-default</a></td>
 <td><code>__post_init__</code> method with argument defaults</td>
-<td style="text-align: right;"><span title='Rule is in preview'>🧪</span> <span title='Automatic fix available'>🛠️</span></td>
+<td style="text-align: right;"><span title='Rule is stable' style='opacity: 0.6'>✔️</span> <span title='Automatic fix available'>🛠️</span></td>
 </tr>
 <tr>
 <td id="RUF034">RUF034</td>
 <td><a href="useless-if-else/">useless-if-else</a></td>
 <td>Useless <code>if</code>-<code>else</code> condition</td>
-<td style="text-align: right;"><span title='Rule is in preview'>🧪</span> <span title='Automatic fix not available' style='opacity: 0.1' aria-hidden='true'>🛠️</span></td>
+<td style="text-align: right;"><span title='Rule is stable' style='opacity: 0.6'>✔️</span> <span title='Automatic fix not available' style='opacity: 0.1' aria-hidden='true'>🛠️</span></td>
 </tr>
 <tr>
 <td id="RUF035">RUF035</td>
@@ -7814,6 +7820,12 @@ catches a wide variety of common errors (like unused imports) with zero configur
 <td><a href="none-not-at-end-of-union/">none-not-at-end-of-union</a></td>
 <td><code>None</code> not at the end of the type annotation.</td>
 <td style="text-align: right;"><span title='Rule is in preview'>🧪</span> <span title='Automatic fix not available' style='opacity: 0.1' aria-hidden='true'>🛠️</span></td>
+</tr>
+<tr>
+<td id="RUF037">RUF037</td>
+<td><a href="unnecessary-empty-iterable-within-deque-call/">unnecessary-empty-iterable-within-deque-call</a></td>
+<td>Unnecessary empty iterable within a deque call</td>
+<td style="text-align: right;"><span title='Rule is in preview'>🧪</span> <span title='Automatic fix available'>🛠️</span></td>
 </tr>
 <tr>
 <td id="RUF038">RUF038</td>
@@ -7855,6 +7867,12 @@ catches a wide variety of common errors (like unused imports) with zero configur
 <td id="RUF048">RUF048</td>
 <td><a href="map-int-version-parsing/">map-int-version-parsing</a></td>
 <td><code>__version__</code> may contain non-integral-like elements</td>
+<td style="text-align: right;"><span title='Rule is in preview'>🧪</span> <span title='Automatic fix not available' style='opacity: 0.1' aria-hidden='true'>🛠️</span></td>
+</tr>
+<tr>
+<td id="RUF049">RUF049</td>
+<td><a href="dataclass-enum/">dataclass-enum</a></td>
+<td>An enum class should not be decorated with <code>@dataclass</code></td>
 <td style="text-align: right;"><span title='Rule is in preview'>🧪</span> <span title='Automatic fix not available' style='opacity: 0.1' aria-hidden='true'>🛠️</span></td>
 </tr>
 <tr>

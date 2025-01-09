@@ -838,21 +838,16 @@
 
 
 <h1 id="useless-if-else-ruf034"><a class="toclink" href="#useless-if-else-ruf034">useless-if-else (RUF034)</a></h1>
-<p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for useless <code>if</code>-<code>else</code> conditions with identical arms.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Useless <code>if</code>-<code>else</code> conditions add unnecessary complexity to the code without
-providing any logical benefit.</p>
-<p>Assigning the value directly is clearer and more explicit, and
-should be preferred.</p>
+providing any logical benefit. Assigning the value directly is clearer.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Bad</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">foo</span> <span class="o">=</span> <span class="n">x</span> <span class="k">if</span> <span class="n">y</span> <span class="k">else</span> <span class="n">x</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">foo</span> <span class="o">=</span> <span class="n">x</span> <span class="k">if</span> <span class="n">y</span> <span class="k">else</span> <span class="n">x</span>
 </code></pre></div>
 <p>Use instead:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Good</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">foo</span> <span class="o">=</span> <span class="n">x</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">foo</span> <span class="o">=</span> <span class="n">x</span>
 </code></pre></div>
 
 

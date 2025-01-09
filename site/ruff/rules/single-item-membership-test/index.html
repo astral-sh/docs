@@ -853,6 +853,10 @@ against the item directly.</p>
 <p>Use instead:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="mi">1</span> <span class="o">==</span> <span class="mi">1</span>
 </code></pre></div>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
+<p>When the right-hand side is a string, the fix is marked as unsafe.
+This is because <code>c in "a"</code> is true both when <code>c</code> is <code>"a"</code> and when <code>c</code> is the empty string,
+so the fix can change the behavior of your program in these cases.</p>
 <h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/reference/expressions.html#comparisons">Python documentation: Comparisons</a></li>

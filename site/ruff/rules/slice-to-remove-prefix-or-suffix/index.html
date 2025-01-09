@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Checks for the removal of a prefix or suffix from a string by assigning">
+        <meta name="description" content="Checks for code that could be written more idiomatically using">
       
       
         <meta name="author" content="charliermarsh">
@@ -840,25 +840,28 @@
 <h1 id="slice-to-remove-prefix-or-suffix-furb188"><a class="toclink" href="#slice-to-remove-prefix-or-suffix-furb188">slice-to-remove-prefix-or-suffix (FURB188)</a></h1>
 <p>Derived from the <strong><a href="../#refurb-furb">refurb</a></strong> linter.</p>
 <p>Fix is always available.</p>
-<p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
-<p>Checks for the removal of a prefix or suffix from a string by assigning
-the string to a slice after checking <code>.startswith()</code> or <code>.endswith()</code>, respectively.</p>
+<p>Checks for code that could be written more idiomatically using
+<a href="https://docs.python.org/3/library/stdtypes.html#str.removeprefix"><code>str.removeprefix()</code></a>
+or <a href="https://docs.python.org/3/library/stdtypes.html#str.removesuffix"><code>str.removesuffix()</code></a>.</p>
+<p>Specifically, the rule flags code that conditionally removes a prefix or suffix
+using a slice operation following an <code>if</code> test that uses <code>str.startswith()</code> or <code>str.endswith()</code>.</p>
+<p>The rule is only applied if your project targets Python 3.9 or later.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
-<p>The methods <a href="https://docs.python.org/3/library/stdtypes.html#str.removeprefix"><code>str.removeprefix</code></a>
-and <a href="https://docs.python.org/3/library/stdtypes.html#str.removesuffix"><code>str.removesuffix</code></a>,
-introduced in Python 3.9, have the same behavior
-and are more readable and efficient.</p>
+<p>The methods <a href="https://docs.python.org/3/library/stdtypes.html#str.removeprefix"><code>str.removeprefix()</code></a>
+and <a href="https://docs.python.org/3/library/stdtypes.html#str.removesuffix"><code>str.removesuffix()</code></a>,
+introduced in Python 3.9, have the same behavior while being more readable and efficient.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">filename</span><span class="p">[:</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span> <span class="k">if</span> <span class="n">filename</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.txt&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="n">filename</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">if</span> <span class="n">text</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;pre&quot;</span><span class="p">):</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="p">[</span><span class="mi">3</span><span class="p">:]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span> <span class="nf">example</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span><span class="p">[:</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span> <span class="k">if</span> <span class="n">filename</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.txt&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="n">filename</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="k">if</span> <span class="n">text</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;pre&quot;</span><span class="p">):</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>        <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="p">[</span><span class="mi">3</span><span class="p">:]</span>
 </code></pre></div>
 <p>Use instead:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span><span class="o">.</span><span class="n">removesuffix</span><span class="p">(</span><span class="s2">&quot;.txt&quot;</span><span class="p">)</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">removeprefix</span><span class="p">(</span><span class="s2">&quot;pre&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">def</span> <span class="nf">example</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span><span class="o">.</span><span class="n">removesuffix</span><span class="p">(</span><span class="s2">&quot;.txt&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">removeprefix</span><span class="p">(</span><span class="s2">&quot;pre&quot;</span><span class="p">)</span>
 </code></pre></div>
 
 

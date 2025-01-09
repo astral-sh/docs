@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Checks for function docstrings that include exceptions which are not">
+        <meta name="description" content="Checks for function docstrings that state that exceptions could be raised">
       
       
         <meta name="author" content="charliermarsh">
@@ -841,12 +841,14 @@
 <p>Derived from the <strong><a href="../#pydoclint-doc">pydoclint</a></strong> linter.</p>
 <p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
-<p>Checks for function docstrings that include exceptions which are not
-explicitly raised.</p>
+<p>Checks for function docstrings that state that exceptions could be raised
+even though they are not directly raised in the function body.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Some conventions prefer non-explicit exceptions be omitted from the
 docstring.</p>
-<p>This rule is not enforced for stub functions.</p>
+<p>This rule is not enforced for abstract methods. It is also ignored for
+"stub functions": functions where the body only consists of <code>pass</code>, <code>...</code>,
+<code>raise NotImplementedError</code>, or similar.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span> <span class="nf">calculate_speed</span><span class="p">(</span><span class="n">distance</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate speed as distance divided by time.</span>
@@ -876,6 +878,10 @@ docstring.</p>
 <a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="sd">    &quot;&quot;&quot;</span>
 <a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    <span class="k">return</span> <span class="n">distance</span> <span class="o">/</span> <span class="n">time</span>
 </code></pre></div>
+<h2 id="known-issues"><a class="toclink" href="#known-issues">Known issues</a></h2>
+<p>It may often be desirable to document <em>all</em> exceptions that a function
+could possibly raise, even those which are not explicitly raised using
+<code>raise</code> statements in the function body.</p>
 
 
 

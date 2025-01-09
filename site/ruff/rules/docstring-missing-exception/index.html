@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Checks for function docstrings that do not include documentation for all">
+        <meta name="description" content="Checks for function docstrings that do not document all explicitly raised">
       
       
         <meta name="author" content="charliermarsh">
@@ -841,13 +841,15 @@
 <p>Derived from the <strong><a href="../#pydoclint-doc">pydoclint</a></strong> linter.</p>
 <p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
-<p>Checks for function docstrings that do not include documentation for all
-explicitly raised exceptions.</p>
+<p>Checks for function docstrings that do not document all explicitly raised
+exceptions.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
-<p>If a function raises an exception without documenting it in its docstring,
-it can be misleading to users and/or a sign of incomplete documentation or
-refactors.</p>
-<p>This rule is not enforced for abstract methods and stubs functions.</p>
+<p>A function should document all exceptions that are directly raised in some
+circumstances. Failing to document an exception that could be raised
+can be misleading to users and/or a sign of incomplete documentation.</p>
+<p>This rule is not enforced for abstract methods. It is also ignored for
+"stub functions": functions where the body only consists of <code>pass</code>, <code>...</code>,
+<code>raise NotImplementedError</code>, or similar.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span> <span class="nf">calculate_speed</span><span class="p">(</span><span class="n">distance</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate speed as distance divided by time.</span>

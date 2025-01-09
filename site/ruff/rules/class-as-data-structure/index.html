@@ -6,13 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Checks for lambda arguments that use the same names as Python builtins.">
+        <meta name="description" content="Checks for classes that only have a public `__init__` method,">
       
       
         <meta name="author" content="charliermarsh">
       
       
-        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/builtin-lambda-argument-shadowing/">
+        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/class-as-data-structure/">
       
       
       
@@ -25,7 +25,7 @@
     
     
 
-<title>builtin-lambda-argument-shadowing (A006) | Ruff</title>
+<title>class-as-data-structure (B903) | Ruff</title>
 
 
     
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#builtin-lambda-argument-shadowing-a006" class="md-skip">
+        <a href="#class-as-data-structure-b903" class="md-skip">
           Skip to content
         </a>
       
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              builtin-lambda-argument-shadowing (A006)
+              class-as-data-structure (B903)
             
           </span>
         </div>
@@ -837,21 +837,30 @@
   
 
 
-<h1 id="builtin-lambda-argument-shadowing-a006"><a class="toclink" href="#builtin-lambda-argument-shadowing-a006">builtin-lambda-argument-shadowing (A006)</a></h1>
-<p>Derived from the <strong><a href="../#flake8-builtins-a">flake8-builtins</a></strong> linter.</p>
+<h1 id="class-as-data-structure-b903"><a class="toclink" href="#class-as-data-structure-b903">class-as-data-structure (B903)</a></h1>
+<p>Derived from the <strong><a href="../#flake8-bugbear-b">flake8-bugbear</a></strong> linter.</p>
+<p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
-<p>Checks for lambda arguments that use the same names as Python builtins.</p>
+<p>Checks for classes that only have a public <code>__init__</code> method,
+without base classes and decorators.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
-<p>Reusing a builtin name for the name of a lambda argument increases the
-difficulty of reading and maintaining the code and can cause
-non-obvious errors. Readers may mistake the variable for the
-builtin, and vice versa.</p>
-<p>Builtins can be marked as exceptions to this rule via the
-<a href="../../settings/#lint_flake8-builtins_builtins-ignorelist"><code>lint.flake8-builtins.builtins-ignorelist</code></a> configuration option.</p>
-<h2 id="options"><a class="toclink" href="#options">Options</a></h2>
-<ul>
-<li><a href="../../settings/#lint_flake8-builtins_builtins-ignorelist"><code>lint.flake8-builtins.builtins-ignorelist</code></a></li>
-</ul>
+<p>Classes with just an <code>__init__</code> are possibly better off
+being a dataclass or a namedtuple, which have less boilerplate.</p>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">class</span> <span class="nc">Point</span><span class="p">:</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
+</code></pre></div>
+<p>Use instead:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="nd">@dataclass</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">class</span> <span class="nc">Point</span><span class="p">:</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="n">x</span><span class="p">:</span> <span class="nb">float</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="n">y</span><span class="p">:</span> <span class="nb">float</span>
+</code></pre></div>
 
 
 

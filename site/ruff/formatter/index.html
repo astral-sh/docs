@@ -534,15 +534,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#black-compatibility" class="md-nav__link">
+  <a href="#style-guide" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Black compatibility
+        Style Guide
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Black compatibility">
+    <nav class="md-nav" aria-label="Style Guide">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -564,6 +564,45 @@
       
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-string-formatting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F-string formatting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="F-string formatting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quotes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quotes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#line-breaks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Line breaks
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1038,7 +1077,7 @@ popularity within the Python ecosystem, targeting Black compatibility ensures th
 adoption is minimally disruptive for the vast majority of projects.</p>
 <p>Specifically, the formatter is intended to emit near-identical output when run over existing
 Black-formatted code. When run over extensive Black-formatted projects like Django and Zulip, &gt; 99.9%
-of lines are formatted identically. (See: <a href="#black-compatibility"><em>Black compatibility</em></a>.)</p>
+of lines are formatted identically. (See: <a href="#style-guide">_Style Guide</a>.)</p>
 <p>Given this focus on Black compatibility, the formatter thus adheres to <a href="https://black.readthedocs.io/en/stable/the_black_code_style/current_style.html">Black's (stable) code style</a>,
 which aims for "consistency, generality, readability and reducing git diffs". To give you a sense
 for the enforced code style, here's an example:</p>
@@ -1284,8 +1323,7 @@ such that running the formatter should never introduce new lint errors.</p>
 <li><a href="../rules/avoidable-escaped-quote/"><code>avoidable-escaped-quote</code></a> (<code>Q003</code>)</li>
 <li><a href="../rules/missing-trailing-comma/"><code>missing-trailing-comma</code></a> (<code>COM812</code>)</li>
 <li><a href="../rules/prohibited-trailing-comma/"><code>prohibited-trailing-comma</code></a> (<code>COM819</code>)</li>
-<li><a href="../rules/single-line-implicit-string-concatenation/"><code>single-line-implicit-string-concatenation</code></a> (<code>ISC001</code>)</li>
-<li><a href="../rules/multi-line-implicit-string-concatenation/"><code>multi-line-implicit-string-concatenation</code></a> (<code>ISC002</code>)</li>
+<li><a href="../rules/multi-line-implicit-string-concatenation/"><code>multi-line-implicit-string-concatenation</code></a> (<code>ISC002</code>) if used without <code>ISC001</code> and <code>flake8-implicit-str-concat.allow-multiline = false</code></li>
 </ul>
 <p>While the <a href="../rules/line-too-long/"><code>line-too-long</code></a> (<code>E501</code>) rule <em>can</em> be used alongside the
 formatter, the formatter only makes a best-effort attempt to wrap lines at the configured
@@ -1323,36 +1361,95 @@ them from your Ruff configuration.</p>
 <li><code>2</code> if Ruff terminates abnormally due to invalid configuration, invalid CLI options, or an
     internal error.</li>
 </ul>
-<h2 id="black-compatibility"><a class="toclink" href="#black-compatibility">Black compatibility</a></h2>
-<p>The formatter is designed to be a drop-in replacement for <a href="https://github.com/psf/black">Black</a>.</p>
-<p>Specifically, the formatter is intended to emit near-identical output when run over Black-formatted
-code. When run over extensive Black-formatted projects like Django and Zulip, &gt; 99.9% of lines
-are formatted identically. When migrating an existing project from Black to Ruff, you should expect
-to see a few differences on the margins, but the vast majority of your code should be unchanged.</p>
-<p>When run over <em>non</em>-Black-formatted code, the formatter makes some different decisions than Black,
-and so more deviations should be expected, especially around the treatment of end-of-line comments.</p>
-<p>If you identify deviations in your project, spot-check them against the <a href="black/">known deviations</a>,
-as well as the <a href="https://github.com/astral-sh/ruff/issues?q=is%3Aopen+is%3Aissue+label%3Aformatter">unintentional deviations</a>
-filed in the issue tracker. If you've identified a new deviation, please <a href="https://github.com/astral-sh/ruff/issues/new">file an issue</a>.</p>
+<h2 id="style-guide"><a class="toclink" href="#style-guide">Style Guide <span id="black-compatibility"></span></a></h2>
+<p>The formatter is designed to be a drop-in replacement for <a href="https://github.com/psf/black">Black</a>.
+This section documents the areas where the Ruff formatter goes beyond Black in terms of code style.</p>
 <h3 id="intentional-deviations"><a class="toclink" href="#intentional-deviations">Intentional deviations</a></h3>
 <p>While the Ruff formatter aims to be a drop-in replacement for Black, it does differ from Black
 in a few known ways. Some of these differences emerge from conscious attempts to improve upon
 Black's code style, while others fall out of differences in the underlying implementations.</p>
 <p>For a complete enumeration of these intentional deviations, see <a href="black/"><em>Known deviations</em></a>.</p>
-<p>Unintentional deviations from Black are tracked in the <a href="https://github.com/astral-sh/ruff/issues?q=is%3Aopen+is%3Aissue+label%3Aformatter">issue tracker</a>.</p>
+<p>Unintentional deviations from Black are tracked in the <a href="https://github.com/astral-sh/ruff/issues?q=is%3Aopen+is%3Aissue+label%3Aformatter">issue tracker</a>.
+If you've identified a new deviation, please <a href="https://github.com/astral-sh/ruff/issues/new">file an issue</a>.</p>
 <h3 id="preview-style"><a class="toclink" href="#preview-style">Preview style</a></h3>
-<p>Black gates formatting changes behind a <a href="https://black.readthedocs.io/en/stable/the_black_code_style/future_style.html#preview-style"><code>preview</code></a>
-flag. The formatter does not yet support Black's preview style, though the intention is to support
-it within the coming months behind Ruff's own <a href="https://docs.astral.sh/ruff/settings/#preview"><code>preview</code></a>
-flag.</p>
-<p>Black promotes some of its preview styling to stable at the end of each year. Ruff will similarly
-implement formatting changes under the <a href="https://docs.astral.sh/ruff/settings/#preview"><code>preview</code></a>
-flag, promoting them to stable through minor releases, in accordance with our <a href="https://github.com/astral-sh/ruff/discussions/6998#discussioncomment-7016766">versioning policy</a>.</p>
+<p>Similar to <a href="https://black.readthedocs.io/en/stable/the_black_code_style/future_style.html#preview-style">Black</a>, Ruff implements formatting changes
+under the <a href="https://docs.astral.sh/ruff/settings/#format_preview"><code>preview</code></a> flag, promoting them to stable through minor releases, in accordance with our <a href="https://github.com/astral-sh/ruff/discussions/6998#discussioncomment-7016766">versioning policy</a>.</p>
+<h3 id="f-string-formatting"><a class="toclink" href="#f-string-formatting">F-string formatting</a></h3>
+<p><em>Stabilized in Ruff 0.9.0</em></p>
+<p>Unlike Black, Ruff formats the expression parts of f-strings which are the parts inside the curly
+braces <code>{...}</code>. This is a <a href="black/#f-strings">known deviation</a> from Black.</p>
+<p>Ruff employs several heuristics to determine how an f-string should be formatted which are detailed
+below.</p>
+<h4 id="quotes"><a class="toclink" href="#quotes">Quotes</a></h4>
+<p>Ruff will use the <a href="../settings/#format_quote-style">configured quote style</a> for the f-string expression unless doing so would result in
+invalid syntax for the target Python version or requires more backslash escapes than the original
+expression. Specifically, Ruff will preserve the original quote style for the following cases:</p>
+<p>When the target Python version is &lt; 3.12 and a <a href="https://realpython.com/python-f-strings/#self-documenting-expressions-for-debugging">self-documenting f-string</a> contains a string
+literal with the <a href="../settings/#format_quote-style">configured quote style</a>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># format.quote-style = &quot;double&quot;</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="mi">10</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">)</span><span class="si">=}</span><span class="s1">&#39;</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="c1"># This f-string cannot be formatted as follows when targeting Python &lt; 3.12</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="mi">10</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">)</span><span class="si">=}</span><span class="s2">&quot;</span>
+</code></pre></div>
+<p>When the target Python version is &lt; 3.12 and an f-string contains any triple-quoted string, byte
+or f-string literal that contains the <a href="../settings/#format_quote-style">configured quote style</a>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># format.quote-style = &quot;double&quot;</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="s2">&quot;&quot;&quot;nested &quot; &quot;&quot;&quot;</span><span class="si">}</span><span class="s1">&#39;</span><span class="err">`</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="c1"># This f-string cannot be formatted as follows when targeting Python &lt; 3.12</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;&#39;&#39;nested &quot; &#39;&#39;&#39;</span><span class="si">}</span><span class="s2">``</span>
+</code></pre></div>
+<p>For all target Python versions, when a <a href="https://realpython.com/python-f-strings/#self-documenting-expressions-for-debugging">self-documenting f-string</a> contains an expression between
+the curly braces (<code>{...}</code>) with a format specifier containing the <a href="../settings/#format_quote-style">configured quote style</a>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="c1"># format.quote-style = &quot;double&quot;</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="mi">1</span><span class="si">=:</span><span class="s1">&quot;foo</span><span class="si">}</span><span class="s1">&#39;</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="c1"># This f-string cannot be formatted as follows for all target Python versions</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="mi">1</span><span class="si">=:</span><span class="s2">&quot;</span><span class="n">foo</span><span class="p">}</span><span class="s2">&quot;</span>
+</code></pre></div>
+<p>For nested f-strings, Ruff alternates quote styles, starting with the <a href="../settings/#format_quote-style">configured quote style</a> for the
+outermost f-string. For example, consider the following f-string:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="c1"># format.quote-style = &quot;double&quot;</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="sa">f</span><span class="s2">&quot;outer f-string </span><span class="si">{</span><span class="sa">f</span><span class="s2">&quot;nested f-string </span><span class="si">{</span><span class="sa">f</span><span class="s2">&quot;another nested f-string&quot;</span><span class="si">}</span><span class="s2"> end&quot;</span><span class="si">}</span><span class="s2"> end&quot;</span>
+</code></pre></div>
+<p>Ruff formats it as:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="sa">f</span><span class="s2">&quot;outer f-string </span><span class="si">{</span><span class="sa">f</span><span class="s1">&#39;nested f-string </span><span class="si">{</span><span class="sa">f</span><span class="s2">&quot;another nested f-string&quot;</span><span class="si">}</span><span class="s1"> end&#39;</span><span class="si">}</span><span class="s2"> end&quot;</span>
+</code></pre></div>
+<h4 id="line-breaks"><a class="toclink" href="#line-breaks">Line breaks</a></h4>
+<p>Starting with Python 3.12 (<a href="https://peps.python.org/pep-0701/">PEP 701</a>), the expression parts of an f-string can
+span multiple lines. Ruff needs to decide when to introduce a line break in an f-string expression.
+This depends on the semantic content of the expression parts of an f-string - for example,
+introducing a line break in the middle of a natural-language sentence is undesirable. Since Ruff
+doesn't have enough information to make that decision, it adopts a heuristic similar to <a href="https://prettier.io/docs/en/next/rationale.html#template-literals">Prettier</a>:
+it will only split the expression parts of an f-string across multiple lines if there was already a line break
+within any of the expression parts.</p>
+<p>For example, the following code:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="sa">f</span><span class="s2">&quot;this f-string has a multiline expression </span><span class="si">{</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">  </span><span class="p">[</span><span class="s1">&#39;red&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;green&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;yellow&#39;</span><span class="p">,]</span><span class="si">}</span><span class="s2"> and does not fit within the line length&quot;</span>
+</code></pre></div>
+<p>... is formatted as:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1"># The list expression is split across multiple lines because of the trailing comma</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="sa">f</span><span class="s2">&quot;this f-string has a multiline expression </span><span class="si">{</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="w">    </span><span class="p">[</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="w">        </span><span class="s1">&#39;red&#39;</span><span class="p">,</span>
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="w">        </span><span class="s1">&#39;green&#39;</span><span class="p">,</span>
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="w">        </span><span class="s1">&#39;blue&#39;</span><span class="p">,</span>
+<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="w">        </span><span class="s1">&#39;yellow&#39;</span><span class="p">,</span>
+<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="w">    </span><span class="p">]</span>
+<a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="si">}</span><span class="s2"> and does not fit within the line length&quot;</span>
+</code></pre></div>
+<p>But, the following will not be split across multiple lines even though it exceeds the line length:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="sa">f</span><span class="s2">&quot;this f-string has a multiline expression </span><span class="si">{</span><span class="p">[</span><span class="s1">&#39;red&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;green&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;yellow&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> and does not fit within the line length&quot;</span>
+</code></pre></div>
+<p>If you want Ruff to split an f-string across multiple lines, ensure there's a linebreak somewhere within the
+<code>{...}</code> parts of an f-string.</p>
 <h2 id="sorting-imports"><a class="toclink" href="#sorting-imports">Sorting imports</a></h2>
 <p>Currently, the Ruff formatter does not sort imports. In order to both sort imports and format,
 call the Ruff linter and then the formatter:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>ruff<span class="w"> </span>check<span class="w"> </span>--select<span class="w"> </span>I<span class="w"> </span>--fix
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>ruff<span class="w"> </span>format
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>ruff<span class="w"> </span>check<span class="w"> </span>--select<span class="w"> </span>I<span class="w"> </span>--fix
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>ruff<span class="w"> </span>format
 </code></pre></div>
 <p>A unified command for both linting and formatting is <a href="https://github.com/astral-sh/ruff/issues/8232">planned</a>.</p>
 
