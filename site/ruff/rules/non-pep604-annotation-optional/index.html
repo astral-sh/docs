@@ -6,13 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Check for type annotations that can be rewritten based on [PEP 604] syntax.">
+        <meta name="description" content="Check for `typing.Optional` annotations that can be rewritten based on [PEP 604] syntax.">
       
       
         <meta name="author" content="charliermarsh">
       
       
-        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/non-pep604-annotation/">
+        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/non-pep604-annotation-optional/">
       
       
       
@@ -25,7 +25,7 @@
     
     
 
-<title>non-pep604-annotation (UP007) | Ruff</title>
+<title>non-pep604-annotation-optional (UP045) | Ruff</title>
 
 
     
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#non-pep604-annotation-up007" class="md-skip">
+        <a href="#non-pep604-annotation-optional-up045" class="md-skip">
           Skip to content
         </a>
       
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              non-pep604-annotation (UP007)
+              non-pep604-annotation-optional (UP045)
             
           </span>
         </div>
@@ -837,15 +837,16 @@
   
 
 
-<h1 id="non-pep604-annotation-up007"><a class="toclink" href="#non-pep604-annotation-up007">non-pep604-annotation (UP007)</a></h1>
+<h1 id="non-pep604-annotation-optional-up045"><a class="toclink" href="#non-pep604-annotation-optional-up045">non-pep604-annotation-optional (UP045)</a></h1>
 <p>Derived from the <strong><a href="../#pyupgrade-up">pyupgrade</a></strong> linter.</p>
 <p>Fix is sometimes available.</p>
+<p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
-<p>Check for type annotations that can be rewritten based on <a href="https://peps.python.org/pep-0604/">PEP 604</a> syntax.</p>
+<p>Check for <code>typing.Optional</code> annotations that can be rewritten based on <a href="https://peps.python.org/pep-0604/">PEP 604</a> syntax.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p><a href="https://peps.python.org/pep-0604/">PEP 604</a> introduced a new syntax for union type annotations based on the
 <code>|</code> operator. This syntax is more concise and readable than the previous
-<code>typing.Union</code> and <code>typing.Optional</code> syntaxes.</p>
+<code>typing.Optional</code> syntax.</p>
 <p>This rule is enabled when targeting Python 3.10 or later (see:
 <a href="../../settings/#target-version"><code>target-version</code></a>). By default, it's <em>also</em> enabled for earlier Python
 versions if <code>from __future__ import annotations</code> is present, as
@@ -854,12 +855,12 @@ on runtime type annotations (either directly or via a library like
 Pydantic), you can disable this behavior for Python versions prior to 3.10
 by setting <a href="../../settings/#lint_pyupgrade_keep-runtime-typing"><code>lint.pyupgrade.keep-runtime-typing</code></a> to <code>true</code>.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">foo</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">foo</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 </code></pre></div>
 <p>Use instead:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">foo</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">=</span> <span class="mi">1</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">foo</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
 </code></pre></div>
 <h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
 <p>This rule's fix is marked as unsafe, as it may lead to runtime errors when

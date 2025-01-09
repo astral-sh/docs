@@ -864,19 +864,14 @@ to <code>false</code>.</p>
 <ul>
 <li><a href="../../settings/#lint_flake8-implicit-str-concat_allow-multiline"><code>lint.flake8-implicit-str-concat.allow-multiline</code></a></li>
 </ul>
-<h1 id="formatter-compatibility"><a class="toclink" href="#formatter-compatibility">Formatter compatibility</a></h1>
-<p>Use of this rule alongside the <a href="https://docs.astral.sh/ruff/formatter/">formatter</a> must be handled with care.
-Currently, the <a href="https://docs.astral.sh/ruff/formatter/">formatter</a> can introduce new multi-line implicitly
-concatenated strings, therefore we suggest rerunning the linter and
-<a href="https://docs.astral.sh/ruff/formatter/">formatter</a> in the following order:</p>
-<ol>
-<li>Run the linter with this rule (<code>ISC002</code>) disabled</li>
-<li>Run the <a href="https://docs.astral.sh/ruff/formatter/">formatter</a></li>
-<li>Rerun the linter with this rule (<code>ISC002</code>) enabled</li>
-</ol>
-<p>This is one of very few cases where the <a href="https://docs.astral.sh/ruff/formatter/">formatter</a> can produce code that
-contains lint violations. It is a known issue that should be resolved by the
-new 2025 style guide.</p>
+<h2 id="formatter-compatibility"><a class="toclink" href="#formatter-compatibility">Formatter compatibility</a></h2>
+<p>Using this rule with <code>allow-multiline = false</code> can be incompatible with the
+formatter because the <a href="https://docs.astral.sh/ruff/formatter/">formatter</a> can introduce new multi-line implicitly
+concatenated strings. We recommend to either:</p>
+<ul>
+<li>Enable <code>ISC001</code> to disallow all implicit concatenated strings</li>
+<li>Setting <code>allow-multiline = true</code></li>
+</ul>
 
 
 

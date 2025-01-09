@@ -841,7 +841,7 @@
 <p>Derived from the <strong><a href="../#flake8-pyi-pyi">flake8-pyi</a></strong> linter.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for uses of comparators other than <code>&lt;</code> and <code>&gt;=</code> for
-<code>sys.version_info</code> checks in <code>.pyi</code> files. All other comparators, such
+<code>sys.version_info</code> checks. All other comparators, such
 as <code>&gt;</code>, <code>&lt;=</code>, and <code>==</code>, are banned.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Comparing <code>sys.version_info</code> with <code>==</code> or <code>&lt;=</code> has unexpected behavior
@@ -861,7 +861,6 @@ resolve to <code>True</code> if your Python version is 3.8.10:</p>
 <a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 <a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="kc">False</span>
 </code></pre></div>
-<p>In <a href="https://docs.astral.sh/ruff/preview/">preview</a>, this rule will also flag non-stub files.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span> <span class="nn">sys</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
