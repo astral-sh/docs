@@ -1886,6 +1886,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#uv_git_lfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_GIT_LFS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#uv_http_timeout" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2370,17 +2381,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#uv_stack_size" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        UV_STACK_SIZE
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#uv_system_python" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2749,6 +2749,17 @@
     <span class="md-ellipsis">
       
         RUST_LOG
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rust_min_stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RUST_MIN_STACK
       
     </span>
   </a>
@@ -3833,6 +3844,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#uv_git_lfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_GIT_LFS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#uv_http_timeout" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4317,17 +4339,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#uv_stack_size" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        UV_STACK_SIZE
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#uv_system_python" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4703,6 +4714,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#rust_min_stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RUST_MIN_STACK
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#shell" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4986,6 +5008,8 @@ resolution.</p>
 updating the <code>uv.lock</code> file.</p>
 <h3 id="uv_github_token"><a class="toclink" href="#uv_github_token"><code>UV_GITHUB_TOKEN</code></a></h3>
 <p>Equivalent to the <code>--token</code> argument for self update. A GitHub token for authentication.</p>
+<h3 id="uv_git_lfs"><a class="toclink" href="#uv_git_lfs"><code>UV_GIT_LFS</code></a></h3>
+<p>Enables fetching files stored in Git LFS when installing a package from a Git repository.</p>
 <h3 id="uv_http_timeout"><a class="toclink" href="#uv_http_timeout"><code>UV_HTTP_TIMEOUT</code></a></h3>
 <p>Timeout (in seconds) for HTTP requests. (default: 30 s)</p>
 <h3 id="uv_index"><a class="toclink" href="#uv_index"><code>UV_INDEX</code></a></h3>
@@ -5118,8 +5142,6 @@ uv will require that all dependencies have a hash specified in the requirements 
 <h3 id="uv_resolution"><a class="toclink" href="#uv_resolution"><code>UV_RESOLUTION</code></a></h3>
 <p>Equivalent to the <code>--resolution</code> command-line argument. For example, if set to
 <code>lowest-direct</code>, uv will install the lowest compatible versions of all direct dependencies.</p>
-<h3 id="uv_stack_size"><a class="toclink" href="#uv_stack_size"><code>UV_STACK_SIZE</code></a></h3>
-<p>Use to increase the stack size used by uv in debug builds on Windows.</p>
 <h3 id="uv_system_python"><a class="toclink" href="#uv_system_python"><code>UV_SYSTEM_PYTHON</code></a></h3>
 <p>Equivalent to the <code>--system</code> command-line argument. If set to <code>true</code>, uv will
 use the first Python interpreter found in the system <code>PATH</code>.
@@ -5205,6 +5227,13 @@ For example:
 * <code>RUST_LOG=trace</code> will enable trace-level logging.</p>
 <p>See the <a href="https://docs.rs/tracing-subscriber/latest/tracing_subscriber/filter/struct.EnvFilter.html#example-syntax">tracing documentation</a>
 for more.</p>
+<h3 id="rust_min_stack"><a class="toclink" href="#rust_min_stack"><code>RUST_MIN_STACK</code></a></h3>
+<p>Use to set the stack size used by uv.</p>
+<p>The value is in bytes, and the default is typically 2MB (2097152).
+Unlike the normal <code>RUST_MIN_STACK</code> semantics, this can affect main thread
+stack size, because we actually spawn our own main2 thread to work around
+the fact that Windows' real main thread is only 1MB. That thread has size
+<code>max(RUST_MIN_STACK, 4MB)</code>.</p>
 <h3 id="shell"><a class="toclink" href="#shell"><code>SHELL</code></a></h3>
 <p>The standard <code>SHELL</code> posix env var.</p>
 <h3 id="ssl_cert_file"><a class="toclink" href="#ssl_cert_file"><code>SSL_CERT_FILE</code></a></h3>
