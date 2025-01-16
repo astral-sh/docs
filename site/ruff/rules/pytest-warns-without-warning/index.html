@@ -6,13 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Checks for `pytest.raises` context managers with multiple statements.">
+        <meta name="description" content="Checks for `pytest.warns` calls without an expected warning.">
       
       
         <meta name="author" content="charliermarsh">
       
       
-        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/pytest-raises-with-multiple-statements/">
+        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/pytest-warns-without-warning/">
       
       
       
@@ -25,7 +25,7 @@
     
     
 
-<title>pytest-raises-with-multiple-statements (PT012) | Ruff</title>
+<title>pytest-warns-without-warning (PT029) | Ruff</title>
 
 
     
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#pytest-raises-with-multiple-statements-pt012" class="md-skip">
+        <a href="#pytest-warns-without-warning-pt029" class="md-skip">
           Skip to content
         </a>
       
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              pytest-raises-with-multiple-statements (PT012)
+              pytest-warns-without-warning (PT029)
             
           </span>
         </div>
@@ -837,38 +837,33 @@
   
 
 
-<h1 id="pytest-raises-with-multiple-statements-pt012"><a class="toclink" href="#pytest-raises-with-multiple-statements-pt012">pytest-raises-with-multiple-statements (PT012)</a></h1>
+<h1 id="pytest-warns-without-warning-pt029"><a class="toclink" href="#pytest-warns-without-warning-pt029">pytest-warns-without-warning (PT029)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-pytest-style-pt">flake8-pytest-style</a></strong> linter.</p>
+<p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
-<p>Checks for <code>pytest.raises</code> context managers with multiple statements.</p>
+<p>Checks for <code>pytest.warns</code> calls without an expected warning.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
-<p>When a <code>pytest.raises</code> is used as a context manager and contains multiple
-statements, it can lead to the test passing when it actually should fail.</p>
-<p>A <code>pytest.raises</code> context manager should only contain a single simple
-statement that raises the expected exception.</p>
+<p><code>pytest.warns</code> expects to receive an expected warning as its first
+argument. If omitted, the <code>pytest.warns</code> call will fail at runtime.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">test_foo</span><span class="p">():</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="n">MyError</span><span class="p">):</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        <span class="n">setup</span><span class="p">()</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>        <span class="n">func_to_test</span><span class="p">()</span>  <span class="c1"># not executed if `setup()` raises `MyError`</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>        <span class="k">assert</span> <span class="n">foo</span><span class="p">()</span>  <span class="c1"># not executed</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">warns</span><span class="p">():</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        <span class="n">do_something</span><span class="p">()</span>
 </code></pre></div>
 <p>Use instead:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">test_foo</span><span class="p">():</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="n">setup</span><span class="p">()</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="n">MyError</span><span class="p">):</span>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>        <span class="n">func_to_test</span><span class="p">()</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="k">assert</span> <span class="n">foo</span><span class="p">()</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">warns</span><span class="p">(</span><span class="n">SomeWarning</span><span class="p">):</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>        <span class="n">do_something</span><span class="p">()</span>
 </code></pre></div>
 <h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
-<li><a href="https://docs.pytest.org/en/latest/reference/reference.html#pytest-raises"><code>pytest</code> documentation: <code>pytest.raises</code></a></li>
+<li><a href="https://docs.pytest.org/en/latest/reference/reference.html#pytest-warns"><code>pytest</code> documentation: <code>pytest.warns</code></a></li>
 </ul>
 
 
