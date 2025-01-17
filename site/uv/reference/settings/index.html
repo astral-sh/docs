@@ -5083,7 +5083,7 @@ workspace members or <code>uv.toml</code> files.</p>
 <p><strong>Example usage</strong>:</p>
 <div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">[tool.uv]</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1"># Ensure that the grpcio version is always less than 1.65, if it&#39;s requested by a</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1"># transitive dependency.</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1"># direct or transitive dependency.</span>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">constraint-dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;grpcio&lt;1.65&quot;</span><span class="p">]</span>
 </code></pre></div>
 <hr />
@@ -5102,8 +5102,8 @@ workspace members or <code>uv.toml</code> files.</p>
 not appear in the project's published metadata.</p>
 <p>Use of this field is not recommend anymore. Instead, use the <code>dependency-groups.dev</code> field
 which is a standardized way to declare development dependencies. The contents of
-<code>tool.uv.dev-dependencies</code> and <code>dependency-groups.dev</code> are combined to determine the the
-final requirements of the <code>dev</code> dependency group.</p>
+<code>tool.uv.dev-dependencies</code> and <code>dependency-groups.dev</code> are combined to determine the final
+requirements of the <code>dev</code> dependency group.</p>
 <p><strong>Default value</strong>: <code>[]</code></p>
 <p><strong>Type</strong>: <code>list[str]</code></p>
 <p><strong>Example usage</strong>:</p>
@@ -5116,7 +5116,7 @@ final requirements of the <code>dev</code> dependency group.</p>
 <p>By default, uv will resolve for all possible environments during a <code>uv lock</code> operation.
 However, you can restrict the set of supported environments to improve performance and avoid
 unsatisfiable branches in the solution space.</p>
-<p>These environments will also respected when <code>uv pip compile</code> is invoked with the
+<p>These environments will also be respected when <code>uv pip compile</code> is invoked with the
 <code>--universal</code> flag.</p>
 <p><strong>Default value</strong>: <code>[]</code></p>
 <p><strong>Type</strong>: <code>str | list[str]</code></p>
@@ -5135,7 +5135,7 @@ index has the highest priority. Further, the indexes provided by this setting ar
 higher priority than any indexes specified via <a href="#index-url"><code>index_url</code></a> or
 <a href="#extra-index-url"><code>extra_index_url</code></a>. uv will only consider the first index that contains
 a given package, unless an alternative <a href="#index-strategy">index strategy</a> is specified.</p>
-<p>If an index is marked as <code>explicit = true</code>, it will be used exclusively for those
+<p>If an index is marked as <code>explicit = true</code>, it will be used exclusively for the
 dependencies that select it explicitly via <code>[tool.uv.sources]</code>, as in:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">[[tool.uv.index]]</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;pytorch&quot;</span>
