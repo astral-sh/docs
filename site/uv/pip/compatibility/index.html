@@ -3209,9 +3209,18 @@ without calling <code>manylinux_compatible</code> for every glibc version.</p>
 <a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>    <span class="k">return</span> <span class="kc">False</span>
 </code></pre></div>
 <h2 id="bytecode-compilation"><a class="toclink" href="#bytecode-compilation">Bytecode compilation</a></h2>
-<p>Unlike pip, uv does not compile <code>.py</code> files to <code>.pyc</code> files during installation by default (i.e., uv
-does not create or populate <code>__pycache__</code> directories). To enable bytecode compilation during
-installs, pass the <code>--compile-bytecode</code> flag to <code>uv pip install</code> or <code>uv pip sync</code>.</p>
+<p>Unlike <code>pip</code>, uv does not compile <code>.py</code> files to <code>.pyc</code> files during installation by default (i.e.,
+uv does not create or populate <code>__pycache__</code> directories). To enable bytecode compilation during
+installs, pass the <code>--compile-bytecode</code> flag to <code>uv pip install</code> or <code>uv pip sync</code>, or set the
+<code>UV_COMPILE_BYTECODE</code> environment variable to <code>1</code>.</p>
+<p>Skipping bytecode compilation can be undesirable in workflows; for example, we recommend enabling
+bytecode compilation in <a href="../../guides/integration/docker/">Docker builds</a> to improve startup times
+(at the cost of increased build times).</p>
+<p>As bytecode compilation suppresses various warnings issued by the Python interpreter, in rare cases
+you may seen <code>SyntaxWarning</code> or <code>DeprecationWarning</code> messages when running Python code that was
+installed with uv that do not appear when using <code>pip</code>. These are valid warnings, but are typically
+hidden by the bytecode compilation process, and can either be ignored, fixed upstream, or similarly
+suppressed by enabling bytecode compilation in uv.</p>
 <h2 id="strictness-and-spec-enforcement"><a class="toclink" href="#strictness-and-spec-enforcement">Strictness and spec enforcement</a></h2>
 <p>uv tends to be stricter than <code>pip</code>, and will often reject packages that <code>pip</code> would install. For
 example, uv rejects HTML indexes with invalid URL fragments (see:
