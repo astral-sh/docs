@@ -843,8 +843,10 @@
 <p>Checks for <code>return</code> statements in <code>try</code> blocks.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>The <code>try</code>-<code>except</code> statement has an <code>else</code> clause for code that should
-run <em>only</em> if no exceptions were raised. Using the <code>else</code> clause is more
-explicit than using a <code>return</code> statement inside of a <code>try</code> block.</p>
+run <em>only</em> if no exceptions were raised. Returns in <code>try</code> blocks may
+exhibit confusing or unwanted behavior, such as being overridden by
+control flow in <code>except</code> and <code>finally</code> blocks, or unintentionally
+suppressing an exception.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
