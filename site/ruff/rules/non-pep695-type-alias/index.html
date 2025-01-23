@@ -849,13 +849,16 @@ type aliases. The <code>type</code> keyword is easier to read and provides clean
 support for generics.</p>
 <h2 id="known-problems"><a class="toclink" href="#known-problems">Known problems</a></h2>
 <p><a href="https://peps.python.org/pep-0695/">PEP 695</a> uses inferred variance for type parameters, instead of the
-<code>covariant</code> and <code>contravariant</code> keywords used by <code>TypeParam</code> variables. As
-such, rewriting a <code>TypeParam</code> variable to a <code>type</code> alias may change its
-variance.</p>
-<p>Unlike <code>TypeParam</code> variables, <a href="https://peps.python.org/pep-0695/">PEP 695</a>-style <code>type</code> aliases cannot be used
-at runtime. For example, calling <code>isinstance</code> on a <code>type</code> alias will throw
-a <code>TypeError</code>. As such, rewriting a <code>TypeParam</code> via the <code>type</code> keyword will
-cause issues for parameters that are used for such runtime checks.</p>
+<code>covariant</code> and <code>contravariant</code> keywords used by <code>TypeVar</code> variables. As
+such, rewriting a type alias using a PEP-695 <code>type</code> statement may change
+the variance of the alias's type parameters.</p>
+<p>Unlike type aliases that use simple assignments, definitions created using
+<a href="https://peps.python.org/pep-0695/">PEP 695</a> <code>type</code> statements cannot be used as drop-in replacements at
+runtime for the value on the right-hand side of the statement. This means
+that while for some simple old-style type aliases you can use them as the
+second argument to an <code>isinstance()</code> call (for example), doing the same
+with a <a href="https://peps.python.org/pep-0695/">PEP 695</a> <code>type</code> statement will always raise <code>TypeError</code> at
+runtime.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">ListOfInt</span><span class="p">:</span> <span class="n">TypeAlias</span> <span class="o">=</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">PositiveInt</span> <span class="o">=</span> <span class="n">TypeAliasType</span><span class="p">(</span><span class="s2">&quot;PositiveInt&quot;</span><span class="p">,</span> <span class="n">Annotated</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Gt</span><span class="p">(</span><span class="mi">0</span><span class="p">)])</span>
