@@ -3250,20 +3250,28 @@ other packages may be resolved from the index, if not found elsewhere.</p>
 <a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="k">[tool.uv.sources]</span>
 <a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="n">httpx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">git</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;https://github.com/encode/httpx&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">rev</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;326b9431c761e1ef1e00b9f760d1f654c8db48c6&quot;</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
-<p>A <code>subdirectory</code> may be specified if the package isn't in the repository root.</p>
+<p>A <code>subdirectory</code> may be specified if the package isn't in the repository root:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>git+https://github.com/langchain-ai/langchain#subdirectory<span class="o">=</span>libs/langchain
+</code></pre></div>
+<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="k">[project]</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;langchain&quot;</span><span class="p">]</span>
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="k">[tool.uv.sources]</span>
+<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="n">langchain</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">git</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;https://github.com/langchain-ai/langchain&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">subdirectory</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;libs/langchain&quot;</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
 <h3 id="url"><a class="toclink" href="#url">URL</a></h3>
 <p>To add a URL source, provide a <code>https://</code> URL to either a wheel (ending in <code>.whl</code>) or a source
 distribution (typically ending in <code>.tar.gz</code> or <code>.zip</code>; see
 <a href="../../resolution/#source-distribution">here</a> for all supported formats).</p>
 <p>For example:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span><span class="s2">&quot;https://files.pythonhosted.org/packages/5c/2d/3da5bdf4408b8b2800061c339f240c1802f2e82d55e50bd39c5a881f47f0/httpx-0.27.0.tar.gz&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span><span class="s2">&quot;https://files.pythonhosted.org/packages/5c/2d/3da5bdf4408b8b2800061c339f240c1802f2e82d55e50bd39c5a881f47f0/httpx-0.27.0.tar.gz&quot;</span>
 </code></pre></div>
 <p>Will result in a <code>pyproject.toml</code> with:</p>
-<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="k">[project]</span>
-<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;httpx&quot;</span><span class="p">]</span>
-<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>
-<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="k">[tool.uv.sources]</span>
-<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="hll"><span class="n">httpx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">url</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;https://files.pythonhosted.org/packages/5c/2d/3da5bdf4408b8b2800061c339f240c1802f2e82d55e50bd39c5a881f47f0/httpx-0.27.0.tar.gz&quot;</span><span class="w"> </span><span class="p">}</span>
+<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="k">[project]</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;httpx&quot;</span><span class="p">]</span>
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="k">[tool.uv.sources]</span>
+<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a><span class="hll"><span class="n">httpx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">url</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;https://files.pythonhosted.org/packages/5c/2d/3da5bdf4408b8b2800061c339f240c1802f2e82d55e50bd39c5a881f47f0/httpx-0.27.0.tar.gz&quot;</span><span class="w"> </span><span class="p">}</span>
 </span></code></pre></div>
 <p>URL dependencies can also be manually added or edited in the <code>pyproject.toml</code> with the
 <code>{ url = &lt;url&gt; }</code> syntax. A <code>subdirectory</code> may be specified if the source distribution isn't in the
@@ -3274,26 +3282,26 @@ archive root.</p>
 <a href="../../resolution/#source-distribution">here</a> for all supported formats), or a directory
 containing a <code>pyproject.toml</code>.</p>
 <p>For example:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>/example/foo-0.1.0-py3-none-any.whl
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>/example/foo-0.1.0-py3-none-any.whl
 </code></pre></div>
 <p>Will result in a <code>pyproject.toml</code> with:</p>
-<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="k">[project]</span>
-<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;foo&quot;</span><span class="p">]</span>
-<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>
-<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="k">[tool.uv.sources]</span>
-<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a><span class="n">foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;/example/foo-0.1.0-py3-none-any.whl&quot;</span><span class="w"> </span><span class="p">}</span>
+<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="k">[project]</span>
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;foo&quot;</span><span class="p">]</span>
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>
+<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="k">[tool.uv.sources]</span>
+<a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a><span class="n">foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;/example/foo-0.1.0-py3-none-any.whl&quot;</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
 <p>The path may also be a relative path:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>./foo-0.1.0-py3-none-any.whl
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>./foo-0.1.0-py3-none-any.whl
 </code></pre></div>
 <p>Or, a path to a project directory:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>~/projects/bar/
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>~/projects/bar/
 </code></pre></div>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p>An <a href="#editable-dependencies">editable installation</a> is not used for path dependencies by
 default. An editable installation may be requested for project directories:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>--editable<span class="w"> </span>~/projects/bar/
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>--editable<span class="w"> </span>~/projects/bar/
 </code></pre></div>
 <p>For multiple packages in the same repository, <a href="../workspaces/"><em>workspaces</em></a> may be a better
 fit.</p>
@@ -3303,27 +3311,27 @@ fit.</p>
 workspace members must be explicitly stated. Workspace members are always
 <a href="#editable-dependencies">editable</a> . See the <a href="../workspaces/">workspace</a> documentation for more
 details on workspaces.</p>
-<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="k">[project]</span>
-<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;foo==0.1.0&quot;</span><span class="p">]</span>
-<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>
-<a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a><span class="k">[tool.uv.sources]</span>
-<a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a><span class="n">foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">workspace</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">}</span>
-<a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a>
-<a id="__codelineno-33-7" name="__codelineno-33-7" href="#__codelineno-33-7"></a><span class="k">[tool.uv.workspace]</span>
-<a id="__codelineno-33-8" name="__codelineno-33-8" href="#__codelineno-33-8"></a><span class="n">members</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-33-9" name="__codelineno-33-9" href="#__codelineno-33-9"></a><span class="w">  </span><span class="s2">&quot;packages/foo&quot;</span>
-<a id="__codelineno-33-10" name="__codelineno-33-10" href="#__codelineno-33-10"></a><span class="p">]</span>
+<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="k">[project]</span>
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;foo==0.1.0&quot;</span><span class="p">]</span>
+<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>
+<a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a><span class="k">[tool.uv.sources]</span>
+<a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a><span class="n">foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">workspace</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-35-6" name="__codelineno-35-6" href="#__codelineno-35-6"></a>
+<a id="__codelineno-35-7" name="__codelineno-35-7" href="#__codelineno-35-7"></a><span class="k">[tool.uv.workspace]</span>
+<a id="__codelineno-35-8" name="__codelineno-35-8" href="#__codelineno-35-8"></a><span class="n">members</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-35-9" name="__codelineno-35-9" href="#__codelineno-35-9"></a><span class="w">  </span><span class="s2">&quot;packages/foo&quot;</span>
+<a id="__codelineno-35-10" name="__codelineno-35-10" href="#__codelineno-35-10"></a><span class="p">]</span>
 </code></pre></div>
 <h3 id="platform-specific-sources"><a class="toclink" href="#platform-specific-sources">Platform-specific sources</a></h3>
 <p>You can limit a source to a given platform or Python version by providing
 <a href="https://packaging.python.org/en/latest/specifications/dependency-specifiers/">dependency specifiers</a>-compatible
 environment markers for the source.</p>
 <p>For example, to pull <code>httpx</code> from GitHub, but only on macOS, use the following:</p>
-<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="k">[project]</span>
-<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;httpx&quot;</span><span class="p">]</span>
-<a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a>
-<a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a><span class="k">[tool.uv.sources]</span>
-<a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a><span class="n">httpx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">git</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;https://github.com/encode/httpx&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">tag</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;0.27.2&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">marker</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;sys_platform == &#39;darwin&#39;&quot;</span><span class="w"> </span><span class="p">}</span>
+<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="k">[project]</span>
+<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a><span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;httpx&quot;</span><span class="p">]</span>
+<a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a>
+<a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a><span class="k">[tool.uv.sources]</span>
+<a id="__codelineno-36-5" name="__codelineno-36-5" href="#__codelineno-36-5"></a><span class="n">httpx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">git</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;https://github.com/encode/httpx&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">tag</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;0.27.2&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">marker</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;sys_platform == &#39;darwin&#39;&quot;</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
 <p>By specifying the marker on the source, uv will still include <code>httpx</code> on all platforms, but will
 download the source from GitHub on macOS, and fall back to PyPI on all other platforms.</p>
@@ -3332,38 +3340,38 @@ download the source from GitHub on macOS, and fall back to PyPI on all other pla
 disambiguated by <a href="https://peps.python.org/pep-0508/#environment-markers">PEP 508</a>-compatible
 environment markers.</p>
 <p>For example, to pull in different <code>httpx</code> tags on macOS vs. Linux:</p>
-<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="k">[project]</span>
-<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;httpx&quot;</span><span class="p">]</span>
-<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>
-<a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a><span class="k">[tool.uv.sources]</span>
-<a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a><span class="n">httpx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-35-6" name="__codelineno-35-6" href="#__codelineno-35-6"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="n">git</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;https://github.com/encode/httpx&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">tag</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;0.27.2&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">marker</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;sys_platform == &#39;darwin&#39;&quot;</span><span class="w"> </span><span class="p">},</span>
-<a id="__codelineno-35-7" name="__codelineno-35-7" href="#__codelineno-35-7"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="n">git</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;https://github.com/encode/httpx&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">tag</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;0.24.1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">marker</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;sys_platform == &#39;linux&#39;&quot;</span><span class="w"> </span><span class="p">},</span>
-<a id="__codelineno-35-8" name="__codelineno-35-8" href="#__codelineno-35-8"></a><span class="hll"><span class="p">]</span>
+<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="k">[project]</span>
+<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;httpx&quot;</span><span class="p">]</span>
+<a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a>
+<a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a><span class="k">[tool.uv.sources]</span>
+<a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a><span class="n">httpx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-37-6" name="__codelineno-37-6" href="#__codelineno-37-6"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="n">git</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;https://github.com/encode/httpx&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">tag</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;0.27.2&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">marker</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;sys_platform == &#39;darwin&#39;&quot;</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-37-7" name="__codelineno-37-7" href="#__codelineno-37-7"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="n">git</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;https://github.com/encode/httpx&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">tag</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;0.24.1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">marker</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;sys_platform == &#39;linux&#39;&quot;</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-37-8" name="__codelineno-37-8" href="#__codelineno-37-8"></a><span class="hll"><span class="p">]</span>
 </span></code></pre></div>
 <p>This strategy extends to using different indexes based on environment markers. For example, to
 install <code>torch</code> from different PyTorch indexes based on the platform:</p>
-<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="k">[project]</span>
-<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a><span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;torch&quot;</span><span class="p">]</span>
-<a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a>
-<a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a><span class="k">[tool.uv.sources]</span>
-<a id="__codelineno-36-5" name="__codelineno-36-5" href="#__codelineno-36-5"></a><span class="n">torch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-36-6" name="__codelineno-36-6" href="#__codelineno-36-6"></a><span class="hll"><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;torch-cpu&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">marker</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;platform_system == &#39;Darwin&#39;&quot;</span><span class="p">},</span>
-</span><a id="__codelineno-36-7" name="__codelineno-36-7" href="#__codelineno-36-7"></a><span class="hll"><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;torch-gpu&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">marker</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;platform_system == &#39;Linux&#39;&quot;</span><span class="p">},</span>
-</span><a id="__codelineno-36-8" name="__codelineno-36-8" href="#__codelineno-36-8"></a><span class="p">]</span>
-<a id="__codelineno-36-9" name="__codelineno-36-9" href="#__codelineno-36-9"></a>
-<a id="__codelineno-36-10" name="__codelineno-36-10" href="#__codelineno-36-10"></a><span class="k">[[tool.uv.index]]</span>
-<a id="__codelineno-36-11" name="__codelineno-36-11" href="#__codelineno-36-11"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;torch-cpu&quot;</span>
-<a id="__codelineno-36-12" name="__codelineno-36-12" href="#__codelineno-36-12"></a><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://download.pytorch.org/whl/cpu&quot;</span>
-<a id="__codelineno-36-13" name="__codelineno-36-13" href="#__codelineno-36-13"></a>
-<a id="__codelineno-36-14" name="__codelineno-36-14" href="#__codelineno-36-14"></a><span class="k">[[tool.uv.index]]</span>
-<a id="__codelineno-36-15" name="__codelineno-36-15" href="#__codelineno-36-15"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;torch-gpu&quot;</span>
-<a id="__codelineno-36-16" name="__codelineno-36-16" href="#__codelineno-36-16"></a><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://download.pytorch.org/whl/cu124&quot;</span>
+<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="k">[project]</span>
+<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;torch&quot;</span><span class="p">]</span>
+<a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a>
+<a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a><span class="k">[tool.uv.sources]</span>
+<a id="__codelineno-38-5" name="__codelineno-38-5" href="#__codelineno-38-5"></a><span class="n">torch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-38-6" name="__codelineno-38-6" href="#__codelineno-38-6"></a><span class="hll"><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;torch-cpu&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">marker</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;platform_system == &#39;Darwin&#39;&quot;</span><span class="p">},</span>
+</span><a id="__codelineno-38-7" name="__codelineno-38-7" href="#__codelineno-38-7"></a><span class="hll"><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;torch-gpu&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">marker</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;platform_system == &#39;Linux&#39;&quot;</span><span class="p">},</span>
+</span><a id="__codelineno-38-8" name="__codelineno-38-8" href="#__codelineno-38-8"></a><span class="p">]</span>
+<a id="__codelineno-38-9" name="__codelineno-38-9" href="#__codelineno-38-9"></a>
+<a id="__codelineno-38-10" name="__codelineno-38-10" href="#__codelineno-38-10"></a><span class="k">[[tool.uv.index]]</span>
+<a id="__codelineno-38-11" name="__codelineno-38-11" href="#__codelineno-38-11"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;torch-cpu&quot;</span>
+<a id="__codelineno-38-12" name="__codelineno-38-12" href="#__codelineno-38-12"></a><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://download.pytorch.org/whl/cpu&quot;</span>
+<a id="__codelineno-38-13" name="__codelineno-38-13" href="#__codelineno-38-13"></a>
+<a id="__codelineno-38-14" name="__codelineno-38-14" href="#__codelineno-38-14"></a><span class="k">[[tool.uv.index]]</span>
+<a id="__codelineno-38-15" name="__codelineno-38-15" href="#__codelineno-38-15"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;torch-gpu&quot;</span>
+<a id="__codelineno-38-16" name="__codelineno-38-16" href="#__codelineno-38-16"></a><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://download.pytorch.org/whl/cu124&quot;</span>
 </code></pre></div>
 <h3 id="disabling-sources"><a class="toclink" href="#disabling-sources">Disabling sources</a></h3>
 <p>To instruct uv to ignore the <code>tool.uv.sources</code> table (e.g., to simulate resolving with the package's
 published metadata), use the <code>--no-sources</code> flag:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="gp">$ </span>uv<span class="w"> </span>lock<span class="w"> </span>--no-sources
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="gp">$ </span>uv<span class="w"> </span>lock<span class="w"> </span>--no-sources
 </code></pre></div>
 <p>The use of <code>--no-sources</code> will also prevent uv from discovering any
 <a href="#workspace-member">workspace members</a> that could satisfy a given dependency.</p>
@@ -3378,25 +3386,25 @@ requested with the <code>package[&lt;extra&gt;]</code> syntax, e.g., <code>panda
 from extra name to its dependencies, following
 <a href="#dependency-specifiers-pep-508">dependency specifiers</a> syntax.</p>
 <p>Optional dependencies can have entries in <code>tool.uv.sources</code> the same as normal dependencies.</p>
-<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="k">[project]</span>
-<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;pandas&quot;</span>
-<a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span>
-<a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a>
-<a id="__codelineno-38-5" name="__codelineno-38-5" href="#__codelineno-38-5"></a><span class="k">[project.optional-dependencies]</span>
-<a id="__codelineno-38-6" name="__codelineno-38-6" href="#__codelineno-38-6"></a><span class="n">plot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-38-7" name="__codelineno-38-7" href="#__codelineno-38-7"></a><span class="w">  </span><span class="s2">&quot;matplotlib&gt;=3.6.3&quot;</span>
-<a id="__codelineno-38-8" name="__codelineno-38-8" href="#__codelineno-38-8"></a><span class="p">]</span>
-<a id="__codelineno-38-9" name="__codelineno-38-9" href="#__codelineno-38-9"></a><span class="n">excel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-38-10" name="__codelineno-38-10" href="#__codelineno-38-10"></a><span class="w">  </span><span class="s2">&quot;odfpy&gt;=1.4.1&quot;</span><span class="p">,</span>
-<a id="__codelineno-38-11" name="__codelineno-38-11" href="#__codelineno-38-11"></a><span class="w">  </span><span class="s2">&quot;openpyxl&gt;=3.1.0&quot;</span><span class="p">,</span>
-<a id="__codelineno-38-12" name="__codelineno-38-12" href="#__codelineno-38-12"></a><span class="w">  </span><span class="s2">&quot;python-calamine&gt;=0.1.7&quot;</span><span class="p">,</span>
-<a id="__codelineno-38-13" name="__codelineno-38-13" href="#__codelineno-38-13"></a><span class="w">  </span><span class="s2">&quot;pyxlsb&gt;=1.0.10&quot;</span><span class="p">,</span>
-<a id="__codelineno-38-14" name="__codelineno-38-14" href="#__codelineno-38-14"></a><span class="w">  </span><span class="s2">&quot;xlrd&gt;=2.0.1&quot;</span><span class="p">,</span>
-<a id="__codelineno-38-15" name="__codelineno-38-15" href="#__codelineno-38-15"></a><span class="w">  </span><span class="s2">&quot;xlsxwriter&gt;=3.0.5&quot;</span>
-<a id="__codelineno-38-16" name="__codelineno-38-16" href="#__codelineno-38-16"></a><span class="p">]</span>
+<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="k">[project]</span>
+<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;pandas&quot;</span>
+<a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span>
+<a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a>
+<a id="__codelineno-40-5" name="__codelineno-40-5" href="#__codelineno-40-5"></a><span class="k">[project.optional-dependencies]</span>
+<a id="__codelineno-40-6" name="__codelineno-40-6" href="#__codelineno-40-6"></a><span class="n">plot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-40-7" name="__codelineno-40-7" href="#__codelineno-40-7"></a><span class="w">  </span><span class="s2">&quot;matplotlib&gt;=3.6.3&quot;</span>
+<a id="__codelineno-40-8" name="__codelineno-40-8" href="#__codelineno-40-8"></a><span class="p">]</span>
+<a id="__codelineno-40-9" name="__codelineno-40-9" href="#__codelineno-40-9"></a><span class="n">excel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-40-10" name="__codelineno-40-10" href="#__codelineno-40-10"></a><span class="w">  </span><span class="s2">&quot;odfpy&gt;=1.4.1&quot;</span><span class="p">,</span>
+<a id="__codelineno-40-11" name="__codelineno-40-11" href="#__codelineno-40-11"></a><span class="w">  </span><span class="s2">&quot;openpyxl&gt;=3.1.0&quot;</span><span class="p">,</span>
+<a id="__codelineno-40-12" name="__codelineno-40-12" href="#__codelineno-40-12"></a><span class="w">  </span><span class="s2">&quot;python-calamine&gt;=0.1.7&quot;</span><span class="p">,</span>
+<a id="__codelineno-40-13" name="__codelineno-40-13" href="#__codelineno-40-13"></a><span class="w">  </span><span class="s2">&quot;pyxlsb&gt;=1.0.10&quot;</span><span class="p">,</span>
+<a id="__codelineno-40-14" name="__codelineno-40-14" href="#__codelineno-40-14"></a><span class="w">  </span><span class="s2">&quot;xlrd&gt;=2.0.1&quot;</span><span class="p">,</span>
+<a id="__codelineno-40-15" name="__codelineno-40-15" href="#__codelineno-40-15"></a><span class="w">  </span><span class="s2">&quot;xlsxwriter&gt;=3.0.5&quot;</span>
+<a id="__codelineno-40-16" name="__codelineno-40-16" href="#__codelineno-40-16"></a><span class="p">]</span>
 </code></pre></div>
 <p>To add an optional dependency, use the <code>--optional &lt;extra&gt;</code> option:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>httpx<span class="w"> </span>--optional<span class="w"> </span>network
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>httpx<span class="w"> </span>--optional<span class="w"> </span>network
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -3405,30 +3413,30 @@ unless you explicitly <a href="../config/#conflicting-dependencies">declare them
 </div>
 <p>Sources can also be declared as applying only to a specific optional dependency. For example, to
 pull <code>torch</code> from different PyTorch indexes based on an optional <code>cpu</code> or <code>gpu</code> extra:</p>
-<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="k">[project]</span>
-<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a><span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[]</span>
-<a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a>
-<a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a><span class="k">[project.optional-dependencies]</span>
-<a id="__codelineno-40-5" name="__codelineno-40-5" href="#__codelineno-40-5"></a><span class="n">cpu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-40-6" name="__codelineno-40-6" href="#__codelineno-40-6"></a><span class="w">  </span><span class="s2">&quot;torch&quot;</span><span class="p">,</span>
-<a id="__codelineno-40-7" name="__codelineno-40-7" href="#__codelineno-40-7"></a><span class="p">]</span>
-<a id="__codelineno-40-8" name="__codelineno-40-8" href="#__codelineno-40-8"></a><span class="n">gpu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-40-9" name="__codelineno-40-9" href="#__codelineno-40-9"></a><span class="w">  </span><span class="s2">&quot;torch&quot;</span><span class="p">,</span>
-<a id="__codelineno-40-10" name="__codelineno-40-10" href="#__codelineno-40-10"></a><span class="p">]</span>
-<a id="__codelineno-40-11" name="__codelineno-40-11" href="#__codelineno-40-11"></a>
-<a id="__codelineno-40-12" name="__codelineno-40-12" href="#__codelineno-40-12"></a><span class="k">[tool.uv.sources]</span>
-<a id="__codelineno-40-13" name="__codelineno-40-13" href="#__codelineno-40-13"></a><span class="n">torch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-40-14" name="__codelineno-40-14" href="#__codelineno-40-14"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;torch-cpu&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">extra</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;cpu&quot;</span><span class="w"> </span><span class="p">},</span>
-<a id="__codelineno-40-15" name="__codelineno-40-15" href="#__codelineno-40-15"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;torch-gpu&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">extra</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;gpu&quot;</span><span class="w"> </span><span class="p">},</span>
-<a id="__codelineno-40-16" name="__codelineno-40-16" href="#__codelineno-40-16"></a><span class="p">]</span>
-<a id="__codelineno-40-17" name="__codelineno-40-17" href="#__codelineno-40-17"></a>
-<a id="__codelineno-40-18" name="__codelineno-40-18" href="#__codelineno-40-18"></a><span class="k">[[tool.uv.index]]</span>
-<a id="__codelineno-40-19" name="__codelineno-40-19" href="#__codelineno-40-19"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;torch-cpu&quot;</span>
-<a id="__codelineno-40-20" name="__codelineno-40-20" href="#__codelineno-40-20"></a><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://download.pytorch.org/whl/cpu&quot;</span>
-<a id="__codelineno-40-21" name="__codelineno-40-21" href="#__codelineno-40-21"></a>
-<a id="__codelineno-40-22" name="__codelineno-40-22" href="#__codelineno-40-22"></a><span class="k">[[tool.uv.index]]</span>
-<a id="__codelineno-40-23" name="__codelineno-40-23" href="#__codelineno-40-23"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;torch-gpu&quot;</span>
-<a id="__codelineno-40-24" name="__codelineno-40-24" href="#__codelineno-40-24"></a><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://download.pytorch.org/whl/cu124&quot;</span>
+<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="k">[project]</span>
+<a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a><span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[]</span>
+<a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a>
+<a id="__codelineno-42-4" name="__codelineno-42-4" href="#__codelineno-42-4"></a><span class="k">[project.optional-dependencies]</span>
+<a id="__codelineno-42-5" name="__codelineno-42-5" href="#__codelineno-42-5"></a><span class="n">cpu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-42-6" name="__codelineno-42-6" href="#__codelineno-42-6"></a><span class="w">  </span><span class="s2">&quot;torch&quot;</span><span class="p">,</span>
+<a id="__codelineno-42-7" name="__codelineno-42-7" href="#__codelineno-42-7"></a><span class="p">]</span>
+<a id="__codelineno-42-8" name="__codelineno-42-8" href="#__codelineno-42-8"></a><span class="n">gpu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-42-9" name="__codelineno-42-9" href="#__codelineno-42-9"></a><span class="w">  </span><span class="s2">&quot;torch&quot;</span><span class="p">,</span>
+<a id="__codelineno-42-10" name="__codelineno-42-10" href="#__codelineno-42-10"></a><span class="p">]</span>
+<a id="__codelineno-42-11" name="__codelineno-42-11" href="#__codelineno-42-11"></a>
+<a id="__codelineno-42-12" name="__codelineno-42-12" href="#__codelineno-42-12"></a><span class="k">[tool.uv.sources]</span>
+<a id="__codelineno-42-13" name="__codelineno-42-13" href="#__codelineno-42-13"></a><span class="n">torch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-42-14" name="__codelineno-42-14" href="#__codelineno-42-14"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;torch-cpu&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">extra</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;cpu&quot;</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-42-15" name="__codelineno-42-15" href="#__codelineno-42-15"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;torch-gpu&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">extra</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;gpu&quot;</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-42-16" name="__codelineno-42-16" href="#__codelineno-42-16"></a><span class="p">]</span>
+<a id="__codelineno-42-17" name="__codelineno-42-17" href="#__codelineno-42-17"></a>
+<a id="__codelineno-42-18" name="__codelineno-42-18" href="#__codelineno-42-18"></a><span class="k">[[tool.uv.index]]</span>
+<a id="__codelineno-42-19" name="__codelineno-42-19" href="#__codelineno-42-19"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;torch-cpu&quot;</span>
+<a id="__codelineno-42-20" name="__codelineno-42-20" href="#__codelineno-42-20"></a><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://download.pytorch.org/whl/cpu&quot;</span>
+<a id="__codelineno-42-21" name="__codelineno-42-21" href="#__codelineno-42-21"></a>
+<a id="__codelineno-42-22" name="__codelineno-42-22" href="#__codelineno-42-22"></a><span class="k">[[tool.uv.index]]</span>
+<a id="__codelineno-42-23" name="__codelineno-42-23" href="#__codelineno-42-23"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;torch-gpu&quot;</span>
+<a id="__codelineno-42-24" name="__codelineno-42-24" href="#__codelineno-42-24"></a><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://download.pytorch.org/whl/cu124&quot;</span>
 </code></pre></div>
 <h2 id="development-dependencies"><a class="toclink" href="#development-dependencies">Development dependencies</a></h2>
 <p>Unlike optional dependencies, development dependencies are local-only and will <em>not</em> be included in
@@ -3436,14 +3444,14 @@ the project requirements when published to PyPI or other indexes. As such, devel
 are not included in the <code>[project]</code> table.</p>
 <p>Development dependencies can have entries in <code>tool.uv.sources</code> the same as normal dependencies.</p>
 <p>To add a development dependency, use the <code>--dev</code> flag:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>--dev<span class="w"> </span>pytest
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>--dev<span class="w"> </span>pytest
 </code></pre></div>
 <p>uv uses the <code>[dependency-groups]</code> table (as defined in <a href="https://peps.python.org/pep-0735/">PEP 735</a>)
 for declaration of development dependencies. The above command will create a <code>dev</code> group:</p>
-<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="k">[dependency-groups]</span>
-<a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a><span class="n">dev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a><span class="w">  </span><span class="s2">&quot;pytest &gt;=8.1.1,&lt;9&quot;</span>
-<a id="__codelineno-42-4" name="__codelineno-42-4" href="#__codelineno-42-4"></a><span class="p">]</span>
+<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="k">[dependency-groups]</span>
+<a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a><span class="n">dev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a><span class="w">  </span><span class="s2">&quot;pytest &gt;=8.1.1,&lt;9&quot;</span>
+<a id="__codelineno-44-4" name="__codelineno-44-4" href="#__codelineno-44-4"></a><span class="p">]</span>
 </code></pre></div>
 <p>The <code>dev</code> group is special-cased; there are <code>--dev</code>, <code>--only-dev</code>, and <code>--no-dev</code> flags to toggle
 inclusion or exclusion of its dependencies. Additionally, the <code>dev</code> group is
@@ -3451,16 +3459,16 @@ inclusion or exclusion of its dependencies. Additionally, the <code>dev</code> g
 <h3 id="dependency-groups"><a class="toclink" href="#dependency-groups">Dependency groups</a></h3>
 <p>Development dependencies can be divided into multiple groups, using the <code>--group</code> flag.</p>
 <p>For example, to add a development dependency in the <code>lint</code> group:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>--group<span class="w"> </span>lint<span class="w"> </span>ruff
+<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>--group<span class="w"> </span>lint<span class="w"> </span>ruff
 </code></pre></div>
 <p>Which results in the following <code>[dependency-groups]</code> definition:</p>
-<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="k">[dependency-groups]</span>
-<a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a><span class="n">dev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a><span class="w">  </span><span class="s2">&quot;pytest&quot;</span>
-<a id="__codelineno-44-4" name="__codelineno-44-4" href="#__codelineno-44-4"></a><span class="p">]</span>
-<a id="__codelineno-44-5" name="__codelineno-44-5" href="#__codelineno-44-5"></a><span class="n">lint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-44-6" name="__codelineno-44-6" href="#__codelineno-44-6"></a><span class="w">  </span><span class="s2">&quot;ruff&quot;</span>
-<a id="__codelineno-44-7" name="__codelineno-44-7" href="#__codelineno-44-7"></a><span class="p">]</span>
+<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="k">[dependency-groups]</span>
+<a id="__codelineno-46-2" name="__codelineno-46-2" href="#__codelineno-46-2"></a><span class="n">dev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-46-3" name="__codelineno-46-3" href="#__codelineno-46-3"></a><span class="w">  </span><span class="s2">&quot;pytest&quot;</span>
+<a id="__codelineno-46-4" name="__codelineno-46-4" href="#__codelineno-46-4"></a><span class="p">]</span>
+<a id="__codelineno-46-5" name="__codelineno-46-5" href="#__codelineno-46-5"></a><span class="n">lint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-46-6" name="__codelineno-46-6" href="#__codelineno-46-6"></a><span class="w">  </span><span class="s2">&quot;ruff&quot;</span>
+<a id="__codelineno-46-7" name="__codelineno-46-7" href="#__codelineno-46-7"></a><span class="p">]</span>
 </code></pre></div>
 <p>Once groups are defined, the <code>--group</code>, <code>--only-group</code>, and <code>--no-group</code> options can be used to
 include or exclude their dependencies.</p>
@@ -3481,8 +3489,8 @@ unless you explicitly <a href="../config/#conflicting-dependencies">declare them
 <h3 id="default-groups"><a class="toclink" href="#default-groups">Default groups</a></h3>
 <p>By default, uv includes the <code>dev</code> dependency group in the environment (e.g., during <code>uv run</code> or
 <code>uv sync</code>). The default groups to include can be changed using the <code>tool.uv.default-groups</code> setting.</p>
-<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="k">[tool.uv]</span>
-<a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a><span class="n">default-groups</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;dev&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;foo&quot;</span><span class="p">]</span>
+<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="k">[tool.uv]</span>
+<a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a><span class="n">default-groups</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;dev&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;foo&quot;</span><span class="p">]</span>
 </code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -3491,10 +3499,10 @@ unless you explicitly <a href="../config/#conflicting-dependencies">declare them
 <h3 id="legacy-dev-dependencies"><a class="toclink" href="#legacy-dev-dependencies">Legacy <code>dev-dependencies</code></a></h3>
 <p>Before <code>[dependency-groups]</code> was standardized, uv used the <code>tool.uv.dev-dependencies</code> field to
 specify development dependencies, e.g.:</p>
-<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="k">[tool.uv]</span>
-<a id="__codelineno-46-2" name="__codelineno-46-2" href="#__codelineno-46-2"></a><span class="n">dev-dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-46-3" name="__codelineno-46-3" href="#__codelineno-46-3"></a><span class="w">  </span><span class="s2">&quot;pytest&quot;</span>
-<a id="__codelineno-46-4" name="__codelineno-46-4" href="#__codelineno-46-4"></a><span class="p">]</span>
+<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="k">[tool.uv]</span>
+<a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a><span class="n">dev-dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-48-3" name="__codelineno-48-3" href="#__codelineno-48-3"></a><span class="w">  </span><span class="s2">&quot;pytest&quot;</span>
+<a id="__codelineno-48-4" name="__codelineno-48-4" href="#__codelineno-48-4"></a><span class="p">]</span>
 </code></pre></div>
 <p>Dependencies declared in this section will be combined with the contents in the
 <code>dependency-groups.dev</code>. Eventually, the <code>dev-dependencies</code> field will be deprecated and removed.</p>
@@ -3510,26 +3518,26 @@ are specified in the <code>[build-system]</code> table under <code>build-system.
 <a href="https://peps.python.org/pep-0518/">PEP 518</a>.</p>
 <p>For example, if a project uses <code>setuptools</code> as its build backend, it should declare <code>setuptools</code> as
 a build dependency:</p>
-<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="k">[project]</span>
-<a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;pandas&quot;</span>
-<a id="__codelineno-47-3" name="__codelineno-47-3" href="#__codelineno-47-3"></a><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span>
-<a id="__codelineno-47-4" name="__codelineno-47-4" href="#__codelineno-47-4"></a>
-<a id="__codelineno-47-5" name="__codelineno-47-5" href="#__codelineno-47-5"></a><span class="k">[build-system]</span>
-<a id="__codelineno-47-6" name="__codelineno-47-6" href="#__codelineno-47-6"></a><span class="n">requires</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;setuptools&gt;=42&quot;</span><span class="p">]</span>
-<a id="__codelineno-47-7" name="__codelineno-47-7" href="#__codelineno-47-7"></a><span class="n">build-backend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;setuptools.build_meta&quot;</span>
+<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="k">[project]</span>
+<a id="__codelineno-49-2" name="__codelineno-49-2" href="#__codelineno-49-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;pandas&quot;</span>
+<a id="__codelineno-49-3" name="__codelineno-49-3" href="#__codelineno-49-3"></a><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span>
+<a id="__codelineno-49-4" name="__codelineno-49-4" href="#__codelineno-49-4"></a>
+<a id="__codelineno-49-5" name="__codelineno-49-5" href="#__codelineno-49-5"></a><span class="k">[build-system]</span>
+<a id="__codelineno-49-6" name="__codelineno-49-6" href="#__codelineno-49-6"></a><span class="n">requires</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;setuptools&gt;=42&quot;</span><span class="p">]</span>
+<a id="__codelineno-49-7" name="__codelineno-49-7" href="#__codelineno-49-7"></a><span class="n">build-backend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;setuptools.build_meta&quot;</span>
 </code></pre></div>
 <p>By default, uv will respect <code>tool.uv.sources</code> when resolving build dependencies. For example, to use
 a local version of <code>setuptools</code> for building, add the source to <code>tool.uv.sources</code>:</p>
-<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="k">[project]</span>
-<a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;pandas&quot;</span>
-<a id="__codelineno-48-3" name="__codelineno-48-3" href="#__codelineno-48-3"></a><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span>
-<a id="__codelineno-48-4" name="__codelineno-48-4" href="#__codelineno-48-4"></a>
-<a id="__codelineno-48-5" name="__codelineno-48-5" href="#__codelineno-48-5"></a><span class="k">[build-system]</span>
-<a id="__codelineno-48-6" name="__codelineno-48-6" href="#__codelineno-48-6"></a><span class="n">requires</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;setuptools&gt;=42&quot;</span><span class="p">]</span>
-<a id="__codelineno-48-7" name="__codelineno-48-7" href="#__codelineno-48-7"></a><span class="n">build-backend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;setuptools.build_meta&quot;</span>
-<a id="__codelineno-48-8" name="__codelineno-48-8" href="#__codelineno-48-8"></a>
-<a id="__codelineno-48-9" name="__codelineno-48-9" href="#__codelineno-48-9"></a><span class="k">[tool.uv.sources]</span>
-<a id="__codelineno-48-10" name="__codelineno-48-10" href="#__codelineno-48-10"></a><span class="n">setuptools</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;./packages/setuptools&quot;</span><span class="w"> </span><span class="p">}</span>
+<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="k">[project]</span>
+<a id="__codelineno-50-2" name="__codelineno-50-2" href="#__codelineno-50-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;pandas&quot;</span>
+<a id="__codelineno-50-3" name="__codelineno-50-3" href="#__codelineno-50-3"></a><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span>
+<a id="__codelineno-50-4" name="__codelineno-50-4" href="#__codelineno-50-4"></a>
+<a id="__codelineno-50-5" name="__codelineno-50-5" href="#__codelineno-50-5"></a><span class="k">[build-system]</span>
+<a id="__codelineno-50-6" name="__codelineno-50-6" href="#__codelineno-50-6"></a><span class="n">requires</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;setuptools&gt;=42&quot;</span><span class="p">]</span>
+<a id="__codelineno-50-7" name="__codelineno-50-7" href="#__codelineno-50-7"></a><span class="n">build-backend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;setuptools.build_meta&quot;</span>
+<a id="__codelineno-50-8" name="__codelineno-50-8" href="#__codelineno-50-8"></a>
+<a id="__codelineno-50-9" name="__codelineno-50-9" href="#__codelineno-50-9"></a><span class="k">[tool.uv.sources]</span>
+<a id="__codelineno-50-10" name="__codelineno-50-10" href="#__codelineno-50-10"></a><span class="n">setuptools</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;./packages/setuptools&quot;</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
 <p>When publishing a package, we recommend running <code>uv build --no-sources</code> to ensure that the package
 builds correctly when <code>tool.uv.sources</code> is disabled, as is the case when using other build tools,
@@ -3545,10 +3553,10 @@ modules aren't recompiled before import), but they are useful for development, a
 environment will always use the latest changes to the package.</p>
 <p>uv uses editable installation for workspace packages by default.</p>
 <p>To add an editable dependency, use the <code>--editable</code> flag:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>--editable<span class="w"> </span>./path/foo
+<div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>--editable<span class="w"> </span>./path/foo
 </code></pre></div>
 <p>Or, to opt-out of using an editable dependency in a workspace:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>--no-editable<span class="w"> </span>./path/foo
+<div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>--no-editable<span class="w"> </span>./path/foo
 </code></pre></div>
 <h2 id="dependency-specifiers-pep-508"><a class="toclink" href="#dependency-specifiers-pep-508">Dependency specifiers (PEP 508)</a></h2>
 <p>uv uses
