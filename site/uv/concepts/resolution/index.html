@@ -2336,8 +2336,72 @@
   
   
   
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/troubleshooting/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              <label class="md-nav__link " for="__nav_7_4">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Troubleshooting
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../../reference/build_failures/" class="md-nav__link">
+      <a href="../../reference/troubleshooting/build-failures/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2352,6 +2416,40 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/troubleshooting/reproducible-examples/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Reproducible examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -2937,14 +3035,23 @@ will contain markers to indicate which platform each dependency is relevant for.
 if different versions are needed for different platforms — the markers determine which version will
 be used. A universal resolution is often more constrained than a platform-specific resolution, since
 we need to take the requirements for all markers into account.</p>
-<p>During universal resolution, all selected dependency versions must be compatible with the <em>entire</em>
-<code>requires-python</code> range declared in the <code>pyproject.toml</code>. For example, if a project's
-<code>requires-python</code> is <code>&gt;=3.8</code>, then uv will not allow <em>any</em> dependency versions that are limited to,
-e.g., Python 3.9 and later, as they are not compatible with Python 3.8, the lower bound of the
-project's supported range. In other words, the project's <code>requires-python</code> must be a subset of the
+<p>During universal resolution, all required packages must be compatible with the <em>entire</em> range of
+<code>requires-python</code> declared in the <code>pyproject.toml</code>. For example, if a project's <code>requires-python</code> is
+<code>&gt;=3.8</code>, resolution will fail if all versions of given dependency require Python 3.9 or later, since
+the dependency lacks a usable version for (e.g.) Python 3.8, the lower bound of the project's
+supported range. In other words, the project's <code>requires-python</code> must be a subset of the
 <code>requires-python</code> of all its dependencies.</p>
+<p>When selecting the compatible version for a given dependency, uv will
+(<a href="#multi-version-resolution">by default</a>) attempt to choose the latest compatible version for each
+supported Python version. For example, if a project's <code>requires-python</code> is <code>&gt;=3.8</code>, and the latest
+version of a dependency requires Python 3.9 or later, while all prior versions supporting Python
+3.8, the resolver will select the latest version for users running Python 3.9 or later, and previous
+versions for users running Python 3.8.</p>
 <p>When evaluating <code>requires-python</code> ranges for dependencies, uv only considers lower bounds and
-ignores upper bounds entirely. For example, <code>&gt;=3.8, &lt;4</code> is treated as <code>&gt;=3.8</code>.</p>
+ignores upper bounds entirely. For example, <code>&gt;=3.8, &lt;4</code> is treated as <code>&gt;=3.8</code>. Respecting upper
+bounds on <code>requires-python</code> often leads to formally correct but practically incorrect resolutions,
+as, e.g., resolvers will backtrack to the first published version that omits the upper bound (see:
+<a href="https://discuss.python.org/t/requires-python-upper-limits/12663"><code>Requires-Python</code> upper limits</a>).</p>
 <h2 id="platform-specific-resolution"><a class="toclink" href="#platform-specific-resolution">Platform-specific resolution</a></h2>
 <p>By default, uv's pip interface, i.e., <a href="../../pip/compile/"><code>uv pip compile</code></a>, produces a resolution
 that is platform-specific, like <code>pip-tools</code>. There is no way to use platform-specific resolution in
