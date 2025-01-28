@@ -2380,8 +2380,72 @@
   
   
   
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/troubleshooting/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              <label class="md-nav__link " for="__nav_7_4">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Troubleshooting
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../../reference/build_failures/" class="md-nav__link">
+      <a href="../../reference/troubleshooting/build-failures/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2396,6 +2460,40 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/troubleshooting/reproducible-examples/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Reproducible examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -3280,6 +3378,11 @@ to change this default in the next major release (v8.0.0), at which point both t
 in the output file, pass the <code>--emit-index-url</code> flag to <code>uv pip compile</code>. Unlike <code>pip-compile</code>, uv
 will include all index URLs when <code>--emit-index-url</code> is passed, including the default index URL.</p>
 <h2 id="requires-python-enforcement"><a class="toclink" href="#requires-python-enforcement"><code>requires-python</code> enforcement</a></h2>
+<p>When evaluating <code>requires-python</code> ranges for dependencies, uv only considers lower bounds and
+ignores upper bounds entirely. For example, <code>&gt;=3.8, &lt;4</code> is treated as <code>&gt;=3.8</code>. Respecting upper
+bounds on <code>requires-python</code> often leads to formally correct but practically incorrect resolutions,
+as, e.g., resolvers will backtrack to the first published version that omits the upper bound (see:
+<a href="https://discuss.python.org/t/requires-python-upper-limits/12663"><code>Requires-Python</code> upper limits</a>).</p>
 <p>When evaluating Python versions against <code>requires-python</code> specifiers, uv truncates the candidate
 version to the major, minor, and patch components, ignoring (e.g.) pre-release and post-release
 identifiers.</p>
