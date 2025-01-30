@@ -846,7 +846,8 @@
 event loop, preventing it from executing other tasks while waiting for the
 call to complete, negating the benefits of asynchronous programming.</p>
 <p>Instead of making a blocking call, use an equivalent asynchronous library
-or function.</p>
+or function, like <a href="https://trio.readthedocs.io/en/stable/reference-io.html#trio.run_process"><code>trio.run_process()</code></a>
+or <a href="https://anyio.readthedocs.io/en/latest/api.html#anyio.run_process"><code>anyio.run_process()</code></a>.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">foo</span><span class="p">():</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
