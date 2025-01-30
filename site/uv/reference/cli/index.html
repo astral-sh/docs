@@ -3835,7 +3835,7 @@
 
 </dd><dt><code>--gui-script</code></dt><dd><p>Run the given path as a Python GUI script.</p>
 
-<p>Using <code>--gui-script</code> will attempt to parse the path as a PEP 723 script and run it with pythonw.exe, irrespective of its extension. Only available on Windows.</p>
+<p>Using <code>--gui-script</code> will attempt to parse the path as a PEP 723 script and run it with <code>pythonw.exe</code>, irrespective of its extension. Only available on Windows.</p>
 
 </dd><dt><code>--help</code>, <code>-h</code></dt><dd><p>Display the concise help for this command</p>
 
@@ -6603,6 +6603,7 @@
 <p>Run a command provided by a Python package.</p>
 <p>By default, the package to install is assumed to match the command name.</p>
 <p>The name of the command can include an exact version in the format <code>&lt;package&gt;@&lt;version&gt;</code>, e.g., <code>uv tool run ruff@0.3.0</code>. If more complex version specification is desired or if the command is provided by a different package, use <code>--from</code>.</p>
+<p><code>uvx</code> can be used to invoke Python, e.g., with <code>uvx python</code> or <code>uvx python@&lt;version&gt;</code>. A Python interpreter will be started in an isolated virtual environment.</p>
 <p>If the tool was previously installed, i.e., via <code>uv tool install</code>, the installed version will be used unless a version is requested or the <code>--isolated</code> flag is used.</p>
 <p><code>uvx</code> is provided as a convenient alias for <code>uv tool run</code>, their behavior is identical.</p>
 <p>If no command is provided, the installed tools are displayed.</p>
@@ -9177,7 +9178,7 @@ uv will exit with an error.</p>
 </dd><dt><code>--no-cache</code>, <code>-n</code></dt><dd><p>Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation</p>
 
 <p>May also be set with the <code>UV_NO_CACHE</code> environment variable.</p>
-</dd><dt><code>--no-deps</code></dt><dd><p>Ignore package dependencies, instead only add those packages explicitly listed on the command line to the resulting the requirements file</p>
+</dd><dt><code>--no-deps</code></dt><dd><p>Ignore package dependencies, instead only add those packages explicitly listed on the command line to the resulting requirements file</p>
 
 </dd><dt><code>--no-emit-package</code> <i>no-emit-package</i></dt><dd><p>Specify a package to omit from the output resolution. Its dependencies will still be included in the resolution. Equivalent to pip-compile&#8217;s <code>--unsafe-package</code> option</p>
 

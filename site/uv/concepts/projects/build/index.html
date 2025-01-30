@@ -2640,6 +2640,14 @@ build it into a distributable format.</p>
 distributions (wheels). The former is typically a <code>.tar.gz</code> or <code>.zip</code> file containing the project's
 source code along with some additional metadata, while the latter is a <code>.whl</code> file containing
 pre-built artifacts that can be installed directly.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>When using <code>uv build</code>, uv acts as a <a href="https://peps.python.org/pep-0517/#terminology-and-goals">build frontend</a>
+and only determines the Python version to use and invokes the build backend. The details of
+the builds, such as the included files and the distribution filenames, are determined by the build
+backend, as defined in <a href="../config/#build-systems"><code>[build-system]</code></a>. Information about build
+configuration can be found in the respective tool's documentation.</p>
+</div>
 <h2 id="using-uv-build"><a class="toclink" href="#using-uv-build">Using <code>uv build</code></a></h2>
 <p><code>uv build</code> can be used to build both source distributions and binary distributions for your project.
 By default, <code>uv build</code> will build the project in the current directory, and place the built
