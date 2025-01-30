@@ -838,7 +838,7 @@
 
 
 <h1 id="starmap-zip-ruf058"><a class="toclink" href="#starmap-zip-ruf058">starmap-zip (RUF058)</a></h1>
-<p>Fix is always available.</p>
+<p>Fix is sometimes available.</p>
 <p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for <code>itertools.starmap</code> calls where the second argument is a <code>zip</code> call.</p>
@@ -856,6 +856,12 @@ For such cases, <code>map()</code> should be used instead.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">map</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">map</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># 3.14+</span>
 </code></pre></div>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
+<p>This rule's fix is marked as unsafe if the <code>starmap</code> or <code>zip</code> expressions contain comments that
+would be deleted by applying the fix. Otherwise, the fix can be applied safely.</p>
+<h2 id="fix-availability"><a class="toclink" href="#fix-availability">Fix availability</a></h2>
+<p>This rule will emit a diagnostic but not suggest a fix if <code>map</code> has been shadowed from its
+builtin binding.</p>
 
 
 
