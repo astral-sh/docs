@@ -2699,9 +2699,9 @@ up-to-date, an error will be raised instead of updating the lockfile.</p>
 </code></pre></div>
 <p>This is equivalent to the <code>--locked</code> flag for other commands.</p>
 <h3 id="upgrading-locked-package-versions"><a class="toclink" href="#upgrading-locked-package-versions">Upgrading locked package versions</a></h3>
-<p>By default, uv will prefer the locked versions of packages when running <code>uv sync</code> and <code>uv lock</code>.
-Package versions will only change if the project's dependency constraints exclude the previous,
-locked version.</p>
+<p>By default, uv will prefer the locked versions of packages when running <code>uv sync</code> and <code>uv lock</code> with
+an existing <code>uv.lock</code> file. Package versions will only change if the project's dependency
+constraints exclude the previous, locked version.</p>
 <p>To upgrade all packages:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="gp">$ </span>uv<span class="w"> </span>lock<span class="w"> </span>--upgrade
 </code></pre></div>
@@ -2712,10 +2712,14 @@ packages:</p>
 <p>To upgrade a single package to a specific version:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="gp">$ </span>uv<span class="w"> </span>lock<span class="w"> </span>--upgrade-package<span class="w"> </span>&lt;package&gt;<span class="o">==</span>&lt;version&gt;
 </code></pre></div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
 <p>In all cases, upgrades are limited to the project's dependency constraints. For example, if the
 project defines an upper bound for a package then an upgrade will not go beyond that version.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>uv applies similar logic to Git dependencies. For example, if a Git dependency references
+the <code>main</code> branch, uv will prefer the locked commit SHA in an existing <code>uv.lock</code> file over
+the latest commit on the <code>main</code> branch, unless the <code>--upgrade</code> or <code>--upgrade-package</code> flags
+are used.</p>
 </div>
 
 
