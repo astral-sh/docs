@@ -80,6 +80,7 @@
 <meta name="robots" content="index,follow"/>
 <script type="application/ld+json">
     {
+        
         "@context": "https://schema.org",
         "@type": "WebSite",
         "name": "Astral Docs",
@@ -1084,6 +1085,17 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verifying-image-provenance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verifying image provenance
+      
+    </span>
+  </a>
   
 </li>
       
@@ -2997,6 +3009,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#verifying-image-provenance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verifying image provenance
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3098,7 +3121,7 @@ pre-installed.</p>
 <p>The following distroless images are available:</p>
 <ul>
 <li><code>ghcr.io/astral-sh/uv:latest</code></li>
-<li><code>ghcr.io/astral-sh/uv:{major}.{minor}.{patch}</code>, e.g., <code>ghcr.io/astral-sh/uv:0.5.27</code></li>
+<li><code>ghcr.io/astral-sh/uv:{major}.{minor}.{patch}</code>, e.g., <code>ghcr.io/astral-sh/uv:0.5.28</code></li>
 <li><code>ghcr.io/astral-sh/uv:{major}.{minor}</code>, e.g., <code>ghcr.io/astral-sh/uv:0.5</code> (the latest patch
   version)</li>
 </ul>
@@ -3152,7 +3175,7 @@ pre-installed.</p>
 
 <p>As with the distroless image, each derived image is published with uv version tags as
 <code>ghcr.io/astral-sh/uv:{major}.{minor}.{patch}-{base}</code> and
-<code>ghcr.io/astral-sh/uv:{major}.{minor}-{base}</code>, e.g., <code>ghcr.io/astral-sh/uv:0.5.27-alpine</code>.</p>
+<code>ghcr.io/astral-sh/uv:{major}.{minor}-{base}</code>, e.g., <code>ghcr.io/astral-sh/uv:0.5.28-alpine</code>.</p>
 <p>For more details, see the <a href="https://github.com/astral-sh/uv/pkgs/container/uv">GitHub Container</a>
 page.</p>
 <h3 id="installing-uv"><a class="toclink" href="#installing-uv">Installing uv</a></h3>
@@ -3178,7 +3201,7 @@ official distroless Docker image:</p>
 </code></pre></div>
 <p>Note this requires <code>curl</code> to be available.</p>
 <p>In either case, it is best practice to pin to a specific uv version, e.g., with:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>ghcr.io/astral-sh/uv:0.5.27<span class="w"> </span>/uv<span class="w"> </span>/uvx<span class="w"> </span>/bin/
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>ghcr.io/astral-sh/uv:0.5.28<span class="w"> </span>/uv<span class="w"> </span>/uvx<span class="w"> </span>/bin/
 </code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -3191,7 +3214,7 @@ be moved across different commit SHAs.</p>
 </code></pre></div>
 </div>
 <p>Or, with the installer:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">ADD</span><span class="w"> </span>https://astral.sh/uv/0.5.27/install.sh<span class="w"> </span>/uv-installer.sh
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">ADD</span><span class="w"> </span>https://astral.sh/uv/0.5.28/install.sh<span class="w"> </span>/uv-installer.sh
 </code></pre></div>
 <h3 id="installing-a-project"><a class="toclink" href="#installing-a-project">Installing a project</a></h3>
 <p>If you're using uv to manage your project, you can copy it into the image and install it:</p>
@@ -3462,6 +3485,53 @@ not change often) to be cached separately from the project itself (which changes
 <a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="k">RUN</span><span class="w"> </span>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>pyproject.toml
 <a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="k">COPY</span><span class="w"> </span>.<span class="w"> </span>.
 <a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="k">RUN</span><span class="w"> </span>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+</code></pre></div>
+<h2 id="verifying-image-provenance"><a class="toclink" href="#verifying-image-provenance">Verifying image provenance</a></h2>
+<p>The docker images are signed during the build process to provide proof of their origin, and you can
+verify these attestations that a given image was produced by the uv project with the
+<a href="https://cli.github.com/">GitHub cli tool <code>gh</code></a>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="gp">$ </span>gh<span class="w"> </span>attestation<span class="w"> </span>verify<span class="w"> </span>--owner<span class="w"> </span>astral-sh<span class="w"> </span>oci://ghcr.io/astral-sh/uv:latest
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="go">Loaded digest sha256:5adf09a5a526f380237408032a9308000d14d5947eafa687ad6c6a2476787b4f for oci://ghcr.io/astral-sh/uv:latest</span>
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="go">Loaded 1 attestation from GitHub API</span>
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>
+<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a><span class="go">The following policy criteria will be enforced:</span>
+<a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a><span class="go">- OIDC Issuer must match:................... https://token.actions.githubusercontent.com</span>
+<a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a><span class="go">- Source Repository Owner URI must match:... https://github.com/astral-sh</span>
+<a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a><span class="go">- Predicate type must match:................ https://slsa.dev/provenance/v1</span>
+<a id="__codelineno-29-9" name="__codelineno-29-9" href="#__codelineno-29-9"></a><span class="go">- Subject Alternative Name must match regex: (?i)^https://github.com/astral-sh/</span>
+<a id="__codelineno-29-10" name="__codelineno-29-10" href="#__codelineno-29-10"></a>
+<a id="__codelineno-29-11" name="__codelineno-29-11" href="#__codelineno-29-11"></a><span class="go">✓ Verification succeeded!</span>
+<a id="__codelineno-29-12" name="__codelineno-29-12" href="#__codelineno-29-12"></a>
+<a id="__codelineno-29-13" name="__codelineno-29-13" href="#__codelineno-29-13"></a><span class="go">sha256:5adf09a5a526f380237408032a9308000d14d5947eafa687ad6c6a2476787b4f was attested by:</span>
+<a id="__codelineno-29-14" name="__codelineno-29-14" href="#__codelineno-29-14"></a><span class="go">REPO          PREDICATE_TYPE                  WORKFLOW</span>
+<a id="__codelineno-29-15" name="__codelineno-29-15" href="#__codelineno-29-15"></a><span class="go">astral-sh/uv  https://slsa.dev/provenance/v1  .github/workflows/build-docker.yml@refs/heads/main</span>
+</code></pre></div>
+<p>This tells you that the specific Docker image was built by the official uv Github release workflow
+and hasn't been tampered with since.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Attestations are provided for both the ditroless main image, and for the derived images.</p>
+<p>You probably want to verify the attestation for a specific version tag, rather than <code>:latest</code>,
+or even the specific image digest, such as
+<code>ghcr.io/astral-sh/uv:0.5.28@sha256:5adf09a5a526f380237408032a9308000d14d5947eafa687ad6c6a2476787b4f</code>.</p>
+</div>
+<p>GitHub attestations build on the <a href="https://www.sigstore.dev/">sigstore.dev infrastructure</a>. As such
+you can also use the <a href="https://github.com/sigstore/cosign"><code>cosign</code> command</a> to verify the
+attestation blob against the (multi-platform) manifest for <code>uv</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="gp">$ </span><span class="nv">REPO</span><span class="o">=</span>astral-sh/uv
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="gp">$ </span>gh<span class="w"> </span>attestation<span class="w"> </span>download<span class="w"> </span>--repo<span class="w"> </span><span class="nv">$REPO</span><span class="w"> </span>oci://ghcr.io/<span class="si">${</span><span class="nv">REPO</span><span class="si">}</span>:latest
+<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="go">Wrote attestations to file sha256:5adf09a5a526f380237408032a9308000d14d5947eafa687ad6c6a2476787b4f.jsonl.</span>
+<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="go">Any previous content has been overwritten</span>
+<a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a>
+<a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a><span class="go">The trusted metadata is now available at sha256:5adf09a5a526f380237408032a9308000d14d5947eafa687ad6c6a2476787b4f.jsonl</span>
+<a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a><span class="gp">$ </span>docker<span class="w"> </span>buildx<span class="w"> </span>imagetools<span class="w"> </span>inspect<span class="w"> </span>ghcr.io/<span class="si">${</span><span class="nv">REPO</span><span class="si">}</span>:latest<span class="w"> </span>--format<span class="w"> </span><span class="s2">&quot;{{json .Manifest}}&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>manifest.json
+<a id="__codelineno-30-8" name="__codelineno-30-8" href="#__codelineno-30-8"></a><span class="gp">$ </span>cosign<span class="w"> </span>verify-blob-attestation<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-30-9" name="__codelineno-30-9" href="#__codelineno-30-9"></a><span class="w">    </span>--new-bundle-format<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-30-10" name="__codelineno-30-10" href="#__codelineno-30-10"></a><span class="w">    </span>--bundle<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>jq<span class="w"> </span>-r<span class="w"> </span>.digest<span class="w"> </span>manifest.json<span class="k">)</span><span class="s2">.jsonl&quot;</span><span class="w">  </span><span class="se">\</span>
+<a id="__codelineno-30-11" name="__codelineno-30-11" href="#__codelineno-30-11"></a><span class="w">    </span>--certificate-oidc-issuer<span class="o">=</span><span class="s2">&quot;https://token.actions.githubusercontent.com&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-30-12" name="__codelineno-30-12" href="#__codelineno-30-12"></a><span class="w">    </span>--certificate-identity-regexp<span class="o">=</span><span class="s2">&quot;^https://github\.com/</span><span class="si">${</span><span class="nv">REPO</span><span class="si">}</span><span class="s2">/.*&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-30-13" name="__codelineno-30-13" href="#__codelineno-30-13"></a><span class="w">    </span>&lt;<span class="o">(</span>jq<span class="w"> </span>-j<span class="w"> </span><span class="s1">&#39;.|del(.digest,.size)&#39;</span><span class="w"> </span>manifest.json<span class="o">)</span>
+<a id="__codelineno-30-14" name="__codelineno-30-14" href="#__codelineno-30-14"></a><span class="go">Verified OK</span>
 </code></pre></div>
 
   

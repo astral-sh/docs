@@ -78,6 +78,7 @@
 <meta name="robots" content="index,follow"/>
 <script type="application/ld+json">
     {
+        
         "@context": "https://schema.org",
         "@type": "WebSite",
         "name": "Astral Docs",
@@ -2308,6 +2309,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#wheel-tags" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wheel tags
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#marker-and-wheel-tag-filtering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Marker and wheel tag filtering
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#requires-python" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2319,10 +2342,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#wheel-tags" class="md-nav__link">
+  <a href="#prioritization" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Wheel tags
+        Prioritization
       
     </span>
   </a>
@@ -2572,6 +2595,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#wheel-tags" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wheel tags
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#marker-and-wheel-tag-filtering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Marker and wheel tag filtering
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#requires-python" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2583,10 +2628,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#wheel-tags" class="md-nav__link">
+  <a href="#prioritization" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Wheel tags
+        Prioritization
       
     </span>
   </a>
@@ -2683,6 +2728,8 @@ there are no general, fast algorithms. In practice, this is misleading for a num
 <li>When resolution fails, more information is needed than a message that there is no solution (as is
   seen in SAT solvers). Instead, the resolver should produce an understandable error trace that
   states which packages are involved in away to allows a user to remove the conflict.</li>
+<li>The most important heuristic for performance and user experience is determining the order in which
+  decisions are made through prioritization.</li>
 </ul>
 <p>uv uses <a href="https://github.com/pubgrub-rs/pubgrub">pubgrub-rs</a>, the Rust implementation of
 <a href="https://nex3.medium.com/pubgrub-2fb6470504f">PubGrub</a>, an incremental version solver. PubGrub in uv
@@ -2690,10 +2737,10 @@ works in the following steps:</p>
 <ul>
 <li>Start with a partial solution that declares which packages versions have been selected and which
   are undecided. Initially, only a virtual root package is decided.</li>
-<li>The highest priority package is selected from the undecided packages. Package with URLs (including
-  file, git, etc.) have the highest priority, then those with more exact specifiers (such as <code>==</code>),
-  then those with less strict specifiers. Inside each category, packages are ordered by when they
-  were first seen (i.e. order in a file), making the resolution deterministic.</li>
+<li>The highest priority package is selected from the undecided packages. Roughly, packages with URLs
+  (including file, git, etc.) have the highest priority, then those with more exact specifiers (such
+  as <code>==</code>), then those with less strict specifiers. Inside each category, packages are ordered by
+  when they were first seen (i.e. order in a file), making the resolution deterministic.</li>
 <li>A version is picked for the selected package. The version must works with all specifiers from the
   requirements in the partial solution and must not be previously marked as incompatible. The
   resolver prefers versions from a lockfile (<code>uv.lock</code> or <code>-o requirements.txt</code>) and those installed
@@ -2759,14 +2806,6 @@ fork points. To avoid this, the <code>resolution-markers</code> of each fork and
 between forks is written to the lockfile. When performing a new resolution, the forks from the
 lockfile are used to ensure the resolution is stable. When requirements change, new forks may be
 added to the saved forks.</p>
-<h2 id="requires-python"><a class="toclink" href="#requires-python">Requires-python</a></h2>
-<p>To ensure that a resolution with <code>requires-python = "&gt;=3.9"</code> can actually be installed for the
-included Python versions, uv requires that all dependencies have the same minimum Python version.
-Package versions that declare a higher minimum Python version, e.g., <code>requires-python = "&gt;=3.10"</code>,
-are rejected, because a resolution with that version can't be installed on Python 3.9. For
-simplicity and forward compatibility, only lower bounds in <code>requires-python</code> are respected. For
-example, if a package declares <code>requires-python = "&gt;=3.8,&lt;4"</code>, the <code>&lt;4</code> marker is not propagated to
-the entire resolution.</p>
 <h2 id="wheel-tags"><a class="toclink" href="#wheel-tags">Wheel tags</a></h2>
 <p>While uv's resolution is universal with respect to environment markers, this doesn't extend to wheel
 tags. Wheel tags can encode the Python version, Python implementation, operating system, and
@@ -2777,6 +2816,74 @@ system and architecture. Most projects have a universally compatible source dist
 used when attempted to install a package that has no compatible wheel, but some packages, such as
 <code>torch</code>, don't publish a source distribution. In this case an installation on, e.g., Python 3.13, an
 uncommon operating system, or architecture, will fail and complain that there is no matching wheel.</p>
+<h2 id="marker-and-wheel-tag-filtering"><a class="toclink" href="#marker-and-wheel-tag-filtering">Marker and wheel tag filtering</a></h2>
+<p>In every fork, we know what markers are possible. In non-universal resolution, we know their exact
+values. In universal mode, we know at least a constraint for the python requirement, e.g.,
+<code>requires-python = "&gt;=3.12"</code> means that <code>importlib_metadata; python_version &lt; "3.10"</code> can be
+discarded because it can never be installed. If additionally <code>tool.uv.environments</code> is set, we can
+filter out requirements with markers disjoint with those environments. Inside each fork, we can
+additionally filter by the fork markers.</p>
+<p>There is some redundancy in the marker expressions, where the value of one marker field implies the
+value of another field. Internally, we normalize <code>python_version</code> and <code>python_full_version</code> as well
+as known values of <code>platform_system</code> and <code>sys_platform</code> to a shared canonical representation, so
+they can match against each other.</p>
+<p>When we selected a version with a local tag (e.g.,<code>1.2.3+localtag</code>) and the wheels don't cover
+support for Windows, Linux and macOS, and there is a base version without tag (e.g.,<code>1.2.3</code>) with
+support for a missing platform, we fork trying to extend the platform support by using both the
+version with local tag and without local tag depending on the platform. This helps with packages
+that use the local tag for different hardware accelerators such as torch. While there is no 1:1
+mapping between wheel tags and markers, we can do a mapping for well-known platforms, including
+Windows, Linux and macOS.</p>
+<h2 id="requires-python"><a class="toclink" href="#requires-python">Requires-python</a></h2>
+<p>To ensure that a resolution with <code>requires-python = "&gt;=3.9"</code> can actually be installed for the
+included Python versions, uv requires that all dependencies have the same minimum Python version.
+Package versions that declare a higher minimum Python version, e.g., <code>requires-python = "&gt;=3.10"</code>,
+are rejected, because a resolution with that version can't be installed on Python 3.9. For
+simplicity and forward compatibility, only lower bounds in <code>requires-python</code> are respected. For
+example, if a package declares <code>requires-python = "&gt;=3.8,&lt;4"</code>, the <code>&lt;4</code> marker is not propagated to
+the entire resolution.</p>
+<p>This default is a problem for packages that use the version-dependent C API of CPython, such as
+numpy. Each numpy release support 4 Python minor versions, e.g., numpy 2.0.0 has wheels for CPython
+3.9 through 3.12 and declares <code>requires-python = "&gt;=3.9"</code>, while numpy 2.1.0 has wheels for CPython
+3.10 through 3.13 and declares <code>requires-python = "&gt;=3.10"</code>. The means that when we resolve a
+<code>numpy&gt;=2,&lt;3</code> requirement in a project with <code>requires-python = "&gt;=3.9"</code>, we resolve numpy 2.0.0 and
+the lockfile doesn't install on Python 3.13 or newer. To alleviate this, whenever we reject a
+version due to a too high Python requirement, we fork on that Python version. This behavior is
+controlled by <code>--fork-strategy</code>. In the example case, upon encountering numpy 2.1.0 we fork into
+Python versions <code>&gt;=3.9,&lt;3.10</code> and <code>&gt;=3.10</code> and resolve two different numpy versions:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>numpy==2.0.0; python_version &gt;= &quot;3.9&quot; and python_version &lt; &quot;3.10&quot;
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>numpy==2.1.0; python_version &gt;= &quot;3.10&quot;
+</code></pre></div>
+<h2 id="prioritization"><a class="toclink" href="#prioritization">Prioritization</a></h2>
+<p>Prioritization is important for both performance and for better resolutions.</p>
+<p>If we try many versions we have to later discard, resolution is slow, both because we have to read
+metadata we didn't need and because we have to track a lot of (conflict) information for this
+discarded subtree.</p>
+<p>There are expectations about which solution uv should choose, even if the version constraints allow
+multiple solutions. Generally, a desirable solution prioritizes use the highest versions for direct
+dependencies over those for indirect dependencies, it avoids backtracking to very old versions and
+can be installed on a target machine.</p>
+<p>Internally, uv represent each package with a given package name as a number of virtual packages, for
+example, one package for each activated extra, for dependency groups, or for having a marker. While
+PubGrub needs to choose a version for each virtual package, uv's prioritization works on the package
+name level.</p>
+<p>Whenever we encounter a requirement on a package, we match it to a priority. The root package and
+URL requirements have the highest priority, then singleton requirements with the <code>==</code> operator, as
+their version can be directly determined, then highly conflicting packages (next paragraph), and
+finally all other packages. Inside each category, packages are sorted by when they were first
+encountered, creating a breadth first search that prioritizes direct dependencies including
+workspace dependencies over transitive dependencies.</p>
+<p>A common problem is that we have a package A with a higher priority than package B, and B is only
+compatible with older versions of A. We decide the latest version for package A. Each time we decide
+a version for B, it is immediately discarded due to the conflict with A. We have to try all possible
+versions of B, until we have either exhausted the possible range (slow), pick a very old version
+that doesn't depend on A, but most likely isn't compatible with the project either (bad) or fail to
+build a very old version (bad). Once we see such conflict happen five time, we set A and B to
+special highly-conflicting priority levels, and set them so that B is decided before A. We then
+manually backtrack to a state before deciding A, in the next iteration now deciding B instead of A.
+See <a href="https://github.com/astral-sh/uv/issues/8157">#8157</a> and
+<a href="https://github.com/astral-sh/uv/pull/9843">#9843</a> for a more detailed description with real world
+examples.</p>
 
 
 
