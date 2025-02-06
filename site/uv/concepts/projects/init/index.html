@@ -79,6 +79,9 @@
 <script type="application/ld+json">
     {
         
+        "datePublished": "2025-02-05 23:21:58Z",
+        "dateModified": "2025-02-05 23:21:58Z",
+        
         "@context": "https://schema.org",
         "@type": "WebSite",
         "name": "Astral Docs",
@@ -675,7 +678,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../guides/publish/" class="md-nav__link">
+      <a href="../../../guides/package/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1340,6 +1343,17 @@
     <span class="md-ellipsis">
       
         Projects with extension modules
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-a-minimal-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating a minimal project
       
     </span>
   </a>
@@ -2618,6 +2632,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#creating-a-minimal-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating a minimal project
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2925,7 +2950,48 @@ files:</p>
 <p>Changes to the extension code in <code>lib.rs</code> or <code>main.cpp</code> will require running <code>--reinstall</code> to
 rebuild them.</p>
 </div>
+<h2 id="creating-a-minimal-project"><a class="toclink" href="#creating-a-minimal-project">Creating a minimal project</a></h2>
+<p>If you only want to create a <code>pyproject.toml</code>, use the <code>--bare</code> option:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="gp">$ </span>uv<span class="w"> </span>init<span class="w"> </span>example<span class="w"> </span>--bare
+</code></pre></div>
+<p>uv will skip creating a Python version pin file, a README, and any source directories or files.
+Additionally, uv will not initialize a version control system (i.e., <code>git</code>).</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="gp">$ </span>tree<span class="w"> </span>example-bare
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="go">example-bare</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="go">└── pyproject.toml</span>
+</code></pre></div>
+<p>uv will also not add extra metadata to the <code>pyproject.toml</code>, such as the <code>description</code> or <code>authors</code>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="k">[project]</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;example&quot;</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span>
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="n">requires-python</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&gt;=3.12&quot;</span>
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[]</span>
+</code></pre></div>
+<p>The <code>--bare</code> option can be used with other options like <code>--lib</code> or <code>--build-backend</code> — in these
+cases uv will still configure a build system but will not create the expected file structure.</p>
+<p>When <code>--bare</code> is used, additional features can still be used opt-in:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="gp">$ </span>uv<span class="w"> </span>init<span class="w"> </span>example<span class="w"> </span>--bare<span class="w"> </span>--description<span class="w"> </span><span class="s2">&quot;Hello world&quot;</span><span class="w"> </span>--author-from<span class="w"> </span>git<span class="w"> </span>--vcs<span class="w"> </span>git<span class="w"> </span>--python-pin
+</code></pre></div>
 
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      <span class="md-source-file__fact">
+        <span class="md-icon" title="Last update">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
+        </span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 5, 2025</span>
+      </span>
+    
+    
+    
+    
+  </aside>
 
 
   
