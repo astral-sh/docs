@@ -867,6 +867,21 @@ runtime.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">type</span> <span class="n">ListOfInt</span> <span class="o">=</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">type</span> <span class="n">PositiveInt</span> <span class="o">=</span> <span class="n">Annotated</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Gt</span><span class="p">(</span><span class="mi">0</span><span class="p">)]</span>
 </code></pre></div>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
+<p>This fix is marked unsafe for <code>TypeAlias</code> assignments outside of stub files because of the
+runtime behavior around <code>isinstance()</code> calls noted above. The fix is also unsafe for
+<code>TypeAliasType</code> assignments if there are any comments in the replacement range that would be
+deleted.</p>
+<h2 id="see-also"><a class="toclink" href="#see-also">See also</a></h2>
+<p>This rule only applies to <code>TypeAlias</code>es and <code>TypeAliasType</code>s. See
+<a href="https://docs.astral.sh/ruff/rules/non-pep695-generic-class/"><code>non-pep695-generic-class</code></a> and <a href="https://docs.astral.sh/ruff/rules/non-pep695-generic-function/"><code>non-pep695-generic-function</code></a> for similar
+transformations for generic classes and functions.</p>
+<p>This rule replaces standalone type variables in aliases but doesn't remove the corresponding
+type variables even if they are unused after the fix. See <a href="https://docs.astral.sh/ruff/rules/unused-private-type-var/"><code>unused-private-type-var</code></a>
+for a rule to clean up unused private type variables.</p>
+<p>This rule will not rename private type variables to remove leading underscores, even though the
+new type parameters are restricted in scope to their associated aliases. See
+<a href="https://docs.astral.sh/ruff/rules/private-type-parameter/"><code>private-type-parameter</code></a> for a rule to update these names.</p>
 
 
 
