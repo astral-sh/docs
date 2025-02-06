@@ -6,35 +6,37 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="A guide to using uv to build and publish Python packages to a package index, like PyPI.">
+      
       
         <meta name="author" content="charliermarsh">
       
       
-        <link rel="canonical" href="https://docs.astral.sh/uv/reference/policies/platforms/">
+        <link rel="canonical" href="https://docs.astral.sh/uv/guides/package/">
       
       
-        <link rel="prev" href="../versioning/">
+        <link rel="prev" href="../projects/">
       
       
-        <link rel="next" href="../license/">
+        <link rel="next" href="../integration/">
       
       
         
       
       
-      <link rel="icon" href="../../../assets/favicon.ico">
+      <link rel="icon" href="../../assets/favicon.ico">
       <meta name="generator" content="mkdocs-1.5.0, mkdocs-material-9.3.1+insiders-4.41.0">
     
     
 
-<title>Platform support | uv</title>
+<title>Building and publishing a package | uv</title>
 
 
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.176649b9.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.176649b9.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.da3f46a0.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.da3f46a0.min.css">
       
       
 
@@ -53,9 +55,9 @@
       
     
     
-      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -79,8 +81,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2024-10-07 17:06:43Z",
-        "dateModified": "2024-10-07 17:06:43Z",
+        "datePublished": "2025-01-15 20:12:55Z",
+        "dateModified": "2025-01-15 20:12:55Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -108,7 +110,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#platform-support" class="md-skip">
+        <a href="#building-and-publishing-a-package" class="md-skip">
           Skip to content
         </a>
       
@@ -124,9 +126,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="uv" class="md-header__button md-logo" aria-label="uv" data-md-component="logo">
+    <a href="../.." title="uv" class="md-header__button md-logo" aria-label="uv" data-md-component="logo">
       
-  <img src="../../../assets/logo-letter.svg" alt="logo">
+  <img src="../../assets/logo-letter.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -143,7 +145,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Platform support
+              Building and publishing a package
             
           </span>
         </div>
@@ -266,9 +268,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="uv" class="md-nav__button md-logo" aria-label="uv" data-md-component="logo">
+    <a href="../.." title="uv" class="md-nav__button md-logo" aria-label="uv" data-md-component="logo">
       
-  <img src="../../../assets/logo-letter.svg" alt="logo">
+  <img src="../../assets/logo-letter.svg" alt="logo">
 
     </a>
     uv
@@ -294,7 +296,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -348,7 +350,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../getting-started/" class="md-nav__link ">
+            <a href="../../getting-started/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -389,7 +391,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../getting-started/installation/" class="md-nav__link">
+      <a href="../../getting-started/installation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -415,7 +417,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../getting-started/first-steps/" class="md-nav__link">
+      <a href="../../getting-started/first-steps/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -441,7 +443,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../getting-started/features/" class="md-nav__link">
+      <a href="../../getting-started/features/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -467,7 +469,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../getting-started/help/" class="md-nav__link">
+      <a href="../../getting-started/help/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -498,6 +500,8 @@
       
   
   
+    
+  
   
     
     
@@ -522,18 +526,18 @@
     
       
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../guides/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -555,7 +559,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -574,7 +578,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../guides/install-python/" class="md-nav__link">
+      <a href="../install-python/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -600,7 +604,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../guides/scripts/" class="md-nav__link">
+      <a href="../scripts/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -626,7 +630,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../guides/tools/" class="md-nav__link">
+      <a href="../tools/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -652,7 +656,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../guides/projects/" class="md-nav__link">
+      <a href="../projects/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -676,9 +680,35 @@
                 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../../guides/package/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    
+  
+    Publishing packages
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -693,6 +723,81 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#preparing-your-project-for-packaging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preparing your project for packaging
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-your-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Building your package
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#publishing-your-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Publishing your package
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-your-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installing your package
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -743,7 +848,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../guides/integration/" class="md-nav__link ">
+            <a href="../integration/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -784,7 +889,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../guides/integration/docker/" class="md-nav__link">
+      <a href="../integration/docker/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -810,7 +915,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../guides/integration/jupyter/" class="md-nav__link">
+      <a href="../integration/jupyter/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -836,7 +941,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../guides/integration/github/" class="md-nav__link">
+      <a href="../integration/github/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -862,7 +967,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../guides/integration/gitlab/" class="md-nav__link">
+      <a href="../integration/gitlab/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -888,7 +993,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../guides/integration/pre-commit/" class="md-nav__link">
+      <a href="../integration/pre-commit/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -914,7 +1019,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../guides/integration/pytorch/" class="md-nav__link">
+      <a href="../integration/pytorch/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -940,7 +1045,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../guides/integration/fastapi/" class="md-nav__link">
+      <a href="../integration/fastapi/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -966,7 +1071,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../guides/integration/alternative-indexes/" class="md-nav__link">
+      <a href="../integration/alternative-indexes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -992,7 +1097,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../guides/integration/dependency-bots/" class="md-nav__link">
+      <a href="../integration/dependency-bots/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1018,7 +1123,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../guides/integration/aws-lambda/" class="md-nav__link">
+      <a href="../integration/aws-lambda/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1090,7 +1195,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../concepts/" class="md-nav__link ">
+            <a href="../../concepts/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1166,7 +1271,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../concepts/projects/" class="md-nav__link ">
+            <a href="../../concepts/projects/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1207,7 +1312,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../concepts/projects/layout/" class="md-nav__link">
+      <a href="../../concepts/projects/layout/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1233,7 +1338,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../concepts/projects/init/" class="md-nav__link">
+      <a href="../../concepts/projects/init/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1259,7 +1364,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../concepts/projects/dependencies/" class="md-nav__link">
+      <a href="../../concepts/projects/dependencies/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1285,7 +1390,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../concepts/projects/run/" class="md-nav__link">
+      <a href="../../concepts/projects/run/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1311,7 +1416,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../concepts/projects/sync/" class="md-nav__link">
+      <a href="../../concepts/projects/sync/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1337,7 +1442,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../concepts/projects/config/" class="md-nav__link">
+      <a href="../../concepts/projects/config/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1363,7 +1468,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../concepts/projects/build/" class="md-nav__link">
+      <a href="../../concepts/projects/build/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1389,7 +1494,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../concepts/projects/workspaces/" class="md-nav__link">
+      <a href="../../concepts/projects/workspaces/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1423,7 +1528,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../concepts/tools/" class="md-nav__link">
+      <a href="../../concepts/tools/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1449,7 +1554,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../concepts/python-versions/" class="md-nav__link">
+      <a href="../../concepts/python-versions/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1475,7 +1580,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../concepts/resolution/" class="md-nav__link">
+      <a href="../../concepts/resolution/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1501,7 +1606,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../concepts/cache/" class="md-nav__link">
+      <a href="../../concepts/cache/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1565,7 +1670,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../configuration/" class="md-nav__link ">
+            <a href="../../configuration/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1606,7 +1711,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../configuration/files/" class="md-nav__link">
+      <a href="../../configuration/files/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1632,7 +1737,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../configuration/environment/" class="md-nav__link">
+      <a href="../../configuration/environment/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1658,7 +1763,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../configuration/authentication/" class="md-nav__link">
+      <a href="../../configuration/authentication/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1684,7 +1789,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../configuration/indexes/" class="md-nav__link">
+      <a href="../../configuration/indexes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1710,7 +1815,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../configuration/installer/" class="md-nav__link">
+      <a href="../../configuration/installer/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1776,7 +1881,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../pip/" class="md-nav__link ">
+            <a href="../../pip/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1817,7 +1922,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../pip/environments/" class="md-nav__link">
+      <a href="../../pip/environments/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1843,7 +1948,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../pip/packages/" class="md-nav__link">
+      <a href="../../pip/packages/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1869,7 +1974,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../pip/inspection/" class="md-nav__link">
+      <a href="../../pip/inspection/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1895,7 +2000,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../pip/dependencies/" class="md-nav__link">
+      <a href="../../pip/dependencies/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1921,7 +2026,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../pip/compile/" class="md-nav__link">
+      <a href="../../pip/compile/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1947,7 +2052,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../pip/compatibility/" class="md-nav__link">
+      <a href="../../pip/compatibility/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1978,8 +2083,6 @@
       
   
   
-    
-  
   
     
     
@@ -2004,18 +2107,18 @@
     
       
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
         
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../" class="md-nav__link ">
+            <a href="../../reference/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -2037,7 +2140,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             
@@ -2056,7 +2159,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cli/" class="md-nav__link">
+      <a href="../../reference/cli/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2082,7 +2185,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../settings/" class="md-nav__link">
+      <a href="../../reference/settings/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2131,7 +2234,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../troubleshooting/" class="md-nav__link ">
+            <a href="../../reference/troubleshooting/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -2172,7 +2275,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../troubleshooting/build-failures/" class="md-nav__link">
+      <a href="../../reference/troubleshooting/build-failures/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2198,7 +2301,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../troubleshooting/reproducible-examples/" class="md-nav__link">
+      <a href="../../reference/troubleshooting/reproducible-examples/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2232,7 +2335,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../resolver-internals/" class="md-nav__link">
+      <a href="../../reference/resolver-internals/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2258,7 +2361,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../benchmarks/" class="md-nav__link">
+      <a href="../../reference/benchmarks/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2282,8 +2385,6 @@
                 
   
   
-    
-  
   
     
     
@@ -2300,18 +2401,18 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_7" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_7" >
         
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../" class="md-nav__link ">
+            <a href="../../reference/policies/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -2333,7 +2434,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_7_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7_7">
             <span class="md-nav__icon md-icon"></span>
             
@@ -2352,7 +2453,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../versioning/" class="md-nav__link">
+      <a href="../../reference/policies/versioning/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2376,18 +2477,9 @@
                 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../reference/policies/platforms/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2402,7 +2494,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -2414,7 +2505,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../license/" class="md-nav__link">
+      <a href="../../reference/policies/license/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2469,6 +2560,69 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#preparing-your-project-for-packaging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preparing your project for packaging
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-your-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Building your package
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#publishing-your-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Publishing your package
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-your-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installing your package
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2491,7 +2645,7 @@
         
   
     <li class="md-path__item">
-      <a href="../../.." class="md-path__link">
+      <a href="../.." class="md-path__link">
         
   <span class="md-ellipsis">
     Introduction
@@ -2508,27 +2662,10 @@
     
     
       <li class="md-path__item">
-        <a href="../../" class="md-path__link">
-          
-  <span class="md-ellipsis">
-    Reference
-  </span>
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-    
-    
-      <li class="md-path__item">
         <a href="../" class="md-path__link">
           
   <span class="md-ellipsis">
-    Policies
+    Guides
   </span>
 
         </a>
@@ -2549,36 +2686,92 @@
   
 
 
-<h1 id="platform-support"><a class="toclink" href="#platform-support">Platform support</a></h1>
-<p>uv has Tier 1 support for the following platforms:</p>
-<ul>
-<li>macOS (Apple Silicon)</li>
-<li>macOS (x86_64)</li>
-<li>Linux (x86_64)</li>
-<li>Windows (x86_64)</li>
-</ul>
-<p>uv is continuously built, tested, and developed against its Tier 1 platforms. Inspired by the Rust
-project, Tier 1 can be thought of as
-<a href="https://doc.rust-lang.org/beta/rustc/platform-support.html">"guaranteed to work"</a>.</p>
-<p>uv has Tier 2 support
-(<a href="https://doc.rust-lang.org/beta/rustc/platform-support.html">"guaranteed to build"</a>) for the
-following platforms:</p>
-<ul>
-<li>Linux (PPC64)</li>
-<li>Linux (PPC64LE)</li>
-<li>Linux (aarch64)</li>
-<li>Linux (armv7)</li>
-<li>Linux (i686)</li>
-<li>Linux (s390x)</li>
-</ul>
-<p>uv ships pre-built wheels to <a href="https://pypi.org/project/uv/">PyPI</a> for its Tier 1 and Tier 2
-platforms. However, while Tier 2 platforms are continuously built, they are not continuously tested
-or developed against, and so stability may vary in practice.</p>
-<p>Beyond the Tier 1 and Tier 2 platforms, uv is known to build on i686 Windows, and known <em>not</em> to
-build on aarch64 Windows, but does not consider either platform to be supported at this time. The
-minimum supported Windows versions are Windows 10 and Windows Server 2016, following
-<a href="https://blog.rust-lang.org/2024/02/26/Windows-7.html">Rust's own Tier 1 support</a>.</p>
-<p>uv supports and is tested against Python 3.8, 3.9, 3.10, 3.11, 3.12, and 3.13.</p>
+<h1 id="building-and-publishing-a-package"><a class="toclink" href="#building-and-publishing-a-package">Building and publishing a package</a></h1>
+<p>uv supports building Python packages into source and binary distributions via <code>uv build</code> and
+uploading them to a registry with <code>uv publish</code>.</p>
+<h2 id="preparing-your-project-for-packaging"><a class="toclink" href="#preparing-your-project-for-packaging">Preparing your project for packaging</a></h2>
+<p>Before attempting to publish your project, you'll want to make sure it's ready to be packaged for
+distribution.</p>
+<p>If your project does not include a <code>[build-system]</code> definition in the <code>pyproject.toml</code>, uv will not
+build it by default. This means that your project may not be ready for distribution. Read more about
+the effect of declaring a build system in the
+<a href="../../concepts/projects/config/#build-systems">project concept</a> documentation.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you have internal packages that you do not want to be published, you can mark them as
+private:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">[project]</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">classifiers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Private :: Do Not Upload&quot;</span><span class="p">]</span>
+</code></pre></div>
+<p>This setting makes PyPI reject your uploaded package from publishing. It does not affect
+security or privacy settings on alternative registries.</p>
+<p>We also recommend only generating per-project tokens: Without a PyPI token matching the project,
+it can't be accidentally published.</p>
+</div>
+<h2 id="building-your-package"><a class="toclink" href="#building-your-package">Building your package</a></h2>
+<p>Build your package with <code>uv build</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="gp">$ </span>uv<span class="w"> </span>build
+</code></pre></div>
+<p>By default, <code>uv build</code> will build the project in the current directory, and place the built
+artifacts in a <code>dist/</code> subdirectory.</p>
+<p>Alternatively, <code>uv build &lt;SRC&gt;</code> will build the package in the specified directory, while
+<code>uv build --package &lt;PACKAGE&gt;</code> will build the specified package within the current workspace.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>By default, <code>uv build</code> respects <code>tool.uv.sources</code> when resolving build dependencies from the
+<code>build-system.requires</code> section of the <code>pyproject.toml</code>. When publishing a package, we recommend
+running <code>uv build --no-sources</code> to ensure that the package builds correctly when <code>tool.uv.sources</code>
+is disabled, as is the case when using other build tools, like <a href="https://github.com/pypa/build"><code>pypa/build</code></a>.</p>
+</div>
+<h2 id="publishing-your-package"><a class="toclink" href="#publishing-your-package">Publishing your package</a></h2>
+<p>Publish your package with <code>uv publish</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="gp">$ </span>uv<span class="w"> </span>publish
+</code></pre></div>
+<p>Set a PyPI token with <code>--token</code> or <code>UV_PUBLISH_TOKEN</code>, or set a username with <code>--username</code> or
+<code>UV_PUBLISH_USERNAME</code> and password with <code>--password</code> or <code>UV_PUBLISH_PASSWORD</code>. For publishing to
+PyPI from GitHub Actions, you don't need to set any credentials. Instead,
+<a href="https://docs.pypi.org/trusted-publishers/adding-a-publisher/">add a trusted publisher to the PyPI project</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>PyPI does not support publishing with username and password anymore, instead you need to
+generate a token. Using a token is equivalent to setting <code>--username __token__</code> and using the
+token as password.</p>
+</div>
+<p>If you're using a custom index through <code>[[tool.uv.index]]</code>, add <code>publish-url</code> and use
+<code>uv publish --index &lt;name&gt;</code>. For example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">[[tool.uv.index]]</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;testpypi&quot;</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://test.pypi.org/simple/&quot;</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">publish-url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://test.pypi.org/legacy/&quot;</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When using <code>uv publish --index &lt;name&gt;</code>, the <code>pyproject.toml</code> must be present, i.e. you need to
+have a checkout step in a publish CI job.</p>
+</div>
+<p>Even though <code>uv publish</code> retries failed uploads, it can happen that publishing fails in the middle,
+with some files uploaded and some files still missing. With PyPI, you can retry the exact same
+command, existing identical files will be ignored. With other registries, use
+<code>--check-url &lt;index url&gt;</code> with the index URL (not the publish URL) the packages belong to. When
+using <code>--index</code>, the index URL is used as check URL. uv will skip uploading files that are identical
+to files in the registry, and it will also handle raced parallel uploads. Note that existing files
+need to match exactly with those previously uploaded to the registry, this avoids accidentally
+publishing source distribution and wheels with different contents for the same version.</p>
+<h2 id="installing-your-package"><a class="toclink" href="#installing-your-package">Installing your package</a></h2>
+<p>Test that the package can be installed and imported with <code>uv run</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>--with<span class="w"> </span>&lt;PACKAGE&gt;<span class="w"> </span>--no-project<span class="w"> </span>--<span class="w"> </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import &lt;PACKAGE&gt;&quot;</span>
+</code></pre></div>
+<p>The <code>--no-project</code> flag is used to avoid installing the package from your local project directory.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you have recently installed the package, you may need to include the
+<code>--refresh-package &lt;PACKAGE&gt;</code> option to avoid using a cached version of the package.</p>
+</div>
+<h2 id="next-steps"><a class="toclink" href="#next-steps">Next steps</a></h2>
+<p>To learn more about publishing packages, check out the
+<a href="https://packaging.python.org/en/latest/guides/section-build-and-publish/">PyPA guides</a> on building
+and publishing.</p>
+<p>Or, read on for <a href="../integration/">guides</a> on integrating uv with other software.</p>
 
   
     
@@ -2592,7 +2785,7 @@ minimum supported Windows versions are Windows 10 and Windows Server 2016, follo
         <span class="md-icon" title="Last update">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
         </span>
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 7, 2024</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 15, 2025</span>
       </span>
     
     
@@ -2631,7 +2824,7 @@ minimum supported Windows versions are Windows 10 and Windows Server 2016, follo
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../versioning/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Versioning" rel="prev">
+          <a href="../projects/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Working on projects" rel="prev">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
@@ -2641,20 +2834,20 @@ minimum supported Windows versions are Windows 10 and Windows Server 2016, follo
                 Previous
               </span>
               <div class="md-ellipsis">
-                Versioning
+                Working on projects
               </div>
             </div>
           </a>
         
         
           
-          <a href="../license/" class="md-footer__link md-footer__link--next" aria-label="Next: License" rel="next">
+          <a href="../integration/" class="md-footer__link md-footer__link--next" aria-label="Next: Index" rel="next">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                License
+                Index
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -2735,12 +2928,12 @@ minimum supported Windows versions are Windows 10 and Windows Server 2016, follo
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.path", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.sections", "navigation.indexes", "navigation.tracking", "content.code.annotate", "toc.follow", "navigation.footer", "navigation.top", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.f2da59ea.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.path", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.sections", "navigation.indexes", "navigation.tracking", "content.code.annotate", "toc.follow", "navigation.footer", "navigation.top", "content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.f2da59ea.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.d7e51e09.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7e51e09.min.js"></script>
       
-        <script src="../../../js/extra.js"></script>
+        <script src="../../js/extra.js"></script>
       
     
   </body>
