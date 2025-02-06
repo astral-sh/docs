@@ -875,14 +875,17 @@ a <code>TypeVar</code> variable with an inline type parameter may change its var
 <h2 id="see-also"><a class="toclink" href="#see-also">See also</a></h2>
 <p>This rule replaces standalone type variables in classes but doesn't remove
 the corresponding type variables even if they are unused after the fix. See
-<a href="../unused-private-type-var/"><code>unused-private-type-var</code></a> for a rule to clean up unused
+<a href="https://docs.astral.sh/ruff/rules/unused-private-type-var/"><code>unused-private-type-var</code></a> for a rule to clean up unused
 private type variables.</p>
+<p>This rule will not rename private type variables to remove leading underscores, even though the
+new type parameters are restricted in scope to their associated class. See
+<a href="https://docs.astral.sh/ruff/rules/private-type-parameter/"><code>private-type-parameter</code></a> for a rule to update these names.</p>
 <p>This rule will correctly handle classes with multiple base classes, as long as the single
 <code>Generic</code> base class is at the end of the argument list, as checked by
-<a href="../generic-not-last-base-class/"><code>generic-not-last-base-class</code></a>. If a <code>Generic</code> base class is
+<a href="https://docs.astral.sh/ruff/rules/generic-not-last-base-class/"><code>generic-not-last-base-class</code></a>. If a <code>Generic</code> base class is
 found outside of the last position, a diagnostic is emitted without a suggested fix.</p>
 <p>This rule only applies to generic classes and does not include generic functions. See
-<a href="../non-pep695-generic-function/"><code>non-pep695-generic-function</code></a> for the function version.</p>
+<a href="https://docs.astral.sh/ruff/rules/non-pep695-generic-function/"><code>non-pep695-generic-function</code></a> for the function version.</p>
 
 
 

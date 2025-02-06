@@ -1016,11 +1016,13 @@
 and more.</p>
 <h2 id="ruff-check"><a class="toclink" href="#ruff-check"><code>ruff check</code></a></h2>
 <p><code>ruff check</code> is the primary entrypoint to the Ruff linter. It accepts a list of files or
-directories, and lints all discovered Python files, optionally fixing any fixable errors:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">$ </span>ruff<span class="w"> </span>check<span class="w">                  </span><span class="c1"># Lint all files in the current directory.</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="gp">$ </span>ruff<span class="w"> </span>check<span class="w"> </span>--fix<span class="w">            </span><span class="c1"># Lint all files in the current directory, and fix any fixable errors.</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="gp">$ </span>ruff<span class="w"> </span>check<span class="w"> </span>--watch<span class="w">          </span><span class="c1"># Lint all files in the current directory, and re-lint on change.</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="gp">$ </span>ruff<span class="w"> </span>check<span class="w"> </span>path/to/code/<span class="w">    </span><span class="c1"># Lint all files in `path/to/code` (and any subdirectories).</span>
+directories, and lints all discovered Python files, optionally fixing any fixable errors.
+When linting a directory, Ruff searches for Python files recursively in that directory
+and all its subdirectories:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">$ </span>ruff<span class="w"> </span>check<span class="w">                  </span><span class="c1"># Lint files in the current directory.</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="gp">$ </span>ruff<span class="w"> </span>check<span class="w"> </span>--fix<span class="w">            </span><span class="c1"># Lint files in the current directory and fix any fixable errors.</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="gp">$ </span>ruff<span class="w"> </span>check<span class="w"> </span>--watch<span class="w">          </span><span class="c1"># Lint files in the current directory and re-lint on change.</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="gp">$ </span>ruff<span class="w"> </span>check<span class="w"> </span>path/to/code/<span class="w">    </span><span class="c1"># Lint files in `path/to/code`.</span>
 </code></pre></div>
 <p>For the full list of supported options, run <code>ruff check --help</code>.</p>
 <h2 id="rule-selection"><a class="toclink" href="#rule-selection">Rule selection</a></h2>

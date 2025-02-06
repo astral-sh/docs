@@ -1312,10 +1312,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#convention-c" class="md-nav__link">
+  <a href="#convention-plc" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Convention (C)
+        Convention (PLC)
       
     </span>
   </a>
@@ -1323,10 +1323,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#error-e_1" class="md-nav__link">
+  <a href="#error-ple" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Error (E)
+        Error (PLE)
       
     </span>
   </a>
@@ -1334,10 +1334,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#refactor-r" class="md-nav__link">
+  <a href="#refactor-plr" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Refactor (R)
+        Refactor (PLR)
       
     </span>
   </a>
@@ -1345,10 +1345,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#warning-w_1" class="md-nav__link">
+  <a href="#warning-plw" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Warning (W)
+        Warning (PLW)
       
     </span>
   </a>
@@ -2883,7 +2883,7 @@ catches a wide variety of common errors (like unused imports) with zero configur
 <tr>
 <td id="UP015">UP015</td>
 <td><a href="redundant-open-modes/">redundant-open-modes</a></td>
-<td>Unnecessary open mode parameters</td>
+<td>Unnecessary mode argument</td>
 <td style="text-align: right;"><span title='Rule is stable' style='opacity: 0.6'>✔️</span> <span title='Automatic fix available'>🛠️</span></td>
 </tr>
 <tr>
@@ -3070,6 +3070,12 @@ catches a wide variety of common errors (like unused imports) with zero configur
 <td id="UP047">UP047</td>
 <td><a href="non-pep695-generic-function/">non-pep695-generic-function</a></td>
 <td>Generic function <code>{name}</code> should use type parameters</td>
+<td style="text-align: right;"><span title='Rule is in preview'>🧪</span> <span title='Automatic fix available'>🛠️</span></td>
+</tr>
+<tr>
+<td id="UP049">UP049</td>
+<td><a href="private-type-parameter/">private-type-parameter</a></td>
+<td>Generic {} uses private type parameters</td>
 <td style="text-align: right;"><span title='Rule is in preview'>🧪</span> <span title='Automatic fix available'>🛠️</span></td>
 </tr>
 </tbody>
@@ -4653,6 +4659,12 @@ catches a wide variety of common errors (like unused imports) with zero configur
 <td style="text-align: right;"><span title='Rule is stable' style='opacity: 0.6'>✔️</span> <span title='Automatic fix available'>🛠️</span></td>
 </tr>
 <tr>
+<td id="LOG004">LOG004</td>
+<td><a href="log-exception-outside-except-handler/">log-exception-outside-except-handler</a></td>
+<td><code>.exception()</code> call outside exception handlers</td>
+<td style="text-align: right;"><span title='Rule is in preview'>🧪</span> <span title='Automatic fix available'>🛠️</span></td>
+</tr>
+<tr>
 <td id="LOG007">LOG007</td>
 <td><a href="exception-without-exc-info/">exception-without-exc-info</a></td>
 <td>Use of <code>logging.exception</code> with falsy <code>exc_info</code></td>
@@ -4663,6 +4675,12 @@ catches a wide variety of common errors (like unused imports) with zero configur
 <td><a href="undocumented-warn/">undocumented-warn</a></td>
 <td>Use of undocumented <code>logging.WARN</code> constant</td>
 <td style="text-align: right;"><span title='Rule is stable' style='opacity: 0.6'>✔️</span> <span title='Automatic fix available'>🛠️</span></td>
+</tr>
+<tr>
+<td id="LOG014">LOG014</td>
+<td><a href="exc-info-outside-except-handler/">exc-info-outside-except-handler</a></td>
+<td><code>exc_info=</code> outside exception handlers</td>
+<td style="text-align: right;"><span title='Rule is in preview'>🧪</span> <span title='Automatic fix available'>🛠️</span></td>
 </tr>
 <tr>
 <td id="LOG015">LOG015</td>
@@ -4960,12 +4978,12 @@ catches a wide variety of common errors (like unused imports) with zero configur
 <td id="PYI018">PYI018</td>
 <td><a href="unused-private-type-var/">unused-private-type-var</a></td>
 <td>Private {type_var_like_kind} <code>{type_var_like_name}</code> is never used</td>
-<td style="text-align: right;"><span title='Rule is stable' style='opacity: 0.6'>✔️</span> <span title='Automatic fix not available' style='opacity: 0.1' aria-hidden='true'>🛠️</span></td>
+<td style="text-align: right;"><span title='Rule is stable' style='opacity: 0.6'>✔️</span> <span title='Automatic fix available'>🛠️</span></td>
 </tr>
 <tr>
 <td id="PYI019">PYI019</td>
-<td><a href="custom-type-var-return-type/">custom-type-var-return-type</a></td>
-<td>Methods like <code>{method_name}</code> should return <code>Self</code> instead of a custom <code>TypeVar</code></td>
+<td><a href="custom-type-var-for-self/">custom-type-var-for-self</a></td>
+<td>Use <code>Self</code> instead of custom TypeVar <code>{}</code></td>
 <td style="text-align: right;"><span title='Rule is stable' style='opacity: 0.6'>✔️</span> <span title='Automatic fix available'>🛠️</span></td>
 </tr>
 <tr>
@@ -6411,7 +6429,7 @@ catches a wide variety of common errors (like unused imports) with zero configur
 </table>
 <h2 id="pylint-pl"><a class="toclink" href="#pylint-pl">Pylint (PL)</a></h2>
 <p>For more, see <a href="https://pypi.org/project/pylint/">Pylint</a> on PyPI.</p>
-<h3 id="convention-c"><a class="toclink" href="#convention-c">Convention (C)</a></h3>
+<h3 id="convention-plc"><a class="toclink" href="#convention-plc">Convention (PLC)</a></h3>
 <table>
 <thead>
 <tr>
@@ -6514,7 +6532,7 @@ catches a wide variety of common errors (like unused imports) with zero configur
 </tr>
 </tbody>
 </table>
-<h3 id="error-e_1"><a class="toclink" href="#error-e_1">Error (E)</a></h3>
+<h3 id="error-ple"><a class="toclink" href="#error-ple">Error (PLE)</a></h3>
 <table>
 <thead>
 <tr>
@@ -6755,7 +6773,7 @@ catches a wide variety of common errors (like unused imports) with zero configur
 </tr>
 </tbody>
 </table>
-<h3 id="refactor-r"><a class="toclink" href="#refactor-r">Refactor (R)</a></h3>
+<h3 id="refactor-plr"><a class="toclink" href="#refactor-plr">Refactor (PLR)</a></h3>
 <table>
 <thead>
 <tr>
@@ -6954,7 +6972,7 @@ catches a wide variety of common errors (like unused imports) with zero configur
 </tr>
 </tbody>
 </table>
-<h3 id="warning-w_1"><a class="toclink" href="#warning-w_1">Warning (W)</a></h3>
+<h3 id="warning-plw"><a class="toclink" href="#warning-plw">Warning (PLW)</a></h3>
 <table>
 <thead>
 <tr>
@@ -7557,7 +7575,7 @@ catches a wide variety of common errors (like unused imports) with zero configur
 <tr>
 <td id="FURB169">FURB169</td>
 <td><a href="type-none-comparison/">type-none-comparison</a></td>
-<td>Compare the identities of <code>{object}</code> and <code>None</code> instead of their respective types</td>
+<td>When checking against <code>None</code>, use <code>{}</code> instead of comparison with <code>type(None)</code></td>
 <td style="text-align: right;"><span title='Rule is stable' style='opacity: 0.6'>✔️</span> <span title='Automatic fix available'>🛠️</span></td>
 </tr>
 <tr>
@@ -7940,6 +7958,12 @@ catches a wide variety of common errors (like unused imports) with zero configur
 <td id="RUF052">RUF052</td>
 <td><a href="used-dummy-variable/">used-dummy-variable</a></td>
 <td>Local dummy variable <code>{}</code> is accessed</td>
+<td style="text-align: right;"><span title='Rule is in preview'>🧪</span> <span title='Automatic fix available'>🛠️</span></td>
+</tr>
+<tr>
+<td id="RUF053">RUF053</td>
+<td><a href="class-with-mixed-type-vars/">class-with-mixed-type-vars</a></td>
+<td>Class with type parameter list inherits from <code>Generic</code></td>
 <td style="text-align: right;"><span title='Rule is in preview'>🧪</span> <span title='Automatic fix available'>🛠️</span></td>
 </tr>
 <tr>

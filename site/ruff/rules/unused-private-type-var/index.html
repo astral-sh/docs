@@ -839,12 +839,14 @@
 
 <h1 id="unused-private-type-var-pyi018"><a class="toclink" href="#unused-private-type-var-pyi018">unused-private-type-var (PYI018)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-pyi-pyi">flake8-pyi</a></strong> linter.</p>
+<p>Fix is sometimes available.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for the presence of unused private <code>TypeVar</code>, <code>ParamSpec</code> or
 <code>TypeVarTuple</code> declarations.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>A private <code>TypeVar</code> that is defined but not used is likely a mistake. It
-should either be used, made public, or removed to avoid confusion.</p>
+should either be used, made public, or removed to avoid confusion. A type
+variable is considered "private" if its name starts with an underscore.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">typing</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">typing_extensions</span>
@@ -852,6 +854,10 @@ should either be used, made public, or removed to avoid confusion.</p>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">_T</span> <span class="o">=</span> <span class="n">typing</span><span class="o">.</span><span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;_T&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">_Ts</span> <span class="o">=</span> <span class="n">typing_extensions</span><span class="o">.</span><span class="n">TypeVarTuple</span><span class="p">(</span><span class="s2">&quot;_Ts&quot;</span><span class="p">)</span>
 </code></pre></div>
+<h2 id="fix-safety-and-availability"><a class="toclink" href="#fix-safety-and-availability">Fix safety and availability</a></h2>
+<p>This rule's fix is available when <a href="../../settings/#preview"><code>preview</code></a> mode is enabled.
+It is always marked as unsafe, as it would break your code if the type
+variable is imported by another module.</p>
 
 
 

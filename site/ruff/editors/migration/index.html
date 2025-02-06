@@ -969,22 +969,21 @@
 settings are supported by <code>ruff server</code>. As such, this migration guide is primarily targeted at editors that lack
 explicit documentation for <code>ruff server</code> settings, such as Helix or Neovim.</p>
 </div>
+<p>Refer to the <a href="../setup/">setup guide</a> for instructions on how to configure your editor to use <code>ruff server</code>.</p>
 <h2 id="unsupported-settings"><a class="toclink" href="#unsupported-settings">Unsupported Settings</a></h2>
 <p>Several <code>ruff-lsp</code> settings are not supported by <code>ruff server</code>. These are, as follows:</p>
 <ul>
-<li><code>format.args</code></li>
+<li><code>lint.run</code>: This setting is no longer relevant for the native language server, which runs on every
+    keystroke by default</li>
+<li><code>lint.args</code>, <code>format.args</code>: These settings have been replaced by more granular settings in <code>ruff server</code> like <a href="../settings/#select"><code>lint.select</code></a>, <a href="../settings/#format_preview"><code>format.preview</code></a>,
+    etc. along with the ability to provide a default configuration file using
+    <a href="../settings/#configuration"><code>configuration</code></a></li>
+<li><a href="../settings/#path"><code>path</code></a>, <a href="../settings/#interpreter"><code>interpreter</code></a>: These settings are no longer
+    accepted by the language server but are still used by the VS Code extension. Refer to their
+    respective documentation for more information on how it's being used by the extension.</li>
 <li><code>ignoreStandardLibrary</code></li>
-<li><code>interpreter</code></li>
-<li><code>lint.args</code></li>
-<li><code>lint.run</code></li>
-<li><code>path</code></li>
+<li><code>showNotifications</code></li>
 </ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Some of these settings, like <code>interpreter</code> and <code>path</code>, are still accepted by the VS Code
-extension. <code>path</code>, in particular, can be used to specify a dedicated binary to use when
-initializing <code>ruff server</code>. But the language server itself will no longer accept such settings.</p>
-</div>
 <h2 id="new-settings"><a class="toclink" href="#new-settings">New Settings</a></h2>
 <p><code>ruff server</code> introduces several new settings that <code>ruff-lsp</code> does not have. These are, as follows:</p>
 <ul>
