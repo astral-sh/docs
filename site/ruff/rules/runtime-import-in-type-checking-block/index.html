@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Checks for runtime imports defined in a type-checking block.">
+        <meta name="description" content="Checks for imports that are required at runtime but are only defined in">
       
       
         <meta name="author" content="charliermarsh">
@@ -841,10 +841,11 @@
 <p>Derived from the <strong><a href="../#flake8-type-checking-tc">flake8-type-checking</a></strong> linter.</p>
 <p>Fix is sometimes available.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
-<p>Checks for runtime imports defined in a type-checking block.</p>
+<p>Checks for imports that are required at runtime but are only defined in
+type-checking blocks.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
-<p>The type-checking block is not executed at runtime, so the import will not
-be available at runtime.</p>
+<p>The type-checking block is not executed at runtime, so if the only definition
+of a symbol is in a type-checking block, it will not be available at runtime.</p>
 <p>If <a href="../../settings/#lint_flake8-type-checking_quote-annotations"><code>lint.flake8-type-checking.quote-annotations</code></a> is set to <code>true</code>,
 annotations will be wrapped in quotes if doing so would enable the
 corresponding import to remain in the type-checking block.</p>

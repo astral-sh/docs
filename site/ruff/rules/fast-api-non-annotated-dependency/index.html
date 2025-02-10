@@ -843,14 +843,14 @@
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Identifies FastAPI routes with deprecated uses of <code>Depends</code> or similar.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
-<p>The <a href="https://fastapi.tiangolo.com/tutorial/query-params-str-validations/?h=annotated#advantages-of-annotated">FastAPI documentation</a> recommends the use of <a href="https://docs.python.org/3/library/typing.html#typing.Annotated"><code>typing.Annotated</code></a> for
-defining route dependencies and parameters, rather than using <code>Depends</code>,
+<p>The <a href="https://fastapi.tiangolo.com/tutorial/query-params-str-validations/?h=annotated#advantages-of-annotated">FastAPI documentation</a> recommends the use of <a href="https://docs.python.org/3/library/typing.html#typing.Annotated"><code>typing.Annotated</code></a>
+for defining route dependencies and parameters, rather than using <code>Depends</code>,
 <code>Query</code> or similar as a default value for a parameter. Using this approach
 everywhere helps ensure consistency and clarity in defining dependencies
 and parameters.</p>
 <p><code>Annotated</code> was added to the <code>typing</code> module in Python 3.9; however,
-the third-party <a href="https://typing-extensions.readthedocs.io/en/stable/"><code>typing_extensions</code></a> package provides a backport that can be
-used on older versions of Python.</p>
+the third-party <a href="https://typing-extensions.readthedocs.io/en/stable/"><code>typing_extensions</code></a> package
+provides a backport that can be used on older versions of Python.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">fastapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">Depends</span><span class="p">,</span> <span class="n">FastAPI</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>

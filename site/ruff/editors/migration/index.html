@@ -649,6 +649,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#removed-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Removed Settings
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#new-settings" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -961,31 +972,46 @@
 
 
 <h1 id="migrating-from-ruff-lsp"><a class="toclink" href="#migrating-from-ruff-lsp">Migrating from <code>ruff-lsp</code></a></h1>
-<p>While <code>ruff server</code> supports the same feature set as <a href="https://github.com/astral-sh/ruff-lsp"><code>ruff-lsp</code></a>, migrating to
-<code>ruff server</code> may require changes to your Ruff or language server configuration.</p>
+<p>To provide some context, <a href="https://github.com/astral-sh/ruff-lsp"><code>ruff-lsp</code></a> is the LSP implementation for Ruff to power the editor
+integrations which is written in Python and is a separate package from Ruff itself. The <strong>native
+server</strong> is the LSP implementation which is written in Rust and is available under the <code>ruff server</code>
+command. This guide is intended to help users migrate from
+<a href="https://github.com/astral-sh/ruff-lsp"><code>ruff-lsp</code></a> to the native server.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The <a href="https://github.com/astral-sh/ruff-vscode">VS Code extension</a> settings include documentation to indicate which
-settings are supported by <code>ruff server</code>. As such, this migration guide is primarily targeted at editors that lack
-explicit documentation for <code>ruff server</code> settings, such as Helix or Neovim.</p>
+<p>The native server was first introduced in Ruff version <code>0.3.5</code>. It was marked as beta in version
+<code>0.4.5</code> and officially stabilized in version <code>0.5.3</code>. It is recommended to use the latest
+version of Ruff to ensure the best experience.</p>
 </div>
-<p>Refer to the <a href="../setup/">setup guide</a> for instructions on how to configure your editor to use <code>ruff server</code>.</p>
+<p>The migration process involves any or all of the following:</p>
+<ol>
+<li>Migrate <a href="#unsupported-settings">deprecated settings</a> to the <a href="#new-settings">new settings</a></li>
+<li><a href="#removed-settings">Remove settings</a> that are no longer supported</li>
+<li>Update the <code>ruff</code> version</li>
+</ol>
 <h2 id="unsupported-settings"><a class="toclink" href="#unsupported-settings">Unsupported Settings</a></h2>
-<p>Several <code>ruff-lsp</code> settings are not supported by <code>ruff server</code>. These are, as follows:</p>
+<p>The following <a href="https://github.com/astral-sh/ruff-lsp"><code>ruff-lsp</code></a> settings are not supported by <code>ruff server</code>:</p>
 <ul>
 <li><code>lint.run</code>: This setting is no longer relevant for the native language server, which runs on every
-    keystroke by default</li>
+    keystroke by default.</li>
 <li><code>lint.args</code>, <code>format.args</code>: These settings have been replaced by more granular settings in <code>ruff server</code> like <a href="../settings/#select"><code>lint.select</code></a>, <a href="../settings/#format_preview"><code>format.preview</code></a>,
-    etc. along with the ability to provide a default configuration file using
-    <a href="../settings/#configuration"><code>configuration</code></a></li>
-<li><a href="../settings/#path"><code>path</code></a>, <a href="../settings/#interpreter"><code>interpreter</code></a>: These settings are no longer
-    accepted by the language server but are still used by the VS Code extension. Refer to their
-    respective documentation for more information on how it's being used by the extension.</li>
+    etc. along with the ability to provide a default configuration file using <a href="../settings/#configuration"><code>configuration</code></a>.</li>
+</ul>
+<p>The following settings are not accepted by the language server but are still used by the VS Code
+extension. Refer to their respective documentation for more information on how it's being used by
+the extension:</p>
+<ul>
+<li><a href="../settings/#path"><code>path</code></a></li>
+<li><a href="../settings/#interpreter"><code>interpreter</code></a></li>
+</ul>
+<h2 id="removed-settings"><a class="toclink" href="#removed-settings">Removed Settings</a></h2>
+<p>Additionally, the following settings are not supported by the native server, they should be removed:</p>
+<ul>
 <li><code>ignoreStandardLibrary</code></li>
 <li><code>showNotifications</code></li>
 </ul>
 <h2 id="new-settings"><a class="toclink" href="#new-settings">New Settings</a></h2>
-<p><code>ruff server</code> introduces several new settings that <code>ruff-lsp</code> does not have. These are, as follows:</p>
+<p><code>ruff server</code> introduces several new settings that <a href="https://github.com/astral-sh/ruff-lsp"><code>ruff-lsp</code></a> does not have. These are, as follows:</p>
 <ul>
 <li><a href="../settings/#configuration"><code>configuration</code></a></li>
 <li><a href="../settings/#configurationpreference"><code>configurationPreference</code></a></li>
