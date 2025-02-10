@@ -860,10 +860,10 @@ Prefer <code>None</code> over <code>Literal[None]</code> for both consistency an
 </code></pre></div>
 <h2 id="fix-safety-and-availability"><a class="toclink" href="#fix-safety-and-availability">Fix safety and availability</a></h2>
 <p>This rule's fix is marked as safe unless the literal contains comments.</p>
-<p>There is currently no fix available if there are other elements in the <code>Literal</code> slice aside
-from <code>None</code> and <a href="../../settings/#target-version"><code>target-version</code></a> is set to Python 3.9 or lower, as the fix always uses the
-<code>|</code> syntax to create unions rather than <code>typing.Union</code>, and the <code>|</code> syntax for unions was added
-in Python 3.10.</p>
+<p>There is currently no fix available when applying the fix would lead to
+a <code>TypeError</code> from an expression of the form <code>None | None</code> or when we
+are unable to import the symbol <code>typing.Optional</code> and the Python version
+is 3.9 or below.</p>
 <h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://typing.readthedocs.io/en/latest/spec/literal.html#legal-parameters-for-literal-at-type-check-time">Typing documentation: Legal parameters for <code>Literal</code> at type check time</a></li>

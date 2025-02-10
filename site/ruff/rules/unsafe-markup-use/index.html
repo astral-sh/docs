@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Checks for non-literal strings being passed to [`markupsafe.Markup`][markupsafe.markup].">
+        <meta name="description" content="Checks for non-literal strings being passed to [`markupsafe.Markup`][markupsafe-markup].">
       
       
         <meta name="author" content="charliermarsh">
@@ -842,12 +842,12 @@
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for non-literal strings being passed to <a href="https://markupsafe.palletsprojects.com/en/stable/escaping/#markupsafe.Markup"><code>markupsafe.Markup</code></a>.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
-<p><a href="https://markupsafe.palletsprojects.com/en/stable/escaping/#markupsafe.Markup"><code>markupsafe.Markup</code></a> does not perform any escaping, so passing dynamic
-content, like f-strings, variables or interpolated strings will potentially
-lead to XSS vulnerabilities.</p>
-<p>Instead you should interpolate the <a href="https://markupsafe.palletsprojects.com/en/stable/escaping/#markupsafe.Markup"><code>markupsafe.Markup</code></a> object.</p>
+<p><a href="https://markupsafe.palletsprojects.com/en/stable/escaping/#markupsafe.Markup"><code>markupsafe.Markup</code></a> does not perform any escaping,
+so passing dynamic content, like f-strings, variables or interpolated strings
+will potentially lead to XSS vulnerabilities.</p>
+<p>Instead you should interpolate the <code>Markup</code> object.</p>
 <p>Using <a href="../../settings/#lint_ruff_extend-markup-names"><code>lint.ruff.extend-markup-names</code></a> additional objects can be
-treated like <a href="https://markupsafe.palletsprojects.com/en/stable/escaping/#markupsafe.Markup"><code>markupsafe.Markup</code></a>.</p>
+treated like <code>Markup</code>.</p>
 <p>This rule was originally inspired by <a href="https://github.com/vmagamedov/flake8-markupsafe">flake8-markupsafe</a> but doesn't carve
 out any exceptions for i18n related calls by default.</p>
 <p>You can use <a href="../../settings/#lint_ruff_allowed-markup-calls"><code>lint.ruff.allowed-markup-calls</code></a> to specify exceptions.</p>
