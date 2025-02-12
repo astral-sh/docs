@@ -81,8 +81,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2025-02-05 23:22:09Z",
-        "dateModified": "2025-02-05 23:22:09Z",
+        "datePublished": "2025-02-11 14:19:20Z",
+        "dateModified": "2025-02-11 14:19:20Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -2851,7 +2851,7 @@ Authenticate to a feed using a
 credentials can be provided via the "Basic" HTTP authentication scheme. Include the PAT in the
 password field of the URL. A username must be included as well, but can be any string.</p>
 <p>For example, with the token stored in the <code>$ADO_PAT</code> environment variable, set the index URL with:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">$ </span><span class="nb">export</span><span class="w"> </span><span class="nv">UV_EXTRA_INDEX_URL</span><span class="o">=</span>https://dummy:<span class="nv">$ADO_PAT</span>@pkgs.dev.azure.com/<span class="o">{</span>organisation<span class="o">}</span>/<span class="o">{</span>project<span class="o">}</span>/_packaging/<span class="o">{</span>feedName<span class="o">}</span>/pypi/simple/
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">$ </span><span class="nb">export</span><span class="w"> </span><span class="nv">UV_INDEX</span><span class="o">=</span>https://dummy:<span class="nv">$ADO_PAT</span>@pkgs.dev.azure.com/<span class="o">{</span>organisation<span class="o">}</span>/<span class="o">{</span>project<span class="o">}</span>/_packaging/<span class="o">{</span>feedName<span class="o">}</span>/pypi/simple/
 </code></pre></div>
 <h3 id="using-keyring"><a class="toclink" href="#using-keyring">Using <code>keyring</code></a></h3>
 <p>If there is not a PAT available, authenticate to Artifacts using the
@@ -2876,7 +2876,7 @@ default username <code>VssSessionToken</code>.</p>
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="gp">$ </span><span class="nb">export</span><span class="w"> </span><span class="nv">UV_KEYRING_PROVIDER</span><span class="o">=</span>subprocess
 <a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
 <a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="gp">$ </span><span class="c1"># Configure the index URL with the username</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="gp">$ </span><span class="nb">export</span><span class="w"> </span><span class="nv">UV_EXTRA_INDEX_URL</span><span class="o">=</span>https://VssSessionToken@pkgs.dev.azure.com/<span class="o">{</span>organisation<span class="o">}</span>/<span class="o">{</span>project<span class="o">}</span>/_packaging/<span class="o">{</span>feedName<span class="o">}</span>/pypi/simple/
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="gp">$ </span><span class="nb">export</span><span class="w"> </span><span class="nv">UV_INDEX</span><span class="o">=</span>https://VssSessionToken@pkgs.dev.azure.com/<span class="o">{</span>organisation<span class="o">}</span>/<span class="o">{</span>project<span class="o">}</span>/_packaging/<span class="o">{</span>feedName<span class="o">}</span>/pypi/simple/
 </code></pre></div>
 <h2 id="google-artifact-registry"><a class="toclink" href="#google-artifact-registry">Google Artifact Registry</a></h2>
 <p>uv can install packages from
@@ -2893,7 +2893,7 @@ password field of the URL. Username must be <code>oauth2accesstoken</code>, othe
 <p>For example, with the token stored in the <code>$ARTIFACT_REGISTRY_TOKEN</code> environment variable, set the
 index URL with:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ARTIFACT_REGISTRY_TOKEN</span><span class="o">=</span><span class="k">$(</span>gcloud<span class="w"> </span>auth<span class="w"> </span>application-default<span class="w"> </span>print-access-token<span class="k">)</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">UV_EXTRA_INDEX_URL</span><span class="o">=</span>https://oauth2accesstoken:<span class="nv">$ARTIFACT_REGISTRY_TOKEN</span>@<span class="o">{</span>region<span class="o">}</span>-python.pkg.dev/<span class="o">{</span>projectId<span class="o">}</span>/<span class="o">{</span>repositoryName<span class="o">}</span>/simple
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">UV_INDEX</span><span class="o">=</span>https://oauth2accesstoken:<span class="nv">$ARTIFACT_REGISTRY_TOKEN</span>@<span class="o">{</span>region<span class="o">}</span>-python.pkg.dev/<span class="o">{</span>projectId<span class="o">}</span>/<span class="o">{</span>repositoryName<span class="o">}</span>/simple
 </code></pre></div>
 <h3 id="using-keyring_1"><a class="toclink" href="#using-keyring_1">Using <code>keyring</code></a></h3>
 <p>You can also authenticate to Artifact Registry using <a href="https://github.com/jaraco/keyring"><code>keyring</code></a>
@@ -2915,7 +2915,7 @@ environment. The <code>keyring</code> CLI requires a username in the URL and it 
 <a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="nb">export</span><span class="w"> </span><span class="nv">UV_KEYRING_PROVIDER</span><span class="o">=</span>subprocess
 <a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
 <a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1"># Configure the index URL with the username</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="nb">export</span><span class="w"> </span><span class="nv">UV_EXTRA_INDEX_URL</span><span class="o">=</span>https://oauth2accesstoken@<span class="o">{</span>region<span class="o">}</span>-python.pkg.dev/<span class="o">{</span>projectId<span class="o">}</span>/<span class="o">{</span>repositoryName<span class="o">}</span>/simple
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="nb">export</span><span class="w"> </span><span class="nv">UV_INDEX</span><span class="o">=</span>https://oauth2accesstoken@<span class="o">{</span>region<span class="o">}</span>-python.pkg.dev/<span class="o">{</span>projectId<span class="o">}</span>/<span class="o">{</span>repositoryName<span class="o">}</span>/simple
 </code></pre></div>
 <h2 id="aws-codeartifact"><a class="toclink" href="#aws-codeartifact">AWS CodeArtifact</a></h2>
 <p>uv can install packages from
@@ -2941,7 +2941,7 @@ environment. The <code>keyring</code> CLI requires a username in the URL and it 
 <a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="k">)</span><span class="s2">&quot;</span>
 </code></pre></div>
 <p>And configure the index URL:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">UV_EXTRA_INDEX_URL</span><span class="o">=</span><span class="s2">&quot;https://aws:</span><span class="si">${</span><span class="nv">AWS_CODEARTIFACT_TOKEN</span><span class="si">}</span><span class="s2">@</span><span class="si">${</span><span class="nv">AWS_DOMAIN</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">AWS_ACCOUNT_ID</span><span class="si">}</span><span class="s2">.d.codeartifact.</span><span class="si">${</span><span class="nv">AWS_REGION</span><span class="si">}</span><span class="s2">.amazonaws.com/pypi/</span><span class="si">${</span><span class="nv">AWS_CODEARTIFACT_REPOSITORY</span><span class="si">}</span><span class="s2">/simple/&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">UV_INDEX</span><span class="o">=</span><span class="s2">&quot;https://aws:</span><span class="si">${</span><span class="nv">AWS_CODEARTIFACT_TOKEN</span><span class="si">}</span><span class="s2">@</span><span class="si">${</span><span class="nv">AWS_DOMAIN</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">AWS_ACCOUNT_ID</span><span class="si">}</span><span class="s2">.d.codeartifact.</span><span class="si">${</span><span class="nv">AWS_REGION</span><span class="si">}</span><span class="s2">.amazonaws.com/pypi/</span><span class="si">${</span><span class="nv">AWS_CODEARTIFACT_REPOSITORY</span><span class="si">}</span><span class="s2">/simple/&quot;</span>
 </code></pre></div>
 <h3 id="publishing-packages"><a class="toclink" href="#publishing-packages">Publishing packages</a></h3>
 <p>If you also want to publish your own packages to AWS CodeArtifact, you can use <code>uv publish</code> as
@@ -2970,7 +2970,7 @@ from the credentials:</p>
         <span class="md-icon" title="Last update">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
         </span>
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 5, 2025</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 11, 2025</span>
       </span>
     
     
