@@ -79,8 +79,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2025-02-12 16:02:16Z",
-        "dateModified": "2025-02-12 16:02:16Z",
+        "datePublished": "2025-02-13 21:44:01Z",
+        "dateModified": "2025-02-13 21:44:01Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -5082,9 +5082,9 @@
 </code></pre></div>
 <h3 class="cli-reference">Options</h3>
 
-<dl class="cli-reference"><dt><code>--active</code></dt><dd><p>Prefer the active virtual environment over the project&#8217;s virtual environment.</p>
+<dl class="cli-reference"><dt><code>--active</code></dt><dd><p>Sync dependencies to the active virtual environment.</p>
 
-<p>If the project virtual environment is active or no virtual environment is active, this has no effect.</p>
+<p>Instead of creating or updating the virtual environment for the project or script, the active virtual environment will be preferred, if the <code>VIRTUAL_ENV</code> environment variable is set.</p>
 
 </dd><dt><code>--all-extras</code></dt><dd><p>Include all optional dependencies.</p>
 
@@ -8289,7 +8289,7 @@ uv will exit with an error.</p>
 
 <dl class="cli-reference"><dt><code>TARGETS</code></dt><dd><p>The Python version(s) to install.</p>
 
-<p>If not provided, the requested Python version(s) will be read from the <code>.python-versions</code> or <code>.python-version</code> files. If neither file is present, uv will check if it has installed any Python versions. If not, it will install the latest stable version of Python.</p>
+<p>If not provided, the requested Python version(s) will be read from the <code>UV_PYTHON</code> environment variable then <code>.python-versions</code> or <code>.python-version</code> files. If none of the above are present, uv will check if it has installed any Python versions. If not, it will install the latest stable version of Python.</p>
 
 <p>See <a href="#uv-python">uv python</a> to view supported request formats.</p>
 
@@ -9317,11 +9317,13 @@ uv will exit with an error.</p>
 
 <p>This setting has no effect when used in the <code>uv pip</code> interface.</p>
 
-</dd><dt><code>--python</code> <i>python</i></dt><dd><p>The Python interpreter to use during resolution.</p>
+</dd><dt><code>--python</code>, <code>-p</code> <i>python</i></dt><dd><p>The Python interpreter to use during resolution.</p>
 
 <p>A Python interpreter is required for building source distributions to determine package metadata when there are not wheels.</p>
 
 <p>The interpreter is also used to determine the default minimum Python version, unless <code>--python-version</code> is provided.</p>
+
+<p>This option respects <code>UV_PYTHON</code>, but when set via environment variable, it is overridden by <code>--python-version</code>.</p>
 
 <p>See <a href="#uv-python">uv python</a> for details on Python discovery and supported request formats.</p>
 
@@ -9424,7 +9426,7 @@ uv will exit with an error.</p>
 
 <li><code>only-system</code>:  Only use system Python installations; never use managed Python installations</li>
 </ul>
-</dd><dt><code>--python-version</code>, <code>-p</code> <i>python-version</i></dt><dd><p>The Python version to use for resolution.</p>
+</dd><dt><code>--python-version</code> <i>python-version</i></dt><dd><p>The Python version to use for resolution.</p>
 
 <p>For example, <code>3.8</code> or <code>3.8.17</code>.</p>
 
@@ -12930,7 +12932,7 @@ With these settings, the following two calls are equivalent:</code></pre>
         <span class="md-icon" title="Last update">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
         </span>
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 12, 2025</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 13, 2025</span>
       </span>
     
     
