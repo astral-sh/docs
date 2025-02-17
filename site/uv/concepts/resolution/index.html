@@ -79,8 +79,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2025-01-28 17:17:34Z",
-        "dateModified": "2025-01-28 17:17:34Z",
+        "datePublished": "2025-02-17 17:27:57Z",
+        "dateModified": "2025-02-17 17:27:57Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -1568,6 +1568,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#platform-specific-resolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Platform-specific resolution
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#universal-resolution" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1576,16 +1587,33 @@
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#platform-specific-resolution" class="md-nav__link">
+    <nav class="md-nav" aria-label="Universal resolution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#limited-resolution-environments" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Platform-specific resolution
+        Limited resolution environments
       
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#required-environments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Required environments
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2730,6 +2758,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#platform-specific-resolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Platform-specific resolution
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#universal-resolution" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2738,16 +2777,33 @@
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#platform-specific-resolution" class="md-nav__link">
+    <nav class="md-nav" aria-label="Universal resolution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#limited-resolution-environments" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Platform-specific resolution
+        Limited resolution environments
       
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#required-environments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Required environments
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -3027,6 +3083,25 @@ the same platform the lockfile was created on. To solve this problem, platform-i
 "universal" resolvers exist.</p>
 <p>uv supports both <a href="#platform-specific-resolution">platform-specific</a> and
 <a href="#universal-resolution">universal</a> resolution.</p>
+<h2 id="platform-specific-resolution"><a class="toclink" href="#platform-specific-resolution">Platform-specific resolution</a></h2>
+<p>By default, uv's pip interface, i.e., <a href="../../pip/compile/"><code>uv pip compile</code></a>, produces a resolution
+that is platform-specific, like <code>pip-tools</code>. There is no way to use platform-specific resolution in
+the uv's project interface.</p>
+<p>uv also supports resolving for specific, alternate platforms and Python versions with the
+<code>--python-platform</code> and <code>--python-version</code> options. For example, if using Python 3.12 on macOS,
+<code>uv pip compile --python-platform linux --python-version 3.10 requirements.in</code> can be used to
+produce a resolution for Python 3.10 on Linux instead. Unlike universal resolution, during
+platform-specific resolution, the provided <code>--python-version</code> is the exact python version to use,
+not a lower bound.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Python's environment markers expose far more information about the current machine
+than can be expressed by a simple <code>--python-platform</code> argument. For example, the <code>platform_version</code> marker
+on macOS includes the time at which the kernel was built, which can (in theory) be encoded in
+package requirements. uv's resolver makes a best-effort attempt to generate a resolution that is
+compatible with any machine running on the target <code>--python-platform</code>, which should be sufficient for
+most use cases, but may lose fidelity for complex package and platform combinations.</p>
+</div>
 <h2 id="universal-resolution"><a class="toclink" href="#universal-resolution">Universal resolution</a></h2>
 <p>uv's lockfile (<code>uv.lock</code>) is created with a universal resolution and is portable across platforms.
 This ensures that dependencies are locked for everyone working on the project, regardless of
@@ -3056,25 +3131,61 @@ ignores upper bounds entirely. For example, <code>&gt;=3.8, &lt;4</code> is trea
 bounds on <code>requires-python</code> often leads to formally correct but practically incorrect resolutions,
 as, e.g., resolvers will backtrack to the first published version that omits the upper bound (see:
 <a href="https://discuss.python.org/t/requires-python-upper-limits/12663"><code>Requires-Python</code> upper limits</a>).</p>
-<h2 id="platform-specific-resolution"><a class="toclink" href="#platform-specific-resolution">Platform-specific resolution</a></h2>
-<p>By default, uv's pip interface, i.e., <a href="../../pip/compile/"><code>uv pip compile</code></a>, produces a resolution
-that is platform-specific, like <code>pip-tools</code>. There is no way to use platform-specific resolution in
-the uv's project interface.</p>
-<p>uv also supports resolving for specific, alternate platforms and Python versions with the
-<code>--python-platform</code> and <code>--python-version</code> options. For example, if using Python 3.12 on macOS,
-<code>uv pip compile --python-platform linux --python-version 3.10 requirements.in</code> can be used to
-produce a resolution for Python 3.10 on Linux instead. Unlike universal resolution, during
-platform-specific resolution, the provided <code>--python-version</code> is the exact python version to use,
-not a lower bound.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Python's environment markers expose far more information about the current machine
-than can be expressed by a simple <code>--python-platform</code> argument. For example, the <code>platform_version</code> marker
-on macOS includes the time at which the kernel was built, which can (in theory) be encoded in
-package requirements. uv's resolver makes a best-effort attempt to generate a resolution that is
-compatible with any machine running on the target <code>--python-platform</code>, which should be sufficient for
-most use cases, but may lose fidelity for complex package and platform combinations.</p>
-</div>
+<h3 id="limited-resolution-environments"><a class="toclink" href="#limited-resolution-environments">Limited resolution environments</a></h3>
+<p>By default, the universal resolver attempts to solve for all platforms and Python versions.</p>
+<p>If your project supports only a limited set of platforms or Python versions, you can constrain the
+set of solved platforms via the <code>environments</code> setting, which accepts a list of PEP 508 environment
+markers. In other words, you can use the <code>environments</code> setting to <em>reduce</em> the set of supported
+platforms.</p>
+<p>For example, to constrain the lockfile to macOS and Linux, and avoid solving for Windows:</p>
+<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">[tool.uv]</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">environments</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="s2">&quot;sys_platform == &#39;darwin&#39;&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="s2">&quot;sys_platform == &#39;linux&#39;&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">]</span>
+</code></pre></div>
+<p>Or, to avoid solving for alternative Python implementations:</p>
+<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">[tool.uv]</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">environments</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="s2">&quot;implementation_name == &#39;cpython&#39;&quot;</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">]</span>
+</code></pre></div>
+<p>Entries in the <code>environments</code> setting must be disjoint (i.e., they must not overlap). For example,
+<code>sys_platform == 'darwin'</code> and <code>sys_platform == 'linux'</code> are disjoint, but
+<code>sys_platform == 'darwin'</code> and <code>python_version &gt;= '3.9'</code> are not, since both could be true at the
+same time.</p>
+<h3 id="required-environments"><a class="toclink" href="#required-environments">Required environments</a></h3>
+<p>In the Python ecosystem, packages can be published as source distributions, built distributions
+(wheels), or both; but to install a package, a built distribution is required. If a package lacks a
+built distribution, or lacks a distribution for the current platform or Python version (built
+distributions are often platform-specific), uv will attempt to build the package from source, then
+install the resulting built distribution.</p>
+<p>Some packages (like PyTorch) publish built distributions, but omit a source distribution. Such
+packages are <em>only</em> installable on platforms for which a built distribution is available. For
+example, if a package publishes built distributions for Linux, but not macOS or Windows, then that
+package will <em>only</em> be installable on Windows.</p>
+<p>Packages that lack source distributions cause problems for universal resolution, since there will
+typically be at least one platform or Python version for which the package is not installable.</p>
+<p>By default, uv requires each such package to include at least one wheel that is compatible with the
+target Python version. The <code>required-environments</code> setting can be used to ensure that the resulting
+resolution contains wheels for specific platforms, or fails if no such wheels are available.</p>
+<p>While the <code>environments</code> setting <em>limits</em> the set of environments that uv will consider when
+resolving dependencies, <code>required-environments</code> <em>expands</em> the set of platforms that uv <em>must</em>
+support when resolving dependencies.</p>
+<p>For example, <code>environments = ["sys_platform == 'darwin'"]</code> would limit uv to solving for macOS (and
+ignoring Linux and Windows). On the other hand,
+<code>required-environments = ["sys_platform == 'darwin'"]</code> would <em>require</em> that any package without a
+source distribution include a wheel for macOS in order to be installable (and would fail if no such
+wheel is available).</p>
+<p>In practice, <code>required-environments</code> can be useful for declaring explicit support for non-latest
+platforms, since this often requires backtracking past the latest published versions of those
+packages. For example, to guarantee that any built distribution-only packages includes support for
+Intel macOS:</p>
+<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">[tool.uv]</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">required-environments</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="s2">&quot;sys_platform == &#39;darwin&#39; and platform_machine == &#39;x86_64&#39;&quot;</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="p">]</span>
+</code></pre></div>
 <h2 id="dependency-preferences"><a class="toclink" href="#dependency-preferences">Dependency preferences</a></h2>
 <p>If resolution output file exists, i.e. a uv lockfile (<code>uv.lock</code>) or a requirements output file
 (<code>requirements.txt</code>), uv will <em>prefer</em> the dependency versions listed there. Similarly, if
@@ -3092,41 +3203,41 @@ direct and indirect (transitive). Alternatively, <code>--resolution lowest-direc
 compatible versions for all direct dependencies, while using the latest compatible versions for all
 other dependencies. uv will always use the latest versions for build dependencies.</p>
 <p>For example, given the following <code>requirements.in</code> file:</p>
-<div class="highlight"><span class="filename">requirements.in</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">flask</span><span class="o">&gt;=</span><span class="mf">2.0.0</span>
+<div class="highlight"><span class="filename">requirements.in</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">flask</span><span class="o">&gt;=</span><span class="mf">2.0.0</span>
 </code></pre></div>
 <p>Running <code>uv pip compile requirements.in</code> would produce the following <code>requirements.txt</code> file:</p>
-<div class="highlight"><span class="filename">requirements.txt</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># This file was autogenerated by uv via the following command:</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1">#    uv pip compile requirements.in</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">blinker</span><span class="o">==</span><span class="mf">1.7.0</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="c1"># via flask</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">click</span><span class="o">==</span><span class="mf">8.1.7</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="c1"># via flask</span>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="n">flask</span><span class="o">==</span><span class="mf">3.0.0</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">itsdangerous</span><span class="o">==</span><span class="mf">2.1.2</span>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="c1"># via flask</span>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="n">jinja2</span><span class="o">==</span><span class="mf">3.1.2</span>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    <span class="c1"># via flask</span>
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="n">markupsafe</span><span class="o">==</span><span class="mf">2.1.3</span>
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    <span class="c1"># via</span>
-<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>    <span class="c1">#   jinja2</span>
-<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>    <span class="c1">#   werkzeug</span>
-<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="n">werkzeug</span><span class="o">==</span><span class="mf">3.0.1</span>
-<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>    <span class="c1"># via flask</span>
+<div class="highlight"><span class="filename">requirements.txt</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># This file was autogenerated by uv via the following command:</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="c1">#    uv pip compile requirements.in</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">blinker</span><span class="o">==</span><span class="mf">1.7.0</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="c1"># via flask</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">click</span><span class="o">==</span><span class="mf">8.1.7</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="c1"># via flask</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="n">flask</span><span class="o">==</span><span class="mf">3.0.0</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="n">itsdangerous</span><span class="o">==</span><span class="mf">2.1.2</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>    <span class="c1"># via flask</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="n">jinja2</span><span class="o">==</span><span class="mf">3.1.2</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>    <span class="c1"># via flask</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="n">markupsafe</span><span class="o">==</span><span class="mf">2.1.3</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>    <span class="c1"># via</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>    <span class="c1">#   jinja2</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>    <span class="c1">#   werkzeug</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="n">werkzeug</span><span class="o">==</span><span class="mf">3.0.1</span>
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>    <span class="c1"># via flask</span>
 </code></pre></div>
 <p>However, <code>uv pip compile --resolution lowest requirements.in</code> would instead produce:</p>
-<div class="highlight"><span class="filename">requirements.in</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># This file was autogenerated by uv via the following command:</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="c1">#    uv pip compile requirements.in --resolution lowest</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">click</span><span class="o">==</span><span class="mf">7.1.2</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="c1"># via flask</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">flask</span><span class="o">==</span><span class="mf">2.0.0</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="n">itsdangerous</span><span class="o">==</span><span class="mf">2.0.0</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="c1"># via flask</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="n">jinja2</span><span class="o">==</span><span class="mf">3.0.0</span>
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="c1"># via flask</span>
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="n">markupsafe</span><span class="o">==</span><span class="mf">2.0.0</span>
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    <span class="c1"># via jinja2</span>
-<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="n">werkzeug</span><span class="o">==</span><span class="mf">2.0.0</span>
-<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>    <span class="c1"># via flask</span>
+<div class="highlight"><span class="filename">requirements.in</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># This file was autogenerated by uv via the following command:</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="c1">#    uv pip compile requirements.in --resolution lowest</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">click</span><span class="o">==</span><span class="mf">7.1.2</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="c1"># via flask</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="n">flask</span><span class="o">==</span><span class="mf">2.0.0</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="n">itsdangerous</span><span class="o">==</span><span class="mf">2.0.0</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>    <span class="c1"># via flask</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="n">jinja2</span><span class="o">==</span><span class="mf">3.0.0</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>    <span class="c1"># via flask</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="n">markupsafe</span><span class="o">==</span><span class="mf">2.0.0</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>    <span class="c1"># via jinja2</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="n">werkzeug</span><span class="o">==</span><span class="mf">2.0.0</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>    <span class="c1"># via flask</span>
 </code></pre></div>
 <p>When publishing libraries, it is recommended to separately run tests with <code>--resolution lowest</code> or
 <code>--resolution lowest-direct</code> in continuous integration to ensure compatibility with the declared
@@ -3162,9 +3273,9 @@ each package for each supported Python version, while minimizing the number of s
 across platforms.</p>
 <p>For example, when resolving <code>numpy</code> with a Python requirement of <code>&gt;=3.8</code>, uv would select the
 following versions:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>numpy==1.24.4 ; python_version == &quot;3.8&quot;
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>numpy==2.0.2 ; python_version == &quot;3.9&quot;
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>numpy==2.2.0 ; python_version &gt;= &quot;3.10&quot;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>numpy==1.24.4 ; python_version == &quot;3.8&quot;
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>numpy==2.0.2 ; python_version == &quot;3.9&quot;
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>numpy==2.2.0 ; python_version &gt;= &quot;3.10&quot;
 </code></pre></div>
 <p>This resolution reflects the fact that NumPy 2.2.0 and later require at least Python 3.10, while
 earlier versions are compatible with Python 3.8 and 3.9.</p>
@@ -3219,10 +3330,10 @@ scenario, doing so would require building the package, which would fail on non-L
 upfront, thereby allowing uv to skip the build step and use the provided metadata instead.</p>
 <p>For example, to provide metadata for <code>chumpy</code> upfront, include its <code>dependency-metadata</code> in the
 <code>pyproject.toml</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">[[tool.uv.dependency-metadata]]</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;chumpy&quot;</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.70&quot;</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">requires-dist</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;numpy&gt;=1.8.1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;scipy&gt;=0.13.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;six&gt;=1.11.0&quot;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">[[tool.uv.dependency-metadata]]</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;chumpy&quot;</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.70&quot;</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="n">requires-dist</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;numpy&gt;=1.8.1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;scipy&gt;=0.13.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;six&gt;=1.11.0&quot;</span><span class="p">]</span>
 </code></pre></div>
 <p>These declarations are intended for cases in which a package does <em>not</em> declare static metadata
 upfront, though they are also useful for packages that require disabling build isolation. In such
@@ -3230,19 +3341,19 @@ cases, it may be easier to declare the package metadata upfront, rather than cre
 environment prior to resolving the package.</p>
 <p>For example, you can declare the metadata for <code>flash-attn</code>, allowing uv to resolve without building
 the package from source (which itself requires installing <code>torch</code>):</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">[project]</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;project&quot;</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">requires-python</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&gt;=3.12&quot;</span>
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;flash-attn&quot;</span><span class="p">]</span>
-<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
-<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="k">[tool.uv.sources]</span>
-<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="n">flash-attn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">git</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;https://github.com/Dao-AILab/flash-attention&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">tag</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;v2.6.3&quot;</span><span class="w"> </span><span class="p">}</span>
-<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>
-<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="k">[[tool.uv.dependency-metadata]]</span>
-<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;flash-attn&quot;</span>
-<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2.6.3&quot;</span>
-<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="n">requires-dist</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;torch&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;einops&quot;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">[project]</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;project&quot;</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="n">requires-python</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&gt;=3.12&quot;</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;flash-attn&quot;</span><span class="p">]</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="k">[tool.uv.sources]</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="n">flash-attn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">git</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;https://github.com/Dao-AILab/flash-attention&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">tag</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;v2.6.3&quot;</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="k">[[tool.uv.dependency-metadata]]</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;flash-attn&quot;</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2.6.3&quot;</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="n">requires-dist</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;torch&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;einops&quot;</span><span class="p">]</span>
 </code></pre></div>
 <p>Like dependency overrides, <code>tool.uv.dependency-metadata</code> can also be used for cases in which a
 package's metadata is incorrect or incomplete, or when a package is not available in the package
@@ -3339,7 +3450,7 @@ other words, lockfiles may only be rejected across minor releases.</p>
         <span class="md-icon" title="Last update">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
         </span>
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 28, 2025</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 17, 2025</span>
       </span>
     
     
