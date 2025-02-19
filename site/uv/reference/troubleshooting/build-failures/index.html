@@ -79,8 +79,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2025-02-03 20:13:55Z",
-        "dateModified": "2025-02-03 20:13:55Z",
+        "datePublished": "2025-02-18 01:58:36Z",
+        "dateModified": "2025-02-18 01:58:36Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -2321,6 +2321,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#old-version-of-a-build-dependency-is-used" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Old Version of a build dependency is used
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#package-is-only-needed-for-an-unused-platform" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2728,6 +2739,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#old-version-of-a-build-dependency-is-used" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Old Version of a build dependency is used
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#package-is-only-needed-for-an-unused-platform" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3078,6 +3100,22 @@ version of <code>apache-beam</code>.</p>
 uv will avoid using an old version of <code>apache-beam</code>.</p>
 <p>Constraints can also be defined for indirect dependencies using <code>constraints.txt</code> files or the
 <a href="../../settings/#constraint-dependencies"><code>constraint-dependencies</code></a> setting.</p>
+<h3 id="old-version-of-a-build-dependency-is-used"><a class="toclink" href="#old-version-of-a-build-dependency-is-used">Old Version of a build dependency is used</a></h3>
+<p>If a package fails to build because <code>uv</code> selects an incompatible or outdated version of a build-time
+dependency, you can enforce constraints specifically for build dependencies. The
+<a href="../../settings/#build-constraint-dependencies"><code>build-constraint-dependencies</code></a> setting (or an
+analogous <code>build-constraints.txt</code> file) can be used to ensure that <code>uv</code> selects an appropriate
+version of a given build requirements.</p>
+<p>For example, the issue described in
+<a href="https://github.com/astral-sh/uv/issues/5551#issuecomment-2256055975">#5551</a> could be addressed by
+specifying a build constraint that excludes <code>setuptools</code> version <code>72.0.0</code>:</p>
+<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">[tool.uv]</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="c1"># Prevent setuptools version 72.0.0 from being used as a build dependency.</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="n">build-constraint-dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;setuptools!=72.0.0&quot;</span><span class="p">]</span>
+</code></pre></div>
+<p>The build constraint will thus ensure that any package requiring <code>setuptools</code> during the build
+process will avoid using the problematic version, preventing build failures caused by incompatible
+build dependencies.</p>
 <h3 id="package-is-only-needed-for-an-unused-platform"><a class="toclink" href="#package-is-only-needed-for-an-unused-platform">Package is only needed for an unused platform</a></h3>
 <p>If locking fails due to building a package from a platform you do not need to support, consider
 <a href="../../../concepts/projects/config/#limited-resolution-environments">limiting resolution</a> to your
@@ -3087,8 +3125,8 @@ supported platforms.</p>
 older Python versions and newer versions for newer Python version. For example, <code>numpy</code> only
 supports four Python minor version at a time, so to support a wider range of Python versions, e.g.,
 Python 3.8 to 3.13, the <code>numpy</code> requirement needs to be split:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>numpy&gt;=1.23; python_version &gt;= &quot;3.10&quot;
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>numpy&lt;1.23; python_version &lt; &quot;3.10&quot;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>numpy&gt;=1.23; python_version &gt;= &quot;3.10&quot;
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>numpy&lt;1.23; python_version &lt; &quot;3.10&quot;
 </code></pre></div>
 <h3 id="package-is-only-usable-on-a-specific-platform"><a class="toclink" href="#package-is-only-usable-on-a-specific-platform">Package is only usable on a specific platform</a></h3>
 <p>If locking fails due to building a package that is only usable on another platform, you can
@@ -3108,7 +3146,7 @@ override.</p>
         <span class="md-icon" title="Last update">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
         </span>
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 3, 2025</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 18, 2025</span>
       </span>
     
     
