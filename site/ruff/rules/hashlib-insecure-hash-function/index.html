@@ -866,10 +866,20 @@ contexts. Instead, use a known secure hash function such as SHA256.</p>
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="nb">hash</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">certificate</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
 <a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="k">return</span> <span class="nb">hash</span> <span class="o">==</span> <span class="n">known_hash</span>
 </code></pre></div>
+<p>or add <code>usedforsecurity=False</code> if the hashing algorithm is not used in a security context, e.g.
+as a non-cryptographic one-way compression function:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">hashlib</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">certificate_is_valid</span><span class="p">(</span><span class="n">certificate</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">known_hash</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="nb">hash</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="n">certificate</span><span class="p">,</span> <span class="n">usedforsecurity</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="k">return</span> <span class="nb">hash</span> <span class="o">==</span> <span class="n">known_hash</span>
+</code></pre></div>
 <h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/library/hashlib.html">Python documentation: <code>hashlib</code> — Secure hashes and message digests</a></li>
 <li><a href="https://docs.python.org/3/library/crypt.html">Python documentation: <code>crypt</code> — Function to check Unix passwords</a></li>
+<li><a href="https://docs.python.org/3/library/hashlib.html#hashlib.algorithms_guaranteed">Python documentation: <code>FIPS</code> - FIPS compliant hashlib implementation</a></li>
 <li><a href="https://cwe.mitre.org/data/definitions/327.html">Common Weakness Enumeration: CWE-327</a></li>
 <li><a href="https://cwe.mitre.org/data/definitions/328.html">Common Weakness Enumeration: CWE-328</a></li>
 <li><a href="https://cwe.mitre.org/data/definitions/916.html">Common Weakness Enumeration: CWE-916</a></li>

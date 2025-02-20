@@ -843,6 +843,9 @@
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for class methods that use a name other than <code>cls</code> for their
 first argument.</p>
+<p>With <a href="../../settings/#preview"><code>preview</code></a> enabled, the method <code>__new__</code> is exempted from this
+check and the corresponding violation is then caught by
+<a href="https://docs.astral.sh/ruff/rules/bad-staticmethod-argument/"><code>bad-staticmethod-argument</code></a>.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p><a href="https://peps.python.org/pep-0008/#function-and-method-arguments">PEP 8</a> recommends the use of <code>cls</code> as the first argument for all class
 methods:</p>
