@@ -1045,6 +1045,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#source-code-actions-in-notebooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ruff behaves unexpectedly when using source.* code actions in Notebooks. What's going on?
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1650,9 +1661,26 @@ making changes to code, even for seemingly trivial fixes. If a "safe" fix breaks
 <p>Ruff's color output is powered by the <a href="https://crates.io/crates/colored"><code>colored</code></a> crate, which
 attempts to automatically detect whether the output stream supports color. However, you can force
 colors off by setting the <code>NO_COLOR</code> environment variable to any value (e.g., <code>NO_COLOR=1</code>), or
-force colors on by setting <code>FORCE_COLOR</code> to any non-empty value (e.g. <code>FORCE_COLOR=1</code>).</p>
+force colors on by setting <code>FORCE_COLOR</code> to any non-empty value (e.g., <code>FORCE_COLOR=1</code>).</p>
 <p><a href="https://crates.io/crates/colored"><code>colored</code></a> also supports the <code>CLICOLOR</code> and <code>CLICOLOR_FORCE</code>
 environment variables (see the <a href="https://bixense.com/clicolors/">spec</a>).</p>
+<h2 id="source-code-actions-in-notebooks"><a class="toclink" href="#source-code-actions-in-notebooks">Ruff behaves unexpectedly when using <code>source.*</code> code actions in Notebooks. What's going on?</a></h2>
+<p>Ruff does not support <code>source.organizeImports</code> and <code>source.fixAll</code> code actions in Jupyter Notebooks
+(<code>notebook.codeActionsOnSave</code> in VS Code). It's recommended to use the <code>notebook</code> prefixed code
+actions for the same such as <code>notebook.source.organizeImports</code> and <code>notebook.source.fixAll</code>
+respectively.</p>
+<p>Ruff requires to have a full view of the notebook to provide accurate diagnostics and fixes. For
+example, if you have a cell that imports a module and another cell that uses that module, Ruff
+needs to see both cells to mark the import as used. If Ruff were to only see one cell at a time,
+it would incorrectly mark the import as unused.</p>
+<p>When using the <code>source.*</code> code actions for a Notebook, Ruff will be asked to fix any issues for each
+cell in parallel, which can lead to unexpected behavior. For example, if a user has configured to
+run <code>source.organizeImports</code> code action on save for a Notebook, Ruff will attempt to fix the
+imports for the entire notebook corresponding to each cell. This leads to the client making the same
+changes to the notebook multiple times, which can lead to unexpected behavior
+(<a href="https://github.com/astral-sh/ruff-vscode/issues/680">astral-sh/ruff-vscode#680</a>,
+<a href="https://github.com/astral-sh/ruff-vscode/issues/640">astral-sh/ruff-vscode#640</a>,
+<a href="https://github.com/astral-sh/ruff-vscode/issues/391">astral-sh/ruff-vscode#391</a>).</p>
 
 
 

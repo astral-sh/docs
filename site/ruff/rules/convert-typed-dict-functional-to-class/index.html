@@ -843,10 +843,21 @@
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for <code>TypedDict</code> declarations that use functional syntax.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
-<p><code>TypedDict</code> subclasses can be defined either through a functional syntax
+<p><code>TypedDict</code> types can be defined either through a functional syntax
 (<code>Foo = TypedDict(...)</code>) or a class syntax (<code>class Foo(TypedDict): ...</code>).</p>
 <p>The class syntax is more readable and generally preferred over the
 functional syntax.</p>
+<p>Nonetheless, there are some situations in which it is impossible to use
+the class-based syntax. This rule will not apply to those cases. Namely,
+it is impossible to use the class-based syntax if any <code>TypedDict</code> fields are:</p>
+<ul>
+<li>Not valid <a href="https://docs.python.org/3/reference/lexical_analysis.html#identifiers">python identifiers</a> (for example, <code>@x</code>)</li>
+<li><a href="https://docs.python.org/3/reference/lexical_analysis.html#keywords">Python keywords</a> such as <code>in</code></li>
+<li><a href="https://docs.python.org/3/tutorial/classes.html#private-variables">Private names</a> such as <code>__id</code> that would undergo <a href="https://docs.python.org/3/reference/expressions.html#private-name-mangling">name mangling</a> at runtime
+    if the class-based syntax was used</li>
+<li><a href="https://docs.python.org/3/reference/lexical_analysis.html#reserved-classes-of-identifiers">Dunder names</a> such as <code>__int__</code> that can confuse type checkers if they're used
+    with the class-based syntax.</li>
+</ul>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TypedDict</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>

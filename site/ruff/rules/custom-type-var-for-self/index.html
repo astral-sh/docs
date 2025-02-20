@@ -852,11 +852,15 @@ on the <code>self</code> and <code>cls</code> arguments.</p>
 class methods that return an instance of <code>cls</code>, class methods that return
 <code>cls</code>, and <code>__new__</code> methods.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Foo</span><span class="p">:</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">_S</span><span class="p">],</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_S</span><span class="p">:</span> <span class="o">...</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">foo</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">_S</span><span class="p">,</span> <span class="n">arg</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_S</span><span class="p">:</span> <span class="o">...</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="nd">@classmethod</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">bar</span><span class="p">(</span><span class="bp">cls</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">_S</span><span class="p">],</span> <span class="n">arg</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_S</span><span class="p">:</span> <span class="o">...</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TypeVar</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">_S</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;_S&quot;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="s2">&quot;Foo&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">class</span><span class="w"> </span><span class="nc">Foo</span><span class="p">:</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">_S</span><span class="p">],</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_S</span><span class="p">:</span> <span class="o">...</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">foo</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">_S</span><span class="p">,</span> <span class="n">arg</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_S</span><span class="p">:</span> <span class="o">...</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="nd">@classmethod</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">bar</span><span class="p">(</span><span class="bp">cls</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">_S</span><span class="p">],</span> <span class="n">arg</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_S</span><span class="p">:</span> <span class="o">...</span>
 </code></pre></div>
 <p>Use instead:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Self</span>
@@ -868,12 +872,19 @@ class methods that return an instance of <code>cls</code>, class methods that re
 <a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">bar</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">arg</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span> <span class="o">...</span>
 </code></pre></div>
 <h2 id="fix-behaviour-and-safety"><a class="toclink" href="#fix-behaviour-and-safety">Fix behaviour and safety</a></h2>
-<p>The fix removes all usages and declarations of the custom type variable.
-[PEP-695]-style <code>TypeVar</code> declarations are also removed from the <a href="https://docs.python.org/3/reference/compound_stmts.html#type-params">type parameter list</a>;
-however, old-style <code>TypeVar</code>s do not have their declarations removed. See
-<a href="https://docs.astral.sh/ruff/rules/unused-private-type-var/"><code>unused-private-type-var</code></a> for a rule to clean up unused private type variables.</p>
-<p>If there are any comments within the fix ranges, it will be marked as unsafe.
-Otherwise, it will be marked as safe.</p>
+<p>The fix replaces all references to the custom type variable in the method's header and body
+with references to <code>Self</code>. The fix also adds an import of <code>Self</code> if neither <code>Self</code> nor <code>typing</code>
+is already imported in the module. If your <a href="../../settings/#target-version"><code>target-version</code></a> setting is set to Python 3.11 or
+newer, the fix imports <code>Self</code> from the standard-library <code>typing</code> module; otherwise, the fix
+imports <code>Self</code> from the third-party <a href="https://typing-extensions.readthedocs.io/en/latest/"><code>typing_extensions</code></a> backport package.</p>
+<p>If the custom type variable is a [PEP-695]-style <code>TypeVar</code>, the fix also removes the <code>TypeVar</code>
+declaration from the method's <a href="https://docs.python.org/3/reference/compound_stmts.html#type-params">type parameter list</a>. However, if the type variable is an
+old-style <code>TypeVar</code>, the declaration of the type variable will not be removed by this rule's
+fix, as the type variable could still be used by other functions, methods or classes. See
+<a href="https://docs.astral.sh/ruff/rules/unused-private-type-var/"><code>unused-private-type-var</code></a> for a rule that will clean up unused private type
+variables.</p>
+<p>The fix is only marked as unsafe if there is the possibility that it might delete a comment
+from your code.</p>
 <h2 id="preview-mode-behaviour"><a class="toclink" href="#preview-mode-behaviour">Preview-mode behaviour</a></h2>
 <p>This rule's behaviour has several differences when <a href="../../settings/#preview"><code>preview</code></a> mode is enabled:</p>
 <ol>
