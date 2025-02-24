@@ -79,8 +79,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2025-02-17 17:27:57Z",
-        "dateModified": "2025-02-17 17:27:57Z",
+        "datePublished": "2025-02-24 17:57:28Z",
+        "dateModified": "2025-02-24 17:57:28Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -3134,9 +3134,9 @@ as, e.g., resolvers will backtrack to the first published version that omits the
 <h3 id="limited-resolution-environments"><a class="toclink" href="#limited-resolution-environments">Limited resolution environments</a></h3>
 <p>By default, the universal resolver attempts to solve for all platforms and Python versions.</p>
 <p>If your project supports only a limited set of platforms or Python versions, you can constrain the
-set of solved platforms via the <code>environments</code> setting, which accepts a list of PEP 508 environment
-markers. In other words, you can use the <code>environments</code> setting to <em>reduce</em> the set of supported
-platforms.</p>
+set of solved platforms via the <code>environments</code> setting, which accepts a list of
+<a href="https://packaging.python.org/en/latest/specifications/dependency-specifiers/#environment-markers">PEP 508 environment markers</a>.
+In other words, you can use the <code>environments</code> setting to <em>reduce</em> the set of supported platforms.</p>
 <p>For example, to constrain the lockfile to macOS and Linux, and avoid solving for Windows:</p>
 <div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">[tool.uv]</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">environments</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
@@ -3168,7 +3168,9 @@ package will <em>only</em> be installable on Windows.</p>
 typically be at least one platform or Python version for which the package is not installable.</p>
 <p>By default, uv requires each such package to include at least one wheel that is compatible with the
 target Python version. The <code>required-environments</code> setting can be used to ensure that the resulting
-resolution contains wheels for specific platforms, or fails if no such wheels are available.</p>
+resolution contains wheels for specific platforms, or fails if no such wheels are available. The
+setting accepts a list of
+<a href="https://packaging.python.org/en/latest/specifications/dependency-specifiers/#environment-markers">PEP 508 environment markers</a>.</p>
 <p>While the <code>environments</code> setting <em>limits</em> the set of environments that uv will consider when
 resolving dependencies, <code>required-environments</code> <em>expands</em> the set of platforms that uv <em>must</em>
 support when resolving dependencies.</p>
@@ -3450,7 +3452,7 @@ other words, lockfiles may only be rejected across minor releases.</p>
         <span class="md-icon" title="Last update">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
         </span>
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 17, 2025</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 24, 2025</span>
       </span>
     
     
