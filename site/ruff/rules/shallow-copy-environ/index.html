@@ -858,6 +858,11 @@ copy of <code>os.environ</code> will also mutate the original object.</p>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">env</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 </code></pre></div>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
+<p>This rule's fix is marked as unsafe because replacing a shallow copy with a deep copy can lead
+to unintended side effects. If the program modifies the shallow copy at some point, changing it
+to a deep copy may prevent those modifications from affecting the original data, potentially
+altering the program's behavior.</p>
 <h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/library/copy.html">Python documentation: <code>copy</code> — Shallow and deep copy operations</a></li>
