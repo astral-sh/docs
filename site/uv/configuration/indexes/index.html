@@ -79,8 +79,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2024-12-19 19:37:27Z",
-        "dateModified": "2024-12-19 19:37:27Z",
+        "datePublished": "2025-03-11 20:01:42Z",
+        "dateModified": "2025-03-11 20:01:42Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -1777,13 +1777,52 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#providing-credentials" class="md-nav__link">
+  <a href="#authentication" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Providing credentials
+        Authentication
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Authentication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#providing-credentials-directly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Providing credentials directly
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-credential-providers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using credential providers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disabling-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disabling authentication
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2598,13 +2637,52 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#providing-credentials" class="md-nav__link">
+  <a href="#authentication" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Providing credentials
+        Authentication
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Authentication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#providing-credentials-directly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Providing credentials directly
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-credential-providers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using credential providers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disabling-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disabling authentication
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2790,11 +2868,16 @@ December 2022.</p>
 </ul>
 <p>While <code>unsafe-best-match</code> is the closest to pip's behavior, it exposes users to the risk of
 "dependency confusion" attacks.</p>
-<h2 id="providing-credentials"><a class="toclink" href="#providing-credentials">Providing credentials</a></h2>
-<p>Most private registries require authentication to access packages, typically via a username and
+<h2 id="authentication"><a class="toclink" href="#authentication">Authentication</a></h2>
+<p>Most private package indexes require authentication to access packages, typically via a username and
 password (or access token).</p>
-<p>To authenticate with a provide index, either provide credentials via environment variables or embed
-them in the URL.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>See the <a href="../../guides/integration/alternative-indexes/">alternative index guide</a> for details on
+authenticating with specific private index providers, e.g., from AWS, Azure, or GCP.</p>
+</div>
+<h3 id="providing-credentials-directly"><a class="toclink" href="#providing-credentials-directly">Providing credentials directly</a></h3>
+<p>Credentials can be provided directly via environment variables or by embedding them in the URL.</p>
 <p>For example, given an index named <code>internal-proxy</code> that requires a username (<code>public</code>) and password
 (<code>koala</code>), define the index (without credentials) in your <code>pyproject.toml</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">[[tool.uv.index]]</span>
@@ -2816,6 +2899,36 @@ the plaintext <code>pyproject.toml</code> file.</p>
 </code></pre></div>
 <p>For security purposes, credentials are <em>never</em> stored in the <code>uv.lock</code> file; as such, uv <em>must</em> have
 access to the authenticated URL at installation time.</p>
+<h3 id="using-credential-providers"><a class="toclink" href="#using-credential-providers">Using credential providers</a></h3>
+<p>In addition to providing credentials directly, uv supports discovery of credentials from netrc and
+keyring. See the <a href="../authentication/#http-authentication">HTTP authentication</a> documentation for
+details on setting up specific credential providers.</p>
+<p>By default, uv will attempt an unauthenticated request before querying providers. If the request
+fails, uv will search for credentials. If credentials are found, an authenticated request will be
+attempted.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If a username is set, uv will search for credentials before making an unauthenticated request.</p>
+</div>
+<p>Some indexes (e.g., GitLab) will forward unauthenticated requests to a public index, like PyPI —
+which means that uv will not search for credentials. This behavior can be changed per-index, using
+the <code>authenticate</code> setting. For example, to always search for credentials:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">[[tool.uv.index]]</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;example&quot;</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://example.com/simple&quot;</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="hll"><span class="n">authenticate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;always&quot;</span>
+</span></code></pre></div>
+<p>When <code>authenticate</code> is set to <code>always</code>, uv will eagerly search for credentials and error if
+credentials cannot be found.</p>
+<h3 id="disabling-authentication"><a class="toclink" href="#disabling-authentication">Disabling authentication</a></h3>
+<p>To prevent leaking credentials, authentication can be disabled for an index:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">[[tool.uv.index]]</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;example&quot;</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://example.com/simple&quot;</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="hll"><span class="n">authenticate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;never&quot;</span>
+</span></code></pre></div>
+<p>When <code>authenticate</code> is set to <code>never</code>, uv will never search for credentials for the given index and
+will error if credentials are provided directly.</p>
 <h2 id="-index-url-and-extra-index-url"><a class="toclink" href="#-index-url-and-extra-index-url"><code>--index-url</code> and <code>--extra-index-url</code></a></h2>
 <p>In addition to the <code>[[tool.uv.index]]</code> configuration option, uv supports pip-style <code>--index-url</code> and
 <code>--extra-index-url</code> command-line options for compatibility, where <code>--index-url</code> defines the default
@@ -2845,7 +2958,7 @@ entries, with <code>default = true</code> enabled for the former. In that contex
         <span class="md-icon" title="Last update">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
         </span>
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 19, 2024</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 11, 2025</span>
       </span>
     
     
