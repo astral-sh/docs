@@ -848,14 +848,13 @@ the difficulty of reading and maintaining the code, and can cause
 non-obvious errors. Readers may mistake the first-party module for the
 standard-library module and vice versa.</p>
 <p>Standard-library modules can be marked as exceptions to this rule via the
-<a href="../../settings/#lint_flake8-builtins_builtins-allowed-modules"><code>lint.flake8-builtins.builtins-allowed-modules</code></a> configuration option.</p>
-<p>By default, only the last component of the module name is considered, so <code>logging.py</code>,
-<code>utils/logging.py</code>, and <code>utils/logging/__init__.py</code> would all clash with the builtin <code>logging</code>
-module. With the <a href="../../settings/#lint_flake8-builtins_builtins-strict-checking"><code>lint.flake8-builtins.builtins-strict-checking</code></a> option set to <code>false</code>, the
-module path is considered, so only a top-level <code>logging.py</code> or <code>logging/__init__.py</code> will
-trigger the rule and <code>utils/logging.py</code>, for example, would not. In preview mode, the default
-value of <a href="../../settings/#lint_flake8-builtins_builtins-strict-checking"><code>lint.flake8-builtins.builtins-strict-checking</code></a> is <code>false</code> rather than <code>true</code> in
-stable mode.</p>
+<a href="../../settings/#lint_flake8-builtins_allowed-modules"><code>lint.flake8-builtins.allowed-modules</code></a> configuration option.</p>
+<p>By default, the module path relative to the project root or <a href="../../settings/#src"><code>src</code></a> directories is considered,
+so a top-level <code>logging.py</code> or <code>logging/__init__.py</code> will clash with the builtin <code>logging</code>
+module, but <code>utils/logging.py</code>, for example, will not. With the
+<a href="../../settings/#lint_flake8-builtins_strict-checking"><code>lint.flake8-builtins.strict-checking</code></a> option set to <code>true</code>, only the last component
+of the module name is considered, so <code>logging.py</code>, <code>utils/logging.py</code>, and
+<code>utils/logging/__init__.py</code> will all trigger the rule.</p>
 <p>This rule is not applied to stub files, as the name of a stub module is out
 of the control of the author of the stub file. Instead, a stub should aim to
 faithfully emulate the runtime module it is stubbing.</p>
@@ -871,8 +870,8 @@ standard-library modules now display a custom message.</p>
 </code></pre></div>
 <h2 id="options"><a class="toclink" href="#options">Options</a></h2>
 <ul>
-<li><a href="../../settings/#lint_flake8-builtins_builtins-allowed-modules"><code>lint.flake8-builtins.builtins-allowed-modules</code></a></li>
-<li><a href="../../settings/#lint_flake8-builtins_builtins-strict-checking"><code>lint.flake8-builtins.builtins-strict-checking</code></a></li>
+<li><a href="../../settings/#lint_flake8-builtins_allowed-modules"><code>lint.flake8-builtins.allowed-modules</code></a></li>
+<li><a href="../../settings/#lint_flake8-builtins_strict-checking"><code>lint.flake8-builtins.strict-checking</code></a></li>
 </ul>
 
 

@@ -877,7 +877,7 @@ with references to <code>Self</code>. The fix also adds an import of <code>Self<
 is already imported in the module. If your <a href="../../settings/#target-version"><code>target-version</code></a> setting is set to Python 3.11 or
 newer, the fix imports <code>Self</code> from the standard-library <code>typing</code> module; otherwise, the fix
 imports <code>Self</code> from the third-party <a href="https://typing-extensions.readthedocs.io/en/latest/"><code>typing_extensions</code></a> backport package.</p>
-<p>If the custom type variable is a [PEP-695]-style <code>TypeVar</code>, the fix also removes the <code>TypeVar</code>
+<p>If the custom type variable is a <a href="https://peps.python.org/pep-0695/">PEP-695</a>-style <code>TypeVar</code>, the fix also removes the <code>TypeVar</code>
 declaration from the method's <a href="https://docs.python.org/3/reference/compound_stmts.html#type-params">type parameter list</a>. However, if the type variable is an
 old-style <code>TypeVar</code>, the declaration of the type variable will not be removed by this rule's
 fix, as the type variable could still be used by other functions, methods or classes. See
@@ -885,19 +885,6 @@ fix, as the type variable could still be used by other functions, methods or cla
 variables.</p>
 <p>The fix is only marked as unsafe if there is the possibility that it might delete a comment
 from your code.</p>
-<h2 id="preview-mode-behaviour"><a class="toclink" href="#preview-mode-behaviour">Preview-mode behaviour</a></h2>
-<p>This rule's behaviour has several differences when <a href="../../settings/#preview"><code>preview</code></a> mode is enabled:</p>
-<ol>
-<li>The fix for this rule is currently only available if <code>preview</code> mode is enabled.</li>
-<li>By default, this rule is only applied to methods that have return-type annotations,
-    and the range of the diagnostic is the range of the return-type annotation.
-    In preview mode, this rule is also applied to some methods that do not have
-    return-type annotations. The range of the diagnostic is the range of the function
-    header (from the end of the function name to the end of the parameters).</li>
-<li>In <code>preview</code> mode, the rule uses different logic to determine whether an annotation
-    refers to a type variable. The <code>preview</code>-mode logic is more accurate, but may lead
-    to more methods being flagged than if <code>preview</code> mode is disabled.</li>
-</ol>
 
 
 

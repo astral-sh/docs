@@ -678,6 +678,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Config file discovery">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inferring-the-python-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inferring the Python version
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1283,6 +1300,16 @@ config file, like so:</p>
 If Ruff detects multiple configuration files in the same directory, the <code>.ruff.toml</code> file will take
 precedence over the <code>ruff.toml</code> file, and the <code>ruff.toml</code> file will take precedence over
 the <code>pyproject.toml</code> file.</p>
+<h3 id="inferring-the-python-version"><a class="toclink" href="#inferring-the-python-version">Inferring the Python version</a></h3>
+<p>When no discovered configuration specifies a <a href="../settings/#target-version"><code>target-version</code></a>, Ruff will attempt to fall back to the minimum version compatible with the <code>requires-python</code> field in a nearby <code>pyproject.toml</code>.
+The rules for this behavior are as follows:</p>
+<ol>
+<li>If a configuration file is passed directly, Ruff does not attempt to infer a missing <code>target-version</code>.</li>
+<li>If a configuration file is found in the filesystem hierarchy, Ruff will infer a missing <code>target-version</code> from the <code>requires-python</code> field in a <code>pyproject.toml</code> file in the same directory as the found configuration.</li>
+<li>If we are using a user-level configuration from <code>${config_dir}/ruff/pyproject.toml</code>, the <code>requires-python</code> field in the first <code>pyproject.toml</code> file found in an ancestor of the current working directory takes precedence over the <code>target-version</code> in the user-level configuration.</li>
+<li>If no configuration files are found, Ruff will infer the <code>target-version</code> from the <code>requires-python</code> field in the first <code>pyproject.toml</code> file found in an ancestor of the current working directory.</li>
+</ol>
+<p>Note that in these last two cases, the behavior of Ruff may differ depending on the working directory from which it is invoked.</p>
 <h2 id="python-file-discovery"><a class="toclink" href="#python-file-discovery">Python file discovery</a></h2>
 <p>When passed a path on the command-line, Ruff will automatically discover all Python files in that
 path, taking into account the <a href="../settings/#exclude"><code>exclude</code></a> and <a href="../settings/#extend-exclude"><code>extend-exclude</code></a>
