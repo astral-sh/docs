@@ -841,14 +841,14 @@
 <p>Derived from the <strong><a href="../#flake8-pytest-style-pt">flake8-pytest-style</a></strong> linter.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for <code>pytest.raises</code> context managers with multiple statements.</p>
+<p>This rule allows <code>pytest.raises</code> bodies to contain <code>for</code>
+loops with empty bodies (e.g., <code>pass</code> or <code>...</code> statements), to test
+iterator behavior.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>When a <code>pytest.raises</code> is used as a context manager and contains multiple
 statements, it can lead to the test passing when it actually should fail.</p>
 <p>A <code>pytest.raises</code> context manager should only contain a single simple
 statement that raises the expected exception.</p>
-<p>In <a href="https://docs.astral.sh/ruff/preview/">preview</a>, this rule allows <code>pytest.raises</code> bodies to contain <code>for</code>
-loops with empty bodies (e.g., <code>pass</code> or <code>...</code> statements), to test
-iterator behavior.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>

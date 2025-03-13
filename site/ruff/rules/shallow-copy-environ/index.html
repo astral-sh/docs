@@ -840,13 +840,12 @@
 <h1 id="shallow-copy-environ-plw1507"><a class="toclink" href="#shallow-copy-environ-plw1507">shallow-copy-environ (PLW1507)</a></h1>
 <p>Derived from the <strong><a href="../#pylint-pl">Pylint</a></strong> linter.</p>
 <p>Fix is always available.</p>
-<p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Check for shallow <code>os.environ</code> copies.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p><code>os.environ</code> is not a <code>dict</code> object, but rather, a proxy object. As such, mutating a shallow
 copy of <code>os.environ</code> will also mutate the original object.</p>
-<p>See: <a href="https://bugs.python.org/issue15373">#15373</a> for more information.</p>
+<p>See <a href="https://bugs.python.org/issue15373">BPO 15373</a> for more information.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">copy</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>

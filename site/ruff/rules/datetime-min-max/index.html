@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Checks for uses of `datetime.datetime.max` and `datetime.datetime.min`.">
+        <meta name="description" content="Checks for uses of `datetime.datetime.min` and `datetime.datetime.max`.">
       
       
         <meta name="author" content="charliermarsh">
@@ -839,16 +839,15 @@
 
 <h1 id="datetime-min-max-dtz901"><a class="toclink" href="#datetime-min-max-dtz901">datetime-min-max (DTZ901)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-datetimez-dtz">flake8-datetimez</a></strong> linter.</p>
-<p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
-<p>Checks for uses of <code>datetime.datetime.max</code> and <code>datetime.datetime.min</code>.</p>
+<p>Checks for uses of <code>datetime.datetime.min</code> and <code>datetime.datetime.max</code>.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
-<p><code>datetime.max</code> and <code>datetime.min</code> are non-timezone-aware datetime objects.</p>
-<p>As such, operations on <code>datetime.max</code> and <code>datetime.min</code> may behave
+<p><code>datetime.min</code> and <code>datetime.max</code> are non-timezone-aware datetime objects.</p>
+<p>As such, operations on <code>datetime.min</code> and <code>datetime.max</code> may behave
 unexpectedly, as in:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Timezone: UTC-14</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">datetime</span><span class="o">.</span><span class="n">max</span><span class="o">.</span><span class="n">timestamp</span><span class="p">()</span>  <span class="c1"># ValueError: year 10000 is out of range</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">datetime</span><span class="o">.</span><span class="n">min</span><span class="o">.</span><span class="n">timestamp</span><span class="p">()</span>  <span class="c1"># ValueError: year 0 is out of range</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">datetime</span><span class="o">.</span><span class="n">min</span><span class="o">.</span><span class="n">timestamp</span><span class="p">()</span>  <span class="c1"># ValueError: year 0 is out of range</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">datetime</span><span class="o">.</span><span class="n">max</span><span class="o">.</span><span class="n">timestamp</span><span class="p">()</span>  <span class="c1"># ValueError: year 10000 is out of range</span>
 </code></pre></div>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">datetime</span><span class="o">.</span><span class="n">max</span>

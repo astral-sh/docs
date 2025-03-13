@@ -504,6 +504,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#full-suppression-comment-specification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Full suppression comment specification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#detecting-unused-suppression-comments" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1278,6 +1289,26 @@ functionality from within your <code>pyproject.toml</code> or <code>ruff.toml</c
 violations on a single line.</p>
 <p>Note that Ruff will also respect Flake8's <code># flake8: noqa</code> directive, and will treat it as
 equivalent to <code># ruff: noqa</code>.</p>
+<h3 id="full-suppression-comment-specification"><a class="toclink" href="#full-suppression-comment-specification">Full suppression comment specification</a></h3>
+<p>The full specification is as follows:</p>
+<ul>
+<li>An inline blanket <code>noqa</code> comment is given by a case-insensitive match for
+  <code>#noqa</code> with optional whitespace after the <code>#</code> symbol, followed by either: the
+  end of the comment, the beginning of a new comment (<code>#</code>), or whitespace
+  followed by any character other than <code>:</code>.</li>
+<li>An inline rule suppression is given by first finding a case-insensitive match
+  for <code>#noqa</code> with optional whitespace after the <code>#</code> symbol, optional whitespace
+  after <code>noqa</code>, and followed by the symbol <code>:</code>. After this we are expected to
+  have a list of rule codes which is given by sequences of uppercase ASCII
+  characters followed by ASCII digits, separated by whitespace or commas. The
+  list ends at the last valid code. We will attempt to interpret rules with a
+  missing delimiter (e.g. <code>F401F841</code>), though a warning will be emitted in this
+  case.</li>
+<li>A file-level exemption comment is given by a case-sensitive match for <code>#ruff:</code>
+  or <code>#flake8:</code>, with optional whitespace after <code>#</code> and before <code>:</code>, followed by
+  optional whitespace and a case-insensitive match for <code>noqa</code>. After this, the
+  specification is as in the inline case.</li>
+</ul>
 <h3 id="detecting-unused-suppression-comments"><a class="toclink" href="#detecting-unused-suppression-comments">Detecting unused suppression comments</a></h3>
 <p>Ruff implements a special rule, <a href="https://docs.astral.sh/ruff/rules/unused-noqa/"><code>unused-noqa</code></a>,
 under the <code>RUF100</code> code, to enforce that your <code>noqa</code> directives are "valid", in that the violations

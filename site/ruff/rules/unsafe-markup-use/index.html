@@ -25,7 +25,7 @@
     
     
 
-<title>unsafe-markup-use (RUF035) | Ruff</title>
+<title>unsafe-markup-use (S704) | Ruff</title>
 
 
     
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#unsafe-markup-use-ruf035" class="md-skip">
+        <a href="#unsafe-markup-use-s704" class="md-skip">
           Skip to content
         </a>
       
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              unsafe-markup-use (RUF035)
+              unsafe-markup-use (S704)
             
           </span>
         </div>
@@ -837,20 +837,20 @@
   
 
 
-<h1 id="unsafe-markup-use-ruf035"><a class="toclink" href="#unsafe-markup-use-ruf035">unsafe-markup-use (RUF035)</a></h1>
-<p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
+<h1 id="unsafe-markup-use-s704"><a class="toclink" href="#unsafe-markup-use-s704">unsafe-markup-use (S704)</a></h1>
+<p>Derived from the <strong><a href="../#flake8-bandit-s">flake8-bandit</a></strong> linter.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for non-literal strings being passed to <a href="https://markupsafe.palletsprojects.com/en/stable/escaping/#markupsafe.Markup"><code>markupsafe.Markup</code></a>.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
-<p><a href="https://markupsafe.palletsprojects.com/en/stable/escaping/#markupsafe.Markup"><code>markupsafe.Markup</code></a> does not perform any escaping,
-so passing dynamic content, like f-strings, variables or interpolated strings
-will potentially lead to XSS vulnerabilities.</p>
+<p>[<code>markupsafe.Markup</code>][markupsafe.Markup] does not perform any escaping, so passing dynamic
+content, like f-strings, variables or interpolated strings will potentially
+lead to XSS vulnerabilities.</p>
 <p>Instead you should interpolate the <code>Markup</code> object.</p>
-<p>Using <a href="../../settings/#lint_ruff_extend-markup-names"><code>lint.ruff.extend-markup-names</code></a> additional objects can be
+<p>Using <a href="../../settings/#lint_flake8-bandit_extend-markup-names"><code>lint.flake8-bandit.extend-markup-names</code></a> additional objects can be
 treated like <code>Markup</code>.</p>
 <p>This rule was originally inspired by <a href="https://github.com/vmagamedov/flake8-markupsafe">flake8-markupsafe</a> but doesn't carve
 out any exceptions for i18n related calls by default.</p>
-<p>You can use <a href="../../settings/#lint_ruff_allowed-markup-calls"><code>lint.ruff.allowed-markup-calls</code></a> to specify exceptions.</p>
+<p>You can use <a href="../../settings/#lint_flake8-bandit_allowed-markup-calls"><code>lint.flake8-bandit.allowed-markup-calls</code></a> to specify exceptions.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <p>Given:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">markupsafe</span><span class="w"> </span><span class="kn">import</span> <span class="n">Markup</span>
@@ -884,13 +884,13 @@ out any exceptions for i18n related calls by default.</p>
 </code></pre></div>
 <h2 id="options"><a class="toclink" href="#options">Options</a></h2>
 <ul>
-<li><a href="../../settings/#lint_ruff_extend-markup-names"><code>lint.ruff.extend-markup-names</code></a></li>
-<li><a href="../../settings/#lint_ruff_allowed-markup-calls"><code>lint.ruff.allowed-markup-calls</code></a></li>
+<li><a href="../../settings/#lint_flake8-bandit_extend-markup-names"><code>lint.flake8-bandit.extend-markup-names</code></a></li>
+<li><a href="../../settings/#lint_flake8-bandit_allowed-markup-calls"><code>lint.flake8-bandit.allowed-markup-calls</code></a></li>
 </ul>
 <h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
-<li><a href="https://pypi.org/project/MarkupSafe/">MarkupSafe</a></li>
-<li><a href="https://markupsafe.palletsprojects.com/en/stable/escaping/#markupsafe.Markup"><code>markupsafe.Markup</code></a></li>
+<li><a href="https://pypi.org/project/MarkupSafe/">MarkupSafe on PyPI</a></li>
+<li><a href="https://markupsafe.palletsprojects.com/en/stable/escaping/#markupsafe.Markup"><code>markupsafe.Markup</code> API documentation</a></li>
 </ul>
 
 
