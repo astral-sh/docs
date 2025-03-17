@@ -79,8 +79,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2025-03-03 02:54:48Z",
-        "dateModified": "2025-03-03 02:54:48Z",
+        "datePublished": "2025-03-17 21:56:10Z",
+        "dateModified": "2025-03-17 21:56:10Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -2753,10 +2753,13 @@ been accessed in prior runs.</p>
 <li>To force uv to ignore existing installed versions, pass <code>--reinstall</code> to any installation command
   (e.g., <code>uv sync --reinstall</code> or <code>uv pip install --reinstall ...</code>).</li>
 </ul>
+<p>As a special case, uv will always rebuild and reinstall any local directory dependencies passed
+explicitly on the command-line (e.g., <code>uv pip install .</code>).</p>
 <h2 id="dynamic-metadata"><a class="toclink" href="#dynamic-metadata">Dynamic metadata</a></h2>
 <p>By default, uv will <em>only</em> rebuild and reinstall local directory dependencies (e.g., editables) if
-the <code>pyproject.toml</code>, <code>setup.py</code>, or <code>setup.cfg</code> file in the directory root has changed. This is a
-heuristic and, in some cases, may lead to fewer re-installs than desired.</p>
+the <code>pyproject.toml</code>, <code>setup.py</code>, or <code>setup.cfg</code> file in the directory root has changed, or if a
+<code>src</code> directory is added or removed. This is a heuristic and, in some cases, may lead to fewer
+re-installs than desired.</p>
 <p>To incorporate additional information into the cache key for a given package, you can add cache key
 entries under <a href="https://docs.astral.sh/uv/reference/settings/#cache-keys"><code>tool.uv.cache-keys</code></a>,
 which covers both file paths and Git commit hashes. Setting
@@ -2780,7 +2783,7 @@ the following to the project's <code>pyproject.toml</code>:</p>
 <div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">[tool.uv]</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">cache-keys</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;pyproject.toml&quot;</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;requirements.txt&quot;</span><span class="w"> </span><span class="p">}]</span>
 </code></pre></div>
-<p>Globs are supported, following the syntax of the
+<p>Globs are supported for <code>file</code> keys, following the syntax of the
 <a href="https://docs.rs/glob/0.3.1/glob/struct.Pattern.html"><code>glob</code></a> crate. For example, to invalidate the
 cache whenever a <code>.toml</code> file in the project directory or any of its subdirectories is modified, use
 the following:</p>
@@ -2797,11 +2800,18 @@ project's <code>pyproject.toml</code> to invalidate the cache whenever the envir
 <div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">[tool.uv]</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">cache-keys</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;pyproject.toml&quot;</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">env</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;MY_ENV_VAR&quot;</span><span class="w"> </span><span class="p">}]</span>
 </code></pre></div>
+<p>Finally, to invalidate a project whenever a specific directory (like <code>src</code>) is created or removed,
+add the following to the project's <code>pyproject.toml</code>:</p>
+<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">[tool.uv]</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">cache-keys</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;pyproject.toml&quot;</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">dir</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;src&quot;</span><span class="w"> </span><span class="p">}]</span>
+</code></pre></div>
+<p>Note that the <code>dir</code> key will only track changes to the directory itself, and not arbitrary changes
+within the directory.</p>
 <p>As an escape hatch, if a project uses <code>dynamic</code> metadata that isn't covered by <code>tool.uv.cache-keys</code>,
 you can instruct uv to <em>always</em> rebuild and reinstall it by adding the project to the
 <code>tool.uv.reinstall-package</code> list:</p>
-<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">[tool.uv]</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">reinstall-package</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;my-package&quot;</span><span class="p">]</span>
+<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">[tool.uv]</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">reinstall-package</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;my-package&quot;</span><span class="p">]</span>
 </code></pre></div>
 <p>This will force uv to rebuild and reinstall <code>my-package</code> on every run, regardless of whether the
 package's <code>pyproject.toml</code>, <code>setup.py</code>, or <code>setup.cfg</code> file has changed.</p>
@@ -2883,7 +2893,7 @@ itself may contain duplicate entries in the core metadata bucket due to the chan
         <span class="md-icon" title="Last update">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
         </span>
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 3, 2025</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 17, 2025</span>
       </span>
     
     

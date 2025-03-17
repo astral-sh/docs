@@ -79,8 +79,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2025-03-11 14:03:00Z",
-        "dateModified": "2025-03-11 14:03:00Z",
+        "datePublished": "2025-03-13 23:42:10Z",
+        "dateModified": "2025-03-13 23:42:10Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -2998,32 +2998,35 @@ example, when creating a virtual environment:</p>
 create the virtual environment with it.</p>
 <p>The following Python version request formats are supported:</p>
 <ul>
-<li><code>&lt;version&gt;</code> e.g. <code>3</code>, <code>3.12</code>, <code>3.12.3</code></li>
-<li><code>&lt;version-specifier&gt;</code> e.g. <code>&gt;=3.12,&lt;3.13</code></li>
-<li><code>&lt;implementation&gt;</code> e.g. <code>cpython</code> or <code>cp</code></li>
-<li><code>&lt;implementation&gt;@&lt;version&gt;</code> e.g. <code>cpython@3.12</code></li>
-<li><code>&lt;implementation&gt;&lt;version&gt;</code> e.g. <code>cpython3.12</code> or <code>cp312</code></li>
-<li><code>&lt;implementation&gt;&lt;version-specifier&gt;</code> e.g. <code>cpython&gt;=3.12,&lt;3.13</code></li>
-<li><code>&lt;implementation&gt;-&lt;version&gt;-&lt;os&gt;-&lt;arch&gt;-&lt;libc&gt;</code> e.g. <code>cpython-3.12.3-macos-aarch64-none</code></li>
+<li><code>&lt;version&gt;</code> (e.g., <code>3</code>, <code>3.12</code>, <code>3.12.3</code>)</li>
+<li><code>&lt;version-specifier&gt;</code> (e.g., <code>&gt;=3.12,&lt;3.13</code>)</li>
+<li><code>&lt;implementation&gt;</code> (e.g., <code>cpython</code> or <code>cp</code>)</li>
+<li><code>&lt;implementation&gt;@&lt;version&gt;</code> (e.g., <code>cpython@3.12</code>)</li>
+<li><code>&lt;implementation&gt;&lt;version&gt;</code> (e.g., <code>cpython3.12</code> or <code>cp312</code>)</li>
+<li><code>&lt;implementation&gt;&lt;version-specifier&gt;</code> (e.g., <code>cpython&gt;=3.12,&lt;3.13</code>)</li>
+<li><code>&lt;implementation&gt;-&lt;version&gt;-&lt;os&gt;-&lt;arch&gt;-&lt;libc&gt;</code> (e.g., <code>cpython-3.12.3-macos-aarch64-none</code>)</li>
 </ul>
 <p>Additionally, a specific system Python interpreter can be requested with:</p>
 <ul>
-<li><code>&lt;executable-path&gt;</code> e.g. <code>/opt/homebrew/bin/python3</code></li>
-<li><code>&lt;executable-name&gt;</code> e.g. <code>mypython3</code></li>
-<li><code>&lt;install-dir&gt;</code> e.g. <code>/some/environment/</code></li>
+<li><code>&lt;executable-path&gt;</code> (e.g., <code>/opt/homebrew/bin/python3</code>)</li>
+<li><code>&lt;executable-name&gt;</code> (e.g., <code>mypython3</code>)</li>
+<li><code>&lt;install-dir&gt;</code> (e.g., <code>/some/environment/</code>)</li>
 </ul>
 <p>By default, uv will automatically download Python versions if they cannot be found on the system.
 This behavior can be
 <a href="#disabling-automatic-python-downloads">disabled with the <code>python-downloads</code> option</a>.</p>
 <h3 id="python-version-files"><a class="toclink" href="#python-version-files">Python version files</a></h3>
 <p>The <code>.python-version</code> file can be used to create a default Python version request. uv searches for a
-<code>.python-version</code> file in the working directory and each of its parents. Any of the request formats
-described above can be used, though use of a version number is recommended for interoperability with
-other tools.</p>
+<code>.python-version</code> file in the working directory and each of its parents. If none is found, uv will
+check the user-level configuration directory. Any of the request formats described above can be
+used, though use of a version number is recommended for interoperability with other tools.</p>
 <p>A <code>.python-version</code> file can be created in the current directory with the
 <a href="../../reference/cli/#uv-python-pin"><code>uv python pin</code></a> command.</p>
+<p>A global <code>.python-version</code> file can be created in the user configuration directory with the
+<a href="../../reference/cli/#uv-python-pin"><code>uv python pin --global</code></a> command.</p>
 <p>Discovery of <code>.python-version</code> files can be disabled with <code>--no-config</code>.</p>
-<p>uv will not search for <code>.python-version</code> files beyond project or workspace boundaries.</p>
+<p>uv will not search for <code>.python-version</code> files beyond project or workspace boundaries (with the
+exception of the user configuration directory).</p>
 <h2 id="installing-a-python-version"><a class="toclink" href="#installing-a-python-version">Installing a Python version</a></h2>
 <p>uv bundles a list of downloadable CPython and PyPy distributions for macOS, Linux, and Windows.</p>
 <div class="admonition tip">
@@ -3225,7 +3228,7 @@ documentation for details.</p>
         <span class="md-icon" title="Last update">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
         </span>
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 11, 2025</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 13, 2025</span>
       </span>
     
     

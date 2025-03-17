@@ -79,8 +79,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2025-03-11 15:29:36Z",
-        "dateModified": "2025-03-11 15:29:36Z",
+        "datePublished": "2025-03-17 21:27:33Z",
+        "dateModified": "2025-03-17 21:27:33Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -4435,6 +4435,13 @@
 <p>May also be set with the <code>UV_CONFIG_FILE</code> environment variable.</p>
 </dd><dt id="uv-add--config-setting"><a href="#uv-add--config-setting"><code>--config-setting</code></a>, <code>-C</code> <i>config-setting</i></dt><dd><p>Settings to pass to the PEP 517 build backend, specified as <code>KEY=VALUE</code> pairs</p>
 
+</dd><dt id="uv-add--constraints"><a href="#uv-add--constraints"><code>--constraints</code></a>, <code>-c</code> <i>constraints</i></dt><dd><p>Constrain versions using the given requirements files.</p>
+
+<p>Constraints files are <code>requirements.txt</code>-like files that only control the <em>version</em> of a requirement that&#8217;s installed. The constraints will <em>not</em> be added to the project&#8217;s <code>pyproject.toml</code> file, but <em>will</em> be respected during dependency resolution.</p>
+
+<p>This is equivalent to pip&#8217;s <code>--constraint</code> option.</p>
+
+<p>May also be set with the <code>UV_CONSTRAINT</code> environment variable.</p>
 </dd><dt id="uv-add--default-index"><a href="#uv-add--default-index"><code>--default-index</code></a> <i>default-index</i></dt><dd><p>The URL of the default package index (by default: &lt;https://pypi.org/simple&gt;).</p>
 
 <p>Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.</p>
@@ -8674,6 +8681,14 @@ uv will exit with an error.</p>
 
 <p>See <code>--project</code> to only change the project root directory.</p>
 
+</dd><dt id="uv-python-pin--global"><a href="#uv-python-pin--global"><code>--global</code></a></dt><dd><p>Update the global Python version pin.</p>
+
+<p>Writes the pinned Python version to a <code>.python-version</code> file in the uv user configuration directory: <code>XDG_CONFIG_HOME/uv</code> on Linux/macOS and <code>%APPDATA%/uv</code> on Windows.</p>
+
+<p>When a local Python version pin is not found in the working directory or an ancestor directory, this version will be used instead.</p>
+
+<p>Unlike local version pins, this version is used as the default for commands that mutate global state, like <code>uv tool install</code>.</p>
+
 </dd><dt id="uv-python-pin--help"><a href="#uv-python-pin--help"><code>--help</code></a>, <code>-h</code></dt><dd><p>Display the concise help for this command</p>
 
 </dd><dt id="uv-python-pin--native-tls"><a href="#uv-python-pin--native-tls"><code>--native-tls</code></a></dt><dd><p>Whether to load TLS certificates from the platform&#8217;s native certificate store.</p>
@@ -9039,7 +9054,7 @@ uv will exit with an error.</p>
 <p>Compile a <code>requirements.in</code> file to a <code>requirements.txt</code> file</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>uv pip compile [OPTIONS] &lt;SRC_FILE&gt;...
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>uv pip compile [OPTIONS] &lt;SRC_FILE|--group &lt;GROUP&gt;&gt;
 </code></pre></div>
 <h3 class="cli-reference">Arguments</h3>
 
@@ -9182,6 +9197,12 @@ uv will exit with an error.</p>
 <li><code>requires-python</code>:  Optimize for selecting latest supported version of each package, for each supported Python version</li>
 </ul>
 </dd><dt id="uv-pip-compile--generate-hashes"><a href="#uv-pip-compile--generate-hashes"><code>--generate-hashes</code></a></dt><dd><p>Include distribution hashes in the output file</p>
+
+</dd><dt id="uv-pip-compile--group"><a href="#uv-pip-compile--group"><code>--group</code></a> <i>group</i></dt><dd><p>Install the specified dependency group from a <code>pyproject.toml</code>.</p>
+
+<p>If no path is provided, the <code>pyproject.toml</code> in the working directory is used.</p>
+
+<p>May be provided multiple times.</p>
 
 </dd><dt id="uv-pip-compile--help"><a href="#uv-pip-compile--help"><code>--help</code></a>, <code>-h</code></dt><dd><p>Display the concise help for this command</p>
 
@@ -9915,7 +9936,7 @@ uv will exit with an error.</p>
 <p>Install packages into an environment</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>uv pip install [OPTIONS] &lt;PACKAGE|--requirements &lt;REQUIREMENTS&gt;|--editable &lt;EDITABLE&gt;&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>uv pip install [OPTIONS] &lt;PACKAGE|--requirements &lt;REQUIREMENTS&gt;|--editable &lt;EDITABLE&gt;|--group &lt;GROUP&gt;&gt;
 </code></pre></div>
 <h3 class="cli-reference">Arguments</h3>
 
@@ -10049,6 +10070,12 @@ uv will exit with an error.</p>
 
 <li><code>requires-python</code>:  Optimize for selecting latest supported version of each package, for each supported Python version</li>
 </ul>
+</dd><dt id="uv-pip-install--group"><a href="#uv-pip-install--group"><code>--group</code></a> <i>group</i></dt><dd><p>Install the specified dependency group from a <code>pyproject.toml</code>.</p>
+
+<p>If no path is provided, the <code>pyproject.toml</code> in the working directory is used.</p>
+
+<p>May be provided multiple times.</p>
+
 </dd><dt id="uv-pip-install--help"><a href="#uv-pip-install--help"><code>--help</code></a>, <code>-h</code></dt><dd><p>Display the concise help for this command</p>
 
 </dd><dt id="uv-pip-install--index"><a href="#uv-pip-install--index"><code>--index</code></a> <i>index</i></dt><dd><p>The URLs to use when resolving dependencies, in addition to the default index.</p>
@@ -12970,7 +12997,7 @@ With these settings, the following two calls are equivalent:</code></pre>
         <span class="md-icon" title="Last update">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
         </span>
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 11, 2025</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 17, 2025</span>
       </span>
     
     
