@@ -81,8 +81,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2025-03-03 03:35:32Z",
-        "dateModified": "2025-03-03 03:35:32Z",
+        "datePublished": "2025-03-19 16:52:01Z",
+        "dateModified": "2025-03-19 16:52:01Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -1026,6 +1026,17 @@
     <span class="md-ellipsis">
       
         The uv pip interface
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#automatic-backend-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Automatic backend selection
       
     </span>
   </a>
@@ -2623,6 +2634,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#automatic-backend-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Automatic backend selection
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2712,8 +2734,7 @@ Python versions and environments, even controlling for the choice of accelerator
 CUDA).</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Some of the features outlined in this guide require uv version 0.5.3 or later. If you're using an
-older version of uv, we recommend upgrading prior to configuring PyTorch.</p>
+<p>Some of the features outlined in this guide require uv version 0.5.3 or later. We recommend upgrading prior to configuring PyTorch.</p>
 </div>
 <h2 id="installing-pytorch"><a class="toclink" href="#installing-pytorch">Installing PyTorch</a></h2>
 <p>From a packaging perspective, PyTorch has a few uncommon characteristics:</p>
@@ -3038,6 +3059,23 @@ stable, CPU-only PyTorch on Linux with:</p>
 <p>To use the same workflow with uv, replace <code>pip3</code> with <code>uv pip</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>$<span class="w"> </span>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>torch<span class="w"> </span>torchvision<span class="w"> </span>torchaudio<span class="w"> </span>--index-url<span class="w"> </span>https://download.pytorch.org/whl/cpu
 </code></pre></div>
+<h2 id="automatic-backend-selection"><a class="toclink" href="#automatic-backend-selection">Automatic backend selection</a></h2>
+<p>In <a href="../../../reference/settings/#preview">preview</a>, uv can automatically select the appropriate
+PyTorch index at runtime by inspecting the system configuration via <code>--torch-backend=auto</code> (or
+<code>UV_TORCH_BACKEND=auto</code>):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>$<span class="w"> </span><span class="nv">UV_TORCH_BACKEND</span><span class="o">=</span>auto<span class="w"> </span>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>torch
+</code></pre></div>
+<p>When enabled, uv will query for the installed CUDA driver version and use the most-compatible
+PyTorch index for all relevant packages (e.g., <code>torch</code>, <code>torchvision</code>, etc.). If no such CUDA driver
+is found, uv will fall back to the CPU-only index. uv will continue to respect existing index
+configuration for any packages outside the PyTorch ecosystem.</p>
+<p>To select a specific backend (e.g., <code>cu126</code>), set <code>--torch-backend=cu126</code> (or
+<code>UV_TORCH_BACKEND=cu126</code>).</p>
+<p>At present, <code>--torch-backend</code> is only available in the <code>uv pip</code> interface, and only supports
+detection of CUDA drivers (as opposed to other accelerators like ROCm or Intel GPUs).</p>
+<p>As <code>--torch-backend</code> is a preview feature, it should be considered experimental and is not governed
+by uv's standard <a href="../../../reference/policies/versioning/">versioning policy</a>. <code>--torch-backend</code> may
+change or be removed entirely in future versions of uv.</p>
 
   
     
@@ -3051,7 +3089,7 @@ stable, CPU-only PyTorch on Linux with:</p>
         <span class="md-icon" title="Last update">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
         </span>
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 3, 2025</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 19, 2025</span>
       </span>
     
     

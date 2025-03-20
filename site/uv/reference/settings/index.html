@@ -79,8 +79,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2025-03-18 18:42:06Z",
-        "dateModified": "2025-03-18 18:42:06Z",
+        "datePublished": "2025-03-19 14:37:08Z",
+        "dateModified": "2025-03-19 14:37:08Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -3393,6 +3393,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#pip_torch-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        torch-backend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#pip_universal" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5065,6 +5076,17 @@
     <span class="md-ellipsis">
       
         target
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pip_torch-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        torch-backend
       
     </span>
   </a>
@@ -7763,6 +7785,34 @@ environment. The packages will be installed at the top-level of the directory.</
 </div>
 </div>
 <hr />
+<h4 id="pip_torch-backend"><a class="toclink" href="#pip_torch-backend"><a href="#pip_torch-backend"><code>torch-backend</code></a></a></h4>
+<p><span id="torch-backend"></span></p>
+<p>The backend to use when fetching packages in the PyTorch ecosystem.</p>
+<p>When set, uv will ignore the configured index URLs for packages in the PyTorch ecosystem,
+and will instead use the defined backend.</p>
+<p>For example, when set to <code>cpu</code>, uv will use the CPU-only PyTorch index; when set to <code>cu126</code>,
+uv will use the PyTorch index for CUDA 12.6.</p>
+<p>The <code>auto</code> mode will attempt to detect the appropriate PyTorch index based on the currently
+installed CUDA drivers.</p>
+<p>This option is in preview and may change in any future release.</p>
+<p><strong>Default value</strong>: <code>null</code></p>
+<p><strong>Type</strong>: <code>str</code></p>
+<p><strong>Example usage</strong>:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="96:2"><input checked="checked" id="__tabbed_96_1" name="__tabbed_96" type="radio" /><input id="__tabbed_96_2" name="__tabbed_96" type="radio" /><div class="tabbed-labels"><label for="__tabbed_96_1">pyproject.toml</label><label for="__tabbed_96_2">uv.toml</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-207-1" name="__codelineno-207-1" href="#__codelineno-207-1"></a><span class="k">[tool.uv.pip]</span>
+<a id="__codelineno-207-2" name="__codelineno-207-2" href="#__codelineno-207-2"></a><span class="n">torch-backend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;auto&quot;</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-208-1" name="__codelineno-208-1" href="#__codelineno-208-1"></a><span class="k">[pip]</span>
+<a id="__codelineno-208-2" name="__codelineno-208-2" href="#__codelineno-208-2"></a><span class="n">torch-backend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;auto&quot;</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<hr />
 <h4 id="pip_universal"><a class="toclink" href="#pip_universal"><a href="#pip_universal"><code>universal</code></a></a></h4>
 <p><span id="universal"></span></p>
 <p>Perform a universal resolution, attempting to generate a single <code>requirements.txt</code> output
@@ -7774,16 +7824,16 @@ universal resolution for Python 3.7 and later.</p>
 <p><strong>Default value</strong>: <code>false</code></p>
 <p><strong>Type</strong>: <code>bool</code></p>
 <p><strong>Example usage</strong>:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="96:2"><input checked="checked" id="__tabbed_96_1" name="__tabbed_96" type="radio" /><input id="__tabbed_96_2" name="__tabbed_96" type="radio" /><div class="tabbed-labels"><label for="__tabbed_96_1">pyproject.toml</label><label for="__tabbed_96_2">uv.toml</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="97:2"><input checked="checked" id="__tabbed_97_1" name="__tabbed_97" type="radio" /><input id="__tabbed_97_2" name="__tabbed_97" type="radio" /><div class="tabbed-labels"><label for="__tabbed_97_1">pyproject.toml</label><label for="__tabbed_97_2">uv.toml</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-207-1" name="__codelineno-207-1" href="#__codelineno-207-1"></a><span class="k">[tool.uv.pip]</span>
-<a id="__codelineno-207-2" name="__codelineno-207-2" href="#__codelineno-207-2"></a><span class="n">universal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-209-1" name="__codelineno-209-1" href="#__codelineno-209-1"></a><span class="k">[tool.uv.pip]</span>
+<a id="__codelineno-209-2" name="__codelineno-209-2" href="#__codelineno-209-2"></a><span class="n">universal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-208-1" name="__codelineno-208-1" href="#__codelineno-208-1"></a><span class="k">[pip]</span>
-<a id="__codelineno-208-2" name="__codelineno-208-2" href="#__codelineno-208-2"></a><span class="n">universal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-210-1" name="__codelineno-210-1" href="#__codelineno-210-1"></a><span class="k">[pip]</span>
+<a id="__codelineno-210-2" name="__codelineno-210-2" href="#__codelineno-210-2"></a><span class="n">universal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 </code></pre></div>
 </div>
 </div>
@@ -7795,16 +7845,16 @@ universal resolution for Python 3.7 and later.</p>
 <p><strong>Default value</strong>: <code>false</code></p>
 <p><strong>Type</strong>: <code>bool</code></p>
 <p><strong>Example usage</strong>:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="97:2"><input checked="checked" id="__tabbed_97_1" name="__tabbed_97" type="radio" /><input id="__tabbed_97_2" name="__tabbed_97" type="radio" /><div class="tabbed-labels"><label for="__tabbed_97_1">pyproject.toml</label><label for="__tabbed_97_2">uv.toml</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="98:2"><input checked="checked" id="__tabbed_98_1" name="__tabbed_98" type="radio" /><input id="__tabbed_98_2" name="__tabbed_98" type="radio" /><div class="tabbed-labels"><label for="__tabbed_98_1">pyproject.toml</label><label for="__tabbed_98_2">uv.toml</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-209-1" name="__codelineno-209-1" href="#__codelineno-209-1"></a><span class="k">[tool.uv.pip]</span>
-<a id="__codelineno-209-2" name="__codelineno-209-2" href="#__codelineno-209-2"></a><span class="n">upgrade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-211-1" name="__codelineno-211-1" href="#__codelineno-211-1"></a><span class="k">[tool.uv.pip]</span>
+<a id="__codelineno-211-2" name="__codelineno-211-2" href="#__codelineno-211-2"></a><span class="n">upgrade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-210-1" name="__codelineno-210-1" href="#__codelineno-210-1"></a><span class="k">[pip]</span>
-<a id="__codelineno-210-2" name="__codelineno-210-2" href="#__codelineno-210-2"></a><span class="n">upgrade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-212-1" name="__codelineno-212-1" href="#__codelineno-212-1"></a><span class="k">[pip]</span>
+<a id="__codelineno-212-2" name="__codelineno-212-2" href="#__codelineno-212-2"></a><span class="n">upgrade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 </code></pre></div>
 </div>
 </div>
@@ -7818,16 +7868,16 @@ file.</p>
 <p><strong>Default value</strong>: <code>[]</code></p>
 <p><strong>Type</strong>: <code>list[str]</code></p>
 <p><strong>Example usage</strong>:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="98:2"><input checked="checked" id="__tabbed_98_1" name="__tabbed_98" type="radio" /><input id="__tabbed_98_2" name="__tabbed_98" type="radio" /><div class="tabbed-labels"><label for="__tabbed_98_1">pyproject.toml</label><label for="__tabbed_98_2">uv.toml</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="99:2"><input checked="checked" id="__tabbed_99_1" name="__tabbed_99" type="radio" /><input id="__tabbed_99_2" name="__tabbed_99" type="radio" /><div class="tabbed-labels"><label for="__tabbed_99_1">pyproject.toml</label><label for="__tabbed_99_2">uv.toml</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-211-1" name="__codelineno-211-1" href="#__codelineno-211-1"></a><span class="k">[tool.uv.pip]</span>
-<a id="__codelineno-211-2" name="__codelineno-211-2" href="#__codelineno-211-2"></a><span class="n">upgrade-package</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;ruff&quot;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-213-1" name="__codelineno-213-1" href="#__codelineno-213-1"></a><span class="k">[tool.uv.pip]</span>
+<a id="__codelineno-213-2" name="__codelineno-213-2" href="#__codelineno-213-2"></a><span class="n">upgrade-package</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;ruff&quot;</span><span class="p">]</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-212-1" name="__codelineno-212-1" href="#__codelineno-212-1"></a><span class="k">[pip]</span>
-<a id="__codelineno-212-2" name="__codelineno-212-2" href="#__codelineno-212-2"></a><span class="n">upgrade-package</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;ruff&quot;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-214-1" name="__codelineno-214-1" href="#__codelineno-214-1"></a><span class="k">[pip]</span>
+<a id="__codelineno-214-2" name="__codelineno-214-2" href="#__codelineno-214-2"></a><span class="n">upgrade-package</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;ruff&quot;</span><span class="p">]</span>
 </code></pre></div>
 </div>
 </div>
@@ -7842,16 +7892,16 @@ include them.</p>
 <p><strong>Default value</strong>: <code>true</code></p>
 <p><strong>Type</strong>: <code>bool</code></p>
 <p><strong>Example usage</strong>:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="99:2"><input checked="checked" id="__tabbed_99_1" name="__tabbed_99" type="radio" /><input id="__tabbed_99_2" name="__tabbed_99" type="radio" /><div class="tabbed-labels"><label for="__tabbed_99_1">pyproject.toml</label><label for="__tabbed_99_2">uv.toml</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="100:2"><input checked="checked" id="__tabbed_100_1" name="__tabbed_100" type="radio" /><input id="__tabbed_100_2" name="__tabbed_100" type="radio" /><div class="tabbed-labels"><label for="__tabbed_100_1">pyproject.toml</label><label for="__tabbed_100_2">uv.toml</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-213-1" name="__codelineno-213-1" href="#__codelineno-213-1"></a><span class="k">[tool.uv.pip]</span>
-<a id="__codelineno-213-2" name="__codelineno-213-2" href="#__codelineno-213-2"></a><span class="n">verify-hashes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-215-1" name="__codelineno-215-1" href="#__codelineno-215-1"></a><span class="k">[tool.uv.pip]</span>
+<a id="__codelineno-215-2" name="__codelineno-215-2" href="#__codelineno-215-2"></a><span class="n">verify-hashes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-214-1" name="__codelineno-214-1" href="#__codelineno-214-1"></a><span class="k">[pip]</span>
-<a id="__codelineno-214-2" name="__codelineno-214-2" href="#__codelineno-214-2"></a><span class="n">verify-hashes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-216-1" name="__codelineno-216-1" href="#__codelineno-216-1"></a><span class="k">[pip]</span>
+<a id="__codelineno-216-2" name="__codelineno-216-2" href="#__codelineno-216-2"></a><span class="n">verify-hashes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 </code></pre></div>
 </div>
 </div>
@@ -7870,7 +7920,7 @@ include them.</p>
         <span class="md-icon" title="Last update">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
         </span>
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 18, 2025</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 19, 2025</span>
       </span>
     
     
