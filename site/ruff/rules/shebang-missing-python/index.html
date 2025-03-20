@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Checks for a shebang directive in `.py` files that does not contain `python`.">
+        <meta name="description" content="Checks for a shebang directive in `.py` files that does not contain `python`,">
       
       
         <meta name="author" content="charliermarsh">
@@ -840,15 +840,15 @@
 <h1 id="shebang-missing-python-exe003"><a class="toclink" href="#shebang-missing-python-exe003">shebang-missing-python (EXE003)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-executable-exe">flake8-executable</a></strong> linter.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
-<p>Checks for a shebang directive in <code>.py</code> files that does not contain <code>python</code>.</p>
+<p>Checks for a shebang directive in <code>.py</code> files that does not contain <code>python</code>,
+<code>pytest</code>, or <code>uv run</code>.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>In Python, a shebang (also known as a hashbang) is the first line of a
-script, which specifies the interpreter that should be used to run the
+script, which specifies the command that should be used to run the
 script.</p>
-<p>For Python scripts, the shebang must contain <code>python</code> to indicate that the
-script should be executed as a Python script. If the shebang does not
-contain <code>python</code>, then the file will be executed with the default
-interpreter, which is likely a mistake.</p>
+<p>For Python scripts, if the shebang does not include a command that explicitly
+or implicitly specifies an interpreter, then the file will be executed with
+the default interpreter, which is likely a mistake.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="ch">#!/usr/bin/env bash</span>
 </code></pre></div>

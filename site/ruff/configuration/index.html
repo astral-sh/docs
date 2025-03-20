@@ -1687,44 +1687,47 @@ a specific configuration file is located.</p>
 <a id="__codelineno-26-33" name="__codelineno-26-33" href="#__codelineno-26-33"></a>          Path to the cache directory [env: RUFF_CACHE_DIR=]
 <a id="__codelineno-26-34" name="__codelineno-26-34" href="#__codelineno-26-34"></a>      --stdin-filename &lt;STDIN_FILENAME&gt;
 <a id="__codelineno-26-35" name="__codelineno-26-35" href="#__codelineno-26-35"></a>          The name of the file when passing it through stdin
-<a id="__codelineno-26-36" name="__codelineno-26-36" href="#__codelineno-26-36"></a>
-<a id="__codelineno-26-37" name="__codelineno-26-37" href="#__codelineno-26-37"></a>File selection:
-<a id="__codelineno-26-38" name="__codelineno-26-38" href="#__codelineno-26-38"></a>      --respect-gitignore
-<a id="__codelineno-26-39" name="__codelineno-26-39" href="#__codelineno-26-39"></a>          Respect file exclusions via `.gitignore` and other standard ignore
-<a id="__codelineno-26-40" name="__codelineno-26-40" href="#__codelineno-26-40"></a>          files. Use `--no-respect-gitignore` to disable
-<a id="__codelineno-26-41" name="__codelineno-26-41" href="#__codelineno-26-41"></a>      --exclude &lt;FILE_PATTERN&gt;
-<a id="__codelineno-26-42" name="__codelineno-26-42" href="#__codelineno-26-42"></a>          List of paths, used to omit files and/or directories from analysis
-<a id="__codelineno-26-43" name="__codelineno-26-43" href="#__codelineno-26-43"></a>      --force-exclude
-<a id="__codelineno-26-44" name="__codelineno-26-44" href="#__codelineno-26-44"></a>          Enforce exclusions, even for paths passed to Ruff directly on the
-<a id="__codelineno-26-45" name="__codelineno-26-45" href="#__codelineno-26-45"></a>          command-line. Use `--no-force-exclude` to disable
-<a id="__codelineno-26-46" name="__codelineno-26-46" href="#__codelineno-26-46"></a>
-<a id="__codelineno-26-47" name="__codelineno-26-47" href="#__codelineno-26-47"></a>Format configuration:
-<a id="__codelineno-26-48" name="__codelineno-26-48" href="#__codelineno-26-48"></a>      --line-length &lt;LINE_LENGTH&gt;  Set the line-length
+<a id="__codelineno-26-36" name="__codelineno-26-36" href="#__codelineno-26-36"></a>      --exit-non-zero-on-format
+<a id="__codelineno-26-37" name="__codelineno-26-37" href="#__codelineno-26-37"></a>          Exit with a non-zero status code if any files were modified via
+<a id="__codelineno-26-38" name="__codelineno-26-38" href="#__codelineno-26-38"></a>          format, even if all files were formatted successfully
+<a id="__codelineno-26-39" name="__codelineno-26-39" href="#__codelineno-26-39"></a>
+<a id="__codelineno-26-40" name="__codelineno-26-40" href="#__codelineno-26-40"></a>File selection:
+<a id="__codelineno-26-41" name="__codelineno-26-41" href="#__codelineno-26-41"></a>      --respect-gitignore
+<a id="__codelineno-26-42" name="__codelineno-26-42" href="#__codelineno-26-42"></a>          Respect file exclusions via `.gitignore` and other standard ignore
+<a id="__codelineno-26-43" name="__codelineno-26-43" href="#__codelineno-26-43"></a>          files. Use `--no-respect-gitignore` to disable
+<a id="__codelineno-26-44" name="__codelineno-26-44" href="#__codelineno-26-44"></a>      --exclude &lt;FILE_PATTERN&gt;
+<a id="__codelineno-26-45" name="__codelineno-26-45" href="#__codelineno-26-45"></a>          List of paths, used to omit files and/or directories from analysis
+<a id="__codelineno-26-46" name="__codelineno-26-46" href="#__codelineno-26-46"></a>      --force-exclude
+<a id="__codelineno-26-47" name="__codelineno-26-47" href="#__codelineno-26-47"></a>          Enforce exclusions, even for paths passed to Ruff directly on the
+<a id="__codelineno-26-48" name="__codelineno-26-48" href="#__codelineno-26-48"></a>          command-line. Use `--no-force-exclude` to disable
 <a id="__codelineno-26-49" name="__codelineno-26-49" href="#__codelineno-26-49"></a>
-<a id="__codelineno-26-50" name="__codelineno-26-50" href="#__codelineno-26-50"></a>Editor options:
-<a id="__codelineno-26-51" name="__codelineno-26-51" href="#__codelineno-26-51"></a>      --range &lt;RANGE&gt;  When specified, Ruff will try to only format the code in
-<a id="__codelineno-26-52" name="__codelineno-26-52" href="#__codelineno-26-52"></a>                       the given range.
-<a id="__codelineno-26-53" name="__codelineno-26-53" href="#__codelineno-26-53"></a>                       It might be necessary to extend the start backwards or
-<a id="__codelineno-26-54" name="__codelineno-26-54" href="#__codelineno-26-54"></a>                       the end forwards, to fully enclose a logical line.
-<a id="__codelineno-26-55" name="__codelineno-26-55" href="#__codelineno-26-55"></a>                       The `&lt;RANGE&gt;` uses the format
-<a id="__codelineno-26-56" name="__codelineno-26-56" href="#__codelineno-26-56"></a>                       `&lt;start_line&gt;:&lt;start_column&gt;-&lt;end_line&gt;:&lt;end_column&gt;`.
-<a id="__codelineno-26-57" name="__codelineno-26-57" href="#__codelineno-26-57"></a>
-<a id="__codelineno-26-58" name="__codelineno-26-58" href="#__codelineno-26-58"></a>Log levels:
-<a id="__codelineno-26-59" name="__codelineno-26-59" href="#__codelineno-26-59"></a>  -v, --verbose  Enable verbose logging
-<a id="__codelineno-26-60" name="__codelineno-26-60" href="#__codelineno-26-60"></a>  -q, --quiet    Print diagnostics, but nothing else
-<a id="__codelineno-26-61" name="__codelineno-26-61" href="#__codelineno-26-61"></a>  -s, --silent   Disable all logging (but still exit with status code &quot;1&quot; upon
-<a id="__codelineno-26-62" name="__codelineno-26-62" href="#__codelineno-26-62"></a>                 detecting diagnostics)
-<a id="__codelineno-26-63" name="__codelineno-26-63" href="#__codelineno-26-63"></a>
-<a id="__codelineno-26-64" name="__codelineno-26-64" href="#__codelineno-26-64"></a>Global options:
-<a id="__codelineno-26-65" name="__codelineno-26-65" href="#__codelineno-26-65"></a>      --config &lt;CONFIG_OPTION&gt;
-<a id="__codelineno-26-66" name="__codelineno-26-66" href="#__codelineno-26-66"></a>          Either a path to a TOML configuration file (`pyproject.toml` or
-<a id="__codelineno-26-67" name="__codelineno-26-67" href="#__codelineno-26-67"></a>          `ruff.toml`), or a TOML `&lt;KEY&gt; = &lt;VALUE&gt;` pair (such as you might
-<a id="__codelineno-26-68" name="__codelineno-26-68" href="#__codelineno-26-68"></a>          find in a `ruff.toml` configuration file) overriding a specific
-<a id="__codelineno-26-69" name="__codelineno-26-69" href="#__codelineno-26-69"></a>          configuration option. Overrides of individual settings using this
-<a id="__codelineno-26-70" name="__codelineno-26-70" href="#__codelineno-26-70"></a>          option always take precedence over all configuration files, including
-<a id="__codelineno-26-71" name="__codelineno-26-71" href="#__codelineno-26-71"></a>          configuration files that were also specified using `--config`
-<a id="__codelineno-26-72" name="__codelineno-26-72" href="#__codelineno-26-72"></a>      --isolated
-<a id="__codelineno-26-73" name="__codelineno-26-73" href="#__codelineno-26-73"></a>          Ignore all configuration files
+<a id="__codelineno-26-50" name="__codelineno-26-50" href="#__codelineno-26-50"></a>Format configuration:
+<a id="__codelineno-26-51" name="__codelineno-26-51" href="#__codelineno-26-51"></a>      --line-length &lt;LINE_LENGTH&gt;  Set the line-length
+<a id="__codelineno-26-52" name="__codelineno-26-52" href="#__codelineno-26-52"></a>
+<a id="__codelineno-26-53" name="__codelineno-26-53" href="#__codelineno-26-53"></a>Editor options:
+<a id="__codelineno-26-54" name="__codelineno-26-54" href="#__codelineno-26-54"></a>      --range &lt;RANGE&gt;  When specified, Ruff will try to only format the code in
+<a id="__codelineno-26-55" name="__codelineno-26-55" href="#__codelineno-26-55"></a>                       the given range.
+<a id="__codelineno-26-56" name="__codelineno-26-56" href="#__codelineno-26-56"></a>                       It might be necessary to extend the start backwards or
+<a id="__codelineno-26-57" name="__codelineno-26-57" href="#__codelineno-26-57"></a>                       the end forwards, to fully enclose a logical line.
+<a id="__codelineno-26-58" name="__codelineno-26-58" href="#__codelineno-26-58"></a>                       The `&lt;RANGE&gt;` uses the format
+<a id="__codelineno-26-59" name="__codelineno-26-59" href="#__codelineno-26-59"></a>                       `&lt;start_line&gt;:&lt;start_column&gt;-&lt;end_line&gt;:&lt;end_column&gt;`.
+<a id="__codelineno-26-60" name="__codelineno-26-60" href="#__codelineno-26-60"></a>
+<a id="__codelineno-26-61" name="__codelineno-26-61" href="#__codelineno-26-61"></a>Log levels:
+<a id="__codelineno-26-62" name="__codelineno-26-62" href="#__codelineno-26-62"></a>  -v, --verbose  Enable verbose logging
+<a id="__codelineno-26-63" name="__codelineno-26-63" href="#__codelineno-26-63"></a>  -q, --quiet    Print diagnostics, but nothing else
+<a id="__codelineno-26-64" name="__codelineno-26-64" href="#__codelineno-26-64"></a>  -s, --silent   Disable all logging (but still exit with status code &quot;1&quot; upon
+<a id="__codelineno-26-65" name="__codelineno-26-65" href="#__codelineno-26-65"></a>                 detecting diagnostics)
+<a id="__codelineno-26-66" name="__codelineno-26-66" href="#__codelineno-26-66"></a>
+<a id="__codelineno-26-67" name="__codelineno-26-67" href="#__codelineno-26-67"></a>Global options:
+<a id="__codelineno-26-68" name="__codelineno-26-68" href="#__codelineno-26-68"></a>      --config &lt;CONFIG_OPTION&gt;
+<a id="__codelineno-26-69" name="__codelineno-26-69" href="#__codelineno-26-69"></a>          Either a path to a TOML configuration file (`pyproject.toml` or
+<a id="__codelineno-26-70" name="__codelineno-26-70" href="#__codelineno-26-70"></a>          `ruff.toml`), or a TOML `&lt;KEY&gt; = &lt;VALUE&gt;` pair (such as you might
+<a id="__codelineno-26-71" name="__codelineno-26-71" href="#__codelineno-26-71"></a>          find in a `ruff.toml` configuration file) overriding a specific
+<a id="__codelineno-26-72" name="__codelineno-26-72" href="#__codelineno-26-72"></a>          configuration option. Overrides of individual settings using this
+<a id="__codelineno-26-73" name="__codelineno-26-73" href="#__codelineno-26-73"></a>          option always take precedence over all configuration files, including
+<a id="__codelineno-26-74" name="__codelineno-26-74" href="#__codelineno-26-74"></a>          configuration files that were also specified using `--config`
+<a id="__codelineno-26-75" name="__codelineno-26-75" href="#__codelineno-26-75"></a>      --isolated
+<a id="__codelineno-26-76" name="__codelineno-26-76" href="#__codelineno-26-76"></a>          Ignore all configuration files
 </code></pre></div>
 <!-- End auto-generated format help. -->
 

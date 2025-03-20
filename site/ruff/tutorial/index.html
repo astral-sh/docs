@@ -975,7 +975,8 @@ your project. For a more detailed overview, see <a href="../configuration/"><em>
 <a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>          ├── __init__.py
 <a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>          └── py.typed
 </code></pre></div>
-<p>We'll then replace the contents of <code>src/numbers/__init__.py</code> with the following code:</p>
+<p>We'll then clear out the auto-generated content in <code>src/numbers/__init__.py</code>
+and create <code>src/numbers/calculate.py</code> with the following code:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Iterable</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
@@ -993,7 +994,7 @@ your project. For a more detailed overview, see <a href="../configuration/"><em>
 </code></pre></div>
 <p>We can then run the Ruff linter over our project via <code>uv run ruff check</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>ruff<span class="w"> </span>check
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="go">src/numbers/__init__.py:3:8: F401 [*] `os` imported but unused</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="go">src/numbers/calculate.py:3:8: F401 [*] `os` imported but unused</span>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="go">Found 1 error.</span>
 <a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="go">[*] 1 fixable with the `--fix` option.</span>
 </code></pre></div>
@@ -1009,8 +1010,8 @@ Windows) and running <code>ruff check</code> directly.</p>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="go">Found 1 error (1 fixed, 0 remaining).</span>
 </code></pre></div>
 <p>Running <code>git diff</code> shows the following:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="gd">--- a/src/numbers/__init__.py</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="gi">+++ b/src/numbers/__init__.py</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="gd">--- a/src/numbers/calculate.py</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="gi">+++ b/src/numbers/calculate.py</span>
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="gu">@@ -1,7 +1,5 @@</span>
 <a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w"> </span>from typing import Iterable
 <a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
@@ -1025,7 +1026,7 @@ Windows) and running <code>ruff check</code> directly.</p>
 <a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="w"> </span>   )
 </code></pre></div>
 <p>Note Ruff runs in the current directory by default, but you can pass specific paths to check:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>ruff<span class="w"> </span>check<span class="w"> </span>src/numbers/__init__.py
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>ruff<span class="w"> </span>check<span class="w"> </span>src/numbers/calculate.py
 </code></pre></div>
 <p>Now that our project is passing <code>ruff check</code>, we can run the Ruff formatter via <code>ruff format</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>ruff<span class="w"> </span>format
@@ -1033,8 +1034,8 @@ Windows) and running <code>ruff check</code> directly.</p>
 </code></pre></div>
 <p>Running <code>git diff</code> shows that the <code>sum</code> call was reformatted to fit within the default 88-character
 line length limit:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="gd">--- a/numbers.py</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="gi">+++ b/numbers.py</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="gd">--- a/src/numbers/calculate.py</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="gi">+++ b/src/numbers/calculate.py</span>
 <a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="gu">@@ -3,7 +3,4 @@ from typing import Iterable</span>
 <a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
 <a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w"> </span>def sum_even_numbers(numbers: Iterable[int]) -&gt; int:
@@ -1080,7 +1081,7 @@ Ruff's behavior.</p>
 </div>
 <p>Running Ruff again, we see that it now enforces a maximum line width, with a limit of 79:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>ruff<span class="w"> </span>check
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="go">src/numbers/__init__.py:5:80: E501 Line too long (90 &gt; 79)</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="go">src/numbers/calculate.py:5:80: E501 Line too long (90 &gt; 79)</span>
 <a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="go">Found 1 error.</span>
 </code></pre></div>
 <p>For a full enumeration of the supported settings, see <a href="../settings/"><em>Settings</em></a>. For our project
@@ -1153,7 +1154,7 @@ rules, we can set our configuration file to the following:</p>
 <p>If we run Ruff again, we'll see that it now enforces the pyupgrade rules. In particular, Ruff flags
 the use of the deprecated <code>typing.Iterable</code> instead of <code>collections.abc.Iterable</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>ruff<span class="w"> </span>check
-<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="go">src/numbers/__init__.py:1:1: UP035 [*] Import from `collections.abc` instead: `Iterable`</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="go">src/numbers/calculate.py:1:1: UP035 [*] Import from `collections.abc` instead: `Iterable`</span>
 <a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="go">Found 1 error.</span>
 <a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="go">[*] 1 fixable with the `--fix` option.</span>
 </code></pre></div>
@@ -1192,11 +1193,17 @@ all functions have docstrings:</p>
 </div>
 <p>If we run Ruff again, we'll see that it now enforces the pydocstyle rules:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>ruff<span class="w"> </span>check
-<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="go">numbers/__init__.py:1:1: D104 Missing docstring in public package</span>
-<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="go">src/numbers/__init__.py:1:1: UP035 [*] Import from `collections.abc` instead: `Iterable`</span>
-<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="go">src/numbers/__init__.py:1:1: D100 Missing docstring in public module</span>
-<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="go">Found 3 errors.</span>
-<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="go">[*] 1 fixable with the `--fix` option.</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="go">src/numbers/__init__.py:1:1: D104 Missing docstring in public package</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="go">src/numbers/calculate.py:1:1: UP035 [*] Import from `collections.abc` instead: `Iterable`</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="go">  |</span>
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="go">1 | from typing import Iterable</span>
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="go">  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^ UP035</span>
+<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="go">  |</span>
+<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="go">  = help: Import from `collections.abc`</span>
+<a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>
+<a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a><span class="go">src/numbers/calculate.py:1:1: D100 Missing docstring in public module</span>
+<a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a><span class="go">Found 3 errors.</span>
+<a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a><span class="go">[*] 1 fixable with the `--fix` option.</span>
 </code></pre></div>
 <h3 id="ignoring-errors"><a class="toclink" href="#ignoring-errors">Ignoring Errors</a></h3>
 <p>Any lint rule can be ignored by adding a <code># noqa</code> comment to the line in question. For example,
@@ -1210,9 +1217,9 @@ let's ignore the <code>UP035</code> rule for the <code>Iterable</code> import:</
 </code></pre></div>
 <p>Running <code>ruff check</code> again, we'll see that it no longer flags the <code>Iterable</code> import:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>ruff<span class="w"> </span>check
-<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="go">numbers/__init__.py:1:1: D104 Missing docstring in public package</span>
-<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="go">src/numbers/__init__.py:1:1: D100 Missing docstring in public module</span>
-<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="go">Found 3 errors.</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="go">src/numbers/__init__.py:1:1: D104 Missing docstring in public package</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="go">src/numbers/calculate.py:1:1: D100 Missing docstring in public module</span>
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="go">Found 2 errors.</span>
 </code></pre></div>
 <p>If we want to ignore a rule for an entire file, we can add the line <code># ruff: noqa: {code}</code> anywhere
 in the file, preferably towards the top, like so:</p>
@@ -1235,23 +1242,20 @@ flag to add <code># noqa</code> directives to all existing <code>UP035</code> vi
 <a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="go">Added 1 noqa directive.</span>
 </code></pre></div>
 <p>Running <code>git diff</code> shows the following:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="gh">diff --git a/tutorial/src/main.py b/tutorial/src/main.py</span>
-<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="gh">index b9291c5ca..b9f15b8c1 100644</span>
-<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="gd">--- a/src/numbers/__init__.py</span>
-<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="gi">+++ b/src/numbers/__init__.py</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="gh">diff --git a/numbers/src/numbers/calculate.py b/numbers/src/numbers/calculate.py</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="gh">index 71fca60c8d..e92d839f1b 100644</span>
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="gd">--- a/numbers/src/numbers/calculate.py</span>
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="gi">+++ b/numbers/src/numbers/calculate.py</span>
 <a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="gu">@@ -1,4 +1,4 @@</span>
 <a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a><span class="gd">-from typing import Iterable</span>
 <a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a><span class="gi">+from typing import Iterable  # noqa: UP035</span>
-<a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a>
-<a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a>
-<a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a><span class="w"> </span>def sum_even_numbers(numbers: Iterable[int]) -&gt; int:
 </code></pre></div>
 <h2 id="integrations"><a class="toclink" href="#integrations">Integrations</a></h2>
 <p>This tutorial has focused on Ruff's command-line interface, but Ruff can also be used as a
 <a href="https://pre-commit.com">pre-commit</a> hook via <a href="https://github.com/astral-sh/ruff-pre-commit"><code>ruff-pre-commit</code></a>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">repo</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/astral-sh/ruff-pre-commit</span>
 <a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="w">  </span><span class="c1"># Ruff version.</span>
-<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="w">  </span><span class="nt">rev</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v0.11.0</span>
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="w">  </span><span class="nt">rev</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v0.11.1</span>
 <a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="w">  </span><span class="nt">hooks</span><span class="p">:</span>
 <a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="w">    </span><span class="c1"># Run the linter.</span>
 <a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ruff</span>
