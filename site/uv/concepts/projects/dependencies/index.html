@@ -79,8 +79,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2025-03-18 18:42:06Z",
-        "dateModified": "2025-03-18 18:42:06Z",
+        "datePublished": "2025-03-23 03:06:11Z",
+        "dateModified": "2025-03-23 03:06:11Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -1321,10 +1321,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#dependency-tables" class="md-nav__link">
+  <a href="#dependency-fields" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Dependency tables
+        Dependency fields
       
     </span>
   </a>
@@ -2794,10 +2794,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#dependency-tables" class="md-nav__link">
+  <a href="#dependency-fields" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Dependency tables
+        Dependency fields
       
     </span>
   </a>
@@ -3158,8 +3158,8 @@
 
 
 <h1 id="managing-dependencies"><a class="toclink" href="#managing-dependencies">Managing dependencies</a></h1>
-<h2 id="dependency-tables"><a class="toclink" href="#dependency-tables">Dependency tables</a></h2>
-<p>Dependencies of the project are defined in several tables:</p>
+<h2 id="dependency-fields"><a class="toclink" href="#dependency-fields">Dependency fields</a></h2>
+<p>Dependencies of the project are defined in several fields:</p>
 <ul>
 <li><a href="#project-dependencies"><code>project.dependencies</code></a>: Published dependencies.</li>
 <li><a href="#optional-dependencies"><code>project.optional-dependencies</code></a>: Published optional dependencies, or
@@ -3169,7 +3169,7 @@
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The <code>project.dependencies</code> and <code>project.optional-dependencies</code> tables can be used even if
+<p>The <code>project.dependencies</code> and <code>project.optional-dependencies</code> fields can be used even if
 project isn't going to be published. <code>dependency-groups</code> are a recently standardized feature
 and may not be supported by all tools yet.</p>
 </div>
@@ -3179,7 +3179,7 @@ metadata can also be updated by editing the <code>pyproject.toml</code> directly
 <p>To add a dependency:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>httpx
 </code></pre></div>
-<p>An entry will be added in the <code>project.dependencies</code> table:</p>
+<p>An entry will be added in the <code>project.dependencies</code> field:</p>
 <div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">[project]</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;example&quot;</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span>
@@ -3187,13 +3187,13 @@ metadata can also be updated by editing the <code>pyproject.toml</code> directly
 </span></code></pre></div>
 <p>The <a href="#development-dependencies"><code>--dev</code></a>, <a href="#dependency-groups"><code>--group</code></a>, or
 <a href="#optional-dependencies"><code>--optional</code></a> flags can be used to add a dependencies to an alternative
-table.</p>
+field.</p>
 <p>The dependency will include a constraint, e.g., <code>&gt;=0.27.2</code>, for the most recent, compatible version
 of the package. An alternative constraint can be provided:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span><span class="s2">&quot;httpx&gt;=0.20&quot;</span>
 </code></pre></div>
 <p>When adding a dependency from a source other than a package registry, uv will add an entry in the
-sources table. For example, when adding <code>httpx</code> from GitHub:</p>
+sources field. For example, when adding <code>httpx</code> from GitHub:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span><span class="s2">&quot;httpx @ git+https://github.com/encode/httpx&quot;</span>
 </code></pre></div>
 <p>The <code>pyproject.toml</code> will include a <a href="#git">Git source entry</a>:</p>
@@ -3759,7 +3759,7 @@ quoted.</p>
         <span class="md-icon" title="Last update">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
         </span>
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 18, 2025</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 23, 2025</span>
       </span>
     
     
