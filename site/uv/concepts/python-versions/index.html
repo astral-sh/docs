@@ -79,8 +79,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2025-03-18 17:13:14Z",
-        "dateModified": "2025-03-18 17:13:14Z",
+        "datePublished": "2025-03-23 03:13:58Z",
+        "dateModified": "2025-03-23 03:13:58Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -3118,32 +3118,38 @@ be used, unless a version is otherwise requested, e.g., via a <code>.python-vers
 <p>To list installed and available Python versions:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>list
 </code></pre></div>
+<p>To filter the Python versions, provide a request, e.g., to show all Python 3.13 interpreters:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>list<span class="w"> </span><span class="m">3</span>.13
+</code></pre></div>
+<p>Or, to show all PyPy interpreters:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>list<span class="w"> </span>pypy
+</code></pre></div>
 <p>By default, downloads for other platforms and old patch versions are hidden.</p>
 <p>To view all versions:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>list<span class="w"> </span>--all-versions
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>list<span class="w"> </span>--all-versions
 </code></pre></div>
 <p>To view Python versions for other platforms:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>list<span class="w"> </span>--all-platforms
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>list<span class="w"> </span>--all-platforms
 </code></pre></div>
 <p>To exclude downloads and only show installed Python versions:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>list<span class="w"> </span>--only-installed
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>list<span class="w"> </span>--only-installed
 </code></pre></div>
 <p>See the <a href="../../reference/cli/#uv-python-list"><code>uv python list</code></a> reference for more details.</p>
 <h2 id="finding-a-python-executable"><a class="toclink" href="#finding-a-python-executable">Finding a Python executable</a></h2>
 <p>To find a Python executable, use the <code>uv python find</code> command:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>find
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>find
 </code></pre></div>
 <p>By default, this will display the path to the first available Python executable. See the
 <a href="#discovery-of-python-versions">discovery rules</a> for details about how executables are discovered.</p>
 <p>This interface also supports many <a href="#requesting-a-version">request formats</a>, e.g., to find a Python
 executable that has a version of 3.11 or newer:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>find<span class="w"> </span><span class="s1">&#39;&gt;=3.11&#39;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>find<span class="w"> </span><span class="s1">&#39;&gt;=3.11&#39;</span>
 </code></pre></div>
 <p>By default, <code>uv python find</code> will include Python versions from virtual environments. If a <code>.venv</code>
 directory is found in the working directory or any of the parent directories or the <code>VIRTUAL_ENV</code>
 environment variable is set, it will take precedence over any Python executables on the <code>PATH</code>.</p>
 <p>To ignore virtual environments, use the <code>--system</code> flag:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>find<span class="w"> </span>--system
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>find<span class="w"> </span>--system
 </code></pre></div>
 <h2 id="discovery-of-python-versions"><a class="toclink" href="#discovery-of-python-versions">Discovery of Python versions</a></h2>
 <p>When searching for a Python version, the following locations are checked:</p>
@@ -3190,11 +3196,11 @@ the <code>--no-python-downloads</code> flag can be passed to any uv command.</p>
 <p>By default, uv will attempt to use Python versions found on the system and only download managed
 Python versions when necessary. To ignore system Python versions, and only use managed Python
 versions, use the <code>--managed-python</code> flag:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>list<span class="w"> </span>--managed-python
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>list<span class="w"> </span>--managed-python
 </code></pre></div>
 <p>Similarly, to ignore managed Python versions and only use system Python versions, use the
 <code>--no-managed-python</code> flag:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>list<span class="w"> </span>--no-managed-python
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>list<span class="w"> </span>--no-managed-python
 </code></pre></div>
 <p>To change uv's default behavior in a configuration file, use the
 <a href="#adjusting-python-version-preferences"><code>python-preference</code> setting</a>.</p>
@@ -3262,7 +3268,7 @@ documentation for details.</p>
         <span class="md-icon" title="Last update">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
         </span>
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 18, 2025</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 23, 2025</span>
       </span>
     
     
