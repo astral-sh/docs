@@ -25,7 +25,7 @@
     
     
 
-<title>airflow-dag-no-schedule-argument (AIR301) | Ruff</title>
+<title>airflow-dag-no-schedule-argument (AIR002) | Ruff</title>
 
 
     
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#airflow-dag-no-schedule-argument-air301" class="md-skip">
+        <a href="#airflow-dag-no-schedule-argument-air002" class="md-skip">
           Skip to content
         </a>
       
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              airflow-dag-no-schedule-argument (AIR301)
+              airflow-dag-no-schedule-argument (AIR002)
             
           </span>
         </div>
@@ -837,19 +837,20 @@
   
 
 
-<h1 id="airflow-dag-no-schedule-argument-air301"><a class="toclink" href="#airflow-dag-no-schedule-argument-air301">airflow-dag-no-schedule-argument (AIR301)</a></h1>
+<h1 id="airflow-dag-no-schedule-argument-air002"><a class="toclink" href="#airflow-dag-no-schedule-argument-air002">airflow-dag-no-schedule-argument (AIR002)</a></h1>
 <p>Derived from the <strong><a href="../#airflow-air">Airflow</a></strong> linter.</p>
 <p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for a <code>DAG()</code> class or <code>@dag()</code> decorator without an explicit
-<code>schedule</code> parameter.</p>
+<code>schedule</code> (or <code>schedule_interval</code> for Airflow 1) parameter.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
-<p>The default <code>schedule</code> value on Airflow 2 is <code>timedelta(days=1)</code>, which is
-almost never what a user is looking for. Airflow 3 changes this the default
-to <em>None</em>, and would break existing DAGs using the implicit default.</p>
-<p>If your DAG does not have an explicit <code>schedule</code> argument, Airflow 2
-schedules a run for it every day (at the time determined by <code>start_date</code>).
-Such a DAG will no longer be scheduled on Airflow 3 at all, without any
+<p>The default value of the <code>schedule</code> parameter on Airflow 2 and
+<code>schedule_interval</code> on Airflow 1 is <code>timedelta(days=1)</code>, which is almost
+never what a user is looking for. Airflow 3 changed the default value to <code>None</code>,
+and would break existing dags using the implicit default.</p>
+<p>If your dag does not have an explicit <code>schedule</code> / <code>schedule_interval</code> argument,
+Airflow 2 schedules a run for it every day (at the time determined by <code>start_date</code>).
+Such a dag will no longer be scheduled on Airflow 3 at all, without any
 exceptions or other messages visible to the user.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">airflow</span><span class="w"> </span><span class="kn">import</span> <span class="n">DAG</span>
