@@ -6,13 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Checks for quoted type annotations in stub (`.pyi`) files, which should be avoided.">
+        <meta name="description" content="Checks for uses of Airflow functions and values that have been moved to its providers">
       
       
         <meta name="author" content="charliermarsh">
       
       
-        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/quoted-annotation-in-stub/">
+        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/airflow3-suggested-to-move-to-provider/">
       
       
       
@@ -25,7 +25,7 @@
     
     
 
-<title>quoted-annotation-in-stub (PYI020) | Ruff</title>
+<title>airflow3-suggested-to-move-to-provider (AIR312) | Ruff</title>
 
 
     
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#quoted-annotation-in-stub-pyi020" class="md-skip">
+        <a href="#airflow3-suggested-to-move-to-provider-air312" class="md-skip">
           Skip to content
         </a>
       
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              quoted-annotation-in-stub (PYI020)
+              airflow3-suggested-to-move-to-provider (AIR312)
             
           </span>
         </div>
@@ -837,26 +837,23 @@
   
 
 
-<h1 id="quoted-annotation-in-stub-pyi020"><a class="toclink" href="#quoted-annotation-in-stub-pyi020">quoted-annotation-in-stub (PYI020)</a></h1>
-<p>Derived from the <strong><a href="../#flake8-pyi-pyi">flake8-pyi</a></strong> linter.</p>
-<p>Fix is always available.</p>
+<h1 id="airflow3-suggested-to-move-to-provider-air312"><a class="toclink" href="#airflow3-suggested-to-move-to-provider-air312">airflow3-suggested-to-move-to-provider (AIR312)</a></h1>
+<p>Derived from the <strong><a href="../#airflow-air">Airflow</a></strong> linter.</p>
+<p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
-<p>Checks for quoted type annotations in stub (<code>.pyi</code>) files, which should be avoided.</p>
+<p>Checks for uses of Airflow functions and values that have been moved to its providers
+but still have a compatibility layer (e.g., <code>apache-airflow-providers-standard</code>).</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
-<p>Stub files natively support forward references in all contexts, as stubs
-are never executed at runtime. (They should be thought of as "data files"
-for type checkers and IDEs.) As such, quotes are never required for type
-annotations in stub files, and should be omitted.</p>
+<p>Airflow 3.0 moved various deprecated functions, members, and other
+values to its providers. Even though these symbols still work fine on Airflow 3.0,
+they are expected to be removed in a future version. The user is suggested to install
+the corresponding provider and replace the original usage with the one in the provider.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">function</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">&quot;int&quot;</span><span class="p">:</span> <span class="o">...</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">airflow.operators.python</span><span class="w"> </span><span class="kn">import</span> <span class="n">PythonOperator</span>
 </code></pre></div>
 <p>Use instead:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">function</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span> <span class="o">...</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">airflow.providers.standard.operators.python</span><span class="w"> </span><span class="kn">import</span> <span class="n">PythonOperator</span>
 </code></pre></div>
-<h2 id="references"><a class="toclink" href="#references">References</a></h2>
-<ul>
-<li><a href="https://typing.python.org/en/latest/guides/writing_stubs.html">Typing documentation - Writing and Maintaining Stub Files</a></li>
-</ul>
 
 
 
