@@ -81,8 +81,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2025-04-09 21:29:25Z",
-        "dateModified": "2025-04-09 21:29:25Z",
+        "datePublished": "2025-04-22 00:03:33Z",
+        "dateModified": "2025-04-22 00:03:33Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -915,10 +915,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#installing-python-in-musl-based-images" class="md-nav__link">
+  <a href="#installing-python-in-arm-musl-images" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Installing Python in musl-based images
+        Installing Python in ARM musl images
       
     </span>
   </a>
@@ -2836,10 +2836,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#installing-python-in-musl-based-images" class="md-nav__link">
+  <a href="#installing-python-in-arm-musl-images" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Installing Python in musl-based images
+        Installing Python in ARM musl images
       
     </span>
   </a>
@@ -3124,7 +3124,7 @@ pre-installed.</p>
 <p>The following distroless images are available:</p>
 <ul>
 <li><code>ghcr.io/astral-sh/uv:latest</code></li>
-<li><code>ghcr.io/astral-sh/uv:{major}.{minor}.{patch}</code>, e.g., <code>ghcr.io/astral-sh/uv:0.6.14</code></li>
+<li><code>ghcr.io/astral-sh/uv:{major}.{minor}.{patch}</code>, e.g., <code>ghcr.io/astral-sh/uv:0.6.15</code></li>
 <li><code>ghcr.io/astral-sh/uv:{major}.{minor}</code>, e.g., <code>ghcr.io/astral-sh/uv:0.6</code> (the latest patch
   version)</li>
 </ul>
@@ -3178,7 +3178,7 @@ pre-installed.</p>
 
 <p>As with the distroless image, each derived image is published with uv version tags as
 <code>ghcr.io/astral-sh/uv:{major}.{minor}.{patch}-{base}</code> and
-<code>ghcr.io/astral-sh/uv:{major}.{minor}-{base}</code>, e.g., <code>ghcr.io/astral-sh/uv:0.6.14-alpine</code>.</p>
+<code>ghcr.io/astral-sh/uv:{major}.{minor}-{base}</code>, e.g., <code>ghcr.io/astral-sh/uv:0.6.15-alpine</code>.</p>
 <p>For more details, see the <a href="https://github.com/astral-sh/uv/pkgs/container/uv">GitHub Container</a>
 page.</p>
 <h3 id="installing-uv"><a class="toclink" href="#installing-uv">Installing uv</a></h3>
@@ -3204,7 +3204,7 @@ official distroless Docker image:</p>
 </code></pre></div>
 <p>Note this requires <code>curl</code> to be available.</p>
 <p>In either case, it is best practice to pin to a specific uv version, e.g., with:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>ghcr.io/astral-sh/uv:0.6.14<span class="w"> </span>/uv<span class="w"> </span>/uvx<span class="w"> </span>/bin/
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>ghcr.io/astral-sh/uv:0.6.15<span class="w"> </span>/uv<span class="w"> </span>/uvx<span class="w"> </span>/bin/
 </code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -3217,16 +3217,16 @@ be moved across different commit SHAs.</p>
 </code></pre></div>
 </div>
 <p>Or, with the installer:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">ADD</span><span class="w"> </span>https://astral.sh/uv/0.6.14/install.sh<span class="w"> </span>/uv-installer.sh
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">ADD</span><span class="w"> </span>https://astral.sh/uv/0.6.15/install.sh<span class="w"> </span>/uv-installer.sh
 </code></pre></div>
 <h3 id="installing-a-project"><a class="toclink" href="#installing-a-project">Installing a project</a></h3>
 <p>If you're using uv to manage your project, you can copy it into the image and install it:</p>
 <div class="highlight"><span class="filename">Dockerfile</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c"># Copy the project into the image</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">ADD</span><span class="w"> </span>.<span class="w"> </span>/app
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c"># Sync the project into a new environment, using the frozen lockfile</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c"># Sync the project into a new environment, asserting the lockfile is up to date</span>
 <a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="k">RUN</span><span class="w"> </span>uv<span class="w"> </span>sync<span class="w"> </span>--frozen
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="k">RUN</span><span class="w"> </span>uv<span class="w"> </span>sync<span class="w"> </span>--locked
 </code></pre></div>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
@@ -3286,10 +3286,10 @@ in the container.</p>
 <div class="highlight"><span class="filename">Dockerfile</span><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">ENV</span><span class="w"> </span><span class="nv">UV_TOOL_BIN_DIR</span><span class="o">=</span>/opt/uv-bin/
 </code></pre></div>
 </div>
-<h3 id="installing-python-in-musl-based-images"><a class="toclink" href="#installing-python-in-musl-based-images">Installing Python in musl-based images</a></h3>
-<p>While uv <a href="../../install-python/">installs a compatible Python version</a> if there isn't one available
-in the image, uv does not yet support installing Python for musl-based distributions. For example,
-if you are using an Alpine Linux base image that doesn't have Python installed, you need to add it
+<h3 id="installing-python-in-arm-musl-images"><a class="toclink" href="#installing-python-in-arm-musl-images">Installing Python in ARM musl images</a></h3>
+<p>While uv will attempt to <a href="../../install-python/">install a compatible Python version</a> if no such
+version is available in the image, uv does not yet support installing Python for musl Linux on ARM.
+For example, if you are using an Alpine Linux base image on an ARM machine, you may need to add it
 with the system package manager:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>apk<span class="w"> </span>add<span class="w"> </span>--no-cache<span class="w"> </span>python3~<span class="o">=</span><span class="m">3</span>.12
 </code></pre></div>
@@ -3397,14 +3397,14 @@ a big time saver.</p>
 <a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="k">RUN</span><span class="w"> </span>--mount<span class="o">=</span><span class="nv">type</span><span class="o">=</span>cache,target<span class="o">=</span>/root/.cache/uv<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a><span class="w">    </span>--mount<span class="o">=</span><span class="nv">type</span><span class="o">=</span>bind,source<span class="o">=</span>uv.lock,target<span class="o">=</span>uv.lock<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a><span class="w">    </span>--mount<span class="o">=</span><span class="nv">type</span><span class="o">=</span>bind,source<span class="o">=</span>pyproject.toml,target<span class="o">=</span>pyproject.toml<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a><span class="w">    </span>uv<span class="w"> </span>sync<span class="w"> </span>--frozen<span class="w"> </span>--no-install-project
+<a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a><span class="w">    </span>uv<span class="w"> </span>sync<span class="w"> </span>--locked<span class="w"> </span>--no-install-project
 <a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a>
 <a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a><span class="c"># Copy the project into the image</span>
 <a id="__codelineno-20-15" name="__codelineno-20-15" href="#__codelineno-20-15"></a><span class="k">ADD</span><span class="w"> </span>.<span class="w"> </span>/app
 <a id="__codelineno-20-16" name="__codelineno-20-16" href="#__codelineno-20-16"></a>
 <a id="__codelineno-20-17" name="__codelineno-20-17" href="#__codelineno-20-17"></a><span class="c"># Sync the project</span>
 <a id="__codelineno-20-18" name="__codelineno-20-18" href="#__codelineno-20-18"></a><span class="k">RUN</span><span class="w"> </span>--mount<span class="o">=</span><span class="nv">type</span><span class="o">=</span>cache,target<span class="o">=</span>/root/.cache/uv<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-20-19" name="__codelineno-20-19" href="#__codelineno-20-19"></a><span class="w">    </span>uv<span class="w"> </span>sync<span class="w"> </span>--frozen
+<a id="__codelineno-20-19" name="__codelineno-20-19" href="#__codelineno-20-19"></a><span class="w">    </span>uv<span class="w"> </span>sync<span class="w"> </span>--locked
 </code></pre></div>
 <p>Note that the <code>pyproject.toml</code> is required to identify the project root and name, but the project
 <em>contents</em> are not copied into the image until the final <code>uv sync</code> command.</p>
@@ -3434,14 +3434,14 @@ source code) into the final image.</p>
 <a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a><span class="k">RUN</span><span class="w"> </span>--mount<span class="o">=</span><span class="nv">type</span><span class="o">=</span>cache,target<span class="o">=</span>/root/.cache/uv<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a><span class="w">    </span>--mount<span class="o">=</span><span class="nv">type</span><span class="o">=</span>bind,source<span class="o">=</span>uv.lock,target<span class="o">=</span>uv.lock<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a><span class="w">    </span>--mount<span class="o">=</span><span class="nv">type</span><span class="o">=</span>bind,source<span class="o">=</span>pyproject.toml,target<span class="o">=</span>pyproject.toml<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a><span class="w">    </span>uv<span class="w"> </span>sync<span class="w"> </span>--frozen<span class="w"> </span>--no-install-project<span class="w"> </span>--no-editable
+<a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a><span class="w">    </span>uv<span class="w"> </span>sync<span class="w"> </span>--locked<span class="w"> </span>--no-install-project<span class="w"> </span>--no-editable
 <a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a>
 <a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a><span class="c"># Copy the project into the intermediate image</span>
 <a id="__codelineno-21-15" name="__codelineno-21-15" href="#__codelineno-21-15"></a><span class="k">ADD</span><span class="w"> </span>.<span class="w"> </span>/app
 <a id="__codelineno-21-16" name="__codelineno-21-16" href="#__codelineno-21-16"></a>
 <a id="__codelineno-21-17" name="__codelineno-21-17" href="#__codelineno-21-17"></a><span class="c"># Sync the project</span>
 <a id="__codelineno-21-18" name="__codelineno-21-18" href="#__codelineno-21-18"></a><span class="k">RUN</span><span class="w"> </span>--mount<span class="o">=</span><span class="nv">type</span><span class="o">=</span>cache,target<span class="o">=</span>/root/.cache/uv<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-21-19" name="__codelineno-21-19" href="#__codelineno-21-19"></a><span class="w">    </span>uv<span class="w"> </span>sync<span class="w"> </span>--frozen<span class="w"> </span>--no-editable
+<a id="__codelineno-21-19" name="__codelineno-21-19" href="#__codelineno-21-19"></a><span class="w">    </span>uv<span class="w"> </span>sync<span class="w"> </span>--locked<span class="w"> </span>--no-editable
 <a id="__codelineno-21-20" name="__codelineno-21-20" href="#__codelineno-21-20"></a>
 <a id="__codelineno-21-21" name="__codelineno-21-21" href="#__codelineno-21-21"></a><span class="k">FROM</span><span class="w"> </span><span class="s">python:3.12-slim</span>
 <a id="__codelineno-21-22" name="__codelineno-21-22" href="#__codelineno-21-22"></a>
@@ -3533,7 +3533,7 @@ attestation blob against the (multi-platform) manifest for <code>uv</code>:</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>These examples use <code>latest</code>, but best practice is to verify the attestation for a specific
-version tag, e.g., <code>ghcr.io/astral-sh/uv:0.6.14</code>, or (even better) the specific image digest,
+version tag, e.g., <code>ghcr.io/astral-sh/uv:0.6.15</code>, or (even better) the specific image digest,
 such as <code>ghcr.io/astral-sh/uv:0.5.27@sha256:5adf09a5a526f380237408032a9308000d14d5947eafa687ad6c6a2476787b4f</code>.</p>
 </div>
 
@@ -3549,7 +3549,7 @@ such as <code>ghcr.io/astral-sh/uv:0.5.27@sha256:5adf09a5a526f380237408032a93080
         <span class="md-icon" title="Last update">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
         </span>
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 9, 2025</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 22, 2025</span>
       </span>
     
     

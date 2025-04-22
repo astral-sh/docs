@@ -79,8 +79,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2025-04-07 17:55:00Z",
-        "dateModified": "2025-04-07 17:55:00Z",
+        "datePublished": "2025-04-16 07:27:46Z",
+        "dateModified": "2025-04-16 07:27:46Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -2154,6 +2154,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#uv_no_editable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_NO_EDITABLE
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#uv_no_env_file" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2477,6 +2488,17 @@
     <span class="md-ellipsis">
       
         UV_RESOLUTION
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_stack_size" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_STACK_SIZE
       
     </span>
   </a>
@@ -4375,6 +4397,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#uv_no_editable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_NO_EDITABLE
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#uv_no_env_file" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4698,6 +4731,17 @@
     <span class="md-ellipsis">
       
         UV_RESOLUTION
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_stack_size" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_STACK_SIZE
       
     </span>
   </a>
@@ -5515,6 +5559,10 @@ cache for any operations.</p>
 <p>Equivalent to the <code>--no-config</code> command-line argument. If set, uv will not read
 any configuration files from the current directory, parent directories, or user configuration
 directories.</p>
+<h3 id="uv_no_editable"><a class="toclink" href="#uv_no_editable"><code>UV_NO_EDITABLE</code></a></h3>
+<p>Equivalent to the <code>--no-editable</code> command-line argument. If set, uv
+installs any editable dependencies, including the project and any workspace members, as
+non-editable</p>
 <h3 id="uv_no_env_file"><a class="toclink" href="#uv_no_env_file"><code>UV_NO_ENV_FILE</code></a></h3>
 <p>Ignore <code>.env</code> files when executing <code>uv run</code> commands.</p>
 <h3 id="uv_no_installer_metadata"><a class="toclink" href="#uv_no_installer_metadata"><code>UV_NO_INSTALLER_METADATA</code></a></h3>
@@ -5605,6 +5653,14 @@ uv will require that all dependencies have a hash specified in the requirements 
 <h3 id="uv_resolution"><a class="toclink" href="#uv_resolution"><code>UV_RESOLUTION</code></a></h3>
 <p>Equivalent to the <code>--resolution</code> command-line argument. For example, if set to
 <code>lowest-direct</code>, uv will install the lowest compatible versions of all direct dependencies.</p>
+<h3 id="uv_stack_size"><a class="toclink" href="#uv_stack_size"><code>UV_STACK_SIZE</code></a></h3>
+<p>Use to set the stack size used by uv.</p>
+<p>The value is in bytes, and if both <code>UV_STACK_SIZE</code> are <code>RUST_MIN_STACK</code> unset, uv uses a 4MB
+(4194304) stack. <code>UV_STACK_SIZE</code> takes precedence over <code>RUST_MIN_STACK</code>.</p>
+<p>Unlike the normal <code>RUST_MIN_STACK</code> semantics, this can affect main thread
+stack size, because we actually spawn our own main2 thread to work around
+the fact that Windows' real main thread is only 1MB. That thread has size
+<code>max(UV_STACK_SIZE, 1MB)</code>.</p>
 <h3 id="uv_system_python"><a class="toclink" href="#uv_system_python"><code>UV_SYSTEM_PYTHON</code></a></h3>
 <p>Equivalent to the <code>--system</code> command-line argument. If set to <code>true</code>, uv will
 use the first Python interpreter found in the system <code>PATH</code>.</p>
@@ -5705,11 +5761,14 @@ any filter compatible with the <code>tracing_subscriber</code> crate.</p>
 for more.</p>
 <h3 id="rust_min_stack"><a class="toclink" href="#rust_min_stack"><code>RUST_MIN_STACK</code></a></h3>
 <p>Use to set the stack size used by uv.</p>
-<p>The value is in bytes, and the default is typically 2MB (2097152).
-Unlike the normal <code>RUST_MIN_STACK</code> semantics, this can affect main thread
+<p>The value is in bytes, and if both <code>UV_STACK_SIZE</code> are <code>RUST_MIN_STACK</code> unset, uv uses a 4MB
+(4194304) stack. <code>UV_STACK_SIZE</code> takes precedence over <code>RUST_MIN_STACK</code>.</p>
+<p>Prefer setting <code>UV_STACK_SIZE</code>, since <code>RUST_MIN_STACK</code> also affects subprocesses, such as
+build backends that use Rust code.</p>
+<p>Unlike the normal <code>RUST_MIN_STACK</code> semantics, this can affect main thread
 stack size, because we actually spawn our own main2 thread to work around
 the fact that Windows' real main thread is only 1MB. That thread has size
-<code>max(RUST_MIN_STACK, 4MB)</code>.</p>
+<code>max(RUST_MIN_STACK, 1MB)</code>.</p>
 <h3 id="shell"><a class="toclink" href="#shell"><code>SHELL</code></a></h3>
 <p>The standard <code>SHELL</code> posix env var.</p>
 <h3 id="ssl_cert_file"><a class="toclink" href="#ssl_cert_file"><code>SSL_CERT_FILE</code></a></h3>
@@ -5762,7 +5821,7 @@ virtual environment name will not be prepended to the terminal prompt.</p>
         <span class="md-icon" title="Last update">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
         </span>
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 7, 2025</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 16, 2025</span>
       </span>
     
     
