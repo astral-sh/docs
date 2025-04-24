@@ -854,6 +854,11 @@ in favor of automatic indices to improve readability.</p>
 <p>Use instead:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">, </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;Hello&quot;</span><span class="p">,</span> <span class="s2">&quot;World&quot;</span><span class="p">)</span>  <span class="c1"># &quot;Hello, World&quot;</span>
 </code></pre></div>
+<p>This fix is marked as unsafe because:</p>
+<ul>
+<li>Comments attached to arguments are not moved, which can cause comments to mismatch the actual arguments.</li>
+<li>If arguments have side effects (e.g., print), reordering may change program behavior.</li>
+</ul>
 <h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/library/string.html#format-string-syntax">Python documentation: Format String Syntax</a></li>
