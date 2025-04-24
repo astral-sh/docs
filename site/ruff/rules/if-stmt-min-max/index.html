@@ -855,6 +855,15 @@ equivalent <code>if</code> statements.</p>
 <p>Use instead:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">highest_score</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">highest_score</span><span class="p">,</span> <span class="n">score</span><span class="p">)</span>
 </code></pre></div>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
+<p>This fix is marked unsafe if it would delete any comments within the replacement range.</p>
+<p>An example to illustrate where comments are preserved and where they are not:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">if</span> <span class="n">a</span> <span class="o">&gt;=</span> <span class="n">b</span><span class="p">:</span> <span class="c1"># deleted comment</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="c1"># deleted comment</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="n">a</span> <span class="o">=</span> <span class="n">b</span> <span class="c1"># preserved comment</span>
+</code></pre></div>
 <h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/library/functions.html#max">Python documentation: <code>max</code></a></li>
