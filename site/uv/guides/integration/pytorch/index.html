@@ -81,8 +81,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2025-03-23 21:23:08Z",
-        "dateModified": "2025-03-23 21:23:08Z",
+        "datePublished": "2025-04-29 19:13:13Z",
+        "dateModified": "2025-04-29 19:13:13Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -2760,8 +2760,8 @@ macOS, and GPU-accelerated wheels on Linux (targeting CUDA 12.4):</p>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">requires-python</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&gt;=3.12&quot;</span>
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="s2">&quot;torch&gt;=2.6.0&quot;</span><span class="p">,</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="s2">&quot;torchvision&gt;=0.21.0&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="s2">&quot;torch&gt;=2.7.0&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="s2">&quot;torchvision&gt;=0.22.0&quot;</span><span class="p">,</span>
 <a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="p">]</span>
 </code></pre></div>
 <div class="admonition tip">
@@ -2885,6 +2885,11 @@ to limit the PyTorch index to Linux, falling back to PyPI on macOS and Windows:<
 <a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="n">torchvision</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
 <a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;pytorch-rocm&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">marker</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;sys_platform == &#39;linux&#39;&quot;</span><span class="w"> </span><span class="p">},</span>
 <a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="p">]</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="c1"># ROCm6 support relies on `pytorch-triton-rocm`, which should also be installed from the PyTorch index</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="c1"># (and included in `project.dependencies`).</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="n">pytorch-triton-rocm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;pytorch-rocm&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">marker</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;sys_platform == &#39;linux&#39;&quot;</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="p">]</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
@@ -2897,10 +2902,10 @@ the PyTorch index to Linux and Windows, falling back to PyPI on macOS:</p>
 <a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="n">torchvision</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
 <a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;pytorch-xpu&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">marker</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;sys_platform == &#39;linux&#39; or sys_platform == &#39;win32&#39;&quot;</span><span class="w"> </span><span class="p">},</span>
 <a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="p">]</span>
-<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="c1"># Intel GPU support relies on `pytorch-triton-xpu` on Linux, which should also be installed from the PyTorch index</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="c1"># Intel GPU support relies on `pytorch-triton-xpu`, which should also be installed from the PyTorch index</span>
 <a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="c1"># (and included in `project.dependencies`).</span>
 <a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="n">pytorch-triton-xpu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;pytorch-xpu&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">marker</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;sys_platform == &#39;linux&#39;&quot;</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;pytorch-xpu&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">marker</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;sys_platform == &#39;linux&#39; or sys_platform == &#39;win32&#39;&quot;</span><span class="w"> </span><span class="p">},</span>
 <a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="p">]</span>
 </code></pre></div>
 </div>
@@ -2912,8 +2917,8 @@ the PyTorch index to Linux and Windows, falling back to PyPI on macOS:</p>
 <a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span>
 <a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="n">requires-python</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&gt;=3.12.0&quot;</span>
 <a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w">  </span><span class="s2">&quot;torch&gt;=2.6.0&quot;</span><span class="p">,</span>
-<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="w">  </span><span class="s2">&quot;torchvision&gt;=0.21.0&quot;</span><span class="p">,</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w">  </span><span class="s2">&quot;torch&gt;=2.7.0&quot;</span><span class="p">,</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="w">  </span><span class="s2">&quot;torchvision&gt;=0.22.0&quot;</span><span class="p">,</span>
 <a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="p">]</span>
 <a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>
 <a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="k">[tool.uv.sources]</span>
@@ -2940,18 +2945,18 @@ and CPU-only builds on all other platforms (e.g., macOS and Windows):</p>
 <a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span>
 <a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="n">requires-python</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&gt;=3.12.0&quot;</span>
 <a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="w">  </span><span class="s2">&quot;torch&gt;=2.6.0&quot;</span><span class="p">,</span>
-<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="w">  </span><span class="s2">&quot;torchvision&gt;=0.21.0&quot;</span><span class="p">,</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="w">  </span><span class="s2">&quot;torch&gt;=2.7.0&quot;</span><span class="p">,</span>
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="w">  </span><span class="s2">&quot;torchvision&gt;=0.22.0&quot;</span><span class="p">,</span>
 <a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="p">]</span>
 <a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>
 <a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="k">[tool.uv.sources]</span>
 <a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="n">torch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
 <a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;pytorch-cpu&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">marker</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;sys_platform != &#39;linux&#39;&quot;</span><span class="w"> </span><span class="p">},</span>
-<a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;pytorch-cu124&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">marker</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;sys_platform == &#39;linux&#39;&quot;</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;pytorch-cu128&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">marker</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;sys_platform == &#39;linux&#39;&quot;</span><span class="w"> </span><span class="p">},</span>
 <a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a><span class="p">]</span>
 <a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a><span class="n">torchvision</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
 <a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;pytorch-cpu&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">marker</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;sys_platform != &#39;linux&#39;&quot;</span><span class="w"> </span><span class="p">},</span>
-<a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;pytorch-cu124&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">marker</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;sys_platform == &#39;linux&#39;&quot;</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;pytorch-cu128&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">marker</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;sys_platform == &#39;linux&#39;&quot;</span><span class="w"> </span><span class="p">},</span>
 <a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a><span class="p">]</span>
 <a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a>
 <a id="__codelineno-14-20" name="__codelineno-14-20" href="#__codelineno-14-20"></a><span class="k">[[tool.uv.index]]</span>
@@ -2960,37 +2965,64 @@ and CPU-only builds on all other platforms (e.g., macOS and Windows):</p>
 <a id="__codelineno-14-23" name="__codelineno-14-23" href="#__codelineno-14-23"></a><span class="n">explicit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 <a id="__codelineno-14-24" name="__codelineno-14-24" href="#__codelineno-14-24"></a>
 <a id="__codelineno-14-25" name="__codelineno-14-25" href="#__codelineno-14-25"></a><span class="k">[[tool.uv.index]]</span>
-<a id="__codelineno-14-26" name="__codelineno-14-26" href="#__codelineno-14-26"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;pytorch-cu124&quot;</span>
-<a id="__codelineno-14-27" name="__codelineno-14-27" href="#__codelineno-14-27"></a><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://download.pytorch.org/whl/cu124&quot;</span>
+<a id="__codelineno-14-26" name="__codelineno-14-26" href="#__codelineno-14-26"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;pytorch-cu128&quot;</span>
+<a id="__codelineno-14-27" name="__codelineno-14-27" href="#__codelineno-14-27"></a><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://download.pytorch.org/whl/cu128&quot;</span>
 <a id="__codelineno-14-28" name="__codelineno-14-28" href="#__codelineno-14-28"></a><span class="n">explicit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 </code></pre></div>
-<p>Similarly, the following configuration would use PyTorch's Intel GPU builds on Windows and Linux,
-and CPU-only builds on macOS (by way of falling back to PyPI):</p>
+<p>Similarly, the following configuration would use PyTorch's AMD GPU builds on Linux, and CPU-only
+builds on Windows and macOS (by way of falling back to PyPI):</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">[project]</span>
 <a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;project&quot;</span>
 <a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span>
 <a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="n">requires-python</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&gt;=3.12.0&quot;</span>
 <a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="w">  </span><span class="s2">&quot;torch&gt;=2.6.0&quot;</span><span class="p">,</span>
-<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="w">  </span><span class="s2">&quot;torchvision&gt;=0.21.0&quot;</span><span class="p">,</span>
-<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="w">  </span><span class="s2">&quot;pytorch-triton-xpu&gt;=3.2.0 ; sys_platform == &#39;linux&#39;&quot;</span><span class="p">,</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="w">  </span><span class="s2">&quot;torch&gt;=2.7.0&quot;</span><span class="p">,</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="w">  </span><span class="s2">&quot;torchvision&gt;=0.22.0&quot;</span><span class="p">,</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="w">  </span><span class="s2">&quot;pytorch-triton-rocm&gt;=3.3.0 ; sys_platform == &#39;linux&#39;&quot;</span><span class="p">,</span>
 <a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="p">]</span>
 <a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>
 <a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="k">[tool.uv.sources]</span>
 <a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="n">torch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;pytorch-xpu&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">marker</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;sys_platform == &#39;win32&#39; or sys_platform == &#39;linux&#39;&quot;</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;pytorch-rocm&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">marker</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;sys_platform == &#39;linux&#39;&quot;</span><span class="w"> </span><span class="p">},</span>
 <a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a><span class="p">]</span>
 <a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a><span class="n">torchvision</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;pytorch-xpu&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">marker</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;sys_platform == &#39;win32&#39; or sys_platform == &#39;linux&#39;&quot;</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;pytorch-rocm&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">marker</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;sys_platform == &#39;linux&#39;&quot;</span><span class="w"> </span><span class="p">},</span>
 <a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a><span class="p">]</span>
-<a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a><span class="n">pytorch-triton-xpu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;pytorch-xpu&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">marker</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;sys_platform == &#39;linux&#39;&quot;</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a><span class="n">pytorch-triton-rocm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;pytorch-rocm&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">marker</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;sys_platform == &#39;linux&#39;&quot;</span><span class="w"> </span><span class="p">},</span>
 <a id="__codelineno-15-20" name="__codelineno-15-20" href="#__codelineno-15-20"></a><span class="p">]</span>
 <a id="__codelineno-15-21" name="__codelineno-15-21" href="#__codelineno-15-21"></a>
 <a id="__codelineno-15-22" name="__codelineno-15-22" href="#__codelineno-15-22"></a><span class="k">[[tool.uv.index]]</span>
-<a id="__codelineno-15-23" name="__codelineno-15-23" href="#__codelineno-15-23"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;pytorch-xpu&quot;</span>
-<a id="__codelineno-15-24" name="__codelineno-15-24" href="#__codelineno-15-24"></a><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://download.pytorch.org/whl/xpu&quot;</span>
+<a id="__codelineno-15-23" name="__codelineno-15-23" href="#__codelineno-15-23"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;pytorch-rocm&quot;</span>
+<a id="__codelineno-15-24" name="__codelineno-15-24" href="#__codelineno-15-24"></a><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://download.pytorch.org/whl/rocm6.3&quot;</span>
 <a id="__codelineno-15-25" name="__codelineno-15-25" href="#__codelineno-15-25"></a><span class="n">explicit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+</code></pre></div>
+<p>Or, for Intel GPU builds:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">[project]</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;project&quot;</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="n">requires-python</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&gt;=3.12.0&quot;</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="w">  </span><span class="s2">&quot;torch&gt;=2.7.0&quot;</span><span class="p">,</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="w">  </span><span class="s2">&quot;torchvision&gt;=0.22.0&quot;</span><span class="p">,</span>
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="w">  </span><span class="s2">&quot;pytorch-triton-xpu&gt;=3.3.0 ; sys_platform == &#39;win32&#39; or sys_platform == &#39;linux&#39;&quot;</span><span class="p">,</span>
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="p">]</span>
+<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>
+<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="k">[tool.uv.sources]</span>
+<a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a><span class="n">torch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;pytorch-xpu&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">marker</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;sys_platform == &#39;win32&#39; or sys_platform == &#39;linux&#39;&quot;</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a><span class="p">]</span>
+<a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a><span class="n">torchvision</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;pytorch-xpu&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">marker</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;sys_platform == &#39;win32&#39; or sys_platform == &#39;linux&#39;&quot;</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a><span class="p">]</span>
+<a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a><span class="n">pytorch-triton-xpu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-16-19" name="__codelineno-16-19" href="#__codelineno-16-19"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;pytorch-xpu&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">marker</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;sys_platform == &#39;win32&#39; or sys_platform == &#39;linux&#39;&quot;</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-16-20" name="__codelineno-16-20" href="#__codelineno-16-20"></a><span class="p">]</span>
+<a id="__codelineno-16-21" name="__codelineno-16-21" href="#__codelineno-16-21"></a>
+<a id="__codelineno-16-22" name="__codelineno-16-22" href="#__codelineno-16-22"></a><span class="k">[[tool.uv.index]]</span>
+<a id="__codelineno-16-23" name="__codelineno-16-23" href="#__codelineno-16-23"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;pytorch-xpu&quot;</span>
+<a id="__codelineno-16-24" name="__codelineno-16-24" href="#__codelineno-16-24"></a><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://download.pytorch.org/whl/xpu&quot;</span>
+<a id="__codelineno-16-25" name="__codelineno-16-25" href="#__codelineno-16-25"></a><span class="n">explicit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 </code></pre></div>
 <h2 id="configuring-accelerators-with-optional-dependencies"><a class="toclink" href="#configuring-accelerators-with-optional-dependencies">Configuring accelerators with optional dependencies</a></h2>
 <p>In some cases, you may want to use CPU-only builds in some cases, but CUDA-enabled builds in others,
@@ -2999,49 +3031,49 @@ with the choice toggled by a user-provided extra (e.g., <code>uv sync --extra cp
 <p>With <code>tool.uv.sources</code>, you can use extra markers to specify the desired index for each enabled
 extra. For example, the following configuration would use PyTorch's CPU-only for
 <code>uv sync --extra cpu</code> and CUDA-enabled builds for <code>uv sync --extra cu124</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">[project]</span>
-<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;project&quot;</span>
-<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span>
-<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="n">requires-python</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&gt;=3.12.0&quot;</span>
-<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[]</span>
-<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>
-<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="k">[project.optional-dependencies]</span>
-<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="n">cpu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="w">  </span><span class="s2">&quot;torch&gt;=2.6.0&quot;</span><span class="p">,</span>
-<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="w">  </span><span class="s2">&quot;torchvision&gt;=0.21.0&quot;</span><span class="p">,</span>
-<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="p">]</span>
-<a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a><span class="n">cu124</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a><span class="w">  </span><span class="s2">&quot;torch&gt;=2.6.0&quot;</span><span class="p">,</span>
-<a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a><span class="w">  </span><span class="s2">&quot;torchvision&gt;=0.21.0&quot;</span><span class="p">,</span>
-<a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a><span class="p">]</span>
-<a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a>
-<a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a><span class="k">[tool.uv]</span>
-<a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a><span class="n">conflicts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-16-19" name="__codelineno-16-19" href="#__codelineno-16-19"></a><span class="w">  </span><span class="p">[</span>
-<a id="__codelineno-16-20" name="__codelineno-16-20" href="#__codelineno-16-20"></a><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="n">extra</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;cpu&quot;</span><span class="w"> </span><span class="p">},</span>
-<a id="__codelineno-16-21" name="__codelineno-16-21" href="#__codelineno-16-21"></a><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="n">extra</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;cu124&quot;</span><span class="w"> </span><span class="p">},</span>
-<a id="__codelineno-16-22" name="__codelineno-16-22" href="#__codelineno-16-22"></a><span class="w">  </span><span class="p">],</span>
-<a id="__codelineno-16-23" name="__codelineno-16-23" href="#__codelineno-16-23"></a><span class="p">]</span>
-<a id="__codelineno-16-24" name="__codelineno-16-24" href="#__codelineno-16-24"></a>
-<a id="__codelineno-16-25" name="__codelineno-16-25" href="#__codelineno-16-25"></a><span class="k">[tool.uv.sources]</span>
-<a id="__codelineno-16-26" name="__codelineno-16-26" href="#__codelineno-16-26"></a><span class="n">torch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-16-27" name="__codelineno-16-27" href="#__codelineno-16-27"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;pytorch-cpu&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">extra</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;cpu&quot;</span><span class="w"> </span><span class="p">},</span>
-<a id="__codelineno-16-28" name="__codelineno-16-28" href="#__codelineno-16-28"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;pytorch-cu124&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">extra</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;cu124&quot;</span><span class="w"> </span><span class="p">},</span>
-<a id="__codelineno-16-29" name="__codelineno-16-29" href="#__codelineno-16-29"></a><span class="p">]</span>
-<a id="__codelineno-16-30" name="__codelineno-16-30" href="#__codelineno-16-30"></a><span class="n">torchvision</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-16-31" name="__codelineno-16-31" href="#__codelineno-16-31"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;pytorch-cpu&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">extra</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;cpu&quot;</span><span class="w"> </span><span class="p">},</span>
-<a id="__codelineno-16-32" name="__codelineno-16-32" href="#__codelineno-16-32"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;pytorch-cu124&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">extra</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;cu124&quot;</span><span class="w"> </span><span class="p">},</span>
-<a id="__codelineno-16-33" name="__codelineno-16-33" href="#__codelineno-16-33"></a><span class="p">]</span>
-<a id="__codelineno-16-34" name="__codelineno-16-34" href="#__codelineno-16-34"></a>
-<a id="__codelineno-16-35" name="__codelineno-16-35" href="#__codelineno-16-35"></a><span class="k">[[tool.uv.index]]</span>
-<a id="__codelineno-16-36" name="__codelineno-16-36" href="#__codelineno-16-36"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;pytorch-cpu&quot;</span>
-<a id="__codelineno-16-37" name="__codelineno-16-37" href="#__codelineno-16-37"></a><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://download.pytorch.org/whl/cpu&quot;</span>
-<a id="__codelineno-16-38" name="__codelineno-16-38" href="#__codelineno-16-38"></a><span class="n">explicit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
-<a id="__codelineno-16-39" name="__codelineno-16-39" href="#__codelineno-16-39"></a>
-<a id="__codelineno-16-40" name="__codelineno-16-40" href="#__codelineno-16-40"></a><span class="k">[[tool.uv.index]]</span>
-<a id="__codelineno-16-41" name="__codelineno-16-41" href="#__codelineno-16-41"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;pytorch-cu124&quot;</span>
-<a id="__codelineno-16-42" name="__codelineno-16-42" href="#__codelineno-16-42"></a><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://download.pytorch.org/whl/cu124&quot;</span>
-<a id="__codelineno-16-43" name="__codelineno-16-43" href="#__codelineno-16-43"></a><span class="n">explicit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">[project]</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;project&quot;</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="n">requires-python</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&gt;=3.12.0&quot;</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[]</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="k">[project.optional-dependencies]</span>
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="n">cpu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="w">  </span><span class="s2">&quot;torch&gt;=2.7.0&quot;</span><span class="p">,</span>
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="w">  </span><span class="s2">&quot;torchvision&gt;=0.22.0&quot;</span><span class="p">,</span>
+<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="p">]</span>
+<a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a><span class="n">cu128</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a><span class="w">  </span><span class="s2">&quot;torch&gt;=2.7.0&quot;</span><span class="p">,</span>
+<a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a><span class="w">  </span><span class="s2">&quot;torchvision&gt;=0.22.0&quot;</span><span class="p">,</span>
+<a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a><span class="p">]</span>
+<a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a>
+<a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a><span class="k">[tool.uv]</span>
+<a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a><span class="n">conflicts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-17-19" name="__codelineno-17-19" href="#__codelineno-17-19"></a><span class="w">  </span><span class="p">[</span>
+<a id="__codelineno-17-20" name="__codelineno-17-20" href="#__codelineno-17-20"></a><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="n">extra</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;cpu&quot;</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-17-21" name="__codelineno-17-21" href="#__codelineno-17-21"></a><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="n">extra</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;cu128&quot;</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-17-22" name="__codelineno-17-22" href="#__codelineno-17-22"></a><span class="w">  </span><span class="p">],</span>
+<a id="__codelineno-17-23" name="__codelineno-17-23" href="#__codelineno-17-23"></a><span class="p">]</span>
+<a id="__codelineno-17-24" name="__codelineno-17-24" href="#__codelineno-17-24"></a>
+<a id="__codelineno-17-25" name="__codelineno-17-25" href="#__codelineno-17-25"></a><span class="k">[tool.uv.sources]</span>
+<a id="__codelineno-17-26" name="__codelineno-17-26" href="#__codelineno-17-26"></a><span class="n">torch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-17-27" name="__codelineno-17-27" href="#__codelineno-17-27"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;pytorch-cpu&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">extra</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;cpu&quot;</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-17-28" name="__codelineno-17-28" href="#__codelineno-17-28"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;pytorch-cu128&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">extra</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;cu128&quot;</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-17-29" name="__codelineno-17-29" href="#__codelineno-17-29"></a><span class="p">]</span>
+<a id="__codelineno-17-30" name="__codelineno-17-30" href="#__codelineno-17-30"></a><span class="n">torchvision</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-17-31" name="__codelineno-17-31" href="#__codelineno-17-31"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;pytorch-cpu&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">extra</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;cpu&quot;</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-17-32" name="__codelineno-17-32" href="#__codelineno-17-32"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;pytorch-cu128&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">extra</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;cu128&quot;</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-17-33" name="__codelineno-17-33" href="#__codelineno-17-33"></a><span class="p">]</span>
+<a id="__codelineno-17-34" name="__codelineno-17-34" href="#__codelineno-17-34"></a>
+<a id="__codelineno-17-35" name="__codelineno-17-35" href="#__codelineno-17-35"></a><span class="k">[[tool.uv.index]]</span>
+<a id="__codelineno-17-36" name="__codelineno-17-36" href="#__codelineno-17-36"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;pytorch-cpu&quot;</span>
+<a id="__codelineno-17-37" name="__codelineno-17-37" href="#__codelineno-17-37"></a><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://download.pytorch.org/whl/cpu&quot;</span>
+<a id="__codelineno-17-38" name="__codelineno-17-38" href="#__codelineno-17-38"></a><span class="n">explicit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<a id="__codelineno-17-39" name="__codelineno-17-39" href="#__codelineno-17-39"></a>
+<a id="__codelineno-17-40" name="__codelineno-17-40" href="#__codelineno-17-40"></a><span class="k">[[tool.uv.index]]</span>
+<a id="__codelineno-17-41" name="__codelineno-17-41" href="#__codelineno-17-41"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;pytorch-cu128&quot;</span>
+<a id="__codelineno-17-42" name="__codelineno-17-42" href="#__codelineno-17-42"></a><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://download.pytorch.org/whl/cu128&quot;</span>
+<a id="__codelineno-17-43" name="__codelineno-17-43" href="#__codelineno-17-43"></a><span class="n">explicit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -3054,16 +3086,16 @@ etc.), PyTorch can also be installed via the <code>uv pip</code> interface.</p>
 <p>PyTorch itself offers a <a href="https://pytorch.org/get-started/locally/">dedicated interface</a> to determine
 the appropriate pip command to run for a given target configuration. For example, you can install
 stable, CPU-only PyTorch on Linux with:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>$<span class="w"> </span>pip3<span class="w"> </span>install<span class="w"> </span>torch<span class="w"> </span>torchvision<span class="w"> </span>torchaudio<span class="w"> </span>--index-url<span class="w"> </span>https://download.pytorch.org/whl/cpu
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>$<span class="w"> </span>pip3<span class="w"> </span>install<span class="w"> </span>torch<span class="w"> </span>torchvision<span class="w"> </span>torchaudio<span class="w"> </span>--index-url<span class="w"> </span>https://download.pytorch.org/whl/cpu
 </code></pre></div>
 <p>To use the same workflow with uv, replace <code>pip3</code> with <code>uv pip</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>$<span class="w"> </span>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>torch<span class="w"> </span>torchvision<span class="w"> </span>torchaudio<span class="w"> </span>--index-url<span class="w"> </span>https://download.pytorch.org/whl/cpu
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>$<span class="w"> </span>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>torch<span class="w"> </span>torchvision<span class="w"> </span>torchaudio<span class="w"> </span>--index-url<span class="w"> </span>https://download.pytorch.org/whl/cpu
 </code></pre></div>
 <h2 id="automatic-backend-selection"><a class="toclink" href="#automatic-backend-selection">Automatic backend selection</a></h2>
 <p>In <a href="../../../reference/settings/#preview">preview</a>, uv can automatically select the appropriate
 PyTorch index at runtime by inspecting the system configuration via <code>--torch-backend=auto</code> (or
 <code>UV_TORCH_BACKEND=auto</code>):</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>$<span class="w"> </span><span class="nv">UV_TORCH_BACKEND</span><span class="o">=</span>auto<span class="w"> </span>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>torch
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>$<span class="w"> </span><span class="nv">UV_TORCH_BACKEND</span><span class="o">=</span>auto<span class="w"> </span>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>torch
 </code></pre></div>
 <p>When enabled, uv will query for the installed CUDA driver version and use the most-compatible
 PyTorch index for all relevant packages (e.g., <code>torch</code>, <code>torchvision</code>, etc.). If no such CUDA driver
@@ -3089,7 +3121,7 @@ change or be removed entirely in future versions of uv.</p>
         <span class="md-icon" title="Last update">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
         </span>
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 23, 2025</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 29, 2025</span>
       </span>
     
     
