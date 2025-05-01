@@ -850,6 +850,13 @@
 <p>Use instead:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">foo</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">bar</span><span class="si">}</span><span class="s2">&quot;</span>
 </code></pre></div>
+<h1 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h1>
+<p>The fix is always marked unsafe because the evaluation of the f-string
+expressions will default to calling the <code>__format__</code> method of each
+object, whereas <code>str.join</code> expects each object to be an instance of
+<code>str</code> and uses the corresponding string. Therefore it is possible for
+the values of the resulting strings to differ, or for one expression
+to raise an exception while the other does not.</p>
 <h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/reference/lexical_analysis.html#f-strings">Python documentation: f-strings</a></li>
