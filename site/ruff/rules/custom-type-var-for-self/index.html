@@ -885,6 +885,14 @@ fix, as the type variable could still be used by other functions, methods or cla
 variables.</p>
 <p>The fix is only marked as unsafe if there is the possibility that it might delete a comment
 from your code.</p>
+<h2 id="availability"><a class="toclink" href="#availability">Availability</a></h2>
+<p>Because this rule relies on the third-party <code>typing_extensions</code> module for Python versions
+before 3.11, its diagnostic will not be emitted, and no fix will be offered, if
+<code>typing_extensions</code> imports have been disabled by the <a href="../../settings/#lint_typing-extensions"><code>lint.typing-extensions</code></a> linter option.</p>
+<h2 id="options"><a class="toclink" href="#options">Options</a></h2>
+<ul>
+<li><a href="../../settings/#lint_typing-extensions"><code>lint.typing-extensions</code></a></li>
+</ul>
 
 
 

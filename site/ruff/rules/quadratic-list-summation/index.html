@@ -867,6 +867,12 @@ form, which outperforms the other methods in <a href="https://github.com/astral-
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">lists</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]]</span>
 <a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">functools</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">operator</span><span class="o">.</span><span class="n">iadd</span><span class="p">,</span> <span class="n">lists</span><span class="p">,</span> <span class="p">[])</span>
 </code></pre></div>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
+<p>This fix is always marked as unsafe because <code>sum</code> uses the <code>__add__</code> magic method while
+<code>operator.iadd</code> uses the <code>__iadd__</code> magic method, and these behave differently on lists.
+The former requires the right summand to be a list, whereas the latter allows for any iterable.
+Therefore, the fix could inadvertently cause code that previously raised an error to silently
+succeed. Moreover, the fix could remove comments from the original code.</p>
 <h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://mathieularose.com/how-not-to-flatten-a-list-of-lists-in-python"><em>How Not to Flatten a List of Lists in Python</em></a></li>
