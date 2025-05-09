@@ -6,13 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Checks for explicit use of dunder methods, like `__str__` and `__add__`.">
+        <meta name="description" content="Checks for membership tests on empty collections (such as `list`, `tuple`, `set` or `dict`).">
       
       
         <meta name="author" content="charliermarsh">
       
       
-        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/unnecessary-dunder-call/">
+        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/in-empty-collection/">
       
       
       
@@ -25,7 +25,7 @@
     
     
 
-<title>unnecessary-dunder-call (PLC2801) | Ruff</title>
+<title>in-empty-collection (RUF060) | Ruff</title>
 
 
     
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#unnecessary-dunder-call-plc2801" class="md-skip">
+        <a href="#in-empty-collection-ruf060" class="md-skip">
           Skip to content
         </a>
       
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              unnecessary-dunder-call (PLC2801)
+              in-empty-collection (RUF060)
             
           </span>
         </div>
@@ -837,60 +837,18 @@
   
 
 
-<h1 id="unnecessary-dunder-call-plc2801"><a class="toclink" href="#unnecessary-dunder-call-plc2801">unnecessary-dunder-call (PLC2801)</a></h1>
-<p>Derived from the <strong><a href="../#pylint-pl">Pylint</a></strong> linter.</p>
-<p>Fix is sometimes available.</p>
+<h1 id="in-empty-collection-ruf060"><a class="toclink" href="#in-empty-collection-ruf060">in-empty-collection (RUF060)</a></h1>
 <p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
-<p>Checks for explicit use of dunder methods, like <code>__str__</code> and <code>__add__</code>.</p>
+<p>Checks for membership tests on empty collections (such as <code>list</code>, <code>tuple</code>, <code>set</code> or <code>dict</code>).</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
-<p>Dunder names are not meant to be called explicitly and, in most cases, can
-be replaced with builtins or operators.</p>
-<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
-<p>This fix is always unsafe. When replacing dunder method calls with operators
-or builtins, the behavior can change in the following ways:</p>
-<ol>
-<li>
-<p>Types may implement only a subset of related dunder methods. Calling a
-    missing dunder method directly returns <code>NotImplemented</code>, but using the
-    equivalent operator raises a <code>TypeError</code>.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">C</span><span class="p">:</span> <span class="k">pass</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">c</span> <span class="o">=</span> <span class="n">C</span><span class="p">()</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">c</span><span class="o">.</span><span class="fm">__gt__</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># before fix: NotImplemented</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">c</span> <span class="o">&gt;</span> <span class="mi">1</span>        <span class="c1"># after fix: raises TypeError</span>
-</code></pre></div>
-</li>
-<li>
-<p>Instance-assigned dunder methods are ignored by operators and builtins.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">C</span><span class="p">:</span> <span class="k">pass</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">c</span> <span class="o">=</span> <span class="n">C</span><span class="p">()</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">c</span><span class="o">.</span><span class="fm">__bool__</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="kc">False</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">c</span><span class="o">.</span><span class="fm">__bool__</span><span class="p">()</span> <span class="c1"># before fix: False</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="nb">bool</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>      <span class="c1"># after fix: True</span>
-</code></pre></div>
-</li>
-<li>
-<p>Even with built-in types, behavior can differ.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="fm">__gt__</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>  <span class="c1"># before fix: NotImplemented</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="mi">1</span> <span class="o">&gt;</span> <span class="mf">1.0</span>          <span class="c1"># after fix: False</span>
-</code></pre></div>
-</li>
-</ol>
+<p>If the collection is always empty, the check is unnecessary, and can be removed.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">three</span> <span class="o">=</span> <span class="p">(</span><span class="mf">3.0</span><span class="p">)</span><span class="o">.</span><span class="fm">__str__</span><span class="p">()</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">twelve</span> <span class="o">=</span> <span class="s2">&quot;1&quot;</span><span class="o">.</span><span class="fm">__add__</span><span class="p">(</span><span class="s2">&quot;2&quot;</span><span class="p">)</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="k">def</span><span class="w"> </span><span class="nf">is_greater_than_two</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    <span class="k">return</span> <span class="n">x</span><span class="o">.</span><span class="fm">__gt__</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">if</span> <span class="mi">1</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">():</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;got it!&quot;</span><span class="p">)</span>
 </code></pre></div>
 <p>Use instead:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">three</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="mf">3.0</span><span class="p">)</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">twelve</span> <span class="o">=</span> <span class="s2">&quot;1&quot;</span> <span class="o">+</span> <span class="s2">&quot;2&quot;</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="k">def</span><span class="w"> </span><span class="nf">is_greater_than_two</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="k">return</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">2</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;got it!&quot;</span><span class="p">)</span>
 </code></pre></div>
 
 
