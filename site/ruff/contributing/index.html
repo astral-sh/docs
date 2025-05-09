@@ -1000,6 +1000,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#upgrading-rust" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Upgrading Rust
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#benchmarking-and-profiling" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1579,6 +1590,15 @@ report on any linter or formatter differences. You can also run those checks loc
 <a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>uvx<span class="w"> </span>--from<span class="w"> </span>./python/ruff-ecosystem<span class="w"> </span>ruff-ecosystem<span class="w"> </span>format<span class="w"> </span>ruff<span class="w"> </span><span class="s2">&quot;./target/debug/ruff&quot;</span>
 </code></pre></div>
 <p>See the <a href="https://github.com/astral-sh/ruff/tree/main/python/ruff-ecosystem">ruff-ecosystem package</a> for more details.</p>
+<h2 id="upgrading-rust"><a class="toclink" href="#upgrading-rust">Upgrading Rust</a></h2>
+<ol>
+<li>Change the <code>channel</code> in <code>./rust-toolchain.toml</code> to the new Rust version (<code>&lt;latest&gt;</code>)</li>
+<li>Change the <code>rust-version</code> in the <code>./Cargo.toml</code> to <code>&lt;latest&gt; - 2</code> (e.g. 1.84 if the latest is 1.86)</li>
+<li>Run <code>cargo clippy --fix --allow-dirty --allow-staged</code> to fix new clippy warnings</li>
+<li>Create and merge the PR</li>
+<li>Bump the Rust version in Ruff's conda forge recipe. See <a href="https://github.com/conda-forge/ruff-feedstock/pull/266">this PR</a> for an example.</li>
+<li>Enjoy the new Rust version!</li>
+</ol>
 <h2 id="benchmarking-and-profiling"><a class="toclink" href="#benchmarking-and-profiling">Benchmarking and Profiling</a></h2>
 <p>We have several ways of benchmarking and profiling Ruff:</p>
 <ul>
