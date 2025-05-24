@@ -1254,11 +1254,11 @@
 
 <h1 id="contributing-to-ruff"><a class="toclink" href="#contributing-to-ruff">Contributing to Ruff</a></h1>
 <p>Welcome! We're happy to have you here. Thank you in advance for your contribution to Ruff.</p>
-<blockquote>
-<p>[!NOTE]</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p>This guide is for Ruff. If you're looking to contribute to ty, please see <a href="https://github.com/astral-sh/ruff/blob/main/crates/ty/CONTRIBUTING.md">the ty contributing
-guide</a>.</p>
-</blockquote>
+ guide</a>.</p>
+</div>
 <h2 id="the-basics"><a class="toclink" href="#the-basics">The Basics</a></h2>
 <p>Ruff welcomes contributions in the form of pull requests.</p>
 <p>For small changes (e.g., bug fixes), feel free to submit a PR.</p>
@@ -1626,7 +1626,7 @@ which makes it a good target for benchmarking.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>cargo<span class="w"> </span>install<span class="w"> </span>hyperfine
 </code></pre></div>
 <p>To benchmark the release build:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>cargo<span class="w"> </span>build<span class="w"> </span>--release<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>hyperfine<span class="w"> </span>--warmup<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>cargo<span class="w"> </span>build<span class="w"> </span>--release<span class="w"> </span>--bin<span class="w"> </span>ruff<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>hyperfine<span class="w"> </span>--warmup<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">  </span><span class="s2">&quot;./target/release/ruff check ./crates/ruff_linter/resources/test/cpython/ --no-cache -e&quot;</span><span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">  </span><span class="s2">&quot;./target/release/ruff check ./crates/ruff_linter/resources/test/cpython/ -e&quot;</span>
 <a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>
@@ -1781,8 +1781,7 @@ of checks, to your liking)</p>
 <p>Then convert the recorded profile</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>perf<span class="w"> </span>script<span class="w"> </span>-F<span class="w"> </span>+pid<span class="w"> </span>&gt;<span class="w"> </span>/tmp/test.perf
 </code></pre></div>
-<p>You can now view the converted file with <a href="https://profiler.firefox.com/">firefox profiler</a>, with a
-more in-depth guide <a href="https://profiler.firefox.com/docs/#/./guide-perf-profiling">here</a></p>
+<p>You can now view the converted file with <a href="https://profiler.firefox.com/">firefox profiler</a>. To learn more about Firefox profiler, read the <a href="https://profiler.firefox.com/docs/#/./guide-perf-profiling">Firefox profiler profiling-guide</a>.</p>
 <p>An alternative is to convert the perf data to <code>flamegraph.svg</code> using
 <a href="https://github.com/flamegraph-rs/flamegraph">flamegraph</a> (<code>cargo install flamegraph</code>):</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>flamegraph<span class="w"> </span>--perfdata<span class="w"> </span>perf.data<span class="w"> </span>--no-inline

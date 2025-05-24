@@ -852,6 +852,11 @@ concise and readable.</p>
 <p>Use instead:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">bool</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 </code></pre></div>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
+<p>This fix is marked as unsafe because it may change the program’s behavior if the condition does not
+return a proper Boolean. While the fix will try to wrap non-boolean values in a call to bool,
+custom implementations of comparison functions like <code>__eq__</code> can avoid the bool call and still
+lead to altered behavior. Moreover, the fix may remove comments.</p>
 <h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/library/stdtypes.html#truth-value-testing">Python documentation: Truth Value Testing</a></li>
