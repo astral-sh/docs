@@ -841,15 +841,18 @@
 <p>Derived from the <strong><a href="../#flake8-2020-ytt">flake8-2020</a></strong> linter.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for equality comparisons against the major version returned by
-<code>sys.version_info</code> (e.g., <code>sys.version_info[0] == 3</code>).</p>
+<code>sys.version_info</code> (e.g., <code>sys.version_info[0] == 3</code> or <code>sys.version_info[0] != 3</code>).</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Using <code>sys.version_info[0] == 3</code> to verify that the major version is
 Python 3 or greater will fail if the major version number is ever
 incremented (e.g., to Python 4). This is likely unintended, as code
 that uses this comparison is likely intended to be run on Python 2,
-but would now run on Python 4 too.</p>
+but would now run on Python 4 too. Similarly, using <code>sys.version_info[0] != 3</code>
+to check for Python 2 will also fail if the major version number is
+incremented.</p>
 <p>Instead, use <code>&gt;=</code> to check if the major version number is 3 or greater,
-to future-proof the code.</p>
+or <code>&lt;</code> to check if the major version number is less than 3, to future-proof
+the code.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
