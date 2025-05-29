@@ -6,13 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Checks for `pprint` statements.">
+        <meta name="description" content="Checks for uses of `os.symlink`.">
       
       
         <meta name="author" content="charliermarsh">
       
       
-        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/p-print/">
+        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/os-symlink/">
       
       
       
@@ -25,7 +25,7 @@
     
     
 
-<title>p-print (T203) | Ruff</title>
+<title>os-symlink (PTH211) | Ruff</title>
 
 
     
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#p-print-t203" class="md-skip">
+        <a href="#os-symlink-pth211" class="md-skip">
           Skip to content
         </a>
       
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              p-print (T203)
+              os-symlink (PTH211)
             
           </span>
         </div>
@@ -837,35 +837,36 @@
   
 
 
-<h1 id="p-print-t203"><a class="toclink" href="#p-print-t203">p-print (T203)</a></h1>
-<p>Derived from the <strong><a href="../#flake8-print-t20">flake8-print</a></strong> linter.</p>
-<p>Fix is sometimes available.</p>
+<h1 id="os-symlink-pth211"><a class="toclink" href="#os-symlink-pth211">os-symlink (PTH211)</a></h1>
+<p>Derived from the <strong><a href="../#flake8-use-pathlib-pth">flake8-use-pathlib</a></strong> linter.</p>
+<p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
-<p>Checks for <code>pprint</code> statements.</p>
+<p>Checks for uses of <code>os.symlink</code>.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
-<p>Like <code>print</code> statements, <code>pprint</code> statements used for debugging should
-be omitted from production code. They can lead the accidental inclusion
-of sensitive information in logs, and are not configurable by clients,
-unlike <code>logging</code> statements.</p>
-<p><code>pprint</code> statements used to produce output as a part of a command-line
-interface program are not typically a problem.</p>
+<p><code>pathlib</code> offers a high-level API for path manipulation, as compared to
+the lower-level API offered by <code>os.symlink</code>.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pprint</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">merge_dicts</span><span class="p">(</span><span class="n">dict_a</span><span class="p">,</span> <span class="n">dict_b</span><span class="p">):</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">dict_c</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="n">dict_a</span><span class="p">,</span> <span class="o">**</span><span class="n">dict_b</span><span class="p">}</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">dict_c</span><span class="p">)</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="k">return</span> <span class="n">dict_c</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">os</span><span class="o">.</span><span class="n">symlink</span><span class="p">(</span><span class="s2">&quot;usr/bin/python&quot;</span><span class="p">,</span> <span class="s2">&quot;tmp/python&quot;</span><span class="p">,</span> <span class="n">target_is_directory</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </code></pre></div>
 <p>Use instead:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">merge_dicts</span><span class="p">(</span><span class="n">dict_a</span><span class="p">,</span> <span class="n">dict_b</span><span class="p">):</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="n">dict_c</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="n">dict_a</span><span class="p">,</span> <span class="o">**</span><span class="n">dict_b</span><span class="p">}</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="k">return</span> <span class="n">dict_c</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;tmp/python&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">symlink_to</span><span class="p">(</span><span class="s2">&quot;usr/bin/python&quot;</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
-<p>This rule's fix is marked as unsafe, as it will remove <code>pprint</code> statements
-that are used beyond debugging purposes.</p>
+<h2 id="known-issues"><a class="toclink" href="#known-issues">Known issues</a></h2>
+<p>While using <code>pathlib</code> can improve the readability and type safety of your code,
+it can be less performant than the lower-level alternatives that work directly with strings,
+especially on older versions of Python.</p>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
+<ul>
+<li><a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path.symlink_to">Python documentation: <code>Path.symlink_to</code></a></li>
+<li><a href="https://peps.python.org/pep-0428/">PEP 428 – The pathlib module – object-oriented filesystem paths</a></li>
+<li><a href="https://docs.python.org/3/library/pathlib.html#correspondence-to-tools-in-the-os-module">Correspondence between <code>os</code> and <code>pathlib</code></a></li>
+<li><a href="https://treyhunner.com/2018/12/why-you-should-be-using-pathlib/">Why you should be using pathlib</a></li>
+<li><a href="https://treyhunner.com/2019/01/no-really-pathlib-is-great/">No really, pathlib is great</a></li>
+</ul>
 
 
 
