@@ -1177,83 +1177,21 @@ file with the <a href="../settings/#logfile"><code>logFile</code></a> setting.</
 <p>To view the trace logs between Neovim and Ruff, set the log level for Neovim's LSP client to <code>debug</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nv">vim</span><span class="p">.</span><span class="py">lsp</span><span class="p">.</span><span class="nf">set_log_level</span><span class="p">(</span><span class="s1">&#39;debug&#39;</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="vim"><a class="toclink" href="#vim">Vim</a></h2>
-<p>The <a href="https://github.com/prabirshrestha/vim-lsp"><code>vim-lsp</code></a> plugin can be used to configure the Ruff Language Server in Vim.
-To set it up, install <a href="https://github.com/prabirshrestha/vim-lsp"><code>vim-lsp</code></a> plugin and register the server using the following
-in your <code>.vimrc</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">if</span> executable<span class="p">(</span><span class="s1">&#39;ruff&#39;</span><span class="p">)</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="k">au</span> <span class="nb">User</span> lsp_setup <span class="k">call</span> <span class="nb">lsp</span>#register_server<span class="p">(</span>{
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>        \ <span class="s1">&#39;name&#39;</span>: <span class="s1">&#39;ruff&#39;</span><span class="p">,</span>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>        \ <span class="s1">&#39;cmd&#39;</span>: {server_info<span class="p">-&gt;</span>[<span class="s1">&#39;ruff&#39;</span><span class="p">,</span> <span class="s1">&#39;server&#39;</span>]}<span class="p">,</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>        \ <span class="s1">&#39;allowlist&#39;</span>: [<span class="s1">&#39;python&#39;</span>]<span class="p">,</span>
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>        \ <span class="s1">&#39;workspace_config&#39;</span>: {}<span class="p">,</span>
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>        \ }<span class="p">)</span>
-<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="k">endif</span>
-</code></pre></div>
-<p>See the <code>vim-lsp</code>
-<a href="https://github.com/prabirshrestha/vim-lsp/blob/master/doc/vim-lsp.txt">documentation</a> for more
-details on how to configure the language server.</p>
-<p>If you're using Ruff alongside another LSP (like Pyright), you may want to defer to that LSP for certain capabilities,
-like <a href="../features/#hover"><code>textDocument/hover</code></a> by adding the following to the function <code>s:on_lsp_buffer_enabled()</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">function</span><span class="p">!</span> s:on_lsp_buffer_enabled<span class="p">()</span> abort
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="c">    &quot; add your keybindings here (see https://github.com/prabirshrestha/vim-lsp?tab=readme-ov-file#registering-servers)</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>    <span class="k">let</span> <span class="k">l</span>:capabilities <span class="p">=</span> <span class="nb">lsp</span>#get_server_capabilities<span class="p">(</span><span class="s1">&#39;ruff&#39;</span><span class="p">)</span>
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    <span class="k">if</span> <span class="p">!</span>empty<span class="p">(</span><span class="k">l</span>:capabilities<span class="p">)</span>
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>      <span class="k">let</span> <span class="k">l</span>:capabilities.hoverProvider <span class="p">=</span> <span class="k">v</span>:false
-<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>    <span class="k">endif</span>
-<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="k">endfunction</span>
-</code></pre></div>
-<p>Ruff is also available as part of the <a href="https://github.com/fannheyward/coc-pyright">coc-pyright</a>
-extension for <a href="https://github.com/neoclide/coc.nvim">coc.nvim</a>.</p>
-<details>
-<summary>With the <a href="https://github.com/dense-analysis/ale">ALE</a> plugin for Vim or Neovim.</summary>
-
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c">&quot; Linters</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="k">let</span> <span class="k">g</span>:ale_linters <span class="p">=</span> { <span class="s2">&quot;python&quot;</span>: [<span class="s2">&quot;ruff&quot;</span>] }
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="c">&quot; Fixers</span>
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="k">let</span> <span class="k">g</span>:ale_fixers <span class="p">=</span> { <span class="s2">&quot;python&quot;</span>: [<span class="s2">&quot;ruff&quot;</span><span class="p">,</span> <span class="s2">&quot;ruff_format&quot;</span>] }
-</code></pre></div>
-
-For the fixers, `ruff` will run `ruff check --fix` (to fix all auto-fixable problems) whereas
-`ruff_format` will run `ruff format`.
-
-</details>
-
-<details>
-<summary>Ruff can also be integrated via <a href="https://github.com/mattn/efm-langserver">efm language server</a> in just a few lines.</summary>
-<br>
-
-Following is an example config for efm to use Ruff for linting and formatting Python files:
-
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nt">tools</span><span class="p">:</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">  </span><span class="nt">python-ruff</span><span class="p">:</span>
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="nt">lint-command</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ruff</span><span class="nv"> </span><span class="s">check</span><span class="nv"> </span><span class="s">--stdin-filename</span><span class="nv"> </span><span class="s">${INPUT}</span><span class="nv"> </span><span class="s">--output-format</span><span class="nv"> </span><span class="s">concise</span><span class="nv"> </span><span class="s">--quiet</span><span class="nv"> </span><span class="s">-&quot;</span>
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="nt">lint-stdin</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">    </span><span class="nt">lint-formats</span><span class="p">:</span>
-<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;%f:%l:%c:</span><span class="nv"> </span><span class="s">%m&quot;</span>
-<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">    </span><span class="nt">format-command</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ruff</span><span class="nv"> </span><span class="s">format</span><span class="nv"> </span><span class="s">--stdin-filename</span><span class="nv"> </span><span class="s">${INPUT}</span><span class="nv"> </span><span class="s">--quiet</span><span class="nv"> </span><span class="s">-&quot;</span>
-<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="w">    </span><span class="nt">format-stdin</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-</code></pre></div>
-
-</details>
-
 <details>
 <summary>With the <a href="https://github.com/stevearc/conform.nvim"><code>conform.nvim</code></a> plugin for Neovim.</summary>
-<br>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nb">require</span><span class="p">(</span><span class="s2">&quot;conform&quot;</span><span class="p">).</span><span class="nf">setup</span><span class="p">({</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="nv">formatters_by_ft</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">        </span><span class="nv">python</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">          </span><span class="c1">-- To fix auto-fixable lint errors.</span>
-<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">          </span><span class="s2">&quot;ruff_fix&quot;</span><span class="p">,</span>
-<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">          </span><span class="c1">-- To run the Ruff formatter.</span>
-<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">          </span><span class="s2">&quot;ruff_format&quot;</span><span class="p">,</span>
-<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">          </span><span class="c1">-- To organize the imports.</span>
-<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="w">          </span><span class="s2">&quot;ruff_organize_imports&quot;</span><span class="p">,</span>
-<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="w">        </span><span class="p">},</span>
-<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="w">    </span><span class="p">},</span>
-<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="p">})</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">require</span><span class="p">(</span><span class="s2">&quot;conform&quot;</span><span class="p">).</span><span class="nf">setup</span><span class="p">({</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="nv">formatters_by_ft</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">        </span><span class="nv">python</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">          </span><span class="c1">-- To fix auto-fixable lint errors.</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">          </span><span class="s2">&quot;ruff_fix&quot;</span><span class="p">,</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">          </span><span class="c1">-- To run the Ruff formatter.</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">          </span><span class="s2">&quot;ruff_format&quot;</span><span class="p">,</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">          </span><span class="c1">-- To organize the imports.</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">          </span><span class="s2">&quot;ruff_organize_imports&quot;</span><span class="p">,</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">        </span><span class="p">},</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="p">})</span>
 </code></pre></div>
 
 </details>
@@ -1261,9 +1199,79 @@ Following is an example config for efm to use Ruff for linting and formatting Py
 <details>
 <summary>With the <a href="https://github.com/mfussenegger/nvim-lint"><code>nvim-lint</code></a> plugin for Neovim.</summary>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nb">require</span><span class="p">(</span><span class="s2">&quot;lint&quot;</span><span class="p">).</span><span class="nv">linters_by_ft</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">  </span><span class="nv">python</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;ruff&quot;</span><span class="w"> </span><span class="p">},</span>
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">require</span><span class="p">(</span><span class="s2">&quot;lint&quot;</span><span class="p">).</span><span class="nv">linters_by_ft</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="nv">python</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;ruff&quot;</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="p">}</span>
+</code></pre></div>
+
+</details>
+
+<details>
+<summary>With the <a href="https://github.com/dense-analysis/ale">ALE</a> plugin for Neovim or Vim.</summary>
+
+<i>Neovim (using Lua):</i>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1">-- Linters</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nv">vim</span><span class="p">.</span><span class="py">g</span><span class="p">.</span><span class="py">ale_linters</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nv">python</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;ruff&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="c1">-- Fixers</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="nv">vim</span><span class="p">.</span><span class="py">g</span><span class="p">.</span><span class="py">ale_fixers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nv">python</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;ruff&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;ruff_format&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+
+<i>Vim (using Vimscript):</i>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c">&quot; Linters</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="k">let</span> <span class="k">g</span>:ale_linters <span class="p">=</span> { <span class="s2">&quot;python&quot;</span>: [<span class="s2">&quot;ruff&quot;</span>] }
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="c">&quot; Fixers</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="k">let</span> <span class="k">g</span>:ale_fixers <span class="p">=</span> { <span class="s2">&quot;python&quot;</span>: [<span class="s2">&quot;ruff&quot;</span><span class="p">,</span> <span class="s2">&quot;ruff_format&quot;</span>] }
+</code></pre></div>
+
+For the fixers, <code>ruff</code> will run <code>ruff check --fix</code> (to fix all auto-fixable
+problems) whereas <code>ruff_format</code> will run <code>ruff format</code>.
+
+</details>
+
+<h2 id="vim"><a class="toclink" href="#vim">Vim</a></h2>
+<p>The <a href="https://github.com/prabirshrestha/vim-lsp"><code>vim-lsp</code></a> plugin can be used to configure the Ruff Language Server in Vim.
+To set it up, install <a href="https://github.com/prabirshrestha/vim-lsp"><code>vim-lsp</code></a> plugin and register the server using the following
+in your <code>.vimrc</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">if</span> executable<span class="p">(</span><span class="s1">&#39;ruff&#39;</span><span class="p">)</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>    <span class="k">au</span> <span class="nb">User</span> lsp_setup <span class="k">call</span> <span class="nb">lsp</span>#register_server<span class="p">(</span>{
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>        \ <span class="s1">&#39;name&#39;</span>: <span class="s1">&#39;ruff&#39;</span><span class="p">,</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>        \ <span class="s1">&#39;cmd&#39;</span>: {server_info<span class="p">-&gt;</span>[<span class="s1">&#39;ruff&#39;</span><span class="p">,</span> <span class="s1">&#39;server&#39;</span>]}<span class="p">,</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>        \ <span class="s1">&#39;allowlist&#39;</span>: [<span class="s1">&#39;python&#39;</span>]<span class="p">,</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>        \ <span class="s1">&#39;workspace_config&#39;</span>: {}<span class="p">,</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>        \ }<span class="p">)</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="k">endif</span>
+</code></pre></div>
+<p>See the <code>vim-lsp</code>
+<a href="https://github.com/prabirshrestha/vim-lsp/blob/master/doc/vim-lsp.txt">documentation</a> for more
+details on how to configure the language server.</p>
+<p>If you're using Ruff alongside another LSP (like Pyright), you may want to defer to that LSP for certain capabilities,
+like <a href="../features/#hover"><code>textDocument/hover</code></a> by adding the following to the function <code>s:on_lsp_buffer_enabled()</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">function</span><span class="p">!</span> s:on_lsp_buffer_enabled<span class="p">()</span> abort
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="c">    &quot; add your keybindings here (see https://github.com/prabirshrestha/vim-lsp?tab=readme-ov-file#registering-servers)</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>    <span class="k">let</span> <span class="k">l</span>:capabilities <span class="p">=</span> <span class="nb">lsp</span>#get_server_capabilities<span class="p">(</span><span class="s1">&#39;ruff&#39;</span><span class="p">)</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>    <span class="k">if</span> <span class="p">!</span>empty<span class="p">(</span><span class="k">l</span>:capabilities<span class="p">)</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>      <span class="k">let</span> <span class="k">l</span>:capabilities.hoverProvider <span class="p">=</span> <span class="k">v</span>:false
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>    <span class="k">endif</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="k">endfunction</span>
+</code></pre></div>
+<p>Ruff is also available as part of the <a href="https://github.com/fannheyward/coc-pyright">coc-pyright</a>
+extension for <a href="https://github.com/neoclide/coc.nvim">coc.nvim</a>.</p>
+<details>
+<summary>Ruff can also be integrated via <a href="https://github.com/mattn/efm-langserver">efm language server</a> in just a few lines.</summary>
+
+Following is an example config for efm to use Ruff for linting and formatting Python files:
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nt">tools</span><span class="p">:</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">  </span><span class="nt">python-ruff</span><span class="p">:</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">    </span><span class="nt">lint-command</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ruff</span><span class="nv"> </span><span class="s">check</span><span class="nv"> </span><span class="s">--stdin-filename</span><span class="nv"> </span><span class="s">${INPUT}</span><span class="nv"> </span><span class="s">--output-format</span><span class="nv"> </span><span class="s">concise</span><span class="nv"> </span><span class="s">--quiet</span><span class="nv"> </span><span class="s">-&quot;</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">    </span><span class="nt">lint-stdin</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="w">    </span><span class="nt">lint-formats</span><span class="p">:</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;%f:%l:%c:</span><span class="nv"> </span><span class="s">%m&quot;</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="w">    </span><span class="nt">format-command</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ruff</span><span class="nv"> </span><span class="s">format</span><span class="nv"> </span><span class="s">--stdin-filename</span><span class="nv"> </span><span class="s">${INPUT}</span><span class="nv"> </span><span class="s">--quiet</span><span class="nv"> </span><span class="s">-&quot;</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="w">    </span><span class="nt">format-stdin</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 
 </details>
@@ -1271,21 +1279,21 @@ Following is an example config for efm to use Ruff for linting and formatting Py
 <h2 id="helix"><a class="toclink" href="#helix">Helix</a></h2>
 <p>Open the <a href="https://docs.helix-editor.com/languages.html#languagestoml-files">language configuration file</a> for
 Helix and add the language server as follows:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">[language-server.ruff]</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="n">command</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ruff&quot;</span>
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="n">args</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;server&quot;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">[language-server.ruff]</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="n">command</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ruff&quot;</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="n">args</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;server&quot;</span><span class="p">]</span>
 </code></pre></div>
 <p>Then, you'll register the language server as the one to use with Python. If you don't already have a
 language server registered to use with Python, add this to <code>languages.toml</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">[[language]]</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;python&quot;</span>
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="n">language-servers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;ruff&quot;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">[[language]]</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;python&quot;</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="n">language-servers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;ruff&quot;</span><span class="p">]</span>
 </code></pre></div>
 <p>Otherwise, if you already have <code>language-servers</code> defined, you can simply add <code>"ruff"</code> to the list. For example,
 if you already have <code>pylsp</code> as a language server, you can modify the language entry as follows:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">[[language]]</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;python&quot;</span>
-<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="n">language-servers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;ruff&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;pylsp&quot;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">[[language]]</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;python&quot;</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="n">language-servers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;ruff&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;pylsp&quot;</span><span class="p">]</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1293,35 +1301,35 @@ if you already have <code>pylsp</code> as a language server, you can modify the 
 <a href="https://github.com/helix-editor/helix/blob/master/CHANGELOG.md#2310-2023-10-24"><code>23.10</code></a> and later.</p>
 </div>
 <p>If you want to, as an example, turn on auto-formatting, add <code>auto-format = true</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">[[language]]</span>
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;python&quot;</span>
-<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="n">language-servers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;ruff&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;pylsp&quot;</span><span class="p">]</span>
-<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="n">auto-format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">[[language]]</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;python&quot;</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="n">language-servers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;ruff&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;pylsp&quot;</span><span class="p">]</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="n">auto-format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 </code></pre></div>
 <p>See the <a href="https://docs.helix-editor.com/languages.html">Helix documentation</a> for more settings you can use here.</p>
 <p>You can pass settings into <code>ruff server</code> using <code>[language-server.ruff.config.settings]</code>. For example:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">[language-server.ruff.config.settings]</span>
-<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="n">lineLength</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">80</span>
-<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>
-<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="k">[language-server.ruff.config.settings.lint]</span>
-<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="n">select</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;E4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;E7&quot;</span><span class="p">]</span>
-<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="n">preview</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
-<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>
-<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="k">[language-server.ruff.config.settings.format]</span>
-<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="n">preview</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">[language-server.ruff.config.settings]</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="n">lineLength</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">80</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="k">[language-server.ruff.config.settings.lint]</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="n">select</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;E4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;E7&quot;</span><span class="p">]</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="n">preview</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="k">[language-server.ruff.config.settings.format]</span>
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="n">preview</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 </code></pre></div>
 <p>By default, the log level for Ruff is set to <code>info</code>. To change the log level, you can set the
 <a href="../settings/#loglevel"><code>logLevel</code></a> setting:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">[language-server.ruff]</span>
-<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="n">command</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ruff&quot;</span>
-<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="n">args</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;server&quot;</span><span class="p">]</span>
-<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>
-<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="k">[language-server.ruff.config.settings]</span>
-<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="n">logLevel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;debug&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">[language-server.ruff]</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="n">command</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ruff&quot;</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="n">args</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;server&quot;</span><span class="p">]</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="k">[language-server.ruff.config.settings]</span>
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="n">logLevel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;debug&quot;</span>
 </code></pre></div>
 <p>You can also divert Ruff's logs to a separate file with the <a href="../settings/#logfile"><code>logFile</code></a> setting.</p>
 <p>To view the trace logs between Helix and Ruff, pass in the <code>-v</code> (verbose) flag when starting Helix:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>hx<span class="w"> </span>-v<span class="w"> </span>path/to/file.py
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>hx<span class="w"> </span>-v<span class="w"> </span>path/to/file.py
 </code></pre></div>
 <h2 id="kate"><a class="toclink" href="#kate">Kate</a></h2>
 <ol>
@@ -1329,16 +1337,16 @@ if you already have <code>pylsp</code> as a language server, you can modify the 
 <li>Setup LSP Client <a href="https://docs.kde.org/stable5/en/kate/kate/kate-application-plugin-lspclient.html">as desired</a>.</li>
 <li>Finally, add this to <code>Settings</code> -&gt; <code>Configure Kate</code> -&gt; <code>LSP Client</code> -&gt; <code>User Server Settings</code>:</li>
 </ol>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="p">{</span>
-<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">  </span><span class="nt">&quot;servers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="w">    </span><span class="nt">&quot;python&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="w">      </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;ruff&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;server&quot;</span><span class="p">],</span>
-<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="w">      </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://github.com/astral-sh/ruff&quot;</span><span class="p">,</span>
-<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="w">      </span><span class="nt">&quot;highlightingModeRegex&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;^Python$&quot;</span><span class="p">,</span>
-<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="w">      </span><span class="nt">&quot;settings&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span>
-<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="w">  </span><span class="p">}</span>
-<a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="p">{</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">  </span><span class="nt">&quot;servers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="w">    </span><span class="nt">&quot;python&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="w">      </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;ruff&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;server&quot;</span><span class="p">],</span>
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="w">      </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://github.com/astral-sh/ruff&quot;</span><span class="p">,</span>
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="w">      </span><span class="nt">&quot;highlightingModeRegex&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;^Python$&quot;</span><span class="p">,</span>
+<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="w">      </span><span class="nt">&quot;settings&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span>
+<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a><span class="p">}</span>
 </code></pre></div>
 <p>See <a href="https://docs.kde.org/stable5/en/kate/kate/kate-application-plugin-lspclient.html">LSP Client documentation</a> for more details
 on how to configure the server from there.</p>
@@ -1368,26 +1376,26 @@ IntelliJ Marketplace (maintained by <a href="https://github.com/koxudaxi">@koxud
 <h2 id="emacs"><a class="toclink" href="#emacs">Emacs</a></h2>
 <p>Ruff can be utilized as a language server via <a href="https://github.com/joaotavora/eglot"><code>Eglot</code></a>, which is in Emacs's core.
 To enable Ruff with automatic formatting on save, use the following configuration:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="p">(</span><span class="nv">add-hook</span><span class="w"> </span><span class="ss">&#39;python-mode-hook</span><span class="w"> </span><span class="ss">&#39;eglot-ensure</span><span class="p">)</span>
-<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="p">(</span><span class="nb">with-eval-after-load</span><span class="w"> </span><span class="ss">&#39;eglot</span>
-<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="w">  </span><span class="p">(</span><span class="nv">add-to-list</span><span class="w"> </span><span class="ss">&#39;eglot-server-programs</span>
-<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="w">               </span><span class="o">&#39;</span><span class="p">(</span><span class="nv">python-mode</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ruff&quot;</span><span class="w"> </span><span class="s">&quot;server&quot;</span><span class="p">)))</span>
-<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="w">  </span><span class="p">(</span><span class="nv">add-hook</span><span class="w"> </span><span class="ss">&#39;after-save-hook</span><span class="w"> </span><span class="ss">&#39;eglot-format</span><span class="p">))</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="p">(</span><span class="nv">add-hook</span><span class="w"> </span><span class="ss">&#39;python-mode-hook</span><span class="w"> </span><span class="ss">&#39;eglot-ensure</span><span class="p">)</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="p">(</span><span class="nb">with-eval-after-load</span><span class="w"> </span><span class="ss">&#39;eglot</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="w">  </span><span class="p">(</span><span class="nv">add-to-list</span><span class="w"> </span><span class="ss">&#39;eglot-server-programs</span>
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="w">               </span><span class="o">&#39;</span><span class="p">(</span><span class="nv">python-mode</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ruff&quot;</span><span class="w"> </span><span class="s">&quot;server&quot;</span><span class="p">)))</span>
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="w">  </span><span class="p">(</span><span class="nv">add-hook</span><span class="w"> </span><span class="ss">&#39;after-save-hook</span><span class="w"> </span><span class="ss">&#39;eglot-format</span><span class="p">))</span>
 </code></pre></div>
 <p>Ruff is available as <a href="https://melpa.org/#/flymake-ruff"><code>flymake-ruff</code></a> on MELPA:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="p">(</span><span class="nb">require</span><span class="w"> </span><span class="ss">&#39;flymake-ruff</span><span class="p">)</span>
-<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="p">(</span><span class="nv">add-hook</span><span class="w"> </span><span class="ss">&#39;python-mode-hook</span><span class="w"> </span><span class="nf">#&#39;</span><span class="nv">flymake-ruff-load</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="p">(</span><span class="nb">require</span><span class="w"> </span><span class="ss">&#39;flymake-ruff</span><span class="p">)</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="p">(</span><span class="nv">add-hook</span><span class="w"> </span><span class="ss">&#39;python-mode-hook</span><span class="w"> </span><span class="nf">#&#39;</span><span class="nv">flymake-ruff-load</span><span class="p">)</span>
 </code></pre></div>
 <p>Ruff is also available as <a href="https://github.com/scop/emacs-ruff-format"><code>emacs-ruff-format</code></a>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="p">(</span><span class="nb">require</span><span class="w"> </span><span class="ss">&#39;ruff-format</span><span class="p">)</span>
-<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="p">(</span><span class="nv">add-hook</span><span class="w"> </span><span class="ss">&#39;python-mode-hook</span><span class="w"> </span><span class="ss">&#39;ruff-format-on-save-mode</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="p">(</span><span class="nb">require</span><span class="w"> </span><span class="ss">&#39;ruff-format</span><span class="p">)</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="p">(</span><span class="nv">add-hook</span><span class="w"> </span><span class="ss">&#39;python-mode-hook</span><span class="w"> </span><span class="ss">&#39;ruff-format-on-save-mode</span><span class="p">)</span>
 </code></pre></div>
 <p>Alternatively, it can be used via the <a href="https://github.com/radian-software/apheleia">Apheleia</a> formatter library, by setting this configuration:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="c1">;; Replace default (black) to use ruff for sorting import and formatting.</span>
-<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="p">(</span><span class="nb">setf</span><span class="w"> </span><span class="p">(</span><span class="nv">alist-get</span><span class="w"> </span><span class="ss">&#39;python-mode</span><span class="w"> </span><span class="nv">apheleia-mode-alist</span><span class="p">)</span>
-<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="w">      </span><span class="o">&#39;</span><span class="p">(</span><span class="nv">ruff-isort</span><span class="w"> </span><span class="nv">ruff</span><span class="p">))</span>
-<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="p">(</span><span class="nb">setf</span><span class="w"> </span><span class="p">(</span><span class="nv">alist-get</span><span class="w"> </span><span class="ss">&#39;python-ts-mode</span><span class="w"> </span><span class="nv">apheleia-mode-alist</span><span class="p">)</span>
-<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="w">      </span><span class="o">&#39;</span><span class="p">(</span><span class="nv">ruff-isort</span><span class="w"> </span><span class="nv">ruff</span><span class="p">))</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="c1">;; Replace default (black) to use ruff for sorting import and formatting.</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="p">(</span><span class="nb">setf</span><span class="w"> </span><span class="p">(</span><span class="nv">alist-get</span><span class="w"> </span><span class="ss">&#39;python-mode</span><span class="w"> </span><span class="nv">apheleia-mode-alist</span><span class="p">)</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="w">      </span><span class="o">&#39;</span><span class="p">(</span><span class="nv">ruff-isort</span><span class="w"> </span><span class="nv">ruff</span><span class="p">))</span>
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="p">(</span><span class="nb">setf</span><span class="w"> </span><span class="p">(</span><span class="nv">alist-get</span><span class="w"> </span><span class="ss">&#39;python-ts-mode</span><span class="w"> </span><span class="nv">apheleia-mode-alist</span><span class="p">)</span>
+<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="w">      </span><span class="o">&#39;</span><span class="p">(</span><span class="nv">ruff-isort</span><span class="w"> </span><span class="nv">ruff</span><span class="p">))</span>
 </code></pre></div>
 <h2 id="textmate"><a class="toclink" href="#textmate">TextMate</a></h2>
 <p>Ruff is also available via the <a href="https://github.com/vigo/textmate2-ruff-linter"><code>textmate2-ruff-linter</code></a>
@@ -1401,33 +1409,33 @@ bundle for TextMate.</p>
 </ol>
 <p>To configure Zed to use the Ruff language server for Python files, add the following
 to your <code>settings.json</code> file:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="p">{</span>
-<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="w">  </span><span class="nt">&quot;languages&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="w">    </span><span class="nt">&quot;Python&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="w">      </span><span class="nt">&quot;language_servers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;ruff&quot;</span><span class="p">]</span>
-<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="w">      </span><span class="c1">// Or, if there are other language servers you want to use with Python</span>
-<a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a><span class="w">      </span><span class="c1">// &quot;language_servers&quot;: [&quot;pyright&quot;, &quot;ruff&quot;]</span>
-<a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a><span class="w">  </span><span class="p">}</span>
-<a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="p">{</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="w">  </span><span class="nt">&quot;languages&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="w">    </span><span class="nt">&quot;Python&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="w">      </span><span class="nt">&quot;language_servers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;ruff&quot;</span><span class="p">]</span>
+<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="w">      </span><span class="c1">// Or, if there are other language servers you want to use with Python</span>
+<a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a><span class="w">      </span><span class="c1">// &quot;language_servers&quot;: [&quot;pyright&quot;, &quot;ruff&quot;]</span>
+<a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a><span class="p">}</span>
 </code></pre></div>
 <p>To configure the language server, you can provide the <a href="../settings/">server settings</a>
 under the <a href="https://zed.dev/docs/configuring-zed#lsp"><code>lsp.ruff.initialization_options.settings</code></a> key:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="p">{</span>
-<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="w">  </span><span class="nt">&quot;lsp&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="w">    </span><span class="nt">&quot;ruff&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="w">      </span><span class="nt">&quot;initialization_options&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="w">        </span><span class="nt">&quot;settings&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a><span class="w">          </span><span class="c1">// Ruff server settings goes here</span>
-<a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a><span class="w">          </span><span class="nt">&quot;lineLength&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="p">,</span>
-<a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a><span class="w">          </span><span class="nt">&quot;lint&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a><span class="w">            </span><span class="nt">&quot;extendSelect&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;I&quot;</span><span class="p">],</span>
-<a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a><span class="w">          </span><span class="p">}</span>
-<a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a><span class="w">        </span><span class="p">}</span>
-<a id="__codelineno-25-12" name="__codelineno-25-12" href="#__codelineno-25-12"></a><span class="w">      </span><span class="p">}</span>
-<a id="__codelineno-25-13" name="__codelineno-25-13" href="#__codelineno-25-13"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-25-14" name="__codelineno-25-14" href="#__codelineno-25-14"></a><span class="w">  </span><span class="p">}</span>
-<a id="__codelineno-25-15" name="__codelineno-25-15" href="#__codelineno-25-15"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="p">{</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="w">  </span><span class="nt">&quot;lsp&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="w">    </span><span class="nt">&quot;ruff&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="w">      </span><span class="nt">&quot;initialization_options&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="w">        </span><span class="nt">&quot;settings&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a><span class="w">          </span><span class="c1">// Ruff server settings goes here</span>
+<a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a><span class="w">          </span><span class="nt">&quot;lineLength&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="p">,</span>
+<a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a><span class="w">          </span><span class="nt">&quot;lint&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a><span class="w">            </span><span class="nt">&quot;extendSelect&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;I&quot;</span><span class="p">],</span>
+<a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a><span class="w">          </span><span class="p">}</span>
+<a id="__codelineno-26-11" name="__codelineno-26-11" href="#__codelineno-26-11"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-26-12" name="__codelineno-26-12" href="#__codelineno-26-12"></a><span class="w">      </span><span class="p">}</span>
+<a id="__codelineno-26-13" name="__codelineno-26-13" href="#__codelineno-26-13"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-26-14" name="__codelineno-26-14" href="#__codelineno-26-14"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-26-15" name="__codelineno-26-15" href="#__codelineno-26-15"></a><span class="p">}</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1439,21 +1447,21 @@ and enabling the <a href="https://zed.dev/docs/configuring-zed#format-on-save"><
 <div class="tabbed-set tabbed-alternate" data-tabs="2:1"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Zed 0.146.0+</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="p">{</span>
-<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="w">  </span><span class="nt">&quot;languages&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="w">    </span><span class="nt">&quot;Python&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="w">      </span><span class="nt">&quot;language_servers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;ruff&quot;</span><span class="p">],</span>
-<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="w">      </span><span class="nt">&quot;format_on_save&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;on&quot;</span><span class="p">,</span>
-<a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a><span class="w">      </span><span class="nt">&quot;formatter&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a><span class="w">        </span><span class="p">{</span>
-<a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a><span class="w">          </span><span class="nt">&quot;language_server&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a><span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ruff&quot;</span>
-<a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a><span class="w">          </span><span class="p">}</span>
-<a id="__codelineno-26-11" name="__codelineno-26-11" href="#__codelineno-26-11"></a><span class="w">        </span><span class="p">}</span>
-<a id="__codelineno-26-12" name="__codelineno-26-12" href="#__codelineno-26-12"></a><span class="w">      </span><span class="p">]</span>
-<a id="__codelineno-26-13" name="__codelineno-26-13" href="#__codelineno-26-13"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-26-14" name="__codelineno-26-14" href="#__codelineno-26-14"></a><span class="w">  </span><span class="p">}</span>
-<a id="__codelineno-26-15" name="__codelineno-26-15" href="#__codelineno-26-15"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="p">{</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="w">  </span><span class="nt">&quot;languages&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="w">    </span><span class="nt">&quot;Python&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="w">      </span><span class="nt">&quot;language_servers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;ruff&quot;</span><span class="p">],</span>
+<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="w">      </span><span class="nt">&quot;format_on_save&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;on&quot;</span><span class="p">,</span>
+<a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a><span class="w">      </span><span class="nt">&quot;formatter&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a><span class="w">          </span><span class="nt">&quot;language_server&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-27-9" name="__codelineno-27-9" href="#__codelineno-27-9"></a><span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ruff&quot;</span>
+<a id="__codelineno-27-10" name="__codelineno-27-10" href="#__codelineno-27-10"></a><span class="w">          </span><span class="p">}</span>
+<a id="__codelineno-27-11" name="__codelineno-27-11" href="#__codelineno-27-11"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-27-12" name="__codelineno-27-12" href="#__codelineno-27-12"></a><span class="w">      </span><span class="p">]</span>
+<a id="__codelineno-27-13" name="__codelineno-27-13" href="#__codelineno-27-13"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-27-14" name="__codelineno-27-14" href="#__codelineno-27-14"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-27-15" name="__codelineno-27-15" href="#__codelineno-27-15"></a><span class="p">}</span>
 </code></pre></div>
 </div>
 </div>
@@ -1463,24 +1471,24 @@ and enabling the <a href="https://zed.dev/docs/configuring-zed#format-on-save"><
 <div class="tabbed-set tabbed-alternate" data-tabs="3:1"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Zed 0.146.0+</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="p">{</span>
-<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="w">  </span><span class="nt">&quot;languages&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="w">    </span><span class="nt">&quot;Python&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="w">      </span><span class="nt">&quot;language_servers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;ruff&quot;</span><span class="p">],</span>
-<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="w">      </span><span class="nt">&quot;format_on_save&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;on&quot;</span><span class="p">,</span>
-<a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a><span class="w">      </span><span class="nt">&quot;formatter&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a><span class="w">        </span><span class="p">{</span>
-<a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a><span class="w">          </span><span class="nt">&quot;code_actions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-27-9" name="__codelineno-27-9" href="#__codelineno-27-9"></a><span class="w">            </span><span class="c1">// Fix all auto-fixable lint violations</span>
-<a id="__codelineno-27-10" name="__codelineno-27-10" href="#__codelineno-27-10"></a><span class="w">            </span><span class="nt">&quot;source.fixAll.ruff&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<a id="__codelineno-27-11" name="__codelineno-27-11" href="#__codelineno-27-11"></a><span class="w">            </span><span class="c1">// Organize imports</span>
-<a id="__codelineno-27-12" name="__codelineno-27-12" href="#__codelineno-27-12"></a><span class="w">            </span><span class="nt">&quot;source.organizeImports.ruff&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
-<a id="__codelineno-27-13" name="__codelineno-27-13" href="#__codelineno-27-13"></a><span class="w">          </span><span class="p">}</span>
-<a id="__codelineno-27-14" name="__codelineno-27-14" href="#__codelineno-27-14"></a><span class="w">        </span><span class="p">}</span>
-<a id="__codelineno-27-15" name="__codelineno-27-15" href="#__codelineno-27-15"></a><span class="w">      </span><span class="p">]</span>
-<a id="__codelineno-27-16" name="__codelineno-27-16" href="#__codelineno-27-16"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-27-17" name="__codelineno-27-17" href="#__codelineno-27-17"></a><span class="w">  </span><span class="p">}</span>
-<a id="__codelineno-27-18" name="__codelineno-27-18" href="#__codelineno-27-18"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="p">{</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="w">  </span><span class="nt">&quot;languages&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="w">    </span><span class="nt">&quot;Python&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="w">      </span><span class="nt">&quot;language_servers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;ruff&quot;</span><span class="p">],</span>
+<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="w">      </span><span class="nt">&quot;format_on_save&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;on&quot;</span><span class="p">,</span>
+<a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a><span class="w">      </span><span class="nt">&quot;formatter&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a><span class="w">          </span><span class="nt">&quot;code_actions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a><span class="w">            </span><span class="c1">// Fix all auto-fixable lint violations</span>
+<a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a><span class="w">            </span><span class="nt">&quot;source.fixAll.ruff&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<a id="__codelineno-28-11" name="__codelineno-28-11" href="#__codelineno-28-11"></a><span class="w">            </span><span class="c1">// Organize imports</span>
+<a id="__codelineno-28-12" name="__codelineno-28-12" href="#__codelineno-28-12"></a><span class="w">            </span><span class="nt">&quot;source.organizeImports.ruff&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<a id="__codelineno-28-13" name="__codelineno-28-13" href="#__codelineno-28-13"></a><span class="w">          </span><span class="p">}</span>
+<a id="__codelineno-28-14" name="__codelineno-28-14" href="#__codelineno-28-14"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-28-15" name="__codelineno-28-15" href="#__codelineno-28-15"></a><span class="w">      </span><span class="p">]</span>
+<a id="__codelineno-28-16" name="__codelineno-28-16" href="#__codelineno-28-16"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-28-17" name="__codelineno-28-17" href="#__codelineno-28-17"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-28-18" name="__codelineno-28-18" href="#__codelineno-28-18"></a><span class="p">}</span>
 </code></pre></div>
 </div>
 </div>
@@ -1497,27 +1505,27 @@ been applied.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="4:1"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Zed 0.146.0+</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="p">{</span>
-<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="w">  </span><span class="nt">&quot;languages&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="w">    </span><span class="nt">&quot;Python&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="w">      </span><span class="nt">&quot;language_servers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;ruff&quot;</span><span class="p">],</span>
-<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="w">      </span><span class="nt">&quot;format_on_save&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;on&quot;</span><span class="p">,</span>
-<a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a><span class="w">      </span><span class="nt">&quot;formatter&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a><span class="w">        </span><span class="p">{</span>
-<a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a><span class="w">          </span><span class="nt">&quot;code_actions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a><span class="w">            </span><span class="nt">&quot;source.organizeImports.ruff&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a><span class="w">            </span><span class="nt">&quot;source.fixAll.ruff&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
-<a id="__codelineno-28-11" name="__codelineno-28-11" href="#__codelineno-28-11"></a><span class="w">          </span><span class="p">}</span>
-<a id="__codelineno-28-12" name="__codelineno-28-12" href="#__codelineno-28-12"></a><span class="w">        </span><span class="p">},</span>
-<a id="__codelineno-28-13" name="__codelineno-28-13" href="#__codelineno-28-13"></a><span class="w">        </span><span class="p">{</span>
-<a id="__codelineno-28-14" name="__codelineno-28-14" href="#__codelineno-28-14"></a><span class="w">          </span><span class="nt">&quot;language_server&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-28-15" name="__codelineno-28-15" href="#__codelineno-28-15"></a><span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ruff&quot;</span>
-<a id="__codelineno-28-16" name="__codelineno-28-16" href="#__codelineno-28-16"></a><span class="w">          </span><span class="p">}</span>
-<a id="__codelineno-28-17" name="__codelineno-28-17" href="#__codelineno-28-17"></a><span class="w">        </span><span class="p">}</span>
-<a id="__codelineno-28-18" name="__codelineno-28-18" href="#__codelineno-28-18"></a><span class="w">      </span><span class="p">]</span>
-<a id="__codelineno-28-19" name="__codelineno-28-19" href="#__codelineno-28-19"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-28-20" name="__codelineno-28-20" href="#__codelineno-28-20"></a><span class="w">  </span><span class="p">}</span>
-<a id="__codelineno-28-21" name="__codelineno-28-21" href="#__codelineno-28-21"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="p">{</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="w">  </span><span class="nt">&quot;languages&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="w">    </span><span class="nt">&quot;Python&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="w">      </span><span class="nt">&quot;language_servers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;ruff&quot;</span><span class="p">],</span>
+<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a><span class="w">      </span><span class="nt">&quot;format_on_save&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;on&quot;</span><span class="p">,</span>
+<a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a><span class="w">      </span><span class="nt">&quot;formatter&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a><span class="w">          </span><span class="nt">&quot;code_actions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-29-9" name="__codelineno-29-9" href="#__codelineno-29-9"></a><span class="w">            </span><span class="nt">&quot;source.organizeImports.ruff&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<a id="__codelineno-29-10" name="__codelineno-29-10" href="#__codelineno-29-10"></a><span class="w">            </span><span class="nt">&quot;source.fixAll.ruff&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<a id="__codelineno-29-11" name="__codelineno-29-11" href="#__codelineno-29-11"></a><span class="w">          </span><span class="p">}</span>
+<a id="__codelineno-29-12" name="__codelineno-29-12" href="#__codelineno-29-12"></a><span class="w">        </span><span class="p">},</span>
+<a id="__codelineno-29-13" name="__codelineno-29-13" href="#__codelineno-29-13"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-29-14" name="__codelineno-29-14" href="#__codelineno-29-14"></a><span class="w">          </span><span class="nt">&quot;language_server&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-29-15" name="__codelineno-29-15" href="#__codelineno-29-15"></a><span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ruff&quot;</span>
+<a id="__codelineno-29-16" name="__codelineno-29-16" href="#__codelineno-29-16"></a><span class="w">          </span><span class="p">}</span>
+<a id="__codelineno-29-17" name="__codelineno-29-17" href="#__codelineno-29-17"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-29-18" name="__codelineno-29-18" href="#__codelineno-29-18"></a><span class="w">      </span><span class="p">]</span>
+<a id="__codelineno-29-19" name="__codelineno-29-19" href="#__codelineno-29-19"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-29-20" name="__codelineno-29-20" href="#__codelineno-29-20"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-29-21" name="__codelineno-29-21" href="#__codelineno-29-21"></a><span class="p">}</span>
 </code></pre></div>
 </div>
 </div>
