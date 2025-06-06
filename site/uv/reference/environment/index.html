@@ -1,0 +1,5989 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="charliermarsh">
+      
+      
+        <link rel="canonical" href="https://docs.astral.sh/uv/reference/environment/">
+      
+      
+        <link rel="prev" href="../settings/">
+      
+      
+        <link rel="next" href="../installer/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.5.0, mkdocs-material-9.3.1+insiders-4.41.0">
+    
+    
+
+<title>Environment variables | uv</title>
+
+
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.176649b9.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.da3f46a0.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  <script src="https://cdn.usefathom.com/script.js" data-site="ESKBRHGN" defer></script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+<link rel="apple-touch-icon" sizes="180x180" href="https://docs.astral.sh/static/apple-touch-icon.png"/>
+<link rel="icon" type="image/png" sizes="32x32" href="https://docs.astral.sh/static/favicon-32x32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="https://docs.astral.sh/static/favicon-16x16.png"/>
+<link rel="manifest" href="https://docs.astral.sh/static/site.webmanifest"/>
+<link rel="mask-icon" href="https://docs.astral.sh/static/safari-pinned-tab.svg" color="#2e183d"/>
+<meta name="msapplication-TileColor" content="#d7ff64"/>
+<meta name="theme-color" content="#ffffff"/>
+<meta name="robots" content="index,follow"/>
+<script type="application/ld+json">
+    {
+        
+        "datePublished": "2025-04-28 10:09:09Z",
+        "dateModified": "2025-04-28 10:09:09Z",
+        
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Astral Docs",
+        "url": "https://docs.astral.sh"
+    }
+</script>
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#environment-variables" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="uv" class="md-header__button md-logo" aria-label="uv" data-md-component="logo">
+      
+  <img src="../../assets/logo-letter.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            uv
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Environment variables
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="astral-light" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="astral-dark" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/astral-sh/uv" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    uv
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="uv" class="md-nav__button md-logo" aria-label="uv" data-md-component="logo">
+      
+  <img src="../../assets/logo-letter.svg" alt="logo">
+
+    </a>
+    uv
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/astral-sh/uv" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    uv
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../getting-started/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting started
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              <label class="md-nav__link " for="__nav_2">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/installation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/first-steps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    First steps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/features/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/help/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting help
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../guides/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              <label class="md-nav__link " for="__nav_3">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/install-python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Installing Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/scripts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Running scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/tools/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Using tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/projects/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Working on projects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/package/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Publishing packages
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../guides/integration/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    
+  
+    Integrations
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              <label class="md-nav__link " for="__nav_3_7">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Integrations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/integration/docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Docker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/integration/jupyter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Jupyter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/integration/marimo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    marimo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/integration/github/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    GitHub Actions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/integration/gitlab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    GitLab CI/CD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/integration/pre-commit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Pre-commit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/integration/pytorch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    PyTorch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/integration/fastapi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    FastAPI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/integration/alternative-indexes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Alternative indexes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/integration/dependency-bots/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Dependency bots
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/integration/aws-lambda/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    AWS Lambda
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../concepts/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              <label class="md-nav__link " for="__nav_4">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Concepts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../concepts/projects/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    
+  
+    Projects
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              <label class="md-nav__link " for="__nav_4_2">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Projects
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/projects/layout/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Structure and files
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/projects/init/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Creating projects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/projects/dependencies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing dependencies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/projects/run/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Running commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/projects/sync/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Locking and syncing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/projects/config/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring projects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/projects/build/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Building distributions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/projects/workspaces/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Using workspaces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/tools/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/python-versions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Python versions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/configuration-files/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration files
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/indexes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Package indexes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/resolution/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Resolution
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/build-backend/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Build backend
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/authentication/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Authentication
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/cache/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Caching
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_11" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../pip/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    
+  
+    The pip interface
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              <label class="md-nav__link " for="__nav_4_11">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    The pip interface
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pip/environments/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Using environments
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pip/packages/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing packages
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pip/inspection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Inspecting environments
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pip/dependencies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Declaring dependencies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pip/compile/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Locking environments
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pip/compatibility/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Compatibility with pip
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              <label class="md-nav__link " for="__nav_5">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../settings/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment variables
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment variables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#uv_break_system_packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_BREAK_SYSTEM_PACKAGES
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_build_constraint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_BUILD_CONSTRAINT
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_cache_dir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_CACHE_DIR
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_compile_bytecode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_COMPILE_BYTECODE
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_concurrent_builds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_CONCURRENT_BUILDS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_concurrent_downloads" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_CONCURRENT_DOWNLOADS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_concurrent_installs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_CONCURRENT_INSTALLS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_config_file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_CONFIG_FILE
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_constraint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_CONSTRAINT
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_custom_compile_command" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_CUSTOM_COMPILE_COMMAND
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_default_index" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_DEFAULT_INDEX
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_env_file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_ENV_FILE
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_exclude_newer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_EXCLUDE_NEWER
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_extra_index_url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_EXTRA_INDEX_URL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_find_links" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_FIND_LINKS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_fork_strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_FORK_STRATEGY
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_frozen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_FROZEN
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_github_token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_GITHUB_TOKEN
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_git_lfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_GIT_LFS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_http_timeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_HTTP_TIMEOUT
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_index" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_INDEX
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_index_strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_INDEX_STRATEGY
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_index_url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_INDEX_URL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_index_name_password" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_INDEX_{name}_PASSWORD
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_index_name_username" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_INDEX_{name}_USERNAME
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_insecure_host" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_INSECURE_HOST
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_installer_ghe_base_url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_INSTALLER_GHE_BASE_URL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_installer_github_base_url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_INSTALLER_GITHUB_BASE_URL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_install_dir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_INSTALL_DIR
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_keyring_provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_KEYRING_PROVIDER
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_link_mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_LINK_MODE
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_locked" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_LOCKED
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_log_context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_LOG_CONTEXT
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_managed_python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_MANAGED_PYTHON
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_native_tls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_NATIVE_TLS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_no_binary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_NO_BINARY
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_no_binary_package" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_NO_BINARY_PACKAGE
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_no_build" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_NO_BUILD
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_no_build_isolation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_NO_BUILD_ISOLATION
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_no_build_package" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_NO_BUILD_PACKAGE
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_no_cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_NO_CACHE
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_no_config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_NO_CONFIG
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_no_editable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_NO_EDITABLE
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_no_env_file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_NO_ENV_FILE
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_no_installer_metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_NO_INSTALLER_METADATA
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_no_managed_python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_NO_MANAGED_PYTHON
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_no_progress" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_NO_PROGRESS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_no_sync" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_NO_SYNC
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_no_verify_hashes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_NO_VERIFY_HASHES
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_no_wrap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_NO_WRAP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_offline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_OFFLINE
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_override" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_OVERRIDE
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_prerelease" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_PRERELEASE
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_preview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_PREVIEW
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_PROJECT
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_project_environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_PROJECT_ENVIRONMENT
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_publish_check_url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_PUBLISH_CHECK_URL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_publish_index" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_PUBLISH_INDEX
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_publish_password" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_PUBLISH_PASSWORD
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_publish_token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_PUBLISH_TOKEN
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_publish_url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_PUBLISH_URL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_publish_username" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_PUBLISH_USERNAME
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_pypy_install_mirror" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_PYPY_INSTALL_MIRROR
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_PYTHON
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_python_bin_dir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_PYTHON_BIN_DIR
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_python_cache_dir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_PYTHON_CACHE_DIR
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_python_downloads" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_PYTHON_DOWNLOADS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_python_downloads_json_url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_PYTHON_DOWNLOADS_JSON_URL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_python_install_dir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_PYTHON_INSTALL_DIR
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_python_install_mirror" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_PYTHON_INSTALL_MIRROR
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_python_preference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_PYTHON_PREFERENCE
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_request_timeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_REQUEST_TIMEOUT
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_require_hashes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_REQUIRE_HASHES
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_resolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_RESOLUTION
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_stack_size" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_STACK_SIZE
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_system_python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_SYSTEM_PYTHON
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_tool_bin_dir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_TOOL_BIN_DIR
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_tool_dir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_TOOL_DIR
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_torch_backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_TORCH_BACKEND
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_unmanaged_install" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_UNMANAGED_INSTALL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_venv_seed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_VENV_SEED
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#externally-defined-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Externally defined variables
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Externally defined variables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#actions_id_token_request_token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ACTIONS_ID_TOKEN_REQUEST_TOKEN
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#actions_id_token_request_url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ACTIONS_ID_TOKEN_REQUEST_URL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#all_proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ALL_PROXY
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#appdata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        APPDATA
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bash_version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BASH_VERSION
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clicolor_force" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CLICOLOR_FORCE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#columns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        COLUMNS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conda_default_env" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CONDA_DEFAULT_ENV
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conda_prefix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CONDA_PREFIX
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fish_version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FISH_VERSION
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#force_color" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FORCE_COLOR
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#github_actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GITHUB_ACTIONS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#home" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HOME
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#https_proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HTTPS_PROXY
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http_proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HTTP_PROXY
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http_timeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HTTP_TIMEOUT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installer_no_modify_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        INSTALLER_NO_MODIFY_PATH
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jpy_session_name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JPY_SESSION_NAME
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ksh_version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        KSH_VERSION
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#localappdata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LOCALAPPDATA
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#macosx_deployment_target" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MACOSX_DEPLOYMENT_TARGET
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#netrc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NETRC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no_color" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NO_COLOR
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nu_version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NU_VERSION
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PAGER
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PATH
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prompt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PROMPT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pwd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PWD
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyc_invalidation_mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PYC_INVALIDATION_MODE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pythonpath" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PYTHONPATH
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rust_log" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RUST_LOG
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rust_min_stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RUST_MIN_STACK
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shell" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SHELL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssl_cert_file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SSL_CERT_FILE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssl_client_cert" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SSL_CLIENT_CERT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#systemdrive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SYSTEMDRIVE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tracing_durations_file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TRACING_DURATIONS_FILE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#userprofile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        USERPROFILE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#virtual_env" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VIRTUAL_ENV
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#virtual_env_disable_prompt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VIRTUAL_ENV_DISABLE_PROMPT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xdg_bin_home" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XDG_BIN_HOME
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xdg_cache_home" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XDG_CACHE_HOME
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xdg_config_dirs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XDG_CONFIG_DIRS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xdg_config_home" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XDG_CONFIG_HOME
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xdg_data_home" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XDG_DATA_HOME
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zdotdir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ZDOTDIR
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zsh_version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ZSH_VERSION
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Installer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_6" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../troubleshooting/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              <label class="md-nav__link " for="__nav_5_6">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Troubleshooting
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/build-failures/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Build failures
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/reproducible-examples/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Reproducible examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../resolver-internals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Resolver
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../benchmarks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Benchmarks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_9" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../policies/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    
+  
+    Policies
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              <label class="md-nav__link " for="__nav_5_9">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Policies
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../policies/versioning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Versioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../policies/platforms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Platform support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../policies/license/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    License
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#uv_break_system_packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_BREAK_SYSTEM_PACKAGES
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_build_constraint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_BUILD_CONSTRAINT
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_cache_dir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_CACHE_DIR
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_compile_bytecode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_COMPILE_BYTECODE
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_concurrent_builds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_CONCURRENT_BUILDS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_concurrent_downloads" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_CONCURRENT_DOWNLOADS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_concurrent_installs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_CONCURRENT_INSTALLS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_config_file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_CONFIG_FILE
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_constraint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_CONSTRAINT
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_custom_compile_command" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_CUSTOM_COMPILE_COMMAND
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_default_index" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_DEFAULT_INDEX
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_env_file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_ENV_FILE
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_exclude_newer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_EXCLUDE_NEWER
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_extra_index_url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_EXTRA_INDEX_URL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_find_links" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_FIND_LINKS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_fork_strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_FORK_STRATEGY
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_frozen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_FROZEN
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_github_token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_GITHUB_TOKEN
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_git_lfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_GIT_LFS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_http_timeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_HTTP_TIMEOUT
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_index" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_INDEX
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_index_strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_INDEX_STRATEGY
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_index_url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_INDEX_URL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_index_name_password" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_INDEX_{name}_PASSWORD
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_index_name_username" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_INDEX_{name}_USERNAME
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_insecure_host" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_INSECURE_HOST
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_installer_ghe_base_url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_INSTALLER_GHE_BASE_URL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_installer_github_base_url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_INSTALLER_GITHUB_BASE_URL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_install_dir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_INSTALL_DIR
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_keyring_provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_KEYRING_PROVIDER
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_link_mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_LINK_MODE
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_locked" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_LOCKED
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_log_context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_LOG_CONTEXT
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_managed_python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_MANAGED_PYTHON
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_native_tls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_NATIVE_TLS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_no_binary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_NO_BINARY
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_no_binary_package" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_NO_BINARY_PACKAGE
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_no_build" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_NO_BUILD
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_no_build_isolation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_NO_BUILD_ISOLATION
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_no_build_package" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_NO_BUILD_PACKAGE
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_no_cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_NO_CACHE
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_no_config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_NO_CONFIG
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_no_editable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_NO_EDITABLE
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_no_env_file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_NO_ENV_FILE
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_no_installer_metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_NO_INSTALLER_METADATA
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_no_managed_python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_NO_MANAGED_PYTHON
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_no_progress" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_NO_PROGRESS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_no_sync" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_NO_SYNC
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_no_verify_hashes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_NO_VERIFY_HASHES
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_no_wrap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_NO_WRAP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_offline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_OFFLINE
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_override" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_OVERRIDE
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_prerelease" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_PRERELEASE
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_preview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_PREVIEW
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_PROJECT
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_project_environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_PROJECT_ENVIRONMENT
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_publish_check_url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_PUBLISH_CHECK_URL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_publish_index" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_PUBLISH_INDEX
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_publish_password" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_PUBLISH_PASSWORD
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_publish_token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_PUBLISH_TOKEN
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_publish_url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_PUBLISH_URL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_publish_username" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_PUBLISH_USERNAME
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_pypy_install_mirror" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_PYPY_INSTALL_MIRROR
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_PYTHON
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_python_bin_dir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_PYTHON_BIN_DIR
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_python_cache_dir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_PYTHON_CACHE_DIR
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_python_downloads" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_PYTHON_DOWNLOADS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_python_downloads_json_url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_PYTHON_DOWNLOADS_JSON_URL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_python_install_dir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_PYTHON_INSTALL_DIR
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_python_install_mirror" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_PYTHON_INSTALL_MIRROR
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_python_preference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_PYTHON_PREFERENCE
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_request_timeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_REQUEST_TIMEOUT
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_require_hashes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_REQUIRE_HASHES
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_resolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_RESOLUTION
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_stack_size" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_STACK_SIZE
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_system_python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_SYSTEM_PYTHON
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_tool_bin_dir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_TOOL_BIN_DIR
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_tool_dir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_TOOL_DIR
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_torch_backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_TORCH_BACKEND
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_unmanaged_install" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_UNMANAGED_INSTALL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uv_venv_seed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_VENV_SEED
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#externally-defined-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Externally defined variables
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Externally defined variables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#actions_id_token_request_token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ACTIONS_ID_TOKEN_REQUEST_TOKEN
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#actions_id_token_request_url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ACTIONS_ID_TOKEN_REQUEST_URL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#all_proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ALL_PROXY
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#appdata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        APPDATA
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bash_version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BASH_VERSION
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clicolor_force" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CLICOLOR_FORCE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#columns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        COLUMNS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conda_default_env" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CONDA_DEFAULT_ENV
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conda_prefix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CONDA_PREFIX
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fish_version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FISH_VERSION
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#force_color" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FORCE_COLOR
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#github_actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GITHUB_ACTIONS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#home" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HOME
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#https_proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HTTPS_PROXY
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http_proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HTTP_PROXY
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http_timeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HTTP_TIMEOUT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installer_no_modify_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        INSTALLER_NO_MODIFY_PATH
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jpy_session_name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JPY_SESSION_NAME
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ksh_version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        KSH_VERSION
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#localappdata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LOCALAPPDATA
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#macosx_deployment_target" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MACOSX_DEPLOYMENT_TARGET
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#netrc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NETRC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no_color" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NO_COLOR
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nu_version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NU_VERSION
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PAGER
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PATH
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prompt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PROMPT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pwd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PWD
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyc_invalidation_mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PYC_INVALIDATION_MODE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pythonpath" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PYTHONPATH
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rust_log" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RUST_LOG
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rust_min_stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RUST_MIN_STACK
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shell" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SHELL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssl_cert_file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SSL_CERT_FILE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssl_client_cert" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SSL_CLIENT_CERT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#systemdrive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SYSTEMDRIVE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tracing_durations_file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TRACING_DURATIONS_FILE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#userprofile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        USERPROFILE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#virtual_env" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VIRTUAL_ENV
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#virtual_env_disable_prompt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VIRTUAL_ENV_DISABLE_PROMPT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xdg_bin_home" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XDG_BIN_HOME
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xdg_cache_home" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XDG_CACHE_HOME
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xdg_config_dirs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XDG_CONFIG_DIRS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xdg_config_home" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XDG_CONFIG_HOME
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xdg_data_home" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XDG_DATA_HOME
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zdotdir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ZDOTDIR
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zsh_version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ZSH_VERSION
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Reference
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="environment-variables"><a class="toclink" href="#environment-variables">Environment variables</a></h1>
+<p>uv defines and respects the following environment variables:</p>
+<h3 id="uv_break_system_packages"><a class="toclink" href="#uv_break_system_packages"><code>UV_BREAK_SYSTEM_PACKAGES</code></a></h3>
+<p>Equivalent to the <code>--break-system-packages</code> command-line argument. If set to <code>true</code>,
+uv will allow the installation of packages that conflict with system-installed packages.</p>
+<p>WARNING: <code>UV_BREAK_SYSTEM_PACKAGES=true</code> is intended for use in continuous integration
+(CI) or containerized environments and should be used with caution, as modifying the system
+Python can lead to unexpected behavior.</p>
+<h3 id="uv_build_constraint"><a class="toclink" href="#uv_build_constraint"><code>UV_BUILD_CONSTRAINT</code></a></h3>
+<p>Equivalent to the <code>--build-constraint</code> command-line argument. If set, uv will use this file
+as constraints for any source distribution builds. Uses space-separated list of files.</p>
+<h3 id="uv_cache_dir"><a class="toclink" href="#uv_cache_dir"><code>UV_CACHE_DIR</code></a></h3>
+<p>Equivalent to the <code>--cache-dir</code> command-line argument. If set, uv will use this
+directory for caching instead of the default cache directory.</p>
+<h3 id="uv_compile_bytecode"><a class="toclink" href="#uv_compile_bytecode"><code>UV_COMPILE_BYTECODE</code></a></h3>
+<p>Equivalent to the <code>--compile-bytecode</code> command-line argument. If set, uv
+will compile Python source files to bytecode after installation.</p>
+<h3 id="uv_concurrent_builds"><a class="toclink" href="#uv_concurrent_builds"><code>UV_CONCURRENT_BUILDS</code></a></h3>
+<p>Sets the maximum number of source distributions that uv will build
+concurrently at any given time.</p>
+<h3 id="uv_concurrent_downloads"><a class="toclink" href="#uv_concurrent_downloads"><code>UV_CONCURRENT_DOWNLOADS</code></a></h3>
+<p>Sets the maximum number of in-flight concurrent downloads that uv will
+perform at any given time.</p>
+<h3 id="uv_concurrent_installs"><a class="toclink" href="#uv_concurrent_installs"><code>UV_CONCURRENT_INSTALLS</code></a></h3>
+<p>Controls the number of threads used when installing and unzipping
+packages.</p>
+<h3 id="uv_config_file"><a class="toclink" href="#uv_config_file"><code>UV_CONFIG_FILE</code></a></h3>
+<p>Equivalent to the <code>--config-file</code> command-line argument. Expects a path to a
+local <code>uv.toml</code> file to use as the configuration file.</p>
+<h3 id="uv_constraint"><a class="toclink" href="#uv_constraint"><code>UV_CONSTRAINT</code></a></h3>
+<p>Equivalent to the <code>--constraint</code> command-line argument. If set, uv will use this
+file as the constraints file. Uses space-separated list of files.</p>
+<h3 id="uv_custom_compile_command"><a class="toclink" href="#uv_custom_compile_command"><code>UV_CUSTOM_COMPILE_COMMAND</code></a></h3>
+<p>Equivalent to the <code>--custom-compile-command</code> command-line argument.</p>
+<p>Used to override uv in the output header of the <code>requirements.txt</code> files generated by
+<code>uv pip compile</code>. Intended for use-cases in which <code>uv pip compile</code> is called from within a wrapper
+script, to include the name of the wrapper script in the output file.</p>
+<h3 id="uv_default_index"><a class="toclink" href="#uv_default_index"><code>UV_DEFAULT_INDEX</code></a></h3>
+<p>Equivalent to the <code>--default-index</code> command-line argument. If set, uv will use
+this URL as the default index when searching for packages.</p>
+<h3 id="uv_env_file"><a class="toclink" href="#uv_env_file"><code>UV_ENV_FILE</code></a></h3>
+<p><code>.env</code> files from which to load environment variables when executing <code>uv run</code> commands.</p>
+<h3 id="uv_exclude_newer"><a class="toclink" href="#uv_exclude_newer"><code>UV_EXCLUDE_NEWER</code></a></h3>
+<p>Equivalent to the <code>--exclude-newer</code> command-line argument. If set, uv will
+exclude distributions published after the specified date.</p>
+<h3 id="uv_extra_index_url"><a class="toclink" href="#uv_extra_index_url"><code>UV_EXTRA_INDEX_URL</code></a></h3>
+<p>Equivalent to the <code>--extra-index-url</code> command-line argument. If set, uv will
+use this space-separated list of URLs as additional indexes when searching for packages.
+(Deprecated: use <code>UV_INDEX</code> instead.)</p>
+<h3 id="uv_find_links"><a class="toclink" href="#uv_find_links"><code>UV_FIND_LINKS</code></a></h3>
+<p>Equivalent to the <code>--find-links</code> command-line argument. If set, uv will use this
+comma-separated list of additional locations to search for packages.</p>
+<h3 id="uv_fork_strategy"><a class="toclink" href="#uv_fork_strategy"><code>UV_FORK_STRATEGY</code></a></h3>
+<p>Equivalent to the <code>--fork-strategy</code> argument. Controls version selection during universal
+resolution.</p>
+<h3 id="uv_frozen"><a class="toclink" href="#uv_frozen"><code>UV_FROZEN</code></a></h3>
+<p>Equivalent to the <code>--frozen</code> command-line argument. If set, uv will run without
+updating the <code>uv.lock</code> file.</p>
+<h3 id="uv_github_token"><a class="toclink" href="#uv_github_token"><code>UV_GITHUB_TOKEN</code></a></h3>
+<p>Equivalent to the <code>--token</code> argument for self update. A GitHub token for authentication.</p>
+<h3 id="uv_git_lfs"><a class="toclink" href="#uv_git_lfs"><code>UV_GIT_LFS</code></a></h3>
+<p>Enables fetching files stored in Git LFS when installing a package from a Git repository.</p>
+<h3 id="uv_http_timeout"><a class="toclink" href="#uv_http_timeout"><code>UV_HTTP_TIMEOUT</code></a></h3>
+<p>Timeout (in seconds) for HTTP requests. (default: 30 s)</p>
+<h3 id="uv_index"><a class="toclink" href="#uv_index"><code>UV_INDEX</code></a></h3>
+<p>Equivalent to the <code>--index</code> command-line argument. If set, uv will use this
+space-separated list of URLs as additional indexes when searching for packages.</p>
+<h3 id="uv_index_strategy"><a class="toclink" href="#uv_index_strategy"><code>UV_INDEX_STRATEGY</code></a></h3>
+<p>Equivalent to the <code>--index-strategy</code> command-line argument.</p>
+<p>For example, if set to <code>unsafe-best-match</code>, uv will consider versions of a given package
+available across all index URLs, rather than limiting its search to the first index URL
+that contains the package.</p>
+<h3 id="uv_index_url"><a class="toclink" href="#uv_index_url"><code>UV_INDEX_URL</code></a></h3>
+<p>Equivalent to the <code>--index-url</code> command-line argument. If set, uv will use this
+URL as the default index when searching for packages.
+(Deprecated: use <code>UV_DEFAULT_INDEX</code> instead.)</p>
+<h3 id="uv_index_name_password"><a class="toclink" href="#uv_index_name_password"><code>UV_INDEX_{name}_PASSWORD</code></a></h3>
+<p>Provides the HTTP Basic authentication password for a named index.</p>
+<p>The <code>name</code> parameter is the name of the index. For example, given an index named <code>foo</code>,
+the environment variable key would be <code>UV_INDEX_FOO_PASSWORD</code>.</p>
+<h3 id="uv_index_name_username"><a class="toclink" href="#uv_index_name_username"><code>UV_INDEX_{name}_USERNAME</code></a></h3>
+<p>Provides the HTTP Basic authentication username for a named index.</p>
+<p>The <code>name</code> parameter is the name of the index. For example, given an index named <code>foo</code>,
+the environment variable key would be <code>UV_INDEX_FOO_USERNAME</code>.</p>
+<h3 id="uv_insecure_host"><a class="toclink" href="#uv_insecure_host"><code>UV_INSECURE_HOST</code></a></h3>
+<p>Equivalent to the <code>--allow-insecure-host</code> argument.</p>
+<h3 id="uv_installer_ghe_base_url"><a class="toclink" href="#uv_installer_ghe_base_url"><code>UV_INSTALLER_GHE_BASE_URL</code></a></h3>
+<p>The URL from which to download uv using the standalone installer and <code>self update</code> feature,
+in lieu of the default GitHub Enterprise URL.</p>
+<h3 id="uv_installer_github_base_url"><a class="toclink" href="#uv_installer_github_base_url"><code>UV_INSTALLER_GITHUB_BASE_URL</code></a></h3>
+<p>The URL from which to download uv using the standalone installer and <code>self update</code> feature,
+in lieu of the default GitHub URL.</p>
+<h3 id="uv_install_dir"><a class="toclink" href="#uv_install_dir"><code>UV_INSTALL_DIR</code></a></h3>
+<p>The directory in which to install uv using the standalone installer and <code>self update</code> feature.
+Defaults to <code>~/.local/bin</code>.</p>
+<h3 id="uv_keyring_provider"><a class="toclink" href="#uv_keyring_provider"><code>UV_KEYRING_PROVIDER</code></a></h3>
+<p>Equivalent to the <code>--keyring-provider</code> command-line argument. If set, uv
+will use this value as the keyring provider.</p>
+<h3 id="uv_link_mode"><a class="toclink" href="#uv_link_mode"><code>UV_LINK_MODE</code></a></h3>
+<p>Equivalent to the <code>--link-mode</code> command-line argument. If set, uv will use this as
+a link mode.</p>
+<h3 id="uv_locked"><a class="toclink" href="#uv_locked"><code>UV_LOCKED</code></a></h3>
+<p>Equivalent to the <code>--locked</code> command-line argument. If set, uv will assert that the
+<code>uv.lock</code> remains unchanged.</p>
+<h3 id="uv_log_context"><a class="toclink" href="#uv_log_context"><code>UV_LOG_CONTEXT</code></a></h3>
+<p>Add additional context and structure to log messages.</p>
+<p>If logging is not enabled, e.g., with <code>RUST_LOG</code> or <code>-v</code>, this has no effect.</p>
+<h3 id="uv_managed_python"><a class="toclink" href="#uv_managed_python"><code>UV_MANAGED_PYTHON</code></a></h3>
+<p>Require use of uv-managed Python versions.</p>
+<h3 id="uv_native_tls"><a class="toclink" href="#uv_native_tls"><code>UV_NATIVE_TLS</code></a></h3>
+<p>Equivalent to the <code>--native-tls</code> command-line argument. If set to <code>true</code>, uv will
+use the system's trust store instead of the bundled <code>webpki-roots</code> crate.</p>
+<h3 id="uv_no_binary"><a class="toclink" href="#uv_no_binary"><code>UV_NO_BINARY</code></a></h3>
+<p>Equivalent to the <code>--no-binary</code> command-line argument. If set, uv will install
+all packages from source. The resolver will still use pre-built wheels to
+extract package metadata, if available.</p>
+<h3 id="uv_no_binary_package"><a class="toclink" href="#uv_no_binary_package"><code>UV_NO_BINARY_PACKAGE</code></a></h3>
+<p>Equivalent to the <code>--no-binary-package</code> command line argument. If set, uv will
+not use pre-built wheels for the given space-delimited list of packages.</p>
+<h3 id="uv_no_build"><a class="toclink" href="#uv_no_build"><code>UV_NO_BUILD</code></a></h3>
+<p>Equivalent to the <code>--no-build</code> command-line argument. If set, uv will not build
+source distributions.</p>
+<h3 id="uv_no_build_isolation"><a class="toclink" href="#uv_no_build_isolation"><code>UV_NO_BUILD_ISOLATION</code></a></h3>
+<p>Equivalent to the <code>--no-build-isolation</code> command-line argument. If set, uv will
+skip isolation when building source distributions.</p>
+<h3 id="uv_no_build_package"><a class="toclink" href="#uv_no_build_package"><code>UV_NO_BUILD_PACKAGE</code></a></h3>
+<p>Equivalent to the <code>--no-build-package</code> command line argument. If set, uv will
+not build source distributions for the given space-delimited list of packages.</p>
+<h3 id="uv_no_cache"><a class="toclink" href="#uv_no_cache"><code>UV_NO_CACHE</code></a></h3>
+<p>Equivalent to the <code>--no-cache</code> command-line argument. If set, uv will not use the
+cache for any operations.</p>
+<h3 id="uv_no_config"><a class="toclink" href="#uv_no_config"><code>UV_NO_CONFIG</code></a></h3>
+<p>Equivalent to the <code>--no-config</code> command-line argument. If set, uv will not read
+any configuration files from the current directory, parent directories, or user configuration
+directories.</p>
+<h3 id="uv_no_editable"><a class="toclink" href="#uv_no_editable"><code>UV_NO_EDITABLE</code></a></h3>
+<p>Equivalent to the <code>--no-editable</code> command-line argument. If set, uv
+installs any editable dependencies, including the project and any workspace members, as
+non-editable</p>
+<h3 id="uv_no_env_file"><a class="toclink" href="#uv_no_env_file"><code>UV_NO_ENV_FILE</code></a></h3>
+<p>Ignore <code>.env</code> files when executing <code>uv run</code> commands.</p>
+<h3 id="uv_no_installer_metadata"><a class="toclink" href="#uv_no_installer_metadata"><code>UV_NO_INSTALLER_METADATA</code></a></h3>
+<p>Skip writing <code>uv</code> installer metadata files (e.g., <code>INSTALLER</code>, <code>REQUESTED</code>, and <code>direct_url.json</code>) to site-packages <code>.dist-info</code> directories.</p>
+<h3 id="uv_no_managed_python"><a class="toclink" href="#uv_no_managed_python"><code>UV_NO_MANAGED_PYTHON</code></a></h3>
+<p>Disable use of uv-managed Python versions.</p>
+<h3 id="uv_no_progress"><a class="toclink" href="#uv_no_progress"><code>UV_NO_PROGRESS</code></a></h3>
+<p>Equivalent to the <code>--no-progress</code> command-line argument. Disables all progress output. For
+example, spinners and progress bars.</p>
+<h3 id="uv_no_sync"><a class="toclink" href="#uv_no_sync"><code>UV_NO_SYNC</code></a></h3>
+<p>Equivalent to the <code>--no-sync</code> command-line argument. If set, uv will skip updating
+the environment.</p>
+<h3 id="uv_no_verify_hashes"><a class="toclink" href="#uv_no_verify_hashes"><code>UV_NO_VERIFY_HASHES</code></a></h3>
+<p>Equivalent to the <code>--no-verify-hashes</code> argument. Disables hash verification for
+<code>requirements.txt</code> files.</p>
+<h3 id="uv_no_wrap"><a class="toclink" href="#uv_no_wrap"><code>UV_NO_WRAP</code></a></h3>
+<p>Use to disable line wrapping for diagnostics.</p>
+<h3 id="uv_offline"><a class="toclink" href="#uv_offline"><code>UV_OFFLINE</code></a></h3>
+<p>Equivalent to the <code>--offline</code> command-line argument. If set, uv will disable network access.</p>
+<h3 id="uv_override"><a class="toclink" href="#uv_override"><code>UV_OVERRIDE</code></a></h3>
+<p>Equivalent to the <code>--override</code> command-line argument. If set, uv will use this file
+as the overrides file. Uses space-separated list of files.</p>
+<h3 id="uv_prerelease"><a class="toclink" href="#uv_prerelease"><code>UV_PRERELEASE</code></a></h3>
+<p>Equivalent to the <code>--prerelease</code> command-line argument. For example, if set to
+<code>allow</code>, uv will allow pre-release versions for all dependencies.</p>
+<h3 id="uv_preview"><a class="toclink" href="#uv_preview"><code>UV_PREVIEW</code></a></h3>
+<p>Equivalent to the <code>--preview</code> argument. Enables preview mode.</p>
+<h3 id="uv_project"><a class="toclink" href="#uv_project"><code>UV_PROJECT</code></a></h3>
+<p>Equivalent to the <code>--project</code> command-line argument.</p>
+<h3 id="uv_project_environment"><a class="toclink" href="#uv_project_environment"><code>UV_PROJECT_ENVIRONMENT</code></a></h3>
+<p>Specifies the path to the directory to use for a project virtual environment.</p>
+<p>See the <a href="../../concepts/projects/config/#project-environment-path">project documentation</a>
+for more details.</p>
+<h3 id="uv_publish_check_url"><a class="toclink" href="#uv_publish_check_url"><code>UV_PUBLISH_CHECK_URL</code></a></h3>
+<p>Don't upload a file if it already exists on the index. The value is the URL of the index.</p>
+<h3 id="uv_publish_index"><a class="toclink" href="#uv_publish_index"><code>UV_PUBLISH_INDEX</code></a></h3>
+<p>Equivalent to the <code>--index</code> command-line argument in <code>uv publish</code>. If
+set, uv the index with this name in the configuration for publishing.</p>
+<h3 id="uv_publish_password"><a class="toclink" href="#uv_publish_password"><code>UV_PUBLISH_PASSWORD</code></a></h3>
+<p>Equivalent to the <code>--password</code> command-line argument in <code>uv publish</code>. If
+set, uv will use this password for publishing.</p>
+<h3 id="uv_publish_token"><a class="toclink" href="#uv_publish_token"><code>UV_PUBLISH_TOKEN</code></a></h3>
+<p>Equivalent to the <code>--token</code> command-line argument in <code>uv publish</code>. If set, uv
+will use this token (with the username <code>__token__</code>) for publishing.</p>
+<h3 id="uv_publish_url"><a class="toclink" href="#uv_publish_url"><code>UV_PUBLISH_URL</code></a></h3>
+<p>Equivalent to the <code>--publish-url</code> command-line argument. The URL of the upload
+endpoint of the index to use with <code>uv publish</code>.</p>
+<h3 id="uv_publish_username"><a class="toclink" href="#uv_publish_username"><code>UV_PUBLISH_USERNAME</code></a></h3>
+<p>Equivalent to the <code>--username</code> command-line argument in <code>uv publish</code>. If
+set, uv will use this username for publishing.</p>
+<h3 id="uv_pypy_install_mirror"><a class="toclink" href="#uv_pypy_install_mirror"><code>UV_PYPY_INSTALL_MIRROR</code></a></h3>
+<p>Managed PyPy installations are downloaded from <a href="https://downloads.python.org/">python.org</a>.</p>
+<p>This variable can be set to a mirror URL to use a
+different source for PyPy installations. The provided URL will replace
+<code>https://downloads.python.org/pypy</code> in, e.g.,
+<code>https://downloads.python.org/pypy/pypy3.8-v7.3.7-osx64.tar.bz2</code>.
+Distributions can be read from a local directory by using the <code>file://</code> URL scheme.</p>
+<h3 id="uv_python"><a class="toclink" href="#uv_python"><code>UV_PYTHON</code></a></h3>
+<p>Equivalent to the <code>--python</code> command-line argument. If set to a path, uv will use
+this Python interpreter for all operations.</p>
+<h3 id="uv_python_bin_dir"><a class="toclink" href="#uv_python_bin_dir"><code>UV_PYTHON_BIN_DIR</code></a></h3>
+<p>Specifies the directory to place links to installed, managed Python executables.</p>
+<h3 id="uv_python_cache_dir"><a class="toclink" href="#uv_python_cache_dir"><code>UV_PYTHON_CACHE_DIR</code></a></h3>
+<p>Specifies the directory for caching the archives of managed Python installations before
+installation.</p>
+<h3 id="uv_python_downloads"><a class="toclink" href="#uv_python_downloads"><code>UV_PYTHON_DOWNLOADS</code></a></h3>
+<p>Equivalent to the
+<a href="../settings/#python-downloads"><code>python-downloads</code></a> setting and, when disabled, the
+<code>--no-python-downloads</code> option. Whether uv should allow Python downloads.</p>
+<h3 id="uv_python_downloads_json_url"><a class="toclink" href="#uv_python_downloads_json_url"><code>UV_PYTHON_DOWNLOADS_JSON_URL</code></a></h3>
+<p>Managed Python installations information is hardcoded in the <code>uv</code> binary.</p>
+<p>This variable can be set to a URL pointing to JSON to use as a list for Python installations.
+This will allow for setting each property of the Python installation, mostly the url part for offline mirror.</p>
+<p>Note that currently, only local paths are supported.</p>
+<h3 id="uv_python_install_dir"><a class="toclink" href="#uv_python_install_dir"><code>UV_PYTHON_INSTALL_DIR</code></a></h3>
+<p>Specifies the directory for storing managed Python installations.</p>
+<h3 id="uv_python_install_mirror"><a class="toclink" href="#uv_python_install_mirror"><code>UV_PYTHON_INSTALL_MIRROR</code></a></h3>
+<p>Managed Python installations are downloaded from the Astral
+<a href="https://github.com/astral-sh/python-build-standalone"><code>python-build-standalone</code></a> project.</p>
+<p>This variable can be set to a mirror URL to use a different source for Python installations.
+The provided URL will replace <code>https://github.com/astral-sh/python-build-standalone/releases/download</code> in, e.g.,
+<code>https://github.com/astral-sh/python-build-standalone/releases/download/20240713/cpython-3.12.4%2B20240713-aarch64-apple-darwin-install_only.tar.gz</code>.
+Distributions can be read from a local directory by using the <code>file://</code> URL scheme.</p>
+<h3 id="uv_python_preference"><a class="toclink" href="#uv_python_preference"><code>UV_PYTHON_PREFERENCE</code></a></h3>
+<p>Whether uv should prefer system or managed Python versions.</p>
+<h3 id="uv_request_timeout"><a class="toclink" href="#uv_request_timeout"><code>UV_REQUEST_TIMEOUT</code></a></h3>
+<p>Timeout (in seconds) for HTTP requests. Equivalent to <code>UV_HTTP_TIMEOUT</code>.</p>
+<h3 id="uv_require_hashes"><a class="toclink" href="#uv_require_hashes"><code>UV_REQUIRE_HASHES</code></a></h3>
+<p>Equivalent to the <code>--require-hashes</code> command-line argument. If set to <code>true</code>,
+uv will require that all dependencies have a hash specified in the requirements file.</p>
+<h3 id="uv_resolution"><a class="toclink" href="#uv_resolution"><code>UV_RESOLUTION</code></a></h3>
+<p>Equivalent to the <code>--resolution</code> command-line argument. For example, if set to
+<code>lowest-direct</code>, uv will install the lowest compatible versions of all direct dependencies.</p>
+<h3 id="uv_stack_size"><a class="toclink" href="#uv_stack_size"><code>UV_STACK_SIZE</code></a></h3>
+<p>Use to set the stack size used by uv.</p>
+<p>The value is in bytes, and if both <code>UV_STACK_SIZE</code> are <code>RUST_MIN_STACK</code> unset, uv uses a 4MB
+(4194304) stack. <code>UV_STACK_SIZE</code> takes precedence over <code>RUST_MIN_STACK</code>.</p>
+<p>Unlike the normal <code>RUST_MIN_STACK</code> semantics, this can affect main thread
+stack size, because we actually spawn our own main2 thread to work around
+the fact that Windows' real main thread is only 1MB. That thread has size
+<code>max(UV_STACK_SIZE, 1MB)</code>.</p>
+<h3 id="uv_system_python"><a class="toclink" href="#uv_system_python"><code>UV_SYSTEM_PYTHON</code></a></h3>
+<p>Equivalent to the <code>--system</code> command-line argument. If set to <code>true</code>, uv will
+use the first Python interpreter found in the system <code>PATH</code>.</p>
+<p>WARNING: <code>UV_SYSTEM_PYTHON=true</code> is intended for use in continuous integration (CI)
+or containerized environments and should be used with caution, as modifying the system
+Python can lead to unexpected behavior.</p>
+<h3 id="uv_tool_bin_dir"><a class="toclink" href="#uv_tool_bin_dir"><code>UV_TOOL_BIN_DIR</code></a></h3>
+<p>Specifies the "bin" directory for installing tool executables.</p>
+<h3 id="uv_tool_dir"><a class="toclink" href="#uv_tool_dir"><code>UV_TOOL_DIR</code></a></h3>
+<p>Specifies the directory where uv stores managed tools.</p>
+<h3 id="uv_torch_backend"><a class="toclink" href="#uv_torch_backend"><code>UV_TORCH_BACKEND</code></a></h3>
+<p>Equivalent to the <code>--torch-backend</code> command-line argument (e.g., <code>cpu</code>, <code>cu126</code>, or <code>auto</code>).</p>
+<h3 id="uv_unmanaged_install"><a class="toclink" href="#uv_unmanaged_install"><code>UV_UNMANAGED_INSTALL</code></a></h3>
+<p>Used ephemeral environments like CI to install uv to a specific path while preventing
+the installer from modifying shell profiles or environment variables.</p>
+<h3 id="uv_venv_seed"><a class="toclink" href="#uv_venv_seed"><code>UV_VENV_SEED</code></a></h3>
+<p>Install seed packages (one or more of: <code>pip</code>, <code>setuptools</code>, and <code>wheel</code>) into the virtual environment
+created by <code>uv venv</code>.</p>
+<p>Note that <code>setuptools</code> and <code>wheel</code> are not included in Python 3.12+ environments.</p>
+<h2 id="externally-defined-variables"><a class="toclink" href="#externally-defined-variables">Externally defined variables</a></h2>
+<p>uv also reads the following externally defined environment variables:</p>
+<h3 id="actions_id_token_request_token"><a class="toclink" href="#actions_id_token_request_token"><code>ACTIONS_ID_TOKEN_REQUEST_TOKEN</code></a></h3>
+<p>Used for trusted publishing via <code>uv publish</code>. Contains the oidc request token.</p>
+<h3 id="actions_id_token_request_url"><a class="toclink" href="#actions_id_token_request_url"><code>ACTIONS_ID_TOKEN_REQUEST_URL</code></a></h3>
+<p>Used for trusted publishing via <code>uv publish</code>. Contains the oidc token url.</p>
+<h3 id="all_proxy"><a class="toclink" href="#all_proxy"><code>ALL_PROXY</code></a></h3>
+<p>General proxy for all network requests.</p>
+<h3 id="appdata"><a class="toclink" href="#appdata"><code>APPDATA</code></a></h3>
+<p>Path to user-level configuration directory on Windows systems.</p>
+<h3 id="bash_version"><a class="toclink" href="#bash_version"><code>BASH_VERSION</code></a></h3>
+<p>Used to detect Bash shell usage.</p>
+<h3 id="clicolor_force"><a class="toclink" href="#clicolor_force"><code>CLICOLOR_FORCE</code></a></h3>
+<p>Use to control color via <code>anstyle</code>.</p>
+<h3 id="columns"><a class="toclink" href="#columns"><code>COLUMNS</code></a></h3>
+<p>Overrides terminal width used for wrapping. This variable is not read by uv directly.</p>
+<p>This is a quasi-standard variable, described, e.g., in <code>ncurses(3x)</code>.</p>
+<h3 id="conda_default_env"><a class="toclink" href="#conda_default_env"><code>CONDA_DEFAULT_ENV</code></a></h3>
+<p>Used to determine if an active Conda environment is the base environment or not.</p>
+<h3 id="conda_prefix"><a class="toclink" href="#conda_prefix"><code>CONDA_PREFIX</code></a></h3>
+<p>Used to detect an activated Conda environment.</p>
+<h3 id="fish_version"><a class="toclink" href="#fish_version"><code>FISH_VERSION</code></a></h3>
+<p>Used to detect Fish shell usage.</p>
+<h3 id="force_color"><a class="toclink" href="#force_color"><code>FORCE_COLOR</code></a></h3>
+<p>Forces colored output regardless of terminal support.</p>
+<p>See <a href="https://force-color.org">force-color.org</a>.</p>
+<h3 id="github_actions"><a class="toclink" href="#github_actions"><code>GITHUB_ACTIONS</code></a></h3>
+<p>Used for trusted publishing via <code>uv publish</code>.</p>
+<h3 id="home"><a class="toclink" href="#home"><code>HOME</code></a></h3>
+<p>The standard <code>HOME</code> env var.</p>
+<h3 id="https_proxy"><a class="toclink" href="#https_proxy"><code>HTTPS_PROXY</code></a></h3>
+<p>Proxy for HTTPS requests.</p>
+<h3 id="http_proxy"><a class="toclink" href="#http_proxy"><code>HTTP_PROXY</code></a></h3>
+<p>Proxy for HTTP requests.</p>
+<h3 id="http_timeout"><a class="toclink" href="#http_timeout"><code>HTTP_TIMEOUT</code></a></h3>
+<p>Timeout (in seconds) for HTTP requests. Equivalent to <code>UV_HTTP_TIMEOUT</code>.</p>
+<h3 id="installer_no_modify_path"><a class="toclink" href="#installer_no_modify_path"><code>INSTALLER_NO_MODIFY_PATH</code></a></h3>
+<p>Avoid modifying the <code>PATH</code> environment variable when installing uv using the standalone
+installer and <code>self update</code> feature.</p>
+<h3 id="jpy_session_name"><a class="toclink" href="#jpy_session_name"><code>JPY_SESSION_NAME</code></a></h3>
+<p>Used to detect when running inside a Jupyter notebook.</p>
+<h3 id="ksh_version"><a class="toclink" href="#ksh_version"><code>KSH_VERSION</code></a></h3>
+<p>Used to detect Ksh shell usage.</p>
+<h3 id="localappdata"><a class="toclink" href="#localappdata"><code>LOCALAPPDATA</code></a></h3>
+<p>Used to look for Microsoft Store Pythons installations.</p>
+<h3 id="macosx_deployment_target"><a class="toclink" href="#macosx_deployment_target"><code>MACOSX_DEPLOYMENT_TARGET</code></a></h3>
+<p>Used with <code>--python-platform macos</code> and related variants to set the
+deployment target (i.e., the minimum supported macOS version).</p>
+<p>Defaults to <code>13.0</code>, the least-recent non-EOL macOS version at time of writing.</p>
+<h3 id="netrc"><a class="toclink" href="#netrc"><code>NETRC</code></a></h3>
+<p>Use to set the .netrc file location.</p>
+<h3 id="no_color"><a class="toclink" href="#no_color"><code>NO_COLOR</code></a></h3>
+<p>Disables colored output (takes precedence over <code>FORCE_COLOR</code>).</p>
+<p>See <a href="https://no-color.org">no-color.org</a>.</p>
+<h3 id="nu_version"><a class="toclink" href="#nu_version"><code>NU_VERSION</code></a></h3>
+<p>Used to detect <code>NuShell</code> usage.</p>
+<h3 id="pager"><a class="toclink" href="#pager"><code>PAGER</code></a></h3>
+<p>The standard <code>PAGER</code> posix env var. Used by <code>uv</code> to configure the appropriate pager.</p>
+<h3 id="path"><a class="toclink" href="#path"><code>PATH</code></a></h3>
+<p>The standard <code>PATH</code> env var.</p>
+<h3 id="prompt"><a class="toclink" href="#prompt"><code>PROMPT</code></a></h3>
+<p>Used to detect the use of the Windows Command Prompt (as opposed to PowerShell).</p>
+<h3 id="pwd"><a class="toclink" href="#pwd"><code>PWD</code></a></h3>
+<p>The standard <code>PWD</code> posix env var.</p>
+<h3 id="pyc_invalidation_mode"><a class="toclink" href="#pyc_invalidation_mode"><code>PYC_INVALIDATION_MODE</code></a></h3>
+<p>The validation modes to use when run with <code>--compile</code>.</p>
+<p>See <a href="https://docs.python.org/3/library/py_compile.html#py_compile.PycInvalidationMode"><code>PycInvalidationMode</code></a>.</p>
+<h3 id="pythonpath"><a class="toclink" href="#pythonpath"><code>PYTHONPATH</code></a></h3>
+<p>Adds directories to Python module search path (e.g., <code>PYTHONPATH=/path/to/modules</code>).</p>
+<h3 id="rust_log"><a class="toclink" href="#rust_log"><code>RUST_LOG</code></a></h3>
+<p>If set, uv will use this value as the log level for its <code>--verbose</code> output. Accepts
+any filter compatible with the <code>tracing_subscriber</code> crate.</p>
+<p>For example:</p>
+<ul>
+<li><code>RUST_LOG=uv=debug</code> is the equivalent of adding <code>--verbose</code> to the command line</li>
+<li><code>RUST_LOG=trace</code> will enable trace-level logging.</li>
+</ul>
+<p>See the <a href="https://docs.rs/tracing-subscriber/latest/tracing_subscriber/filter/struct.EnvFilter.html#example-syntax">tracing documentation</a>
+for more.</p>
+<h3 id="rust_min_stack"><a class="toclink" href="#rust_min_stack"><code>RUST_MIN_STACK</code></a></h3>
+<p>Use to set the stack size used by uv.</p>
+<p>The value is in bytes, and if both <code>UV_STACK_SIZE</code> are <code>RUST_MIN_STACK</code> unset, uv uses a 4MB
+(4194304) stack. <code>UV_STACK_SIZE</code> takes precedence over <code>RUST_MIN_STACK</code>.</p>
+<p>Prefer setting <code>UV_STACK_SIZE</code>, since <code>RUST_MIN_STACK</code> also affects subprocesses, such as
+build backends that use Rust code.</p>
+<p>Unlike the normal <code>RUST_MIN_STACK</code> semantics, this can affect main thread
+stack size, because we actually spawn our own main2 thread to work around
+the fact that Windows' real main thread is only 1MB. That thread has size
+<code>max(RUST_MIN_STACK, 1MB)</code>.</p>
+<h3 id="shell"><a class="toclink" href="#shell"><code>SHELL</code></a></h3>
+<p>The standard <code>SHELL</code> posix env var.</p>
+<h3 id="ssl_cert_file"><a class="toclink" href="#ssl_cert_file"><code>SSL_CERT_FILE</code></a></h3>
+<p>Custom certificate bundle file path for SSL connections.</p>
+<h3 id="ssl_client_cert"><a class="toclink" href="#ssl_client_cert"><code>SSL_CLIENT_CERT</code></a></h3>
+<p>If set, uv will use this file for mTLS authentication.
+This should be a single file containing both the certificate and the private key in PEM format.</p>
+<h3 id="systemdrive"><a class="toclink" href="#systemdrive"><code>SYSTEMDRIVE</code></a></h3>
+<p>Path to system-level configuration directory on Windows systems.</p>
+<h3 id="tracing_durations_file"><a class="toclink" href="#tracing_durations_file"><code>TRACING_DURATIONS_FILE</code></a></h3>
+<p>Use to create the tracing durations file via the <code>tracing-durations-export</code> feature.</p>
+<h3 id="userprofile"><a class="toclink" href="#userprofile"><code>USERPROFILE</code></a></h3>
+<p>Path to root directory of user's profile on Windows systems.</p>
+<h3 id="uv"><a class="toclink" href="#uv"><code>UV</code></a></h3>
+<p>The path to the binary that was used to invoke uv.</p>
+<p>This is propagated to all subprocesses spawned by uv.</p>
+<p>If the executable was invoked through a symbolic link, some platforms will return the path
+of the symbolic link and other platforms will return the path of the symbolic link’s target.</p>
+<p>See <a href="https://doc.rust-lang.org/std/env/fn.current_exe.html#security">https://doc.rust-lang.org/std/env/fn.current_exe.html#security</a> for security
+considerations.</p>
+<h3 id="virtual_env"><a class="toclink" href="#virtual_env"><code>VIRTUAL_ENV</code></a></h3>
+<p>Used to detect an activated virtual environment.</p>
+<h3 id="virtual_env_disable_prompt"><a class="toclink" href="#virtual_env_disable_prompt"><code>VIRTUAL_ENV_DISABLE_PROMPT</code></a></h3>
+<p>If set to <code>1</code> before a virtual environment is activated, then the
+virtual environment name will not be prepended to the terminal prompt.</p>
+<h3 id="xdg_bin_home"><a class="toclink" href="#xdg_bin_home"><code>XDG_BIN_HOME</code></a></h3>
+<p>Path to directory where executables are installed.</p>
+<h3 id="xdg_cache_home"><a class="toclink" href="#xdg_cache_home"><code>XDG_CACHE_HOME</code></a></h3>
+<p>Path to cache directory on Unix systems.</p>
+<h3 id="xdg_config_dirs"><a class="toclink" href="#xdg_config_dirs"><code>XDG_CONFIG_DIRS</code></a></h3>
+<p>Path to system-level configuration directory on Unix systems.</p>
+<h3 id="xdg_config_home"><a class="toclink" href="#xdg_config_home"><code>XDG_CONFIG_HOME</code></a></h3>
+<p>Path to user-level configuration directory on Unix systems.</p>
+<h3 id="xdg_data_home"><a class="toclink" href="#xdg_data_home"><code>XDG_DATA_HOME</code></a></h3>
+<p>Path to directory for storing managed Python installations and tools.</p>
+<h3 id="zdotdir"><a class="toclink" href="#zdotdir"><code>ZDOTDIR</code></a></h3>
+<p>Used to determine which <code>.zshenv</code> to use when Zsh is being used.</p>
+<h3 id="zsh_version"><a class="toclink" href="#zsh_version"><code>ZSH_VERSION</code></a></h3>
+<p>Used to detect Zsh shell usage.</p>
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      <span class="md-source-file__fact">
+        <span class="md-icon" title="Last update">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
+        </span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 28, 2025</span>
+      </span>
+    
+    
+    
+    
+  </aside>
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../settings/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Settings" rel="prev">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Settings
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../installer/" class="md-footer__link md-footer__link--next" aria-label="Next: Installer" rel="next">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Installer
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs Insiders
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/astral-sh/uv" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://discord.com/invite/astral-sh" target="_blank" rel="noopener" title="discord.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M524.531 69.836a1.5 1.5 0 0 0-.764-.7A485.065 485.065 0 0 0 404.081 32.03a1.816 1.816 0 0 0-1.923.91 337.461 337.461 0 0 0-14.9 30.6 447.848 447.848 0 0 0-134.426 0 309.541 309.541 0 0 0-15.135-30.6 1.89 1.89 0 0 0-1.924-.91 483.689 483.689 0 0 0-119.688 37.107 1.712 1.712 0 0 0-.788.676C39.068 183.651 18.186 294.69 28.43 404.354a2.016 2.016 0 0 0 .765 1.375 487.666 487.666 0 0 0 146.825 74.189 1.9 1.9 0 0 0 2.063-.676A348.2 348.2 0 0 0 208.12 430.4a1.86 1.86 0 0 0-1.019-2.588 321.173 321.173 0 0 1-45.868-21.853 1.885 1.885 0 0 1-.185-3.126 251.047 251.047 0 0 0 9.109-7.137 1.819 1.819 0 0 1 1.9-.256c96.229 43.917 200.41 43.917 295.5 0a1.812 1.812 0 0 1 1.924.233 234.533 234.533 0 0 0 9.132 7.16 1.884 1.884 0 0 1-.162 3.126 301.407 301.407 0 0 1-45.89 21.83 1.875 1.875 0 0 0-1 2.611 391.055 391.055 0 0 0 30.014 48.815 1.864 1.864 0 0 0 2.063.7A486.048 486.048 0 0 0 610.7 405.729a1.882 1.882 0 0 0 .765-1.352c12.264-126.783-20.532-236.912-86.934-334.541ZM222.491 337.58c-28.972 0-52.844-26.587-52.844-59.239s23.409-59.241 52.844-59.241c29.665 0 53.306 26.82 52.843 59.239 0 32.654-23.41 59.241-52.843 59.241Zm195.38 0c-28.971 0-52.843-26.587-52.843-59.239s23.409-59.241 52.843-59.241c29.667 0 53.307 26.82 52.844 59.239 0 32.654-23.177 59.241-52.844 59.241Z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://pypi.org/project/uv/" target="_blank" rel="noopener" title="pypi.org" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6zM286.2 404c11.1 0 20.1 9.1 20.1 20.3 0 11.3-9 20.4-20.1 20.4-11 0-20.1-9.2-20.1-20.4.1-11.3 9.1-20.3 20.1-20.3zM167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4zm-6.7-142.6c-11.1 0-20.1-9.1-20.1-20.3.1-11.3 9-20.4 20.1-20.4 11 0 20.1 9.2 20.1 20.4s-9 20.3-20.1 20.3z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://x.com/astral_sh" target="_blank" rel="noopener" title="x.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8l164.9-188.5L26.8 48h145.6l100.5 132.9L389.2 48zm-24.8 373.8h39.1L151.1 88h-42l255.3 333.8z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.path", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.sections", "navigation.indexes", "navigation.tracking", "content.code.annotate", "toc.follow", "navigation.footer", "navigation.top", "content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.f2da59ea.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7e51e09.min.js"></script>
+      
+        <script src="../../js/extra.js"></script>
+      
+    
+  </body>
+</html>
