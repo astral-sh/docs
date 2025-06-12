@@ -6,6 +6,8 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="uv is an extremely fast Python package and project manager, written in Rust.">
+      
       
         <meta name="author" content="charliermarsh">
       
@@ -79,8 +81,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2025-06-05 17:05:42Z",
-        "dateModified": "2025-06-05 17:05:42Z",
+        "datePublished": "2025-06-12 10:02:51Z",
+        "dateModified": "2025-06-12 10:02:51Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -6178,7 +6180,7 @@ uv will exit with an error.</p>
 <p>Download and install Python versions.</p>
 <p>Supports CPython and PyPy. CPython distributions are downloaded from the Astral <code>python-build-standalone</code> project. PyPy distributions are downloaded from <code>python.org</code>. The available Python versions are bundled with each uv release. To install new Python versions, you may need upgrade uv.</p>
 <p>Python versions are installed into the uv Python directory, which can be retrieved with <code>uv python dir</code>.</p>
-<p>A <code>python</code> executable is not made globally available, managed Python versions are only used in uv commands or in active virtual environments. There is experimental support for adding Python executables to the <code>PATH</code> — use the <code>--preview</code> flag to enable this behavior.</p>
+<p>A <code>python</code> executable is not made globally available, managed Python versions are only used in uv commands or in active virtual environments. There is experimental support for adding Python executables to a directory on the path — use the <code>--preview</code> flag to enable this behavior and <code>uv python dir --bin</code> to retrieve the target directory.</p>
 <p>Multiple Python versions may be requested.</p>
 <p>See <code>uv help python</code> to view supported request formats.</p>
 <h3 class="cli-reference">Usage</h3>
@@ -6407,7 +6409,7 @@ uv will exit with an error.</p>
 <p>Show the uv Python installation directory.</p>
 <p>By default, Python installations are stored in the uv data directory at <code>$XDG_DATA_HOME/uv/python</code> or <code>$HOME/.local/share/uv/python</code> on Unix and <code>%APPDATA%\uv\data\python</code> on Windows.</p>
 <p>The Python installation directory may be overridden with <code>$UV_PYTHON_INSTALL_DIR</code>.</p>
-<p>To view the directory where uv installs Python executables instead, use the <code>--bin</code> flag. Note that Python executables are only installed when preview mode is enabled.</p>
+<p>To view the directory where uv installs Python executables instead, use the <code>--bin</code> flag. The Python executable directory may be overridden with <code>$UV_PYTHON_BIN_DIR</code>. Note that Python executables are only installed when preview mode is enabled.</p>
 <h3 class="cli-reference">Usage</h3>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>uv python dir [OPTIONS]
@@ -7019,7 +7021,7 @@ be used with caution, as it can modify the system Python installation.</p>
 <p>When <code>--require-hashes</code> is enabled, <em>all</em> requirements must include a hash or set of hashes, and <em>all</em> requirements must either be pinned to exact versions (e.g., <code>==1.0.0</code>), or be specified via direct URL.</p>
 <p>Hash-checking mode introduces a number of additional constraints:</p>
 <ul>
-<li>Git dependencies are not supported. - Editable installs are not supported. - Local dependencies are not supported, unless they point to a specific wheel (<code>.whl</code>) or source archive (<code>.zip</code>, <code>.tar.gz</code>), as opposed to a directory.</li>
+<li>Git dependencies are not supported. - Editable installations are not supported. - Local dependencies are not supported, unless they point to a specific wheel (<code>.whl</code>) or source archive (<code>.zip</code>, <code>.tar.gz</code>), as opposed to a directory.</li>
 </ul>
 <p>May also be set with the <code>UV_REQUIRE_HASHES</code> environment variable.</p></dd><dt id="uv-pip-sync--strict"><a href="#uv-pip-sync--strict"><code>--strict</code></a></dt><dd><p>Validate the Python environment after completing the installation, to detect packages with missing dependencies or other issues</p>
 </dd><dt id="uv-pip-sync--system"><a href="#uv-pip-sync--system"><code>--system</code></a></dt><dd><p>Install packages into the system Python environment.</p>
@@ -7279,7 +7281,7 @@ should be used with caution, as it can modify the system Python installation.</p
 <p>When <code>--require-hashes</code> is enabled, <em>all</em> requirements must include a hash or set of hashes, and <em>all</em> requirements must either be pinned to exact versions (e.g., <code>==1.0.0</code>), or be specified via direct URL.</p>
 <p>Hash-checking mode introduces a number of additional constraints:</p>
 <ul>
-<li>Git dependencies are not supported. - Editable installs are not supported. - Local dependencies are not supported, unless they point to a specific wheel (<code>.whl</code>) or source archive (<code>.zip</code>, <code>.tar.gz</code>), as opposed to a directory.</li>
+<li>Git dependencies are not supported. - Editable installations are not supported. - Local dependencies are not supported, unless they point to a specific wheel (<code>.whl</code>) or source archive (<code>.zip</code>, <code>.tar.gz</code>), as opposed to a directory.</li>
 </ul>
 <p>May also be set with the <code>UV_REQUIRE_HASHES</code> environment variable.</p></dd><dt id="uv-pip-install--requirements"><a href="#uv-pip-install--requirements"><code>--requirements</code></a>, <code>--requirement</code>, <code>-r</code> <i>requirements</i></dt><dd><p>Install all packages listed in the given <code>requirements.txt</code> or <code>pylock.toml</code> files.</p>
 <p>If a <code>pyproject.toml</code>, <code>setup.py</code>, or <code>setup.cfg</code> file is provided, uv will extract the requirements for the relevant project.</p>
@@ -8101,7 +8103,7 @@ the platform.</p>
 <p>When <code>--require-hashes</code> is enabled, <em>all</em> requirements must include a hash or set of hashes, and <em>all</em> requirements must either be pinned to exact versions (e.g., <code>==1.0.0</code>), or be specified via direct URL.</p>
 <p>Hash-checking mode introduces a number of additional constraints:</p>
 <ul>
-<li>Git dependencies are not supported. - Editable installs are not supported. - Local dependencies are not supported, unless they point to a specific wheel (<code>.whl</code>) or source archive (<code>.zip</code>, <code>.tar.gz</code>), as opposed to a directory.</li>
+<li>Git dependencies are not supported. - Editable installations are not supported. - Local dependencies are not supported, unless they point to a specific wheel (<code>.whl</code>) or source archive (<code>.zip</code>, <code>.tar.gz</code>), as opposed to a directory.</li>
 </ul>
 <p>May also be set with the <code>UV_REQUIRE_HASHES</code> environment variable.</p></dd><dt id="uv-build--resolution"><a href="#uv-build--resolution"><code>--resolution</code></a> <i>resolution</i></dt><dd><p>The strategy to use when selecting between the different compatible versions for a given package requirement.</p>
 <p>By default, uv will use the latest compatible version of each package (<code>highest</code>).</p>
@@ -8633,7 +8635,7 @@ uv publish --publish-url https://upload.pypi.org/legacy/ --check-url https://pyp
         <span class="md-icon" title="Last update">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
         </span>
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 5, 2025</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 12, 2025</span>
       </span>
     
     
