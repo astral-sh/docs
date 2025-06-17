@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Check for `if`-`else`-blocks that can be replaced with a ternary operator.">
+        <meta name="description" content="Check for `if`-`else`-blocks that can be replaced with a ternary">
       
       
         <meta name="author" content="charliermarsh">
@@ -841,9 +841,10 @@
 <p>Derived from the <strong><a href="../#flake8-simplify-sim">flake8-simplify</a></strong> linter.</p>
 <p>Fix is sometimes available.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
-<p>Check for <code>if</code>-<code>else</code>-blocks that can be replaced with a ternary operator.
-Moreover, in <a href="https://docs.astral.sh/ruff/preview/">preview</a>, check if these ternary expressions can be
-further simplified to binary expressions.</p>
+<p>Check for <code>if</code>-<code>else</code>-blocks that can be replaced with a ternary
+or binary operator.</p>
+<p>The lint is suppressed if the suggested replacement would exceed
+the maximum line length configured in <a href="https://docs.astral.sh/ruff/settings/#lint_pycodestyle_max-line-length">pycodestyle.max-line-length</a>.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p><code>if</code>-<code>else</code>-blocks that assign a value to a variable in both branches can
 be expressed more concisely by using a ternary or binary operator.</p>
@@ -856,7 +857,7 @@ be expressed more concisely by using a ternary or binary operator.</p>
 <p>Use instead:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">bar</span> <span class="o">=</span> <span class="n">x</span> <span class="k">if</span> <span class="n">foo</span> <span class="k">else</span> <span class="n">y</span>
 </code></pre></div>
-<p>Or, in <a href="https://docs.astral.sh/ruff/preview/">preview</a>:</p>
+<p>Or:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">if</span> <span class="n">cond</span><span class="p">:</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="n">z</span> <span class="o">=</span> <span class="n">cond</span>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">else</span><span class="p">:</span>

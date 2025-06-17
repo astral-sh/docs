@@ -840,7 +840,6 @@
 <h1 id="verbose-decimal-constructor-furb157"><a class="toclink" href="#verbose-decimal-constructor-furb157">verbose-decimal-constructor (FURB157)</a></h1>
 <p>Derived from the <strong><a href="../#refurb-furb">refurb</a></strong> linter.</p>
 <p>Fix is always available.</p>
-<p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for unnecessary string literal or float casts in <code>Decimal</code>
 constructors.</p>
@@ -853,6 +852,8 @@ so there's no need to wrap those values in a <code>float</code> call when passin
 them to the <code>Decimal</code> constructor.</p>
 <p>Prefer the more concise form of argument passing for <code>Decimal</code>
 constructors, as it's more readable and idiomatic.</p>
+<p>Note that this rule does not flag quoted float literals such as <code>Decimal("0.1")</code>, which will
+produce a more precise <code>Decimal</code> value than the unquoted <code>Decimal(0.1)</code>.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">Decimal</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">Decimal</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="s2">&quot;Infinity&quot;</span><span class="p">))</span>

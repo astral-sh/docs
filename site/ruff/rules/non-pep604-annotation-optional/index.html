@@ -840,7 +840,6 @@
 <h1 id="non-pep604-annotation-optional-up045"><a class="toclink" href="#non-pep604-annotation-optional-up045">non-pep604-annotation-optional (UP045)</a></h1>
 <p>Derived from the <strong><a href="../#pyupgrade-up">pyupgrade</a></strong> linter.</p>
 <p>Fix is sometimes available.</p>
-<p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Check for <code>typing.Optional</code> annotations that can be rewritten based on <a href="https://peps.python.org/pep-0604/">PEP 604</a> syntax.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
@@ -863,8 +862,8 @@ by setting <a href="../../settings/#lint_pyupgrade_keep-runtime-typing"><code>li
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">foo</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
 </code></pre></div>
 <h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
-<p>This rule's fix is marked as unsafe, as it may lead to runtime errors when
-alongside libraries that rely on runtime type annotations, like Pydantic,
+<p>This rule's fix is marked as unsafe, as it may lead to runtime errors
+using libraries that rely on runtime type annotations, like Pydantic,
 on Python versions prior to Python 3.10. It may also lead to runtime errors
 in unusual and likely incorrect type annotations where the type does not
 support the <code>|</code> operator.</p>
