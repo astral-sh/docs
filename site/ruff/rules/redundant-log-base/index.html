@@ -862,6 +862,12 @@ than <code>math.log</code>.</p>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">math</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">math</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
 </code></pre></div>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
+<p>This fix is marked unsafe when the argument is a starred expression, as this changes
+the call semantics and may raise runtime errors. It is also unsafe if comments are
+present within the call, as they will be removed. Additionally, <code>math.log(x, base)</code>
+and <code>math.log2(x)</code> / <code>math.log10(x)</code> may differ due to floating-point rounding, so
+the fix is also unsafe when making this transformation.</p>
 <h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/library/math.html#math.log">Python documentation: <code>math.log</code></a></li>

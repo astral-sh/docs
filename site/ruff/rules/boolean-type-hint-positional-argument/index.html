@@ -841,7 +841,8 @@
 <p>Derived from the <strong><a href="../#flake8-boolean-trap-fbt">flake8-boolean-trap</a></strong> linter.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for the use of boolean positional arguments in function definitions,
-as determined by the presence of a <code>bool</code> type hint.</p>
+as determined by the presence of a type hint containing <code>bool</code> as an
+evident subtype - e.g. <code>bool</code>, <code>bool | int</code>, <code>typing.Optional[bool]</code>, etc.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Calling a function with boolean positional arguments is confusing as the
 meaning of the boolean value is not clear to the caller and to future
@@ -854,8 +855,6 @@ keyword-only argument, to force callers to be explicit when providing
 the argument.</p>
 <p>Dunder methods that define operators are exempt from this rule, as are
 setters and <code>@override</code> definitions.</p>
-<p>In <a href="https://docs.astral.sh/ruff/preview/">preview</a>, this rule will also flag annotations that include boolean
-variants, like <code>bool | int</code>.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">ceil</span><span class="p">,</span> <span class="n">floor</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
