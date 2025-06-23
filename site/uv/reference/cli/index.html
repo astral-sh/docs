@@ -81,8 +81,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2025-06-12 10:02:51Z",
-        "dateModified": "2025-06-12 10:02:51Z",
+        "datePublished": "2025-06-21 00:33:20Z",
+        "dateModified": "2025-06-21 00:33:20Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -2290,6 +2290,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#uv-python-upgrade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        uv python upgrade
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#uv-python-find" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3278,6 +3289,17 @@
     <span class="md-ellipsis">
       
         uv python install
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uv-python-upgrade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        uv python upgrade
       
     </span>
   </a>
@@ -6086,6 +6108,7 @@ uv will exit with an error.</p>
 
 <dl class="cli-reference"><dt><a href="#uv-python-list"><code>uv python list</code></a></dt><dd><p>List the available Python installations</p></dd>
 <dt><a href="#uv-python-install"><code>uv python install</code></a></dt><dd><p>Download and install Python versions</p></dd>
+<dt><a href="#uv-python-upgrade"><code>uv python upgrade</code></a></dt><dd><p>Upgrade installed Python versions to the latest supported patch release (requires the <code>--preview</code> flag)</p></dd>
 <dt><a href="#uv-python-find"><code>uv python find</code></a></dt><dd><p>Search for a Python installation</p></dd>
 <dt><a href="#uv-python-pin"><code>uv python pin</code></a></dt><dd><p>Pin to a specific Python version</p></dd>
 <dt><a href="#uv-python-dir"><code>uv python dir</code></a></dt><dd><p>Show the uv Python installation directory</p></dd>
@@ -6262,13 +6285,89 @@ uv will exit with an error.</p>
 <p>You can configure fine-grained logging using the <code>RUST_LOG</code> environment variable. (<a href="https://docs.rs/tracing-subscriber/latest/tracing_subscriber/filter/struct.EnvFilter.html#directives">https://docs.rs/tracing-subscriber/latest/tracing_subscriber/filter/struct.EnvFilter.html#directives</a>)</p>
 </dd></dl>
 
+<h3 id="uv-python-upgrade"><a class="toclink" href="#uv-python-upgrade">uv python upgrade</a></h3>
+<p>Upgrade installed Python versions to the latest supported patch release (requires the <code>--preview</code> flag).</p>
+<p>A target Python minor version to upgrade may be provided, e.g., <code>3.13</code>. Multiple versions may be provided to perform more than one upgrade.</p>
+<p>If no target version is provided, then uv will upgrade all managed CPython versions.</p>
+<p>During an upgrade, uv will not uninstall outdated patch versions.</p>
+<p>When an upgrade is performed, virtual environments created by uv will automatically use the new version. However, if the virtual environment was created before the upgrade functionality was added, it will continue to use the old Python version; to enable upgrades, the environment must be recreated.</p>
+<p>Upgrades are not yet supported for alternative implementations, like PyPy.</p>
+<h3 class="cli-reference">Usage</h3>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>uv python upgrade [OPTIONS] [TARGETS]...
+</code></pre></div>
+<h3 class="cli-reference">Arguments</h3>
+
+<dl class="cli-reference"><dt id="uv-python-upgrade--targets"><a href="#uv-python-upgrade--targets"<code>TARGETS</code></a></dt><dd><p>The Python minor version(s) to upgrade.</p>
+<p>If no target version is provided, then uv will upgrade all managed CPython versions.</p>
+</dd></dl>
+
+<h3 class="cli-reference">Options</h3>
+
+<dl class="cli-reference"><dt id="uv-python-upgrade--allow-insecure-host"><a href="#uv-python-upgrade--allow-insecure-host"><code>--allow-insecure-host</code></a>, <code>--trusted-host</code> <i>allow-insecure-host</i></dt><dd><p>Allow insecure connections to a host.</p>
+<p>Can be provided multiple times.</p>
+<p>Expects to receive either a hostname (e.g., <code>localhost</code>), a host-port pair (e.g., <code>localhost:8080</code>), or a URL (e.g., <code>https://localhost</code>).</p>
+<p>WARNING: Hosts included in this list will not be verified against the system's certificate store. Only use <code>--allow-insecure-host</code> in a secure network with verified sources, as it bypasses SSL verification and could expose you to MITM attacks.</p>
+<p>May also be set with the <code>UV_INSECURE_HOST</code> environment variable.</p></dd><dt id="uv-python-upgrade--cache-dir"><a href="#uv-python-upgrade--cache-dir"><code>--cache-dir</code></a> <i>cache-dir</i></dt><dd><p>Path to the cache directory.</p>
+<p>Defaults to <code>$XDG_CACHE_HOME/uv</code> or <code>$HOME/.cache/uv</code> on macOS and Linux, and <code>%LOCALAPPDATA%\uv\cache</code> on Windows.</p>
+<p>To view the location of the cache directory, run <code>uv cache dir</code>.</p>
+<p>May also be set with the <code>UV_CACHE_DIR</code> environment variable.</p></dd><dt id="uv-python-upgrade--color"><a href="#uv-python-upgrade--color"><code>--color</code></a> <i>color-choice</i></dt><dd><p>Control the use of color in output.</p>
+<p>By default, uv will automatically detect support for colors when writing to a terminal.</p>
+<p>Possible values:</p>
+<ul>
+<li><code>auto</code>:  Enables colored output only when the output is going to a terminal or TTY with support</li>
+<li><code>always</code>:  Enables colored output regardless of the detected environment</li>
+<li><code>never</code>:  Disables colored output</li>
+</ul></dd><dt id="uv-python-upgrade--config-file"><a href="#uv-python-upgrade--config-file"><code>--config-file</code></a> <i>config-file</i></dt><dd><p>The path to a <code>uv.toml</code> file to use for configuration.</p>
+<p>While uv configuration can be included in a <code>pyproject.toml</code> file, it is not allowed in this context.</p>
+<p>May also be set with the <code>UV_CONFIG_FILE</code> environment variable.</p></dd><dt id="uv-python-upgrade--directory"><a href="#uv-python-upgrade--directory"><code>--directory</code></a> <i>directory</i></dt><dd><p>Change to the given directory prior to running the command.</p>
+<p>Relative paths are resolved with the given directory as the base.</p>
+<p>See <code>--project</code> to only change the project root directory.</p>
+</dd><dt id="uv-python-upgrade--help"><a href="#uv-python-upgrade--help"><code>--help</code></a>, <code>-h</code></dt><dd><p>Display the concise help for this command</p>
+</dd><dt id="uv-python-upgrade--install-dir"><a href="#uv-python-upgrade--install-dir"><code>--install-dir</code></a>, <code>-i</code> <i>install-dir</i></dt><dd><p>The directory Python installations are stored in.</p>
+<p>If provided, <code>UV_PYTHON_INSTALL_DIR</code> will need to be set for subsequent operations for uv to discover the Python installation.</p>
+<p>See <code>uv python dir</code> to view the current Python installation directory. Defaults to <code>~/.local/share/uv/python</code>.</p>
+<p>May also be set with the <code>UV_PYTHON_INSTALL_DIR</code> environment variable.</p></dd><dt id="uv-python-upgrade--managed-python"><a href="#uv-python-upgrade--managed-python"><code>--managed-python</code></a></dt><dd><p>Require use of uv-managed Python versions.</p>
+<p>By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.</p>
+<p>May also be set with the <code>UV_MANAGED_PYTHON</code> environment variable.</p></dd><dt id="uv-python-upgrade--mirror"><a href="#uv-python-upgrade--mirror"><code>--mirror</code></a> <i>mirror</i></dt><dd><p>Set the URL to use as the source for downloading Python installations.</p>
+<p>The provided URL will replace <code>https://github.com/astral-sh/python-build-standalone/releases/download</code> in, e.g., <code>https://github.com/astral-sh/python-build-standalone/releases/download/20240713/cpython-3.12.4%2B20240713-aarch64-apple-darwin-install_only.tar.gz</code>.</p>
+<p>Distributions can be read from a local directory by using the <code>file://</code> URL scheme.</p>
+<p>May also be set with the <code>UV_PYTHON_INSTALL_MIRROR</code> environment variable.</p></dd><dt id="uv-python-upgrade--native-tls"><a href="#uv-python-upgrade--native-tls"><code>--native-tls</code></a></dt><dd><p>Whether to load TLS certificates from the platform's native certificate store.</p>
+<p>By default, uv loads certificates from the bundled <code>webpki-roots</code> crate. The <code>webpki-roots</code> are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).</p>
+<p>However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.</p>
+<p>May also be set with the <code>UV_NATIVE_TLS</code> environment variable.</p></dd><dt id="uv-python-upgrade--no-cache"><a href="#uv-python-upgrade--no-cache"><code>--no-cache</code></a>, <code>--no-cache-dir</code>, <code>-n</code></dt><dd><p>Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation</p>
+<p>May also be set with the <code>UV_NO_CACHE</code> environment variable.</p></dd><dt id="uv-python-upgrade--no-config"><a href="#uv-python-upgrade--no-config"><code>--no-config</code></a></dt><dd><p>Avoid discovering configuration files (<code>pyproject.toml</code>, <code>uv.toml</code>).</p>
+<p>Normally, configuration files are discovered in the current directory, parent directories, or user configuration directories.</p>
+<p>May also be set with the <code>UV_NO_CONFIG</code> environment variable.</p></dd><dt id="uv-python-upgrade--no-managed-python"><a href="#uv-python-upgrade--no-managed-python"><code>--no-managed-python</code></a></dt><dd><p>Disable use of uv-managed Python versions.</p>
+<p>Instead, uv will search for a suitable Python version on the system.</p>
+<p>May also be set with the <code>UV_NO_MANAGED_PYTHON</code> environment variable.</p></dd><dt id="uv-python-upgrade--no-progress"><a href="#uv-python-upgrade--no-progress"><code>--no-progress</code></a></dt><dd><p>Hide all progress outputs.</p>
+<p>For example, spinners or progress bars.</p>
+<p>May also be set with the <code>UV_NO_PROGRESS</code> environment variable.</p></dd><dt id="uv-python-upgrade--no-python-downloads"><a href="#uv-python-upgrade--no-python-downloads"><code>--no-python-downloads</code></a></dt><dd><p>Disable automatic downloads of Python.</p>
+</dd><dt id="uv-python-upgrade--offline"><a href="#uv-python-upgrade--offline"><code>--offline</code></a></dt><dd><p>Disable network access.</p>
+<p>When disabled, uv will only use locally cached data and locally available files.</p>
+<p>May also be set with the <code>UV_OFFLINE</code> environment variable.</p></dd><dt id="uv-python-upgrade--project"><a href="#uv-python-upgrade--project"><code>--project</code></a> <i>project</i></dt><dd><p>Run the command within the given project directory.</p>
+<p>All <code>pyproject.toml</code>, <code>uv.toml</code>, and <code>.python-version</code> files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (<code>.venv</code>).</p>
+<p>Other command-line arguments (such as relative paths) will be resolved relative to the current working directory.</p>
+<p>See <code>--directory</code> to change the working directory entirely.</p>
+<p>This setting has no effect when used in the <code>uv pip</code> interface.</p>
+<p>May also be set with the <code>UV_PROJECT</code> environment variable.</p></dd><dt id="uv-python-upgrade--pypy-mirror"><a href="#uv-python-upgrade--pypy-mirror"><code>--pypy-mirror</code></a> <i>pypy-mirror</i></dt><dd><p>Set the URL to use as the source for downloading PyPy installations.</p>
+<p>The provided URL will replace <code>https://downloads.python.org/pypy</code> in, e.g., <code>https://downloads.python.org/pypy/pypy3.8-v7.3.7-osx64.tar.bz2</code>.</p>
+<p>Distributions can be read from a local directory by using the <code>file://</code> URL scheme.</p>
+<p>May also be set with the <code>UV_PYPY_INSTALL_MIRROR</code> environment variable.</p></dd><dt id="uv-python-upgrade--python-downloads-json-url"><a href="#uv-python-upgrade--python-downloads-json-url"><code>--python-downloads-json-url</code></a> <i>python-downloads-json-url</i></dt><dd><p>URL pointing to JSON of custom Python installations.</p>
+<p>Note that currently, only local paths are supported.</p>
+<p>May also be set with the <code>UV_PYTHON_DOWNLOADS_JSON_URL</code> environment variable.</p></dd><dt id="uv-python-upgrade--quiet"><a href="#uv-python-upgrade--quiet"><code>--quiet</code></a>, <code>-q</code></dt><dd><p>Use quiet output.</p>
+<p>Repeating this option, e.g., <code>-qq</code>, will enable a silent mode in which uv will write no output to stdout.</p>
+</dd><dt id="uv-python-upgrade--verbose"><a href="#uv-python-upgrade--verbose"><code>--verbose</code></a>, <code>-v</code></dt><dd><p>Use verbose output.</p>
+<p>You can configure fine-grained logging using the <code>RUST_LOG</code> environment variable. (<a href="https://docs.rs/tracing-subscriber/latest/tracing_subscriber/filter/struct.EnvFilter.html#directives">https://docs.rs/tracing-subscriber/latest/tracing_subscriber/filter/struct.EnvFilter.html#directives</a>)</p>
+</dd></dl>
+
 <h3 id="uv-python-find"><a class="toclink" href="#uv-python-find">uv python find</a></h3>
 <p>Search for a Python installation.</p>
 <p>Displays the path to the Python executable.</p>
 <p>See <code>uv help python</code> to view supported request formats and details on discovery behavior.</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>uv python find [OPTIONS] [REQUEST]
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>uv python find [OPTIONS] [REQUEST]
 </code></pre></div>
 <h3 class="cli-reference">Arguments</h3>
 
@@ -6338,7 +6437,7 @@ uv will exit with an error.</p>
 <p>See <code>uv help python</code> to view supported request formats.</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>uv python pin [OPTIONS] [REQUEST]
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>uv python pin [OPTIONS] [REQUEST]
 </code></pre></div>
 <h3 class="cli-reference">Arguments</h3>
 
@@ -6412,7 +6511,7 @@ uv will exit with an error.</p>
 <p>To view the directory where uv installs Python executables instead, use the <code>--bin</code> flag. The Python executable directory may be overridden with <code>$UV_PYTHON_BIN_DIR</code>. Note that Python executables are only installed when preview mode is enabled.</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>uv python dir [OPTIONS]
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>uv python dir [OPTIONS]
 </code></pre></div>
 <h3 class="cli-reference">Options</h3>
 
@@ -6476,7 +6575,7 @@ from the following environment variables, in order of preference:</p>
 <p>Uninstall Python versions</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>uv python uninstall [OPTIONS] &lt;TARGETS&gt;...
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>uv python uninstall [OPTIONS] &lt;TARGETS&gt;...
 </code></pre></div>
 <h3 class="cli-reference">Arguments</h3>
 
@@ -6538,7 +6637,7 @@ from the following environment variables, in order of preference:</p>
 <p>Manage Python packages with a pip-compatible interface</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>uv pip [OPTIONS] &lt;COMMAND&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>uv pip [OPTIONS] &lt;COMMAND&gt;
 </code></pre></div>
 <h3 class="cli-reference">Commands</h3>
 
@@ -6557,7 +6656,7 @@ from the following environment variables, in order of preference:</p>
 <p>Compile a <code>requirements.in</code> file to a <code>requirements.txt</code> or <code>pylock.toml</code> file</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>uv pip compile [OPTIONS] &lt;SRC_FILE|--group &lt;GROUP&gt;&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>uv pip compile [OPTIONS] &lt;SRC_FILE|--group &lt;GROUP&gt;&gt;
 </code></pre></div>
 <h3 class="cli-reference">Arguments</h3>
 
@@ -6826,6 +6925,23 @@ by <code>--python-version</code>.</p>
 <li><code>cu91</code>:  Use the PyTorch index for CUDA 9.1</li>
 <li><code>cu90</code>:  Use the PyTorch index for CUDA 9.0</li>
 <li><code>cu80</code>:  Use the PyTorch index for CUDA 8.0</li>
+<li><code>rocm6.3</code>:  Use the PyTorch index for ROCm 6.3</li>
+<li><code>rocm6.2.4</code>:  Use the PyTorch index for ROCm 6.2.4</li>
+<li><code>rocm6.2</code>:  Use the PyTorch index for ROCm 6.2</li>
+<li><code>rocm6.1</code>:  Use the PyTorch index for ROCm 6.1</li>
+<li><code>rocm6.0</code>:  Use the PyTorch index for ROCm 6.0</li>
+<li><code>rocm5.7</code>:  Use the PyTorch index for ROCm 5.7</li>
+<li><code>rocm5.6</code>:  Use the PyTorch index for ROCm 5.6</li>
+<li><code>rocm5.5</code>:  Use the PyTorch index for ROCm 5.5</li>
+<li><code>rocm5.4.2</code>:  Use the PyTorch index for ROCm 5.4.2</li>
+<li><code>rocm5.4</code>:  Use the PyTorch index for ROCm 5.4</li>
+<li><code>rocm5.3</code>:  Use the PyTorch index for ROCm 5.3</li>
+<li><code>rocm5.2</code>:  Use the PyTorch index for ROCm 5.2</li>
+<li><code>rocm5.1.1</code>:  Use the PyTorch index for ROCm 5.1.1</li>
+<li><code>rocm4.2</code>:  Use the PyTorch index for ROCm 4.2</li>
+<li><code>rocm4.1</code>:  Use the PyTorch index for ROCm 4.1</li>
+<li><code>rocm4.0.1</code>:  Use the PyTorch index for ROCm 4.0.1</li>
+<li><code>xpu</code>:  Use the PyTorch index for Intel XPU</li>
 </ul></dd><dt id="uv-pip-compile--universal"><a href="#uv-pip-compile--universal"><code>--universal</code></a></dt><dd><p>Perform a universal resolution, attempting to generate a single <code>requirements.txt</code> output file that is compatible with all operating systems, architectures, and Python implementations.</p>
 <p>In universal mode, the current Python version (or user-provided <code>--python-version</code>) will be treated as a lower bound. For example, <code>--universal --python-version 3.7</code> would produce a universal resolution for Python 3.7 and later.</p>
 <p>Implies <code>--no-strip-markers</code>.</p>
@@ -6841,7 +6957,7 @@ by <code>--python-version</code>.</p>
 <p>The input file is presumed to be the output of a <code>pip compile</code> or <code>uv export</code> operation, in which it will include all transitive dependencies. If transitive dependencies are not present in the file, they will not be installed. Use <code>--strict</code> to warn if any transitive dependencies are missing.</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>uv pip sync [OPTIONS] &lt;SRC_FILE&gt;...
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>uv pip sync [OPTIONS] &lt;SRC_FILE&gt;...
 </code></pre></div>
 <h3 class="cli-reference">Arguments</h3>
 
@@ -7061,6 +7177,23 @@ be used with caution, as it can modify the system Python installation.</p>
 <li><code>cu91</code>:  Use the PyTorch index for CUDA 9.1</li>
 <li><code>cu90</code>:  Use the PyTorch index for CUDA 9.0</li>
 <li><code>cu80</code>:  Use the PyTorch index for CUDA 8.0</li>
+<li><code>rocm6.3</code>:  Use the PyTorch index for ROCm 6.3</li>
+<li><code>rocm6.2.4</code>:  Use the PyTorch index for ROCm 6.2.4</li>
+<li><code>rocm6.2</code>:  Use the PyTorch index for ROCm 6.2</li>
+<li><code>rocm6.1</code>:  Use the PyTorch index for ROCm 6.1</li>
+<li><code>rocm6.0</code>:  Use the PyTorch index for ROCm 6.0</li>
+<li><code>rocm5.7</code>:  Use the PyTorch index for ROCm 5.7</li>
+<li><code>rocm5.6</code>:  Use the PyTorch index for ROCm 5.6</li>
+<li><code>rocm5.5</code>:  Use the PyTorch index for ROCm 5.5</li>
+<li><code>rocm5.4.2</code>:  Use the PyTorch index for ROCm 5.4.2</li>
+<li><code>rocm5.4</code>:  Use the PyTorch index for ROCm 5.4</li>
+<li><code>rocm5.3</code>:  Use the PyTorch index for ROCm 5.3</li>
+<li><code>rocm5.2</code>:  Use the PyTorch index for ROCm 5.2</li>
+<li><code>rocm5.1.1</code>:  Use the PyTorch index for ROCm 5.1.1</li>
+<li><code>rocm4.2</code>:  Use the PyTorch index for ROCm 4.2</li>
+<li><code>rocm4.1</code>:  Use the PyTorch index for ROCm 4.1</li>
+<li><code>rocm4.0.1</code>:  Use the PyTorch index for ROCm 4.0.1</li>
+<li><code>xpu</code>:  Use the PyTorch index for Intel XPU</li>
 </ul></dd><dt id="uv-pip-sync--verbose"><a href="#uv-pip-sync--verbose"><code>--verbose</code></a>, <code>-v</code></dt><dd><p>Use verbose output.</p>
 <p>You can configure fine-grained logging using the <code>RUST_LOG</code> environment variable. (<a href="https://docs.rs/tracing-subscriber/latest/tracing_subscriber/filter/struct.EnvFilter.html#directives">https://docs.rs/tracing-subscriber/latest/tracing_subscriber/filter/struct.EnvFilter.html#directives</a>)</p>
 </dd></dl>
@@ -7069,7 +7202,7 @@ be used with caution, as it can modify the system Python installation.</p>
 <p>Install packages into an environment</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>uv pip install [OPTIONS] &lt;PACKAGE|--requirements &lt;REQUIREMENTS&gt;|--editable &lt;EDITABLE&gt;|--group &lt;GROUP&gt;&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>uv pip install [OPTIONS] &lt;PACKAGE|--requirements &lt;REQUIREMENTS&gt;|--editable &lt;EDITABLE&gt;|--group &lt;GROUP&gt;&gt;
 </code></pre></div>
 <h3 class="cli-reference">Arguments</h3>
 
@@ -7331,6 +7464,23 @@ should be used with caution, as it can modify the system Python installation.</p
 <li><code>cu91</code>:  Use the PyTorch index for CUDA 9.1</li>
 <li><code>cu90</code>:  Use the PyTorch index for CUDA 9.0</li>
 <li><code>cu80</code>:  Use the PyTorch index for CUDA 8.0</li>
+<li><code>rocm6.3</code>:  Use the PyTorch index for ROCm 6.3</li>
+<li><code>rocm6.2.4</code>:  Use the PyTorch index for ROCm 6.2.4</li>
+<li><code>rocm6.2</code>:  Use the PyTorch index for ROCm 6.2</li>
+<li><code>rocm6.1</code>:  Use the PyTorch index for ROCm 6.1</li>
+<li><code>rocm6.0</code>:  Use the PyTorch index for ROCm 6.0</li>
+<li><code>rocm5.7</code>:  Use the PyTorch index for ROCm 5.7</li>
+<li><code>rocm5.6</code>:  Use the PyTorch index for ROCm 5.6</li>
+<li><code>rocm5.5</code>:  Use the PyTorch index for ROCm 5.5</li>
+<li><code>rocm5.4.2</code>:  Use the PyTorch index for ROCm 5.4.2</li>
+<li><code>rocm5.4</code>:  Use the PyTorch index for ROCm 5.4</li>
+<li><code>rocm5.3</code>:  Use the PyTorch index for ROCm 5.3</li>
+<li><code>rocm5.2</code>:  Use the PyTorch index for ROCm 5.2</li>
+<li><code>rocm5.1.1</code>:  Use the PyTorch index for ROCm 5.1.1</li>
+<li><code>rocm4.2</code>:  Use the PyTorch index for ROCm 4.2</li>
+<li><code>rocm4.1</code>:  Use the PyTorch index for ROCm 4.1</li>
+<li><code>rocm4.0.1</code>:  Use the PyTorch index for ROCm 4.0.1</li>
+<li><code>xpu</code>:  Use the PyTorch index for Intel XPU</li>
 </ul></dd><dt id="uv-pip-install--upgrade"><a href="#uv-pip-install--upgrade"><code>--upgrade</code></a>, <code>-U</code></dt><dd><p>Allow package upgrades, ignoring pinned versions in any existing output file. Implies <code>--refresh</code></p>
 </dd><dt id="uv-pip-install--upgrade-package"><a href="#uv-pip-install--upgrade-package"><code>--upgrade-package</code></a>, <code>-P</code> <i>upgrade-package</i></dt><dd><p>Allow upgrades for a specific package, ignoring pinned versions in any existing output file. Implies <code>--refresh-package</code></p>
 </dd><dt id="uv-pip-install--user"><a href="#uv-pip-install--user"><code>--user</code></a></dt><dt id="uv-pip-install--verbose"><a href="#uv-pip-install--verbose"><code>--verbose</code></a>, <code>-v</code></dt><dd><p>Use verbose output.</p>
@@ -7341,7 +7491,7 @@ should be used with caution, as it can modify the system Python installation.</p
 <p>Uninstall packages from an environment</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>uv pip uninstall [OPTIONS] &lt;PACKAGE|--requirements &lt;REQUIREMENTS&gt;&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>uv pip uninstall [OPTIONS] &lt;PACKAGE|--requirements &lt;REQUIREMENTS&gt;&gt;
 </code></pre></div>
 <h3 class="cli-reference">Arguments</h3>
 
@@ -7421,7 +7571,7 @@ should be used with caution, as it can modify the system Python installation.</p
 <p>List, in requirements format, packages installed in an environment</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>uv pip freeze [OPTIONS]
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>uv pip freeze [OPTIONS]
 </code></pre></div>
 <h3 class="cli-reference">Options</h3>
 
@@ -7485,7 +7635,7 @@ Python environment if no virtual environment is found.</p>
 <p>List, in tabular format, packages installed in an environment</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>uv pip list [OPTIONS]
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>uv pip list [OPTIONS]
 </code></pre></div>
 <h3 class="cli-reference">Options</h3>
 
@@ -7590,7 +7740,7 @@ Python environment if no virtual environment is found.</p>
 <p>Show information about one or more installed packages</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>uv pip show [OPTIONS] [PACKAGE]...
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>uv pip show [OPTIONS] [PACKAGE]...
 </code></pre></div>
 <h3 class="cli-reference">Arguments</h3>
 
@@ -7658,7 +7808,7 @@ system Python environment if no virtual environment is found.</p>
 <p>Display the dependency tree for an environment</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>uv pip tree [OPTIONS]
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>uv pip tree [OPTIONS]
 </code></pre></div>
 <h3 class="cli-reference">Options</h3>
 
@@ -7759,7 +7909,7 @@ Python environment if no virtual environment is found.</p>
 <p>Verify installed packages have compatible dependencies</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>uv pip check [OPTIONS]
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>uv pip check [OPTIONS]
 </code></pre></div>
 <h3 class="cli-reference">Options</h3>
 
@@ -7824,7 +7974,7 @@ Python environment if no virtual environment is found.</p>
 <p>When using uv, the virtual environment does not need to be activated. uv will find a virtual environment (named <code>.venv</code>) in the working directory or any parent directories.</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>uv venv [OPTIONS] [PATH]
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>uv venv [OPTIONS] [PATH]
 </code></pre></div>
 <h3 class="cli-reference">Arguments</h3>
 
@@ -7955,7 +8105,7 @@ environments.</p>
 <p>If passed a source distribution, <code>uv build --wheel</code> will build a wheel from the source distribution.</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>uv build [OPTIONS] [SRC]
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>uv build [OPTIONS] [SRC]
 </code></pre></div>
 <h3 class="cli-reference">Arguments</h3>
 
@@ -8124,7 +8274,7 @@ the platform.</p>
 <p>Upload distributions to an index</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>uv publish [OPTIONS] [FILES]...
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>uv publish [OPTIONS] [FILES]...
 </code></pre></div>
 <h3 class="cli-reference">Arguments</h3>
 
@@ -8222,7 +8372,7 @@ uv publish --publish-url https://upload.pypi.org/legacy/ --check-url https://pyp
 <p>Manage uv's cache</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>uv cache [OPTIONS] &lt;COMMAND&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>uv cache [OPTIONS] &lt;COMMAND&gt;
 </code></pre></div>
 <h3 class="cli-reference">Commands</h3>
 
@@ -8235,7 +8385,7 @@ uv publish --publish-url https://upload.pypi.org/legacy/ --check-url https://pyp
 <p>Clear the cache, removing all entries or those linked to specific packages</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>uv cache clean [OPTIONS] [PACKAGE]...
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>uv cache clean [OPTIONS] [PACKAGE]...
 </code></pre></div>
 <h3 class="cli-reference">Arguments</h3>
 
@@ -8294,7 +8444,7 @@ uv publish --publish-url https://upload.pypi.org/legacy/ --check-url https://pyp
 <p>Prune all unreachable objects from the cache</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>uv cache prune [OPTIONS]
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>uv cache prune [OPTIONS]
 </code></pre></div>
 <h3 class="cli-reference">Options</h3>
 
@@ -8355,7 +8505,7 @@ uv publish --publish-url https://upload.pypi.org/legacy/ --check-url https://pyp
 <p>Note that it is important for performance for the cache directory to be located on the same file system as the Python environment uv is operating on.</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>uv cache dir [OPTIONS]
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>uv cache dir [OPTIONS]
 </code></pre></div>
 <h3 class="cli-reference">Options</h3>
 
@@ -8409,7 +8559,7 @@ uv publish --publish-url https://upload.pypi.org/legacy/ --check-url https://pyp
 <p>Manage the uv executable</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>uv self [OPTIONS] &lt;COMMAND&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a>uv self [OPTIONS] &lt;COMMAND&gt;
 </code></pre></div>
 <h3 class="cli-reference">Commands</h3>
 
@@ -8421,7 +8571,7 @@ uv publish --publish-url https://upload.pypi.org/legacy/ --check-url https://pyp
 <p>Update uv</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a>uv self update [OPTIONS] [TARGET_VERSION]
+<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a>uv self update [OPTIONS] [TARGET_VERSION]
 </code></pre></div>
 <h3 class="cli-reference">Arguments</h3>
 
@@ -8482,7 +8632,7 @@ uv publish --publish-url https://upload.pypi.org/legacy/ --check-url https://pyp
 <p>Display uv's version</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a>uv self version [OPTIONS]
+<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a>uv self version [OPTIONS]
 </code></pre></div>
 <h3 class="cli-reference">Options</h3>
 
@@ -8537,7 +8687,7 @@ uv publish --publish-url https://upload.pypi.org/legacy/ --check-url https://pyp
 <p>Generate shell completion</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a>uv generate-shell-completion [OPTIONS] &lt;SHELL&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a>uv generate-shell-completion [OPTIONS] &lt;SHELL&gt;
 </code></pre></div>
 <h3 class="cli-reference">Arguments</h3>
 
@@ -8568,7 +8718,7 @@ uv publish --publish-url https://upload.pypi.org/legacy/ --check-url https://pyp
 <p>Display documentation for a command</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a>uv help [OPTIONS] [COMMAND]...
+<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a>uv help [OPTIONS] [COMMAND]...
 </code></pre></div>
 <h3 class="cli-reference">Arguments</h3>
 
@@ -8635,7 +8785,7 @@ uv publish --publish-url https://upload.pypi.org/legacy/ --check-url https://pyp
         <span class="md-icon" title="Last update">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
         </span>
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 12, 2025</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 21, 2025</span>
       </span>
     
     

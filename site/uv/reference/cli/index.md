@@ -6250,6 +6250,8 @@ uv python [OPTIONS] <COMMAND>
 
 [`uv python install`](#uv-python-install) : Download and install Python versions
 
+[`uv python upgrade`](#uv-python-upgrade) : Upgrade installed Python versions to the latest supported patch release (requires the `--preview` flag)
+
 [`uv python find`](#uv-python-find) : Search for a Python installation
 
 [`uv python pin`](#uv-python-pin) : Pin to a specific Python version
@@ -6706,6 +6708,211 @@ By default, uv will exit successfully if the version is already installed.
 ```
 
 [`--verbose`](#uv-python-install--verbose), `-v` : Use verbose output.
+
+```
+You can configure fine-grained logging using the `RUST_LOG` environment variable. (<https://docs.rs/tracing-subscriber/latest/tracing_subscriber/filter/struct.EnvFilter.html#directives>)
+```
+
+### [uv python upgrade](#uv-python-upgrade)
+
+Upgrade installed Python versions to the latest supported patch release (requires the `--preview` flag).
+
+A target Python minor version to upgrade may be provided, e.g., `3.13`. Multiple versions may be provided to perform more than one upgrade.
+
+If no target version is provided, then uv will upgrade all managed CPython versions.
+
+During an upgrade, uv will not uninstall outdated patch versions.
+
+When an upgrade is performed, virtual environments created by uv will automatically use the new version. However, if the virtual environment was created before the upgrade functionality was added, it will continue to use the old Python version; to enable upgrades, the environment must be recreated.
+
+Upgrades are not yet supported for alternative implementations, like PyPy.
+
+### Usage
+
+```
+uv python upgrade [OPTIONS] [TARGETS]...
+
+```
+
+### Arguments
+
+[TARGETS](#uv-python-upgrade--targets) : The Python minor version(s) to upgrade.
+
+```
+If no target version is provided, then uv will upgrade all managed CPython versions.
+```
+
+### Options
+
+[`--allow-insecure-host`](#uv-python-upgrade--allow-insecure-host), `--trusted-host` *allow-insecure-host* : Allow insecure connections to a host.
+
+```
+Can be provided multiple times.
+
+Expects to receive either a hostname (e.g., `localhost`), a host-port pair (e.g., `localhost:8080`), or a URL (e.g., `https://localhost`).
+
+WARNING: Hosts included in this list will not be verified against the system's certificate store. Only use `--allow-insecure-host` in a secure network with verified sources, as it bypasses SSL verification and could expose you to MITM attacks.
+
+May also be set with the `UV_INSECURE_HOST` environment variable.
+```
+
+[`--cache-dir`](#uv-python-upgrade--cache-dir) *cache-dir* : Path to the cache directory.
+
+```
+Defaults to `$XDG_CACHE_HOME/uv` or `$HOME/.cache/uv` on macOS and Linux, and `%LOCALAPPDATA%\uv\cache` on Windows.
+
+To view the location of the cache directory, run `uv cache dir`.
+
+May also be set with the `UV_CACHE_DIR` environment variable.
+```
+
+[`--color`](#uv-python-upgrade--color) *color-choice* : Control the use of color in output.
+
+```
+By default, uv will automatically detect support for colors when writing to a terminal.
+
+Possible values:
+
+- `auto`: Enables colored output only when the output is going to a terminal or TTY with support
+- `always`: Enables colored output regardless of the detected environment
+- `never`: Disables colored output
+```
+
+[`--config-file`](#uv-python-upgrade--config-file) *config-file* : The path to a `uv.toml` file to use for configuration.
+
+```
+While uv configuration can be included in a `pyproject.toml` file, it is not allowed in this context.
+
+May also be set with the `UV_CONFIG_FILE` environment variable.
+```
+
+[`--directory`](#uv-python-upgrade--directory) *directory* : Change to the given directory prior to running the command.
+
+```
+Relative paths are resolved with the given directory as the base.
+
+See `--project` to only change the project root directory.
+```
+
+[`--help`](#uv-python-upgrade--help), `-h` : Display the concise help for this command
+
+[`--install-dir`](#uv-python-upgrade--install-dir), `-i` *install-dir* : The directory Python installations are stored in.
+
+```
+If provided, `UV_PYTHON_INSTALL_DIR` will need to be set for subsequent operations for uv to discover the Python installation.
+
+See `uv python dir` to view the current Python installation directory. Defaults to `~/.local/share/uv/python`.
+
+May also be set with the `UV_PYTHON_INSTALL_DIR` environment variable.
+```
+
+[`--managed-python`](#uv-python-upgrade--managed-python) : Require use of uv-managed Python versions.
+
+```
+By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
+
+May also be set with the `UV_MANAGED_PYTHON` environment variable.
+```
+
+[`--mirror`](#uv-python-upgrade--mirror) *mirror* : Set the URL to use as the source for downloading Python installations.
+
+```
+The provided URL will replace `https://github.com/astral-sh/python-build-standalone/releases/download` in, e.g., `https://github.com/astral-sh/python-build-standalone/releases/download/20240713/cpython-3.12.4%2B20240713-aarch64-apple-darwin-install_only.tar.gz`.
+
+Distributions can be read from a local directory by using the `file://` URL scheme.
+
+May also be set with the `UV_PYTHON_INSTALL_MIRROR` environment variable.
+```
+
+[`--native-tls`](#uv-python-upgrade--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+
+```
+By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
+
+May also be set with the `UV_NATIVE_TLS` environment variable.
+```
+
+[`--no-cache`](#uv-python-upgrade--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
+
+```
+May also be set with the `UV_NO_CACHE` environment variable.
+```
+
+[`--no-config`](#uv-python-upgrade--no-config) : Avoid discovering configuration files (`pyproject.toml`, `uv.toml`).
+
+```
+Normally, configuration files are discovered in the current directory, parent directories, or user configuration directories.
+
+May also be set with the `UV_NO_CONFIG` environment variable.
+```
+
+[`--no-managed-python`](#uv-python-upgrade--no-managed-python) : Disable use of uv-managed Python versions.
+
+```
+Instead, uv will search for a suitable Python version on the system.
+
+May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
+```
+
+[`--no-progress`](#uv-python-upgrade--no-progress) : Hide all progress outputs.
+
+```
+For example, spinners or progress bars.
+
+May also be set with the `UV_NO_PROGRESS` environment variable.
+```
+
+[`--no-python-downloads`](#uv-python-upgrade--no-python-downloads) : Disable automatic downloads of Python.
+
+[`--offline`](#uv-python-upgrade--offline) : Disable network access.
+
+```
+When disabled, uv will only use locally cached data and locally available files.
+
+May also be set with the `UV_OFFLINE` environment variable.
+```
+
+[`--project`](#uv-python-upgrade--project) *project* : Run the command within the given project directory.
+
+```
+All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
+
+Other command-line arguments (such as relative paths) will be resolved relative to the current working directory.
+
+See `--directory` to change the working directory entirely.
+
+This setting has no effect when used in the `uv pip` interface.
+
+May also be set with the `UV_PROJECT` environment variable.
+```
+
+[`--pypy-mirror`](#uv-python-upgrade--pypy-mirror) *pypy-mirror* : Set the URL to use as the source for downloading PyPy installations.
+
+```
+The provided URL will replace `https://downloads.python.org/pypy` in, e.g., `https://downloads.python.org/pypy/pypy3.8-v7.3.7-osx64.tar.bz2`.
+
+Distributions can be read from a local directory by using the `file://` URL scheme.
+
+May also be set with the `UV_PYPY_INSTALL_MIRROR` environment variable.
+```
+
+[`--python-downloads-json-url`](#uv-python-upgrade--python-downloads-json-url) *python-downloads-json-url* : URL pointing to JSON of custom Python installations.
+
+```
+Note that currently, only local paths are supported.
+
+May also be set with the `UV_PYTHON_DOWNLOADS_JSON_URL` environment variable.
+```
+
+[`--quiet`](#uv-python-upgrade--quiet), `-q` : Use quiet output.
+
+```
+Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will write no output to stdout.
+```
+
+[`--verbose`](#uv-python-upgrade--verbose), `-v` : Use verbose output.
 
 ```
 You can configure fine-grained logging using the `RUST_LOG` environment variable. (<https://docs.rs/tracing-subscriber/latest/tracing_subscriber/filter/struct.EnvFilter.html#directives>)
@@ -8033,6 +8240,23 @@ Possible values:
 - `cu91`: Use the PyTorch index for CUDA 9.1
 - `cu90`: Use the PyTorch index for CUDA 9.0
 - `cu80`: Use the PyTorch index for CUDA 8.0
+- `rocm6.3`: Use the PyTorch index for ROCm 6.3
+- `rocm6.2.4`: Use the PyTorch index for ROCm 6.2.4
+- `rocm6.2`: Use the PyTorch index for ROCm 6.2
+- `rocm6.1`: Use the PyTorch index for ROCm 6.1
+- `rocm6.0`: Use the PyTorch index for ROCm 6.0
+- `rocm5.7`: Use the PyTorch index for ROCm 5.7
+- `rocm5.6`: Use the PyTorch index for ROCm 5.6
+- `rocm5.5`: Use the PyTorch index for ROCm 5.5
+- `rocm5.4.2`: Use the PyTorch index for ROCm 5.4.2
+- `rocm5.4`: Use the PyTorch index for ROCm 5.4
+- `rocm5.3`: Use the PyTorch index for ROCm 5.3
+- `rocm5.2`: Use the PyTorch index for ROCm 5.2
+- `rocm5.1.1`: Use the PyTorch index for ROCm 5.1.1
+- `rocm4.2`: Use the PyTorch index for ROCm 4.2
+- `rocm4.1`: Use the PyTorch index for ROCm 4.1
+- `rocm4.0.1`: Use the PyTorch index for ROCm 4.0.1
+- `xpu`: Use the PyTorch index for Intel XPU
 ```
 
 [`--universal`](#uv-pip-compile--universal) : Perform a universal resolution, attempting to generate a single `requirements.txt` output file that is compatible with all operating systems, architectures, and Python implementations.
@@ -8546,6 +8770,23 @@ Possible values:
 - `cu91`: Use the PyTorch index for CUDA 9.1
 - `cu90`: Use the PyTorch index for CUDA 9.0
 - `cu80`: Use the PyTorch index for CUDA 8.0
+- `rocm6.3`: Use the PyTorch index for ROCm 6.3
+- `rocm6.2.4`: Use the PyTorch index for ROCm 6.2.4
+- `rocm6.2`: Use the PyTorch index for ROCm 6.2
+- `rocm6.1`: Use the PyTorch index for ROCm 6.1
+- `rocm6.0`: Use the PyTorch index for ROCm 6.0
+- `rocm5.7`: Use the PyTorch index for ROCm 5.7
+- `rocm5.6`: Use the PyTorch index for ROCm 5.6
+- `rocm5.5`: Use the PyTorch index for ROCm 5.5
+- `rocm5.4.2`: Use the PyTorch index for ROCm 5.4.2
+- `rocm5.4`: Use the PyTorch index for ROCm 5.4
+- `rocm5.3`: Use the PyTorch index for ROCm 5.3
+- `rocm5.2`: Use the PyTorch index for ROCm 5.2
+- `rocm5.1.1`: Use the PyTorch index for ROCm 5.1.1
+- `rocm4.2`: Use the PyTorch index for ROCm 4.2
+- `rocm4.1`: Use the PyTorch index for ROCm 4.1
+- `rocm4.0.1`: Use the PyTorch index for ROCm 4.0.1
+- `xpu`: Use the PyTorch index for Intel XPU
 ```
 
 [`--verbose`](#uv-pip-sync--verbose), `-v` : Use verbose output.
@@ -9144,6 +9385,23 @@ Possible values:
 - `cu91`: Use the PyTorch index for CUDA 9.1
 - `cu90`: Use the PyTorch index for CUDA 9.0
 - `cu80`: Use the PyTorch index for CUDA 8.0
+- `rocm6.3`: Use the PyTorch index for ROCm 6.3
+- `rocm6.2.4`: Use the PyTorch index for ROCm 6.2.4
+- `rocm6.2`: Use the PyTorch index for ROCm 6.2
+- `rocm6.1`: Use the PyTorch index for ROCm 6.1
+- `rocm6.0`: Use the PyTorch index for ROCm 6.0
+- `rocm5.7`: Use the PyTorch index for ROCm 5.7
+- `rocm5.6`: Use the PyTorch index for ROCm 5.6
+- `rocm5.5`: Use the PyTorch index for ROCm 5.5
+- `rocm5.4.2`: Use the PyTorch index for ROCm 5.4.2
+- `rocm5.4`: Use the PyTorch index for ROCm 5.4
+- `rocm5.3`: Use the PyTorch index for ROCm 5.3
+- `rocm5.2`: Use the PyTorch index for ROCm 5.2
+- `rocm5.1.1`: Use the PyTorch index for ROCm 5.1.1
+- `rocm4.2`: Use the PyTorch index for ROCm 4.2
+- `rocm4.1`: Use the PyTorch index for ROCm 4.1
+- `rocm4.0.1`: Use the PyTorch index for ROCm 4.0.1
+- `xpu`: Use the PyTorch index for Intel XPU
 ```
 
 [`--upgrade`](#uv-pip-install--upgrade), `-U` : Allow package upgrades, ignoring pinned versions in any existing output file. Implies `--refresh`
