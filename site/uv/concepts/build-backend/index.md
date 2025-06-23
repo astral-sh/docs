@@ -14,7 +14,7 @@ To use the uv build backend as [build system](../projects/config/#build-systems)
 
 ```
 [build-system]
-requires = ["uv_build>=0.7.13,<0.8.0"]
+requires = ["uv_build>=0.7.14,<0.8.0"]
 build-backend = "uv_build"
 
 ```

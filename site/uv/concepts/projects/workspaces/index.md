@@ -99,6 +99,10 @@ build-backend = "hatchling.build"
 
 Every workspace member would, by default, install `tqdm` from GitHub, unless a specific member overrides the `tqdm` entry in its own `tool.uv.sources` table.
 
+Note
+
+If a workspace member provides `tool.uv.sources` for some dependency, it will ignore any `tool.uv.sources` for the same dependency in the workspace root, even if the member's source is limited by a [marker](../dependencies/#platform-specific-sources) that doesn't match the current platform.
+
 ## [Workspace layouts](#workspace-layouts)
 
 The most common workspace layout can be thought of as a root project with a series of accompanying libraries.
