@@ -268,6 +268,8 @@ Accepts either a repository compliant with PEP 503 (the simple repository API), 
 
 All indexes provided via this flag take priority over the index specified by `--default-index` (which defaults to PyPI). When multiple `--index` flags are provided, earlier values take priority.
 
+Index names are not supported as values. Relative paths must be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
+
 May also be set with the `UV_INDEX` environment variable.
 ```
 
@@ -1140,6 +1142,8 @@ Accepts either a repository compliant with PEP 503 (the simple repository API), 
 
 All indexes provided via this flag take priority over the index specified by `--default-index` (which defaults to PyPI). When multiple `--index` flags are provided, earlier values take priority.
 
+Index names are not supported as values. Relative paths must be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
+
 May also be set with the `UV_INDEX` environment variable.
 ```
 
@@ -1598,6 +1602,8 @@ Accepts either a repository compliant with PEP 503 (the simple repository API), 
 
 All indexes provided via this flag take priority over the index specified by `--default-index` (which defaults to PyPI). When multiple `--index` flags are provided, earlier values take priority.
 
+Index names are not supported as values. Relative paths must be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
+
 May also be set with the `UV_INDEX` environment variable.
 ```
 
@@ -2033,6 +2039,8 @@ May also be set with the `UV_FROZEN` environment variable.
 Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
 
 All indexes provided via this flag take priority over the index specified by `--default-index` (which defaults to PyPI). When multiple `--index` flags are provided, earlier values take priority.
+
+Index names are not supported as values. Relative paths must be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
 
 May also be set with the `UV_INDEX` environment variable.
 ```
@@ -2518,6 +2526,8 @@ May be provided multiple times.
 Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
 
 All indexes provided via this flag take priority over the index specified by `--default-index` (which defaults to PyPI). When multiple `--index` flags are provided, earlier values take priority.
+
+Index names are not supported as values. Relative paths must be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
 
 May also be set with the `UV_INDEX` environment variable.
 ```
@@ -3012,6 +3022,8 @@ Accepts either a repository compliant with PEP 503 (the simple repository API), 
 
 All indexes provided via this flag take priority over the index specified by `--default-index` (which defaults to PyPI). When multiple `--index` flags are provided, earlier values take priority.
 
+Index names are not supported as values. Relative paths must be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
+
 May also be set with the `UV_INDEX` environment variable.
 ```
 
@@ -3442,6 +3454,8 @@ May be provided multiple times.
 Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
 
 All indexes provided via this flag take priority over the index specified by `--default-index` (which defaults to PyPI). When multiple `--index` flags are provided, earlier values take priority.
+
+Index names are not supported as values. Relative paths must be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
 
 May also be set with the `UV_INDEX` environment variable.
 ```
@@ -3932,6 +3946,8 @@ May be provided multiple times.
 Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
 
 All indexes provided via this flag take priority over the index specified by `--default-index` (which defaults to PyPI). When multiple `--index` flags are provided, earlier values take priority.
+
+Index names are not supported as values. Relative paths must be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
 
 May also be set with the `UV_INDEX` environment variable.
 ```
@@ -4503,6 +4519,8 @@ Accepts either a repository compliant with PEP 503 (the simple repository API), 
 
 All indexes provided via this flag take priority over the index specified by `--default-index` (which defaults to PyPI). When multiple `--index` flags are provided, earlier values take priority.
 
+Index names are not supported as values. Relative paths must be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
+
 May also be set with the `UV_INDEX` environment variable.
 ```
 
@@ -4939,6 +4957,8 @@ Accepts either a repository compliant with PEP 503 (the simple repository API), 
 
 All indexes provided via this flag take priority over the index specified by `--default-index` (which defaults to PyPI). When multiple `--index` flags are provided, earlier values take priority.
 
+Index names are not supported as values. Relative paths must be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
+
 May also be set with the `UV_INDEX` environment variable.
 ```
 
@@ -5338,6 +5358,8 @@ Possible values:
 Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
 
 All indexes provided via this flag take priority over the index specified by `--default-index` (which defaults to PyPI). When multiple `--index` flags are provided, earlier values take priority.
+
+Index names are not supported as values. Relative paths must be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
 
 May also be set with the `UV_INDEX` environment variable.
 ```
@@ -7874,6 +7896,8 @@ Accepts either a repository compliant with PEP 503 (the simple repository API), 
 
 All indexes provided via this flag take priority over the index specified by `--default-index` (which defaults to PyPI). When multiple `--index` flags are provided, earlier values take priority.
 
+Index names are not supported as values. Relative paths must be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
+
 May also be set with the `UV_INDEX` environment variable.
 ```
 
@@ -8443,6 +8467,8 @@ Accepts either a repository compliant with PEP 503 (the simple repository API), 
 
 All indexes provided via this flag take priority over the index specified by `--default-index` (which defaults to PyPI). When multiple `--index` flags are provided, earlier values take priority.
 
+Index names are not supported as values. Relative paths must be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
+
 May also be set with the `UV_INDEX` environment variable.
 ```
 
@@ -8995,6 +9021,8 @@ May be provided multiple times.
 Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
 
 All indexes provided via this flag take priority over the index specified by `--default-index` (which defaults to PyPI). When multiple `--index` flags are provided, earlier values take priority.
+
+Index names are not supported as values. Relative paths must be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
 
 May also be set with the `UV_INDEX` environment variable.
 ```
@@ -9928,6 +9956,8 @@ Accepts either a repository compliant with PEP 503 (the simple repository API), 
 
 All indexes provided via this flag take priority over the index specified by `--default-index` (which defaults to PyPI). When multiple `--index` flags are provided, earlier values take priority.
 
+Index names are not supported as values. Relative paths must be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
+
 May also be set with the `UV_INDEX` environment variable.
 ```
 
@@ -10378,6 +10408,8 @@ May also be set with the `UV_FIND_LINKS` environment variable.
 Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
 
 All indexes provided via this flag take priority over the index specified by `--default-index` (which defaults to PyPI). When multiple `--index` flags are provided, earlier values take priority.
+
+Index names are not supported as values. Relative paths must be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
 
 May also be set with the `UV_INDEX` environment variable.
 ```
@@ -10848,6 +10880,8 @@ Accepts either a repository compliant with PEP 503 (the simple repository API), 
 
 All indexes provided via this flag take priority over the index specified by `--default-index` (which defaults to PyPI). When multiple `--index` flags are provided, earlier values take priority.
 
+Index names are not supported as values. Relative paths must be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
+
 May also be set with the `UV_INDEX` environment variable.
 ```
 
@@ -11213,6 +11247,8 @@ Possible values:
 Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
 
 All indexes provided via this flag take priority over the index specified by `--default-index` (which defaults to PyPI). When multiple `--index` flags are provided, earlier values take priority.
+
+Index names are not supported as values. Relative paths must be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
 
 May also be set with the `UV_INDEX` environment variable.
 ```
