@@ -6,13 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Checks for repeated equality comparisons that can be rewritten as a membership">
+        <meta name="description" content="Checks for standard library functions which take a numeric `mode` argument">
       
       
         <meta name="author" content="charliermarsh">
       
       
-        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/repeated-equality-comparison/">
+        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/non-octal-permissions/">
       
       
       
@@ -25,7 +25,7 @@
     
     
 
-<title>repeated-equality-comparison (PLR1714) | Ruff</title>
+<title>non-octal-permissions (RUF064) | Ruff</title>
 
 
     
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#repeated-equality-comparison-plr1714" class="md-skip">
+        <a href="#non-octal-permissions-ruf064" class="md-skip">
           Skip to content
         </a>
       
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              repeated-equality-comparison (PLR1714)
+              non-octal-permissions (RUF064)
             
           </span>
         </div>
@@ -837,40 +837,42 @@
   
 
 
-<h1 id="repeated-equality-comparison-plr1714"><a class="toclink" href="#repeated-equality-comparison-plr1714">repeated-equality-comparison (PLR1714)</a></h1>
-<p>Derived from the <strong><a href="../#pylint-pl">Pylint</a></strong> linter.</p>
-<p>Fix is always available.</p>
+<h1 id="non-octal-permissions-ruf064"><a class="toclink" href="#non-octal-permissions-ruf064">non-octal-permissions (RUF064)</a></h1>
+<p>Fix is sometimes available.</p>
+<p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
-<p>Checks for repeated equality comparisons that can be rewritten as a membership
-test.</p>
-<p>This rule will try to determine if the values are hashable
-and the fix will use a <code>set</code> if they are. If unable to determine, the fix
-will use a <code>tuple</code> and suggest the use of a <code>set</code>.</p>
+<p>Checks for standard library functions which take a numeric <code>mode</code> argument
+where a non-octal integer literal is passed.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
-<p>To check if a variable is equal to one of many values, it is common to
-write a series of equality comparisons (e.g.,
-<code>foo == "bar" or foo == "baz"</code>).</p>
-<p>Instead, prefer to combine the values into a collection and use the <code>in</code>
-operator to check for membership, which is more performant and succinct.
-If the items are hashable, use a <code>set</code> for efficiency; otherwise, use a
-<code>tuple</code>.</p>
-<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
-<p>This rule is always unsafe since literal sets and tuples
-evaluate their members eagerly whereas <code>or</code> comparisons
-are short-circuited. It is therefore possible that a fix
-will change behavior in the presence of side-effects.</p>
+<p>Numeric modes are made up of one to four octal digits. Converting a non-octal
+integer to octal may not be the mode the author intended.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">foo</span> <span class="o">==</span> <span class="s2">&quot;bar&quot;</span> <span class="ow">or</span> <span class="n">foo</span> <span class="o">==</span> <span class="s2">&quot;baz&quot;</span> <span class="ow">or</span> <span class="n">foo</span> <span class="o">==</span> <span class="s2">&quot;qux&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">os</span><span class="o">.</span><span class="n">chmod</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="mi">644</span><span class="p">)</span>
 </code></pre></div>
 <p>Use instead:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">foo</span> <span class="ow">in</span> <span class="p">{</span><span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="s2">&quot;baz&quot;</span><span class="p">,</span> <span class="s2">&quot;qux&quot;</span><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">os</span><span class="o">.</span><span class="n">chmod</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="mo">0o644</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="references"><a class="toclink" href="#references">References</a></h2>
-<ul>
-<li><a href="https://docs.python.org/3/reference/expressions.html#comparisons">Python documentation: Comparisons</a></li>
-<li><a href="https://docs.python.org/3/reference/expressions.html#membership-test-operations">Python documentation: Membership test operations</a></li>
-<li><a href="https://docs.python.org/3/library/stdtypes.html#set">Python documentation: <code>set</code></a></li>
-</ul>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
+<p>There are two categories of fix, the first of which is where it looks like
+the author intended to use an octal literal but the <code>0o</code> prefix is missing:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">os</span><span class="o">.</span><span class="n">chmod</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">os</span><span class="o">.</span><span class="n">chmod</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="mi">644</span><span class="p">)</span>
+</code></pre></div>
+<p>This class of fix changes runtime behaviour. In the first case, <code>400</code>
+corresponds to <code>0o620</code> (<code>u=rw,g=w,o=</code>). As this mode is not deemed likely,
+it is changed to <code>0o400</code> (<code>u=r,go=</code>). Similarly, <code>644</code> corresponds to
+<code>0o1204</code> (<code>u=ws,g=,o=r</code>) and is changed to <code>0o644</code> (<code>u=rw,go=r</code>).</p>
+<p>The second category is decimal literals which are recognised as likely valid
+but in decimal form:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">os</span><span class="o">.</span><span class="n">chmod</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="mi">256</span><span class="p">)</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">os</span><span class="o">.</span><span class="n">chmod</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="mi">493</span><span class="p">)</span>
+</code></pre></div>
+<p><code>256</code> corresponds to <code>0o400</code> (<code>u=r,go=</code>) and <code>493</code> corresponds to <code>0o755</code>
+(<code>u=rwx,go=rx</code>). Both of these fixes keep runtime behavior unchanged. If the
+original code really intended to use <code>0o256</code> (<code>u=w,g=rx,o=rw</code>) instead of
+<code>256</code>, this fix should not be accepted.</p>
+<h2 id="fix-availability"><a class="toclink" href="#fix-availability">Fix availability</a></h2>
+<p>A fix is only available if the integer literal matches a set of common modes.</p>
 
 
 

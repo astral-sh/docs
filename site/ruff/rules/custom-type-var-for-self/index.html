@@ -871,7 +871,7 @@ class methods that return an instance of <code>cls</code>, class methods that re
 <a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="nd">@classmethod</span>
 <a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">bar</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">arg</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span> <span class="o">...</span>
 </code></pre></div>
-<h2 id="fix-behaviour-and-safety"><a class="toclink" href="#fix-behaviour-and-safety">Fix behaviour and safety</a></h2>
+<h2 id="fix-behaviour"><a class="toclink" href="#fix-behaviour">Fix behaviour</a></h2>
 <p>The fix replaces all references to the custom type variable in the method's header and body
 with references to <code>Self</code>. The fix also adds an import of <code>Self</code> if neither <code>Self</code> nor <code>typing</code>
 is already imported in the module. If your <a href="../../settings/#target-version"><code>target-version</code></a> setting is set to Python 3.11 or
@@ -883,6 +883,7 @@ old-style <code>TypeVar</code>, the declaration of the type variable will not be
 fix, as the type variable could still be used by other functions, methods or classes. See
 <a href="https://docs.astral.sh/ruff/rules/unused-private-type-var/"><code>unused-private-type-var</code></a> for a rule that will clean up unused private type
 variables.</p>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
 <p>The fix is only marked as unsafe if there is the possibility that it might delete a comment
 from your code.</p>
 <h2 id="availability"><a class="toclink" href="#availability">Availability</a></h2>
