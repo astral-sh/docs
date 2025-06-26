@@ -6,13 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Checks for repeated equality comparisons that can be rewritten as a membership">
+        <meta name="description" content="Checks for uses of `foo.__dict__.get("__annotations__")` or">
       
       
         <meta name="author" content="charliermarsh">
       
       
-        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/repeated-equality-comparison/">
+        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/access-annotations-from-class-dict/">
       
       
       
@@ -25,7 +25,7 @@
     
     
 
-<title>repeated-equality-comparison (PLR1714) | Ruff</title>
+<title>access-annotations-from-class-dict (RUF063) | Ruff</title>
 
 
     
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#repeated-equality-comparison-plr1714" class="md-skip">
+        <a href="#access-annotations-from-class-dict-ruf063" class="md-skip">
           Skip to content
         </a>
       
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              repeated-equality-comparison (PLR1714)
+              access-annotations-from-class-dict (RUF063)
             
           </span>
         </div>
@@ -837,39 +837,62 @@
   
 
 
-<h1 id="repeated-equality-comparison-plr1714"><a class="toclink" href="#repeated-equality-comparison-plr1714">repeated-equality-comparison (PLR1714)</a></h1>
-<p>Derived from the <strong><a href="../#pylint-pl">Pylint</a></strong> linter.</p>
-<p>Fix is always available.</p>
+<h1 id="access-annotations-from-class-dict-ruf063"><a class="toclink" href="#access-annotations-from-class-dict-ruf063">access-annotations-from-class-dict (RUF063)</a></h1>
+<p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
-<p>Checks for repeated equality comparisons that can be rewritten as a membership
-test.</p>
-<p>This rule will try to determine if the values are hashable
-and the fix will use a <code>set</code> if they are. If unable to determine, the fix
-will use a <code>tuple</code> and suggest the use of a <code>set</code>.</p>
+<p>Checks for uses of <code>foo.__dict__.get("__annotations__")</code> or
+<code>foo.__dict__["__annotations__"]</code> on Python 3.10+ and Python &lt; 3.10 when
+<a href="https://docs.astral.sh/ruff/settings/#lint_typing-extensions">typing-extensions</a>
+is enabled.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
-<p>To check if a variable is equal to one of many values, it is common to
-write a series of equality comparisons (e.g.,
-<code>foo == "bar" or foo == "baz"</code>).</p>
-<p>Instead, prefer to combine the values into a collection and use the <code>in</code>
-operator to check for membership, which is more performant and succinct.
-If the items are hashable, use a <code>set</code> for efficiency; otherwise, use a
-<code>tuple</code>.</p>
-<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
-<p>This rule is always unsafe since literal sets and tuples
-evaluate their members eagerly whereas <code>or</code> comparisons
-are short-circuited. It is therefore possible that a fix
-will change behavior in the presence of side-effects.</p>
+<p>Starting with Python 3.14, directly accessing <code>__annotations__</code> via
+<code>foo.__dict__.get("__annotations__")</code> or <code>foo.__dict__["__annotations__"]</code>
+will only return annotations if the class is defined under
+<code>from __future__ import annotations</code>.</p>
+<p>Therefore, it is better to use dedicated library functions like
+<code>annotationlib.get_annotations</code> (Python 3.14+), <code>inspect.get_annotations</code>
+(Python 3.10+), or <code>typing_extensions.get_annotations</code> (for Python &lt; 3.10 if
+<a href="https://pypi.org/project/typing-extensions/">typing-extensions</a> is
+available).</p>
+<p>The benefits of using these functions include:</p>
+<ol>
+<li><strong>Avoiding Undocumented Internals:</strong> They provide a stable, public API,
+    unlike direct <code>__dict__</code> access which relies on implementation details.</li>
+<li><strong>Forward-Compatibility:</strong> They are designed to handle changes in
+    Python's annotation system across versions, ensuring your code remains
+    robust (e.g., correctly handling the Python 3.14 behavior mentioned
+    above).</li>
+</ol>
+<p>See <a href="https://docs.python.org/3.14/howto/annotations.html">Python Annotations Best Practices</a>
+for alternatives.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">foo</span> <span class="o">==</span> <span class="s2">&quot;bar&quot;</span> <span class="ow">or</span> <span class="n">foo</span> <span class="o">==</span> <span class="s2">&quot;baz&quot;</span> <span class="ow">or</span> <span class="n">foo</span> <span class="o">==</span> <span class="s2">&quot;qux&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">foo</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;__annotations__&quot;</span><span class="p">,</span> <span class="p">{})</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># or</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">foo</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s2">&quot;__annotations__&quot;</span><span class="p">]</span>
 </code></pre></div>
-<p>Use instead:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">foo</span> <span class="ow">in</span> <span class="p">{</span><span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="s2">&quot;baz&quot;</span><span class="p">,</span> <span class="s2">&quot;qux&quot;</span><span class="p">}</span>
+<p>On Python 3.14+, use instead:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">annotationlib</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">annotationlib</span><span class="o">.</span><span class="n">get_annotations</span><span class="p">(</span><span class="n">foo</span><span class="p">)</span>
 </code></pre></div>
+<p>On Python 3.10+, use instead:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">inspect</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">inspect</span><span class="o">.</span><span class="n">get_annotations</span><span class="p">(</span><span class="n">foo</span><span class="p">)</span>
+</code></pre></div>
+<p>On Python &lt; 3.10 with <a href="https://pypi.org/project/typing-extensions/">typing-extensions</a>
+installed, use instead:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">typing_extensions</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">typing_extensions</span><span class="o">.</span><span class="n">get_annotations</span><span class="p">(</span><span class="n">foo</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
+<p>No autofix is currently provided for this rule.</p>
+<h2 id="fix-availability"><a class="toclink" href="#fix-availability">Fix availability</a></h2>
+<p>No autofix is currently provided for this rule.</p>
 <h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
-<li><a href="https://docs.python.org/3/reference/expressions.html#comparisons">Python documentation: Comparisons</a></li>
-<li><a href="https://docs.python.org/3/reference/expressions.html#membership-test-operations">Python documentation: Membership test operations</a></li>
-<li><a href="https://docs.python.org/3/library/stdtypes.html#set">Python documentation: <code>set</code></a></li>
+<li><a href="https://docs.python.org/3.14/howto/annotations.html">Python Annotations Best Practices</a></li>
 </ul>
 
 

@@ -866,6 +866,16 @@ or compare the length against a scalar.</p>
 <a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="k">if</span> <span class="ow">not</span> <span class="n">vegetables</span><span class="p">:</span>
 <a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">vegetables</span><span class="p">)</span>
 </code></pre></div>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
+<p>This rule's fix is marked as unsafe when the <code>len</code> call includes a comment,
+as the comment would be removed.</p>
+<p>For example, the fix would be marked as unsafe in the following case:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">fruits</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">if</span> <span class="nb">len</span><span class="p">(</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="n">fruits</span>  <span class="c1"># comment</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="p">):</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="o">...</span>
+</code></pre></div>
 <h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <p><a href="https://peps.python.org/pep-0008/#programming-recommendations">PEP 8: Programming Recommendations</a></p>
 

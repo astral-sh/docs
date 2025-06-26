@@ -839,6 +839,7 @@
 
 <h1 id="future-rewritable-type-annotation-fa100"><a class="toclink" href="#future-rewritable-type-annotation-fa100">future-rewritable-type-annotation (FA100)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-future-annotations-fa">flake8-future-annotations</a></strong> linter.</p>
+<p>Fix is always available.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for missing <code>from __future__ import annotations</code> imports upon
 detecting type annotations that can be written more succinctly under
@@ -880,6 +881,9 @@ flag such usages if your project targets Python 3.9 or below.</p>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
 <a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="n">obj</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
 </code></pre></div>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
+<p>This rule's fix is marked as unsafe, as adding <code>from __future__ import annotations</code>
+may change the semantics of the program.</p>
 <h2 id="options"><a class="toclink" href="#options">Options</a></h2>
 <ul>
 <li><a href="../../settings/#target-version"><code>target-version</code></a></li>

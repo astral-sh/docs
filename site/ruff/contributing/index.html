@@ -1530,6 +1530,19 @@ even patch releases may contain <a href="https://semver.org/#spec-item-4">non-ba
 <li>Often labels will be missing from pull requests they will need to be manually organized into the proper section</li>
 <li>Changes should be edited to be user-facing descriptions, avoiding internal details</li>
 </ul>
+<p>Additionally, for minor releases:</p>
+<ul>
+<li>Move the existing contents of <code>CHANGELOG.md</code> to <code>changelogs/0.MINOR.x.md</code>,
+    where <code>MINOR</code> is the previous minor release (e.g. <code>11</code> when preparing
+    the 0.12.0 release)</li>
+<li>Reverse the entries to put the oldest version first (<code>0.MINOR.0</code> instead
+    of <code>0.MINOR.LATEST</code> as in the main changelog)<ul>
+<li>Use the
+    <a href="https://github.com/astral-sh/uv/blob/main/scripts/reverse-changelog.py"><code>reverse-changelog.py</code></a>
+    script from the uv repo to do this automatically</li>
+</ul>
+</li>
+</ul>
 </li>
 <li>
 <p>Highlight any breaking changes in <code>BREAKING_CHANGES.md</code></p>
