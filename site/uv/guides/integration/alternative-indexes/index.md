@@ -119,7 +119,7 @@ pyproject.toml
 ```
 [[tool.uv.index]]
 name = "private-registry"
-url = "https://<REGION>-python.pkg.dev/<PROJECT>/<REPOSITORY>"
+url = "https://<REGION>-python.pkg.dev/<PROJECT>/<REPOSITORY>/simple/"
 
 ```
 
@@ -189,8 +189,8 @@ pyproject.toml
 ```
 [[tool.uv.index]]
 name = "private-registry"
-url = "https://<REGION>-python.pkg.dev/<PROJECT>/<REPOSITORY>"
-publish-url = "https://<REGION>-python.pkg.dev/<PROJECT>/<REPOSITORY>"
+url = "https://<REGION>-python.pkg.dev/<PROJECT>/<REPOSITORY>/simple/"
+publish-url = "https://<REGION>-python.pkg.dev/<PROJECT>/<REPOSITORY>/"
 
 ```
 
@@ -212,7 +212,7 @@ $ uv publish --index private-registry
 To use `uv publish` without adding the `publish-url` to the project, you can set `UV_PUBLISH_URL`:
 
 ```
-$ export UV_PUBLISH_URL=https://<REGION>-python.pkg.dev/<PROJECT>/<REPOSITORY>
+$ export UV_PUBLISH_URL=https://<REGION>-python.pkg.dev/<PROJECT>/<REPOSITORY>/
 $ uv publish
 
 ```
