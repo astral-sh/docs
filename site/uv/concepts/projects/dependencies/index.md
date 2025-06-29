@@ -36,7 +36,7 @@ dependencies = ["httpx>=0.27.2"]
 
 ```
 
-The [`--dev`](#development-dependencies), [`--group`](#dependency-groups), or [`--optional`](#optional-dependencies) flags can be used to add a dependencies to an alternative field.
+The [`--dev`](#development-dependencies), [`--group`](#dependency-groups), or [`--optional`](#optional-dependencies) flags can be used to add dependencies to an alternative field.
 
 The dependency will include a constraint, e.g., `>=0.27.2`, for the most recent, compatible version of the package. The kind of bound can be adjusted with [`--bounds`](../../../reference/settings/#add-bounds), or the constraint can be provided directly:
 
