@@ -81,8 +81,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2025-06-25 15:35:41Z",
-        "dateModified": "2025-06-25 15:35:41Z",
+        "datePublished": "2025-06-30 13:58:55Z",
+        "dateModified": "2025-06-30 13:58:55Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -1208,13 +1208,52 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#other-package-indexes" class="md-nav__link">
+  <a href="#jfrog-artifactory" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Other package indexes
+        JFrog Artifactory
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="JFrog Artifactory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#authenticate-with-username-and-password" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authenticate with username and password
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authenticate-with-jwt-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authenticate with JWT token
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#publishing-packages-to-jfrog-artifactory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Publishing packages to JFrog Artifactory
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2813,13 +2852,52 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#other-package-indexes" class="md-nav__link">
+  <a href="#jfrog-artifactory" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Other package indexes
+        JFrog Artifactory
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="JFrog Artifactory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#authenticate-with-username-and-password" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authenticate with username and password
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authenticate-with-jwt-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authenticate with JWT token
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#publishing-packages-to-jfrog-artifactory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Publishing packages to JFrog Artifactory
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -3164,8 +3242,51 @@ described in the <a href="../../package/">Building and publishing guide</a>.</p>
 </code></pre></div>
 <p>Note this method is not preferable because uv cannot check if the package is already published
 before uploading artifacts.</p>
-<h2 id="other-package-indexes"><a class="toclink" href="#other-package-indexes">Other package indexes</a></h2>
-<p>uv is also known to work with JFrog's Artifactory.</p>
+<h2 id="jfrog-artifactory"><a class="toclink" href="#jfrog-artifactory">JFrog Artifactory</a></h2>
+<p>uv can install packages from JFrog Artifactory, either by using a username and password or a JWT
+token.</p>
+<p>To use it, add the index to your project:</p>
+<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="k">[[tool.uv.index]]</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;private-registry&quot;</span>
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://&lt;organization&gt;.jfrog.io/artifactory/api/pypi/&lt;repository&gt;/simple&quot;</span>
+</code></pre></div>
+<h3 id="authenticate-with-username-and-password"><a class="toclink" href="#authenticate-with-username-and-password">Authenticate with username and password</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="gp">$ </span><span class="nb">export</span><span class="w"> </span><span class="nv">UV_INDEX_PRIVATE_REGISTRY_USERNAME</span><span class="o">=</span><span class="s2">&quot;&lt;username&gt;&quot;</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="gp">$ </span><span class="nb">export</span><span class="w"> </span><span class="nv">UV_INDEX_PRIVATE_REGISTRY_PASSWORD</span><span class="o">=</span><span class="s2">&quot;&lt;password&gt;&quot;</span>
+</code></pre></div>
+<h3 id="authenticate-with-jwt-token"><a class="toclink" href="#authenticate-with-jwt-token">Authenticate with JWT token</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="gp">$ </span><span class="nb">export</span><span class="w"> </span><span class="nv">UV_INDEX_PRIVATE_REGISTRY_USERNAME</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="gp">$ </span><span class="nb">export</span><span class="w"> </span><span class="nv">UV_INDEX_PRIVATE_REGISTRY_PASSWORD</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$JFROG_JWT_TOKEN</span><span class="s2">&quot;</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Replace <code>PRIVATE_REGISTRY</code> in the environment variable names with the actual index name defined in your <code>pyproject.toml</code>.</p>
+</div>
+<h3 id="publishing-packages-to-jfrog-artifactory"><a class="toclink" href="#publishing-packages-to-jfrog-artifactory">Publishing packages to JFrog Artifactory</a></h3>
+<p>Add a <code>publish-url</code> to your index definition:</p>
+<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="k">[[tool.uv.index]]</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;private-registry&quot;</span>
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://&lt;organization&gt;.jfrog.io/artifactory/api/pypi/&lt;repository&gt;/simple&quot;</span>
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="n">publish-url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://&lt;organization&gt;.jfrog.io/artifactory/api/pypi/&lt;repository&gt;&quot;</span>
+</code></pre></div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>If you use <code>--token "$JFROG_TOKEN"</code> or <code>UV_PUBLISH_TOKEN</code> with JFrog, you will receive a
+401 Unauthorized error as JFrog requires an empty username but uv passes <code>__token__</code> for as
+the username when <code>--token</code> is used.</p>
+</div>
+<p>To authenticate, pass your token as the password and set the username to an empty string:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="gp">$ </span>uv<span class="w"> </span>publish<span class="w"> </span>--index<span class="w"> </span>&lt;index_name&gt;<span class="w"> </span>-u<span class="w"> </span><span class="s2">&quot;&quot;</span><span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$JFROG_TOKEN</span><span class="s2">&quot;</span>
+</code></pre></div>
+<p>Alternatively, you can set environment variables:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="gp">$ </span><span class="nb">export</span><span class="w"> </span><span class="nv">UV_PUBLISH_USERNAME</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="gp">$ </span><span class="nb">export</span><span class="w"> </span><span class="nv">UV_PUBLISH_PASSWORD</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$JFROG_TOKEN</span><span class="s2">&quot;</span>
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="gp">$ </span>uv<span class="w"> </span>publish<span class="w"> </span>--index<span class="w"> </span>private-registry
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The publish environment variables (<code>UV_PUBLISH_USERNAME</code> and <code>UV_PUBLISH_PASSWORD</code>) do not include the index name.</p>
+</div>
 
   
     
@@ -3179,7 +3300,7 @@ before uploading artifacts.</p>
         <span class="md-icon" title="Last update">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
         </span>
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 25, 2025</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 30, 2025</span>
       </span>
     
     

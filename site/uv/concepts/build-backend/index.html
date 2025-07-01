@@ -81,8 +81,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2025-06-29 13:58:33Z",
-        "dateModified": "2025-06-29 13:58:33Z",
+        "datePublished": "2025-07-01 20:30:44Z",
+        "dateModified": "2025-07-01 20:30:44Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -1653,6 +1653,28 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#using-the-uv-build-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using the uv build backend
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bundled-build-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bundled build backend
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#modules" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1664,10 +1686,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#include-and-exclude-configuration" class="md-nav__link">
+  <a href="#namespace-packages" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Include and exclude configuration
+        Namespace packages
       
     </span>
   </a>
@@ -1675,6 +1697,29 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#stub-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stub packages
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-inclusion-and-exclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File inclusion and exclusion
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File inclusion and exclusion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#include-and-exclude-syntax" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1682,6 +1727,11 @@
       
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2533,6 +2583,28 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#using-the-uv-build-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using the uv build backend
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bundled-build-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bundled build backend
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#modules" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2544,10 +2616,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#include-and-exclude-configuration" class="md-nav__link">
+  <a href="#namespace-packages" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Include and exclude configuration
+        Namespace packages
       
     </span>
   </a>
@@ -2555,6 +2627,29 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#stub-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stub packages
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-inclusion-and-exclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File inclusion and exclusion
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File inclusion and exclusion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#include-and-exclude-syntax" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2562,6 +2657,11 @@
       
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2636,93 +2736,157 @@
 <p>The uv build backend is currently in preview and may change without warning.</p>
 <p>When preview mode is not enabled, uv uses <a href="https://pypi.org/project/hatchling/">hatchling</a> as the default build backend.</p>
 </div>
-<p>A build backend transforms a source tree (i.e., a directory) into a source distribution or a wheel.
-While uv supports all build backends (as specified by PEP 517), it includes a <code>uv_build</code> backend
-that integrates tightly with uv to improve performance and user experience.</p>
-<p>The uv build backend currently only supports Python code. An alternative backend is required if you
-want to create a
-<a href="../projects/init/#projects-with-extension-modules">library with extension modules</a>.</p>
-<p>To use the uv build backend as <a href="../projects/config/#build-systems">build system</a> in an
-existing project, add it to the <code>[build-system]</code> section in your <code>pyproject.toml</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">[build-system]</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">requires</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;uv_build&gt;=0.7.17,&lt;0.8.0&quot;</span><span class="p">]</span>
+<p>A build backend transforms a source tree (i.e., a directory) into a source distribution or a wheel.</p>
+<p>uv supports all build backends (as specified by <a href="https://peps.python.org/pep-0517/">PEP 517</a>), but
+also provides a native build backend (<code>uv_build</code>) that integrates tightly with uv to improve
+performance and user experience.</p>
+<h2 id="using-the-uv-build-backend"><a class="toclink" href="#using-the-uv-build-backend">Using the uv build backend</a></h2>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The uv build backend currently <strong>only supports pure Python code</strong>. An alternative backend is to
+build a <a href="../projects/init/#projects-with-extension-modules">library with extension modules</a>.</p>
+</div>
+<p>To use uv as a build backend in an existing project, add <code>uv_build</code> to the
+<a href="../projects/config/#build-systems"><code>[build-system]</code></a> section in your <code>pyproject.toml</code>:</p>
+<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">[build-system]</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">requires</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;uv_build&gt;=0.7.18,&lt;0.8.0&quot;</span><span class="p">]</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">build-backend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;uv_build&quot;</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The uv build backend follows the same <a href="../../reference/policies/versioning/">versioning policy</a>
+as uv. Including an upper bound on the <code>uv_build</code> version ensures that your package continues to
+build correctly as new versions are released.</p>
+</div>
+<p>To create a new project that uses the uv build backend, use <code>uv init</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="gp">$ </span>uv<span class="w"> </span>init<span class="w"> </span>--build-backend<span class="w"> </span>uv
+</code></pre></div>
+<p>When the project is built, e.g., with <a href="../../guides/package/"><code>uv build</code></a>, the uv build backend will
+be used to create the source distribution and wheel.</p>
+<h2 id="bundled-build-backend"><a class="toclink" href="#bundled-build-backend">Bundled build backend</a></h2>
+<p>The build backend is published as a separate package (<code>uv_build</code>) that is optimized for portability
+and small binary size. However, the <code>uv</code> executable also includes a copy of the build backend, which
+will be used during builds performed by uv, e.g., during <code>uv build</code>, if its version is compatible
+with the <code>uv_build</code> requirement. If it's not compatible, a compatible version of the <code>uv_build</code>
+package will be used. Other build frontends, such as <code>python -m build</code>, will always use the
+<code>uv_build</code> package, typically choosing the latest compatible version.</p>
+<h2 id="modules"><a class="toclink" href="#modules">Modules</a></h2>
+<p>Python packages are expected to contain one or more Python modules, which are directories containing
+an <code>__init__.py</code>. By default, a single root module is expected at <code>src/&lt;package_name&gt;/__init__.py</code>.</p>
+<p>For example, the structure for a project named <code>foo</code> would be:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>pyproject.toml
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>src
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>└── foo
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    └── __init__.py
+</code></pre></div>
+<p>uv normalizes the package name to determine the default module name: the package name is lowercased
+and dots and dashes are replaced with underscores, e.g., <code>Foo-Bar</code> would be converted to <code>foo_bar</code>.</p>
+<p>The <code>src/</code> directory is the default directory for module discovery.</p>
+<p>These defaults can be changed with the <code>module-name</code> and <code>module-root</code> settings. For example, to use
+a <code>FOO</code> module in the root directory, as in the project structure:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>pyproject.toml
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>FOO
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>└── __init__.py
+</code></pre></div>
+<p>The correct build configuration would be:</p>
+<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">[tool.uv.build-backend]</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">module-name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;FOO&quot;</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">module-root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+</code></pre></div>
+<h2 id="namespace-packages"><a class="toclink" href="#namespace-packages">Namespace packages</a></h2>
+<p>Namespace packages are intended for use-cases where multiple packages write modules into a shared
+namespace.</p>
+<p>Namespace package modules are identified by a <code>.</code> in the <code>module-name</code>. For example, to package the
+module <code>bar</code> in the shared namespace <code>foo</code>, the project structure would be:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>pyproject.toml
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>src
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>└── foo
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    └── bar
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>        └── __init__.py
+</code></pre></div>
+<p>And the <code>module-name</code> configuration would be:</p>
+<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">[tool.uv.build-backend]</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">module-name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;foo.bar&quot;</span>
 </code></pre></div>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>The uv build backend follows the same <a href="../../reference/policies/versioning/">versioning policy</a>,
-setting an upper bound on the <code>uv_build</code> version ensures that the package continues to build in
-the future.</p>
+<p>The <code>__init__.py</code> file is not included in <code>foo</code>, since it's the shared namespace module.</p>
 </div>
-<p>You can also create a new project that uses the uv build backend with <code>uv init</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>uv<span class="w"> </span>init<span class="w"> </span>--build-backend<span class="w"> </span>uv
+<p>It's also possible to have a complex namespace package with more than one root module, e.g., with
+the project structure:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>pyproject.toml
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>src
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>├── foo
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>│   └── __init__.py
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>└── bar
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>    └── __init__.py
 </code></pre></div>
-<p><code>uv_build</code> is a separate package from uv, optimized for portability and small binary size. The <code>uv</code>
-command includes a copy of the build backend, so when running <code>uv build</code>, the same version will be
-used for the build backend as for the uv process. Other build frontends, such as <code>python -m build</code>,
-will choose the latest compatible <code>uv_build</code> version.</p>
-<h2 id="modules"><a class="toclink" href="#modules">Modules</a></h2>
-<p>The default module name is the package name in lower case with dots and dashes replaced by
-underscores, and the default module location is under the <code>src</code> directory, i.e., the build backend
-expects to find <code>src/&lt;package_name&gt;/__init__.py</code>. These defaults can be changed with the
-<code>module-name</code> and <code>module-root</code> setting. The example below expects a module in the project root with
-<code>PIL/__init__.py</code> instead:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">[tool.uv.build-backend]</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">module-name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;PIL&quot;</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">module-root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<p>While we do not recommend this structure (i.e., you should use a workspace with multiple packages
+instead), it is supported via the <code>namespace</code> option:</p>
+<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">[tool.uv.build-backend]</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">namespace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 </code></pre></div>
-<p>For a namespace packages, the path can be dotted. The example below expects to find a
-<code>src/cloud/db/schema/__init__.py</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">[tool.uv.build-backend]</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">module-name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;cloud.db.schema&quot;</span>
+<h2 id="stub-packages"><a class="toclink" href="#stub-packages">Stub packages</a></h2>
+<p>The build backend also supports building type stub packages, which are identified by the <code>-stubs</code>
+suffix on the package or module name, e.g., <code>foo-stubs</code>. The module name for type stub packages must
+end in <code>-stubs</code>, so uv will not normalize the <code>-</code> to an underscore. Additionally, uv will search for
+a <code>__init__.pyi</code> file. For example, the project structure would be:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>pyproject.toml
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>src
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>└── foo-stubs
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>    └── __init__.pyi
 </code></pre></div>
-<p>Complex namespaces with more than one root module can be built by setting the <code>namespace</code> option,
-which allows more than one root <code>__init__.py</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">[tool.uv.build-backend]</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">namespace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
-</code></pre></div>
-<p>The build backend supports building stubs packages with a <code>-stubs</code> suffix on the package or module
-name, including for namespace packages.</p>
-<h2 id="include-and-exclude-configuration"><a class="toclink" href="#include-and-exclude-configuration">Include and exclude configuration</a></h2>
-<p>To select which files to include in the source distribution, uv first adds the included files and
+<p>Type stub modules are also supported for <a href="#namespace-packages">namespace packages</a>.</p>
+<h2 id="file-inclusion-and-exclusion"><a class="toclink" href="#file-inclusion-and-exclusion">File inclusion and exclusion</a></h2>
+<p>The build backend is responsible for determining which files in a source tree should be packaged
+into the distributions.</p>
+<p>To determine which files to include in a source distribution, uv first adds the included files and
 directories, then removes the excluded files and directories. This means that exclusions always take
 precedence over inclusions.</p>
-<p>When building the source distribution, the following files and directories are included:</p>
+<p>By default, uv excludes <code>__pycache__</code>, <code>*.pyc</code>, and <code>*.pyo</code>.</p>
+<p>When building a source distribution, the following files and directories are included:</p>
 <ul>
-<li><code>pyproject.toml</code></li>
-<li>The module under <code>tool.uv.build-backend.module-root</code>, by default
-  <code>src/&lt;module-name or project_name_with_underscores&gt;/**</code>.</li>
-<li><code>project.license-files</code> and <code>project.readme</code>.</li>
-<li>All directories under <code>tool.uv.build-backend.data</code>.</li>
-<li>All patterns from <code>tool.uv.build-backend.source-include</code>.</li>
+<li>The <code>pyproject.toml</code></li>
+<li>The <a href="#modules">module</a> under
+  <a href="../../reference/settings/#build-backend_module-root"><code>tool.uv.build-backend.module-root</code></a>.</li>
+<li>The files referenced by <code>project.license-files</code> and <code>project.readme</code>.</li>
+<li>All directories under <a href="../../reference/settings/#build-backend_data"><code>tool.uv.build-backend.data</code></a>.</li>
+<li>All files matching patterns from
+  <a href="../../reference/settings/#build-backend_source-include"><code>tool.uv.build-backend.source-include</code></a>.</li>
 </ul>
-<p>From these, <code>tool.uv.build-backend.source-exclude</code> and the default excludes are removed.</p>
-<p>When building the wheel, the following files and directories are included:</p>
+<p>From these, items matching
+<a href="../../reference/settings/#build-backend_source-exclude"><code>tool.uv.build-backend.source-exclude</code></a> and
+the <a href="../../reference/settings/#build-backend_default-excludes">default excludes</a> are removed.</p>
+<p>When building a wheel, the following files and directories are included:</p>
 <ul>
-<li>The module under <code>tool.uv.build-backend.module-root</code>, by default
-  <code>src/&lt;module-name or project_name_with_underscores&gt;/**</code>.</li>
-<li><code>project.license-files</code> and <code>project.readme</code>, as part of the project metadata.</li>
-<li>Each directory under <code>tool.uv.build-backend.data</code>, as data directories.</li>
+<li>The <a href="#modules">module</a> under
+  <a href="../../reference/settings/#build-backend_module-root"><code>tool.uv.build-backend.module-root</code></a></li>
+<li>The files referenced by <code>project.license-files</code>, which are copied into the <code>.dist-info</code> directory.</li>
+<li>The <code>project.readme</code>, which is copied into the project metadata.</li>
+<li>All directories under <a href="../../reference/settings/#build-backend_data"><code>tool.uv.build-backend.data</code></a>,
+  which are copied into the <code>.data</code> directory.</li>
 </ul>
-<p>From these, <code>tool.uv.build-backend.source-exclude</code>, <code>tool.uv.build-backend.wheel-exclude</code> and the
-default excludes are removed. The source dist excludes are applied to avoid source tree to wheel
+<p>From these,
+<a href="../../reference/settings/#build-backend_source-exclude"><code>tool.uv.build-backend.source-exclude</code></a>,
+<a href="../../reference/settings/#build-backend_wheel-exclude"><code>tool.uv.build-backend.wheel-exclude</code></a> and
+the default excludes are removed. The source dist excludes are applied to avoid source tree to wheel
 source builds including more files than source tree to source distribution to wheel build.</p>
 <p>There are no specific wheel includes. There must only be one top level module, and all data files
 must either be under the module root or in the appropriate
 <a href="../../reference/settings/#build-backend_data">data directory</a>. Most packages store small data in the
 module root alongside the source code.</p>
-<h2 id="include-and-exclude-syntax"><a class="toclink" href="#include-and-exclude-syntax">Include and exclude syntax</a></h2>
-<p>Includes are anchored, which means that <code>pyproject.toml</code> includes only
-<code>&lt;project root&gt;/pyproject.toml</code>. For example, <code>assets/**/sample.csv</code> includes all <code>sample.csv</code> files
-in <code>&lt;project root&gt;/assets</code> or any child directory. To recursively include all files under a
-directory, use a <code>/**</code> suffix, e.g. <code>src/**</code>.</p>
+<h3 id="include-and-exclude-syntax"><a class="toclink" href="#include-and-exclude-syntax">Include and exclude syntax</a></h3>
+<p>Includes are anchored, which means that <code>pyproject.toml</code> includes only <code>&lt;root&gt;/pyproject.toml</code> and
+not <code>&lt;root&gt;/bar/pyproject.toml</code>. To recursively include all files under a directory, use a <code>/**</code>
+suffix, e.g. <code>src/**</code>. Recursive inclusions are also anchored, e.g., <code>assets/**/sample.csv</code> includes
+all <code>sample.csv</code> files in <code>&lt;root&gt;/assets</code> or any of its children.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>For performance and reproducibility, avoid patterns without an anchor such as <code>**/sample.csv</code>.</p>
 </div>
 <p>Excludes are not anchored, which means that <code>__pycache__</code> excludes all directories named
-<code>__pycache__</code> and its children anywhere. To anchor a directory, use a <code>/</code> prefix, e.g., <code>/dist</code> will
-exclude only <code>&lt;project root&gt;/dist</code>.</p>
+<code>__pycache__</code> regardless of its parent directory. All children of an exclusion are excluded as well.
+To anchor a directory, use a <code>/</code> prefix, e.g., <code>/dist</code> will exclude only <code>&lt;root&gt;/dist</code>.</p>
 <p>All fields accepting patterns use the reduced portable glob syntax from
 <a href="https://peps.python.org/pep-0639/#add-license-FILES-key">PEP 639</a>, with the addition that
 characters can be escaped with a backslash.</p>
@@ -2739,7 +2903,7 @@ characters can be escaped with a backslash.</p>
         <span class="md-icon" title="Last update">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
         </span>
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 29, 2025</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 1, 2025</span>
       </span>
     
     
