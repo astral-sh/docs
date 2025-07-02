@@ -81,8 +81,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2025-07-02 14:00:14Z",
-        "dateModified": "2025-07-02 14:00:14Z",
+        "datePublished": "2025-07-02 14:24:11Z",
+        "dateModified": "2025-07-02 14:24:11Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -2412,63 +2412,47 @@
 
 <h1 id="rules"><a class="toclink" href="#rules">Rules</a></h1>
 <h2 id="byte-string-type-annotation"><a class="toclink" href="#byte-string-type-annotation"><code>byte-string-type-annotation</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects byte strings in type annotation positions</summary>
-
-### What it does
-Checks for byte-strings in type annotation positions.
-
-### Why is this bad?
-Static analysis tools like ty can't analyse type annotations that use byte-string notation.
-
-### Examples
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20byte-string-type-annotation">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fstring_annotation.rs#L36">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for byte-strings in type annotation positions.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>Static analysis tools like ty can't analyse type annotations that use byte-string notation.</p>
+<p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span> <span class="nf">test</span><span class="p">():</span> <span class="o">-&gt;</span> <span class="sa">b</span><span class="s2">&quot;int&quot;</span><span class="p">:</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="o">...</span>
 </code></pre></div>
-
-Use instead:
+<p>Use instead:
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">def</span> <span class="nf">test</span><span class="p">():</span> <span class="o">-&gt;</span> <span class="s2">&quot;int&quot;</span><span class="p">:</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="o">...</span>
-</code></pre></div>
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20byte-string-type-annotation)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fstring_annotation.rs#L36)
-</details>
-
+</code></pre></div></p>
 <h2 id="call-non-callable"><a class="toclink" href="#call-non-callable"><code>call-non-callable</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects calls to non-callable objects</summary>
-
-### What it does
-Checks for calls to non-callable objects.
-
-### Why is this bad?
-Calling a non-callable object will raise a `TypeError` at runtime.
-
-### Examples
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20call-non-callable">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L98">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for calls to non-callable objects.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>Calling a non-callable object will raise a <code>TypeError</code> at runtime.</p>
+<p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="mi">4</span><span class="p">()</span>  <span class="c1"># TypeError: &#39;int&#39; object is not callable</span>
 </code></pre></div>
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20call-non-callable)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L97)
-</details>
-
 <h2 id="conflicting-argument-forms"><a class="toclink" href="#conflicting-argument-forms"><code>conflicting-argument-forms</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects when an argument is used as both a value and a type form in a call</summary>
-
-### What it does
-Checks whether an argument is used as both a value and a type form in a call.
-
-### Why is this bad?
-Such calls have confusing semantics and often indicate a logic error.
-
-### Examples
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20conflicting-argument-forms">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L142">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks whether an argument is used as both a value and a type form in a call.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>Such calls have confusing semantics and often indicate a logic error.</p>
+<p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">reveal_type</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kn">from</span> <span class="nn">ty_extensions</span> <span class="kn">import</span> <span class="n">is_singleton</span>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
@@ -2479,26 +2463,19 @@ Such calls have confusing semantics and often indicate a logic error.
 <a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
 <a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="n">f</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>  <span class="c1"># error</span>
 </code></pre></div>
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20conflicting-argument-forms)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L141)
-</details>
-
 <h2 id="conflicting-declarations"><a class="toclink" href="#conflicting-declarations"><code>conflicting-declarations</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects conflicting declarations</summary>
-
-### What it does
-Checks whether a variable has been declared as two conflicting types.
-
-### Why is this bad
-A variable with two conflicting declarations likely indicates a mistake.
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20conflicting-declarations">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L168">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks whether a variable has been declared as two conflicting types.</p>
+<p><strong>Why is this bad</strong></p>
+<p>A variable with two conflicting declarations likely indicates a mistake.
 Moreover, it could lead to incorrect or ill-defined type inference for
-other code that relies on these variables.
-
-### Examples
+other code that relies on these variables.</p>
+<p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">if</span> <span class="n">b</span><span class="p">:</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="n">a</span><span class="p">:</span> <span class="nb">int</span>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">else</span><span class="p">:</span>
@@ -2506,109 +2483,81 @@ other code that relies on these variables.
 <a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
 <a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
 </code></pre></div>
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20conflicting-declarations)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L167)
-</details>
-
 <h2 id="conflicting-metaclass"><a class="toclink" href="#conflicting-metaclass"><code>conflicting-metaclass</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects conflicting metaclasses</summary>
-
-### What it does
-Checks for class definitions where the metaclass of the class
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20conflicting-metaclass">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L193">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for class definitions where the metaclass of the class
 being created would not be a subclass of the metaclasses of
-all the class's bases.
-
-### Why is it bad?
-Such a class definition raises a `TypeError` at runtime.
-
-### Examples
+all the class's bases.</p>
+<p><strong>Why is it bad?</strong></p>
+<p>Such a class definition raises a <code>TypeError</code> at runtime.</p>
+<p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">class</span> <span class="nc">M1</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span> <span class="o">...</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">class</span> <span class="nc">M2</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span> <span class="o">...</span>
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">M1</span><span class="p">):</span> <span class="o">...</span>
 <a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="k">class</span> <span class="nc">B</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">M2</span><span class="p">):</span> <span class="o">...</span>
 <a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
-<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="c1">## TypeError: metaclass conflict</span>
-<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="k">class</span> <span class="nc">C</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">):</span> <span class="o">...</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="o">**</span><span class="ne">TypeError</span><span class="p">:</span> <span class="n">metaclass</span> <span class="n">conflict</span><span class="o">**</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="k">class</span> <span class="nc">C</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">):</span> <span class="o">...</span>
 </code></pre></div>
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20conflicting-metaclass)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L192)
-</details>
-
 <h2 id="cyclic-class-definition"><a class="toclink" href="#cyclic-class-definition"><code>cyclic-class-definition</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects cyclic class definitions</summary>
-
-### What it does
-Checks for class definitions in stub files that inherit
-(directly or indirectly) from themselves.
-
-### Why is it bad?
-Although forward references are natively supported in stub files,
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20cyclic-class-definition">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L219">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for class definitions in stub files that inherit
+(directly or indirectly) from themselves.</p>
+<p><strong>Why is it bad?</strong></p>
+<p>Although forward references are natively supported in stub files,
 inheritance cycles are still disallowed, as it is impossible to
-resolve a consistent [method resolution order] for a class that
-inherits from itself.
-
-### Examples
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1">## foo.pyi</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="n">B</span><span class="p">):</span> <span class="o">...</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="k">class</span> <span class="nc">B</span><span class="p">(</span><span class="n">A</span><span class="p">):</span> <span class="o">...</span>
+resolve a consistent <a href="https://docs.python.org/3/glossary.html#term-method-resolution-order">method resolution order</a> for a class that
+inherits from itself.</p>
+<p><strong>Examples</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="o">**</span><span class="n">foo</span><span class="o">.</span><span class="n">pyi</span><span class="o">**</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="n">B</span><span class="p">):</span> <span class="o">...</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="k">class</span> <span class="nc">B</span><span class="p">(</span><span class="n">A</span><span class="p">):</span> <span class="o">...</span>
 </code></pre></div>
-
-[method resolution order]: https://docs.python.org/3/glossary.html#term-method-resolution-order
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20cyclic-class-definition)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L218)
-</details>
-
 <h2 id="duplicate-base"><a class="toclink" href="#duplicate-base"><code>duplicate-base</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects class definitions with duplicate bases</summary>
-
-### What it does
-Checks for class definitions with duplicate bases.
-
-### Why is this bad?
-Class definitions with duplicate bases raise `TypeError` at runtime.
-
-### Examples
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20duplicate-base">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L263">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for class definitions with duplicate bases.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>Class definitions with duplicate bases raise <code>TypeError</code> at runtime.</p>
+<p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">class</span> <span class="nc">A</span><span class="p">:</span> <span class="o">...</span>
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="c1">## TypeError: duplicate base class</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="k">class</span> <span class="nc">B</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">A</span><span class="p">):</span> <span class="o">...</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="o">**</span><span class="ne">TypeError</span><span class="p">:</span> <span class="n">duplicate</span> <span class="n">base</span> <span class="n">class</span><span class="o">**</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="k">class</span> <span class="nc">B</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">A</span><span class="p">):</span> <span class="o">...</span>
 </code></pre></div>
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20duplicate-base)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L262)
-</details>
-
 <h2 id="duplicate-kw-only"><a class="toclink" href="#duplicate-kw-only"><code>duplicate-kw-only</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects dataclass definitions with more than once usages of <code>KW_ONLY</code></summary>
-
-### What it does
-Checks for dataclass definitions with more than one field
-annotated with `KW_ONLY`.
-
-### Why is this bad?
-`dataclasses.KW_ONLY` is a special marker used to
-emulate the `*` syntax in normal signatures.
-It can only be used once per dataclass.
-
-Attempting to annotate two different fields with
-it will lead to a runtime error.
-
-### Examples
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20duplicate-kw-only">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L284">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for dataclass definitions with more than one field
+annotated with <code>KW_ONLY</code>.</p>
+<p><strong>Why is this bad?</strong></p>
+<p><code>dataclasses.KW_ONLY</code> is a special marker used to
+emulate the <code>*</code> syntax in normal signatures.
+It can only be used once per dataclass.</p>
+<p>Attempting to annotate two different fields with
+it will lead to a runtime error.</p>
+<p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">KW_ONLY</span>
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
 <a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="nd">@dataclass</span>
@@ -2619,267 +2568,193 @@ it will lead to a runtime error.
 <a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>    <span class="n">_2</span><span class="p">:</span> <span class="n">KW_ONLY</span>
 <a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>    <span class="n">d</span><span class="p">:</span> <span class="nb">bytes</span>
 </code></pre></div>
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20duplicate-kw-only)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L283)
-</details>
-
 <h2 id="escape-character-in-forward-annotation"><a class="toclink" href="#escape-character-in-forward-annotation"><code>escape-character-in-forward-annotation</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects forward type annotations with escape characters</summary>
-
-TODO #14889
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20escape-character-in-forward-annotation)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fstring_annotation.rs#L120)
-</details>
-
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20escape-character-in-forward-annotation">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fstring_annotation.rs#L120">View source</a>
+</small></p>
+<p>TODO #14889</p>
 <h2 id="fstring-type-annotation"><a class="toclink" href="#fstring-type-annotation"><code>fstring-type-annotation</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects F-strings in type annotation positions</summary>
-
-### What it does
-Checks for f-strings in type annotation positions.
-
-### Why is this bad?
-Static analysis tools like ty can't analyse type annotations that use f-string notation.
-
-### Examples
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20fstring-type-annotation">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fstring_annotation.rs#L11">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for f-strings in type annotation positions.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>Static analysis tools like ty can't analyse type annotations that use f-string notation.</p>
+<p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">def</span> <span class="nf">test</span><span class="p">():</span> <span class="o">-&gt;</span> <span class="sa">f</span><span class="s2">&quot;int&quot;</span><span class="p">:</span>
 <a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>    <span class="o">...</span>
 </code></pre></div>
-
-Use instead:
+<p>Use instead:
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">def</span> <span class="nf">test</span><span class="p">():</span> <span class="o">-&gt;</span> <span class="s2">&quot;int&quot;</span><span class="p">:</span>
 <a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>    <span class="o">...</span>
-</code></pre></div>
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20fstring-type-annotation)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fstring_annotation.rs#L11)
-</details>
-
+</code></pre></div></p>
 <h2 id="implicit-concatenated-string-type-annotation"><a class="toclink" href="#implicit-concatenated-string-type-annotation"><code>implicit-concatenated-string-type-annotation</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects implicit concatenated strings in type annotations</summary>
-
-### What it does
-Checks for implicit concatenated strings in type annotation positions.
-
-### Why is this bad?
-Static analysis tools like ty can't analyse type annotations that use implicit concatenated strings.
-
-### Examples
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20implicit-concatenated-string-type-annotation">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fstring_annotation.rs#L86">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for implicit concatenated strings in type annotation positions.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>Static analysis tools like ty can't analyse type annotations that use implicit concatenated strings.</p>
+<p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">def</span> <span class="nf">test</span><span class="p">():</span> <span class="o">-&gt;</span> <span class="s2">&quot;Literal[&quot;</span> <span class="s2">&quot;5&quot;</span> <span class="s2">&quot;]&quot;</span><span class="p">:</span>
 <a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>    <span class="o">...</span>
 </code></pre></div>
-
-Use instead:
+<p>Use instead:
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">def</span> <span class="nf">test</span><span class="p">():</span> <span class="o">-&gt;</span> <span class="s2">&quot;Literal[5]&quot;</span><span class="p">:</span>
 <a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>    <span class="o">...</span>
-</code></pre></div>
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20implicit-concatenated-string-type-annotation)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fstring_annotation.rs#L86)
-</details>
-
+</code></pre></div></p>
 <h2 id="inconsistent-mro"><a class="toclink" href="#inconsistent-mro"><code>inconsistent-mro</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects class definitions with an inconsistent MRO</summary>
-
-### What it does
-Checks for classes with an inconsistent [method resolution order] (MRO).
-
-### Why is this bad?
-Classes with an inconsistent MRO will raise a `TypeError` at runtime.
-
-### Examples
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20inconsistent-mro">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L426">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for classes with an inconsistent <a href="https://docs.python.org/3/glossary.html#term-method-resolution-order">method resolution order</a> (MRO).</p>
+<p><strong>Why is this bad?</strong></p>
+<p>Classes with an inconsistent MRO will raise a <code>TypeError</code> at runtime.</p>
+<p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">class</span> <span class="nc">A</span><span class="p">:</span> <span class="o">...</span>
 <a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="k">class</span> <span class="nc">B</span><span class="p">(</span><span class="n">A</span><span class="p">):</span> <span class="o">...</span>
 <a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>
-<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="c1">## TypeError: Cannot create a consistent method resolution order</span>
-<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="k">class</span> <span class="nc">C</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">):</span> <span class="o">...</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="o">**</span><span class="ne">TypeError</span><span class="p">:</span> <span class="n">Cannot</span> <span class="n">create</span> <span class="n">a</span> <span class="n">consistent</span> <span class="n">method</span> <span class="n">resolution</span> <span class="n">order</span><span class="o">**</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="k">class</span> <span class="nc">C</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">):</span> <span class="o">...</span>
 </code></pre></div>
-
-[method resolution order]: https://docs.python.org/3/glossary.html#term-method-resolution-order
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20inconsistent-mro)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L425)
-</details>
-
 <h2 id="index-out-of-bounds"><a class="toclink" href="#index-out-of-bounds"><code>index-out-of-bounds</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects index out of bounds errors</summary>
-
-### What it does
-Checks for attempts to use an out of bounds index to get an item from
-a container.
-
-### Why is this bad?
-Using an out of bounds index will raise an `IndexError` at runtime.
-
-### Examples
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20index-out-of-bounds">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L450">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for attempts to use an out of bounds index to get an item from
+a container.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>Using an out of bounds index will raise an <code>IndexError</code> at runtime.</p>
+<p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="n">t</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>  <span class="c1"># IndexError: tuple index out of range</span>
 </code></pre></div>
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20index-out-of-bounds)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L449)
-</details>
-
 <h2 id="instance-layout-conflict"><a class="toclink" href="#instance-layout-conflict"><code>instance-layout-conflict</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects class definitions that raise <code>TypeError</code> due to instance layout conflict</summary>
-
-### What it does
-Checks for classes definitions which will fail at runtime due to
-"instance memory layout conflicts".
-
-This error is usually caused by attempting to combine multiple classes
-that define non-empty `__slots__` in a class's [Method Resolution Order]
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20instance-layout-conflict">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L316">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for classes definitions which will fail at runtime due to
+"instance memory layout conflicts".</p>
+<p>This error is usually caused by attempting to combine multiple classes
+that define non-empty <code>__slots__</code> in a class's <a href="https://docs.python.org/3/glossary.html#term-method-resolution-order">Method Resolution Order</a>
 (MRO), or by attempting to combine multiple builtin classes in a class's
-MRO.
-
-### Why is this bad?
-Inheriting from bases with conflicting instance memory layouts
-will lead to a `TypeError` at runtime.
-
-An instance memory layout conflict occurs when CPython cannot determine
+MRO.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>Inheriting from bases with conflicting instance memory layouts
+will lead to a <code>TypeError</code> at runtime.</p>
+<p>An instance memory layout conflict occurs when CPython cannot determine
 the memory layout instances of a class should have, because the instance
 memory layout of one of its bases conflicts with the instance memory layout
-of one or more of its other bases.
-
-For example, if a Python class defines non-empty `__slots__`, this will
+of one or more of its other bases.</p>
+<p>For example, if a Python class defines non-empty <code>__slots__</code>, this will
 impact the memory layout of instances of that class. Multiple inheritance
-from more than one different class defining non-empty `__slots__` is not
-allowed:
-
+from more than one different class defining non-empty <code>__slots__</code> is not
+allowed:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">class</span> <span class="nc">A</span><span class="p">:</span>
 <a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">)</span>
 <a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
 <a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="k">class</span> <span class="nc">B</span><span class="p">:</span>
 <a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">)</span>  <span class="c1"># Even if the values are the same</span>
 <a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>
-<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="c1">## TypeError: multiple bases have instance lay-out conflict</span>
-<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="k">class</span> <span class="nc">C</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">):</span> <span class="o">...</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="o">**</span><span class="ne">TypeError</span><span class="p">:</span> <span class="n">multiple</span> <span class="n">bases</span> <span class="n">have</span> <span class="n">instance</span> <span class="n">lay</span><span class="o">-</span><span class="n">out</span> <span class="n">conflict</span><span class="o">**</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="k">class</span> <span class="nc">C</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">):</span> <span class="o">...</span>
 </code></pre></div>
-
-An instance layout conflict can also be caused by attempting to use
+<p>An instance layout conflict can also be caused by attempting to use
 multiple inheritance with two builtin classes, due to the way that these
-classes are implemented in a CPython C extension:
-
+classes are implemented in a CPython C extension:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">):</span> <span class="o">...</span>  <span class="c1"># TypeError: multiple bases have instance lay-out conflict</span>
 </code></pre></div>
-
-Note that pure-Python classes with no `__slots__`, or pure-Python classes
-with empty `__slots__`, are always compatible:
-
+<p>Note that pure-Python classes with no <code>__slots__</code>, or pure-Python classes
+with empty <code>__slots__</code>, are always compatible:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">class</span> <span class="nc">A</span><span class="p">:</span> <span class="o">...</span>
 <a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="k">class</span> <span class="nc">B</span><span class="p">:</span>
 <a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">()</span>
 <a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="k">class</span> <span class="nc">C</span><span class="p">:</span>
 <a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">)</span>
 <a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>
-<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="c1">## fine</span>
-<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="k">class</span> <span class="nc">D</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">):</span> <span class="o">...</span>
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="o">**</span><span class="n">fine</span><span class="o">**</span>
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="k">class</span> <span class="nc">D</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">):</span> <span class="o">...</span>
 </code></pre></div>
-
-### Known problems
-Classes that have "dynamic" definitions of `__slots__` (definitions do not consist
+<p><strong>Known problems</strong></p>
+<p>Classes that have "dynamic" definitions of <code>__slots__</code> (definitions do not consist
 of string literals, or tuples of string literals) are not currently considered solid
-bases by ty.
-
-Additionally, this check is not exhaustive: many C extensions (including several in
+bases by ty.</p>
+<p>Additionally, this check is not exhaustive: many C extensions (including several in
 the standard library) define classes that use extended memory layouts and thus cannot
 coexist in a single MRO. Since it is currently not possible to represent this fact in
 stub files, having a full knowledge of these classes is also impossible. When it comes
-to classes that do not define `__slots__` at the Python level, therefore, ty, currently
+to classes that do not define <code>__slots__</code> at the Python level, therefore, ty, currently
 only hard-codes a number of cases where it knows that a class will produce instances with
-an atypical memory layout.
-
-### Further reading
-- [CPython documentation: `__slots__`](https://docs.python.org/3/reference/datamodel.html#slots)
-- [CPython documentation: Method Resolution Order](https://docs.python.org/3/glossary.html#term-method-resolution-order)
-
-[Method Resolution Order]: https://docs.python.org/3/glossary.html#term-method-resolution-order
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20instance-layout-conflict)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L315)
-</details>
-
+an atypical memory layout.</p>
+<p><strong>Further reading</strong></p>
+<ul>
+<li><a href="https://docs.python.org/3/reference/datamodel.html#slots">CPython documentation: <code>__slots__</code></a></li>
+<li><a href="https://docs.python.org/3/glossary.html#term-method-resolution-order">CPython documentation: Method Resolution Order</a></li>
+</ul>
 <h2 id="invalid-argument-type"><a class="toclink" href="#invalid-argument-type"><code>invalid-argument-type</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects call arguments whose type is not assignable to the corresponding typed parameter</summary>
-
-### What it does
-Detects call arguments whose type is not assignable to the corresponding typed parameter.
-
-### Why is this bad?
-Passing an argument of a type the function (or callable object) does not accept violates
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-argument-type">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L470">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Detects call arguments whose type is not assignable to the corresponding typed parameter.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>Passing an argument of a type the function (or callable object) does not accept violates
 the expectations of the function author and may cause unexpected runtime errors within the
-body of the function.
-
-### Examples
+body of the function.</p>
+<p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span> <span class="o">...</span>
 <a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="n">func</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">)</span>  <span class="c1"># error: [invalid-argument-type]</span>
 </code></pre></div>
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-argument-type)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L469)
-</details>
-
 <h2 id="invalid-assignment"><a class="toclink" href="#invalid-assignment"><code>invalid-assignment</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects invalid assignments</summary>
-
-### What it does
-Checks for assignments where the type of the value
-is not [assignable to] the type of the assignee.
-
-### Why is this bad?
-Such assignments break the rules of the type system and
-weaken a type checker's ability to accurately reason about your code.
-
-### Examples
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-assignment">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L510">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for assignments where the type of the value
+is not <a href="https://typing.python.org/en/latest/spec/glossary.html#term-assignable">assignable to</a> the type of the assignee.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>Such assignments break the rules of the type system and
+weaken a type checker's ability to accurately reason about your code.</p>
+<p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="n">a</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
 </code></pre></div>
-
-[assignable to]: https://typing.python.org/en/latest/spec/glossary.html#term-assignable
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-assignment)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L509)
-</details>
-
 <h2 id="invalid-attribute-access"><a class="toclink" href="#invalid-attribute-access"><code>invalid-attribute-access</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>Invalid attribute access</summary>
-
-### What it does
-Checks for assignments to class variables from instances
-and assignments to instance variables from its class.
-
-### Why is this bad?
-Incorrect assignments break the rules of the type system and
-weaken a type checker's ability to accurately reason about your code.
-
-### Examples
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-attribute-access">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1514">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for assignments to class variables from instances
+and assignments to instance variables from its class.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>Incorrect assignments break the rules of the type system and
+weaken a type checker's ability to accurately reason about your code.</p>
+<p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">class</span> <span class="nc">C</span><span class="p">:</span>
 <a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>    <span class="n">class_var</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
 <a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>    <span class="n">instance_var</span><span class="p">:</span> <span class="nb">int</span>
@@ -2890,222 +2765,167 @@ weaken a type checker's ability to accurately reason about your code.
 <a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="n">C</span><span class="p">()</span><span class="o">.</span><span class="n">instance_var</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># okay</span>
 <a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="n">C</span><span class="o">.</span><span class="n">instance_var</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># error: Cannot assign to instance variable</span>
 </code></pre></div>
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-attribute-access)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1513)
-</details>
-
 <h2 id="invalid-base"><a class="toclink" href="#invalid-base"><code>invalid-base</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects class bases that will cause the class definition to raise an exception at runtime</summary>
-
-### What it does
-Checks for class definitions that have bases which are not instances of `type`.
-
-### Why is this bad?
-Class definitions with bases like this will lead to `TypeError` being raised at runtime.
-
-### Examples
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-base">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L532">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for class definitions that have bases which are not instances of <code>type</code>.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>Class definitions with bases like this will lead to <code>TypeError</code> being raised at runtime.</p>
+<p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="mi">42</span><span class="p">):</span> <span class="o">...</span>  <span class="c1"># error: [invalid-base]</span>
 </code></pre></div>
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-base)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L531)
-</details>
-
 <h2 id="invalid-context-manager"><a class="toclink" href="#invalid-context-manager"><code>invalid-context-manager</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects expressions used in with statements that don't implement the context manager protocol</summary>
-
-### What it does
-Checks for expressions used in `with` statements
-that do not implement the context manager protocol.
-
-### Why is this bad?
-Such a statement will raise `TypeError` at runtime.
-
-### Examples
-<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="c1">## TypeError: &#39;int&#39; object does not support the context manager protocol</span>
-<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="k">with</span> <span class="mi">1</span><span class="p">:</span>
-<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-context-manager">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L583">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for expressions used in <code>with</code> statements
+that do not implement the context manager protocol.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>Such a statement will raise <code>TypeError</code> at runtime.</p>
+<p><strong>Examples</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="o">**</span><span class="ne">TypeError</span><span class="p">:</span> <span class="s1">&#39;int&#39;</span> <span class="nb">object</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">support</span> <span class="n">the</span> <span class="n">context</span> <span class="n">manager</span> <span class="n">protocol</span><span class="o">**</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="k">with</span> <span class="mi">1</span><span class="p">:</span>
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>    <span class="nb">print</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </code></pre></div>
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-context-manager)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L582)
-</details>
-
 <h2 id="invalid-declaration"><a class="toclink" href="#invalid-declaration"><code>invalid-declaration</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects invalid declarations</summary>
-
-### What it does
-Checks for declarations where the inferred type of an existing symbol
-is not [assignable to] its post-hoc declared type.
-
-### Why is this bad?
-Such declarations break the rules of the type system and
-weaken a type checker's ability to accurately reason about your code.
-
-### Examples
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-declaration">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L604">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for declarations where the inferred type of an existing symbol
+is not <a href="https://typing.python.org/en/latest/spec/glossary.html#term-assignable">assignable to</a> its post-hoc declared type.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>Such declarations break the rules of the type system and
+weaken a type checker's ability to accurately reason about your code.</p>
+<p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
 <a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="n">a</span><span class="p">:</span> <span class="nb">str</span>
 </code></pre></div>
-
-[assignable to]: https://typing.python.org/en/latest/spec/glossary.html#term-assignable
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-declaration)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L603)
-</details>
-
 <h2 id="invalid-exception-caught"><a class="toclink" href="#invalid-exception-caught"><code>invalid-exception-caught</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects exception handlers that catch classes that do not inherit from <code>BaseException</code></summary>
-
-### What it does
-Checks for exception handlers that catch non-exception classes.
-
-### Why is this bad?
-Catching classes that do not inherit from `BaseException` will raise a TypeError at runtime.
-
-### Example
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-exception-caught">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L627">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for exception handlers that catch non-exception classes.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>Catching classes that do not inherit from <code>BaseException</code> will raise a TypeError at runtime.</p>
+<p><strong>Example</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="k">try</span><span class="p">:</span>
 <a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>    <span class="mi">1</span> <span class="o">/</span> <span class="mi">0</span>
 <a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="k">except</span> <span class="mi">1</span><span class="p">:</span>
 <a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>    <span class="o">...</span>
 </code></pre></div>
-
-Use instead:
+<p>Use instead:
 <div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="k">try</span><span class="p">:</span>
 <a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>    <span class="mi">1</span> <span class="o">/</span> <span class="mi">0</span>
 <a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
 <a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>    <span class="o">...</span>
-</code></pre></div>
-
-### References
-- [Python documentation: except clause](https://docs.python.org/3/reference/compound_stmts.html#except-clause)
-- [Python documentation: Built-in Exceptions](https://docs.python.org/3/library/exceptions.html#built-in-exceptions)
-
-### Ruff rule
- This rule corresponds to Ruff's [`except-with-non-exception-classes` (`B030`)](https://docs.astral.sh/ruff/rules/except-with-non-exception-classes)
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-exception-caught)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L626)
-</details>
-
+</code></pre></div></p>
+<p><strong>References</strong></p>
+<ul>
+<li><a href="https://docs.python.org/3/reference/compound_stmts.html#except-clause">Python documentation: except clause</a></li>
+<li><a href="https://docs.python.org/3/library/exceptions.html#built-in-exceptions">Python documentation: Built-in Exceptions</a></li>
+</ul>
+<p><strong>Ruff rule</strong></p>
+<p>This rule corresponds to Ruff's <a href="https://docs.astral.sh/ruff/rules/except-with-non-exception-classes"><code>except-with-non-exception-classes</code> (<code>B030</code>)</a></p>
 <h2 id="invalid-generic-class"><a class="toclink" href="#invalid-generic-class"><code>invalid-generic-class</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects invalid generic classes</summary>
-
-### What it does
-Checks for the creation of invalid generic classes
-
-### Why is this bad?
-There are several requirements that you must follow when defining a generic class.
-
-### Examples
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-generic-class">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L663">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for the creation of invalid generic classes</p>
+<p><strong>Why is this bad?</strong></p>
+<p>There are several requirements that you must follow when defining a generic class.</p>
+<p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Generic</span><span class="p">,</span> <span class="n">TypeVar</span>
 <a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>
 <a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="n">T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">)</span>  <span class="c1"># okay</span>
 <a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>
-<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="c1">## error: class uses both PEP-695 syntax and legacy syntax</span>
-<a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a><span class="k">class</span> <span class="nc">C</span><span class="p">[</span><span class="n">U</span><span class="p">](</span><span class="n">Generic</span><span class="p">[</span><span class="n">T</span><span class="p">]):</span> <span class="o">...</span>
+<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="o">**</span><span class="n">error</span><span class="p">:</span> <span class="k">class</span> <span class="nc">uses</span> <span class="n">both</span> <span class="n">PEP</span><span class="o">-</span><span class="mi">695</span> <span class="n">syntax</span> <span class="ow">and</span> <span class="n">legacy</span> <span class="n">syntax</span><span class="o">**</span>
+<a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>
+<a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a><span class="k">class</span> <span class="nc">C</span><span class="p">[</span><span class="n">U</span><span class="p">](</span><span class="n">Generic</span><span class="p">[</span><span class="n">T</span><span class="p">]):</span> <span class="o">...</span>
 </code></pre></div>
-
-### References
-- [Typing spec: Generics](https://typing.python.org/en/latest/spec/generics.html#introduction)
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-generic-class)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L662)
-</details>
-
+<p><strong>References</strong></p>
+<ul>
+<li><a href="https://typing.python.org/en/latest/spec/generics.html#introduction">Typing spec: Generics</a></li>
+</ul>
 <h2 id="invalid-legacy-type-variable"><a class="toclink" href="#invalid-legacy-type-variable"><code>invalid-legacy-type-variable</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects invalid legacy type variables</summary>
-
-### What it does
-Checks for the creation of invalid legacy `TypeVar`s
-
-### Why is this bad?
-There are several requirements that you must follow when creating a legacy `TypeVar`.
-
-### Examples
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-legacy-type-variable">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L689">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for the creation of invalid legacy <code>TypeVar</code>s</p>
+<p><strong>Why is this bad?</strong></p>
+<p>There are several requirements that you must follow when creating a legacy <code>TypeVar</code>.</p>
+<p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TypeVar</span>
 <a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>
 <a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="n">T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">)</span>  <span class="c1"># okay</span>
 <a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="n">Q</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;S&quot;</span><span class="p">)</span>  <span class="c1"># error: TypeVar name must match the variable it&#39;s assigned to</span>
 <a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="n">T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">)</span>  <span class="c1"># error: TypeVars should not be redefined</span>
 <a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a>
-<a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a><span class="c1">## error: TypeVar must be immediately assigned to a variable</span>
-<a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">t</span><span class="p">:</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;U&quot;</span><span class="p">)):</span> <span class="o">...</span>
+<a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a><span class="o">**</span><span class="n">error</span><span class="p">:</span> <span class="n">TypeVar</span> <span class="n">must</span> <span class="n">be</span> <span class="n">immediately</span> <span class="n">assigned</span> <span class="n">to</span> <span class="n">a</span> <span class="n">variable</span><span class="o">**</span>
+<a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a>
+<a id="__codelineno-27-9" name="__codelineno-27-9" href="#__codelineno-27-9"></a><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">t</span><span class="p">:</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;U&quot;</span><span class="p">)):</span> <span class="o">...</span>
 </code></pre></div>
-
-### References
-- [Typing spec: Generics](https://typing.python.org/en/latest/spec/generics.html#introduction)
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-legacy-type-variable)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L688)
-</details>
-
+<p><strong>References</strong></p>
+<ul>
+<li><a href="https://typing.python.org/en/latest/spec/generics.html#introduction">Typing spec: Generics</a></li>
+</ul>
 <h2 id="invalid-metaclass"><a class="toclink" href="#invalid-metaclass"><code>invalid-metaclass</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects invalid <code>metaclass=</code> arguments</summary>
-
-### What it does
-Checks for arguments to `metaclass=` that are invalid.
-
-### Why is this bad?
-Python allows arbitrary expressions to be used as the argument to `metaclass=`.
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-metaclass">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L738">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for arguments to <code>metaclass=</code> that are invalid.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>Python allows arbitrary expressions to be used as the argument to <code>metaclass=</code>.
 These expressions, however, need to be callable and accept the same arguments
-as `type.__new__`.
-
-### Example
-
+as <code>type.__new__</code>.</p>
+<p><strong>Example</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="k">def</span> <span class="nf">f</span><span class="p">():</span> <span class="o">...</span>
 <a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>
-<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="c1">## TypeError: f() takes 0 positional arguments but 3 were given</span>
-<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="k">class</span> <span class="nc">B</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">f</span><span class="p">):</span> <span class="o">...</span>
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="o">**</span><span class="ne">TypeError</span><span class="p">:</span> <span class="n">f</span><span class="p">()</span> <span class="n">takes</span> <span class="mi">0</span> <span class="n">positional</span> <span class="n">arguments</span> <span class="n">but</span> <span class="mi">3</span> <span class="n">were</span> <span class="n">given</span><span class="o">**</span>
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>
+<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="k">class</span> <span class="nc">B</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">f</span><span class="p">):</span> <span class="o">...</span>
 </code></pre></div>
-
-### References
-- [Python documentation: Metaclasses](https://docs.python.org/3/reference/datamodel.html#metaclasses)
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-metaclass)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L737)
-</details>
-
+<p><strong>References</strong></p>
+<ul>
+<li><a href="https://docs.python.org/3/reference/datamodel.html#metaclasses">Python documentation: Metaclasses</a></li>
+</ul>
 <h2 id="invalid-overload"><a class="toclink" href="#invalid-overload"><code>invalid-overload</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects invalid <code>@overload</code> usages</summary>
-
-### What it does
-Checks for various invalid `@overload` usages.
-
-### Why is this bad?
-The `@overload` decorator is used to define functions and methods that accepts different
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-overload">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L765">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for various invalid <code>@overload</code> usages.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>The <code>@overload</code> decorator is used to define functions and methods that accepts different
 combinations of arguments and return different types based on the arguments passed. This is
-mainly beneficial for type checkers. But, if the `@overload` usage is invalid, the type
-checker may not be able to provide correct type information.
-
-### Example
-
-Defining only one overload:
-
+mainly beneficial for type checkers. But, if the <code>@overload</code> usage is invalid, the type
+checker may not be able to provide correct type information.</p>
+<p><strong>Example</strong></p>
+<p>Defining only one overload:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">overload</span>
 <a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>
 <a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="nd">@overload</span>
@@ -3113,9 +2933,7 @@ Defining only one overload:
 <a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a>    <span class="k">return</span> <span class="n">x</span>
 </code></pre></div>
-
-Or, not providing an implementation for the overloaded definition:
-
+<p>Or, not providing an implementation for the overloaded definition:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">overload</span>
 <a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>
 <a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="nd">@overload</span>
@@ -3123,53 +2941,39 @@ Or, not providing an implementation for the overloaded definition:
 <a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a><span class="nd">@overload</span>
 <a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span> <span class="o">...</span>
 </code></pre></div>
-
-### References
-- [Python documentation: `@overload`](https://docs.python.org/3/library/typing.html#typing.overload)
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-overload)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L764)
-</details>
-
+<p><strong>References</strong></p>
+<ul>
+<li><a href="https://docs.python.org/3/library/typing.html#typing.overload">Python documentation: <code>@overload</code></a></li>
+</ul>
 <h2 id="invalid-parameter-default"><a class="toclink" href="#invalid-parameter-default"><code>invalid-parameter-default</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects default values that can't be assigned to the parameter's annotated type</summary>
-
-### What it does
-Checks for default values that can't be
-assigned to the parameter's annotated type.
-
-### Why is this bad?
-This breaks the rules of the type system and
-weakens a type checker's ability to accurately reason about your code.
-
-### Examples
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-parameter-default">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L808">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for default values that can't be
+assigned to the parameter's annotated type.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>This breaks the rules of the type system and
+weakens a type checker's ability to accurately reason about your code.</p>
+<p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">):</span> <span class="o">...</span>
 </code></pre></div>
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-parameter-default)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L807)
-</details>
-
 <h2 id="invalid-protocol"><a class="toclink" href="#invalid-protocol"><code>invalid-protocol</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects invalid protocol class definitions</summary>
-
-### What it does
-Checks for invalidly defined protocol classes.
-
-### Why is this bad?
-An invalidly defined protocol class may lead to the type checker inferring
-unexpected things. It may also lead to `TypeError`s at runtime.
-
-### Examples
-A `Protocol` class cannot inherit from a non-`Protocol` class;
-this raises a `TypeError` at runtime:
-
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-protocol">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L398">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for invalidly defined protocol classes.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>An invalidly defined protocol class may lead to the type checker inferring
+unexpected things. It may also lead to <code>TypeError</code>s at runtime.</p>
+<p><strong>Examples</strong></p>
+<p>A <code>Protocol</code> class cannot inherit from a non-<code>Protocol</code> class;
+this raises a <code>TypeError</code> at runtime:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Protocol</span>
 <a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Foo</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">Protocol</span><span class="p">):</span> <span class="o">...</span>
 <a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="gp">...</span>
@@ -3178,26 +2982,19 @@ this raises a `TypeError` at runtime:
 <a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a><span class="w">    </span><span class="k">class</span> <span class="nc">Foo</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">Protocol</span><span class="p">):</span> <span class="o">...</span>
 <a id="__codelineno-32-7" name="__codelineno-32-7" href="#__codelineno-32-7"></a><span class="gr">TypeError</span>: <span class="n">Protocols can only inherit from other protocols, got &lt;class &#39;int&#39;&gt;</span>
 </code></pre></div>
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-protocol)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L397)
-</details>
-
 <h2 id="invalid-raise"><a class="toclink" href="#invalid-raise"><code>invalid-raise</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects <code>raise</code> statements that raise invalid exceptions or use invalid causes</summary>
-
-Checks for `raise` statements that raise non-exceptions or use invalid
-causes for their raised exceptions.
-
-### Why is this bad?
-Only subclasses or instances of `BaseException` can be raised.
-For an exception's cause, the same rules apply, except that `None` is also
-permitted. Violating these rules results in a `TypeError` at runtime.
-
-### Examples
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-raise">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L828">View source</a>
+</small></p>
+<p>Checks for <code>raise</code> statements that raise non-exceptions or use invalid
+causes for their raised exceptions.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>Only subclasses or instances of <code>BaseException</code> can be raised.
+For an exception's cause, the same rules apply, except that <code>None</code> is also
+permitted. Violating these rules results in a <code>TypeError</code> at runtime.</p>
+<p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="k">def</span> <span class="nf">f</span><span class="p">():</span>
 <a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>    <span class="k">try</span><span class="p">:</span>
 <a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>        <span class="n">something</span><span class="p">()</span>
@@ -3207,8 +3004,7 @@ permitted. Violating these rules results in a `TypeError` at runtime.
 <a id="__codelineno-33-7" name="__codelineno-33-7" href="#__codelineno-33-7"></a><span class="k">def</span> <span class="nf">g</span><span class="p">():</span>
 <a id="__codelineno-33-8" name="__codelineno-33-8" href="#__codelineno-33-8"></a>    <span class="k">raise</span> <span class="bp">NotImplemented</span> <span class="kn">from</span> <span class="mi">42</span>
 </code></pre></div>
-
-Use instead:
+<p>Use instead:
 <div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="k">def</span> <span class="nf">f</span><span class="p">():</span>
 <a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>    <span class="k">try</span><span class="p">:</span>
 <a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a>        <span class="n">something</span><span class="p">()</span>
@@ -3217,58 +3013,44 @@ Use instead:
 <a id="__codelineno-34-6" name="__codelineno-34-6" href="#__codelineno-34-6"></a>
 <a id="__codelineno-34-7" name="__codelineno-34-7" href="#__codelineno-34-7"></a><span class="k">def</span> <span class="nf">g</span><span class="p">():</span>
 <a id="__codelineno-34-8" name="__codelineno-34-8" href="#__codelineno-34-8"></a>    <span class="k">raise</span> <span class="ne">NotImplementedError</span> <span class="kn">from</span> <span class="kc">None</span>
-</code></pre></div>
-
-### References
-- [Python documentation: The `raise` statement](https://docs.python.org/3/reference/simple_stmts.html#raise)
-- [Python documentation: Built-in Exceptions](https://docs.python.org/3/library/exceptions.html#built-in-exceptions)
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-raise)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L827)
-</details>
-
+</code></pre></div></p>
+<p><strong>References</strong></p>
+<ul>
+<li><a href="https://docs.python.org/3/reference/simple_stmts.html#raise">Python documentation: The <code>raise</code> statement</a></li>
+<li><a href="https://docs.python.org/3/library/exceptions.html#built-in-exceptions">Python documentation: Built-in Exceptions</a></li>
+</ul>
 <h2 id="invalid-return-type"><a class="toclink" href="#invalid-return-type"><code>invalid-return-type</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects returned values that can't be assigned to the function's annotated return type</summary>
-
-### What it does
-Detects returned values that can't be assigned to the function's annotated return type.
-
-### Why is this bad?
-Returning an object of a type incompatible with the annotated return type may cause confusion to the user calling the function.
-
-### Examples
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-return-type">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L491">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Detects returned values that can't be assigned to the function's annotated return type.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>Returning an object of a type incompatible with the annotated return type may cause confusion to the user calling the function.</p>
+<p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="k">def</span> <span class="nf">func</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>    <span class="k">return</span> <span class="s2">&quot;a&quot;</span>  <span class="c1"># error: [invalid-return-type]</span>
 </code></pre></div>
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-return-type)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L490)
-</details>
-
 <h2 id="invalid-super-argument"><a class="toclink" href="#invalid-super-argument"><code>invalid-super-argument</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects invalid arguments for <code>super()</code></summary>
-
-### What it does
-Detects `super()` calls where:
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-super-argument">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L871">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Detects <code>super()</code> calls where:
 - the first argument is not a valid class literal, or
-- the second argument is not an instance or subclass of the first argument.
-
-### Why is this bad?
-`super(type, obj)` expects:
+- the second argument is not an instance or subclass of the first argument.</p>
+<p><strong>Why is this bad?</strong></p>
+<p><code>super(type, obj)</code> expects:
 - the first argument to be a class,
 - and the second argument to satisfy one of the following:
-  - `isinstance(obj, type)` is `True`
-  - `issubclass(obj, type)` is `True`
-
-Violating this relationship will raise a `TypeError` at runtime.
-
-### Examples
+  - <code>isinstance(obj, type)</code> is <code>True</code>
+  - <code>issubclass(obj, type)</code> is <code>True</code></p>
+<p>Violating this relationship will raise a <code>TypeError</code> at runtime.</p>
+<p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="k">class</span> <span class="nc">A</span><span class="p">:</span>
 <a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>    <span class="o">...</span>
 <a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a><span class="k">class</span> <span class="nc">B</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
@@ -3281,118 +3063,84 @@ Violating this relationship will raise a `TypeError` at runtime.
 <a id="__codelineno-36-10" name="__codelineno-36-10" href="#__codelineno-36-10"></a><span class="nb">super</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">A</span><span class="p">())</span>  <span class="c1"># error: `A()` does not satisfy `isinstance(A(), B)`</span>
 <a id="__codelineno-36-11" name="__codelineno-36-11" href="#__codelineno-36-11"></a><span class="nb">super</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">A</span><span class="p">)</span>  <span class="c1"># error: `A` does not satisfy `issubclass(A, B)`</span>
 </code></pre></div>
-
-### References
-- [Python documentation: super()](https://docs.python.org/3/library/functions.html#super)
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-super-argument)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L870)
-</details>
-
+<p><strong>References</strong></p>
+<ul>
+<li><a href="https://docs.python.org/3/library/functions.html#super">Python documentation: super()</a></li>
+</ul>
 <h2 id="invalid-syntax-in-forward-annotation"><a class="toclink" href="#invalid-syntax-in-forward-annotation"><code>invalid-syntax-in-forward-annotation</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects invalid syntax in forward annotations</summary>
-
-TODO #14889
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-syntax-in-forward-annotation)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fstring_annotation.rs#L111)
-</details>
-
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-syntax-in-forward-annotation">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fstring_annotation.rs#L111">View source</a>
+</small></p>
+<p>TODO #14889</p>
 <h2 id="invalid-type-alias-type"><a class="toclink" href="#invalid-type-alias-type"><code>invalid-type-alias-type</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects invalid TypeAliasType definitions</summary>
-
-### What it does
-Checks for the creation of invalid `TypeAliasType`s
-
-### Why is this bad?
-There are several requirements that you must follow when creating a `TypeAliasType`.
-
-### Examples
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-type-alias-type">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L717">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for the creation of invalid <code>TypeAliasType</code>s</p>
+<p><strong>Why is this bad?</strong></p>
+<p>There are several requirements that you must follow when creating a <code>TypeAliasType</code>.</p>
+<p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TypeAliasType</span>
 <a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a>
 <a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a><span class="n">IntOrStr</span> <span class="o">=</span> <span class="n">TypeAliasType</span><span class="p">(</span><span class="s2">&quot;IntOrStr&quot;</span><span class="p">,</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">)</span>  <span class="c1"># okay</span>
 <a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a><span class="n">NewAlias</span> <span class="o">=</span> <span class="n">TypeAliasType</span><span class="p">(</span><span class="n">get_name</span><span class="p">(),</span> <span class="nb">int</span><span class="p">)</span>        <span class="c1"># error: TypeAliasType name must be a string literal</span>
 </code></pre></div>
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-type-alias-type)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L716)
-</details>
-
 <h2 id="invalid-type-checking-constant"><a class="toclink" href="#invalid-type-checking-constant"><code>invalid-type-checking-constant</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects invalid <code>TYPE_CHECKING</code> constant assignments</summary>
-
-### What it does
-Checks for a value other than `False` assigned to the `TYPE_CHECKING` variable, or an
-annotation not assignable from `bool`.
-
-### Why is this bad?
-The name `TYPE_CHECKING` is reserved for a flag that can be used to provide conditional
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-type-checking-constant">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L910">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for a value other than <code>False</code> assigned to the <code>TYPE_CHECKING</code> variable, or an
+annotation not assignable from <code>bool</code>.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>The name <code>TYPE_CHECKING</code> is reserved for a flag that can be used to provide conditional
 code seen only by the type checker, and not at runtime. Normally this flag is imported from
-`typing` or `typing_extensions`, but it can also be defined locally. If defined locally, it
-must be assigned the value `False` at runtime; the type checker will consider its value to
-be `True`. If annotated, it must be annotated as a type that can accept `bool` values.
-
-### Examples
+<code>typing</code> or <code>typing_extensions</code>, but it can also be defined locally. If defined locally, it
+must be assigned the value <code>False</code> at runtime; the type checker will consider its value to
+be <code>True</code>. If annotated, it must be annotated as a type that can accept <code>bool</code> values.</p>
+<p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="n">TYPE_CHECKING</span><span class="p">:</span> <span class="nb">str</span>
 <a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="n">TYPE_CHECKING</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
 </code></pre></div>
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-type-checking-constant)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L909)
-</details>
-
 <h2 id="invalid-type-form"><a class="toclink" href="#invalid-type-form"><code>invalid-type-form</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects invalid type forms</summary>
-
-### What it does
-Checks for expressions that are used as [type expressions]
-but cannot validly be interpreted as such.
-
-### Why is this bad?
-Such expressions cannot be understood by ty.
-In some cases, they might raise errors at runtime.
-
-### Examples
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-type-form">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L934">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for expressions that are used as <a href="https://typing.python.org/en/latest/spec/annotations.html#type-and-annotation-expressions">type expressions</a>
+but cannot validly be interpreted as such.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>Such expressions cannot be understood by ty.
+In some cases, they might raise errors at runtime.</p>
+<p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Annotated</span>
 <a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>
 <a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a><span class="n">a</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># `1` is not a type</span>
 <a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a><span class="n">b</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>  <span class="c1"># `Annotated` expects at least two arguments</span>
 </code></pre></div>
-[type expressions]: https://typing.python.org/en/latest/spec/annotations.html#type-and-annotation-expressions
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-type-form)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L933)
-</details>
-
 <h2 id="invalid-type-guard-call"><a class="toclink" href="#invalid-type-guard-call"><code>invalid-type-guard-call</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects type guard function calls that has no narrowing effect</summary>
-
-### What it does
-Checks for type guard function calls without a valid target.
-
-### Why is this bad?
-The first non-keyword non-variadic argument to a type guard function
-is its target and must map to a symbol.
-
-Starred (`is_str(*a)`), literal (`is_str(42)`) and other non-symbol-like
-expressions are invalid as narrowing targets.
-
-### Examples
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-type-guard-call">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L986">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for type guard function calls without a valid target.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>The first non-keyword non-variadic argument to a type guard function
+is its target and must map to a symbol.</p>
+<p>Starred (<code>is_str(*a)</code>), literal (<code>is_str(42)</code>) and other non-symbol-like
+expressions are invalid as narrowing targets.</p>
+<p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TypeIs</span>
 <a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>
 <a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">v</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TypeIs</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span> <span class="o">...</span>
@@ -3401,28 +3149,20 @@ expressions are invalid as narrowing targets.
 <a id="__codelineno-40-6" name="__codelineno-40-6" href="#__codelineno-40-6"></a><span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="p">)</span>  <span class="c1"># Error</span>
 <a id="__codelineno-40-7" name="__codelineno-40-7" href="#__codelineno-40-7"></a><span class="n">f</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># Error</span>
 </code></pre></div>
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-type-guard-call)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L985)
-</details>
-
 <h2 id="invalid-type-guard-definition"><a class="toclink" href="#invalid-type-guard-definition"><code>invalid-type-guard-definition</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects malformed type guard functions</summary>
-
-### What it does
-Checks for type guard functions without
-a first non-self-like non-keyword-only non-variadic parameter.
-
-### Why is this bad?
-Type narrowing functions must accept at least one positional argument
-(non-static methods must accept another in addition to `self`/`cls`).
-
-Extra parameters/arguments are allowed but do not affect narrowing.
-
-### Examples
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-type-guard-definition">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L958">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for type guard functions without
+a first non-self-like non-keyword-only non-variadic parameter.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>Type narrowing functions must accept at least one positional argument
+(non-static methods must accept another in addition to <code>self</code>/<code>cls</code>).</p>
+<p>Extra parameters/arguments are allowed but do not affect narrowing.</p>
+<p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TypeIs</span>
 <a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a>
 <a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a><span class="k">def</span> <span class="nf">f</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">TypeIs</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span> <span class="o">...</span>  <span class="c1"># Error, no parameter</span>
@@ -3431,291 +3171,199 @@ Extra parameters/arguments are allowed but do not affect narrowing.
 <a id="__codelineno-41-6" name="__codelineno-41-6" href="#__codelineno-41-6"></a><span class="k">class</span> <span class="nc">C</span><span class="p">:</span>
 <a id="__codelineno-41-7" name="__codelineno-41-7" href="#__codelineno-41-7"></a>    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TypeIs</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span> <span class="o">...</span>  <span class="c1"># Error, only positional argument expected is `self`</span>
 </code></pre></div>
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-type-guard-definition)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L957)
-</details>
-
 <h2 id="invalid-type-variable-constraints"><a class="toclink" href="#invalid-type-variable-constraints"><code>invalid-type-variable-constraints</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects invalid type variable constraints</summary>
-
-### What it does
-Checks for constrained [type variables] with only one constraint.
-
-### Why is this bad?
-A constrained type variable must have at least two constraints.
-
-### Examples
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-type-variable-constraints">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1014">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for constrained <a href="https://docs.python.org/3/library/typing.html#typing.TypeVar">type variables</a> with only one constraint.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>A constrained type variable must have at least two constraints.</p>
+<p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TypeVar</span>
 <a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a>
 <a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a><span class="n">T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>  <span class="c1"># invalid constrained TypeVar</span>
 </code></pre></div>
-
-Use instead:
+<p>Use instead:
 <div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="n">T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>  <span class="c1"># valid constrained TypeVar</span>
-<a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a><span class="c1">## or</span>
-<a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a><span class="n">T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="nb">str</span><span class="p">)</span>  <span class="c1"># valid bound TypeVar</span>
-</code></pre></div>
-
-[type variables]: https://docs.python.org/3/library/typing.html#typing.TypeVar
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-type-variable-constraints)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1013)
-</details>
-
+<a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a><span class="o">**</span><span class="ow">or</span><span class="o">**</span>
+<a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a>
+<a id="__codelineno-43-4" name="__codelineno-43-4" href="#__codelineno-43-4"></a><span class="n">T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="nb">str</span><span class="p">)</span>  <span class="c1"># valid bound TypeVar</span>
+</code></pre></div></p>
 <h2 id="missing-argument"><a class="toclink" href="#missing-argument"><code>missing-argument</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects missing required arguments in a call</summary>
-
-### What it does
-Checks for missing required arguments in a call.
-
-### Why is this bad?
-Failing to provide a required argument will raise a `TypeError` at runtime.
-
-### Examples
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20missing-argument">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1043">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for missing required arguments in a call.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>Failing to provide a required argument will raise a <code>TypeError</code> at runtime.</p>
+<p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span> <span class="o">...</span>
 <a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a><span class="n">func</span><span class="p">()</span>  <span class="c1"># TypeError: func() missing 1 required positional argument: &#39;x&#39;</span>
 </code></pre></div>
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20missing-argument)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1042)
-</details>
-
 <h2 id="no-matching-overload"><a class="toclink" href="#no-matching-overload"><code>no-matching-overload</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects calls that do not match any overload</summary>
-
-### What it does
-Checks for calls to an overloaded function that do not match any of the overloads.
-
-### Why is this bad?
-Failing to provide the correct arguments to one of the overloads will raise a `TypeError`
-at runtime.
-
-### Examples
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20no-matching-overload">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1062">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for calls to an overloaded function that do not match any of the overloads.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>Failing to provide the correct arguments to one of the overloads will raise a <code>TypeError</code>
+at runtime.</p>
+<p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="nd">@overload</span>
 <a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span> <span class="o">...</span>
 <a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a><span class="nd">@overload</span>
 <a id="__codelineno-45-4" name="__codelineno-45-4" href="#__codelineno-45-4"></a><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span> <span class="o">...</span>
 <a id="__codelineno-45-5" name="__codelineno-45-5" href="#__codelineno-45-5"></a><span class="n">func</span><span class="p">(</span><span class="s2">&quot;string&quot;</span><span class="p">)</span>  <span class="c1"># error: [no-matching-overload]</span>
 </code></pre></div>
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20no-matching-overload)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1061)
-</details>
-
 <h2 id="non-subscriptable"><a class="toclink" href="#non-subscriptable"><code>non-subscriptable</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects subscripting objects that do not support subscripting</summary>
-
-### What it does
-Checks for subscripting objects that do not support subscripting.
-
-### Why is this bad?
-Subscripting an object that does not support it will raise a `TypeError` at runtime.
-
-### Examples
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20non-subscriptable">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1085">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for subscripting objects that do not support subscripting.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>Subscripting an object that does not support it will raise a <code>TypeError</code> at runtime.</p>
+<p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="mi">4</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># TypeError: &#39;int&#39; object is not subscriptable</span>
 </code></pre></div>
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20non-subscriptable)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1084)
-</details>
-
 <h2 id="not-iterable"><a class="toclink" href="#not-iterable"><code>not-iterable</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects iteration over an object that is not iterable</summary>
-
-### What it does
-Checks for objects that are not iterable but are used in a context that requires them to be.
-
-### Why is this bad?
-Iterating over an object that is not iterable will raise a `TypeError` at runtime.
-
-### Examples
-
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20not-iterable">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1103">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for objects that are not iterable but are used in a context that requires them to be.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>Iterating over an object that is not iterable will raise a <code>TypeError</code> at runtime.</p>
+<p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="mi">34</span><span class="p">:</span>  <span class="c1"># TypeError: &#39;int&#39; object is not iterable</span>
 <a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a>    <span class="k">pass</span>
 </code></pre></div>
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20not-iterable)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1102)
-</details>
-
 <h2 id="parameter-already-assigned"><a class="toclink" href="#parameter-already-assigned"><code>parameter-already-assigned</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects multiple arguments for the same parameter</summary>
-
-### What it does
-Checks for calls which provide more than one argument for a single parameter.
-
-### Why is this bad?
-Providing multiple values for a single parameter will raise a `TypeError` at runtime.
-
-### Examples
-
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20parameter-already-assigned">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1154">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for calls which provide more than one argument for a single parameter.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>Providing multiple values for a single parameter will raise a <code>TypeError</code> at runtime.</p>
+<p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span> <span class="o">...</span>
 <a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a>
 <a id="__codelineno-48-3" name="__codelineno-48-3" href="#__codelineno-48-3"></a><span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># Error raised here</span>
 </code></pre></div>
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20parameter-already-assigned)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1153)
-</details>
-
 <h2 id="raw-string-type-annotation"><a class="toclink" href="#raw-string-type-annotation"><code>raw-string-type-annotation</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects raw strings in type annotation positions</summary>
-
-### What it does
-Checks for raw-strings in type annotation positions.
-
-### Why is this bad?
-Static analysis tools like ty can't analyse type annotations that use raw-string notation.
-
-### Examples
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20raw-string-type-annotation">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fstring_annotation.rs#L61">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for raw-strings in type annotation positions.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>Static analysis tools like ty can't analyse type annotations that use raw-string notation.</p>
+<p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="k">def</span> <span class="nf">test</span><span class="p">():</span> <span class="o">-&gt;</span> <span class="sa">r</span><span class="s2">&quot;int&quot;</span><span class="p">:</span>
 <a id="__codelineno-49-2" name="__codelineno-49-2" href="#__codelineno-49-2"></a>    <span class="o">...</span>
 </code></pre></div>
-
-Use instead:
+<p>Use instead:
 <div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="k">def</span> <span class="nf">test</span><span class="p">():</span> <span class="o">-&gt;</span> <span class="s2">&quot;int&quot;</span><span class="p">:</span>
 <a id="__codelineno-50-2" name="__codelineno-50-2" href="#__codelineno-50-2"></a>    <span class="o">...</span>
-</code></pre></div>
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20raw-string-type-annotation)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fstring_annotation.rs#L61)
-</details>
-
+</code></pre></div></p>
 <h2 id="static-assert-error"><a class="toclink" href="#static-assert-error"><code>static-assert-error</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>Failed static assertion</summary>
-
-### What it does
-Makes sure that the argument of `static_assert` is statically known to be true.
-
-### Why is this bad?
-A `static_assert` call represents an explicit request from the user
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20static-assert-error">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1490">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Makes sure that the argument of <code>static_assert</code> is statically known to be true.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>A <code>static_assert</code> call represents an explicit request from the user
 for the type checker to emit an error if the argument cannot be verified
-to evaluate to `True` in a boolean context.
-
-### Examples
+to evaluate to <code>True</code> in a boolean context.</p>
+<p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a><span class="kn">from</span> <span class="nn">ty_extensions</span> <span class="kn">import</span> <span class="n">static_assert</span>
 <a id="__codelineno-51-2" name="__codelineno-51-2" href="#__codelineno-51-2"></a>
 <a id="__codelineno-51-3" name="__codelineno-51-3" href="#__codelineno-51-3"></a><span class="n">static_assert</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span>  <span class="c1"># error: evaluates to `False`</span>
 <a id="__codelineno-51-4" name="__codelineno-51-4" href="#__codelineno-51-4"></a>
 <a id="__codelineno-51-5" name="__codelineno-51-5" href="#__codelineno-51-5"></a><span class="n">static_assert</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="mf">3.0</span><span class="p">)</span> <span class="o">==</span> <span class="mi">6</span><span class="p">)</span>  <span class="c1"># error: does not have a statically known truthiness</span>
 </code></pre></div>
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20static-assert-error)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1489)
-</details>
-
 <h2 id="subclass-of-final-class"><a class="toclink" href="#subclass-of-final-class"><code>subclass-of-final-class</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects subclasses of final classes</summary>
-
-### What it does
-Checks for classes that subclass final classes.
-
-### Why is this bad?
-Decorating a class with `@final` declares to the type checker that it should not be subclassed.
-
-### Example
-
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20subclass-of-final-class">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1245">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for classes that subclass final classes.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>Decorating a class with <code>@final</code> declares to the type checker that it should not be subclassed.</p>
+<p><strong>Example</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">final</span>
 <a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a>
 <a id="__codelineno-52-3" name="__codelineno-52-3" href="#__codelineno-52-3"></a><span class="nd">@final</span>
 <a id="__codelineno-52-4" name="__codelineno-52-4" href="#__codelineno-52-4"></a><span class="k">class</span> <span class="nc">A</span><span class="p">:</span> <span class="o">...</span>
 <a id="__codelineno-52-5" name="__codelineno-52-5" href="#__codelineno-52-5"></a><span class="k">class</span> <span class="nc">B</span><span class="p">(</span><span class="n">A</span><span class="p">):</span> <span class="o">...</span>  <span class="c1"># Error raised here</span>
 </code></pre></div>
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20subclass-of-final-class)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1244)
-</details>
-
 <h2 id="too-many-positional-arguments"><a class="toclink" href="#too-many-positional-arguments"><code>too-many-positional-arguments</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects calls passing too many positional arguments</summary>
-
-### What it does
-Checks for calls that pass more positional arguments than the callable can accept.
-
-### Why is this bad?
-Passing too many positional arguments will raise `TypeError` at runtime.
-
-### Example
-
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20too-many-positional-arguments">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1290">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for calls that pass more positional arguments than the callable can accept.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>Passing too many positional arguments will raise <code>TypeError</code> at runtime.</p>
+<p><strong>Example</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a><span class="k">def</span> <span class="nf">f</span><span class="p">():</span> <span class="o">...</span>
 <a id="__codelineno-53-2" name="__codelineno-53-2" href="#__codelineno-53-2"></a>
 <a id="__codelineno-53-3" name="__codelineno-53-3" href="#__codelineno-53-3"></a><span class="n">f</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">)</span>  <span class="c1"># Error raised here</span>
 </code></pre></div>
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20too-many-positional-arguments)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1289)
-</details>
-
 <h2 id="type-assertion-failure"><a class="toclink" href="#type-assertion-failure"><code>type-assertion-failure</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects failed type assertions</summary>
-
-### What it does
-Checks for `assert_type()` and `assert_never()` calls where the actual type
-is not the same as the asserted type.
-
-### Why is this bad?
-`assert_type()` allows confirming the inferred type of a certain value.
-
-### Example
-
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20type-assertion-failure">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1268">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for <code>assert_type()</code> and <code>assert_never()</code> calls where the actual type
+is not the same as the asserted type.</p>
+<p><strong>Why is this bad?</strong></p>
+<p><code>assert_type()</code> allows confirming the inferred type of a certain value.</p>
+<p><strong>Example</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a><span class="k">def</span> <span class="nf">_</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
 <a id="__codelineno-54-2" name="__codelineno-54-2" href="#__codelineno-54-2"></a>    <span class="n">assert_type</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>  <span class="c1"># fine</span>
 <a id="__codelineno-54-3" name="__codelineno-54-3" href="#__codelineno-54-3"></a>    <span class="n">assert_type</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>  <span class="c1"># error: Actual type does not match asserted type</span>
 </code></pre></div>
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20type-assertion-failure)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1267)
-</details>
-
 <h2 id="unavailable-implicit-super-arguments"><a class="toclink" href="#unavailable-implicit-super-arguments"><code>unavailable-implicit-super-arguments</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects invalid <code>super()</code> calls where implicit arguments are unavailable.</summary>
-
-### What it does
-Detects invalid `super()` calls where implicit arguments like the enclosing class or first method argument are unavailable.
-
-### Why is this bad?
-When `super()` is used without arguments, Python tries to find two things:
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20unavailable-implicit-super-arguments">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1311">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Detects invalid <code>super()</code> calls where implicit arguments like the enclosing class or first method argument are unavailable.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>When <code>super()</code> is used without arguments, Python tries to find two things:
 the nearest enclosing class and the first argument of the immediately enclosing function (typically self or cls).
-If either of these is missing, the call will fail at runtime with a `RuntimeError`.
-
-### Examples
+If either of these is missing, the call will fail at runtime with a <code>RuntimeError</code>.</p>
+<p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a><span class="nb">super</span><span class="p">()</span>  <span class="c1"># error: no enclosing class or function found</span>
 <a id="__codelineno-55-2" name="__codelineno-55-2" href="#__codelineno-55-2"></a>
 <a id="__codelineno-55-3" name="__codelineno-55-3" href="#__codelineno-55-3"></a><span class="k">def</span> <span class="nf">func</span><span class="p">():</span>
@@ -3734,118 +3382,81 @@ If either of these is missing, the call will fail at runtime with a `RuntimeErro
 <a id="__codelineno-55-16" name="__codelineno-55-16" href="#__codelineno-55-16"></a>
 <a id="__codelineno-55-17" name="__codelineno-55-17" href="#__codelineno-55-17"></a>        <span class="nb">super</span><span class="p">()</span>  <span class="c1"># okay! both enclosing class and first argument are available</span>
 </code></pre></div>
-
-### References
-- [Python documentation: super()](https://docs.python.org/3/library/functions.html#super)
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20unavailable-implicit-super-arguments)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1310)
-</details>
-
+<p><strong>References</strong></p>
+<ul>
+<li><a href="https://docs.python.org/3/library/functions.html#super">Python documentation: super()</a></li>
+</ul>
 <h2 id="unknown-argument"><a class="toclink" href="#unknown-argument"><code>unknown-argument</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects unknown keyword arguments in calls</summary>
-
-### What it does
-Checks for keyword arguments in calls that don't match any parameter of the callable.
-
-### Why is this bad?
-Providing an unknown keyword argument will raise `TypeError` at runtime.
-
-### Example
-
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20unknown-argument">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1368">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for keyword arguments in calls that don't match any parameter of the callable.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>Providing an unknown keyword argument will raise <code>TypeError</code> at runtime.</p>
+<p><strong>Example</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span> <span class="o">...</span>
 <a id="__codelineno-56-2" name="__codelineno-56-2" href="#__codelineno-56-2"></a>
 <a id="__codelineno-56-3" name="__codelineno-56-3" href="#__codelineno-56-3"></a><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># Error raised here</span>
 </code></pre></div>
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20unknown-argument)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1367)
-</details>
-
 <h2 id="unresolved-attribute"><a class="toclink" href="#unresolved-attribute"><code>unresolved-attribute</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects references to unresolved attributes</summary>
-
-### What it does
-Checks for unresolved attributes.
-
-### Why is this bad?
-Accessing an unbound attribute will raise an `AttributeError` at runtime.
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20unresolved-attribute">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1389">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for unresolved attributes.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>Accessing an unbound attribute will raise an <code>AttributeError</code> at runtime.
 An unresolved attribute is not guaranteed to exist from the type alone,
-so this could also indicate that the object is not of the type that the user expects.
-
-### Examples
+so this could also indicate that the object is not of the type that the user expects.</p>
+<p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a><span class="k">class</span> <span class="nc">A</span><span class="p">:</span> <span class="o">...</span>
 <a id="__codelineno-57-2" name="__codelineno-57-2" href="#__codelineno-57-2"></a>
 <a id="__codelineno-57-3" name="__codelineno-57-3" href="#__codelineno-57-3"></a><span class="n">A</span><span class="p">()</span><span class="o">.</span><span class="n">foo</span>  <span class="c1"># AttributeError: &#39;A&#39; object has no attribute &#39;foo&#39;</span>
 </code></pre></div>
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20unresolved-attribute)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1388)
-</details>
-
 <h2 id="unresolved-import"><a class="toclink" href="#unresolved-import"><code>unresolved-import</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects unresolved imports</summary>
-
-### What it does
-Checks for import statements for which the module cannot be resolved.
-
-### Why is this bad?
-Importing a module that cannot be resolved will raise a `ModuleNotFoundError`
-at runtime.
-
-### Examples
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20unresolved-import">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1411">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for import statements for which the module cannot be resolved.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>Importing a module that cannot be resolved will raise a <code>ModuleNotFoundError</code>
+at runtime.</p>
+<p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a><span class="kn">import</span> <span class="nn">foo</span>  <span class="c1"># ModuleNotFoundError: No module named &#39;foo&#39;</span>
 </code></pre></div>
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20unresolved-import)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1410)
-</details>
-
 <h2 id="unresolved-reference"><a class="toclink" href="#unresolved-reference"><code>unresolved-reference</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects references to names that are not defined</summary>
-
-### What it does
-Checks for references to names that are not defined.
-
-### Why is this bad?
-Using an undefined variable will raise a `NameError` at runtime.
-
-### Example
-
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20unresolved-reference">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1430">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for references to names that are not defined.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>Using an undefined variable will raise a <code>NameError</code> at runtime.</p>
+<p><strong>Example</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># NameError: name &#39;x&#39; is not defined</span>
 </code></pre></div>
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20unresolved-reference)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1429)
-</details>
-
 <h2 id="unsupported-bool-conversion"><a class="toclink" href="#unsupported-bool-conversion"><code>unsupported-bool-conversion</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects boolean conversion where the object incorrectly implements <code>__bool__</code></summary>
-
-### What it does
-Checks for bool conversions where the object doesn't correctly implement `__bool__`.
-
-### Why is this bad?
-If an exception is raised when you attempt to evaluate the truthiness of an object,
-using the object in a boolean context will fail at runtime.
-
-### Examples
-
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20unsupported-bool-conversion">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1123">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for bool conversions where the object doesn't correctly implement <code>__bool__</code>.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>If an exception is raised when you attempt to evaluate the truthiness of an object,
+using the object in a boolean context will fail at runtime.</p>
+<p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a><span class="k">class</span> <span class="nc">NotBoolable</span><span class="p">:</span>
 <a id="__codelineno-60-2" name="__codelineno-60-2" href="#__codelineno-60-2"></a>    <span class="fm">__bool__</span> <span class="o">=</span> <span class="kc">None</span>
 <a id="__codelineno-60-3" name="__codelineno-60-3" href="#__codelineno-60-3"></a>
@@ -3859,120 +3470,83 @@ using the object in a boolean context will fail at runtime.
 <a id="__codelineno-60-11" name="__codelineno-60-11" href="#__codelineno-60-11"></a><span class="ow">not</span> <span class="n">b1</span>  <span class="c1"># exception raised here</span>
 <a id="__codelineno-60-12" name="__codelineno-60-12" href="#__codelineno-60-12"></a><span class="n">b1</span> <span class="o">&lt;</span> <span class="n">b2</span> <span class="o">&lt;</span> <span class="n">b1</span>  <span class="c1"># exception raised here</span>
 </code></pre></div>
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20unsupported-bool-conversion)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1122)
-</details>
-
 <h2 id="unsupported-operator"><a class="toclink" href="#unsupported-operator"><code>unsupported-operator</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects binary, unary, or comparison expressions where the operands don't support the operator</summary>
-
-### What it does
-Checks for binary expressions, comparisons, and unary expressions where
-the operands don't support the operator.
-
-### Why is this bad?
-Attempting to use an unsupported operator will raise a `TypeError` at
-runtime.
-
-### Examples
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20unsupported-operator">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1449">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for binary expressions, comparisons, and unary expressions where
+the operands don't support the operator.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>Attempting to use an unsupported operator will raise a <code>TypeError</code> at
+runtime.</p>
+<p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a><span class="k">class</span> <span class="nc">A</span><span class="p">:</span> <span class="o">...</span>
 <a id="__codelineno-61-2" name="__codelineno-61-2" href="#__codelineno-61-2"></a>
 <a id="__codelineno-61-3" name="__codelineno-61-3" href="#__codelineno-61-3"></a><span class="n">A</span><span class="p">()</span> <span class="o">+</span> <span class="n">A</span><span class="p">()</span>  <span class="c1"># TypeError: unsupported operand type(s) for +: &#39;A&#39; and &#39;A&#39;</span>
 </code></pre></div>
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20unsupported-operator)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1448)
-</details>
-
 <h2 id="zero-stepsize-in-slice"><a class="toclink" href="#zero-stepsize-in-slice"><code>zero-stepsize-in-slice</code></a></h2>
-<p><strong>Default level</strong>: error</p>
-<details>
-<summary>detects a slice step size of zero</summary>
-
-### What it does
-Checks for step size 0 in slices.
-
-### Why is this bad?
-A slice with a step size of zero will raise a `ValueError` at runtime.
-
-### Examples
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20zero-stepsize-in-slice">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1471">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for step size 0 in slices.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>A slice with a step size of zero will raise a <code>ValueError</code> at runtime.</p>
+<p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a><span class="n">l</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
 <a id="__codelineno-62-2" name="__codelineno-62-2" href="#__codelineno-62-2"></a><span class="n">l</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">10</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># ValueError: slice step cannot be zero</span>
 </code></pre></div>
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20zero-stepsize-in-slice)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1470)
-</details>
-
 <h2 id="invalid-ignore-comment"><a class="toclink" href="#invalid-ignore-comment"><code>invalid-ignore-comment</code></a></h2>
-<p><strong>Default level</strong>: warn</p>
-<details>
-<summary>detects ignore comments that use invalid syntax</summary>
-
-### What it does
-Checks for `type: ignore` and `ty: ignore` comments that are syntactically incorrect.
-
-### Why is this bad?
-A syntactically incorrect ignore comment is probably a mistake and is useless.
-
-### Examples
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'warn'."><code>warn</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-ignore-comment">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Fsuppression.rs#L65">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for <code>type: ignore</code> and <code>ty: ignore</code> comments that are syntactically incorrect.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>A syntactically incorrect ignore comment is probably a mistake and is useless.</p>
+<p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a><span class="n">a</span> <span class="o">=</span> <span class="mi">20</span> <span class="o">/</span> <span class="mi">0</span>  <span class="c1"># type: ignoree</span>
 </code></pre></div>
-
-Use instead:
-
+<p>Use instead:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a><span class="n">a</span> <span class="o">=</span> <span class="mi">20</span> <span class="o">/</span> <span class="mi">0</span>  <span class="c1"># type: ignore</span>
 </code></pre></div>
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-ignore-comment)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Fsuppression.rs#L65)
-</details>
-
 <h2 id="possibly-unbound-attribute"><a class="toclink" href="#possibly-unbound-attribute"><code>possibly-unbound-attribute</code></a></h2>
-<p><strong>Default level</strong>: warn</p>
-<details>
-<summary>detects references to possibly unbound attributes</summary>
-
-### What it does
-Checks for possibly unbound attributes.
-
-### Why is this bad?
-Attempting to access an unbound attribute will raise an `AttributeError` at runtime.
-
-### Examples
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'warn'."><code>warn</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20possibly-unbound-attribute">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1175">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for possibly unbound attributes.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>Attempting to access an unbound attribute will raise an <code>AttributeError</code> at runtime.</p>
+<p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-65-1" name="__codelineno-65-1" href="#__codelineno-65-1"></a><span class="k">class</span> <span class="nc">A</span><span class="p">:</span>
 <a id="__codelineno-65-2" name="__codelineno-65-2" href="#__codelineno-65-2"></a>    <span class="k">if</span> <span class="n">b</span><span class="p">:</span>
 <a id="__codelineno-65-3" name="__codelineno-65-3" href="#__codelineno-65-3"></a>        <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span>
 <a id="__codelineno-65-4" name="__codelineno-65-4" href="#__codelineno-65-4"></a>
 <a id="__codelineno-65-5" name="__codelineno-65-5" href="#__codelineno-65-5"></a><span class="n">A</span><span class="o">.</span><span class="n">c</span>  <span class="c1"># AttributeError: type object &#39;A&#39; has no attribute &#39;c&#39;</span>
 </code></pre></div>
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20possibly-unbound-attribute)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1174)
-</details>
-
 <h2 id="possibly-unbound-implicit-call"><a class="toclink" href="#possibly-unbound-implicit-call"><code>possibly-unbound-implicit-call</code></a></h2>
-<p><strong>Default level</strong>: warn</p>
-<details>
-<summary>detects implicit calls to possibly unbound methods</summary>
-
-### What it does
-Checks for implicit calls to possibly unbound methods.
-
-### Why is this bad?
-Expressions such as `x[y]` and `x * y` call methods
-under the hood (`__getitem__` and `__mul__` respectively).
-Calling an unbound method will raise an `AttributeError` at runtime.
-
-### Examples
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'warn'."><code>warn</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20possibly-unbound-implicit-call">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L116">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for implicit calls to possibly unbound methods.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>Expressions such as <code>x[y]</code> and <code>x * y</code> call methods
+under the hood (<code>__getitem__</code> and <code>__mul__</code> respectively).
+Calling an unbound method will raise an <code>AttributeError</code> at runtime.</p>
+<p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-66-1" name="__codelineno-66-1" href="#__codelineno-66-1"></a><span class="kn">import</span> <span class="nn">datetime</span>
 <a id="__codelineno-66-2" name="__codelineno-66-2" href="#__codelineno-66-2"></a>
 <a id="__codelineno-66-3" name="__codelineno-66-3" href="#__codelineno-66-3"></a><span class="k">class</span> <span class="nc">A</span><span class="p">:</span>
@@ -3981,124 +3555,89 @@ Calling an unbound method will raise an `AttributeError` at runtime.
 <a id="__codelineno-66-6" name="__codelineno-66-6" href="#__codelineno-66-6"></a>
 <a id="__codelineno-66-7" name="__codelineno-66-7" href="#__codelineno-66-7"></a><span class="n">A</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># TypeError: &#39;A&#39; object is not subscriptable</span>
 </code></pre></div>
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20possibly-unbound-implicit-call)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L115)
-</details>
-
 <h2 id="possibly-unbound-import"><a class="toclink" href="#possibly-unbound-import"><code>possibly-unbound-import</code></a></h2>
-<p><strong>Default level</strong>: warn</p>
-<details>
-<summary>detects possibly unbound imports</summary>
-
-### What it does
-Checks for imports of symbols that may be unbound.
-
-### Why is this bad?
-Importing an unbound module or name will raise a `ModuleNotFoundError`
-or `ImportError` at runtime.
-
-### Examples
-<div class="highlight"><pre><span></span><code><a id="__codelineno-67-1" name="__codelineno-67-1" href="#__codelineno-67-1"></a><span class="c1">## module.py</span>
-<a id="__codelineno-67-2" name="__codelineno-67-2" href="#__codelineno-67-2"></a><span class="kn">import</span> <span class="nn">datetime</span>
-<a id="__codelineno-67-3" name="__codelineno-67-3" href="#__codelineno-67-3"></a>
-<a id="__codelineno-67-4" name="__codelineno-67-4" href="#__codelineno-67-4"></a><span class="k">if</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">weekday</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">6</span><span class="p">:</span>
-<a id="__codelineno-67-5" name="__codelineno-67-5" href="#__codelineno-67-5"></a>    <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
-<a id="__codelineno-67-6" name="__codelineno-67-6" href="#__codelineno-67-6"></a>
-<a id="__codelineno-67-7" name="__codelineno-67-7" href="#__codelineno-67-7"></a><span class="c1">## main.py</span>
-<a id="__codelineno-67-8" name="__codelineno-67-8" href="#__codelineno-67-8"></a><span class="kn">from</span> <span class="nn">module</span> <span class="kn">import</span> <span class="n">a</span>  <span class="c1"># ImportError: cannot import name &#39;a&#39; from &#39;module&#39;</span>
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'warn'."><code>warn</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20possibly-unbound-import">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1197">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for imports of symbols that may be unbound.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>Importing an unbound module or name will raise a <code>ModuleNotFoundError</code>
+or <code>ImportError</code> at runtime.</p>
+<p><strong>Examples</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-67-1" name="__codelineno-67-1" href="#__codelineno-67-1"></a><span class="o">**</span><span class="n">module</span><span class="o">.</span><span class="n">py</span><span class="o">**</span>
+<a id="__codelineno-67-2" name="__codelineno-67-2" href="#__codelineno-67-2"></a>
+<a id="__codelineno-67-3" name="__codelineno-67-3" href="#__codelineno-67-3"></a><span class="kn">import</span> <span class="nn">datetime</span>
+<a id="__codelineno-67-4" name="__codelineno-67-4" href="#__codelineno-67-4"></a>
+<a id="__codelineno-67-5" name="__codelineno-67-5" href="#__codelineno-67-5"></a><span class="k">if</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">weekday</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">6</span><span class="p">:</span>
+<a id="__codelineno-67-6" name="__codelineno-67-6" href="#__codelineno-67-6"></a>    <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<a id="__codelineno-67-7" name="__codelineno-67-7" href="#__codelineno-67-7"></a>
+<a id="__codelineno-67-8" name="__codelineno-67-8" href="#__codelineno-67-8"></a><span class="o">**</span><span class="n">main</span><span class="o">.</span><span class="n">py</span><span class="o">**</span>
+<a id="__codelineno-67-9" name="__codelineno-67-9" href="#__codelineno-67-9"></a>
+<a id="__codelineno-67-10" name="__codelineno-67-10" href="#__codelineno-67-10"></a><span class="kn">from</span> <span class="nn">module</span> <span class="kn">import</span> <span class="n">a</span>  <span class="c1"># ImportError: cannot import name &#39;a&#39; from &#39;module&#39;</span>
 </code></pre></div>
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20possibly-unbound-import)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1196)
-</details>
-
 <h2 id="redundant-cast"><a class="toclink" href="#redundant-cast"><code>redundant-cast</code></a></h2>
-<p><strong>Default level</strong>: warn</p>
-<details>
-<summary>detects redundant <code>cast</code> calls</summary>
-
-### What it does
-Detects redundant `cast` calls where the value already has the target type.
-
-### Why is this bad?
-These casts have no effect and can be removed.
-
-### Example
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'warn'."><code>warn</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20redundant-cast">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1542">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Detects redundant <code>cast</code> calls where the value already has the target type.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>These casts have no effect and can be removed.</p>
+<p><strong>Example</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-68-1" name="__codelineno-68-1" href="#__codelineno-68-1"></a><span class="k">def</span> <span class="nf">f</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <a id="__codelineno-68-2" name="__codelineno-68-2" href="#__codelineno-68-2"></a>    <span class="k">return</span> <span class="mi">10</span>
 <a id="__codelineno-68-3" name="__codelineno-68-3" href="#__codelineno-68-3"></a>
 <a id="__codelineno-68-4" name="__codelineno-68-4" href="#__codelineno-68-4"></a><span class="n">cast</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">f</span><span class="p">())</span>  <span class="c1"># Redundant</span>
 </code></pre></div>
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20redundant-cast)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1541)
-</details>
-
 <h2 id="undefined-reveal"><a class="toclink" href="#undefined-reveal"><code>undefined-reveal</code></a></h2>
-<p><strong>Default level</strong>: warn</p>
-<details>
-<summary>detects usages of <code>reveal_type</code> without importing it</summary>
-
-### What it does
-Checks for calls to `reveal_type` without importing it.
-
-### Why is this bad?
-Using `reveal_type` without importing it will raise a `NameError` at runtime.
-
-### Examples
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'warn'."><code>warn</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20undefined-reveal">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1350">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for calls to <code>reveal_type</code> without importing it.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>Using <code>reveal_type</code> without importing it will raise a <code>NameError</code> at runtime.</p>
+<p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-69-1" name="__codelineno-69-1" href="#__codelineno-69-1"></a><span class="n">reveal_type</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># NameError: name &#39;reveal_type&#39; is not defined</span>
 </code></pre></div>
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20undefined-reveal)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1349)
-</details>
-
 <h2 id="unknown-rule"><a class="toclink" href="#unknown-rule"><code>unknown-rule</code></a></h2>
-<p><strong>Default level</strong>: warn</p>
-<details>
-<summary>detects <code>ty: ignore</code> comments that reference unknown rules</summary>
-
-### What it does
-Checks for `ty: ignore[code]` where `code` isn't a known lint rule.
-
-### Why is this bad?
-A `ty: ignore[code]` directive with a `code` that doesn't match
-any known rule will not suppress any type errors, and is probably a mistake.
-
-### Examples
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'warn'."><code>warn</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20unknown-rule">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Fsuppression.rs#L40">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for <code>ty: ignore[code]</code> where <code>code</code> isn't a known lint rule.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>A <code>ty: ignore[code]</code> directive with a <code>code</code> that doesn't match
+any known rule will not suppress any type errors, and is probably a mistake.</p>
+<p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-70-1" name="__codelineno-70-1" href="#__codelineno-70-1"></a><span class="n">a</span> <span class="o">=</span> <span class="mi">20</span> <span class="o">/</span> <span class="mi">0</span>  <span class="c1"># ty: ignore[division-by-zer]</span>
 </code></pre></div>
-
-Use instead:
-
+<p>Use instead:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-71-1" name="__codelineno-71-1" href="#__codelineno-71-1"></a><span class="n">a</span> <span class="o">=</span> <span class="mi">20</span> <span class="o">/</span> <span class="mi">0</span>  <span class="c1"># ty: ignore[division-by-zero]</span>
 </code></pre></div>
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20unknown-rule)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Fsuppression.rs#L40)
-</details>
-
 <h2 id="unsupported-base"><a class="toclink" href="#unsupported-base"><code>unsupported-base</code></a></h2>
-<p><strong>Default level</strong>: warn</p>
-<details>
-<summary>detects class bases that are unsupported as ty could not feasibly calculate the class's MRO</summary>
-
-### What it does
-Checks for class definitions that have bases which are unsupported by ty.
-
-### Why is this bad?
-If a class has a base that is an instance of a complex type such as a union type,
-ty will not be able to resolve the [method resolution order] (MRO) for the class.
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'warn'."><code>warn</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20unsupported-base">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L550">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for class definitions that have bases which are unsupported by ty.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>If a class has a base that is an instance of a complex type such as a union type,
+ty will not be able to resolve the <a href="https://docs.python.org/3/glossary.html#term-method-resolution-order">method resolution order</a> (MRO) for the class.
 This will lead to an inferior understanding of your codebase and unpredictable
-type-checking behavior.
-
-### Examples
+type-checking behavior.</p>
+<p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-72-1" name="__codelineno-72-1" href="#__codelineno-72-1"></a><span class="kn">import</span> <span class="nn">datetime</span>
 <a id="__codelineno-72-2" name="__codelineno-72-2" href="#__codelineno-72-2"></a>
 <a id="__codelineno-72-3" name="__codelineno-72-3" href="#__codelineno-72-3"></a><span class="k">class</span> <span class="nc">A</span><span class="p">:</span> <span class="o">...</span>
@@ -4111,83 +3650,52 @@ type-checking behavior.
 <a id="__codelineno-72-10" name="__codelineno-72-10" href="#__codelineno-72-10"></a>
 <a id="__codelineno-72-11" name="__codelineno-72-11" href="#__codelineno-72-11"></a><span class="k">class</span> <span class="nc">D</span><span class="p">(</span><span class="n">C</span><span class="p">):</span> <span class="o">...</span>  <span class="c1"># error: [unsupported-base]</span>
 </code></pre></div>
-
-[method resolution order]: https://docs.python.org/3/glossary.html#term-method-resolution-order
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20unsupported-base)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L549)
-</details>
-
 <h2 id="division-by-zero"><a class="toclink" href="#division-by-zero"><code>division-by-zero</code></a></h2>
-<p><strong>Default level</strong>: ignore</p>
-<details>
-<summary>detects division by zero</summary>
-
-### What it does
-It detects division by zero.
-
-### Why is this bad?
-Dividing by zero raises a `ZeroDivisionError` at runtime.
-
-### Examples
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'ignore'."><code>ignore</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20division-by-zero">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L245">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>It detects division by zero.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>Dividing by zero raises a <code>ZeroDivisionError</code> at runtime.</p>
+<p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-73-1" name="__codelineno-73-1" href="#__codelineno-73-1"></a><span class="mi">5</span> <span class="o">/</span> <span class="mi">0</span>
 </code></pre></div>
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20division-by-zero)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L244)
-</details>
-
 <h2 id="possibly-unresolved-reference"><a class="toclink" href="#possibly-unresolved-reference"><code>possibly-unresolved-reference</code></a></h2>
-<p><strong>Default level</strong>: ignore</p>
-<details>
-<summary>detects references to possibly undefined names</summary>
-
-### What it does
-Checks for references to names that are possibly not defined.
-
-### Why is this bad?
-Using an undefined variable will raise a `NameError` at runtime.
-
-### Example
-
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'ignore'."><code>ignore</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20possibly-unresolved-reference">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1223">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for references to names that are possibly not defined.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>Using an undefined variable will raise a <code>NameError</code> at runtime.</p>
+<p><strong>Example</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-74-1" name="__codelineno-74-1" href="#__codelineno-74-1"></a><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">):</span>
 <a id="__codelineno-74-2" name="__codelineno-74-2" href="#__codelineno-74-2"></a>    <span class="n">x</span> <span class="o">=</span> <span class="n">i</span>
 <a id="__codelineno-74-3" name="__codelineno-74-3" href="#__codelineno-74-3"></a>
 <a id="__codelineno-74-4" name="__codelineno-74-4" href="#__codelineno-74-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># NameError: name &#39;x&#39; is not defined</span>
 </code></pre></div>
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20possibly-unresolved-reference)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1222)
-</details>
-
 <h2 id="unused-ignore-comment"><a class="toclink" href="#unused-ignore-comment"><code>unused-ignore-comment</code></a></h2>
-<p><strong>Default level</strong>: ignore</p>
-<details>
-<summary>detects unused <code>type: ignore</code> comments</summary>
-
-### What it does
-Checks for `type: ignore` or `ty: ignore` directives that are no longer applicable.
-
-### Why is this bad?
-A `type: ignore` directive that no longer matches any diagnostic violations is likely
-included by mistake, and should be removed to avoid confusion.
-
-### Examples
+<p><small>
+Default level: <a href="../../rules/#rule-levels" title="This lint has a default level of 'ignore'."><code>ignore</code></a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20unused-ignore-comment">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Fsuppression.rs#L15">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for <code>type: ignore</code> or <code>ty: ignore</code> directives that are no longer applicable.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>A <code>type: ignore</code> directive that no longer matches any diagnostic violations is likely
+included by mistake, and should be removed to avoid confusion.</p>
+<p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-75-1" name="__codelineno-75-1" href="#__codelineno-75-1"></a><span class="n">a</span> <span class="o">=</span> <span class="mi">20</span> <span class="o">/</span> <span class="mi">2</span>  <span class="c1"># ty: ignore[division-by-zero]</span>
 </code></pre></div>
-
-Use instead:
-
+<p>Use instead:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-76-1" name="__codelineno-76-1" href="#__codelineno-76-1"></a><span class="n">a</span> <span class="o">=</span> <span class="mi">20</span> <span class="o">/</span> <span class="mi">2</span>
 </code></pre></div>
-
-### Links
-* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20unused-ignore-comment)
-* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Fsuppression.rs#L15)
-</details>
 
   
     
