@@ -374,10 +374,6 @@ ______________________________________________________________________
 
 Settings for the uv build backend (`uv_build`).
 
-Note
-
-The uv build backend is currently in preview and may change in any future release.
-
 Note that those settings only apply when using the `uv_build` backend, other build backends (such as hatchling) have their own configuration.
 
 All options that accept globs use the portable glob patterns from [PEP 639](https://packaging.python.org/en/latest/specifications/glob-patterns/).
