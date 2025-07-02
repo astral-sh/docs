@@ -1,0 +1,4356 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="ty is an extremely fast Python type checker.">
+      
+      
+        <meta name="author" content="astral-sh">
+      
+      
+        <link rel="canonical" href="https://docs.astral.sh/ty/reference/rules/">
+      
+      
+        <link rel="prev" href="../configuration/">
+      
+      
+        <link rel="next" href="../cli/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.5.0, mkdocs-material-9.3.1+insiders-4.41.0">
+    
+    
+
+<title>Rules | ty</title>
+
+
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.176649b9.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.da3f46a0.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  <script src="https://cdn.usefathom.com/script.js" data-site="ESKBRHGN" defer></script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+<link rel="apple-touch-icon" sizes="180x180" href="https://docs.astral.sh/static/apple-touch-icon.png"/>
+<link rel="icon" type="image/png" sizes="32x32" href="https://docs.astral.sh/static/favicon-32x32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="https://docs.astral.sh/static/favicon-16x16.png"/>
+<link rel="manifest" href="https://docs.astral.sh/static/site.webmanifest"/>
+<link rel="mask-icon" href="https://docs.astral.sh/static/safari-pinned-tab.svg" color="#2e183d"/>
+<meta name="msapplication-TileColor" content="#d7ff64"/>
+<meta name="theme-color" content="#ffffff"/>
+<meta name="robots" content="index,follow"/>
+<script type="application/ld+json">
+    {
+        
+        "datePublished": "2025-07-02 14:00:14Z",
+        "dateModified": "2025-07-02 14:00:14Z",
+        
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Astral Docs",
+        "url": "https://docs.astral.sh"
+    }
+</script>
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#rules" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="ty" class="md-header__button md-logo" aria-label="ty" data-md-component="logo">
+      
+  <img src="../../assets/logo-letter.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ty
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Rules
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="astral-light" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="astral-dark" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/astral-sh/ty" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ty
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ty" class="md-nav__button md-logo" aria-label="ty" data-md-component="logo">
+      
+  <img src="../../assets/logo-letter.svg" alt="logo">
+
+    </a>
+    ty
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/astral-sh/ty" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ty
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Concepts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configuration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Module discovery
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python-version/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Python version
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../exclusions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    File exclusions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rules/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../suppression/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Suppression
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../editors/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Editors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    
+  
+    Rules
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#byte-string-type-annotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        byte-string-type-annotation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#call-non-callable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        call-non-callable
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conflicting-argument-forms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        conflicting-argument-forms
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conflicting-declarations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        conflicting-declarations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conflicting-metaclass" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        conflicting-metaclass
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cyclic-class-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        cyclic-class-definition
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#duplicate-base" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        duplicate-base
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#duplicate-kw-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        duplicate-kw-only
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#escape-character-in-forward-annotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        escape-character-in-forward-annotation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fstring-type-annotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fstring-type-annotation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implicit-concatenated-string-type-annotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        implicit-concatenated-string-type-annotation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inconsistent-mro" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        inconsistent-mro
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#index-out-of-bounds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        index-out-of-bounds
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instance-layout-conflict" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        instance-layout-conflict
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invalid-argument-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        invalid-argument-type
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invalid-assignment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        invalid-assignment
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invalid-attribute-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        invalid-attribute-access
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invalid-base" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        invalid-base
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invalid-context-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        invalid-context-manager
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invalid-declaration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        invalid-declaration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invalid-exception-caught" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        invalid-exception-caught
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invalid-generic-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        invalid-generic-class
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invalid-legacy-type-variable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        invalid-legacy-type-variable
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invalid-metaclass" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        invalid-metaclass
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invalid-overload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        invalid-overload
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invalid-parameter-default" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        invalid-parameter-default
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invalid-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        invalid-protocol
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invalid-raise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        invalid-raise
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invalid-return-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        invalid-return-type
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invalid-super-argument" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        invalid-super-argument
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invalid-syntax-in-forward-annotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        invalid-syntax-in-forward-annotation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invalid-type-alias-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        invalid-type-alias-type
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invalid-type-checking-constant" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        invalid-type-checking-constant
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invalid-type-form" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        invalid-type-form
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invalid-type-guard-call" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        invalid-type-guard-call
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invalid-type-guard-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        invalid-type-guard-definition
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invalid-type-variable-constraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        invalid-type-variable-constraints
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#missing-argument" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        missing-argument
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#no-matching-overload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        no-matching-overload
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#non-subscriptable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        non-subscriptable
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#not-iterable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        not-iterable
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameter-already-assigned" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        parameter-already-assigned
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#raw-string-type-annotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        raw-string-type-annotation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#static-assert-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        static-assert-error
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#subclass-of-final-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        subclass-of-final-class
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#too-many-positional-arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        too-many-positional-arguments
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#type-assertion-failure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        type-assertion-failure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unavailable-implicit-super-arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        unavailable-implicit-super-arguments
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unknown-argument" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        unknown-argument
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unresolved-attribute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        unresolved-attribute
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unresolved-import" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        unresolved-import
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unresolved-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        unresolved-reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unsupported-bool-conversion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        unsupported-bool-conversion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unsupported-operator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        unsupported-operator
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#zero-stepsize-in-slice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        zero-stepsize-in-slice
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invalid-ignore-comment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        invalid-ignore-comment
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#possibly-unbound-attribute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        possibly-unbound-attribute
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#possibly-unbound-implicit-call" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        possibly-unbound-implicit-call
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#possibly-unbound-import" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        possibly-unbound-import
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#redundant-cast" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        redundant-cast
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#undefined-reveal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        undefined-reveal
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unknown-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        unknown-rule
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unsupported-base" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        unsupported-base
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#division-by-zero" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        division-by-zero
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#possibly-unresolved-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        possibly-unresolved-reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unused-ignore-comment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        unused-ignore-comment
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exit-codes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Exit codes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../env/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment variables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../editor-settings/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Editor settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#byte-string-type-annotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        byte-string-type-annotation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#call-non-callable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        call-non-callable
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conflicting-argument-forms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        conflicting-argument-forms
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conflicting-declarations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        conflicting-declarations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conflicting-metaclass" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        conflicting-metaclass
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cyclic-class-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        cyclic-class-definition
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#duplicate-base" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        duplicate-base
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#duplicate-kw-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        duplicate-kw-only
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#escape-character-in-forward-annotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        escape-character-in-forward-annotation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fstring-type-annotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fstring-type-annotation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implicit-concatenated-string-type-annotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        implicit-concatenated-string-type-annotation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inconsistent-mro" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        inconsistent-mro
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#index-out-of-bounds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        index-out-of-bounds
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instance-layout-conflict" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        instance-layout-conflict
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invalid-argument-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        invalid-argument-type
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invalid-assignment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        invalid-assignment
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invalid-attribute-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        invalid-attribute-access
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invalid-base" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        invalid-base
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invalid-context-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        invalid-context-manager
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invalid-declaration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        invalid-declaration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invalid-exception-caught" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        invalid-exception-caught
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invalid-generic-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        invalid-generic-class
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invalid-legacy-type-variable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        invalid-legacy-type-variable
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invalid-metaclass" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        invalid-metaclass
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invalid-overload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        invalid-overload
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invalid-parameter-default" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        invalid-parameter-default
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invalid-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        invalid-protocol
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invalid-raise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        invalid-raise
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invalid-return-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        invalid-return-type
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invalid-super-argument" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        invalid-super-argument
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invalid-syntax-in-forward-annotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        invalid-syntax-in-forward-annotation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invalid-type-alias-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        invalid-type-alias-type
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invalid-type-checking-constant" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        invalid-type-checking-constant
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invalid-type-form" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        invalid-type-form
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invalid-type-guard-call" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        invalid-type-guard-call
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invalid-type-guard-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        invalid-type-guard-definition
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invalid-type-variable-constraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        invalid-type-variable-constraints
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#missing-argument" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        missing-argument
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#no-matching-overload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        no-matching-overload
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#non-subscriptable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        non-subscriptable
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#not-iterable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        not-iterable
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameter-already-assigned" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        parameter-already-assigned
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#raw-string-type-annotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        raw-string-type-annotation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#static-assert-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        static-assert-error
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#subclass-of-final-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        subclass-of-final-class
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#too-many-positional-arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        too-many-positional-arguments
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#type-assertion-failure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        type-assertion-failure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unavailable-implicit-super-arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        unavailable-implicit-super-arguments
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unknown-argument" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        unknown-argument
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unresolved-attribute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        unresolved-attribute
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unresolved-import" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        unresolved-import
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unresolved-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        unresolved-reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unsupported-bool-conversion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        unsupported-bool-conversion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unsupported-operator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        unsupported-operator
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#zero-stepsize-in-slice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        zero-stepsize-in-slice
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invalid-ignore-comment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        invalid-ignore-comment
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#possibly-unbound-attribute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        possibly-unbound-attribute
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#possibly-unbound-implicit-call" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        possibly-unbound-implicit-call
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#possibly-unbound-import" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        possibly-unbound-import
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#redundant-cast" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        redundant-cast
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#undefined-reveal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        undefined-reveal
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unknown-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        unknown-rule
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unsupported-base" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        unsupported-base
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#division-by-zero" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        division-by-zero
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#possibly-unresolved-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        possibly-unresolved-reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unused-ignore-comment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        unused-ignore-comment
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Getting started
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../configuration/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Reference
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<!-- WARNING: This file is auto-generated (cargo dev generate-all). Edit the lint-declarations in 'crates/ty_python_semantic/src/types/diagnostic.rs' if you want to change anything here. -->
+
+<h1 id="rules"><a class="toclink" href="#rules">Rules</a></h1>
+<h2 id="byte-string-type-annotation"><a class="toclink" href="#byte-string-type-annotation"><code>byte-string-type-annotation</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects byte strings in type annotation positions</summary>
+
+### What it does
+Checks for byte-strings in type annotation positions.
+
+### Why is this bad?
+Static analysis tools like ty can't analyse type annotations that use byte-string notation.
+
+### Examples
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span> <span class="nf">test</span><span class="p">():</span> <span class="o">-&gt;</span> <span class="sa">b</span><span class="s2">&quot;int&quot;</span><span class="p">:</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="o">...</span>
+</code></pre></div>
+
+Use instead:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">def</span> <span class="nf">test</span><span class="p">():</span> <span class="o">-&gt;</span> <span class="s2">&quot;int&quot;</span><span class="p">:</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="o">...</span>
+</code></pre></div>
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20byte-string-type-annotation)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fstring_annotation.rs#L36)
+</details>
+
+<h2 id="call-non-callable"><a class="toclink" href="#call-non-callable"><code>call-non-callable</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects calls to non-callable objects</summary>
+
+### What it does
+Checks for calls to non-callable objects.
+
+### Why is this bad?
+Calling a non-callable object will raise a `TypeError` at runtime.
+
+### Examples
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="mi">4</span><span class="p">()</span>  <span class="c1"># TypeError: &#39;int&#39; object is not callable</span>
+</code></pre></div>
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20call-non-callable)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L97)
+</details>
+
+<h2 id="conflicting-argument-forms"><a class="toclink" href="#conflicting-argument-forms"><code>conflicting-argument-forms</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects when an argument is used as both a value and a type form in a call</summary>
+
+### What it does
+Checks whether an argument is used as both a value and a type form in a call.
+
+### Why is this bad?
+Such calls have confusing semantics and often indicate a logic error.
+
+### Examples
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">reveal_type</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kn">from</span> <span class="nn">ty_extensions</span> <span class="kn">import</span> <span class="n">is_singleton</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">if</span> <span class="n">flag</span><span class="p">:</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="n">f</span> <span class="o">=</span> <span class="nb">repr</span>  <span class="c1"># Expects a value</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    <span class="n">f</span> <span class="o">=</span> <span class="n">is_singleton</span>  <span class="c1"># Expects a type form</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="n">f</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>  <span class="c1"># error</span>
+</code></pre></div>
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20conflicting-argument-forms)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L141)
+</details>
+
+<h2 id="conflicting-declarations"><a class="toclink" href="#conflicting-declarations"><code>conflicting-declarations</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects conflicting declarations</summary>
+
+### What it does
+Checks whether a variable has been declared as two conflicting types.
+
+### Why is this bad
+A variable with two conflicting declarations likely indicates a mistake.
+Moreover, it could lead to incorrect or ill-defined type inference for
+other code that relies on these variables.
+
+### Examples
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">if</span> <span class="n">b</span><span class="p">:</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="n">a</span><span class="p">:</span> <span class="nb">int</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="n">a</span><span class="p">:</span> <span class="nb">str</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+</code></pre></div>
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20conflicting-declarations)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L167)
+</details>
+
+<h2 id="conflicting-metaclass"><a class="toclink" href="#conflicting-metaclass"><code>conflicting-metaclass</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects conflicting metaclasses</summary>
+
+### What it does
+Checks for class definitions where the metaclass of the class
+being created would not be a subclass of the metaclasses of
+all the class's bases.
+
+### Why is it bad?
+Such a class definition raises a `TypeError` at runtime.
+
+### Examples
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">class</span> <span class="nc">M1</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span> <span class="o">...</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">class</span> <span class="nc">M2</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span> <span class="o">...</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">M1</span><span class="p">):</span> <span class="o">...</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="k">class</span> <span class="nc">B</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">M2</span><span class="p">):</span> <span class="o">...</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="c1">## TypeError: metaclass conflict</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="k">class</span> <span class="nc">C</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">):</span> <span class="o">...</span>
+</code></pre></div>
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20conflicting-metaclass)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L192)
+</details>
+
+<h2 id="cyclic-class-definition"><a class="toclink" href="#cyclic-class-definition"><code>cyclic-class-definition</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects cyclic class definitions</summary>
+
+### What it does
+Checks for class definitions in stub files that inherit
+(directly or indirectly) from themselves.
+
+### Why is it bad?
+Although forward references are natively supported in stub files,
+inheritance cycles are still disallowed, as it is impossible to
+resolve a consistent [method resolution order] for a class that
+inherits from itself.
+
+### Examples
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1">## foo.pyi</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="n">B</span><span class="p">):</span> <span class="o">...</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="k">class</span> <span class="nc">B</span><span class="p">(</span><span class="n">A</span><span class="p">):</span> <span class="o">...</span>
+</code></pre></div>
+
+[method resolution order]: https://docs.python.org/3/glossary.html#term-method-resolution-order
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20cyclic-class-definition)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L218)
+</details>
+
+<h2 id="duplicate-base"><a class="toclink" href="#duplicate-base"><code>duplicate-base</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects class definitions with duplicate bases</summary>
+
+### What it does
+Checks for class definitions with duplicate bases.
+
+### Why is this bad?
+Class definitions with duplicate bases raise `TypeError` at runtime.
+
+### Examples
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">class</span> <span class="nc">A</span><span class="p">:</span> <span class="o">...</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="c1">## TypeError: duplicate base class</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="k">class</span> <span class="nc">B</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">A</span><span class="p">):</span> <span class="o">...</span>
+</code></pre></div>
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20duplicate-base)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L262)
+</details>
+
+<h2 id="duplicate-kw-only"><a class="toclink" href="#duplicate-kw-only"><code>duplicate-kw-only</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects dataclass definitions with more than once usages of <code>KW_ONLY</code></summary>
+
+### What it does
+Checks for dataclass definitions with more than one field
+annotated with `KW_ONLY`.
+
+### Why is this bad?
+`dataclasses.KW_ONLY` is a special marker used to
+emulate the `*` syntax in normal signatures.
+It can only be used once per dataclass.
+
+Attempting to annotate two different fields with
+it will lead to a runtime error.
+
+### Examples
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">KW_ONLY</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="nd">@dataclass</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="k">class</span> <span class="nc">A</span><span class="p">:</span>  <span class="c1"># Crash at runtime</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>    <span class="n">b</span><span class="p">:</span> <span class="nb">int</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>    <span class="n">_1</span><span class="p">:</span> <span class="n">KW_ONLY</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>    <span class="n">c</span><span class="p">:</span> <span class="nb">str</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>    <span class="n">_2</span><span class="p">:</span> <span class="n">KW_ONLY</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>    <span class="n">d</span><span class="p">:</span> <span class="nb">bytes</span>
+</code></pre></div>
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20duplicate-kw-only)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L283)
+</details>
+
+<h2 id="escape-character-in-forward-annotation"><a class="toclink" href="#escape-character-in-forward-annotation"><code>escape-character-in-forward-annotation</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects forward type annotations with escape characters</summary>
+
+TODO #14889
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20escape-character-in-forward-annotation)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fstring_annotation.rs#L120)
+</details>
+
+<h2 id="fstring-type-annotation"><a class="toclink" href="#fstring-type-annotation"><code>fstring-type-annotation</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects F-strings in type annotation positions</summary>
+
+### What it does
+Checks for f-strings in type annotation positions.
+
+### Why is this bad?
+Static analysis tools like ty can't analyse type annotations that use f-string notation.
+
+### Examples
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">def</span> <span class="nf">test</span><span class="p">():</span> <span class="o">-&gt;</span> <span class="sa">f</span><span class="s2">&quot;int&quot;</span><span class="p">:</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>    <span class="o">...</span>
+</code></pre></div>
+
+Use instead:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">def</span> <span class="nf">test</span><span class="p">():</span> <span class="o">-&gt;</span> <span class="s2">&quot;int&quot;</span><span class="p">:</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>    <span class="o">...</span>
+</code></pre></div>
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20fstring-type-annotation)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fstring_annotation.rs#L11)
+</details>
+
+<h2 id="implicit-concatenated-string-type-annotation"><a class="toclink" href="#implicit-concatenated-string-type-annotation"><code>implicit-concatenated-string-type-annotation</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects implicit concatenated strings in type annotations</summary>
+
+### What it does
+Checks for implicit concatenated strings in type annotation positions.
+
+### Why is this bad?
+Static analysis tools like ty can't analyse type annotations that use implicit concatenated strings.
+
+### Examples
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">def</span> <span class="nf">test</span><span class="p">():</span> <span class="o">-&gt;</span> <span class="s2">&quot;Literal[&quot;</span> <span class="s2">&quot;5&quot;</span> <span class="s2">&quot;]&quot;</span><span class="p">:</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>    <span class="o">...</span>
+</code></pre></div>
+
+Use instead:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">def</span> <span class="nf">test</span><span class="p">():</span> <span class="o">-&gt;</span> <span class="s2">&quot;Literal[5]&quot;</span><span class="p">:</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>    <span class="o">...</span>
+</code></pre></div>
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20implicit-concatenated-string-type-annotation)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fstring_annotation.rs#L86)
+</details>
+
+<h2 id="inconsistent-mro"><a class="toclink" href="#inconsistent-mro"><code>inconsistent-mro</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects class definitions with an inconsistent MRO</summary>
+
+### What it does
+Checks for classes with an inconsistent [method resolution order] (MRO).
+
+### Why is this bad?
+Classes with an inconsistent MRO will raise a `TypeError` at runtime.
+
+### Examples
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">class</span> <span class="nc">A</span><span class="p">:</span> <span class="o">...</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="k">class</span> <span class="nc">B</span><span class="p">(</span><span class="n">A</span><span class="p">):</span> <span class="o">...</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="c1">## TypeError: Cannot create a consistent method resolution order</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="k">class</span> <span class="nc">C</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">):</span> <span class="o">...</span>
+</code></pre></div>
+
+[method resolution order]: https://docs.python.org/3/glossary.html#term-method-resolution-order
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20inconsistent-mro)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L425)
+</details>
+
+<h2 id="index-out-of-bounds"><a class="toclink" href="#index-out-of-bounds"><code>index-out-of-bounds</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects index out of bounds errors</summary>
+
+### What it does
+Checks for attempts to use an out of bounds index to get an item from
+a container.
+
+### Why is this bad?
+Using an out of bounds index will raise an `IndexError` at runtime.
+
+### Examples
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="n">t</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>  <span class="c1"># IndexError: tuple index out of range</span>
+</code></pre></div>
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20index-out-of-bounds)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L449)
+</details>
+
+<h2 id="instance-layout-conflict"><a class="toclink" href="#instance-layout-conflict"><code>instance-layout-conflict</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects class definitions that raise <code>TypeError</code> due to instance layout conflict</summary>
+
+### What it does
+Checks for classes definitions which will fail at runtime due to
+"instance memory layout conflicts".
+
+This error is usually caused by attempting to combine multiple classes
+that define non-empty `__slots__` in a class's [Method Resolution Order]
+(MRO), or by attempting to combine multiple builtin classes in a class's
+MRO.
+
+### Why is this bad?
+Inheriting from bases with conflicting instance memory layouts
+will lead to a `TypeError` at runtime.
+
+An instance memory layout conflict occurs when CPython cannot determine
+the memory layout instances of a class should have, because the instance
+memory layout of one of its bases conflicts with the instance memory layout
+of one or more of its other bases.
+
+For example, if a Python class defines non-empty `__slots__`, this will
+impact the memory layout of instances of that class. Multiple inheritance
+from more than one different class defining non-empty `__slots__` is not
+allowed:
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">class</span> <span class="nc">A</span><span class="p">:</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">)</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="k">class</span> <span class="nc">B</span><span class="p">:</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">)</span>  <span class="c1"># Even if the values are the same</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="c1">## TypeError: multiple bases have instance lay-out conflict</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="k">class</span> <span class="nc">C</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">):</span> <span class="o">...</span>
+</code></pre></div>
+
+An instance layout conflict can also be caused by attempting to use
+multiple inheritance with two builtin classes, due to the way that these
+classes are implemented in a CPython C extension:
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">):</span> <span class="o">...</span>  <span class="c1"># TypeError: multiple bases have instance lay-out conflict</span>
+</code></pre></div>
+
+Note that pure-Python classes with no `__slots__`, or pure-Python classes
+with empty `__slots__`, are always compatible:
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">class</span> <span class="nc">A</span><span class="p">:</span> <span class="o">...</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="k">class</span> <span class="nc">B</span><span class="p">:</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">()</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="k">class</span> <span class="nc">C</span><span class="p">:</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">)</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="c1">## fine</span>
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="k">class</span> <span class="nc">D</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">):</span> <span class="o">...</span>
+</code></pre></div>
+
+### Known problems
+Classes that have "dynamic" definitions of `__slots__` (definitions do not consist
+of string literals, or tuples of string literals) are not currently considered solid
+bases by ty.
+
+Additionally, this check is not exhaustive: many C extensions (including several in
+the standard library) define classes that use extended memory layouts and thus cannot
+coexist in a single MRO. Since it is currently not possible to represent this fact in
+stub files, having a full knowledge of these classes is also impossible. When it comes
+to classes that do not define `__slots__` at the Python level, therefore, ty, currently
+only hard-codes a number of cases where it knows that a class will produce instances with
+an atypical memory layout.
+
+### Further reading
+- [CPython documentation: `__slots__`](https://docs.python.org/3/reference/datamodel.html#slots)
+- [CPython documentation: Method Resolution Order](https://docs.python.org/3/glossary.html#term-method-resolution-order)
+
+[Method Resolution Order]: https://docs.python.org/3/glossary.html#term-method-resolution-order
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20instance-layout-conflict)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L315)
+</details>
+
+<h2 id="invalid-argument-type"><a class="toclink" href="#invalid-argument-type"><code>invalid-argument-type</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects call arguments whose type is not assignable to the corresponding typed parameter</summary>
+
+### What it does
+Detects call arguments whose type is not assignable to the corresponding typed parameter.
+
+### Why is this bad?
+Passing an argument of a type the function (or callable object) does not accept violates
+the expectations of the function author and may cause unexpected runtime errors within the
+body of the function.
+
+### Examples
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span> <span class="o">...</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="n">func</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">)</span>  <span class="c1"># error: [invalid-argument-type]</span>
+</code></pre></div>
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-argument-type)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L469)
+</details>
+
+<h2 id="invalid-assignment"><a class="toclink" href="#invalid-assignment"><code>invalid-assignment</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects invalid assignments</summary>
+
+### What it does
+Checks for assignments where the type of the value
+is not [assignable to] the type of the assignee.
+
+### Why is this bad?
+Such assignments break the rules of the type system and
+weaken a type checker's ability to accurately reason about your code.
+
+### Examples
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="n">a</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</code></pre></div>
+
+[assignable to]: https://typing.python.org/en/latest/spec/glossary.html#term-assignable
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-assignment)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L509)
+</details>
+
+<h2 id="invalid-attribute-access"><a class="toclink" href="#invalid-attribute-access"><code>invalid-attribute-access</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>Invalid attribute access</summary>
+
+### What it does
+Checks for assignments to class variables from instances
+and assignments to instance variables from its class.
+
+### Why is this bad?
+Incorrect assignments break the rules of the type system and
+weaken a type checker's ability to accurately reason about your code.
+
+### Examples
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">class</span> <span class="nc">C</span><span class="p">:</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>    <span class="n">class_var</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>    <span class="n">instance_var</span><span class="p">:</span> <span class="nb">int</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="n">C</span><span class="o">.</span><span class="n">class_var</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># okay</span>
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="n">C</span><span class="p">()</span><span class="o">.</span><span class="n">class_var</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># error: Cannot assign to class variable</span>
+<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>
+<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="n">C</span><span class="p">()</span><span class="o">.</span><span class="n">instance_var</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># okay</span>
+<a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="n">C</span><span class="o">.</span><span class="n">instance_var</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># error: Cannot assign to instance variable</span>
+</code></pre></div>
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-attribute-access)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1513)
+</details>
+
+<h2 id="invalid-base"><a class="toclink" href="#invalid-base"><code>invalid-base</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects class bases that will cause the class definition to raise an exception at runtime</summary>
+
+### What it does
+Checks for class definitions that have bases which are not instances of `type`.
+
+### Why is this bad?
+Class definitions with bases like this will lead to `TypeError` being raised at runtime.
+
+### Examples
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="mi">42</span><span class="p">):</span> <span class="o">...</span>  <span class="c1"># error: [invalid-base]</span>
+</code></pre></div>
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-base)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L531)
+</details>
+
+<h2 id="invalid-context-manager"><a class="toclink" href="#invalid-context-manager"><code>invalid-context-manager</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects expressions used in with statements that don't implement the context manager protocol</summary>
+
+### What it does
+Checks for expressions used in `with` statements
+that do not implement the context manager protocol.
+
+### Why is this bad?
+Such a statement will raise `TypeError` at runtime.
+
+### Examples
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="c1">## TypeError: &#39;int&#39; object does not support the context manager protocol</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="k">with</span> <span class="mi">1</span><span class="p">:</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div>
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-context-manager)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L582)
+</details>
+
+<h2 id="invalid-declaration"><a class="toclink" href="#invalid-declaration"><code>invalid-declaration</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects invalid declarations</summary>
+
+### What it does
+Checks for declarations where the inferred type of an existing symbol
+is not [assignable to] its post-hoc declared type.
+
+### Why is this bad?
+Such declarations break the rules of the type system and
+weaken a type checker's ability to accurately reason about your code.
+
+### Examples
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="n">a</span><span class="p">:</span> <span class="nb">str</span>
+</code></pre></div>
+
+[assignable to]: https://typing.python.org/en/latest/spec/glossary.html#term-assignable
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-declaration)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L603)
+</details>
+
+<h2 id="invalid-exception-caught"><a class="toclink" href="#invalid-exception-caught"><code>invalid-exception-caught</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects exception handlers that catch classes that do not inherit from <code>BaseException</code></summary>
+
+### What it does
+Checks for exception handlers that catch non-exception classes.
+
+### Why is this bad?
+Catching classes that do not inherit from `BaseException` will raise a TypeError at runtime.
+
+### Example
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>    <span class="mi">1</span> <span class="o">/</span> <span class="mi">0</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="k">except</span> <span class="mi">1</span><span class="p">:</span>
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>    <span class="o">...</span>
+</code></pre></div>
+
+Use instead:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>    <span class="mi">1</span> <span class="o">/</span> <span class="mi">0</span>
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>    <span class="o">...</span>
+</code></pre></div>
+
+### References
+- [Python documentation: except clause](https://docs.python.org/3/reference/compound_stmts.html#except-clause)
+- [Python documentation: Built-in Exceptions](https://docs.python.org/3/library/exceptions.html#built-in-exceptions)
+
+### Ruff rule
+ This rule corresponds to Ruff's [`except-with-non-exception-classes` (`B030`)](https://docs.astral.sh/ruff/rules/except-with-non-exception-classes)
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-exception-caught)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L626)
+</details>
+
+<h2 id="invalid-generic-class"><a class="toclink" href="#invalid-generic-class"><code>invalid-generic-class</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects invalid generic classes</summary>
+
+### What it does
+Checks for the creation of invalid generic classes
+
+### Why is this bad?
+There are several requirements that you must follow when defining a generic class.
+
+### Examples
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Generic</span><span class="p">,</span> <span class="n">TypeVar</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="n">T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">)</span>  <span class="c1"># okay</span>
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>
+<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="c1">## error: class uses both PEP-695 syntax and legacy syntax</span>
+<a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a><span class="k">class</span> <span class="nc">C</span><span class="p">[</span><span class="n">U</span><span class="p">](</span><span class="n">Generic</span><span class="p">[</span><span class="n">T</span><span class="p">]):</span> <span class="o">...</span>
+</code></pre></div>
+
+### References
+- [Typing spec: Generics](https://typing.python.org/en/latest/spec/generics.html#introduction)
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-generic-class)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L662)
+</details>
+
+<h2 id="invalid-legacy-type-variable"><a class="toclink" href="#invalid-legacy-type-variable"><code>invalid-legacy-type-variable</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects invalid legacy type variables</summary>
+
+### What it does
+Checks for the creation of invalid legacy `TypeVar`s
+
+### Why is this bad?
+There are several requirements that you must follow when creating a legacy `TypeVar`.
+
+### Examples
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TypeVar</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="n">T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">)</span>  <span class="c1"># okay</span>
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="n">Q</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;S&quot;</span><span class="p">)</span>  <span class="c1"># error: TypeVar name must match the variable it&#39;s assigned to</span>
+<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="n">T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">)</span>  <span class="c1"># error: TypeVars should not be redefined</span>
+<a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a>
+<a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a><span class="c1">## error: TypeVar must be immediately assigned to a variable</span>
+<a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">t</span><span class="p">:</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;U&quot;</span><span class="p">)):</span> <span class="o">...</span>
+</code></pre></div>
+
+### References
+- [Typing spec: Generics](https://typing.python.org/en/latest/spec/generics.html#introduction)
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-legacy-type-variable)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L688)
+</details>
+
+<h2 id="invalid-metaclass"><a class="toclink" href="#invalid-metaclass"><code>invalid-metaclass</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects invalid <code>metaclass=</code> arguments</summary>
+
+### What it does
+Checks for arguments to `metaclass=` that are invalid.
+
+### Why is this bad?
+Python allows arbitrary expressions to be used as the argument to `metaclass=`.
+These expressions, however, need to be callable and accept the same arguments
+as `type.__new__`.
+
+### Example
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="k">def</span> <span class="nf">f</span><span class="p">():</span> <span class="o">...</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="c1">## TypeError: f() takes 0 positional arguments but 3 were given</span>
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="k">class</span> <span class="nc">B</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">f</span><span class="p">):</span> <span class="o">...</span>
+</code></pre></div>
+
+### References
+- [Python documentation: Metaclasses](https://docs.python.org/3/reference/datamodel.html#metaclasses)
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-metaclass)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L737)
+</details>
+
+<h2 id="invalid-overload"><a class="toclink" href="#invalid-overload"><code>invalid-overload</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects invalid <code>@overload</code> usages</summary>
+
+### What it does
+Checks for various invalid `@overload` usages.
+
+### Why is this bad?
+The `@overload` decorator is used to define functions and methods that accepts different
+combinations of arguments and return different types based on the arguments passed. This is
+mainly beneficial for type checkers. But, if the `@overload` usage is invalid, the type
+checker may not be able to provide correct type information.
+
+### Example
+
+Defining only one overload:
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">overload</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="nd">@overload</span>
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span> <span class="o">...</span>
+<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a>    <span class="k">return</span> <span class="n">x</span>
+</code></pre></div>
+
+Or, not providing an implementation for the overloaded definition:
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">overload</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>
+<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="nd">@overload</span>
+<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="k">def</span> <span class="nf">foo</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
+<a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a><span class="nd">@overload</span>
+<a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span> <span class="o">...</span>
+</code></pre></div>
+
+### References
+- [Python documentation: `@overload`](https://docs.python.org/3/library/typing.html#typing.overload)
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-overload)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L764)
+</details>
+
+<h2 id="invalid-parameter-default"><a class="toclink" href="#invalid-parameter-default"><code>invalid-parameter-default</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects default values that can't be assigned to the parameter's annotated type</summary>
+
+### What it does
+Checks for default values that can't be
+assigned to the parameter's annotated type.
+
+### Why is this bad?
+This breaks the rules of the type system and
+weakens a type checker's ability to accurately reason about your code.
+
+### Examples
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">):</span> <span class="o">...</span>
+</code></pre></div>
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-parameter-default)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L807)
+</details>
+
+<h2 id="invalid-protocol"><a class="toclink" href="#invalid-protocol"><code>invalid-protocol</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects invalid protocol class definitions</summary>
+
+### What it does
+Checks for invalidly defined protocol classes.
+
+### Why is this bad?
+An invalidly defined protocol class may lead to the type checker inferring
+unexpected things. It may also lead to `TypeError`s at runtime.
+
+### Examples
+A `Protocol` class cannot inherit from a non-`Protocol` class;
+this raises a `TypeError` at runtime:
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Protocol</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Foo</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">Protocol</span><span class="p">):</span> <span class="o">...</span>
+<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="gp">...</span>
+<a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a><span class="gt">Traceback (most recent call last):</span>
+<a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a>  File <span class="nb">&quot;&lt;python-input-1&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a><span class="w">    </span><span class="k">class</span> <span class="nc">Foo</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">Protocol</span><span class="p">):</span> <span class="o">...</span>
+<a id="__codelineno-32-7" name="__codelineno-32-7" href="#__codelineno-32-7"></a><span class="gr">TypeError</span>: <span class="n">Protocols can only inherit from other protocols, got &lt;class &#39;int&#39;&gt;</span>
+</code></pre></div>
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-protocol)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L397)
+</details>
+
+<h2 id="invalid-raise"><a class="toclink" href="#invalid-raise"><code>invalid-raise</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects <code>raise</code> statements that raise invalid exceptions or use invalid causes</summary>
+
+Checks for `raise` statements that raise non-exceptions or use invalid
+causes for their raised exceptions.
+
+### Why is this bad?
+Only subclasses or instances of `BaseException` can be raised.
+For an exception's cause, the same rules apply, except that `None` is also
+permitted. Violating these rules results in a `TypeError` at runtime.
+
+### Examples
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="k">def</span> <span class="nf">f</span><span class="p">():</span>
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>        <span class="n">something</span><span class="p">()</span>
+<a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a>    <span class="k">except</span> <span class="ne">NameError</span><span class="p">:</span>
+<a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a>        <span class="k">raise</span> <span class="s2">&quot;oops!&quot;</span> <span class="kn">from</span> <span class="nn">f</span>
+<a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a>
+<a id="__codelineno-33-7" name="__codelineno-33-7" href="#__codelineno-33-7"></a><span class="k">def</span> <span class="nf">g</span><span class="p">():</span>
+<a id="__codelineno-33-8" name="__codelineno-33-8" href="#__codelineno-33-8"></a>    <span class="k">raise</span> <span class="bp">NotImplemented</span> <span class="kn">from</span> <span class="mi">42</span>
+</code></pre></div>
+
+Use instead:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="k">def</span> <span class="nf">f</span><span class="p">():</span>
+<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a>        <span class="n">something</span><span class="p">()</span>
+<a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a>    <span class="k">except</span> <span class="ne">NameError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a>        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;oops!&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">e</span>
+<a id="__codelineno-34-6" name="__codelineno-34-6" href="#__codelineno-34-6"></a>
+<a id="__codelineno-34-7" name="__codelineno-34-7" href="#__codelineno-34-7"></a><span class="k">def</span> <span class="nf">g</span><span class="p">():</span>
+<a id="__codelineno-34-8" name="__codelineno-34-8" href="#__codelineno-34-8"></a>    <span class="k">raise</span> <span class="ne">NotImplementedError</span> <span class="kn">from</span> <span class="kc">None</span>
+</code></pre></div>
+
+### References
+- [Python documentation: The `raise` statement](https://docs.python.org/3/reference/simple_stmts.html#raise)
+- [Python documentation: Built-in Exceptions](https://docs.python.org/3/library/exceptions.html#built-in-exceptions)
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-raise)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L827)
+</details>
+
+<h2 id="invalid-return-type"><a class="toclink" href="#invalid-return-type"><code>invalid-return-type</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects returned values that can't be assigned to the function's annotated return type</summary>
+
+### What it does
+Detects returned values that can't be assigned to the function's annotated return type.
+
+### Why is this bad?
+Returning an object of a type incompatible with the annotated return type may cause confusion to the user calling the function.
+
+### Examples
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="k">def</span> <span class="nf">func</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>    <span class="k">return</span> <span class="s2">&quot;a&quot;</span>  <span class="c1"># error: [invalid-return-type]</span>
+</code></pre></div>
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-return-type)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L490)
+</details>
+
+<h2 id="invalid-super-argument"><a class="toclink" href="#invalid-super-argument"><code>invalid-super-argument</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects invalid arguments for <code>super()</code></summary>
+
+### What it does
+Detects `super()` calls where:
+- the first argument is not a valid class literal, or
+- the second argument is not an instance or subclass of the first argument.
+
+### Why is this bad?
+`super(type, obj)` expects:
+- the first argument to be a class,
+- and the second argument to satisfy one of the following:
+  - `isinstance(obj, type)` is `True`
+  - `issubclass(obj, type)` is `True`
+
+Violating this relationship will raise a `TypeError` at runtime.
+
+### Examples
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="k">class</span> <span class="nc">A</span><span class="p">:</span>
+<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>    <span class="o">...</span>
+<a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a><span class="k">class</span> <span class="nc">B</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+<a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a>    <span class="o">...</span>
+<a id="__codelineno-36-5" name="__codelineno-36-5" href="#__codelineno-36-5"></a>
+<a id="__codelineno-36-6" name="__codelineno-36-6" href="#__codelineno-36-6"></a><span class="nb">super</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">())</span>  <span class="c1"># it&#39;s okay! `A` satisfies `isinstance(B(), A)`</span>
+<a id="__codelineno-36-7" name="__codelineno-36-7" href="#__codelineno-36-7"></a>
+<a id="__codelineno-36-8" name="__codelineno-36-8" href="#__codelineno-36-8"></a><span class="nb">super</span><span class="p">(</span><span class="n">A</span><span class="p">(),</span> <span class="n">B</span><span class="p">())</span> <span class="c1"># error: `A()` is not a class</span>
+<a id="__codelineno-36-9" name="__codelineno-36-9" href="#__codelineno-36-9"></a>
+<a id="__codelineno-36-10" name="__codelineno-36-10" href="#__codelineno-36-10"></a><span class="nb">super</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">A</span><span class="p">())</span>  <span class="c1"># error: `A()` does not satisfy `isinstance(A(), B)`</span>
+<a id="__codelineno-36-11" name="__codelineno-36-11" href="#__codelineno-36-11"></a><span class="nb">super</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">A</span><span class="p">)</span>  <span class="c1"># error: `A` does not satisfy `issubclass(A, B)`</span>
+</code></pre></div>
+
+### References
+- [Python documentation: super()](https://docs.python.org/3/library/functions.html#super)
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-super-argument)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L870)
+</details>
+
+<h2 id="invalid-syntax-in-forward-annotation"><a class="toclink" href="#invalid-syntax-in-forward-annotation"><code>invalid-syntax-in-forward-annotation</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects invalid syntax in forward annotations</summary>
+
+TODO #14889
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-syntax-in-forward-annotation)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fstring_annotation.rs#L111)
+</details>
+
+<h2 id="invalid-type-alias-type"><a class="toclink" href="#invalid-type-alias-type"><code>invalid-type-alias-type</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects invalid TypeAliasType definitions</summary>
+
+### What it does
+Checks for the creation of invalid `TypeAliasType`s
+
+### Why is this bad?
+There are several requirements that you must follow when creating a `TypeAliasType`.
+
+### Examples
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TypeAliasType</span>
+<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a>
+<a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a><span class="n">IntOrStr</span> <span class="o">=</span> <span class="n">TypeAliasType</span><span class="p">(</span><span class="s2">&quot;IntOrStr&quot;</span><span class="p">,</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">)</span>  <span class="c1"># okay</span>
+<a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a><span class="n">NewAlias</span> <span class="o">=</span> <span class="n">TypeAliasType</span><span class="p">(</span><span class="n">get_name</span><span class="p">(),</span> <span class="nb">int</span><span class="p">)</span>        <span class="c1"># error: TypeAliasType name must be a string literal</span>
+</code></pre></div>
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-type-alias-type)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L716)
+</details>
+
+<h2 id="invalid-type-checking-constant"><a class="toclink" href="#invalid-type-checking-constant"><code>invalid-type-checking-constant</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects invalid <code>TYPE_CHECKING</code> constant assignments</summary>
+
+### What it does
+Checks for a value other than `False` assigned to the `TYPE_CHECKING` variable, or an
+annotation not assignable from `bool`.
+
+### Why is this bad?
+The name `TYPE_CHECKING` is reserved for a flag that can be used to provide conditional
+code seen only by the type checker, and not at runtime. Normally this flag is imported from
+`typing` or `typing_extensions`, but it can also be defined locally. If defined locally, it
+must be assigned the value `False` at runtime; the type checker will consider its value to
+be `True`. If annotated, it must be annotated as a type that can accept `bool` values.
+
+### Examples
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="n">TYPE_CHECKING</span><span class="p">:</span> <span class="nb">str</span>
+<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="n">TYPE_CHECKING</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</code></pre></div>
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-type-checking-constant)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L909)
+</details>
+
+<h2 id="invalid-type-form"><a class="toclink" href="#invalid-type-form"><code>invalid-type-form</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects invalid type forms</summary>
+
+### What it does
+Checks for expressions that are used as [type expressions]
+but cannot validly be interpreted as such.
+
+### Why is this bad?
+Such expressions cannot be understood by ty.
+In some cases, they might raise errors at runtime.
+
+### Examples
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Annotated</span>
+<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>
+<a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a><span class="n">a</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># `1` is not a type</span>
+<a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a><span class="n">b</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>  <span class="c1"># `Annotated` expects at least two arguments</span>
+</code></pre></div>
+[type expressions]: https://typing.python.org/en/latest/spec/annotations.html#type-and-annotation-expressions
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-type-form)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L933)
+</details>
+
+<h2 id="invalid-type-guard-call"><a class="toclink" href="#invalid-type-guard-call"><code>invalid-type-guard-call</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects type guard function calls that has no narrowing effect</summary>
+
+### What it does
+Checks for type guard function calls without a valid target.
+
+### Why is this bad?
+The first non-keyword non-variadic argument to a type guard function
+is its target and must map to a symbol.
+
+Starred (`is_str(*a)`), literal (`is_str(42)`) and other non-symbol-like
+expressions are invalid as narrowing targets.
+
+### Examples
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TypeIs</span>
+<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>
+<a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">v</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TypeIs</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span> <span class="o">...</span>
+<a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a>
+<a id="__codelineno-40-5" name="__codelineno-40-5" href="#__codelineno-40-5"></a><span class="n">f</span><span class="p">()</span>  <span class="c1"># Error</span>
+<a id="__codelineno-40-6" name="__codelineno-40-6" href="#__codelineno-40-6"></a><span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="p">)</span>  <span class="c1"># Error</span>
+<a id="__codelineno-40-7" name="__codelineno-40-7" href="#__codelineno-40-7"></a><span class="n">f</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># Error</span>
+</code></pre></div>
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-type-guard-call)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L985)
+</details>
+
+<h2 id="invalid-type-guard-definition"><a class="toclink" href="#invalid-type-guard-definition"><code>invalid-type-guard-definition</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects malformed type guard functions</summary>
+
+### What it does
+Checks for type guard functions without
+a first non-self-like non-keyword-only non-variadic parameter.
+
+### Why is this bad?
+Type narrowing functions must accept at least one positional argument
+(non-static methods must accept another in addition to `self`/`cls`).
+
+Extra parameters/arguments are allowed but do not affect narrowing.
+
+### Examples
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TypeIs</span>
+<a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a>
+<a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a><span class="k">def</span> <span class="nf">f</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">TypeIs</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span> <span class="o">...</span>  <span class="c1"># Error, no parameter</span>
+<a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TypeIs</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span> <span class="o">...</span>  <span class="c1"># Error, no positional arguments allowed</span>
+<a id="__codelineno-41-5" name="__codelineno-41-5" href="#__codelineno-41-5"></a><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TypeIs</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span> <span class="o">...</span> <span class="c1"># Error, expect variadic arguments</span>
+<a id="__codelineno-41-6" name="__codelineno-41-6" href="#__codelineno-41-6"></a><span class="k">class</span> <span class="nc">C</span><span class="p">:</span>
+<a id="__codelineno-41-7" name="__codelineno-41-7" href="#__codelineno-41-7"></a>    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TypeIs</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span> <span class="o">...</span>  <span class="c1"># Error, only positional argument expected is `self`</span>
+</code></pre></div>
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-type-guard-definition)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L957)
+</details>
+
+<h2 id="invalid-type-variable-constraints"><a class="toclink" href="#invalid-type-variable-constraints"><code>invalid-type-variable-constraints</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects invalid type variable constraints</summary>
+
+### What it does
+Checks for constrained [type variables] with only one constraint.
+
+### Why is this bad?
+A constrained type variable must have at least two constraints.
+
+### Examples
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TypeVar</span>
+<a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a>
+<a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a><span class="n">T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>  <span class="c1"># invalid constrained TypeVar</span>
+</code></pre></div>
+
+Use instead:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="n">T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>  <span class="c1"># valid constrained TypeVar</span>
+<a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a><span class="c1">## or</span>
+<a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a><span class="n">T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="nb">str</span><span class="p">)</span>  <span class="c1"># valid bound TypeVar</span>
+</code></pre></div>
+
+[type variables]: https://docs.python.org/3/library/typing.html#typing.TypeVar
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-type-variable-constraints)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1013)
+</details>
+
+<h2 id="missing-argument"><a class="toclink" href="#missing-argument"><code>missing-argument</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects missing required arguments in a call</summary>
+
+### What it does
+Checks for missing required arguments in a call.
+
+### Why is this bad?
+Failing to provide a required argument will raise a `TypeError` at runtime.
+
+### Examples
+<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span> <span class="o">...</span>
+<a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a><span class="n">func</span><span class="p">()</span>  <span class="c1"># TypeError: func() missing 1 required positional argument: &#39;x&#39;</span>
+</code></pre></div>
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20missing-argument)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1042)
+</details>
+
+<h2 id="no-matching-overload"><a class="toclink" href="#no-matching-overload"><code>no-matching-overload</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects calls that do not match any overload</summary>
+
+### What it does
+Checks for calls to an overloaded function that do not match any of the overloads.
+
+### Why is this bad?
+Failing to provide the correct arguments to one of the overloads will raise a `TypeError`
+at runtime.
+
+### Examples
+<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="nd">@overload</span>
+<a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span> <span class="o">...</span>
+<a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a><span class="nd">@overload</span>
+<a id="__codelineno-45-4" name="__codelineno-45-4" href="#__codelineno-45-4"></a><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span> <span class="o">...</span>
+<a id="__codelineno-45-5" name="__codelineno-45-5" href="#__codelineno-45-5"></a><span class="n">func</span><span class="p">(</span><span class="s2">&quot;string&quot;</span><span class="p">)</span>  <span class="c1"># error: [no-matching-overload]</span>
+</code></pre></div>
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20no-matching-overload)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1061)
+</details>
+
+<h2 id="non-subscriptable"><a class="toclink" href="#non-subscriptable"><code>non-subscriptable</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects subscripting objects that do not support subscripting</summary>
+
+### What it does
+Checks for subscripting objects that do not support subscripting.
+
+### Why is this bad?
+Subscripting an object that does not support it will raise a `TypeError` at runtime.
+
+### Examples
+<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="mi">4</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># TypeError: &#39;int&#39; object is not subscriptable</span>
+</code></pre></div>
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20non-subscriptable)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1084)
+</details>
+
+<h2 id="not-iterable"><a class="toclink" href="#not-iterable"><code>not-iterable</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects iteration over an object that is not iterable</summary>
+
+### What it does
+Checks for objects that are not iterable but are used in a context that requires them to be.
+
+### Why is this bad?
+Iterating over an object that is not iterable will raise a `TypeError` at runtime.
+
+### Examples
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="mi">34</span><span class="p">:</span>  <span class="c1"># TypeError: &#39;int&#39; object is not iterable</span>
+<a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a>    <span class="k">pass</span>
+</code></pre></div>
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20not-iterable)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1102)
+</details>
+
+<h2 id="parameter-already-assigned"><a class="toclink" href="#parameter-already-assigned"><code>parameter-already-assigned</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects multiple arguments for the same parameter</summary>
+
+### What it does
+Checks for calls which provide more than one argument for a single parameter.
+
+### Why is this bad?
+Providing multiple values for a single parameter will raise a `TypeError` at runtime.
+
+### Examples
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span> <span class="o">...</span>
+<a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a>
+<a id="__codelineno-48-3" name="__codelineno-48-3" href="#__codelineno-48-3"></a><span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># Error raised here</span>
+</code></pre></div>
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20parameter-already-assigned)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1153)
+</details>
+
+<h2 id="raw-string-type-annotation"><a class="toclink" href="#raw-string-type-annotation"><code>raw-string-type-annotation</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects raw strings in type annotation positions</summary>
+
+### What it does
+Checks for raw-strings in type annotation positions.
+
+### Why is this bad?
+Static analysis tools like ty can't analyse type annotations that use raw-string notation.
+
+### Examples
+<div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="k">def</span> <span class="nf">test</span><span class="p">():</span> <span class="o">-&gt;</span> <span class="sa">r</span><span class="s2">&quot;int&quot;</span><span class="p">:</span>
+<a id="__codelineno-49-2" name="__codelineno-49-2" href="#__codelineno-49-2"></a>    <span class="o">...</span>
+</code></pre></div>
+
+Use instead:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="k">def</span> <span class="nf">test</span><span class="p">():</span> <span class="o">-&gt;</span> <span class="s2">&quot;int&quot;</span><span class="p">:</span>
+<a id="__codelineno-50-2" name="__codelineno-50-2" href="#__codelineno-50-2"></a>    <span class="o">...</span>
+</code></pre></div>
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20raw-string-type-annotation)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fstring_annotation.rs#L61)
+</details>
+
+<h2 id="static-assert-error"><a class="toclink" href="#static-assert-error"><code>static-assert-error</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>Failed static assertion</summary>
+
+### What it does
+Makes sure that the argument of `static_assert` is statically known to be true.
+
+### Why is this bad?
+A `static_assert` call represents an explicit request from the user
+for the type checker to emit an error if the argument cannot be verified
+to evaluate to `True` in a boolean context.
+
+### Examples
+<div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a><span class="kn">from</span> <span class="nn">ty_extensions</span> <span class="kn">import</span> <span class="n">static_assert</span>
+<a id="__codelineno-51-2" name="__codelineno-51-2" href="#__codelineno-51-2"></a>
+<a id="__codelineno-51-3" name="__codelineno-51-3" href="#__codelineno-51-3"></a><span class="n">static_assert</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span>  <span class="c1"># error: evaluates to `False`</span>
+<a id="__codelineno-51-4" name="__codelineno-51-4" href="#__codelineno-51-4"></a>
+<a id="__codelineno-51-5" name="__codelineno-51-5" href="#__codelineno-51-5"></a><span class="n">static_assert</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="mf">3.0</span><span class="p">)</span> <span class="o">==</span> <span class="mi">6</span><span class="p">)</span>  <span class="c1"># error: does not have a statically known truthiness</span>
+</code></pre></div>
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20static-assert-error)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1489)
+</details>
+
+<h2 id="subclass-of-final-class"><a class="toclink" href="#subclass-of-final-class"><code>subclass-of-final-class</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects subclasses of final classes</summary>
+
+### What it does
+Checks for classes that subclass final classes.
+
+### Why is this bad?
+Decorating a class with `@final` declares to the type checker that it should not be subclassed.
+
+### Example
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">final</span>
+<a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a>
+<a id="__codelineno-52-3" name="__codelineno-52-3" href="#__codelineno-52-3"></a><span class="nd">@final</span>
+<a id="__codelineno-52-4" name="__codelineno-52-4" href="#__codelineno-52-4"></a><span class="k">class</span> <span class="nc">A</span><span class="p">:</span> <span class="o">...</span>
+<a id="__codelineno-52-5" name="__codelineno-52-5" href="#__codelineno-52-5"></a><span class="k">class</span> <span class="nc">B</span><span class="p">(</span><span class="n">A</span><span class="p">):</span> <span class="o">...</span>  <span class="c1"># Error raised here</span>
+</code></pre></div>
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20subclass-of-final-class)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1244)
+</details>
+
+<h2 id="too-many-positional-arguments"><a class="toclink" href="#too-many-positional-arguments"><code>too-many-positional-arguments</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects calls passing too many positional arguments</summary>
+
+### What it does
+Checks for calls that pass more positional arguments than the callable can accept.
+
+### Why is this bad?
+Passing too many positional arguments will raise `TypeError` at runtime.
+
+### Example
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a><span class="k">def</span> <span class="nf">f</span><span class="p">():</span> <span class="o">...</span>
+<a id="__codelineno-53-2" name="__codelineno-53-2" href="#__codelineno-53-2"></a>
+<a id="__codelineno-53-3" name="__codelineno-53-3" href="#__codelineno-53-3"></a><span class="n">f</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">)</span>  <span class="c1"># Error raised here</span>
+</code></pre></div>
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20too-many-positional-arguments)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1289)
+</details>
+
+<h2 id="type-assertion-failure"><a class="toclink" href="#type-assertion-failure"><code>type-assertion-failure</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects failed type assertions</summary>
+
+### What it does
+Checks for `assert_type()` and `assert_never()` calls where the actual type
+is not the same as the asserted type.
+
+### Why is this bad?
+`assert_type()` allows confirming the inferred type of a certain value.
+
+### Example
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a><span class="k">def</span> <span class="nf">_</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<a id="__codelineno-54-2" name="__codelineno-54-2" href="#__codelineno-54-2"></a>    <span class="n">assert_type</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>  <span class="c1"># fine</span>
+<a id="__codelineno-54-3" name="__codelineno-54-3" href="#__codelineno-54-3"></a>    <span class="n">assert_type</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>  <span class="c1"># error: Actual type does not match asserted type</span>
+</code></pre></div>
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20type-assertion-failure)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1267)
+</details>
+
+<h2 id="unavailable-implicit-super-arguments"><a class="toclink" href="#unavailable-implicit-super-arguments"><code>unavailable-implicit-super-arguments</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects invalid <code>super()</code> calls where implicit arguments are unavailable.</summary>
+
+### What it does
+Detects invalid `super()` calls where implicit arguments like the enclosing class or first method argument are unavailable.
+
+### Why is this bad?
+When `super()` is used without arguments, Python tries to find two things:
+the nearest enclosing class and the first argument of the immediately enclosing function (typically self or cls).
+If either of these is missing, the call will fail at runtime with a `RuntimeError`.
+
+### Examples
+<div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a><span class="nb">super</span><span class="p">()</span>  <span class="c1"># error: no enclosing class or function found</span>
+<a id="__codelineno-55-2" name="__codelineno-55-2" href="#__codelineno-55-2"></a>
+<a id="__codelineno-55-3" name="__codelineno-55-3" href="#__codelineno-55-3"></a><span class="k">def</span> <span class="nf">func</span><span class="p">():</span>
+<a id="__codelineno-55-4" name="__codelineno-55-4" href="#__codelineno-55-4"></a>    <span class="nb">super</span><span class="p">()</span>  <span class="c1"># error: no enclosing class or first argument exists</span>
+<a id="__codelineno-55-5" name="__codelineno-55-5" href="#__codelineno-55-5"></a>
+<a id="__codelineno-55-6" name="__codelineno-55-6" href="#__codelineno-55-6"></a><span class="k">class</span> <span class="nc">A</span><span class="p">:</span>
+<a id="__codelineno-55-7" name="__codelineno-55-7" href="#__codelineno-55-7"></a>    <span class="n">f</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span>  <span class="c1"># error: no enclosing function to provide the first argument</span>
+<a id="__codelineno-55-8" name="__codelineno-55-8" href="#__codelineno-55-8"></a>
+<a id="__codelineno-55-9" name="__codelineno-55-9" href="#__codelineno-55-9"></a>    <span class="k">def</span> <span class="nf">method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-55-10" name="__codelineno-55-10" href="#__codelineno-55-10"></a>        <span class="k">def</span> <span class="nf">nested</span><span class="p">():</span>
+<a id="__codelineno-55-11" name="__codelineno-55-11" href="#__codelineno-55-11"></a>            <span class="nb">super</span><span class="p">()</span>  <span class="c1"># error: first argument does not exist in this nested function</span>
+<a id="__codelineno-55-12" name="__codelineno-55-12" href="#__codelineno-55-12"></a>
+<a id="__codelineno-55-13" name="__codelineno-55-13" href="#__codelineno-55-13"></a>        <span class="k">lambda</span><span class="p">:</span> <span class="nb">super</span><span class="p">()</span>  <span class="c1"># error: first argument does not exist in this lambda</span>
+<a id="__codelineno-55-14" name="__codelineno-55-14" href="#__codelineno-55-14"></a>
+<a id="__codelineno-55-15" name="__codelineno-55-15" href="#__codelineno-55-15"></a>        <span class="p">(</span><span class="nb">super</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>  <span class="c1"># error: argument is not available in generator expression</span>
+<a id="__codelineno-55-16" name="__codelineno-55-16" href="#__codelineno-55-16"></a>
+<a id="__codelineno-55-17" name="__codelineno-55-17" href="#__codelineno-55-17"></a>        <span class="nb">super</span><span class="p">()</span>  <span class="c1"># okay! both enclosing class and first argument are available</span>
+</code></pre></div>
+
+### References
+- [Python documentation: super()](https://docs.python.org/3/library/functions.html#super)
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20unavailable-implicit-super-arguments)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1310)
+</details>
+
+<h2 id="unknown-argument"><a class="toclink" href="#unknown-argument"><code>unknown-argument</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects unknown keyword arguments in calls</summary>
+
+### What it does
+Checks for keyword arguments in calls that don't match any parameter of the callable.
+
+### Why is this bad?
+Providing an unknown keyword argument will raise `TypeError` at runtime.
+
+### Example
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span> <span class="o">...</span>
+<a id="__codelineno-56-2" name="__codelineno-56-2" href="#__codelineno-56-2"></a>
+<a id="__codelineno-56-3" name="__codelineno-56-3" href="#__codelineno-56-3"></a><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># Error raised here</span>
+</code></pre></div>
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20unknown-argument)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1367)
+</details>
+
+<h2 id="unresolved-attribute"><a class="toclink" href="#unresolved-attribute"><code>unresolved-attribute</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects references to unresolved attributes</summary>
+
+### What it does
+Checks for unresolved attributes.
+
+### Why is this bad?
+Accessing an unbound attribute will raise an `AttributeError` at runtime.
+An unresolved attribute is not guaranteed to exist from the type alone,
+so this could also indicate that the object is not of the type that the user expects.
+
+### Examples
+<div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a><span class="k">class</span> <span class="nc">A</span><span class="p">:</span> <span class="o">...</span>
+<a id="__codelineno-57-2" name="__codelineno-57-2" href="#__codelineno-57-2"></a>
+<a id="__codelineno-57-3" name="__codelineno-57-3" href="#__codelineno-57-3"></a><span class="n">A</span><span class="p">()</span><span class="o">.</span><span class="n">foo</span>  <span class="c1"># AttributeError: &#39;A&#39; object has no attribute &#39;foo&#39;</span>
+</code></pre></div>
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20unresolved-attribute)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1388)
+</details>
+
+<h2 id="unresolved-import"><a class="toclink" href="#unresolved-import"><code>unresolved-import</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects unresolved imports</summary>
+
+### What it does
+Checks for import statements for which the module cannot be resolved.
+
+### Why is this bad?
+Importing a module that cannot be resolved will raise a `ModuleNotFoundError`
+at runtime.
+
+### Examples
+<div class="highlight"><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a><span class="kn">import</span> <span class="nn">foo</span>  <span class="c1"># ModuleNotFoundError: No module named &#39;foo&#39;</span>
+</code></pre></div>
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20unresolved-import)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1410)
+</details>
+
+<h2 id="unresolved-reference"><a class="toclink" href="#unresolved-reference"><code>unresolved-reference</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects references to names that are not defined</summary>
+
+### What it does
+Checks for references to names that are not defined.
+
+### Why is this bad?
+Using an undefined variable will raise a `NameError` at runtime.
+
+### Example
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># NameError: name &#39;x&#39; is not defined</span>
+</code></pre></div>
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20unresolved-reference)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1429)
+</details>
+
+<h2 id="unsupported-bool-conversion"><a class="toclink" href="#unsupported-bool-conversion"><code>unsupported-bool-conversion</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects boolean conversion where the object incorrectly implements <code>__bool__</code></summary>
+
+### What it does
+Checks for bool conversions where the object doesn't correctly implement `__bool__`.
+
+### Why is this bad?
+If an exception is raised when you attempt to evaluate the truthiness of an object,
+using the object in a boolean context will fail at runtime.
+
+### Examples
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a><span class="k">class</span> <span class="nc">NotBoolable</span><span class="p">:</span>
+<a id="__codelineno-60-2" name="__codelineno-60-2" href="#__codelineno-60-2"></a>    <span class="fm">__bool__</span> <span class="o">=</span> <span class="kc">None</span>
+<a id="__codelineno-60-3" name="__codelineno-60-3" href="#__codelineno-60-3"></a>
+<a id="__codelineno-60-4" name="__codelineno-60-4" href="#__codelineno-60-4"></a><span class="n">b1</span> <span class="o">=</span> <span class="n">NotBoolable</span><span class="p">()</span>
+<a id="__codelineno-60-5" name="__codelineno-60-5" href="#__codelineno-60-5"></a><span class="n">b2</span> <span class="o">=</span> <span class="n">NotBoolable</span><span class="p">()</span>
+<a id="__codelineno-60-6" name="__codelineno-60-6" href="#__codelineno-60-6"></a>
+<a id="__codelineno-60-7" name="__codelineno-60-7" href="#__codelineno-60-7"></a><span class="k">if</span> <span class="n">b1</span><span class="p">:</span>  <span class="c1"># exception raised here</span>
+<a id="__codelineno-60-8" name="__codelineno-60-8" href="#__codelineno-60-8"></a>    <span class="k">pass</span>
+<a id="__codelineno-60-9" name="__codelineno-60-9" href="#__codelineno-60-9"></a>
+<a id="__codelineno-60-10" name="__codelineno-60-10" href="#__codelineno-60-10"></a><span class="n">b1</span> <span class="ow">and</span> <span class="n">b2</span>  <span class="c1"># exception raised here</span>
+<a id="__codelineno-60-11" name="__codelineno-60-11" href="#__codelineno-60-11"></a><span class="ow">not</span> <span class="n">b1</span>  <span class="c1"># exception raised here</span>
+<a id="__codelineno-60-12" name="__codelineno-60-12" href="#__codelineno-60-12"></a><span class="n">b1</span> <span class="o">&lt;</span> <span class="n">b2</span> <span class="o">&lt;</span> <span class="n">b1</span>  <span class="c1"># exception raised here</span>
+</code></pre></div>
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20unsupported-bool-conversion)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1122)
+</details>
+
+<h2 id="unsupported-operator"><a class="toclink" href="#unsupported-operator"><code>unsupported-operator</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects binary, unary, or comparison expressions where the operands don't support the operator</summary>
+
+### What it does
+Checks for binary expressions, comparisons, and unary expressions where
+the operands don't support the operator.
+
+### Why is this bad?
+Attempting to use an unsupported operator will raise a `TypeError` at
+runtime.
+
+### Examples
+<div class="highlight"><pre><span></span><code><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a><span class="k">class</span> <span class="nc">A</span><span class="p">:</span> <span class="o">...</span>
+<a id="__codelineno-61-2" name="__codelineno-61-2" href="#__codelineno-61-2"></a>
+<a id="__codelineno-61-3" name="__codelineno-61-3" href="#__codelineno-61-3"></a><span class="n">A</span><span class="p">()</span> <span class="o">+</span> <span class="n">A</span><span class="p">()</span>  <span class="c1"># TypeError: unsupported operand type(s) for +: &#39;A&#39; and &#39;A&#39;</span>
+</code></pre></div>
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20unsupported-operator)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1448)
+</details>
+
+<h2 id="zero-stepsize-in-slice"><a class="toclink" href="#zero-stepsize-in-slice"><code>zero-stepsize-in-slice</code></a></h2>
+<p><strong>Default level</strong>: error</p>
+<details>
+<summary>detects a slice step size of zero</summary>
+
+### What it does
+Checks for step size 0 in slices.
+
+### Why is this bad?
+A slice with a step size of zero will raise a `ValueError` at runtime.
+
+### Examples
+<div class="highlight"><pre><span></span><code><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a><span class="n">l</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<a id="__codelineno-62-2" name="__codelineno-62-2" href="#__codelineno-62-2"></a><span class="n">l</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">10</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># ValueError: slice step cannot be zero</span>
+</code></pre></div>
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20zero-stepsize-in-slice)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1470)
+</details>
+
+<h2 id="invalid-ignore-comment"><a class="toclink" href="#invalid-ignore-comment"><code>invalid-ignore-comment</code></a></h2>
+<p><strong>Default level</strong>: warn</p>
+<details>
+<summary>detects ignore comments that use invalid syntax</summary>
+
+### What it does
+Checks for `type: ignore` and `ty: ignore` comments that are syntactically incorrect.
+
+### Why is this bad?
+A syntactically incorrect ignore comment is probably a mistake and is useless.
+
+### Examples
+<div class="highlight"><pre><span></span><code><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a><span class="n">a</span> <span class="o">=</span> <span class="mi">20</span> <span class="o">/</span> <span class="mi">0</span>  <span class="c1"># type: ignoree</span>
+</code></pre></div>
+
+Use instead:
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a><span class="n">a</span> <span class="o">=</span> <span class="mi">20</span> <span class="o">/</span> <span class="mi">0</span>  <span class="c1"># type: ignore</span>
+</code></pre></div>
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20invalid-ignore-comment)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Fsuppression.rs#L65)
+</details>
+
+<h2 id="possibly-unbound-attribute"><a class="toclink" href="#possibly-unbound-attribute"><code>possibly-unbound-attribute</code></a></h2>
+<p><strong>Default level</strong>: warn</p>
+<details>
+<summary>detects references to possibly unbound attributes</summary>
+
+### What it does
+Checks for possibly unbound attributes.
+
+### Why is this bad?
+Attempting to access an unbound attribute will raise an `AttributeError` at runtime.
+
+### Examples
+<div class="highlight"><pre><span></span><code><a id="__codelineno-65-1" name="__codelineno-65-1" href="#__codelineno-65-1"></a><span class="k">class</span> <span class="nc">A</span><span class="p">:</span>
+<a id="__codelineno-65-2" name="__codelineno-65-2" href="#__codelineno-65-2"></a>    <span class="k">if</span> <span class="n">b</span><span class="p">:</span>
+<a id="__codelineno-65-3" name="__codelineno-65-3" href="#__codelineno-65-3"></a>        <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-65-4" name="__codelineno-65-4" href="#__codelineno-65-4"></a>
+<a id="__codelineno-65-5" name="__codelineno-65-5" href="#__codelineno-65-5"></a><span class="n">A</span><span class="o">.</span><span class="n">c</span>  <span class="c1"># AttributeError: type object &#39;A&#39; has no attribute &#39;c&#39;</span>
+</code></pre></div>
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20possibly-unbound-attribute)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1174)
+</details>
+
+<h2 id="possibly-unbound-implicit-call"><a class="toclink" href="#possibly-unbound-implicit-call"><code>possibly-unbound-implicit-call</code></a></h2>
+<p><strong>Default level</strong>: warn</p>
+<details>
+<summary>detects implicit calls to possibly unbound methods</summary>
+
+### What it does
+Checks for implicit calls to possibly unbound methods.
+
+### Why is this bad?
+Expressions such as `x[y]` and `x * y` call methods
+under the hood (`__getitem__` and `__mul__` respectively).
+Calling an unbound method will raise an `AttributeError` at runtime.
+
+### Examples
+<div class="highlight"><pre><span></span><code><a id="__codelineno-66-1" name="__codelineno-66-1" href="#__codelineno-66-1"></a><span class="kn">import</span> <span class="nn">datetime</span>
+<a id="__codelineno-66-2" name="__codelineno-66-2" href="#__codelineno-66-2"></a>
+<a id="__codelineno-66-3" name="__codelineno-66-3" href="#__codelineno-66-3"></a><span class="k">class</span> <span class="nc">A</span><span class="p">:</span>
+<a id="__codelineno-66-4" name="__codelineno-66-4" href="#__codelineno-66-4"></a>    <span class="k">if</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">weekday</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">6</span><span class="p">:</span>
+<a id="__codelineno-66-5" name="__codelineno-66-5" href="#__codelineno-66-5"></a>        <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span> <span class="o">...</span>
+<a id="__codelineno-66-6" name="__codelineno-66-6" href="#__codelineno-66-6"></a>
+<a id="__codelineno-66-7" name="__codelineno-66-7" href="#__codelineno-66-7"></a><span class="n">A</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># TypeError: &#39;A&#39; object is not subscriptable</span>
+</code></pre></div>
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20possibly-unbound-implicit-call)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L115)
+</details>
+
+<h2 id="possibly-unbound-import"><a class="toclink" href="#possibly-unbound-import"><code>possibly-unbound-import</code></a></h2>
+<p><strong>Default level</strong>: warn</p>
+<details>
+<summary>detects possibly unbound imports</summary>
+
+### What it does
+Checks for imports of symbols that may be unbound.
+
+### Why is this bad?
+Importing an unbound module or name will raise a `ModuleNotFoundError`
+or `ImportError` at runtime.
+
+### Examples
+<div class="highlight"><pre><span></span><code><a id="__codelineno-67-1" name="__codelineno-67-1" href="#__codelineno-67-1"></a><span class="c1">## module.py</span>
+<a id="__codelineno-67-2" name="__codelineno-67-2" href="#__codelineno-67-2"></a><span class="kn">import</span> <span class="nn">datetime</span>
+<a id="__codelineno-67-3" name="__codelineno-67-3" href="#__codelineno-67-3"></a>
+<a id="__codelineno-67-4" name="__codelineno-67-4" href="#__codelineno-67-4"></a><span class="k">if</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">weekday</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">6</span><span class="p">:</span>
+<a id="__codelineno-67-5" name="__codelineno-67-5" href="#__codelineno-67-5"></a>    <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<a id="__codelineno-67-6" name="__codelineno-67-6" href="#__codelineno-67-6"></a>
+<a id="__codelineno-67-7" name="__codelineno-67-7" href="#__codelineno-67-7"></a><span class="c1">## main.py</span>
+<a id="__codelineno-67-8" name="__codelineno-67-8" href="#__codelineno-67-8"></a><span class="kn">from</span> <span class="nn">module</span> <span class="kn">import</span> <span class="n">a</span>  <span class="c1"># ImportError: cannot import name &#39;a&#39; from &#39;module&#39;</span>
+</code></pre></div>
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20possibly-unbound-import)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1196)
+</details>
+
+<h2 id="redundant-cast"><a class="toclink" href="#redundant-cast"><code>redundant-cast</code></a></h2>
+<p><strong>Default level</strong>: warn</p>
+<details>
+<summary>detects redundant <code>cast</code> calls</summary>
+
+### What it does
+Detects redundant `cast` calls where the value already has the target type.
+
+### Why is this bad?
+These casts have no effect and can be removed.
+
+### Example
+<div class="highlight"><pre><span></span><code><a id="__codelineno-68-1" name="__codelineno-68-1" href="#__codelineno-68-1"></a><span class="k">def</span> <span class="nf">f</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<a id="__codelineno-68-2" name="__codelineno-68-2" href="#__codelineno-68-2"></a>    <span class="k">return</span> <span class="mi">10</span>
+<a id="__codelineno-68-3" name="__codelineno-68-3" href="#__codelineno-68-3"></a>
+<a id="__codelineno-68-4" name="__codelineno-68-4" href="#__codelineno-68-4"></a><span class="n">cast</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">f</span><span class="p">())</span>  <span class="c1"># Redundant</span>
+</code></pre></div>
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20redundant-cast)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1541)
+</details>
+
+<h2 id="undefined-reveal"><a class="toclink" href="#undefined-reveal"><code>undefined-reveal</code></a></h2>
+<p><strong>Default level</strong>: warn</p>
+<details>
+<summary>detects usages of <code>reveal_type</code> without importing it</summary>
+
+### What it does
+Checks for calls to `reveal_type` without importing it.
+
+### Why is this bad?
+Using `reveal_type` without importing it will raise a `NameError` at runtime.
+
+### Examples
+<div class="highlight"><pre><span></span><code><a id="__codelineno-69-1" name="__codelineno-69-1" href="#__codelineno-69-1"></a><span class="n">reveal_type</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># NameError: name &#39;reveal_type&#39; is not defined</span>
+</code></pre></div>
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20undefined-reveal)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1349)
+</details>
+
+<h2 id="unknown-rule"><a class="toclink" href="#unknown-rule"><code>unknown-rule</code></a></h2>
+<p><strong>Default level</strong>: warn</p>
+<details>
+<summary>detects <code>ty: ignore</code> comments that reference unknown rules</summary>
+
+### What it does
+Checks for `ty: ignore[code]` where `code` isn't a known lint rule.
+
+### Why is this bad?
+A `ty: ignore[code]` directive with a `code` that doesn't match
+any known rule will not suppress any type errors, and is probably a mistake.
+
+### Examples
+<div class="highlight"><pre><span></span><code><a id="__codelineno-70-1" name="__codelineno-70-1" href="#__codelineno-70-1"></a><span class="n">a</span> <span class="o">=</span> <span class="mi">20</span> <span class="o">/</span> <span class="mi">0</span>  <span class="c1"># ty: ignore[division-by-zer]</span>
+</code></pre></div>
+
+Use instead:
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-71-1" name="__codelineno-71-1" href="#__codelineno-71-1"></a><span class="n">a</span> <span class="o">=</span> <span class="mi">20</span> <span class="o">/</span> <span class="mi">0</span>  <span class="c1"># ty: ignore[division-by-zero]</span>
+</code></pre></div>
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20unknown-rule)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Fsuppression.rs#L40)
+</details>
+
+<h2 id="unsupported-base"><a class="toclink" href="#unsupported-base"><code>unsupported-base</code></a></h2>
+<p><strong>Default level</strong>: warn</p>
+<details>
+<summary>detects class bases that are unsupported as ty could not feasibly calculate the class's MRO</summary>
+
+### What it does
+Checks for class definitions that have bases which are unsupported by ty.
+
+### Why is this bad?
+If a class has a base that is an instance of a complex type such as a union type,
+ty will not be able to resolve the [method resolution order] (MRO) for the class.
+This will lead to an inferior understanding of your codebase and unpredictable
+type-checking behavior.
+
+### Examples
+<div class="highlight"><pre><span></span><code><a id="__codelineno-72-1" name="__codelineno-72-1" href="#__codelineno-72-1"></a><span class="kn">import</span> <span class="nn">datetime</span>
+<a id="__codelineno-72-2" name="__codelineno-72-2" href="#__codelineno-72-2"></a>
+<a id="__codelineno-72-3" name="__codelineno-72-3" href="#__codelineno-72-3"></a><span class="k">class</span> <span class="nc">A</span><span class="p">:</span> <span class="o">...</span>
+<a id="__codelineno-72-4" name="__codelineno-72-4" href="#__codelineno-72-4"></a><span class="k">class</span> <span class="nc">B</span><span class="p">:</span> <span class="o">...</span>
+<a id="__codelineno-72-5" name="__codelineno-72-5" href="#__codelineno-72-5"></a>
+<a id="__codelineno-72-6" name="__codelineno-72-6" href="#__codelineno-72-6"></a><span class="k">if</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">weekday</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">6</span><span class="p">:</span>
+<a id="__codelineno-72-7" name="__codelineno-72-7" href="#__codelineno-72-7"></a>    <span class="n">C</span> <span class="o">=</span> <span class="n">A</span>
+<a id="__codelineno-72-8" name="__codelineno-72-8" href="#__codelineno-72-8"></a><span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-72-9" name="__codelineno-72-9" href="#__codelineno-72-9"></a>    <span class="n">C</span> <span class="o">=</span> <span class="n">B</span>
+<a id="__codelineno-72-10" name="__codelineno-72-10" href="#__codelineno-72-10"></a>
+<a id="__codelineno-72-11" name="__codelineno-72-11" href="#__codelineno-72-11"></a><span class="k">class</span> <span class="nc">D</span><span class="p">(</span><span class="n">C</span><span class="p">):</span> <span class="o">...</span>  <span class="c1"># error: [unsupported-base]</span>
+</code></pre></div>
+
+[method resolution order]: https://docs.python.org/3/glossary.html#term-method-resolution-order
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20unsupported-base)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L549)
+</details>
+
+<h2 id="division-by-zero"><a class="toclink" href="#division-by-zero"><code>division-by-zero</code></a></h2>
+<p><strong>Default level</strong>: ignore</p>
+<details>
+<summary>detects division by zero</summary>
+
+### What it does
+It detects division by zero.
+
+### Why is this bad?
+Dividing by zero raises a `ZeroDivisionError` at runtime.
+
+### Examples
+<div class="highlight"><pre><span></span><code><a id="__codelineno-73-1" name="__codelineno-73-1" href="#__codelineno-73-1"></a><span class="mi">5</span> <span class="o">/</span> <span class="mi">0</span>
+</code></pre></div>
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20division-by-zero)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L244)
+</details>
+
+<h2 id="possibly-unresolved-reference"><a class="toclink" href="#possibly-unresolved-reference"><code>possibly-unresolved-reference</code></a></h2>
+<p><strong>Default level</strong>: ignore</p>
+<details>
+<summary>detects references to possibly undefined names</summary>
+
+### What it does
+Checks for references to names that are possibly not defined.
+
+### Why is this bad?
+Using an undefined variable will raise a `NameError` at runtime.
+
+### Example
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-74-1" name="__codelineno-74-1" href="#__codelineno-74-1"></a><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">):</span>
+<a id="__codelineno-74-2" name="__codelineno-74-2" href="#__codelineno-74-2"></a>    <span class="n">x</span> <span class="o">=</span> <span class="n">i</span>
+<a id="__codelineno-74-3" name="__codelineno-74-3" href="#__codelineno-74-3"></a>
+<a id="__codelineno-74-4" name="__codelineno-74-4" href="#__codelineno-74-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># NameError: name &#39;x&#39; is not defined</span>
+</code></pre></div>
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20possibly-unresolved-reference)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1222)
+</details>
+
+<h2 id="unused-ignore-comment"><a class="toclink" href="#unused-ignore-comment"><code>unused-ignore-comment</code></a></h2>
+<p><strong>Default level</strong>: ignore</p>
+<details>
+<summary>detects unused <code>type: ignore</code> comments</summary>
+
+### What it does
+Checks for `type: ignore` or `ty: ignore` directives that are no longer applicable.
+
+### Why is this bad?
+A `type: ignore` directive that no longer matches any diagnostic violations is likely
+included by mistake, and should be removed to avoid confusion.
+
+### Examples
+<div class="highlight"><pre><span></span><code><a id="__codelineno-75-1" name="__codelineno-75-1" href="#__codelineno-75-1"></a><span class="n">a</span> <span class="o">=</span> <span class="mi">20</span> <span class="o">/</span> <span class="mi">2</span>  <span class="c1"># ty: ignore[division-by-zero]</span>
+</code></pre></div>
+
+Use instead:
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-76-1" name="__codelineno-76-1" href="#__codelineno-76-1"></a><span class="n">a</span> <span class="o">=</span> <span class="mi">20</span> <span class="o">/</span> <span class="mi">2</span>
+</code></pre></div>
+
+### Links
+* [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20unused-ignore-comment)
+* [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Fsuppression.rs#L15)
+</details>
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      <span class="md-source-file__fact">
+        <span class="md-icon" title="Last update">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
+        </span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 2, 2025</span>
+      </span>
+    
+    
+    
+    
+  </aside>
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../configuration/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Configuration" rel="prev">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Configuration
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../cli/" class="md-footer__link md-footer__link--next" aria-label="Next: CLI" rel="next">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                CLI
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs Insiders
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/astral-sh/ty" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://discord.com/invite/astral-sh" target="_blank" rel="noopener" title="discord.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M524.531 69.836a1.5 1.5 0 0 0-.764-.7A485.065 485.065 0 0 0 404.081 32.03a1.816 1.816 0 0 0-1.923.91 337.461 337.461 0 0 0-14.9 30.6 447.848 447.848 0 0 0-134.426 0 309.541 309.541 0 0 0-15.135-30.6 1.89 1.89 0 0 0-1.924-.91 483.689 483.689 0 0 0-119.688 37.107 1.712 1.712 0 0 0-.788.676C39.068 183.651 18.186 294.69 28.43 404.354a2.016 2.016 0 0 0 .765 1.375 487.666 487.666 0 0 0 146.825 74.189 1.9 1.9 0 0 0 2.063-.676A348.2 348.2 0 0 0 208.12 430.4a1.86 1.86 0 0 0-1.019-2.588 321.173 321.173 0 0 1-45.868-21.853 1.885 1.885 0 0 1-.185-3.126 251.047 251.047 0 0 0 9.109-7.137 1.819 1.819 0 0 1 1.9-.256c96.229 43.917 200.41 43.917 295.5 0a1.812 1.812 0 0 1 1.924.233 234.533 234.533 0 0 0 9.132 7.16 1.884 1.884 0 0 1-.162 3.126 301.407 301.407 0 0 1-45.89 21.83 1.875 1.875 0 0 0-1 2.611 391.055 391.055 0 0 0 30.014 48.815 1.864 1.864 0 0 0 2.063.7A486.048 486.048 0 0 0 610.7 405.729a1.882 1.882 0 0 0 .765-1.352c12.264-126.783-20.532-236.912-86.934-334.541ZM222.491 337.58c-28.972 0-52.844-26.587-52.844-59.239s23.409-59.241 52.844-59.241c29.665 0 53.306 26.82 52.843 59.239 0 32.654-23.41 59.241-52.843 59.241Zm195.38 0c-28.971 0-52.843-26.587-52.843-59.239s23.409-59.241 52.843-59.241c29.667 0 53.307 26.82 52.844 59.239 0 32.654-23.177 59.241-52.844 59.241Z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://pypi.org/project/ty/" target="_blank" rel="noopener" title="pypi.org" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6zM286.2 404c11.1 0 20.1 9.1 20.1 20.3 0 11.3-9 20.4-20.1 20.4-11 0-20.1-9.2-20.1-20.4.1-11.3 9.1-20.3 20.1-20.3zM167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4zm-6.7-142.6c-11.1 0-20.1-9.1-20.1-20.3.1-11.3 9-20.4 20.1-20.4 11 0 20.1 9.2 20.1 20.4s-9 20.3-20.1 20.3z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://x.com/astral_sh" target="_blank" rel="noopener" title="x.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8l164.9-188.5L26.8 48h145.6l100.5 132.9L389.2 48zm-24.8 373.8h39.1L151.1 88h-42l255.3 333.8z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.path", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.sections", "navigation.indexes", "navigation.tracking", "content.code.annotate", "toc.follow", "navigation.footer", "navigation.top", "content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.f2da59ea.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7e51e09.min.js"></script>
+      
+        <script src="../../js/extra.js"></script>
+      
+    
+  </body>
+</html>
