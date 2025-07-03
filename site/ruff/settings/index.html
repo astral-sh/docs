@@ -4341,7 +4341,7 @@ collapsing the arguments to a single line doesn't exceed the line length if <cod
 <a id="__codelineno-77-5" name="__codelineno-77-5" href="#__codelineno-77-5"></a><span class="p">):</span> <span class="k">pass</span>
 </code></pre></div>
 <p>Setting <code>skip-magic-trailing-comma = true</code> changes the formatting to:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-78-1" name="__codelineno-78-1" href="#__codelineno-78-1"></a><span class="c1"># The arguments remain on separate lines because of the trailing comma after `b`</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-78-1" name="__codelineno-78-1" href="#__codelineno-78-1"></a><span class="c1"># The arguments are collapsed to a single line because the trailing comma is ignored</span>
 <a id="__codelineno-78-2" name="__codelineno-78-2" href="#__codelineno-78-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">test</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
 <a id="__codelineno-78-3" name="__codelineno-78-3" href="#__codelineno-78-3"></a>    <span class="k">pass</span>
 </code></pre></div>
@@ -6152,7 +6152,8 @@ and can be circumvented via <code>eval</code> or <code>importlib</code>.</p>
 <p><span id="banned-module-level-imports"></span></p>
 <p>List of specific modules that may not be imported at module level, and should instead be
 imported lazily (e.g., within a function definition, or an <code>if TYPE_CHECKING:</code>
-block, or some other nested context).</p>
+block, or some other nested context). This also affects the rule <code>import-outside-top-level</code>
+if <code>banned-module-level-imports</code> is enabled.</p>
 <p><strong>Default value</strong>: <code>[]</code></p>
 <p><strong>Type</strong>: <code>list[str]</code></p>
 <p><strong>Example usage</strong>:</p>

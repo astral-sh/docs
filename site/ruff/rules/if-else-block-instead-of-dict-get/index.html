@@ -850,13 +850,15 @@ more idiomatic.</p>
 <p>Under <a href="https://docs.astral.sh/ruff/preview">preview mode</a>, this rule will
 also suggest replacing <code>if</code>-<code>else</code> <em>expressions</em> with <code>dict.get</code> calls.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">if</span> <span class="s2">&quot;bar&quot;</span> <span class="ow">in</span> <span class="n">foo</span><span class="p">:</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">value</span> <span class="o">=</span> <span class="n">foo</span><span class="p">[</span><span class="s2">&quot;bar&quot;</span><span class="p">]</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">else</span><span class="p">:</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">value</span> <span class="o">=</span> <span class="mi">0</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">foo</span> <span class="o">=</span> <span class="p">{}</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">if</span> <span class="s2">&quot;bar&quot;</span> <span class="ow">in</span> <span class="n">foo</span><span class="p">:</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">value</span> <span class="o">=</span> <span class="n">foo</span><span class="p">[</span><span class="s2">&quot;bar&quot;</span><span class="p">]</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">value</span> <span class="o">=</span> <span class="mi">0</span>
 </code></pre></div>
 <p>Use instead:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">value</span> <span class="o">=</span> <span class="n">foo</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">foo</span> <span class="o">=</span> <span class="p">{}</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">value</span> <span class="o">=</span> <span class="n">foo</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 </code></pre></div>
 <p>If preview mode is enabled:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">value</span> <span class="o">=</span> <span class="n">foo</span><span class="p">[</span><span class="s2">&quot;bar&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="s2">&quot;bar&quot;</span> <span class="ow">in</span> <span class="n">foo</span> <span class="k">else</span> <span class="mi">0</span>
