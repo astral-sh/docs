@@ -123,10 +123,10 @@ $ uv pip sync requirements.txt
 
 ```
 
-To sync an environment with a `pyproject.toml` file:
+To sync an environment with a [PEP 751](https://peps.python.org/pep-0751/) `pylock.toml` file:
 
 ```
-$ uv pip sync pyproject.toml
+$ uv pip sync pylock.toml
 
 ```
 

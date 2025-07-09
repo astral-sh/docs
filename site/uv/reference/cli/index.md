@@ -1427,6 +1427,12 @@ If provided, uv will add the dependency to the script's inline metadata table, i
 You can configure fine-grained logging using the `RUST_LOG` environment variable. (<https://docs.rs/tracing-subscriber/latest/tracing_subscriber/filter/struct.EnvFilter.html#directives>)
 ```
 
+[`--workspace`](#uv-add--workspace) : Add the dependency as a workspace member.
+
+```
+When used with a path dependency, the package will be added to the workspace's `members` list in the root `pyproject.toml` file.
+```
+
 ## [uv remove](#uv-remove)
 
 Remove dependencies from the project.
