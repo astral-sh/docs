@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Checks for access to the first or last element of `str.split()` without">
+        <meta name="description" content="Checks for access to the first or last element of `str.split()` or `str.rsplit()` without">
       
       
         <meta name="author" content="charliermarsh">
@@ -841,10 +841,10 @@
 <p>Derived from the <strong><a href="../#pylint-pl">Pylint</a></strong> linter.</p>
 <p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
-<p>Checks for access to the first or last element of <code>str.split()</code> without
+<p>Checks for access to the first or last element of <code>str.split()</code> or <code>str.rsplit()</code> without
 <code>maxsplit=1</code></p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
-<p>Calling <code>str.split()</code> without <code>maxsplit</code> set splits on every delimiter in the
+<p>Calling <code>str.split()</code> or <code>str.rsplit()</code> without passing <code>maxsplit=1</code> splits on every delimiter in the
 string. When accessing only the first or last element of the result, it
 would be more efficient to only split once.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
@@ -854,6 +854,10 @@ would be more efficient to only split once.</p>
 <p>Use instead:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;www.example.com&quot;</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">prefix</span> <span class="o">=</span> <span class="n">url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="n">maxsplit</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</code></pre></div>
+<p>To access the last element, use <code>str.rsplit()</code> instead of <code>str.split()</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;www.example.com&quot;</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">suffix</span> <span class="o">=</span> <span class="n">url</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="n">maxsplit</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 </code></pre></div>
 
 
