@@ -43,7 +43,7 @@ jobs:
         uses: astral-sh/setup-uv@v6
         with:
           # Install a specific version of uv.
-          version: "0.7.20"
+          version: "0.7.21"
 
 ```
 
@@ -95,7 +95,7 @@ jobs:
         uses: astral-sh/setup-uv@v6
 
       - name: "Set up Python"
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v5
         with:
           python-version-file: ".python-version"
 
@@ -120,7 +120,7 @@ jobs:
         uses: astral-sh/setup-uv@v6
 
       - name: "Set up Python"
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v5
         with:
           python-version-file: "pyproject.toml"
 

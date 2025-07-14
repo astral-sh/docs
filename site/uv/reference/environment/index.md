@@ -82,6 +82,10 @@ Equivalent to the `--token` argument for self update. A GitHub token for authent
 
 Enables fetching files stored in Git LFS when installing a package from a Git repository.
 
+### [`UV_HTTP_RETRIES`](#uv_http_retries)
+
+The number of retries for HTTP requests. (default: 3)
+
 ### [`UV_HTTP_TIMEOUT`](#uv_http_timeout)
 
 Timeout (in seconds) for HTTP requests. (default: 30 s)
@@ -337,6 +341,10 @@ Unlike the normal `RUST_MIN_STACK` semantics, this can affect main thread stack 
 Equivalent to the `--system` command-line argument. If set to `true`, uv will use the first Python interpreter found in the system `PATH`.
 
 WARNING: `UV_SYSTEM_PYTHON=true` is intended for use in continuous integration (CI) or containerized environments and should be used with caution, as modifying the system Python can lead to unexpected behavior.
+
+### [`UV_TEST_NO_HTTP_RETRY_DELAY`](#uv_test_no_http_retry_delay)
+
+Used to disable delay for HTTP retries in tests.
 
 ### [`UV_TOOL_BIN_DIR`](#uv_tool_bin_dir)
 

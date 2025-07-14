@@ -188,6 +188,13 @@ $ uvx --with <extra-package>==<version> <tool-package>
 
 ```
 
+The `-w` shorthand can be used in place of the `--with` option:
+
+```
+$ uvx -w <extra-package> <tool-package>
+
+```
+
 If the requested version conflicts with the requirements of the tool package, package resolution will fail and the command will error.
 
 ## [Python versions](#python-versions)
