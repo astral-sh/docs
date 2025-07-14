@@ -618,7 +618,7 @@ Using `--script` will attempt to parse the path as a PEP 723 script, irrespectiv
 You can configure fine-grained logging using the `RUST_LOG` environment variable. (<https://docs.rs/tracing-subscriber/latest/tracing_subscriber/filter/struct.EnvFilter.html#directives>)
 ```
 
-[`--with`](#uv-run--with) *with* : Run with the given packages installed.
+[`--with`](#uv-run--with), `-w` *with* : Run with the given packages installed.
 
 ```
 When used in a project, these dependencies will be layered on top of the project environment in a separate, ephemeral environment. These dependencies are allowed to conflict with those specified by the project.
@@ -1913,11 +1913,19 @@ May also be set with the `UV_INSECURE_HOST` environment variable.
 [`--bump`](#uv-version--bump) *bump* : Update the project version using the given semantics
 
 ```
+This flag can be passed multiple times.
+
 Possible values:
 
-- `major`: Increase the major version (1.2.3 => 2.0.0)
-- `minor`: Increase the minor version (1.2.3 => 1.3.0)
-- `patch`: Increase the patch version (1.2.3 => 1.2.4)
+- `major`: Increase the major version (e.g., 1.2.3 => 2.0.0)
+- `minor`: Increase the minor version (e.g., 1.2.3 => 1.3.0)
+- `patch`: Increase the patch version (e.g., 1.2.3 => 1.2.4)
+- `stable`: Move from a pre-release to stable version (e.g., 1.2.3b4.post5.dev6 => 1.2.3)
+- `alpha`: Increase the alpha version (e.g., 1.2.3a4 => 1.2.3a5)
+- `beta`: Increase the beta version (e.g., 1.2.3b4 => 1.2.3b5)
+- `rc`: Increase the rc version (e.g., 1.2.3rc4 => 1.2.3rc5)
+- `post`: Increase the post version (e.g., 1.2.3.post5 => 1.2.3.post6)
+- `dev`: Increase the dev version (e.g., 1.2.3a4.dev6 => 1.2.3.dev7)
 ```
 
 [`--cache-dir`](#uv-version--cache-dir) *cache-dir* : Path to the cache directory.
@@ -2776,6 +2784,17 @@ The project and its dependencies will be omitted.
 May be provided multiple times. Implies `--no-default-groups`.
 ```
 
+[`--output-format`](#uv-sync--output-format) *output-format* : Select the output format
+
+```
+[default: text]
+
+Possible values:
+
+- `text`: Display the result in a human-readable format
+- `json`: Display the result in JSON format
+```
+
 [`--package`](#uv-sync--package) *package* : Sync for a specific package in the workspace.
 
 ```
@@ -2827,6 +2846,57 @@ environment in the project.
 See [uv python](#uv-python) for details on Python discovery and supported request formats.
 
 May also be set with the `UV_PYTHON` environment variable.
+```
+
+[`--python-platform`](#uv-sync--python-platform) *python-platform* : The platform for which requirements should be installed.
+
+```
+Represented as a "target triple", a string that describes the target platform in terms of its CPU, vendor, and operating system name, like `x86_64-unknown-linux-gnu` or `aarch64-apple-darwin`.
+
+When targeting macOS (Darwin), the default minimum version is `12.0`. Use `MACOSX_DEPLOYMENT_TARGET` to specify a different minimum version, e.g., `13.0`.
+
+WARNING: When specified, uv will select wheels that are compatible with the *target* platform; as a result, the installed distributions may not be compatible with the *current* platform. Conversely, any distributions that are built from source may be incompatible with the *target* platform, as they will be built for the *current* platform. The `--python-platform` option is intended for advanced use cases.
+
+Possible values:
+
+- `windows`: An alias for `x86_64-pc-windows-msvc`, the default target for Windows
+- `linux`: An alias for `x86_64-unknown-linux-gnu`, the default target for Linux
+- `macos`: An alias for `aarch64-apple-darwin`, the default target for macOS
+- `x86_64-pc-windows-msvc`: A 64-bit x86 Windows target
+- `i686-pc-windows-msvc`: A 32-bit x86 Windows target
+- `x86_64-unknown-linux-gnu`: An x86 Linux target. Equivalent to `x86_64-manylinux_2_17`
+- `aarch64-apple-darwin`: An ARM-based macOS target, as seen on Apple Silicon devices
+- `x86_64-apple-darwin`: An x86 macOS target
+- `aarch64-unknown-linux-gnu`: An ARM64 Linux target. Equivalent to `aarch64-manylinux_2_17`
+- `aarch64-unknown-linux-musl`: An ARM64 Linux target
+- `x86_64-unknown-linux-musl`: An `x86_64` Linux target
+- `x86_64-manylinux2014`: An `x86_64` target for the `manylinux2014` platform. Equivalent to `x86_64-manylinux_2_17`
+- `x86_64-manylinux_2_17`: An `x86_64` target for the `manylinux_2_17` platform
+- `x86_64-manylinux_2_28`: An `x86_64` target for the `manylinux_2_28` platform
+- `x86_64-manylinux_2_31`: An `x86_64` target for the `manylinux_2_31` platform
+- `x86_64-manylinux_2_32`: An `x86_64` target for the `manylinux_2_32` platform
+- `x86_64-manylinux_2_33`: An `x86_64` target for the `manylinux_2_33` platform
+- `x86_64-manylinux_2_34`: An `x86_64` target for the `manylinux_2_34` platform
+- `x86_64-manylinux_2_35`: An `x86_64` target for the `manylinux_2_35` platform
+- `x86_64-manylinux_2_36`: An `x86_64` target for the `manylinux_2_36` platform
+- `x86_64-manylinux_2_37`: An `x86_64` target for the `manylinux_2_37` platform
+- `x86_64-manylinux_2_38`: An `x86_64` target for the `manylinux_2_38` platform
+- `x86_64-manylinux_2_39`: An `x86_64` target for the `manylinux_2_39` platform
+- `x86_64-manylinux_2_40`: An `x86_64` target for the `manylinux_2_40` platform
+- `aarch64-manylinux2014`: An ARM64 target for the `manylinux2014` platform. Equivalent to `aarch64-manylinux_2_17`
+- `aarch64-manylinux_2_17`: An ARM64 target for the `manylinux_2_17` platform
+- `aarch64-manylinux_2_28`: An ARM64 target for the `manylinux_2_28` platform
+- `aarch64-manylinux_2_31`: An ARM64 target for the `manylinux_2_31` platform
+- `aarch64-manylinux_2_32`: An ARM64 target for the `manylinux_2_32` platform
+- `aarch64-manylinux_2_33`: An ARM64 target for the `manylinux_2_33` platform
+- `aarch64-manylinux_2_34`: An ARM64 target for the `manylinux_2_34` platform
+- `aarch64-manylinux_2_35`: An ARM64 target for the `manylinux_2_35` platform
+- `aarch64-manylinux_2_36`: An ARM64 target for the `manylinux_2_36` platform
+- `aarch64-manylinux_2_37`: An ARM64 target for the `manylinux_2_37` platform
+- `aarch64-manylinux_2_38`: An ARM64 target for the `manylinux_2_38` platform
+- `aarch64-manylinux_2_39`: An ARM64 target for the `manylinux_2_39` platform
+- `aarch64-manylinux_2_40`: An ARM64 target for the `manylinux_2_40` platform
+- `wasm32-pyodide2024`: A wasm32 target using the Pyodide 2024 platform. Meant for use with Python 3.12
 ```
 
 [`--quiet`](#uv-sync--quiet), `-q` : Use quiet output.
@@ -4260,7 +4330,7 @@ Possible values:
 - `aarch64-manylinux_2_38`: An ARM64 target for the `manylinux_2_38` platform
 - `aarch64-manylinux_2_39`: An ARM64 target for the `manylinux_2_39` platform
 - `aarch64-manylinux_2_40`: An ARM64 target for the `manylinux_2_40` platform
-- `wasm32-pyodide2024`: A wasm32 target using the the Pyodide 2024 platform. Meant for use with Python 3.12
+- `wasm32-pyodide2024`: A wasm32 target using the Pyodide 2024 platform. Meant for use with Python 3.12
 ```
 
 [`--python-version`](#uv-tree--python-version) *python-version* : The Python version to use when filtering the tree.
@@ -4782,7 +4852,7 @@ Possible values:
 You can configure fine-grained logging using the `RUST_LOG` environment variable. (<https://docs.rs/tracing-subscriber/latest/tracing_subscriber/filter/struct.EnvFilter.html#directives>)
 ```
 
-[`--with`](#uv-tool-run--with) *with* : Run with the given packages installed
+[`--with`](#uv-tool-run--with), `-w` *with* : Run with the given packages installed
 
 [`--with-editable`](#uv-tool-run--with-editable) *with-editable* : Run with the given packages installed in editable mode
 
@@ -5212,7 +5282,7 @@ Possible values:
 You can configure fine-grained logging using the `RUST_LOG` environment variable. (<https://docs.rs/tracing-subscriber/latest/tracing_subscriber/filter/struct.EnvFilter.html#directives>)
 ```
 
-[`--with`](#uv-tool-install--with) *with* : Include the following additional requirements
+[`--with`](#uv-tool-install--with), `-w` *with* : Include the following additional requirements
 
 [`--with-editable`](#uv-tool-install--with-editable) *with-editable* : Include the given packages in editable mode
 
@@ -8182,7 +8252,7 @@ Possible values:
 - `aarch64-manylinux_2_38`: An ARM64 target for the `manylinux_2_38` platform
 - `aarch64-manylinux_2_39`: An ARM64 target for the `manylinux_2_39` platform
 - `aarch64-manylinux_2_40`: An ARM64 target for the `manylinux_2_40` platform
-- `wasm32-pyodide2024`: A wasm32 target using the the Pyodide 2024 platform. Meant for use with Python 3.12
+- `wasm32-pyodide2024`: A wasm32 target using the Pyodide 2024 platform. Meant for use with Python 3.12
 ```
 
 [`--python-version`](#uv-pip-compile--python-version) *python-version* : The Python version to use for resolution.
@@ -8710,7 +8780,7 @@ Possible values:
 - `aarch64-manylinux_2_38`: An ARM64 target for the `manylinux_2_38` platform
 - `aarch64-manylinux_2_39`: An ARM64 target for the `manylinux_2_39` platform
 - `aarch64-manylinux_2_40`: An ARM64 target for the `manylinux_2_40` platform
-- `wasm32-pyodide2024`: A wasm32 target using the the Pyodide 2024 platform. Meant for use with Python 3.12
+- `wasm32-pyodide2024`: A wasm32 target using the Pyodide 2024 platform. Meant for use with Python 3.12
 ```
 
 [`--python-version`](#uv-pip-sync--python-version) *python-version* : The minimum Python version that should be supported by the requirements (e.g., `3.7` or `3.7.9`).
@@ -9305,7 +9375,7 @@ Possible values:
 - `aarch64-manylinux_2_38`: An ARM64 target for the `manylinux_2_38` platform
 - `aarch64-manylinux_2_39`: An ARM64 target for the `manylinux_2_39` platform
 - `aarch64-manylinux_2_40`: An ARM64 target for the `manylinux_2_40` platform
-- `wasm32-pyodide2024`: A wasm32 target using the the Pyodide 2024 platform. Meant for use with Python 3.12
+- `wasm32-pyodide2024`: A wasm32 target using the Pyodide 2024 platform. Meant for use with Python 3.12
 ```
 
 [`--python-version`](#uv-pip-install--python-version) *python-version* : The minimum Python version that should be supported by the requirements (e.g., `3.7` or `3.7.9`).

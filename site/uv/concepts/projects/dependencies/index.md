@@ -702,6 +702,29 @@ Note
 
 If you have dependency groups that conflict with one another, resolution will fail unless you explicitly [declare them as conflicting](../config/#conflicting-dependencies).
 
+### [Nesting groups](#nesting-groups)
+
+A dependency group can include other dependency groups, e.g.:
+
+pyproject.toml
+
+```
+[dependency-groups]
+dev = [
+  {include-group = "lint"}
+  {include-group = "test"}
+]
+lint = [
+  "ruff"
+]
+test = [
+  "pytest"
+]
+
+```
+
+An included group's dependencies cannot conflict with the other dependencies declared in a group.
+
 ### [Default groups](#default-groups)
 
 By default, uv includes the `dev` dependency group in the environment (e.g., during `uv run` or `uv sync`). The default groups to include can be changed using the `tool.uv.default-groups` setting.
