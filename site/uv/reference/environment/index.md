@@ -20,6 +20,10 @@ Equivalent to the `--cache-dir` command-line argument. If set, uv will use this 
 
 Equivalent to the `--compile-bytecode` command-line argument. If set, uv will compile Python source files to bytecode after installation.
 
+### [`UV_COMPILE_BYTECODE_TIMEOUT`](#uv_compile_bytecode_timeout)
+
+Timeout (in seconds) for bytecode compilation.
+
 ### [`UV_CONCURRENT_BUILDS`](#uv_concurrent_builds)
 
 Sets the maximum number of source distributions that uv will build concurrently at any given time.
@@ -135,6 +139,10 @@ The directory in which to install uv using the standalone installer and `self up
 ### [`UV_KEYRING_PROVIDER`](#uv_keyring_provider)
 
 Equivalent to the `--keyring-provider` command-line argument. If set, uv will use this value as the keyring provider.
+
+### [`UV_LIBC`](#uv_libc)
+
+Overrides the environment-determined libc on linux systems when filling in the current platform within Python version requests. Options are: `gnu`, `gnueabi`, `gnueabihf`, `musl`, and `none`.
 
 ### [`UV_LINK_MODE`](#uv_link_mode)
 

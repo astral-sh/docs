@@ -6358,6 +6358,8 @@ uv python [OPTIONS] <COMMAND>
 
 [`uv python uninstall`](#uv-python-uninstall) : Uninstall Python versions
 
+[`uv python update-shell`](#uv-python-update-shell) : Ensure that the Python executable directory is on the `PATH`
+
 ### [uv python list](#uv-python-list)
 
 List the available Python installations.
@@ -6721,6 +6723,8 @@ However, in some cases, you may want to use the platform's native certificate st
 May also be set with the `UV_NATIVE_TLS` environment variable.
 ```
 
+[`--no-bin`](#uv-python-install--no-bin) : Do not install a Python executable into the `bin` directory
+
 [`--no-cache`](#uv-python-install--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
 ```
@@ -6752,6 +6756,8 @@ May also be set with the `UV_NO_PROGRESS` environment variable.
 ```
 
 [`--no-python-downloads`](#uv-python-install--no-python-downloads) : Disable automatic downloads of Python.
+
+[`--no-registry`](#uv-python-install--no-registry) : Do not register the Python installation in the Windows registry
 
 [`--offline`](#uv-python-install--offline) : Disable network access.
 
@@ -7717,6 +7723,161 @@ Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will w
 ```
 
 [`--verbose`](#uv-python-uninstall--verbose), `-v` : Use verbose output.
+
+```
+You can configure fine-grained logging using the `RUST_LOG` environment variable. (<https://docs.rs/tracing-subscriber/latest/tracing_subscriber/filter/struct.EnvFilter.html#directives>)
+```
+
+### [uv python update-shell](#uv-python-update-shell)
+
+Ensure that the Python executable directory is on the `PATH`.
+
+If the Python executable directory is not present on the `PATH`, uv will attempt to add it to the relevant shell configuration files.
+
+If the shell configuration files already include a blurb to add the executable directory to the path, but the directory is not present on the `PATH`, uv will exit with an error.
+
+The Python executable directory is determined according to the XDG standard and can be retrieved with `uv python dir --bin`.
+
+### Usage
+
+```
+uv python update-shell [OPTIONS]
+
+```
+
+### Options
+
+[`--allow-insecure-host`](#uv-python-update-shell--allow-insecure-host), `--trusted-host` *allow-insecure-host* : Allow insecure connections to a host.
+
+```
+Can be provided multiple times.
+
+Expects to receive either a hostname (e.g., `localhost`), a host-port pair (e.g., `localhost:8080`), or a URL (e.g., `https://localhost`).
+
+WARNING: Hosts included in this list will not be verified against the system's certificate store. Only use `--allow-insecure-host` in a secure network with verified sources, as it bypasses SSL verification and could expose you to MITM attacks.
+
+May also be set with the `UV_INSECURE_HOST` environment variable.
+```
+
+[`--cache-dir`](#uv-python-update-shell--cache-dir) *cache-dir* : Path to the cache directory.
+
+```
+Defaults to `$XDG_CACHE_HOME/uv` or `$HOME/.cache/uv` on macOS and Linux, and `%LOCALAPPDATA%\uv\cache` on Windows.
+
+To view the location of the cache directory, run `uv cache dir`.
+
+May also be set with the `UV_CACHE_DIR` environment variable.
+```
+
+[`--color`](#uv-python-update-shell--color) *color-choice* : Control the use of color in output.
+
+```
+By default, uv will automatically detect support for colors when writing to a terminal.
+
+Possible values:
+
+- `auto`: Enables colored output only when the output is going to a terminal or TTY with support
+- `always`: Enables colored output regardless of the detected environment
+- `never`: Disables colored output
+```
+
+[`--config-file`](#uv-python-update-shell--config-file) *config-file* : The path to a `uv.toml` file to use for configuration.
+
+```
+While uv configuration can be included in a `pyproject.toml` file, it is not allowed in this context.
+
+May also be set with the `UV_CONFIG_FILE` environment variable.
+```
+
+[`--directory`](#uv-python-update-shell--directory) *directory* : Change to the given directory prior to running the command.
+
+```
+Relative paths are resolved with the given directory as the base.
+
+See `--project` to only change the project root directory.
+```
+
+[`--help`](#uv-python-update-shell--help), `-h` : Display the concise help for this command
+
+[`--managed-python`](#uv-python-update-shell--managed-python) : Require use of uv-managed Python versions.
+
+```
+By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
+
+May also be set with the `UV_MANAGED_PYTHON` environment variable.
+```
+
+[`--native-tls`](#uv-python-update-shell--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+
+```
+By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
+
+May also be set with the `UV_NATIVE_TLS` environment variable.
+```
+
+[`--no-cache`](#uv-python-update-shell--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
+
+```
+May also be set with the `UV_NO_CACHE` environment variable.
+```
+
+[`--no-config`](#uv-python-update-shell--no-config) : Avoid discovering configuration files (`pyproject.toml`, `uv.toml`).
+
+```
+Normally, configuration files are discovered in the current directory, parent directories, or user configuration directories.
+
+May also be set with the `UV_NO_CONFIG` environment variable.
+```
+
+[`--no-managed-python`](#uv-python-update-shell--no-managed-python) : Disable use of uv-managed Python versions.
+
+```
+Instead, uv will search for a suitable Python version on the system.
+
+May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
+```
+
+[`--no-progress`](#uv-python-update-shell--no-progress) : Hide all progress outputs.
+
+```
+For example, spinners or progress bars.
+
+May also be set with the `UV_NO_PROGRESS` environment variable.
+```
+
+[`--no-python-downloads`](#uv-python-update-shell--no-python-downloads) : Disable automatic downloads of Python.
+
+[`--offline`](#uv-python-update-shell--offline) : Disable network access.
+
+```
+When disabled, uv will only use locally cached data and locally available files.
+
+May also be set with the `UV_OFFLINE` environment variable.
+```
+
+[`--project`](#uv-python-update-shell--project) *project* : Run the command within the given project directory.
+
+```
+All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
+
+Other command-line arguments (such as relative paths) will be resolved relative to the current working directory.
+
+See `--directory` to change the working directory entirely.
+
+This setting has no effect when used in the `uv pip` interface.
+
+May also be set with the `UV_PROJECT` environment variable.
+```
+
+[`--quiet`](#uv-python-update-shell--quiet), `-q` : Use quiet output.
+
+```
+Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will write no output to stdout.
+```
+
+[`--verbose`](#uv-python-update-shell--verbose), `-v` : Use verbose output.
 
 ```
 You can configure fine-grained logging using the `RUST_LOG` environment variable. (<https://docs.rs/tracing-subscriber/latest/tracing_subscriber/filter/struct.EnvFilter.html#directives>)

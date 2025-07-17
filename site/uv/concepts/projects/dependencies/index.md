@@ -711,7 +711,7 @@ pyproject.toml
 ```
 [dependency-groups]
 dev = [
-  {include-group = "lint"}
+  {include-group = "lint"},
   {include-group = "test"}
 ]
 lint = [
@@ -834,9 +834,9 @@ $ uv add --no-editable ./path/foo
 
 ```
 
-## [Dependency specifiers (PEP 508)](#dependency-specifiers-pep-508)
+## [Dependency specifiers](#dependency-specifiers)
 
-uv uses [dependency specifiers](https://packaging.python.org/en/latest/specifications/dependency-specifiers/), previously known as [PEP 508](https://peps.python.org/pep-0508/). A dependency specifier is composed of, in order:
+uv uses standard [dependency specifiers](https://packaging.python.org/en/latest/specifications/dependency-specifiers/), originally defined in [PEP 508](https://peps.python.org/pep-0508/). A dependency specifier is composed of, in order:
 
 - The dependency name
 - The extras you want (optional)

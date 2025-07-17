@@ -81,8 +81,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2025-06-10 18:15:38Z",
-        "dateModified": "2025-06-10 18:15:38Z",
+        "datePublished": "2025-07-15 21:47:43Z",
+        "dateModified": "2025-07-15 21:47:43Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -1885,6 +1885,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#conflicting-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conflicting dependencies
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#lower-bounds" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1918,10 +1929,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#learn-more" class="md-nav__link">
+  <a href="#lockfile-versioning" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Learn more
+        Lockfile versioning
       
     </span>
   </a>
@@ -1929,10 +1940,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#lockfile-versioning" class="md-nav__link">
+  <a href="#learn-more" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Lockfile versioning
+        Learn more
       
     </span>
   </a>
@@ -2973,6 +2984,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#conflicting-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conflicting dependencies
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#lower-bounds" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3006,10 +3028,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#learn-more" class="md-nav__link">
+  <a href="#lockfile-versioning" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Learn more
+        Lockfile versioning
       
     </span>
   </a>
@@ -3017,10 +3039,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#lockfile-versioning" class="md-nav__link">
+  <a href="#learn-more" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Lockfile versioning
+        Learn more
       
     </span>
   </a>
@@ -3460,6 +3482,57 @@ but <em>required</em> for direct URL dependencies (like Git dependencies).</p>
 though only <code>name</code>, <code>version</code>, <code>requires-dist</code>, <code>requires-python</code>, and <code>provides-extra</code> are read by
 uv. The <code>version</code> field is also considered optional. If omitted, the metadata will be used for all
 versions of the specified package.</p>
+<h2 id="conflicting-dependencies"><a class="toclink" href="#conflicting-dependencies">Conflicting dependencies</a></h2>
+<p>uv requires that all optional dependencies ("extras") declared by the project are compatible with
+each other and resolves all optional dependencies together when creating the lockfile.</p>
+<p>If optional dependencies declared in one extra are not compatible with those in another extra, uv
+will fail to resolve the requirements of the project with an error.</p>
+<p>To work around this, uv supports declaring conflicting extras. For example, consider two sets of
+optional dependencies that conflict with one another:</p>
+<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">[project.optional-dependencies]</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="n">extra1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;numpy==2.1.2&quot;</span><span class="p">]</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="n">extra2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;numpy==2.0.0&quot;</span><span class="p">]</span>
+</code></pre></div>
+<p>If you run <code>uv lock</code> with the above dependencies, resolution will fail:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="gp">$ </span>uv<span class="w"> </span>lock
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="go">  x No solution found when resolving dependencies:</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="go">  `-&gt; Because myproject[extra2] depends on numpy==2.0.0 and myproject[extra1] depends on numpy==2.1.2, we can conclude that myproject[extra1] and</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="go">      myproject[extra2] are incompatible.</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="go">      And because your project requires myproject[extra1] and myproject[extra2], we can conclude that your projects&#39;s requirements are unsatisfiable.</span>
+</code></pre></div>
+<p>But if you specify that <code>extra1</code> and <code>extra2</code> are conflicting, uv will resolve them separately.
+Specify conflicts in the <code>tool.uv</code> section:</p>
+<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">[tool.uv]</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">conflicts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span><span class="p">[</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="n">extra</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;extra1&quot;</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="n">extra</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;extra2&quot;</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">    </span><span class="p">],</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="p">]</span>
+</code></pre></div>
+<p>Now, running <code>uv lock</code> will succeed. Note though, that now you cannot install both <code>extra1</code> and
+<code>extra2</code> at the same time:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="gp">$ </span>uv<span class="w"> </span>sync<span class="w"> </span>--extra<span class="w"> </span>extra1<span class="w"> </span>--extra<span class="w"> </span>extra2
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="go">Resolved 3 packages in 14ms</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="go">error: extra `extra1`, extra `extra2` are incompatible with the declared conflicts: {`myproject[extra1]`, `myproject[extra2]`}</span>
+</code></pre></div>
+<p>This error occurs because installing both <code>extra1</code> and <code>extra2</code> would result in installing two
+different versions of a package into the same environment.</p>
+<p>The above strategy for dealing with conflicting extras also works with dependency groups:</p>
+<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">[dependency-groups]</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="n">group1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;numpy==2.1.2&quot;</span><span class="p">]</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="n">group2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;numpy==2.0.0&quot;</span><span class="p">]</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="k">[tool.uv]</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="n">conflicts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="w">    </span><span class="p">[</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;group1&quot;</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;group2&quot;</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="w">    </span><span class="p">],</span>
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="p">]</span>
+</code></pre></div>
+<p>The only difference from conflicting extras is that you need to use the <code>group</code> key instead of
+<code>extra</code>.</p>
 <h2 id="lower-bounds"><a class="toclink" href="#lower-bounds">Lower bounds</a></h2>
 <p>By default, <code>uv add</code> adds lower bounds to dependencies and, when using uv to manage projects, uv
 will warn if direct dependencies don't have lower bound.</p>
@@ -3511,9 +3584,6 @@ reading and extracting archives in the following formats:</p>
 <li>lzma tarball (<code>.tar.lzma</code>)</li>
 <li>zip (<code>.zip</code>)</li>
 </ul>
-<h2 id="learn-more"><a class="toclink" href="#learn-more">Learn more</a></h2>
-<p>For more details about the internals of the resolver, see the
-<a href="../../reference/resolver-internals/">resolver reference</a> documentation.</p>
 <h2 id="lockfile-versioning"><a class="toclink" href="#lockfile-versioning">Lockfile versioning</a></h2>
 <p>The <code>uv.lock</code> file uses a versioned schema. The schema version is included in the <code>version</code> field of
 the lockfile.</p>
@@ -3527,6 +3597,12 @@ it encounters a lockfile with an outdated schema version.</p>
 a breaking change (see <a href="../../reference/policies/versioning/">Versioning</a>). As such, all uv patch
 versions within a given minor uv release are guaranteed to have full lockfile compatibility. In
 other words, lockfiles may only be rejected across minor releases.</p>
+<p>The <code>revision</code> field of the lockfile is used to track backwards compatible changes to the lockfile.
+For example, adding a new field to distributions. Changes to the revision will not cause older
+versions of uv to error.</p>
+<h2 id="learn-more"><a class="toclink" href="#learn-more">Learn more</a></h2>
+<p>For more details about the internals of the resolver, see the
+<a href="../../reference/resolver-internals/">resolver reference</a> documentation.</p>
 
   
     
@@ -3540,7 +3616,7 @@ other words, lockfiles may only be rejected across minor releases.</p>
         <span class="md-icon" title="Last update">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
         </span>
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 10, 2025</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 15, 2025</span>
       </span>
     
     

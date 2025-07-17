@@ -305,6 +305,81 @@ The `version` field in `tool.uv.dependency-metadata` is optional for registry-ba
 
 Entries in the `tool.uv.dependency-metadata` table follow the [Metadata 2.3](https://packaging.python.org/en/latest/specifications/core-metadata/) specification, though only `name`, `version`, `requires-dist`, `requires-python`, and `provides-extra` are read by uv. The `version` field is also considered optional. If omitted, the metadata will be used for all versions of the specified package.
 
+## [Conflicting dependencies](#conflicting-dependencies)
+
+uv requires that all optional dependencies ("extras") declared by the project are compatible with each other and resolves all optional dependencies together when creating the lockfile.
+
+If optional dependencies declared in one extra are not compatible with those in another extra, uv will fail to resolve the requirements of the project with an error.
+
+To work around this, uv supports declaring conflicting extras. For example, consider two sets of optional dependencies that conflict with one another:
+
+pyproject.toml
+
+```
+[project.optional-dependencies]
+extra1 = ["numpy==2.1.2"]
+extra2 = ["numpy==2.0.0"]
+
+```
+
+If you run `uv lock` with the above dependencies, resolution will fail:
+
+```
+$ uv lock
+  x No solution found when resolving dependencies:
+  `-> Because myproject[extra2] depends on numpy==2.0.0 and myproject[extra1] depends on numpy==2.1.2, we can conclude that myproject[extra1] and
+      myproject[extra2] are incompatible.
+      And because your project requires myproject[extra1] and myproject[extra2], we can conclude that your projects's requirements are unsatisfiable.
+
+```
+
+But if you specify that `extra1` and `extra2` are conflicting, uv will resolve them separately. Specify conflicts in the `tool.uv` section:
+
+pyproject.toml
+
+```
+[tool.uv]
+conflicts = [
+    [
+      { extra = "extra1" },
+      { extra = "extra2" },
+    ],
+]
+
+```
+
+Now, running `uv lock` will succeed. Note though, that now you cannot install both `extra1` and `extra2` at the same time:
+
+```
+$ uv sync --extra extra1 --extra extra2
+Resolved 3 packages in 14ms
+error: extra `extra1`, extra `extra2` are incompatible with the declared conflicts: {`myproject[extra1]`, `myproject[extra2]`}
+
+```
+
+This error occurs because installing both `extra1` and `extra2` would result in installing two different versions of a package into the same environment.
+
+The above strategy for dealing with conflicting extras also works with dependency groups:
+
+pyproject.toml
+
+```
+[dependency-groups]
+group1 = ["numpy==2.1.2"]
+group2 = ["numpy==2.0.0"]
+
+[tool.uv]
+conflicts = [
+    [
+      { group = "group1" },
+      { group = "group2" },
+    ],
+]
+
+```
+
+The only difference from conflicting extras is that you need to use the `group` key instead of `extra`.
+
 ## [Lower bounds](#lower-bounds)
 
 By default, `uv add` adds lower bounds to dependencies and, when using uv to manage projects, uv will warn if direct dependencies don't have lower bound.
@@ -337,10 +412,6 @@ The `--exclude-newer` option is only applied to packages that are read from a re
 - lzma tarball (`.tar.lzma`)
 - zip (`.zip`)
 
-## [Learn more](#learn-more)
-
-For more details about the internals of the resolver, see the [resolver reference](../../reference/resolver-internals/) documentation.
-
 ## [Lockfile versioning](#lockfile-versioning)
 
 The `uv.lock` file uses a versioned schema. The schema version is included in the `version` field of the lockfile.
@@ -350,3 +421,9 @@ Any given version of uv can read and write lockfiles with the same schema versio
 uv versions that support schema v2 *may* be able to read lockfiles with schema v1 if the schema update was backwards-compatible. However, this is not guaranteed, and uv may exit with an error if it encounters a lockfile with an outdated schema version.
 
 The schema version is considered part of the public API, and so is only bumped in minor releases, as a breaking change (see [Versioning](../../reference/policies/versioning/)). As such, all uv patch versions within a given minor uv release are guaranteed to have full lockfile compatibility. In other words, lockfiles may only be rejected across minor releases.
+
+The `revision` field of the lockfile is used to track backwards compatible changes to the lockfile. For example, adding a new field to distributions. Changes to the revision will not cause older versions of uv to error.
+
+## [Learn more](#learn-more)
+
+For more details about the internals of the resolver, see the [resolver reference](../../reference/resolver-internals/) documentation.
