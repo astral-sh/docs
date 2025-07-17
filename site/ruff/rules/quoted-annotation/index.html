@@ -872,6 +872,18 @@ annotations on assignments in function bodies.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">foo</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="n">bar</span><span class="p">:</span> <span class="n">Bar</span>
 </code></pre></div>
+<h2 id="preview"><a class="toclink" href="#preview">Preview</a></h2>
+<p>When <a href="https://docs.astral.sh/ruff/preview/">preview</a> is enabled, if <a href="../../settings/#lint_future-annotations"><code>lint.future-annotations</code></a> is set to <code>true</code>,
+<code>from __future__ import annotations</code> will be added if doing so would allow an annotation to be
+unquoted.</p>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
+<p>The rule's fix is marked as safe, unless <a href="https://docs.astral.sh/ruff/preview/">preview</a> and
+[<code>lint.future_annotations</code>][lint.future_annotations] are enabled and a <code>from __future__ import annotations</code> import is added. Such an import may change the behavior of all annotations in the
+file.</p>
+<h2 id="options"><a class="toclink" href="#options">Options</a></h2>
+<ul>
+<li><a href="../../settings/#lint_future-annotations"><code>lint.future-annotations</code></a></li>
+</ul>
 <h2 id="see-also"><a class="toclink" href="#see-also">See also</a></h2>
 <ul>
 <li><a href="https://docs.astral.sh/ruff/rules/quoted-annotation-in-stub/"><code>quoted-annotation-in-stub</code></a>: A rule that
