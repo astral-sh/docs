@@ -142,7 +142,7 @@ $ uv pip install --group some/path/pyproject.toml:foo --group other/pyproject.to
 
 Note
 
-As in pip, `--group` flags do not apply to other sources specified with flags like `-r` or -e`. For instance,`uv pip install -r some/path/pyproject.toml --group foo`sources`foo`from`./pyproject.toml`and **not**`some/path/pyproject.toml\`.
+As in pip, `--group` flags do not apply to other sources specified with flags like `-r` or `-e`. For instance, `uv pip install -r some/path/pyproject.toml --group foo` sources `foo` from `./pyproject.toml` and **not** `some/path/pyproject.toml`.
 
 ## [Uninstalling a package](#uninstalling-a-package)
 

@@ -172,41 +172,6 @@ Note
 
 By default, uv does not read the `VIRTUAL_ENV` environment variable during project operations. A warning will be displayed if `VIRTUAL_ENV` is set to a different path than the project's environment. The `--active` flag can be used to opt-in to respecting `VIRTUAL_ENV`. The `--no-active` flag can be used to silence the warning.
 
-## [Limited resolution environments](#limited-resolution-environments)
-
-If your project supports a more limited set of platforms or Python versions, you can constrain the set of solved platforms via the `environments` setting, which accepts a list of PEP 508 environment markers. For example, to constrain the lockfile to macOS and Linux, and exclude Windows:
-
-pyproject.toml
-
-```
-[tool.uv]
-environments = [
-    "sys_platform == 'darwin'",
-    "sys_platform == 'linux'",
-]
-
-```
-
-See the [resolution documentation](../../resolution/#limited-resolution-environments) for more.
-
-## [Required environments](#required-environments)
-
-If your project *must* support a specific platform or Python version, you can mark that platform as required via the `required-environments` setting. For example, to require that the project supports Intel macOS:
-
-pyproject.toml
-
-```
-[tool.uv]
-required-environments = [
-    "sys_platform == 'darwin' and platform_machine == 'x86_64'",
-]
-
-```
-
-The `required-environments` setting is only relevant for packages that do not publish a source distribution (like PyTorch), as such packages can *only* be installed on environments covered by the set of pre-built binary distributions (wheels) published by that package.
-
-See the [resolution documentation](../../resolution/#required-environments) for more.
-
 ## [Build isolation](#build-isolation)
 
 By default, uv builds all packages in isolated virtual environments, as per [PEP 517](https://peps.python.org/pep-0517/). Some packages are incompatible with build isolation, be it intentionally (e.g., due to the use of heavy build dependencies, mostly commonly PyTorch) or unintentionally (e.g., due to the use of legacy packaging setups).
@@ -371,33 +336,9 @@ By default, the project will be installed in editable mode, such that changes to
 
 ## [Conflicting dependencies](#conflicting-dependencies)
 
-uv requires that all optional dependencies ("extras") declared by the project are compatible with each other and resolves all optional dependencies together when creating the lockfile.
+uv requires resolves all project dependencies together, including optional dependencies ("extras") and dependency groups. If dependencies declared in one section are not compatible with those in another section, uv will fail to resolve the requirements of the project with an error.
 
-If optional dependencies declared in one extra are not compatible with those in another extra, uv will fail to resolve the requirements of the project with an error.
-
-To work around this, uv supports declaring conflicting extras. For example, consider two sets of optional dependencies that conflict with one another:
-
-pyproject.toml
-
-```
-[project.optional-dependencies]
-extra1 = ["numpy==2.1.2"]
-extra2 = ["numpy==2.0.0"]
-
-```
-
-If you run `uv lock` with the above dependencies, resolution will fail:
-
-```
-$ uv lock
-  x No solution found when resolving dependencies:
-  `-> Because myproject[extra2] depends on numpy==2.0.0 and myproject[extra1] depends on numpy==2.1.2, we can conclude that myproject[extra1] and
-      myproject[extra2] are incompatible.
-      And because your project requires myproject[extra1] and myproject[extra2], we can conclude that your projects's requirements are unsatisfiable.
-
-```
-
-But if you specify that `extra1` and `extra2` are conflicting, uv will resolve them separately. Specify conflicts in the `tool.uv` section:
+uv supports explicit declaration of conflicting dependency groups. For example, to declare that the `optional-dependency` groups `extra1` and `extra2` are incompatible:
 
 pyproject.toml
 
@@ -412,26 +353,11 @@ conflicts = [
 
 ```
 
-Now, running `uv lock` will succeed. Note though, that now you cannot install both `extra1` and `extra2` at the same time:
-
-```
-$ uv sync --extra extra1 --extra extra2
-Resolved 3 packages in 14ms
-error: extra `extra1`, extra `extra2` are incompatible with the declared conflicts: {`myproject[extra1]`, `myproject[extra2]`}
-
-```
-
-This error occurs because installing both `extra1` and `extra2` would result in installing two different versions of a package into the same environment.
-
-The above strategy for dealing with conflicting extras also works with dependency groups:
+Or, to declare the development dependency groups `group1` and `group2` incompatible:
 
 pyproject.toml
 
 ```
-[dependency-groups]
-group1 = ["numpy==2.1.2"]
-group2 = ["numpy==2.0.0"]
-
 [tool.uv]
 conflicts = [
     [
@@ -442,4 +368,39 @@ conflicts = [
 
 ```
 
-The only difference with conflicting extras is that you need to use `group` instead of `extra`.
+See the [resolution documentation](../../resolution/#conflicting-dependencies) for more.
+
+## [Limited resolution environments](#limited-resolution-environments)
+
+If your project supports a more limited set of platforms or Python versions, you can constrain the set of solved platforms via the `environments` setting, which accepts a list of PEP 508 environment markers. For example, to constrain the lockfile to macOS and Linux, and exclude Windows:
+
+pyproject.toml
+
+```
+[tool.uv]
+environments = [
+    "sys_platform == 'darwin'",
+    "sys_platform == 'linux'",
+]
+
+```
+
+See the [resolution documentation](../../resolution/#limited-resolution-environments) for more.
+
+## [Required environments](#required-environments)
+
+If your project *must* support a specific platform or Python version, you can mark that platform as required via the `required-environments` setting. For example, to require that the project supports Intel macOS:
+
+pyproject.toml
+
+```
+[tool.uv]
+required-environments = [
+    "sys_platform == 'darwin' and platform_machine == 'x86_64'",
+]
+
+```
+
+The `required-environments` setting is only relevant for packages that do not publish a source distribution (like PyTorch), as such packages can *only* be installed on environments covered by the set of pre-built binary distributions (wheels) published by that package.
+
+See the [resolution documentation](../../resolution/#required-environments) for more.
