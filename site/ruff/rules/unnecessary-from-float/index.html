@@ -849,6 +849,13 @@
 by passing float or decimal instances to the constructor directly. As such,
 the use of <code>from_float</code> and <code>from_decimal</code> methods is unnecessary, and
 should be avoided in favor of the more concise constructor syntax.</p>
+<p>However, there are important behavioral differences between the <code>from_*</code> methods
+and the constructors:</p>
+<ul>
+<li>The <code>from_*</code> methods validate their argument types and raise <code>TypeError</code> for invalid types</li>
+<li>The constructors accept broader argument types without validation</li>
+<li>The <code>from_*</code> methods have different parameter names than the constructors</li>
+</ul>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">Decimal</span><span class="o">.</span><span class="n">from_float</span><span class="p">(</span><span class="mf">4.2</span><span class="p">)</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">Decimal</span><span class="o">.</span><span class="n">from_float</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="s2">&quot;inf&quot;</span><span class="p">))</span>
@@ -861,6 +868,18 @@ should be avoided in favor of the more concise constructor syntax.</p>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">Fraction</span><span class="p">(</span><span class="mf">4.2</span><span class="p">)</span>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">Fraction</span><span class="p">(</span><span class="n">Decimal</span><span class="p">(</span><span class="mf">4.2</span><span class="p">))</span>
 </code></pre></div>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
+<p>This rule's fix is marked as unsafe by default because:</p>
+<ul>
+<li>The <code>from_*</code> methods provide type validation that the constructors don't</li>
+<li>Removing type validation can change program behavior</li>
+<li>The parameter names are different between methods and constructors</li>
+</ul>
+<p>The fix is marked as safe only when:</p>
+<ul>
+<li>The argument type is known to be valid for the target constructor</li>
+<li>No keyword arguments are used, or they match the constructor's parameters</li>
+</ul>
 <h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/library/decimal.html">Python documentation: <code>decimal</code></a></li>

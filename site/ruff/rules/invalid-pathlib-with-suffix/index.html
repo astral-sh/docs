@@ -843,11 +843,12 @@
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for <code>pathlib.Path.with_suffix()</code> calls where
 the given suffix does not have a leading dot
-or the given suffix is a single dot <code>"."</code>.</p>
+or the given suffix is a single dot <code>"."</code> and the
+Python version is less than 3.14.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p><code>Path.with_suffix()</code> will raise an error at runtime
 if the given suffix is not prefixed with a dot
-or it is a single dot <code>"."</code>.</p>
+or, in versions prior to Python 3.14, if it is a single dot <code>"."</code>.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
