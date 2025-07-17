@@ -1313,6 +1313,12 @@ May also be set with the `UV_NO_PROGRESS` environment variable.
 May also be set with the `UV_NO_SYNC` environment variable.
 ```
 
+[`--no-workspace`](#uv-add--no-workspace) : Don't add the dependency as a workspace member.
+
+```
+By default, when adding a dependency that's a local path and is within the workspace directory, uv will add it as a workspace member; pass `--no-workspace` to add the package as direct path dependency instead.
+```
+
 [`--offline`](#uv-add--offline) : Disable network access.
 
 ```
@@ -1430,7 +1436,7 @@ You can configure fine-grained logging using the `RUST_LOG` environment variable
 [`--workspace`](#uv-add--workspace) : Add the dependency as a workspace member.
 
 ```
-When used with a path dependency, the package will be added to the workspace's `members` list in the root `pyproject.toml` file.
+By default, uv will add path dependencies that are within the workspace directory as workspace members. When used with a path dependency, the package will be added to the workspace's `members` list in the root `pyproject.toml` file.
 ```
 
 ## [uv remove](#uv-remove)
@@ -2864,10 +2870,10 @@ Possible values:
 - `macos`: An alias for `aarch64-apple-darwin`, the default target for macOS
 - `x86_64-pc-windows-msvc`: A 64-bit x86 Windows target
 - `i686-pc-windows-msvc`: A 32-bit x86 Windows target
-- `x86_64-unknown-linux-gnu`: An x86 Linux target. Equivalent to `x86_64-manylinux_2_17`
+- `x86_64-unknown-linux-gnu`: An x86 Linux target. Equivalent to `x86_64-manylinux_2_28`
 - `aarch64-apple-darwin`: An ARM-based macOS target, as seen on Apple Silicon devices
 - `x86_64-apple-darwin`: An x86 macOS target
-- `aarch64-unknown-linux-gnu`: An ARM64 Linux target. Equivalent to `aarch64-manylinux_2_17`
+- `aarch64-unknown-linux-gnu`: An ARM64 Linux target. Equivalent to `aarch64-manylinux_2_28`
 - `aarch64-unknown-linux-musl`: An ARM64 Linux target
 - `x86_64-unknown-linux-musl`: An `x86_64` Linux target
 - `x86_64-manylinux2014`: An `x86_64` target for the `manylinux2014` platform. Equivalent to `x86_64-manylinux_2_17`
@@ -4298,10 +4304,10 @@ Possible values:
 - `macos`: An alias for `aarch64-apple-darwin`, the default target for macOS
 - `x86_64-pc-windows-msvc`: A 64-bit x86 Windows target
 - `i686-pc-windows-msvc`: A 32-bit x86 Windows target
-- `x86_64-unknown-linux-gnu`: An x86 Linux target. Equivalent to `x86_64-manylinux_2_17`
+- `x86_64-unknown-linux-gnu`: An x86 Linux target. Equivalent to `x86_64-manylinux_2_28`
 - `aarch64-apple-darwin`: An ARM-based macOS target, as seen on Apple Silicon devices
 - `x86_64-apple-darwin`: An x86 macOS target
-- `aarch64-unknown-linux-gnu`: An ARM64 Linux target. Equivalent to `aarch64-manylinux_2_17`
+- `aarch64-unknown-linux-gnu`: An ARM64 Linux target. Equivalent to `aarch64-manylinux_2_28`
 - `aarch64-unknown-linux-musl`: An ARM64 Linux target
 - `x86_64-unknown-linux-musl`: An `x86_64` Linux target
 - `x86_64-manylinux2014`: An `x86_64` target for the `manylinux2014` platform. Equivalent to `x86_64-manylinux_2_17`
@@ -6590,7 +6596,7 @@ Supports CPython and PyPy. CPython distributions are downloaded from the Astral 
 
 Python versions are installed into the uv Python directory, which can be retrieved with `uv python dir`.
 
-A `python` executable is not made globally available, managed Python versions are only used in uv commands or in active virtual environments. There is experimental support for adding Python executables to a directory on the path — use the `--preview` flag to enable this behavior and `uv python dir --bin` to retrieve the target directory.
+By default, Python executables are added to a directory on the path with a minor version suffix, e.g., `python3.13`. To install `python3` and `python`, use the `--default` flag. Use `uv python dir --bin` to see the target directory.
 
 Multiple Python versions may be requested.
 
@@ -6723,7 +6729,11 @@ However, in some cases, you may want to use the platform's native certificate st
 May also be set with the `UV_NATIVE_TLS` environment variable.
 ```
 
-[`--no-bin`](#uv-python-install--no-bin) : Do not install a Python executable into the `bin` directory
+[`--no-bin`](#uv-python-install--no-bin) : Do not install a Python executable into the `bin` directory.
+
+```
+This can also be set with `UV_PYTHON_INSTALL_BIN=0`.
+```
 
 [`--no-cache`](#uv-python-install--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
@@ -6757,7 +6767,11 @@ May also be set with the `UV_NO_PROGRESS` environment variable.
 
 [`--no-python-downloads`](#uv-python-install--no-python-downloads) : Disable automatic downloads of Python.
 
-[`--no-registry`](#uv-python-install--no-registry) : Do not register the Python installation in the Windows registry
+[`--no-registry`](#uv-python-install--no-registry) : Do not register the Python installation in the Windows registry.
+
+```
+This can also be set with `UV_PYTHON_INSTALL_REGISTRY=0`.
+```
 
 [`--offline`](#uv-python-install--offline) : Disable network access.
 
@@ -8381,10 +8395,10 @@ Possible values:
 - `macos`: An alias for `aarch64-apple-darwin`, the default target for macOS
 - `x86_64-pc-windows-msvc`: A 64-bit x86 Windows target
 - `i686-pc-windows-msvc`: A 32-bit x86 Windows target
-- `x86_64-unknown-linux-gnu`: An x86 Linux target. Equivalent to `x86_64-manylinux_2_17`
+- `x86_64-unknown-linux-gnu`: An x86 Linux target. Equivalent to `x86_64-manylinux_2_28`
 - `aarch64-apple-darwin`: An ARM-based macOS target, as seen on Apple Silicon devices
 - `x86_64-apple-darwin`: An x86 macOS target
-- `aarch64-unknown-linux-gnu`: An ARM64 Linux target. Equivalent to `aarch64-manylinux_2_17`
+- `aarch64-unknown-linux-gnu`: An ARM64 Linux target. Equivalent to `aarch64-manylinux_2_28`
 - `aarch64-unknown-linux-musl`: An ARM64 Linux target
 - `x86_64-unknown-linux-musl`: An `x86_64` Linux target
 - `x86_64-manylinux2014`: An `x86_64` target for the `manylinux2014` platform. Equivalent to `x86_64-manylinux_2_17`
@@ -8909,10 +8923,10 @@ Possible values:
 - `macos`: An alias for `aarch64-apple-darwin`, the default target for macOS
 - `x86_64-pc-windows-msvc`: A 64-bit x86 Windows target
 - `i686-pc-windows-msvc`: A 32-bit x86 Windows target
-- `x86_64-unknown-linux-gnu`: An x86 Linux target. Equivalent to `x86_64-manylinux_2_17`
+- `x86_64-unknown-linux-gnu`: An x86 Linux target. Equivalent to `x86_64-manylinux_2_28`
 - `aarch64-apple-darwin`: An ARM-based macOS target, as seen on Apple Silicon devices
 - `x86_64-apple-darwin`: An x86 macOS target
-- `aarch64-unknown-linux-gnu`: An ARM64 Linux target. Equivalent to `aarch64-manylinux_2_17`
+- `aarch64-unknown-linux-gnu`: An ARM64 Linux target. Equivalent to `aarch64-manylinux_2_28`
 - `aarch64-unknown-linux-musl`: An ARM64 Linux target
 - `x86_64-unknown-linux-musl`: An `x86_64` Linux target
 - `x86_64-manylinux2014`: An `x86_64` target for the `manylinux2014` platform. Equivalent to `x86_64-manylinux_2_17`
@@ -9504,10 +9518,10 @@ Possible values:
 - `macos`: An alias for `aarch64-apple-darwin`, the default target for macOS
 - `x86_64-pc-windows-msvc`: A 64-bit x86 Windows target
 - `i686-pc-windows-msvc`: A 32-bit x86 Windows target
-- `x86_64-unknown-linux-gnu`: An x86 Linux target. Equivalent to `x86_64-manylinux_2_17`
+- `x86_64-unknown-linux-gnu`: An x86 Linux target. Equivalent to `x86_64-manylinux_2_28`
 - `aarch64-apple-darwin`: An ARM-based macOS target, as seen on Apple Silicon devices
 - `x86_64-apple-darwin`: An x86 macOS target
-- `aarch64-unknown-linux-gnu`: An ARM64 Linux target. Equivalent to `aarch64-manylinux_2_17`
+- `aarch64-unknown-linux-gnu`: An ARM64 Linux target. Equivalent to `aarch64-manylinux_2_28`
 - `aarch64-unknown-linux-musl`: An ARM64 Linux target
 - `x86_64-unknown-linux-musl`: An `x86_64` Linux target
 - `x86_64-manylinux2014`: An `x86_64` target for the `manylinux2014` platform. Equivalent to `x86_64-manylinux_2_17`
@@ -11015,7 +11029,7 @@ Relative paths are resolved relative to the working directory.
 [`--allow-existing`](#uv-venv--allow-existing) : Preserve any existing files or directories at the target path.
 
 ```
-By default, `uv venv` will remove an existing virtual environment at the given path, and exit with an error if the path is non-empty but *not* a virtual environment. The `--allow-existing` option will instead write to the given path, regardless of its contents, and without clearing it beforehand.
+By default, `uv venv` will exit with an error if the given path is non-empty. The `--allow-existing` option will instead write to the given path, regardless of its contents, and without clearing it beforehand.
 
 WARNING: This option can lead to unexpected behavior if the existing virtual environment and the newly-created virtual environment are linked to different Python interpreters.
 ```
@@ -11040,6 +11054,14 @@ Defaults to `$XDG_CACHE_HOME/uv` or `$HOME/.cache/uv` on macOS and Linux, and `%
 To view the location of the cache directory, run `uv cache dir`.
 
 May also be set with the `UV_CACHE_DIR` environment variable.
+```
+
+[`--clear`](#uv-venv--clear), `-c` : Remove any existing files or directories at the target path.
+
+```
+By default, `uv venv` will exit with an error if the given path is non-empty. The `--clear` option will instead clear a non-empty path before creating a new virtual environment.
+
+May also be set with the `UV_VENV_CLEAR` environment variable.
 ```
 
 [`--color`](#uv-venv--color) *color-choice* : Control the use of color in output.

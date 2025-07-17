@@ -310,6 +310,10 @@ This variable can be set to a URL pointing to JSON to use as a list for Python i
 
 Note that currently, only local paths are supported.
 
+### [`UV_PYTHON_INSTALL_BIN`](#uv_python_install_bin)
+
+Whether to install the Python executable into the `UV_PYTHON_BIN_DIR` directory.
+
 ### [`UV_PYTHON_INSTALL_DIR`](#uv_python_install_dir)
 
 Specifies the directory for storing managed Python installations.
@@ -319,6 +323,10 @@ Specifies the directory for storing managed Python installations.
 Managed Python installations are downloaded from the Astral [`python-build-standalone`](https://github.com/astral-sh/python-build-standalone) project.
 
 This variable can be set to a mirror URL to use a different source for Python installations. The provided URL will replace `https://github.com/astral-sh/python-build-standalone/releases/download` in, e.g., `https://github.com/astral-sh/python-build-standalone/releases/download/20240713/cpython-3.12.4%2B20240713-aarch64-apple-darwin-install_only.tar.gz`. Distributions can be read from a local directory by using the `file://` URL scheme.
+
+### [`UV_PYTHON_INSTALL_REGISTRY`](#uv_python_install_registry)
+
+Whether to install the Python executable into the Windows registry.
 
 ### [`UV_PYTHON_PREFERENCE`](#uv_python_preference)
 
@@ -369,6 +377,10 @@ Equivalent to the `--torch-backend` command-line argument (e.g., `cpu`, `cu126`,
 ### [`UV_UNMANAGED_INSTALL`](#uv_unmanaged_install)
 
 Used ephemeral environments like CI to install uv to a specific path while preventing the installer from modifying shell profiles or environment variables.
+
+### [`UV_VENV_CLEAR`](#uv_venv_clear)
+
+Equivalent to the `--clear` command-line argument. If set, uv will remove any existing files or directories at the target path.
 
 ### [`UV_VENV_SEED`](#uv_venv_seed)
 
