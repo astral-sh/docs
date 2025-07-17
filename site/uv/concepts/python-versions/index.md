@@ -104,27 +104,16 @@ The available Python versions are frozen for each uv release. To install new Pyt
 
 ### [Installing Python executables](#installing-python-executables)
 
-Important
-
-Support for installing Python executables is in *preview*. This means the behavior is experimental and subject to change.
-
-To install Python executables into your `PATH`, provide the `--preview` option:
-
-```
-$ uv python install 3.12 --preview
-
-```
-
-This will install a Python executable for the requested version into `~/.local/bin`, e.g., as `python3.12`.
+uv installs Python executables into your `PATH` by default, e.g., `uv python install 3.12` will install a Python executable into `~/.local/bin`, e.g., as `python3.12`.
 
 Tip
 
 If `~/.local/bin` is not in your `PATH`, you can add it with `uv tool update-shell`.
 
-To install `python` and `python3` executables, include the `--default` option:
+To install `python` and `python3` executables, include the experimental `--default` option:
 
 ```
-$ uv python install 3.12 --default --preview
+$ uv python install 3.12 --default
 
 ```
 
@@ -133,9 +122,9 @@ When installing Python executables, uv will only overwrite an existing executabl
 uv will update executables that it manages. However, it will prefer the latest patch version of each Python minor version by default. For example:
 
 ```
-$ uv python install 3.12.7 --preview  # Adds `python3.12` to `~/.local/bin`
-$ uv python install 3.12.6 --preview  # Does not update `python3.12`
-$ uv python install 3.12.8 --preview  # Updates `python3.12` to point to 3.12.8
+$ uv python install 3.12.7  # Adds `python3.12` to `~/.local/bin`
+$ uv python install 3.12.6  # Does not update `python3.12`
+$ uv python install 3.12.8  # Updates `python3.12` to point to 3.12.8
 
 ```
 
@@ -370,3 +359,17 @@ These distributions have some behavior quirks, generally as a consequence of por
 ### [PyPy distributions](#pypy-distributions)
 
 PyPy distributions are provided by the PyPy project.
+
+## [Registration in the Windows registry](#registration-in-the-windows-registry)
+
+On Windows, installation of managed Python versions will register them with the Windows registry as defined by [PEP 514](https://peps.python.org/pep-0514/).
+
+After installation, the Python versions can be selected with the `py` launcher, e.g.:
+
+```
+$ uv python install 3.13.1
+$ py -V:Astral/CPython3.13.1
+
+```
+
+On uninstall, uv will remove the registry entry for the target version as well as any broken registry entries.

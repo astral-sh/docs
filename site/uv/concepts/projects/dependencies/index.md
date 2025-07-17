@@ -431,6 +431,8 @@ $ uv add ~/projects/bar/
 
 Important
 
+When using a directory as a path dependency, uv will attempt to build and install the target as a package by default. See the [virtual dependency](#virtual-dependencies) documentation for details.
+
 An [editable installation](#editable-dependencies) is not used for path dependencies by default. An editable installation may be requested for project directories:
 
 ```
@@ -451,18 +453,7 @@ bar = { path = "../projects/bar", editable = true }
 
 ```
 
-Similarly, if a project is marked as a [non-package](../config/#build-systems), but you'd like to install it in the environment as a package, set `package = true` on the source:
-
-pyproject.toml
-
-```
-[project]
-dependencies = ["bar"]
-
-[tool.uv.sources]
-bar = { path = "../projects/bar", package = true }
-
-```
+Tip
 
 For multiple packages in the same repository, [*workspaces*](../workspaces/) may be a better fit.
 
@@ -833,6 +824,91 @@ Or, to opt-out of using an editable dependency in a workspace:
 $ uv add --no-editable ./path/foo
 
 ```
+
+## [Virtual dependencies](#virtual-dependencies)
+
+uv allows dependencies to be "virtual", in which the dependency itself is not installed as a [package](../config/#project-packaging), but its dependencies are.
+
+By default, dependencies are never virtual.
+
+A dependency with a [`path` source](#path) can be virtual if it explicitly sets [`tool.uv.package = false`](../../../reference/settings/#package). Unlike working *in* the dependent project with uv, the package will be built even if a [build system](../config/#build-systems) is not declared.
+
+To treat a dependency as virtual, set `package = false` on the source:
+
+pyproject.toml
+
+```
+[project]
+dependencies = ["bar"]
+
+[tool.uv.sources]
+bar = { path = "../projects/bar", package = false }
+
+```
+
+If a dependency sets `tool.uv.package = false`, it can be overridden by declaring `package = true` on the source:
+
+pyproject.toml
+
+```
+[project]
+dependencies = ["bar"]
+
+[tool.uv.sources]
+bar = { path = "../projects/bar", package = true }
+
+```
+
+Similarly, a dependency with a [`workspace` source](#workspace-member) can be virtual if it explicitly sets [`tool.uv.package = false`](../../../reference/settings/#package). The workspace member will be built even if a [build system](../config/#build-systems) is not declared.
+
+Workspace members that are *not* dependencies can be virtual by default, e.g., if the parent `pyproject.toml` is:
+
+pyproject.toml
+
+```
+[project]
+name = "parent"
+version = "1.0.0"
+dependencies = []
+
+[tool.uv.workspace]
+members = ["child"]
+
+```
+
+And the child `pyproject.toml` excluded a build system:
+
+pyproject.toml
+
+```
+[project]
+name = "child"
+version = "1.0.0"
+dependencies = ["anyio"]
+
+```
+
+Then the `child` workspace member would not be installed, but the transitive dependency `anyio` would be.
+
+In contrast, if the parent declared a dependency on `child`:
+
+pyproject.toml
+
+```
+[project]
+name = "parent"
+version = "1.0.0"
+dependencies = ["child"]
+
+[tool.uv.sources]
+child = { workspace = true }
+
+[tool.uv.workspace]
+members = ["child"]
+
+```
+
+Then `child` would be built and installed.
 
 ## [Dependency specifiers](#dependency-specifiers)
 

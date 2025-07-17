@@ -81,8 +81,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2025-07-15 18:47:02Z",
-        "dateModified": "2025-07-15 18:47:02Z",
+        "datePublished": "2025-07-17 16:09:13Z",
+        "dateModified": "2025-07-17 16:09:13Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -4306,7 +4306,9 @@ used.</p>
 <p>May also be set with the <code>UV_NO_PROGRESS</code> environment variable.</p></dd><dt id="uv-add--no-python-downloads"><a href="#uv-add--no-python-downloads"><code>--no-python-downloads</code></a></dt><dd><p>Disable automatic downloads of Python.</p>
 </dd><dt id="uv-add--no-sources"><a href="#uv-add--no-sources"><code>--no-sources</code></a></dt><dd><p>Ignore the <code>tool.uv.sources</code> table when resolving dependencies. Used to lock against the standards-compliant, publishable package metadata, as opposed to using any workspace, Git, URL, or local path sources</p>
 </dd><dt id="uv-add--no-sync"><a href="#uv-add--no-sync"><code>--no-sync</code></a></dt><dd><p>Avoid syncing the virtual environment</p>
-<p>May also be set with the <code>UV_NO_SYNC</code> environment variable.</p></dd><dt id="uv-add--offline"><a href="#uv-add--offline"><code>--offline</code></a></dt><dd><p>Disable network access.</p>
+<p>May also be set with the <code>UV_NO_SYNC</code> environment variable.</p></dd><dt id="uv-add--no-workspace"><a href="#uv-add--no-workspace"><code>--no-workspace</code></a></dt><dd><p>Don't add the dependency as a workspace member.</p>
+<p>By default, when adding a dependency that's a local path and is within the workspace directory, uv will add it as a workspace member; pass <code>--no-workspace</code> to add the package as direct path dependency instead.</p>
+</dd><dt id="uv-add--offline"><a href="#uv-add--offline"><code>--offline</code></a></dt><dd><p>Disable network access.</p>
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 <p>May also be set with the <code>UV_OFFLINE</code> environment variable.</p></dd><dt id="uv-add--optional"><a href="#uv-add--optional"><code>--optional</code></a> <i>optional</i></dt><dd><p>Add the requirements to the package's optional dependencies for the specified extra.</p>
 <p>The group may then be activated when installing the project with the <code>--extra</code> flag.</p>
@@ -4354,7 +4356,7 @@ used.</p>
 </dd><dt id="uv-add--verbose"><a href="#uv-add--verbose"><code>--verbose</code></a>, <code>-v</code></dt><dd><p>Use verbose output.</p>
 <p>You can configure fine-grained logging using the <code>RUST_LOG</code> environment variable. (<a href="https://docs.rs/tracing-subscriber/latest/tracing_subscriber/filter/struct.EnvFilter.html#directives">https://docs.rs/tracing-subscriber/latest/tracing_subscriber/filter/struct.EnvFilter.html#directives</a>)</p>
 </dd><dt id="uv-add--workspace"><a href="#uv-add--workspace"><code>--workspace</code></a></dt><dd><p>Add the dependency as a workspace member.</p>
-<p>When used with a path dependency, the package will be added to the workspace's <code>members</code> list in the root <code>pyproject.toml</code> file.</p>
+<p>By default, uv will add path dependencies that are within the workspace directory as workspace members. When used with a path dependency, the package will be added to the workspace's <code>members</code> list in the root <code>pyproject.toml</code> file.</p>
 </dd></dl>
 
 <h2 id="uv-remove"><a class="toclink" href="#uv-remove">uv remove</a></h2>
@@ -4901,10 +4903,10 @@ environment in the project.</p>
 <li><code>macos</code>:  An alias for <code>aarch64-apple-darwin</code>, the default target for macOS</li>
 <li><code>x86_64-pc-windows-msvc</code>:  A 64-bit x86 Windows target</li>
 <li><code>i686-pc-windows-msvc</code>:  A 32-bit x86 Windows target</li>
-<li><code>x86_64-unknown-linux-gnu</code>:  An x86 Linux target. Equivalent to <code>x86_64-manylinux_2_17</code></li>
+<li><code>x86_64-unknown-linux-gnu</code>:  An x86 Linux target. Equivalent to <code>x86_64-manylinux_2_28</code></li>
 <li><code>aarch64-apple-darwin</code>:  An ARM-based macOS target, as seen on Apple Silicon devices</li>
 <li><code>x86_64-apple-darwin</code>:  An x86 macOS target</li>
-<li><code>aarch64-unknown-linux-gnu</code>:  An ARM64 Linux target. Equivalent to <code>aarch64-manylinux_2_17</code></li>
+<li><code>aarch64-unknown-linux-gnu</code>:  An ARM64 Linux target. Equivalent to <code>aarch64-manylinux_2_28</code></li>
 <li><code>aarch64-unknown-linux-musl</code>:  An ARM64 Linux target</li>
 <li><code>x86_64-unknown-linux-musl</code>:  An <code>x86_64</code> Linux target</li>
 <li><code>x86_64-manylinux2014</code>:  An <code>x86_64</code> target for the <code>manylinux2014</code> platform. Equivalent to <code>x86_64-manylinux_2_17</code></li>
@@ -5465,10 +5467,10 @@ interpreter. Use <code>--universal</code> to display the tree for all platforms,
 <li><code>macos</code>:  An alias for <code>aarch64-apple-darwin</code>, the default target for macOS</li>
 <li><code>x86_64-pc-windows-msvc</code>:  A 64-bit x86 Windows target</li>
 <li><code>i686-pc-windows-msvc</code>:  A 32-bit x86 Windows target</li>
-<li><code>x86_64-unknown-linux-gnu</code>:  An x86 Linux target. Equivalent to <code>x86_64-manylinux_2_17</code></li>
+<li><code>x86_64-unknown-linux-gnu</code>:  An x86 Linux target. Equivalent to <code>x86_64-manylinux_2_28</code></li>
 <li><code>aarch64-apple-darwin</code>:  An ARM-based macOS target, as seen on Apple Silicon devices</li>
 <li><code>x86_64-apple-darwin</code>:  An x86 macOS target</li>
-<li><code>aarch64-unknown-linux-gnu</code>:  An ARM64 Linux target. Equivalent to <code>aarch64-manylinux_2_17</code></li>
+<li><code>aarch64-unknown-linux-gnu</code>:  An ARM64 Linux target. Equivalent to <code>aarch64-manylinux_2_28</code></li>
 <li><code>aarch64-unknown-linux-musl</code>:  An ARM64 Linux target</li>
 <li><code>x86_64-unknown-linux-musl</code>:  An <code>x86_64</code> Linux target</li>
 <li><code>x86_64-manylinux2014</code>:  An <code>x86_64</code> target for the <code>manylinux2014</code> platform. Equivalent to <code>x86_64-manylinux_2_17</code></li>
@@ -6393,7 +6395,7 @@ uv will exit with an error.</p>
 <p>Download and install Python versions.</p>
 <p>Supports CPython and PyPy. CPython distributions are downloaded from the Astral <code>python-build-standalone</code> project. PyPy distributions are downloaded from <code>python.org</code>. The available Python versions are bundled with each uv release. To install new Python versions, you may need upgrade uv.</p>
 <p>Python versions are installed into the uv Python directory, which can be retrieved with <code>uv python dir</code>.</p>
-<p>A <code>python</code> executable is not made globally available, managed Python versions are only used in uv commands or in active virtual environments. There is experimental support for adding Python executables to a directory on the path — use the <code>--preview</code> flag to enable this behavior and <code>uv python dir --bin</code> to retrieve the target directory.</p>
+<p>By default, Python executables are added to a directory on the path with a minor version suffix, e.g., <code>python3.13</code>. To install <code>python3</code> and <code>python</code>, use the <code>--default</code> flag. Use <code>uv python dir --bin</code> to see the target directory.</p>
 <p>Multiple Python versions may be requested.</p>
 <p>See <code>uv help python</code> to view supported request formats.</p>
 <h3 class="cli-reference">Usage</h3>
@@ -6447,7 +6449,8 @@ uv will exit with an error.</p>
 <p>May also be set with the <code>UV_PYTHON_INSTALL_MIRROR</code> environment variable.</p></dd><dt id="uv-python-install--native-tls"><a href="#uv-python-install--native-tls"><code>--native-tls</code></a></dt><dd><p>Whether to load TLS certificates from the platform's native certificate store.</p>
 <p>By default, uv loads certificates from the bundled <code>webpki-roots</code> crate. The <code>webpki-roots</code> are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).</p>
 <p>However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.</p>
-<p>May also be set with the <code>UV_NATIVE_TLS</code> environment variable.</p></dd><dt id="uv-python-install--no-bin"><a href="#uv-python-install--no-bin"><code>--no-bin</code></a></dt><dd><p>Do not install a Python executable into the <code>bin</code> directory</p>
+<p>May also be set with the <code>UV_NATIVE_TLS</code> environment variable.</p></dd><dt id="uv-python-install--no-bin"><a href="#uv-python-install--no-bin"><code>--no-bin</code></a></dt><dd><p>Do not install a Python executable into the <code>bin</code> directory.</p>
+<p>This can also be set with <code>UV_PYTHON_INSTALL_BIN=0</code>.</p>
 </dd><dt id="uv-python-install--no-cache"><a href="#uv-python-install--no-cache"><code>--no-cache</code></a>, <code>--no-cache-dir</code>, <code>-n</code></dt><dd><p>Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation</p>
 <p>May also be set with the <code>UV_NO_CACHE</code> environment variable.</p></dd><dt id="uv-python-install--no-config"><a href="#uv-python-install--no-config"><code>--no-config</code></a></dt><dd><p>Avoid discovering configuration files (<code>pyproject.toml</code>, <code>uv.toml</code>).</p>
 <p>Normally, configuration files are discovered in the current directory, parent directories, or user configuration directories.</p>
@@ -6456,7 +6459,8 @@ uv will exit with an error.</p>
 <p>May also be set with the <code>UV_NO_MANAGED_PYTHON</code> environment variable.</p></dd><dt id="uv-python-install--no-progress"><a href="#uv-python-install--no-progress"><code>--no-progress</code></a></dt><dd><p>Hide all progress outputs.</p>
 <p>For example, spinners or progress bars.</p>
 <p>May also be set with the <code>UV_NO_PROGRESS</code> environment variable.</p></dd><dt id="uv-python-install--no-python-downloads"><a href="#uv-python-install--no-python-downloads"><code>--no-python-downloads</code></a></dt><dd><p>Disable automatic downloads of Python.</p>
-</dd><dt id="uv-python-install--no-registry"><a href="#uv-python-install--no-registry"><code>--no-registry</code></a></dt><dd><p>Do not register the Python installation in the Windows registry</p>
+</dd><dt id="uv-python-install--no-registry"><a href="#uv-python-install--no-registry"><code>--no-registry</code></a></dt><dd><p>Do not register the Python installation in the Windows registry.</p>
+<p>This can also be set with <code>UV_PYTHON_INSTALL_REGISTRY=0</code>.</p>
 </dd><dt id="uv-python-install--offline"><a href="#uv-python-install--offline"><code>--offline</code></a></dt><dd><p>Disable network access.</p>
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 <p>May also be set with the <code>UV_OFFLINE</code> environment variable.</p></dd><dt id="uv-python-install--project"><a href="#uv-python-install--project"><code>--project</code></a> <i>project</i></dt><dd><p>Run the command within the given project directory.</p>
@@ -7091,10 +7095,10 @@ by <code>--python-version</code>.</p>
 <li><code>macos</code>:  An alias for <code>aarch64-apple-darwin</code>, the default target for macOS</li>
 <li><code>x86_64-pc-windows-msvc</code>:  A 64-bit x86 Windows target</li>
 <li><code>i686-pc-windows-msvc</code>:  A 32-bit x86 Windows target</li>
-<li><code>x86_64-unknown-linux-gnu</code>:  An x86 Linux target. Equivalent to <code>x86_64-manylinux_2_17</code></li>
+<li><code>x86_64-unknown-linux-gnu</code>:  An x86 Linux target. Equivalent to <code>x86_64-manylinux_2_28</code></li>
 <li><code>aarch64-apple-darwin</code>:  An ARM-based macOS target, as seen on Apple Silicon devices</li>
 <li><code>x86_64-apple-darwin</code>:  An x86 macOS target</li>
-<li><code>aarch64-unknown-linux-gnu</code>:  An ARM64 Linux target. Equivalent to <code>aarch64-manylinux_2_17</code></li>
+<li><code>aarch64-unknown-linux-gnu</code>:  An ARM64 Linux target. Equivalent to <code>aarch64-manylinux_2_28</code></li>
 <li><code>aarch64-unknown-linux-musl</code>:  An ARM64 Linux target</li>
 <li><code>x86_64-unknown-linux-musl</code>:  An <code>x86_64</code> Linux target</li>
 <li><code>x86_64-manylinux2014</code>:  An <code>x86_64</code> target for the <code>manylinux2014</code> platform. Equivalent to <code>x86_64-manylinux_2_17</code></li>
@@ -7342,10 +7346,10 @@ be used with caution, as it can modify the system Python installation.</p>
 <li><code>macos</code>:  An alias for <code>aarch64-apple-darwin</code>, the default target for macOS</li>
 <li><code>x86_64-pc-windows-msvc</code>:  A 64-bit x86 Windows target</li>
 <li><code>i686-pc-windows-msvc</code>:  A 32-bit x86 Windows target</li>
-<li><code>x86_64-unknown-linux-gnu</code>:  An x86 Linux target. Equivalent to <code>x86_64-manylinux_2_17</code></li>
+<li><code>x86_64-unknown-linux-gnu</code>:  An x86 Linux target. Equivalent to <code>x86_64-manylinux_2_28</code></li>
 <li><code>aarch64-apple-darwin</code>:  An ARM-based macOS target, as seen on Apple Silicon devices</li>
 <li><code>x86_64-apple-darwin</code>:  An x86 macOS target</li>
-<li><code>aarch64-unknown-linux-gnu</code>:  An ARM64 Linux target. Equivalent to <code>aarch64-manylinux_2_17</code></li>
+<li><code>aarch64-unknown-linux-gnu</code>:  An ARM64 Linux target. Equivalent to <code>aarch64-manylinux_2_28</code></li>
 <li><code>aarch64-unknown-linux-musl</code>:  An ARM64 Linux target</li>
 <li><code>x86_64-unknown-linux-musl</code>:  An <code>x86_64</code> Linux target</li>
 <li><code>x86_64-manylinux2014</code>:  An <code>x86_64</code> target for the <code>manylinux2014</code> platform. Equivalent to <code>x86_64-manylinux_2_17</code></li>
@@ -7620,10 +7624,10 @@ should be used with caution, as it can modify the system Python installation.</p
 <li><code>macos</code>:  An alias for <code>aarch64-apple-darwin</code>, the default target for macOS</li>
 <li><code>x86_64-pc-windows-msvc</code>:  A 64-bit x86 Windows target</li>
 <li><code>i686-pc-windows-msvc</code>:  A 32-bit x86 Windows target</li>
-<li><code>x86_64-unknown-linux-gnu</code>:  An x86 Linux target. Equivalent to <code>x86_64-manylinux_2_17</code></li>
+<li><code>x86_64-unknown-linux-gnu</code>:  An x86 Linux target. Equivalent to <code>x86_64-manylinux_2_28</code></li>
 <li><code>aarch64-apple-darwin</code>:  An ARM-based macOS target, as seen on Apple Silicon devices</li>
 <li><code>x86_64-apple-darwin</code>:  An x86 macOS target</li>
-<li><code>aarch64-unknown-linux-gnu</code>:  An ARM64 Linux target. Equivalent to <code>aarch64-manylinux_2_17</code></li>
+<li><code>aarch64-unknown-linux-gnu</code>:  An ARM64 Linux target. Equivalent to <code>aarch64-manylinux_2_28</code></li>
 <li><code>aarch64-unknown-linux-musl</code>:  An ARM64 Linux target</li>
 <li><code>x86_64-unknown-linux-musl</code>:  An <code>x86_64</code> Linux target</li>
 <li><code>x86_64-manylinux2014</code>:  An <code>x86_64</code> target for the <code>manylinux2014</code> platform. Equivalent to <code>x86_64-manylinux_2_17</code></li>
@@ -8240,7 +8244,7 @@ Python environment if no virtual environment is found.</p>
 <h3 class="cli-reference">Options</h3>
 
 <dl class="cli-reference"><dt id="uv-venv--allow-existing"><a href="#uv-venv--allow-existing"><code>--allow-existing</code></a></dt><dd><p>Preserve any existing files or directories at the target path.</p>
-<p>By default, <code>uv venv</code> will remove an existing virtual environment at the given path, and exit with an error if the path is non-empty but <em>not</em> a virtual environment. The <code>--allow-existing</code> option will instead write to the given path, regardless of its contents, and without clearing it beforehand.</p>
+<p>By default, <code>uv venv</code> will exit with an error if the given path is non-empty. The <code>--allow-existing</code> option will instead write to the given path, regardless of its contents, and without clearing it beforehand.</p>
 <p>WARNING: This option can lead to unexpected behavior if the existing virtual environment and the newly-created virtual environment are linked to different Python interpreters.</p>
 </dd><dt id="uv-venv--allow-insecure-host"><a href="#uv-venv--allow-insecure-host"><code>--allow-insecure-host</code></a>, <code>--trusted-host</code> <i>allow-insecure-host</i></dt><dd><p>Allow insecure connections to a host.</p>
 <p>Can be provided multiple times.</p>
@@ -8249,7 +8253,9 @@ Python environment if no virtual environment is found.</p>
 <p>May also be set with the <code>UV_INSECURE_HOST</code> environment variable.</p></dd><dt id="uv-venv--cache-dir"><a href="#uv-venv--cache-dir"><code>--cache-dir</code></a> <i>cache-dir</i></dt><dd><p>Path to the cache directory.</p>
 <p>Defaults to <code>$XDG_CACHE_HOME/uv</code> or <code>$HOME/.cache/uv</code> on macOS and Linux, and <code>%LOCALAPPDATA%\uv\cache</code> on Windows.</p>
 <p>To view the location of the cache directory, run <code>uv cache dir</code>.</p>
-<p>May also be set with the <code>UV_CACHE_DIR</code> environment variable.</p></dd><dt id="uv-venv--color"><a href="#uv-venv--color"><code>--color</code></a> <i>color-choice</i></dt><dd><p>Control the use of color in output.</p>
+<p>May also be set with the <code>UV_CACHE_DIR</code> environment variable.</p></dd><dt id="uv-venv--clear"><a href="#uv-venv--clear"><code>--clear</code></a>, <code>-c</code></dt><dd><p>Remove any existing files or directories at the target path.</p>
+<p>By default, <code>uv venv</code> will exit with an error if the given path is non-empty. The <code>--clear</code> option will instead clear a non-empty path before creating a new virtual environment.</p>
+<p>May also be set with the <code>UV_VENV_CLEAR</code> environment variable.</p></dd><dt id="uv-venv--color"><a href="#uv-venv--color"><code>--color</code></a> <i>color-choice</i></dt><dd><p>Control the use of color in output.</p>
 <p>By default, uv will automatically detect support for colors when writing to a terminal.</p>
 <p>Possible values:</p>
 <ul>
@@ -9041,7 +9047,7 @@ uv publish --publish-url https://upload.pypi.org/legacy/ --check-url https://pyp
         <span class="md-icon" title="Last update">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
         </span>
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 15, 2025</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 17, 2025</span>
       </span>
     
     

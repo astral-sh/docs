@@ -81,8 +81,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2025-06-20 14:17:13Z",
-        "dateModified": "2025-06-20 14:17:13Z",
+        "datePublished": "2025-07-17 16:09:13Z",
+        "dateModified": "2025-07-17 16:09:13Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -2851,38 +2851,41 @@ Python versions as needed — you don't need to install Python to get started.</
 <p class="admonition-title">Note</p>
 <p>Python does not publish official distributable binaries. As such, uv uses distributions from the Astral <a href="https://github.com/astral-sh/python-build-standalone"><code>python-build-standalone</code></a> project. See the <a href="../../concepts/python-versions/#managed-python-distributions">Python distributions</a> documentation for more details.</p>
 </div>
-<p>Once Python is installed, it will be used by <code>uv</code> commands automatically.</p>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>When Python is installed by uv, it will not be available globally (i.e. via the <code>python</code> command).
-Support for this feature is in <em>preview</em>. See <a href="../../concepts/python-versions/#installing-python-executables">Installing Python executables</a>
-for details.</p>
-<p>You can still use
-<a href="../scripts/#using-different-python-versions"><code>uv run</code></a> or
-<a href="../../pip/environments/">create and activate a virtual environment</a> to use <code>python</code> directly.</p>
+<p>Once Python is installed, it will be used by <code>uv</code> commands automatically. uv also adds the installed
+version to your <code>PATH</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="gp">$ </span>python3.13
+</code></pre></div>
+<p>uv only installs a <em>versioned</em> executable by default. To install <code>python</code> and <code>python3</code> executables,
+include the experimental <code>--default</code> option:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>install<span class="w"> </span>--default
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>See the documentation on <a href="../../concepts/python-versions/#installing-python-executables">installing Python executables</a>
+for more details.</p>
 </div>
 <h2 id="installing-a-specific-version"><a class="toclink" href="#installing-a-specific-version">Installing a specific version</a></h2>
 <p>To install a specific Python version:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>install<span class="w"> </span><span class="m">3</span>.12
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>install<span class="w"> </span><span class="m">3</span>.12
 </code></pre></div>
 <p>To install multiple Python versions:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>install<span class="w"> </span><span class="m">3</span>.11<span class="w"> </span><span class="m">3</span>.12
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>install<span class="w"> </span><span class="m">3</span>.11<span class="w"> </span><span class="m">3</span>.12
 </code></pre></div>
 <p>To install an alternative Python implementation, e.g., PyPy:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>install<span class="w"> </span>pypy@3.10
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>install<span class="w"> </span>pypy@3.10
 </code></pre></div>
 <p>See the <a href="../../concepts/python-versions/#installing-a-python-version"><code>python install</code></a> documentation
 for more details.</p>
 <h2 id="reinstalling-python"><a class="toclink" href="#reinstalling-python">Reinstalling Python</a></h2>
 <p>To reinstall uv-managed Python versions, use <code>--reinstall</code>, e.g.:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>install<span class="w"> </span>--reinstall
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>install<span class="w"> </span>--reinstall
 </code></pre></div>
 <p>This will reinstall all previously installed Python versions. Improvements are constantly being
 added to the Python distributions, so reinstalling may resolve bugs even if the Python version does
 not change.</p>
 <h2 id="viewing-python-installations"><a class="toclink" href="#viewing-python-installations">Viewing Python installations</a></h2>
 <p>To view available and installed Python versions:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>list
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>list
 </code></pre></div>
 <p>See the <a href="../../concepts/python-versions/#viewing-available-python-versions"><code>python list</code></a>
 documentation for more details.</p>
@@ -2890,12 +2893,12 @@ documentation for more details.</p>
 <p>Python does not need to be explicitly installed to use uv. By default, uv will automatically
 download Python versions when they are required. For example, the following would download Python
 3.12 if it was not installed:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="gp">$ </span>uvx<span class="w"> </span>python@3.12<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;print(&#39;hello world&#39;)&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="gp">$ </span>uvx<span class="w"> </span>python@3.12<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;print(&#39;hello world&#39;)&quot;</span>
 </code></pre></div>
 <p>Even if a specific Python version is not requested, uv will download the latest version on demand.
 For example, if there are no Python versions on your system, the following will install Python
 before creating a new virtual environment:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="gp">$ </span>uv<span class="w"> </span>venv
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="gp">$ </span>uv<span class="w"> </span>venv
 </code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -2921,10 +2924,10 @@ documentation for more details.</p>
 experimental and subject to change.</p>
 </div>
 <p>To upgrade a Python version to the latest supported patch release:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>upgrade<span class="w"> </span><span class="m">3</span>.12
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>upgrade<span class="w"> </span><span class="m">3</span>.12
 </code></pre></div>
 <p>To upgrade all uv-managed Python versions:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>upgrade
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="gp">$ </span>uv<span class="w"> </span>python<span class="w"> </span>upgrade
 </code></pre></div>
 <p>See the <a href="../../concepts/python-versions/#upgrading-python-versions"><code>python upgrade</code></a> documentation
 for more details.</p>
@@ -2945,7 +2948,7 @@ page and the <a href="../../reference/cli/#uv-python">command reference</a>.</p>
         <span class="md-icon" title="Last update">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
         </span>
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 20, 2025</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 17, 2025</span>
       </span>
     
     

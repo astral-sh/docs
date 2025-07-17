@@ -15,13 +15,23 @@ Note
 
 Python does not publish official distributable binaries. As such, uv uses distributions from the Astral [`python-build-standalone`](https://github.com/astral-sh/python-build-standalone) project. See the [Python distributions](../../concepts/python-versions/#managed-python-distributions) documentation for more details.
 
-Once Python is installed, it will be used by `uv` commands automatically.
+Once Python is installed, it will be used by `uv` commands automatically. uv also adds the installed version to your `PATH`:
 
-Important
+```
+$ python3.13
 
-When Python is installed by uv, it will not be available globally (i.e. via the `python` command). Support for this feature is in *preview*. See [Installing Python executables](../../concepts/python-versions/#installing-python-executables) for details.
+```
 
-You can still use [`uv run`](../scripts/#using-different-python-versions) or [create and activate a virtual environment](../../pip/environments/) to use `python` directly.
+uv only installs a *versioned* executable by default. To install `python` and `python3` executables, include the experimental `--default` option:
+
+```
+$ uv python install --default
+
+```
+
+Tip
+
+See the documentation on [installing Python executables](../../concepts/python-versions/#installing-python-executables) for more details.
 
 ## [Installing a specific version](#installing-a-specific-version)
 
