@@ -12,7 +12,7 @@
         <meta name="author" content="astral-sh">
       
       
-        <link rel="canonical" href="https://docs.astral.sh/ty/reference/env/">
+        <link rel="canonical" href="https://docs.astral.sh/ty/reference/environment/">
       
       
         <link rel="prev" href="../exit-codes/">
@@ -81,8 +81,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2025-07-08 11:46:08Z",
-        "dateModified": "2025-07-08 11:46:08Z",
+        "datePublished": "2025-07-18 12:49:13Z",
+        "dateModified": "2025-07-18 12:49:13Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -857,27 +857,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ty_memory_report" class="md-nav__link">
+  <a href="#externally-defined-variables" class="md-nav__link">
     <span class="md-ellipsis">
       
-        TY_MEMORY_REPORT
+        Externally-defined variables
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Externally-defined variables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conda_prefix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CONDA_PREFIX
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#externally-defined-variables" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Externally defined variables
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Externally defined variables">
-      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#rayon_num_threads" class="md-nav__link">
@@ -895,17 +895,6 @@
     <span class="md-ellipsis">
       
         VIRTUAL_ENV
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#conda_prefix" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        CONDA_PREFIX
       
     </span>
   </a>
@@ -1030,27 +1019,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ty_memory_report" class="md-nav__link">
+  <a href="#externally-defined-variables" class="md-nav__link">
     <span class="md-ellipsis">
       
-        TY_MEMORY_REPORT
+        Externally-defined variables
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Externally-defined variables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conda_prefix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CONDA_PREFIX
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#externally-defined-variables" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Externally defined variables
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Externally defined variables">
-      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#rayon_num_threads" class="md-nav__link">
@@ -1068,17 +1057,6 @@
     <span class="md-ellipsis">
       
         VIRTUAL_ENV
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#conda_prefix" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        CONDA_PREFIX
       
     </span>
   </a>
@@ -1168,29 +1146,36 @@
 
 <h1 id="environment-variables"><a class="toclink" href="#environment-variables">Environment variables</a></h1>
 <p>ty defines and respects the following environment variables:</p>
-<h2 id="ty_log"><a class="toclink" href="#ty_log"><code>TY_LOG</code></a></h2>
-<p>If set, ty will use this value as the log level for its <code>--verbose</code> output. Accepts any filter compatible with the <code>tracing_subscriber</code> crate. For example:</p>
+<h3 id="ty_log"><a class="toclink" href="#ty_log"><code>TY_LOG</code></a></h3>
+<p>If set, ty will use this value as the log level for its <code>--verbose</code> output.
+Accepts any filter compatible with the <code>tracing_subscriber</code> crate.</p>
+<p>For example:</p>
 <ul>
 <li><code>TY_LOG=uv=debug</code> is the equivalent of <code>-vv</code> to the command line</li>
 <li><code>TY_LOG=trace</code> will enable all trace-level logging.</li>
 </ul>
-<p>See the <a href="https://docs.rs/tracing-subscriber/latest/tracing_subscriber/filter/struct.EnvFilter.html#example-syntax">tracing documentation</a> for more.</p>
-<h2 id="ty_log_profile"><a class="toclink" href="#ty_log_profile"><code>TY_LOG_PROFILE</code></a></h2>
-<p>If set to <code>"1"</code> or <code>"true"</code>, ty will enable flamegraph profiling. This creates a <code>tracing.folded</code> file that can be used to generate flame graphs for performance analysis.</p>
-<h2 id="ty_max_parallelism"><a class="toclink" href="#ty_max_parallelism"><code>TY_MAX_PARALLELISM</code></a></h2>
-<p>Specifies an upper limit for the number of tasks ty is allowed to run in parallel. For example, how many files should be checked in parallel.</p>
-<p>This isn’t the same as a thread limit. ty may spawn additional threads when necessary, e.g. to watch for file system changes or a dedicated UI thread.</p>
-<h2 id="ty_memory_report"><a class="toclink" href="#ty_memory_report"><code>TY_MEMORY_REPORT</code></a></h2>
-<p>If set to <code>"full"</code>, ty will generate and output a detailed memory usage report after a <code>ty check</code> run.</p>
-<p>If set to <code>"short"</code>, ty will only print total memory usage numbers.</p>
-<h2 id="externally-defined-variables"><a class="toclink" href="#externally-defined-variables">Externally defined variables</a></h2>
+<p>See the <a href="https://docs.rs/tracing-subscriber/latest/tracing_subscriber/filter/struct.EnvFilter.html#example-syntax">tracing documentation</a>
+for more.</p>
+<h3 id="ty_log_profile"><a class="toclink" href="#ty_log_profile"><code>TY_LOG_PROFILE</code></a></h3>
+<p>If set to <code>"1"</code> or <code>"true"</code>, ty will enable flamegraph profiling.
+This creates a <code>tracing.folded</code> file that can be used to generate flame graphs
+for performance analysis.</p>
+<h3 id="ty_max_parallelism"><a class="toclink" href="#ty_max_parallelism"><code>TY_MAX_PARALLELISM</code></a></h3>
+<p>Specifies an upper limit for the number of tasks ty is allowed to run in parallel.</p>
+<p>For example, how many files should be checked in parallel.
+This isn't the same as a thread limit. ty may spawn additional threads
+when necessary, e.g. to watch for file system changes or a dedicated UI thread.</p>
+<h2 id="externally-defined-variables"><a class="toclink" href="#externally-defined-variables">Externally-defined variables</a></h2>
 <p>ty also reads the following externally defined environment variables:</p>
+<h3 id="conda_prefix"><a class="toclink" href="#conda_prefix"><code>CONDA_PREFIX</code></a></h3>
+<p>Used to detect an activated Conda environment location.
+If both <code>VIRTUAL_ENV</code> and <code>CONDA_PREFIX</code> are present, <code>VIRTUAL_ENV</code> will be preferred.</p>
 <h3 id="rayon_num_threads"><a class="toclink" href="#rayon_num_threads"><code>RAYON_NUM_THREADS</code></a></h3>
-<p>Specifies an upper limit for the number of threads ty uses when performing work in parallel. Equivalent to <code>TY_MAX_PARALLELISM</code>.</p>
+<p>Specifies an upper limit for the number of threads ty uses when performing work in parallel.
+Equivalent to <code>TY_MAX_PARALLELISM</code>.</p>
+<p>This is a standard Rayon environment variable.</p>
 <h3 id="virtual_env"><a class="toclink" href="#virtual_env"><code>VIRTUAL_ENV</code></a></h3>
 <p>Used to detect an activated virtual environment.</p>
-<h3 id="conda_prefix"><a class="toclink" href="#conda_prefix"><code>CONDA_PREFIX</code></a></h3>
-<p>Used to detect an activated Conda environment location. If both <code>VIRTUAL_ENV</code> and <code>CONDA_PREFIX</code> are present, <code>VIRTUAL_ENV</code> will be preferred.</p>
 <h3 id="xdg_config_home"><a class="toclink" href="#xdg_config_home"><code>XDG_CONFIG_HOME</code></a></h3>
 <p>Path to user-level configuration directory on Unix systems.</p>
 
@@ -1206,7 +1191,7 @@
         <span class="md-icon" title="Last update">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
         </span>
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 8, 2025</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 18, 2025</span>
       </span>
     
     
