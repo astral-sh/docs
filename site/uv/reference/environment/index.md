@@ -206,6 +206,10 @@ Ignore `.env` files when executing `uv run` commands.
 
 Disable GitHub-specific requests that allow uv to skip `git fetch` in some circumstances.
 
+### [`UV_NO_HF_TOKEN`](#uv_no_hf_token)
+
+Disable Hugging Face authentication, even if `HF_TOKEN` is set.
+
 ### [`UV_NO_INSTALLER_METADATA`](#uv_no_installer_metadata)
 
 Skip writing `uv` installer metadata files (e.g., `INSTALLER`, `REQUESTED`, and `direct_url.json`) to site-packages `.dist-info` directories.
@@ -443,6 +447,10 @@ See [force-color.org](https://force-color.org).
 ### [`GITHUB_ACTIONS`](#github_actions)
 
 Used for trusted publishing via `uv publish`.
+
+### [`HF_TOKEN`](#hf_token)
+
+Authentication token for Hugging Face requests. When set, uv will use this token when making requests to `https://huggingface.co/` and any subdomains.
 
 ### [`HOME`](#home)
 

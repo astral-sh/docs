@@ -105,3 +105,16 @@ allow-insecure-host = ["example.com"]
 `allow-insecure-host` expects to receive a hostname (e.g., `localhost`) or hostname-port pair (e.g., `localhost:8080`), and is only applicable to HTTPS connections, as HTTP connections are inherently insecure.
 
 Use `allow-insecure-host` with caution and only in trusted environments, as it can expose you to security risks due to the lack of certificate verification.
+
+## [Hugging Face support](#hugging-face-support)
+
+uv supports automatic authentication for the Hugging Face Hub. Specifically, if the `HF_TOKEN` environment variable is set, uv will propagate it to requests to `huggingface.co`.
+
+This is particularly useful for accessing private scripts in Hugging Face Datasets. For example, you can run the following command to execute the script `main.py` script from a private dataset:
+
+```
+$ HF_TOKEN=hf_... uv run https://huggingface.co/datasets/<user>/<name>/resolve/<branch>/main.py
+
+```
+
+You can disable automatic Hugging Face authentication by setting the `UV_NO_HF_TOKEN=1` environment variable.

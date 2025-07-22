@@ -100,4 +100,4 @@ Managing and inspecting uv's state, such as the cache, storage directories, or p
 
 ## [Next steps](#next-steps)
 
-Read the [guides](../../guides/) for an introduction to each feature, check out [concept](../../concepts/) pages for in-depth details about uv's features, or learn how to [get help](../help/) if you run into any problems.
+Read the [guides](../../guides/) for an introduction to each feature, check out the [concept](../../concepts/) pages for in-depth details about uv's features, or learn how to [get help](../help/) if you run into any problems.

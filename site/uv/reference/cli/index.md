@@ -154,6 +154,8 @@ May also be set with the `UV_CONFIG_FILE` environment variable.
 
 [`--config-setting`](#uv-run--config-setting), `--config-settings`, `-C` *config-setting* : Settings to pass to the PEP 517 build backend, specified as `KEY=VALUE` pairs
 
+[`--config-settings-package`](#uv-run--config-settings-package), `--config-settings-package` *config-settings-package* : Settings to pass to the PEP 517 build backend for a specific package, specified as `PACKAGE:KEY=VALUE` pairs
+
 [`--default-index`](#uv-run--default-index) *default-index* : The URL of the default package index (by default: <https://pypi.org/simple>).
 
 ```
@@ -1032,6 +1034,8 @@ May also be set with the `UV_CONFIG_FILE` environment variable.
 
 [`--config-setting`](#uv-add--config-setting), `--config-settings`, `-C` *config-setting* : Settings to pass to the PEP 517 build backend, specified as `KEY=VALUE` pairs
 
+[`--config-settings-package`](#uv-add--config-settings-package), `--config-settings-package` *config-settings-package* : Settings to pass to the PEP 517 build backend for a specific package, specified as `PACKAGE:KEY=VALUE` pairs
+
 [`--constraints`](#uv-add--constraints), `--constraint`, `-c` *constraints* : Constrain versions using the given requirements files.
 
 ```
@@ -1528,6 +1532,8 @@ May also be set with the `UV_CONFIG_FILE` environment variable.
 
 [`--config-setting`](#uv-remove--config-setting), `--config-settings`, `-C` *config-setting* : Settings to pass to the PEP 517 build backend, specified as `KEY=VALUE` pairs
 
+[`--config-settings-package`](#uv-remove--config-settings-package), `--config-settings-package` *config-settings-package* : Settings to pass to the PEP 517 build backend for a specific package, specified as `PACKAGE:KEY=VALUE` pairs
+
 [`--default-index`](#uv-remove--default-index) *default-index* : The URL of the default package index (by default: <https://pypi.org/simple>).
 
 ```
@@ -1975,6 +1981,8 @@ May also be set with the `UV_CONFIG_FILE` environment variable.
 ```
 
 [`--config-setting`](#uv-version--config-setting), `--config-settings`, `-C` *config-setting* : Settings to pass to the PEP 517 build backend, specified as `KEY=VALUE` pairs
+
+[`--config-settings-package`](#uv-version--config-settings-package), `--config-settings-package` *config-settings-package* : Settings to pass to the PEP 517 build backend for a specific package, specified as `PACKAGE:KEY=VALUE` pairs
 
 [`--default-index`](#uv-version--default-index) *default-index* : The URL of the default package index (by default: <https://pypi.org/simple>).
 
@@ -2444,6 +2452,8 @@ May also be set with the `UV_CONFIG_FILE` environment variable.
 ```
 
 [`--config-setting`](#uv-sync--config-setting), `--config-settings`, `-C` *config-setting* : Settings to pass to the PEP 517 build backend, specified as `KEY=VALUE` pairs
+
+[`--config-settings-package`](#uv-sync--config-settings-package), `--config-settings-package` *config-settings-package* : Settings to pass to the PEP 517 build backend for a specific package, specified as `PACKAGE:KEY=VALUE` pairs
 
 [`--default-index`](#uv-sync--default-index) *default-index* : The URL of the default package index (by default: <https://pypi.org/simple>).
 
@@ -3028,6 +3038,8 @@ May also be set with the `UV_CONFIG_FILE` environment variable.
 
 [`--config-setting`](#uv-lock--config-setting), `--config-settings`, `-C` *config-setting* : Settings to pass to the PEP 517 build backend, specified as `KEY=VALUE` pairs
 
+[`--config-settings-package`](#uv-lock--config-settings-package), `--config-settings-package` *config-settings-package* : Settings to pass to the PEP 517 build backend for a specific package, specified as `PACKAGE:KEY=VALUE` pairs
+
 [`--default-index`](#uv-lock--default-index) *default-index* : The URL of the default package index (by default: <https://pypi.org/simple>).
 
 ```
@@ -3433,6 +3445,8 @@ May also be set with the `UV_CONFIG_FILE` environment variable.
 ```
 
 [`--config-setting`](#uv-export--config-setting), `--config-settings`, `-C` *config-setting* : Settings to pass to the PEP 517 build backend, specified as `KEY=VALUE` pairs
+
+[`--config-settings-package`](#uv-export--config-settings-package), `--config-settings-package` *config-settings-package* : Settings to pass to the PEP 517 build backend for a specific package, specified as `PACKAGE:KEY=VALUE` pairs
 
 [`--default-index`](#uv-export--default-index) *default-index* : The URL of the default package index (by default: <https://pypi.org/simple>).
 
@@ -3938,6 +3952,8 @@ May also be set with the `UV_CONFIG_FILE` environment variable.
 ```
 
 [`--config-setting`](#uv-tree--config-setting), `--config-settings`, `-C` *config-setting* : Settings to pass to the PEP 517 build backend, specified as `KEY=VALUE` pairs
+
+[`--config-settings-package`](#uv-tree--config-settings-package), `--config-settings-package` *config-settings-package* : Settings to pass to the PEP 517 build backend for a specific package, specified as `PACKAGE:KEY=VALUE` pairs
 
 [`--default-index`](#uv-tree--default-index) *default-index* : The URL of the default package index (by default: <https://pypi.org/simple>).
 
@@ -4507,6 +4523,8 @@ May also be set with the `UV_CONFIG_FILE` environment variable.
 
 [`--config-setting`](#uv-tool-run--config-setting), `--config-settings`, `-C` *config-setting* : Settings to pass to the PEP 517 build backend, specified as `KEY=VALUE` pairs
 
+[`--config-settings-package`](#uv-tool-run--config-settings-package), `--config-settings-package` *config-settings-package* : Settings to pass to the PEP 517 build backend for a specific package, specified as `PACKAGE:KEY=VALUE` pairs
+
 [`--constraints`](#uv-tool-run--constraints), `--constraint`, `-c` *constraints* : Constrain versions using the given requirements files.
 
 ```
@@ -4951,6 +4969,8 @@ May also be set with the `UV_CONFIG_FILE` environment variable.
 
 [`--config-setting`](#uv-tool-install--config-setting), `--config-settings`, `-C` *config-setting* : Settings to pass to the PEP 517 build backend, specified as `KEY=VALUE` pairs
 
+[`--config-settings-package`](#uv-tool-install--config-settings-package), `--config-settings-package` *config-settings-package* : Settings to pass to the PEP 517 build backend for a specific package, specified as `PACKAGE:KEY=VALUE` pairs
+
 [`--constraints`](#uv-tool-install--constraints), `--constraint`, `-c` *constraints* : Constrain versions using the given requirements files.
 
 ```
@@ -5370,6 +5390,8 @@ May also be set with the `UV_CONFIG_FILE` environment variable.
 ```
 
 [`--config-setting`](#uv-tool-upgrade--config-setting), `--config-settings`, `-C` *config-setting* : Settings to pass to the PEP 517 build backend, specified as `KEY=VALUE` pairs
+
+[`--config-setting-package`](#uv-tool-upgrade--config-setting-package), `--config-settings-package` *config-setting-package* : Settings to pass to the PEP 517 build backend for a specific package, specified as `PACKAGE:KEY=VALUE` pairs
 
 [`--default-index`](#uv-tool-upgrade--default-index) *default-index* : The URL of the default package index (by default: <https://pypi.org/simple>).
 
@@ -8022,6 +8044,8 @@ May also be set with the `UV_CONFIG_FILE` environment variable.
 
 [`--config-setting`](#uv-pip-compile--config-setting), `--config-settings`, `-C` *config-setting* : Settings to pass to the PEP 517 build backend, specified as `KEY=VALUE` pairs
 
+[`--config-settings-package`](#uv-pip-compile--config-settings-package), `--config-settings-package` *config-settings-package* : Settings to pass to the PEP 517 build backend for a specific package, specified as `PACKAGE:KEY=VALUE` pairs
+
 [`--constraints`](#uv-pip-compile--constraints), `--constraint`, `-c` *constraints* : Constrain versions using the given requirements files.
 
 ```
@@ -8579,6 +8603,12 @@ If `-` is provided, then requirements will be read from stdin.
 
 ### Options
 
+[`--all-extras`](#uv-pip-sync--all-extras) : Include all optional dependencies.
+
+```
+Only applies to `pylock.toml`, `pyproject.toml`, `setup.py`, and `setup.cfg` sources.
+```
+
 [`--allow-empty-requirements`](#uv-pip-sync--allow-empty-requirements) : Allow sync of empty requirements, which will clear the environment of all packages
 
 [`--allow-insecure-host`](#uv-pip-sync--allow-insecure-host), `--trusted-host` *allow-insecure-host* : Allow insecure connections to a host.
@@ -8651,6 +8681,8 @@ May also be set with the `UV_CONFIG_FILE` environment variable.
 
 [`--config-setting`](#uv-pip-sync--config-setting), `--config-settings`, `-C` *config-setting* : Settings to pass to the PEP 517 build backend, specified as `KEY=VALUE` pairs
 
+[`--config-settings-package`](#uv-pip-sync--config-settings-package), `--config-settings-package` *config-settings-package* : Settings to pass to the PEP 517 build backend for a specific package, specified as `PACKAGE:KEY=VALUE` pairs
+
 [`--constraints`](#uv-pip-sync--constraints), `--constraint`, `-c` *constraints* : Constrain versions using the given requirements files.
 
 ```
@@ -8689,6 +8721,12 @@ Accepts both RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`) and local dates 
 May also be set with the `UV_EXCLUDE_NEWER` environment variable.
 ```
 
+[`--extra`](#uv-pip-sync--extra) *extra* : Include optional dependencies from the specified extra name; may be provided more than once.
+
+```
+Only applies to `pylock.toml`, `pyproject.toml`, `setup.py`, and `setup.cfg` sources.
+```
+
 [`--extra-index-url`](#uv-pip-sync--extra-index-url) *extra-index-url* : (Deprecated: use `--index` instead) Extra URLs of package indexes to use, in addition to `--index-url`.
 
 ```
@@ -8707,6 +8745,14 @@ If a path, the target must be a directory that contains packages as wheel files 
 If a URL, the page must contain a flat list of links to package files adhering to the formats described above.
 
 May also be set with the `UV_FIND_LINKS` environment variable.
+```
+
+[`--group`](#uv-pip-sync--group) *group* : Install the specified dependency group from a `pylock.toml` or `pyproject.toml`.
+
+```
+If no path is provided, the `pylock.toml` or `pyproject.toml` in the working directory is used.
+
+May be provided multiple times.
 ```
 
 [`--help`](#uv-pip-sync--help), `-h` : Display the concise help for this command
@@ -9096,7 +9142,7 @@ The order of the packages is used to determine priority during resolution.
 [`--all-extras`](#uv-pip-install--all-extras) : Include all optional dependencies.
 
 ```
-Only applies to `pyproject.toml`, `setup.py`, and `setup.cfg` sources.
+Only applies to `pylock.toml`, `pyproject.toml`, `setup.py`, and `setup.cfg` sources.
 ```
 
 [`--allow-insecure-host`](#uv-pip-install--allow-insecure-host), `--trusted-host` *allow-insecure-host* : Allow insecure connections to a host.
@@ -9169,6 +9215,8 @@ May also be set with the `UV_CONFIG_FILE` environment variable.
 
 [`--config-setting`](#uv-pip-install--config-setting), `--config-settings`, `-C` *config-setting* : Settings to pass to the PEP 517 build backend, specified as `KEY=VALUE` pairs
 
+[`--config-settings-package`](#uv-pip-install--config-settings-package), `--config-settings-package` *config-settings-package* : Settings to pass to the PEP 517 build backend for a specific package, specified as `PACKAGE:KEY=VALUE` pairs
+
 [`--constraints`](#uv-pip-install--constraints), `--constraint`, `-c` *constraints* : Constrain versions using the given requirements files.
 
 ```
@@ -9218,7 +9266,7 @@ May also be set with the `UV_EXCLUDE_NEWER` environment variable.
 [`--extra`](#uv-pip-install--extra) *extra* : Include optional dependencies from the specified extra name; may be provided more than once.
 
 ```
-Only applies to `pyproject.toml`, `setup.py`, and `setup.cfg` sources.
+Only applies to `pylock.toml`, `pyproject.toml`, `setup.py`, and `setup.cfg` sources.
 ```
 
 [`--extra-index-url`](#uv-pip-install--extra-index-url) *extra-index-url* : (Deprecated: use `--index` instead) Extra URLs of package indexes to use, in addition to `--index-url`.
@@ -9256,10 +9304,10 @@ Possible values:
 - `requires-python`: Optimize for selecting latest supported version of each package, for each supported Python version
 ```
 
-[`--group`](#uv-pip-install--group) *group* : Install the specified dependency group from a `pyproject.toml`.
+[`--group`](#uv-pip-install--group) *group* : Install the specified dependency group from a `pylock.toml` or `pyproject.toml`.
 
 ```
-If no path is provided, the `pyproject.toml` in the working directory is used.
+If no path is provided, the `pylock.toml` or `pyproject.toml` in the working directory is used.
 
 May be provided multiple times.
 ```
@@ -11430,6 +11478,8 @@ May also be set with the `UV_CONFIG_FILE` environment variable.
 ```
 
 [`--config-setting`](#uv-build--config-setting), `--config-settings`, `-C` *config-setting* : Settings to pass to the PEP 517 build backend, specified as `KEY=VALUE` pairs
+
+[`--config-settings-package`](#uv-build--config-settings-package), `--config-settings-package` *config-settings-package* : Settings to pass to the PEP 517 build backend for a specific package, specified as `PACKAGE:KEY=VALUE` pairs
 
 [`--default-index`](#uv-build--default-index) *default-index* : The URL of the default package index (by default: <https://pypi.org/simple>).
 
