@@ -716,6 +716,8 @@ Disables creating extra files like `README.md`, the `src/` tree, `.python-versio
 ```
 Implicitly sets `--package`.
 
+May also be set with the `UV_INIT_BUILD_BACKEND` environment variable.
+
 Possible values:
 
 - `hatch`: Use [hatchling](https://pypi.org/project/hatchling) as the project build backend
