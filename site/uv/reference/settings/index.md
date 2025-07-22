@@ -938,6 +938,31 @@ config-settings = { editable_mode = "compat" }
 
 ______________________________________________________________________
 
+### \[[`config-settings-package`](#config-settings-package)\](#config-settings-package)
+
+Settings to pass to the [PEP 517](https://peps.python.org/pep-0517/) build backend for specific packages, specified as `KEY=VALUE` pairs.
+
+Accepts a map from package names to string key-value pairs.
+
+**Default value**: `{}`
+
+**Type**: `dict`
+
+**Example usage**:
+
+```
+[tool.uv]
+config-settings-package = { numpy = { editable_mode = "compat" } }
+
+```
+
+```
+config-settings-package = { numpy = { editable_mode = "compat" } }
+
+```
+
+______________________________________________________________________
+
 ### \[[`dependency-metadata`](#dependency-metadata)\](#dependency-metadata)
 
 Pre-defined static metadata for dependencies of the project (direct or transitive). When provided, enables the resolver to use the specified metadata instead of querying the registry or building the relevant package from source.
@@ -2051,6 +2076,30 @@ config-settings = { editable_mode = "compat" }
 ```
 [pip]
 config-settings = { editable_mode = "compat" }
+
+```
+
+______________________________________________________________________
+
+#### \[[`config-settings-package`](#pip_config-settings-package)\](#pip_config-settings-package)
+
+Settings to pass to the [PEP 517](https://peps.python.org/pep-0517/) build backend for specific packages, specified as `KEY=VALUE` pairs.
+
+**Default value**: `{}`
+
+**Type**: `dict`
+
+**Example usage**:
+
+```
+[tool.uv.pip]
+config-settings-package = { numpy = { editable_mode = "compat" } }
+
+```
+
+```
+[pip]
+config-settings-package = { numpy = { editable_mode = "compat" } }
 
 ```
 
