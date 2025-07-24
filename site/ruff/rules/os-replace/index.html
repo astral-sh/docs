@@ -839,6 +839,7 @@
 
 <h1 id="os-replace-pth105"><a class="toclink" href="#os-replace-pth105">os-replace (PTH105)</a></h1>
 <p>Derived from the <strong><a href="../#flake8-use-pathlib-pth">flake8-use-pathlib</a></strong> linter.</p>
+<p>Fix is sometimes available.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for uses of <code>os.replace</code>.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
@@ -862,6 +863,8 @@ e.g., in hot loops.</p>
 <p>While using <code>pathlib</code> can improve the readability and type safety of your code,
 it can be less performant than the lower-level alternatives that work directly with strings,
 especially on older versions of Python.</p>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix Safety</a></h2>
+<p>This rule's fix is marked as unsafe if the replacement would remove comments attached to the original expression.</p>
 <h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path.replace">Python documentation: <code>Path.replace</code></a></li>
