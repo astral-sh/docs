@@ -392,7 +392,7 @@ Each entry is a directory, whose contents are copied to the matching directory i
 
 - `headers`: Installed to the include directory. Compilers building Python packages with this package as build requirement use the include directory to find additional header files.
 
-- `purelib` and `platlib`: Installed to the `site-packages` directory. It is not recommended to uses these two options.
+- `purelib` and `platlib`: Installed to the `site-packages` directory. It is not recommended to use these two options.
 
 **Default value**: `{}`
 
@@ -404,7 +404,7 @@ pyproject.toml
 
 ```
 [tool.uv.build-backend]
-data = { "headers": "include/headers", "scripts": "bin" }
+data = { headers = "include/headers", scripts = "bin" }
 
 ```
 
