@@ -25,7 +25,7 @@ $ wget -qO- https://astral.sh/uv/install.sh | sh
 Request a specific version by including it in the URL:
 
 ```
-$ curl -LsSf https://astral.sh/uv/0.8.2/install.sh | sh
+$ curl -LsSf https://astral.sh/uv/0.8.3/install.sh | sh
 
 ```
 
@@ -41,7 +41,7 @@ Changing the [execution policy](https://learn.microsoft.com/en-us/powershell/mod
 Request a specific version by including it in the URL:
 
 ```
-PS> powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/0.8.2/install.ps1 | iex"
+PS> powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/0.8.3/install.ps1 | iex"
 
 ```
 
@@ -85,15 +85,6 @@ Note
 
 uv ships with prebuilt distributions (wheels) for many platforms; if a wheel is not available for a given platform, uv will be built from source, which requires a Rust toolchain. See the [contributing setup guide](https://github.com/astral-sh/uv/blob/main/CONTRIBUTING.md#setup) for details on building uv from source.
 
-### [Cargo](#cargo)
-
-uv is available via Cargo, but must be built from Git rather than [crates.io](https://crates.io) due to its dependency on unpublished crates.
-
-```
-$ cargo install --git https://github.com/astral-sh/uv uv
-
-```
-
 ### [Homebrew](#homebrew)
 
 uv is available in the core Homebrew packages.
@@ -132,6 +123,19 @@ See our guide on [using uv in Docker](../../guides/integration/docker/) for more
 uv release artifacts can be downloaded directly from [GitHub Releases](https://github.com/astral-sh/uv/releases).
 
 Each release page includes binaries for all supported platforms as well as instructions for using the standalone installer via `github.com` instead of `astral.sh`.
+
+### [Cargo](#cargo)
+
+uv is available via Cargo, but must be built from Git rather than [crates.io](https://crates.io) due to its dependency on unpublished crates.
+
+```
+$ cargo install --git https://github.com/astral-sh/uv uv
+
+```
+
+Note
+
+This method builds uv from source, which requires a compatible Rust toolchain.
 
 ## [Upgrading uv](#upgrading-uv)
 
