@@ -839,6 +839,7 @@
 
 <h1 id="missing-maxsplit-arg-plc0207"><a class="toclink" href="#missing-maxsplit-arg-plc0207">missing-maxsplit-arg (PLC0207)</a></h1>
 <p>Derived from the <strong><a href="../#pylint-pl">Pylint</a></strong> linter.</p>
+<p>Fix is always available.</p>
 <p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for access to the first or last element of <code>str.split()</code> or <code>str.rsplit()</code> without
@@ -859,6 +860,9 @@ would be more efficient to only split once.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;www.example.com&quot;</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">suffix</span> <span class="o">=</span> <span class="n">url</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="n">maxsplit</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 </code></pre></div>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix Safety</a></h2>
+<p>This rule's fix is marked as unsafe for <code>split()</code>/<code>rsplit()</code> calls that contain <code>**kwargs</code>, as
+adding a <code>maxsplit</code> keyword to such a call may lead to a duplicate keyword argument error.</p>
 
 
 

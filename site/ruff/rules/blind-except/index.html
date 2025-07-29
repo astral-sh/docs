@@ -867,9 +867,10 @@ be caught elsewhere:</p>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">except</span> <span class="ne">BaseException</span><span class="p">:</span>
 <a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="k">raise</span>
 </code></pre></div>
-<p>Exceptions that are logged via <code>logging.exception()</code> or <code>logging.error()</code>
-with <code>exc_info</code> enabled will <em>not</em> be flagged, as this is a common pattern
-for propagating exception traces:</p>
+<p>Exceptions that are logged via <code>logging.exception()</code> or are logged via
+<code>logging.error()</code> or <code>logging.critical()</code> with <code>exc_info</code> enabled will
+<em>not</em> be flagged, as this is a common pattern for propagating exception
+traces:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">try</span><span class="p">:</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="n">foo</span><span class="p">()</span>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">except</span> <span class="ne">BaseException</span><span class="p">:</span>

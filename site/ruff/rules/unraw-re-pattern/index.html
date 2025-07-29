@@ -851,11 +851,32 @@ their first arguments are not raw strings:</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Regular expressions should be written
 using raw strings to avoid double escaping.</p>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
+<p>The fix is unsafe if the string/bytes literal contains an escape sequence because the fix alters
+the runtime value of the literal while retaining the regex semantics.</p>
+<p>For example</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Literal is `1\n2`.</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s2">&quot;1</span><span class="se">\n</span><span class="s2">2&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># Literal is `1\\n2`, but the regex library will interpret `\\n` and will still match a newline</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># character as before.</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;1\n2&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="fix-availability"><a class="toclink" href="#fix-availability">Fix availability</a></h2>
+<p>A fix is not available if either</p>
+<ul>
+<li>the argument is a string with a (no-op) <code>u</code> prefix (e.g., <code>u"foo"</code>) as the prefix is
+    incompatible with the raw prefix <code>r</code></li>
+<li>the argument is a string or bytes literal with an escape sequence that has a different
+    meaning in the context of a regular expression such as <code>\b</code>, which is word boundary or
+    backspace in a regex, depending on the context, but always a backspace in string and bytes
+    literals.</li>
+</ul>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s2">&quot;foo</span><span class="se">\\</span><span class="s2">bar&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s2">&quot;foo</span><span class="se">\\</span><span class="s2">bar&quot;</span><span class="p">)</span>
 </code></pre></div>
 <p>Use instead:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;foo\bar&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;foo\bar&quot;</span><span class="p">)</span>
 </code></pre></div>
 
 
