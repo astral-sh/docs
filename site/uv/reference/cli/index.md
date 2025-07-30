@@ -196,6 +196,14 @@ Accepts both RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`) and local dates 
 May also be set with the `UV_EXCLUDE_NEWER` environment variable.
 ```
 
+[`--exclude-newer-package`](#uv-run--exclude-newer-package) *exclude-newer-package* : Limit candidate packages for specific packages to those that were uploaded prior to the given date.
+
+```
+Accepts package-date pairs in the format `PACKAGE=DATE`, where `DATE` is an RFC 3339 timestamp (e.g., `2006-12-02T02:07:43Z`) or local date (e.g., `2006-12-02`) in your system's configured time zone.
+
+Can be provided multiple times for different packages.
+```
+
 [`--extra`](#uv-run--extra) *extra* : Include optional dependencies from the specified extra name.
 
 ```
@@ -720,6 +728,7 @@ May also be set with the `UV_INIT_BUILD_BACKEND` environment variable.
 
 Possible values:
 
+- `uv`: Use uv as the project build backend
 - `hatch`: Use [hatchling](https://pypi.org/project/hatchling) as the project build backend
 - `flit`: Use [flit-core](https://pypi.org/project/flit-core) as the project build backend
 - `pdm`: Use [pdm-backend](https://pypi.org/project/pdm-backend) as the project build backend
@@ -1080,6 +1089,14 @@ See `--project` to only change the project root directory.
 Accepts both RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`) and local dates in the same format (e.g., `2006-12-02`) in your system's configured time zone.
 
 May also be set with the `UV_EXCLUDE_NEWER` environment variable.
+```
+
+[`--exclude-newer-package`](#uv-add--exclude-newer-package) *exclude-newer-package* : Limit candidate packages for specific packages to those that were uploaded prior to the given date.
+
+```
+Accepts package-date pairs in the format `PACKAGE=DATE`, where `DATE` is an RFC 3339 timestamp (e.g., `2006-12-02T02:07:43Z`) or local date (e.g., `2006-12-02`) in your system's configured time zone.
+
+Can be provided multiple times for different packages.
 ```
 
 [`--extra`](#uv-add--extra) *extra* : Extras to enable for the dependency.
@@ -1568,6 +1585,14 @@ Accepts both RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`) and local dates 
 May also be set with the `UV_EXCLUDE_NEWER` environment variable.
 ```
 
+[`--exclude-newer-package`](#uv-remove--exclude-newer-package) *exclude-newer-package* : Limit candidate packages for specific packages to those that were uploaded prior to the given date.
+
+```
+Accepts package-date pairs in the format `PACKAGE=DATE`, where `DATE` is an RFC 3339 timestamp (e.g., `2006-12-02T02:07:43Z`) or local date (e.g., `2006-12-02`) in your system's configured time zone.
+
+Can be provided multiple times for different packages.
+```
+
 [`--extra-index-url`](#uv-remove--extra-index-url) *extra-index-url* : (Deprecated: use `--index` instead) Extra URLs of package indexes to use, in addition to `--index-url`.
 
 ```
@@ -2016,6 +2041,14 @@ Instead, the version will be displayed.
 Accepts both RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`) and local dates in the same format (e.g., `2006-12-02`) in your system's configured time zone.
 
 May also be set with the `UV_EXCLUDE_NEWER` environment variable.
+```
+
+[`--exclude-newer-package`](#uv-version--exclude-newer-package) *exclude-newer-package* : Limit candidate packages for specific packages to those that were uploaded prior to the given date.
+
+```
+Accepts package-date pairs in the format `PACKAGE=DATE`, where `DATE` is an RFC 3339 timestamp (e.g., `2006-12-02T02:07:43Z`) or local date (e.g., `2006-12-02`) in your system's configured time zone.
+
+Can be provided multiple times for different packages.
 ```
 
 [`--extra-index-url`](#uv-version--extra-index-url) *extra-index-url* : (Deprecated: use `--index` instead) Extra URLs of package indexes to use, in addition to `--index-url`.
@@ -2487,6 +2520,14 @@ In dry-run mode, uv will resolve the project's dependencies and report on the re
 Accepts both RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`) and local dates in the same format (e.g., `2006-12-02`) in your system's configured time zone.
 
 May also be set with the `UV_EXCLUDE_NEWER` environment variable.
+```
+
+[`--exclude-newer-package`](#uv-sync--exclude-newer-package) *exclude-newer-package* : Limit candidate packages for specific packages to those that were uploaded prior to the given date.
+
+```
+Accepts package-date pairs in the format `PACKAGE=DATE`, where `DATE` is an RFC 3339 timestamp (e.g., `2006-12-02T02:07:43Z`) or local date (e.g., `2006-12-02`) in your system's configured time zone.
+
+Can be provided multiple times for different packages.
 ```
 
 [`--extra`](#uv-sync--extra) *extra* : Include optional dependencies from the specified extra name.
@@ -3074,6 +3115,14 @@ Accepts both RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`) and local dates 
 May also be set with the `UV_EXCLUDE_NEWER` environment variable.
 ```
 
+[`--exclude-newer-package`](#uv-lock--exclude-newer-package) *exclude-newer-package* : Limit candidate packages for a specific package to those that were uploaded prior to the given date.
+
+```
+Accepts package-date pairs in the format `PACKAGE=DATE`, where `DATE` is an RFC 3339 timestamp (e.g., `2006-12-02T02:07:43Z`) or local date (e.g., `2006-12-02`) in your system's configured time zone.
+
+Can be provided multiple times for different packages.
+```
+
 [`--extra-index-url`](#uv-lock--extra-index-url) *extra-index-url* : (Deprecated: use `--index` instead) Extra URLs of package indexes to use, in addition to `--index-url`.
 
 ```
@@ -3474,6 +3523,14 @@ See `--project` to only change the project root directory.
 Accepts both RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`) and local dates in the same format (e.g., `2006-12-02`) in your system's configured time zone.
 
 May also be set with the `UV_EXCLUDE_NEWER` environment variable.
+```
+
+[`--exclude-newer-package`](#uv-export--exclude-newer-package) *exclude-newer-package* : Limit candidate packages for a specific package to those that were uploaded prior to the given date.
+
+```
+Accepts package-date pairs in the format `PACKAGE=DATE`, where `DATE` is an RFC 3339 timestamp (e.g., `2006-12-02T02:07:43Z`) or local date (e.g., `2006-12-02`) in your system's configured time zone.
+
+Can be provided multiple times for different packages.
 ```
 
 [`--extra`](#uv-export--extra) *extra* : Include optional dependencies from the specified extra name.
@@ -3987,6 +4044,14 @@ See `--project` to only change the project root directory.
 Accepts both RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`) and local dates in the same format (e.g., `2006-12-02`) in your system's configured time zone.
 
 May also be set with the `UV_EXCLUDE_NEWER` environment variable.
+```
+
+[`--exclude-newer-package`](#uv-tree--exclude-newer-package) *exclude-newer-package* : Limit candidate packages for a specific package to those that were uploaded prior to the given date.
+
+```
+Accepts package-date pairs in the format `PACKAGE=DATE`, where `DATE` is an RFC 3339 timestamp (e.g., `2006-12-02T02:07:43Z`) or local date (e.g., `2006-12-02`) in your system's configured time zone.
+
+Can be provided multiple times for different packages.
 ```
 
 [`--extra-index-url`](#uv-tree--extra-index-url) *extra-index-url* : (Deprecated: use `--index` instead) Extra URLs of package indexes to use, in addition to `--index-url`.
@@ -4571,6 +4636,14 @@ Accepts both RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`) and local dates 
 May also be set with the `UV_EXCLUDE_NEWER` environment variable.
 ```
 
+[`--exclude-newer-package`](#uv-tool-run--exclude-newer-package) *exclude-newer-package* : Limit candidate packages for specific packages to those that were uploaded prior to the given date.
+
+```
+Accepts package-date pairs in the format `PACKAGE=DATE`, where `DATE` is an RFC 3339 timestamp (e.g., `2006-12-02T02:07:43Z`) or local date (e.g., `2006-12-02`) in your system's configured time zone.
+
+Can be provided multiple times for different packages.
+```
+
 [`--extra-index-url`](#uv-tool-run--extra-index-url) *extra-index-url* : (Deprecated: use `--index` instead) Extra URLs of package indexes to use, in addition to `--index-url`.
 
 ```
@@ -5011,6 +5084,14 @@ Accepts both RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`) and local dates 
 May also be set with the `UV_EXCLUDE_NEWER` environment variable.
 ```
 
+[`--exclude-newer-package`](#uv-tool-install--exclude-newer-package) *exclude-newer-package* : Limit candidate packages for specific packages to those that were uploaded prior to the given date.
+
+```
+Accepts package-date pairs in the format `PACKAGE=DATE`, where `DATE` is an RFC 3339 timestamp (e.g., `2006-12-02T02:07:43Z`) or local date (e.g., `2006-12-02`) in your system's configured time zone.
+
+Can be provided multiple times for different packages.
+```
+
 [`--extra-index-url`](#uv-tool-install--extra-index-url) *extra-index-url* : (Deprecated: use `--index` instead) Extra URLs of package indexes to use, in addition to `--index-url`.
 
 ```
@@ -5419,6 +5500,14 @@ See `--project` to only change the project root directory.
 Accepts both RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`) and local dates in the same format (e.g., `2006-12-02`) in your system's configured time zone.
 
 May also be set with the `UV_EXCLUDE_NEWER` environment variable.
+```
+
+[`--exclude-newer-package`](#uv-tool-upgrade--exclude-newer-package) *exclude-newer-package* : Limit candidate packages for specific packages to those that were uploaded prior to the given date.
+
+```
+Accepts package-date pairs in the format `PACKAGE=DATE`, where `DATE` is an RFC 3339 timestamp (e.g., `2006-12-02T02:07:43Z`) or local date (e.g., `2006-12-02`) in your system's configured time zone.
+
+Can be provided multiple times for different packages.
 ```
 
 [`--extra-index-url`](#uv-tool-upgrade--extra-index-url) *extra-index-url* : (Deprecated: use `--index` instead) Extra URLs of package indexes to use, in addition to `--index-url`.
@@ -6378,7 +6467,7 @@ uv python [OPTIONS] <COMMAND>
 
 [`uv python install`](#uv-python-install) : Download and install Python versions
 
-[`uv python upgrade`](#uv-python-upgrade) : Upgrade installed Python versions to the latest supported patch release (requires the `--preview` flag)
+[`uv python upgrade`](#uv-python-upgrade) : Upgrade installed Python versions
 
 [`uv python find`](#uv-python-find) : Search for a Python installation
 
@@ -6857,7 +6946,9 @@ You can configure fine-grained logging using the `RUST_LOG` environment variable
 
 ### [uv python upgrade](#uv-python-upgrade)
 
-Upgrade installed Python versions to the latest supported patch release (requires the `--preview` flag).
+Upgrade installed Python versions.
+
+Upgrades versions to the latest supported patch release. Requires the `python-upgrade` preview feature.
 
 A target Python minor version to upgrade may be provided, e.g., `3.13`. Multiple versions may be provided to perform more than one upgrade.
 
@@ -8100,6 +8191,14 @@ Accepts both RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`) and local dates 
 May also be set with the `UV_EXCLUDE_NEWER` environment variable.
 ```
 
+[`--exclude-newer-package`](#uv-pip-compile--exclude-newer-package) *exclude-newer-package* : Limit candidate packages for a specific package to those that were uploaded prior to the given date.
+
+```
+Accepts package-date pairs in the format `PACKAGE=DATE`, where `DATE` is an RFC 3339 timestamp (e.g., `2006-12-02T02:07:43Z`) or local date (e.g., `2006-12-02`) in your system's configured time zone.
+
+Can be provided multiple times for different packages.
+```
+
 [`--extra`](#uv-pip-compile--extra) *extra* : Include optional dependencies from the specified extra name; may be provided more than once.
 
 ```
@@ -8723,6 +8822,14 @@ Accepts both RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`) and local dates 
 May also be set with the `UV_EXCLUDE_NEWER` environment variable.
 ```
 
+[`--exclude-newer-package`](#uv-pip-sync--exclude-newer-package) *exclude-newer-package* : Limit candidate packages for specific packages to those that were uploaded prior to the given date.
+
+```
+Accepts package-date pairs in the format `PACKAGE=DATE`, where `DATE` is an RFC 3339 timestamp (e.g., `2006-12-02T02:07:43Z`) or local date (e.g., `2006-12-02`) in your system's configured time zone.
+
+Can be provided multiple times for different packages.
+```
+
 [`--extra`](#uv-pip-sync--extra) *extra* : Include optional dependencies from the specified extra name; may be provided more than once.
 
 ```
@@ -9263,6 +9370,14 @@ By default, installing will make the minimum necessary changes to satisfy the re
 Accepts both RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`) and local dates in the same format (e.g., `2006-12-02`) in your system's configured time zone.
 
 May also be set with the `UV_EXCLUDE_NEWER` environment variable.
+```
+
+[`--exclude-newer-package`](#uv-pip-install--exclude-newer-package) *exclude-newer-package* : Limit candidate packages for specific packages to those that were uploaded prior to the given date.
+
+```
+Accepts package-date pairs in the format `PACKAGE=DATE`, where `DATE` is an RFC 3339 timestamp (e.g., `2006-12-02T02:07:43Z`) or local date (e.g., `2006-12-02`) in your system's configured time zone.
+
+Can be provided multiple times for different packages.
 ```
 
 [`--extra`](#uv-pip-install--extra) *extra* : Include optional dependencies from the specified extra name; may be provided more than once.
@@ -11160,6 +11275,14 @@ Accepts both RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`) and local dates 
 May also be set with the `UV_EXCLUDE_NEWER` environment variable.
 ```
 
+[`--exclude-newer-package`](#uv-venv--exclude-newer-package) *exclude-newer-package* : Limit candidate packages for a specific package to those that were uploaded prior to the given date.
+
+```
+Accepts package-date pairs in the format `PACKAGE=DATE`, where `DATE` is an RFC 3339 timestamp (e.g., `2006-12-02T02:07:43Z`) or local date (e.g., `2006-12-02`) in your system's configured time zone.
+
+Can be provided multiple times for different packages.
+```
+
 [`--extra-index-url`](#uv-venv--extra-index-url) *extra-index-url* : (Deprecated: use `--index` instead) Extra URLs of package indexes to use, in addition to `--index-url`.
 
 ```
@@ -11507,6 +11630,14 @@ See `--project` to only change the project root directory.
 Accepts both RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`) and local dates in the same format (e.g., `2006-12-02`) in your system's configured time zone.
 
 May also be set with the `UV_EXCLUDE_NEWER` environment variable.
+```
+
+[`--exclude-newer-package`](#uv-build--exclude-newer-package) *exclude-newer-package* : Limit candidate packages for a specific package to those that were uploaded prior to the given date.
+
+```
+Accepts package-date pairs in the format `PACKAGE=DATE`, where `DATE` is an RFC 3339 timestamp (e.g., `2006-12-02T02:07:43Z`) or local date (e.g., `2006-12-02`) in your system's configured time zone.
+
+Can be provided multiple times for different packages.
 ```
 
 [`--extra-index-url`](#uv-build--extra-index-url) *extra-index-url* : (Deprecated: use `--index` instead) Extra URLs of package indexes to use, in addition to `--index-url`.

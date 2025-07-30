@@ -25,7 +25,7 @@ $ wget -qO- https://astral.sh/uv/install.sh | sh
 Request a specific version by including it in the URL:
 
 ```
-$ curl -LsSf https://astral.sh/uv/0.8.3/install.sh | sh
+$ curl -LsSf https://astral.sh/uv/0.8.4/install.sh | sh
 
 ```
 
@@ -41,7 +41,7 @@ Changing the [execution policy](https://learn.microsoft.com/en-us/powershell/mod
 Request a specific version by including it in the URL:
 
 ```
-PS> powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/0.8.3/install.ps1 | iex"
+PS> powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/0.8.4/install.ps1 | iex"
 
 ```
 
@@ -148,7 +148,7 @@ $ uv self update
 
 Tip
 
-Updating uv will re-run the installer and can modify your shell profiles. To disable this behavior, set `INSTALLER_NO_MODIFY_PATH=1`.
+Updating uv will re-run the installer and can modify your shell profiles. To disable this behavior, set `UV_NO_MODIFY_PATH=1`.
 
 When another installation method is used, self-updates are disabled. Use the package manager's upgrade method instead. For example, with `pip`:
 
