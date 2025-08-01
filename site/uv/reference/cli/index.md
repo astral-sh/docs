@@ -5395,6 +5395,8 @@ You can configure fine-grained logging using the `RUST_LOG` environment variable
 
 [`--with-editable`](#uv-tool-install--with-editable) *with-editable* : Include the given packages in editable mode
 
+[`--with-executables-from`](#uv-tool-install--with-executables-from) *with-executables-from* : Install executables from the following packages
+
 [`--with-requirements`](#uv-tool-install--with-requirements) *with-requirements* : Include all requirements listed in the given `requirements.txt` files
 
 ### [uv tool upgrade](#uv-tool-upgrade)
