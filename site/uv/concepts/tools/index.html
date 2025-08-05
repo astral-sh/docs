@@ -81,8 +81,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2025-07-10 18:50:50Z",
-        "dateModified": "2025-07-10 18:50:50Z",
+        "datePublished": "2025-07-30 19:50:24Z",
+        "dateModified": "2025-07-30 19:50:24Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -1700,6 +1700,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#installing-executables-from-additional-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installing executables from additional packages
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#python-versions" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2852,6 +2863,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#installing-executables-from-additional-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installing executables from additional packages
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#python-versions" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3119,6 +3141,28 @@ latest version in the range <code>&gt;=23,&lt;24</code>.</p>
 </code></pre></div>
 <p>If the requested version conflicts with the requirements of the tool package, package resolution
 will fail and the command will error.</p>
+<h2 id="installing-executables-from-additional-packages"><a class="toclink" href="#installing-executables-from-additional-packages">Installing executables from additional packages</a></h2>
+<p>When installing a tool, you may want to include executables from additional packages in the same
+tool environment. This is useful when you have related tools that work together or when you want to
+install multiple executables that share dependencies.</p>
+<p>The <code>--with-executables-from</code> option allows you to specify additional packages whose executables
+should be installed alongside the main tool:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="gp">$ </span>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>--with-executables-from<span class="w"> </span>&lt;package1&gt;,&lt;package2&gt;<span class="w"> </span>&lt;tool-package&gt;
+</code></pre></div>
+<p>For example, to install Ansible along with executables from <code>ansible-core</code> and <code>ansible-lint</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="gp">$ </span>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>--with-executables-from<span class="w"> </span>ansible-core,ansible-lint<span class="w"> </span>ansible
+</code></pre></div>
+<p>This will install all executables from the <code>ansible</code>, <code>ansible-core</code>, and <code>ansible-lint</code> packages
+into the same tool environment, making them all available on the <code>PATH</code>.</p>
+<p>The <code>--with-executables-from</code> option can be combined with other installation options:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="gp">$ </span>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>--with-executables-from<span class="w"> </span>ansible-core<span class="w"> </span>--with<span class="w"> </span>mkdocs-material<span class="w"> </span>ansible
+</code></pre></div>
+<p>Note that <code>--with-executables-from</code> differs from <code>--with</code> in that:</p>
+<ul>
+<li><code>--with</code> includes additional packages as dependencies but does not install their executables</li>
+<li><code>--with-executables-from</code> includes both the packages as dependencies and installs their
+  executables</li>
+</ul>
 <h2 id="python-versions"><a class="toclink" href="#python-versions">Python versions</a></h2>
 <p>Each tool environment is linked to a specific Python version. This uses the same Python version
 <a href="../python-versions/#discovery-of-python-versions">discovery logic</a> as other virtual environments
@@ -3155,7 +3199,7 @@ installed by uv. For example, if <code>pipx</code> has been used to install a to
 fail. The <code>--force</code> flag can be used to override this behavior.</p>
 <h2 id="relationship-to-uv-run"><a class="toclink" href="#relationship-to-uv-run">Relationship to <code>uv run</code></a></h2>
 <p>The invocation <code>uv tool run &lt;name&gt;</code> (or <code>uvx &lt;name&gt;</code>) is nearly equivalent to:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>--no-project<span class="w"> </span>--with<span class="w"> </span>&lt;name&gt;<span class="w"> </span>--<span class="w"> </span>&lt;name&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>--no-project<span class="w"> </span>--with<span class="w"> </span>&lt;name&gt;<span class="w"> </span>--<span class="w"> </span>&lt;name&gt;
 </code></pre></div>
 <p>However, there are a couple notable differences when using uv's tool interface:</p>
 <ul>
@@ -3180,7 +3224,7 @@ fail. The <code>--force</code> flag can be used to override this behavior.</p>
         <span class="md-icon" title="Last update">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
         </span>
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 10, 2025</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 30, 2025</span>
       </span>
     
     
