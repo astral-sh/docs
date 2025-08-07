@@ -861,8 +861,8 @@ would be more efficient to only split once.</p>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">suffix</span> <span class="o">=</span> <span class="n">url</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="n">maxsplit</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 </code></pre></div>
 <h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix Safety</a></h2>
-<p>This rule's fix is marked as unsafe for <code>split()</code>/<code>rsplit()</code> calls that contain <code>**kwargs</code>, as
-adding a <code>maxsplit</code> keyword to such a call may lead to a duplicate keyword argument error.</p>
+<p>This rule's fix is marked as unsafe for <code>split()</code>/<code>rsplit()</code> calls that contain <code>*args</code> or <code>**kwargs</code> arguments, as
+adding a <code>maxsplit</code> argument to such a call may lead to duplicated arguments.</p>
 
 
 
