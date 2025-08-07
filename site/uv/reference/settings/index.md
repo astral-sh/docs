@@ -218,6 +218,28 @@ pytest = ["pip"]
 
 ______________________________________________________________________
 
+### \[[`extra-build-variables`](#extra-build-variables)\](#extra-build-variables)
+
+Extra environment variables to set when building certain packages.
+
+Environment variables will be added to the environment when building the specified packages.
+
+**Default value**: `{}`
+
+**Type**: `dict[str, dict[str, str]]`
+
+**Example usage**:
+
+pyproject.toml
+
+```
+[tool.uv.extra-build-variables]
+flash-attn = { FLASH_ATTENTION_SKIP_CUDA_BUILD = "TRUE" }
+
+```
+
+______________________________________________________________________
+
 ### \[[`index`](#index)\](#index)
 
 The indexes to use when resolving dependencies.
@@ -1084,14 +1106,40 @@ This allows extending the PEP 517 build environment for the project's dependenci
 
 ```
 [tool.uv]
-[extra-build-dependencies] 
+[extra-build-dependencies]
 pytest = ["setuptools"]
 
 ```
 
 ```
-[extra-build-dependencies] 
+[extra-build-dependencies]
 pytest = ["setuptools"]
+
+```
+
+______________________________________________________________________
+
+### \[[`extra-build-variables`](#extra-build-variables)\](#extra-build-variables)
+
+Extra environment variables to set when building certain packages.
+
+Environment variables will be added to the environment when building the specified packages.
+
+**Default value**: `{}`
+
+**Type**: `dict[str, dict[str, str]]`
+
+**Example usage**:
+
+```
+[tool.uv.extra-build-variables]
+flash-attn = { FLASH_ATTENTION_SKIP_CUDA_BUILD = "TRUE" }
+
+```
+
+```
+[tool.uv.extra-build-variables]
+flash-attn = { FLASH_ATTENTION_SKIP_CUDA_BUILD = "TRUE" }
 
 ```
 
@@ -1318,6 +1366,8 @@ ______________________________________________________________________
 The method to use when installing packages from the global cache.
 
 Defaults to `clone` (also known as Copy-on-Write) on macOS, and `hardlink` on Linux and Windows.
+
+WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (`uv cache clear`) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.
 
 **Default value**: `"clone" (macOS) or "hardlink" (Linux, Windows)`
 
@@ -2469,6 +2519,34 @@ pytest = ["setuptools"]
 
 ______________________________________________________________________
 
+#### \[[`extra-build-variables`](#pip_extra-build-variables)\](#pip_extra-build-variables)
+
+Extra environment variables to set when building certain packages.
+
+Environment variables will be added to the environment when building the specified packages.
+
+**Default value**: `{}`
+
+**Type**: `dict[str, dict[str, str]]`
+
+**Example usage**:
+
+```
+[tool.uv.pip]
+[extra-build-variables]
+flash-attn = { FLASH_ATTENTION_SKIP_CUDA_BUILD = "TRUE" }
+
+```
+
+```
+[pip]
+[extra-build-variables]
+flash-attn = { FLASH_ATTENTION_SKIP_CUDA_BUILD = "TRUE" }
+
+```
+
+______________________________________________________________________
+
 #### \[[`extra-index-url`](#pip_extra-index-url)\](#pip_extra-index-url)
 
 Extra URLs of package indexes to use, in addition to `--index-url`.
@@ -2695,6 +2773,8 @@ ______________________________________________________________________
 The method to use when installing packages from the global cache.
 
 Defaults to `clone` (also known as Copy-on-Write) on macOS, and `hardlink` on Linux and Windows.
+
+WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (`uv cache clear`) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.
 
 **Default value**: `"clone" (macOS) or "hardlink" (Linux, Windows)`
 

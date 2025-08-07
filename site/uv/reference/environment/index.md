@@ -132,6 +132,12 @@ Equivalent to the `--build-backend` argument for `uv init`. Determines the defau
 
 Equivalent to the `--allow-insecure-host` argument.
 
+### [`UV_INSECURE_NO_ZIP_VALIDATION`](#uv_insecure_no_zip_validation)
+
+Disable ZIP validation for streamed wheels and ZIP-based source distributions.
+
+WARNING: Disabling ZIP validation can expose your system to security risks by bypassing integrity checks and allowing uv to install potentially malicious ZIP files. If uv rejects a ZIP file due to failing validation, it is likely that the file is malformed; consider filing an issue with the package maintainer.
+
 ### [`UV_INSTALLER_GHE_BASE_URL`](#uv_installer_ghe_base_url)
 
 The URL from which to download uv using the standalone installer and `self update` feature, in lieu of the default GitHub Enterprise URL.
@@ -204,7 +210,7 @@ Equivalent to the `--no-config` command-line argument. If set, uv will not read 
 
 ### [`UV_NO_EDITABLE`](#uv_no_editable)
 
-Equivalent to the `--no-editable` command-line argument. If set, uv installs any editable dependencies, including the project and any workspace members, as non-editable
+Equivalent to the `--no-editable` command-line argument. If set, uv installs or exports any editable dependencies, including the project and any workspace members, as non-editable.
 
 ### [`UV_NO_ENV_FILE`](#uv_no_env_file)
 

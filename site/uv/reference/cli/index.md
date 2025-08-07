@@ -337,6 +337,8 @@ Possible values:
 ```
 Defaults to `clone` (also known as Copy-on-Write) on macOS, and `hardlink` on Linux and Windows.
 
+WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (`uv cache clear`) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.
+
 May also be set with the `UV_LINK_MODE` environment variable.
 
 Possible values:
@@ -1214,6 +1216,8 @@ Possible values:
 ```
 Defaults to `clone` (also known as Copy-on-Write) on macOS, and `hardlink` on Linux and Windows.
 
+WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (`uv cache clear`) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.
+
 May also be set with the `UV_LINK_MODE` environment variable.
 
 Possible values:
@@ -1696,6 +1700,8 @@ Possible values:
 ```
 Defaults to `clone` (also known as Copy-on-Write) on macOS, and `hardlink` on Linux and Windows.
 
+WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (`uv cache clear`) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.
+
 May also be set with the `UV_LINK_MODE` environment variable.
 
 Possible values:
@@ -2151,6 +2157,8 @@ Possible values:
 
 ```
 Defaults to `clone` (also known as Copy-on-Write) on macOS, and `hardlink` on Linux and Windows.
+
+WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (`uv cache clear`) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.
 
 May also be set with the `UV_LINK_MODE` environment variable.
 
@@ -2654,6 +2662,8 @@ Possible values:
 
 ```
 Defaults to `clone` (also known as Copy-on-Write) on macOS, and `hardlink` on Linux and Windows.
+
+WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (`uv cache clear`) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.
 
 May also be set with the `UV_LINK_MODE` environment variable.
 
@@ -3218,6 +3228,8 @@ This option is only used when building source distributions.
 
 Defaults to `clone` (also known as Copy-on-Write) on macOS, and `hardlink` on Linux and Windows.
 
+WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (`uv cache clear`) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.
+
 May also be set with the `UV_LINK_MODE` environment variable.
 
 Possible values:
@@ -3661,6 +3673,8 @@ This option is only used when building source distributions.
 
 Defaults to `clone` (also known as Copy-on-Write) on macOS, and `hardlink` on Linux and Windows.
 
+WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (`uv cache clear`) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.
+
 May also be set with the `UV_LINK_MODE` environment variable.
 
 Possible values:
@@ -3768,6 +3782,10 @@ This option is an alias of `--no-group dev`. See `--no-default-groups` to disabl
 ```
 
 [`--no-editable`](#uv-export--no-editable) : Export any editable dependencies, including the project and any workspace members, as non-editable
+
+```
+May also be set with the `UV_NO_EDITABLE` environment variable.
+```
 
 [`--no-emit-package`](#uv-export--no-emit-package), `--no-install-package` *no-emit-package* : Do not emit the given package(s).
 
@@ -4164,6 +4182,8 @@ Possible values:
 This option is only used when building source distributions.
 
 Defaults to `clone` (also known as Copy-on-Write) on macOS, and `hardlink` on Linux and Windows.
+
+WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (`uv cache clear`) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.
 
 May also be set with the `UV_LINK_MODE` environment variable.
 
@@ -4745,6 +4765,8 @@ Possible values:
 ```
 Defaults to `clone` (also known as Copy-on-Write) on macOS, and `hardlink` on Linux and Windows.
 
+WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (`uv cache clear`) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.
+
 May also be set with the `UV_LINK_MODE` environment variable.
 
 Possible values:
@@ -5191,6 +5213,8 @@ Possible values:
 ```
 Defaults to `clone` (also known as Copy-on-Write) on macOS, and `hardlink` on Linux and Windows.
 
+WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (`uv cache clear`) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.
+
 May also be set with the `UV_LINK_MODE` environment variable.
 
 Possible values:
@@ -5604,6 +5628,8 @@ Possible values:
 
 ```
 Defaults to `clone` (also known as Copy-on-Write) on macOS, and `hardlink` on Linux and Windows.
+
+WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (`uv cache clear`) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.
 
 May also be set with the `UV_LINK_MODE` environment variable.
 
@@ -8325,6 +8351,8 @@ This option is only used when building source distributions.
 
 Defaults to `clone` (also known as Copy-on-Write) on macOS, and `hardlink` on Linux and Windows.
 
+WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (`uv cache clear`) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.
+
 May also be set with the `UV_LINK_MODE` environment variable.
 
 Possible values:
@@ -8924,6 +8952,8 @@ Possible values:
 ```
 Defaults to `clone` (also known as Copy-on-Write) on macOS, and `hardlink` on Linux and Windows.
 
+WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (`uv cache clear`) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.
+
 May also be set with the `UV_LINK_MODE` environment variable.
 
 Possible values:
@@ -9488,6 +9518,8 @@ Possible values:
 
 ```
 Defaults to `clone` (also known as Copy-on-Write) on macOS, and `hardlink` on Linux and Windows.
+
+WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (`uv cache clear`) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.
 
 May also be set with the `UV_LINK_MODE` environment variable.
 
@@ -11365,6 +11397,8 @@ This option is only used for installing seed packages.
 
 Defaults to `clone` (also known as Copy-on-Write) on macOS, and `hardlink` on Linux and Windows.
 
+WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (`uv cache clear`) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.
+
 May also be set with the `UV_LINK_MODE` environment variable.
 
 Possible values:
@@ -11742,6 +11776,8 @@ Possible values:
 This option is only used when building source distributions.
 
 Defaults to `clone` (also known as Copy-on-Write) on macOS, and `hardlink` on Linux and Windows.
+
+WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (`uv cache clear`) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.
 
 May also be set with the `UV_LINK_MODE` environment variable.
 
