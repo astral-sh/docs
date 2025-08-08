@@ -54,6 +54,10 @@ Used to override uv in the output header of the `requirements.txt` files generat
 
 Equivalent to the `--default-index` command-line argument. If set, uv will use this URL as the default index when searching for packages.
 
+### [`UV_DEV`](#uv_dev)
+
+Equivalent to the `--dev` command-line argument. If set, uv will include development dependencies.
+
 ### [`UV_DOWNLOAD_URL`](#uv_download_url)
 
 The URL from which to download uv using the standalone installer. By default, installs from uv's GitHub Releases. `INSTALLER_DOWNLOAD_URL` is also supported as an alias, for backwards compatibility.
@@ -207,6 +211,10 @@ Equivalent to the `--no-cache` command-line argument. If set, uv will not use th
 ### [`UV_NO_CONFIG`](#uv_no_config)
 
 Equivalent to the `--no-config` command-line argument. If set, uv will not read any configuration files from the current directory, parent directories, or user configuration directories.
+
+### [`UV_NO_DEV`](#uv_no_dev)
+
+Equivalent to the `--no-dev` command-line argument. If set, uv will exclude development dependencies.
 
 ### [`UV_NO_EDITABLE`](#uv_no_editable)
 

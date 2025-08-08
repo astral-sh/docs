@@ -449,6 +449,8 @@ uv includes the groups defined in `tool.uv.default-groups` by default. This disa
 This option is an alias of `--no-group dev`. See `--no-default-groups` to disable all default groups instead.
 
 This option is only available when running in a project.
+
+May also be set with the `UV_NO_DEV` environment variable.
 ```
 
 [`--no-editable`](#uv-run--no-editable) : Install any editable dependencies, including the project and any workspace members, as non-editable
@@ -1073,6 +1075,8 @@ May also be set with the `UV_DEFAULT_INDEX` environment variable.
 
 ```
 This option is an alias for `--group dev`.
+
+May also be set with the `UV_DEV` environment variable.
 ```
 
 [`--directory`](#uv-add--directory) *directory* : Change to the given directory prior to running the command.
@@ -1571,6 +1575,8 @@ May also be set with the `UV_DEFAULT_INDEX` environment variable.
 
 ```
 This option is an alias for `--group dev`.
+
+May also be set with the `UV_DEV` environment variable.
 ```
 
 [`--directory`](#uv-remove--directory) *directory* : Change to the given directory prior to running the command.
@@ -2767,6 +2773,8 @@ uv includes the groups defined in `tool.uv.default-groups` by default. This disa
 
 ```
 This option is an alias of `--no-group dev`. See `--no-default-groups` to disable all default groups instead.
+
+May also be set with the `UV_NO_DEV` environment variable.
 ```
 
 [`--no-editable`](#uv-sync--no-editable) : Install any editable dependencies, including the project and any workspace members, as non-editable
@@ -3779,6 +3787,8 @@ uv includes the groups defined in `tool.uv.default-groups` by default. This disa
 
 ```
 This option is an alias of `--no-group dev`. See `--no-default-groups` to disable all default groups instead.
+
+May also be set with the `UV_NO_DEV` environment variable.
 ```
 
 [`--no-editable`](#uv-export--no-editable) : Export any editable dependencies, including the project and any workspace members, as non-editable
@@ -4289,6 +4299,8 @@ uv includes the groups defined in `tool.uv.default-groups` by default. This disa
 
 ```
 This option is an alias of `--no-group dev`. See `--no-default-groups` to disable all default groups instead.
+
+May also be set with the `UV_NO_DEV` environment variable.
 ```
 
 [`--no-group`](#uv-tree--no-group) *no-group* : Disable the specified dependency group.
