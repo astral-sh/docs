@@ -21,8 +21,8 @@ See the [guide on installing Python](../../guides/install-python/) to get starte
 Executing standalone Python scripts, e.g., `example.py`.
 
 - `uv run`: Run a script.
-- `uv add --script`: Add a dependency to a script
-- `uv remove --script`: Remove a dependency from a script
+- `uv add --script`: Add a dependency to a script.
+- `uv remove --script`: Remove a dependency from a script.
 
 See the [guide on running scripts](../../guides/scripts/) to get started.
 
