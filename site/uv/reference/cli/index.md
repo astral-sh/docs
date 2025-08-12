@@ -7185,6 +7185,12 @@ May also be set with the `UV_PYTHON_DOWNLOADS_JSON_URL` environment variable.
 Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will write no output to stdout.
 ```
 
+[`--reinstall`](#uv-python-upgrade--reinstall), `-r` : Reinstall the latest Python patch, if it's already installed.
+
+```
+By default, uv will exit successfully if the latest patch is already installed.
+```
+
 [`--verbose`](#uv-python-upgrade--verbose), `-v` : Use verbose output.
 
 ```
