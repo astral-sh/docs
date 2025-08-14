@@ -871,6 +871,13 @@ but in decimal form:</p>
 (<code>u=rwx,go=rx</code>). Both of these fixes keep runtime behavior unchanged. If the
 original code really intended to use <code>0o256</code> (<code>u=w,g=rx,o=rw</code>) instead of
 <code>256</code>, this fix should not be accepted.</p>
+<p>As a special case, zero is allowed to omit the <code>0o</code> prefix unless it has
+multiple digits:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">os</span><span class="o">.</span><span class="n">chmod</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># Ok</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">os</span><span class="o">.</span><span class="n">chmod</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="mo">0o000</span><span class="p">)</span>  <span class="c1"># Ok</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">os</span><span class="o">.</span><span class="n">chmod</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="mi">000</span><span class="p">)</span>  <span class="c1"># Lint emitted and fix suggested</span>
+</code></pre></div>
+<p>Ruff will suggest a safe fix for multi-digit zeros to add the <code>0o</code> prefix.</p>
 <h2 id="fix-availability"><a class="toclink" href="#fix-availability">Fix availability</a></h2>
 <p>A fix is only available if the integer literal matches a set of common modes.</p>
 
