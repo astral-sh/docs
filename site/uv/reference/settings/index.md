@@ -1367,7 +1367,7 @@ The method to use when installing packages from the global cache.
 
 Defaults to `clone` (also known as Copy-on-Write) on macOS, and `hardlink` on Linux and Windows.
 
-WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (`uv cache clear`) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.
+WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (`uv cache clean`) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.
 
 **Default value**: `"clone" (macOS) or "hardlink" (Linux, Windows)`
 
@@ -2774,7 +2774,7 @@ The method to use when installing packages from the global cache.
 
 Defaults to `clone` (also known as Copy-on-Write) on macOS, and `hardlink` on Linux and Windows.
 
-WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (`uv cache clear`) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.
+WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (`uv cache clean`) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.
 
 **Default value**: `"clone" (macOS) or "hardlink" (Linux, Windows)`
 

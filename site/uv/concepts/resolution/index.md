@@ -276,9 +276,9 @@ requires-dist = ["numpy>=1.8.1", "scipy>=0.13.0", "six>=1.11.0"]
 
 ```
 
-These declarations are intended for cases in which a package does *not* declare static metadata upfront, though they are also useful for packages that require disabling build isolation. In such cases, it may be easier to declare the package metadata upfront, rather than creating a custom build environment prior to resolving the package.
+These declarations are intended for cases in which a package does *not* declare static metadata upfront, though they are also useful for packages that require [disabling build isolation](../projects/config/#build-isolation) In such cases, it may be easier to declare the package metadata upfront, rather than creating a custom build environment prior to resolving the package.
 
-For example, you can declare the metadata for `flash-attn`, allowing uv to resolve without building the package from source (which itself requires installing `torch`):
+For example, past versions of `flash-attn` did not declare static metadata. By declaring metadata for `flash-attn` upfront, uv can resolve `flash-attn` without building the package from source (which itself requires installing `torch`):
 
 ```
 [project]
