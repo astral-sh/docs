@@ -64,6 +64,7 @@ The following preview features are available:
 - `pylock`: Allows installing from `pylock.toml` files.
 - `python-install-default`: Allows [installing `python` and `python3` executables](../python-versions/#installing-python-executables).
 - `python-upgrade`: Allows [transparent Python version upgrades](../python-versions/#upgrading-python-versions).
+- `format`: Allows using `uv format`.
 
 ## [Disabling preview features](#disabling-preview-features)
 
