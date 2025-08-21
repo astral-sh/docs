@@ -31,6 +31,8 @@ uv [OPTIONS] <COMMAND>
 
 [`uv tree`](#uv-tree) : Display the project's dependency tree
 
+[`uv format`](#uv-format) : Format Python code in the project
+
 [`uv tool`](#uv-tool) : Run and install commands provided by Python packages
 
 [`uv python`](#uv-python) : Manage Python versions and installations
@@ -1317,6 +1319,18 @@ May also be set with the `UV_NO_CONFIG` environment variable.
 ```
 
 [`--no-index`](#uv-add--no-index) : Ignore the registry index (e.g., PyPI), instead relying on direct URL dependencies and those provided via `--find-links`
+
+[`--no-install-project`](#uv-add--no-install-project) : Do not install the current project.
+
+```
+By default, the current project is installed into the environment with all of its dependencies. The `--no-install-project` option allows the project to be excluded, but all of its dependencies are still installed. This is particularly useful in situations like building Docker images where installing the project separately from its dependencies allows optimal layer caching.
+```
+
+[`--no-install-workspace`](#uv-add--no-install-workspace) : Do not install any workspace members, including the current project.
+
+```
+By default, all of the workspace members and their dependencies are installed into the environment. The `--no-install-workspace` option allows exclusion of all the workspace members while retaining their dependencies. This is particularly useful in situations like building Docker images where installing the workspace separately from its dependencies allows optimal layer caching.
+```
 
 [`--no-managed-python`](#uv-add--no-managed-python) : Disable use of uv-managed Python versions.
 
@@ -4506,6 +4520,183 @@ Multiple versions may be shown for a each package.
 
 ```
 You can configure fine-grained logging using the `RUST_LOG` environment variable. (<https://docs.rs/tracing-subscriber/latest/tracing_subscriber/filter/struct.EnvFilter.html#directives>)
+```
+
+## [uv format](#uv-format)
+
+Format Python code in the project.
+
+Formats Python code using the Ruff formatter. By default, all Python files in the project are formatted. This command has the same behavior as running `ruff format` in the project root.
+
+To check if files are formatted without modifying them, use `--check`. To see a diff of formatting changes, use `--diff`.
+
+By default, Additional arguments can be passed to Ruff after `--`.
+
+### Usage
+
+```
+uv format [OPTIONS] [-- <EXTRA_ARGS>...]
+
+```
+
+### Arguments
+
+[EXTRA_ARGS](#uv-format--extra_args) : Additional arguments to pass to Ruff.
+
+```
+For example, use `uv format -- --line-length 100` to set the line length or `uv format -- src/module/foo.py` to format a specific file.
+```
+
+### Options
+
+[`--allow-insecure-host`](#uv-format--allow-insecure-host), `--trusted-host` *allow-insecure-host* : Allow insecure connections to a host.
+
+```
+Can be provided multiple times.
+
+Expects to receive either a hostname (e.g., `localhost`), a host-port pair (e.g., `localhost:8080`), or a URL (e.g., `https://localhost`).
+
+WARNING: Hosts included in this list will not be verified against the system's certificate store. Only use `--allow-insecure-host` in a secure network with verified sources, as it bypasses SSL verification and could expose you to MITM attacks.
+
+May also be set with the `UV_INSECURE_HOST` environment variable.
+```
+
+[`--cache-dir`](#uv-format--cache-dir) *cache-dir* : Path to the cache directory.
+
+```
+Defaults to `$XDG_CACHE_HOME/uv` or `$HOME/.cache/uv` on macOS and Linux, and `%LOCALAPPDATA%\uv\cache` on Windows.
+
+To view the location of the cache directory, run `uv cache dir`.
+
+May also be set with the `UV_CACHE_DIR` environment variable.
+```
+
+[`--check`](#uv-format--check) : Check if files are formatted without applying changes
+
+[`--color`](#uv-format--color) *color-choice* : Control the use of color in output.
+
+```
+By default, uv will automatically detect support for colors when writing to a terminal.
+
+Possible values:
+
+- `auto`: Enables colored output only when the output is going to a terminal or TTY with support
+- `always`: Enables colored output regardless of the detected environment
+- `never`: Disables colored output
+```
+
+[`--config-file`](#uv-format--config-file) *config-file* : The path to a `uv.toml` file to use for configuration.
+
+```
+While uv configuration can be included in a `pyproject.toml` file, it is not allowed in this context.
+
+May also be set with the `UV_CONFIG_FILE` environment variable.
+```
+
+[`--diff`](#uv-format--diff) : Show a diff of formatting changes without applying them.
+
+```
+Implies `--check`.
+```
+
+[`--directory`](#uv-format--directory) *directory* : Change to the given directory prior to running the command.
+
+```
+Relative paths are resolved with the given directory as the base.
+
+See `--project` to only change the project root directory.
+```
+
+[`--help`](#uv-format--help), `-h` : Display the concise help for this command
+
+[`--managed-python`](#uv-format--managed-python) : Require use of uv-managed Python versions.
+
+```
+By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
+
+May also be set with the `UV_MANAGED_PYTHON` environment variable.
+```
+
+[`--native-tls`](#uv-format--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+
+```
+By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
+
+May also be set with the `UV_NATIVE_TLS` environment variable.
+```
+
+[`--no-cache`](#uv-format--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
+
+```
+May also be set with the `UV_NO_CACHE` environment variable.
+```
+
+[`--no-config`](#uv-format--no-config) : Avoid discovering configuration files (`pyproject.toml`, `uv.toml`).
+
+```
+Normally, configuration files are discovered in the current directory, parent directories, or user configuration directories.
+
+May also be set with the `UV_NO_CONFIG` environment variable.
+```
+
+[`--no-managed-python`](#uv-format--no-managed-python) : Disable use of uv-managed Python versions.
+
+```
+Instead, uv will search for a suitable Python version on the system.
+
+May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
+```
+
+[`--no-progress`](#uv-format--no-progress) : Hide all progress outputs.
+
+```
+For example, spinners or progress bars.
+
+May also be set with the `UV_NO_PROGRESS` environment variable.
+```
+
+[`--no-python-downloads`](#uv-format--no-python-downloads) : Disable automatic downloads of Python.
+
+[`--offline`](#uv-format--offline) : Disable network access.
+
+```
+When disabled, uv will only use locally cached data and locally available files.
+
+May also be set with the `UV_OFFLINE` environment variable.
+```
+
+[`--project`](#uv-format--project) *project* : Run the command within the given project directory.
+
+```
+All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
+
+Other command-line arguments (such as relative paths) will be resolved relative to the current working directory.
+
+See `--directory` to change the working directory entirely.
+
+This setting has no effect when used in the `uv pip` interface.
+
+May also be set with the `UV_PROJECT` environment variable.
+```
+
+[`--quiet`](#uv-format--quiet), `-q` : Use quiet output.
+
+```
+Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will write no output to stdout.
+```
+
+[`--verbose`](#uv-format--verbose), `-v` : Use verbose output.
+
+```
+You can configure fine-grained logging using the `RUST_LOG` environment variable. (<https://docs.rs/tracing-subscriber/latest/tracing_subscriber/filter/struct.EnvFilter.html#directives>)
+```
+
+[`--version`](#uv-format--version) *version* : The version of Ruff to use for formatting.
+
+```
+By default, a version of Ruff pinned by uv will be used.
 ```
 
 ## [uv tool](#uv-tool)
@@ -8667,6 +8858,7 @@ Possible values:
 
 - `auto`: Select the appropriate PyTorch index based on the operating system and CUDA driver version
 - `cpu`: Use the CPU-only PyTorch index
+- `cu129`: Use the PyTorch index for CUDA 12.9
 - `cu128`: Use the PyTorch index for CUDA 12.8
 - `cu126`: Use the PyTorch index for CUDA 12.6
 - `cu125`: Use the PyTorch index for CUDA 12.5
@@ -9232,6 +9424,7 @@ Possible values:
 
 - `auto`: Select the appropriate PyTorch index based on the operating system and CUDA driver version
 - `cpu`: Use the CPU-only PyTorch index
+- `cu129`: Use the PyTorch index for CUDA 12.9
 - `cu128`: Use the PyTorch index for CUDA 12.8
 - `cu126`: Use the PyTorch index for CUDA 12.6
 - `cu125`: Use the PyTorch index for CUDA 12.5
@@ -9862,6 +10055,7 @@ Possible values:
 
 - `auto`: Select the appropriate PyTorch index based on the operating system and CUDA driver version
 - `cpu`: Use the CPU-only PyTorch index
+- `cu129`: Use the PyTorch index for CUDA 12.9
 - `cu128`: Use the PyTorch index for CUDA 12.8
 - `cu126`: Use the PyTorch index for CUDA 12.6
 - `cu125`: Use the PyTorch index for CUDA 12.5
