@@ -317,6 +317,8 @@ Usually, the project environment is reused for performance. This option forces a
 An editable installation is still used for the project.
 
 When used with `--with` or `--with-requirements`, the additional dependencies will still be layered in a second environment.
+
+May also be set with the `UV_ISOLATED` environment variable.
 ```
 
 [`--keyring-provider`](#uv-run--keyring-provider) *keyring-provider* : Attempt to use `keyring` for authentication for index URLs.
@@ -1319,6 +1321,12 @@ May also be set with the `UV_NO_CONFIG` environment variable.
 ```
 
 [`--no-index`](#uv-add--no-index) : Ignore the registry index (e.g., PyPI), instead relying on direct URL dependencies and those provided via `--find-links`
+
+[`--no-install-local`](#uv-add--no-install-local) : Do not install local path dependencies
+
+```
+Skips the current project, workspace members, and any other local (path or editable) packages. Only remote/indexed dependencies are installed. Useful in Docker builds to cache heavy third-party dependencies first and layer local packages separately.
+```
 
 [`--no-install-project`](#uv-add--no-install-project) : Do not install the current project.
 
@@ -2813,6 +2821,12 @@ May be provided multiple times.
 
 [`--no-index`](#uv-sync--no-index) : Ignore the registry index (e.g., PyPI), instead relying on direct URL dependencies and those provided via `--find-links`
 
+[`--no-install-local`](#uv-sync--no-install-local) : Do not install local path dependencies
+
+```
+Skips the current project, workspace members, and any other local (path or editable) packages. Only remote/indexed dependencies are installed. Useful in Docker builds to cache heavy third-party dependencies first and layer local packages separately.
+```
+
 [`--no-install-package`](#uv-sync--no-install-package) *no-install-package* : Do not install the given package(s).
 
 ```
@@ -3812,6 +3826,12 @@ May also be set with the `UV_NO_DEV` environment variable.
 May also be set with the `UV_NO_EDITABLE` environment variable.
 ```
 
+[`--no-emit-local`](#uv-export--no-emit-local), `--no-install-local` : Do not include local path dependencies in the exported requirements.
+
+```
+Omits the current project, workspace members, and any other local (path or editable) packages from the export. Only remote/indexed dependencies are written. Useful for Docker and CI flows that want to export and cache third-party dependencies first.
+```
+
 [`--no-emit-package`](#uv-export--no-emit-package), `--no-install-package` *no-emit-package* : Do not emit the given package(s).
 
 ```
@@ -4530,7 +4550,7 @@ Formats Python code using the Ruff formatter. By default, all Python files in th
 
 To check if files are formatted without modifying them, use `--check`. To see a diff of formatting changes, use `--diff`.
 
-By default, Additional arguments can be passed to Ruff after `--`.
+Additional arguments can be passed to Ruff after `--`.
 
 ### Usage
 
@@ -4949,6 +4969,10 @@ May also be set with the `UV_INDEX_URL` environment variable.
 ```
 
 [`--isolated`](#uv-tool-run--isolated) : Run the tool in an isolated virtual environment, ignoring any already-installed tools
+
+```
+May also be set with the `UV_ISOLATED` environment variable.
+```
 
 [`--keyring-provider`](#uv-tool-run--keyring-provider) *keyring-provider* : Attempt to use `keyring` for authentication for index URLs.
 
@@ -11387,6 +11411,64 @@ Python environment if no virtual environment is found.
 See [uv python](#uv-python) for details on Python discovery and supported request formats.
 
 May also be set with the `UV_PYTHON` environment variable.
+```
+
+[`--python-platform`](#uv-pip-check--python-platform) *python-platform* : The platform for which packages should be checked.
+
+```
+By default, the installed packages are checked against the platform of the current interpreter.
+
+Represented as a "target triple", a string that describes the target platform in terms of its CPU, vendor, and operating system name, like `x86_64-unknown-linux-gnu` or `aarch64-apple-darwin`.
+
+When targeting macOS (Darwin), the default minimum version is `12.0`. Use `MACOSX_DEPLOYMENT_TARGET` to specify a different minimum version, e.g., `13.0`.
+
+Possible values:
+
+- `windows`: An alias for `x86_64-pc-windows-msvc`, the default target for Windows
+- `linux`: An alias for `x86_64-unknown-linux-gnu`, the default target for Linux
+- `macos`: An alias for `aarch64-apple-darwin`, the default target for macOS
+- `x86_64-pc-windows-msvc`: A 64-bit x86 Windows target
+- `aarch64-pc-windows-msvc`: An ARM64 Windows target
+- `i686-pc-windows-msvc`: A 32-bit x86 Windows target
+- `x86_64-unknown-linux-gnu`: An x86 Linux target. Equivalent to `x86_64-manylinux_2_28`
+- `aarch64-apple-darwin`: An ARM-based macOS target, as seen on Apple Silicon devices
+- `x86_64-apple-darwin`: An x86 macOS target
+- `aarch64-unknown-linux-gnu`: An ARM64 Linux target. Equivalent to `aarch64-manylinux_2_28`
+- `aarch64-unknown-linux-musl`: An ARM64 Linux target
+- `x86_64-unknown-linux-musl`: An `x86_64` Linux target
+- `x86_64-manylinux2014`: An `x86_64` target for the `manylinux2014` platform. Equivalent to `x86_64-manylinux_2_17`
+- `x86_64-manylinux_2_17`: An `x86_64` target for the `manylinux_2_17` platform
+- `x86_64-manylinux_2_28`: An `x86_64` target for the `manylinux_2_28` platform
+- `x86_64-manylinux_2_31`: An `x86_64` target for the `manylinux_2_31` platform
+- `x86_64-manylinux_2_32`: An `x86_64` target for the `manylinux_2_32` platform
+- `x86_64-manylinux_2_33`: An `x86_64` target for the `manylinux_2_33` platform
+- `x86_64-manylinux_2_34`: An `x86_64` target for the `manylinux_2_34` platform
+- `x86_64-manylinux_2_35`: An `x86_64` target for the `manylinux_2_35` platform
+- `x86_64-manylinux_2_36`: An `x86_64` target for the `manylinux_2_36` platform
+- `x86_64-manylinux_2_37`: An `x86_64` target for the `manylinux_2_37` platform
+- `x86_64-manylinux_2_38`: An `x86_64` target for the `manylinux_2_38` platform
+- `x86_64-manylinux_2_39`: An `x86_64` target for the `manylinux_2_39` platform
+- `x86_64-manylinux_2_40`: An `x86_64` target for the `manylinux_2_40` platform
+- `aarch64-manylinux2014`: An ARM64 target for the `manylinux2014` platform. Equivalent to `aarch64-manylinux_2_17`
+- `aarch64-manylinux_2_17`: An ARM64 target for the `manylinux_2_17` platform
+- `aarch64-manylinux_2_28`: An ARM64 target for the `manylinux_2_28` platform
+- `aarch64-manylinux_2_31`: An ARM64 target for the `manylinux_2_31` platform
+- `aarch64-manylinux_2_32`: An ARM64 target for the `manylinux_2_32` platform
+- `aarch64-manylinux_2_33`: An ARM64 target for the `manylinux_2_33` platform
+- `aarch64-manylinux_2_34`: An ARM64 target for the `manylinux_2_34` platform
+- `aarch64-manylinux_2_35`: An ARM64 target for the `manylinux_2_35` platform
+- `aarch64-manylinux_2_36`: An ARM64 target for the `manylinux_2_36` platform
+- `aarch64-manylinux_2_37`: An ARM64 target for the `manylinux_2_37` platform
+- `aarch64-manylinux_2_38`: An ARM64 target for the `manylinux_2_38` platform
+- `aarch64-manylinux_2_39`: An ARM64 target for the `manylinux_2_39` platform
+- `aarch64-manylinux_2_40`: An ARM64 target for the `manylinux_2_40` platform
+- `wasm32-pyodide2024`: A wasm32 target using the Pyodide 2024 platform. Meant for use with Python 3.12
+```
+
+[`--python-version`](#uv-pip-check--python-version) *python-version* : The Python version against which packages should be checked.
+
+```
+By default, the installed packages are checked against the version of the current interpreter.
 ```
 
 [`--quiet`](#uv-pip-check--quiet), `-q` : Use quiet output.

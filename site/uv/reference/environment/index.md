@@ -154,6 +154,10 @@ The URL from which to download uv using the standalone installer and `self updat
 
 The directory in which to install uv using the standalone installer and `self update` feature. Defaults to `~/.local/bin`.
 
+### [`UV_ISOLATED`](#uv_isolated)
+
+Equivalent to the `--isolated` command-line argument. If set, uv will avoid discovering a `pyproject.toml` or `uv.toml` file.
+
 ### [`UV_KEYRING_PROVIDER`](#uv_keyring_provider)
 
 Equivalent to the `--keyring-provider` command-line argument. If set, uv will use this value as the keyring provider.
@@ -332,6 +336,12 @@ Specifies the directory to place links to installed, managed Python executables.
 
 Specifies the directory for caching the archives of managed Python installations before installation.
 
+### [`UV_PYTHON_CPYTHON_BUILD`](#uv_python_cpython_build)
+
+Pin managed CPython versions to a specific build version.
+
+For CPython, this should be the build date (e.g., "20250814").
+
 ### [`UV_PYTHON_DOWNLOADS`](#uv_python_downloads)
 
 Equivalent to the [`python-downloads`](../settings/#python-downloads) setting and, when disabled, the `--no-python-downloads` option. Whether uv should allow Python downloads.
@@ -343,6 +353,12 @@ Managed Python installations information is hardcoded in the `uv` binary.
 This variable can be set to a URL pointing to JSON to use as a list for Python installations. This will allow for setting each property of the Python installation, mostly the url part for offline mirror.
 
 Note that currently, only local paths are supported.
+
+### [`UV_PYTHON_GRAALPY_BUILD`](#uv_python_graalpy_build)
+
+Pin managed GraalPy versions to a specific build version.
+
+For GraalPy, this should be the GraalPy version (e.g., "24.2.2").
 
 ### [`UV_PYTHON_INSTALL_BIN`](#uv_python_install_bin)
 
@@ -365,6 +381,18 @@ Whether to install the Python executable into the Windows registry.
 ### [`UV_PYTHON_PREFERENCE`](#uv_python_preference)
 
 Whether uv should prefer system or managed Python versions.
+
+### [`UV_PYTHON_PYODIDE_BUILD`](#uv_python_pyodide_build)
+
+Pin managed Pyodide versions to a specific build version.
+
+For Pyodide, this should be the Pyodide version (e.g., "0.28.1").
+
+### [`UV_PYTHON_PYPY_BUILD`](#uv_python_pypy_build)
+
+Pin managed PyPy versions to a specific build version.
+
+For PyPy, this should be the PyPy version (e.g., "7.3.20").
 
 ### [`UV_REQUEST_TIMEOUT`](#uv_request_timeout)
 

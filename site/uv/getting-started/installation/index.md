@@ -25,7 +25,7 @@ $ wget -qO- https://astral.sh/uv/install.sh | sh
 Request a specific version by including it in the URL:
 
 ```
-$ curl -LsSf https://astral.sh/uv/0.8.13/install.sh | sh
+$ curl -LsSf https://astral.sh/uv/0.8.14/install.sh | sh
 
 ```
 
@@ -41,7 +41,7 @@ Changing the [execution policy](https://learn.microsoft.com/en-us/powershell/mod
 Request a specific version by including it in the URL:
 
 ```
-PS> powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/0.8.13/install.ps1 | iex"
+PS> powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/0.8.14/install.ps1 | iex"
 
 ```
 
@@ -242,7 +242,7 @@ If you need to remove uv from your system, follow these steps:
 
    Before removing the binaries, you may want to remove any data that uv has stored.
 
-1. Remove the uv and uvx binaries:
+1. Remove the uv, uvx, and uvw binaries:
 
    ```
    $ rm ~/.local/bin/uv ~/.local/bin/uvx
@@ -252,6 +252,7 @@ If you need to remove uv from your system, follow these steps:
    ```
    PS> rm $HOME\.local\bin\uv.exe
    PS> rm $HOME\.local\bin\uvx.exe
+   PS> rm $HOME\.local\bin\uvw.exe
 
    ```
 

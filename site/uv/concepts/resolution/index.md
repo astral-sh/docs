@@ -74,7 +74,7 @@ When selecting the compatible version for a given dependency, uv will ([by defau
 
 When evaluating `requires-python` ranges for dependencies, uv only considers lower bounds and ignores upper bounds entirely. For example, `>=3.8, <4` is treated as `>=3.8`. Respecting upper bounds on `requires-python` often leads to formally correct but practically incorrect resolutions, as, e.g., resolvers will backtrack to the first published version that omits the upper bound (see: [`Requires-Python` upper limits](https://discuss.python.org/t/requires-python-upper-limits/12663)).
 
-### [Limited resolution environments](#limited-resolution-environments)
+## [Limited resolution environments](#limited-resolution-environments)
 
 By default, the universal resolver attempts to solve for all platforms and Python versions.
 
@@ -107,7 +107,7 @@ environments = [
 
 Entries in the `environments` setting must be disjoint (i.e., they must not overlap). For example, `sys_platform == 'darwin'` and `sys_platform == 'linux'` are disjoint, but `sys_platform == 'darwin'` and `python_version >= '3.9'` are not, since both could be true at the same time.
 
-### [Required environments](#required-environments)
+## [Required environments](#required-environments)
 
 In the Python ecosystem, packages can be published as source distributions, built distributions (wheels), or both; but to install a package, a built distribution is required. If a package lacks a built distribution, or lacks a distribution for the current platform or Python version (built distributions are often platform-specific), uv will attempt to build the package from source, then install the resulting built distribution.
 
@@ -426,4 +426,4 @@ The `revision` field of the lockfile is used to track backwards compatible chang
 
 ## [Learn more](#learn-more)
 
-For more details about the internals of the resolver, see the [resolver reference](../../reference/resolver-internals/) documentation.
+For more details about the internals of the resolver, see the [resolver reference](../../reference/internals/resolver/) documentation.

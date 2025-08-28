@@ -61,7 +61,7 @@ print([(k, v["title"]) for k, v in data.items()][:10])
 
 The invocation `uv run example.py` would run *isolated* from the project with only the given dependencies listed.
 
-## [Legacy Windows Scripts](#legacy-windows-scripts)
+## [Legacy scripts on Windows](#legacy-scripts-on-windows)
 
 Support is provided for [legacy setuptools scripts](https://packaging.python.org/en/latest/guides/distributing-packages-using-setuptools/#scripts). These types of scripts are additional files installed by setuptools in `.venv\Scripts`.
 

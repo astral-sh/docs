@@ -65,7 +65,7 @@ $ uv pip install "git+https://github.com/astral-sh/ruff@main"
 
 ```
 
-See the [Git authentication](../../concepts/authentication/#git-authentication) documentation for installation from a private repository.
+See the [Git authentication](../../concepts/authentication/git/) documentation for installation from a private repository.
 
 ## [Editable packages](#editable-packages)
 

@@ -29,7 +29,7 @@ $ uv run --no-sync ...
 
 ```
 
-## [Checking if the lockfile is up-to-date](#checking-if-the-lockfile-is-up-to-date)
+## [Checking the lockfile](#checking-the-lockfile)
 
 When considering if the lockfile is up-to-date, uv will check if it matches the project metadata. For example, if you add a dependency to your `pyproject.toml`, the lockfile will be considered outdated. Similarly, if you change the version constraints for a dependency such that the locked version is excluded, the lockfile will be considered outdated. However, if you change the version constraints such that the existing locked version is still included, the lockfile will still be considered up-to-date.
 
