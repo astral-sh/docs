@@ -862,13 +862,18 @@ module's counterparts (e.g., <code>os.path.abspath()</code>).</p>
 it can be less performant than the lower-level alternatives that work directly with strings,
 especially on older versions of Python.</p>
 <h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix Safety</a></h2>
-<p>This rule's fix is marked as unsafe if the replacement would remove comments attached to the original expression.</p>
+<p>This rule's fix is always marked as unsafe because <code>Path.resolve()</code> resolves symlinks, while
+<code>os.path.abspath()</code> does not. If resolving symlinks is important, you may need to use
+<code>Path.absolute()</code>. However, <code>Path.absolute()</code> also does not remove any <code>..</code> components in a
+path, unlike <code>os.path.abspath()</code> and <code>Path.resolve()</code>, so if that specific combination of
+behaviors is required, there's no existing <code>pathlib</code> alternative. See CPython issue
+<a href="https://github.com/python/cpython/issues/69200">#69200</a>.</p>
 <h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path.resolve">Python documentation: <code>Path.resolve</code></a></li>
 <li><a href="https://docs.python.org/3/library/os.path.html#os.path.abspath">Python documentation: <code>os.path.abspath</code></a></li>
 <li><a href="https://peps.python.org/pep-0428/">PEP 428 – The pathlib module – object-oriented filesystem paths</a></li>
-<li><a href="https://docs.python.org/3/library/pathlib.html#correspondence-to-tools-in-the-os-module">Correspondence between <code>os</code> and <code>pathlib</code></a></li>
+<li><a href="https://docs.python.org/3/library/pathlib.html#corresponding-tools">Correspondence between <code>os</code> and <code>pathlib</code></a></li>
 <li><a href="https://treyhunner.com/2018/12/why-you-should-be-using-pathlib/">Why you should be using pathlib</a></li>
 <li><a href="https://treyhunner.com/2019/01/no-really-pathlib-is-great/">No really, pathlib is great</a></li>
 </ul>
