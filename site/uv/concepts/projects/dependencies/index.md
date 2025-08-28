@@ -79,7 +79,7 @@ $ uv add "httpx>9999"
 
 ```
 
-### [Importing dependencies](#importing-dependencies)
+### [Importing dependencies from requirements files](#importing-dependencies-from-requirements-files)
 
 Dependencies declared in a `requirements.txt` file can be added to the project with the `-r` option:
 
@@ -87,6 +87,8 @@ Dependencies declared in a `requirements.txt` file can be added to the project w
 uv add -r requirements.txt
 
 ```
+
+See the [pip migration guide](../../../guides/migration/pip-to-project/#importing-requirements-files) for more details.
 
 ## [Removing dependencies](#removing-dependencies)
 
@@ -557,7 +559,7 @@ The use of `--no-sources` will also prevent uv from discovering any [workspace m
 
 It is common for projects that are published as libraries to make some features optional to reduce the default dependency tree. For example, Pandas has an [`excel` extra](https://pandas.pydata.org/docs/getting_started/install.html#excel-files) and a [`plot` extra](https://pandas.pydata.org/docs/getting_started/install.html#visualization) to avoid installation of Excel parsers and `matplotlib` unless someone explicitly requires them. Extras are requested with the `package[<extra>]` syntax, e.g., `pandas[plot, excel]`.
 
-Optional dependencies are specified in `[project.optional-dependencies]`, a TOML table that maps from extra name to its dependencies, following [dependency specifiers](#dependency-specifiers-pep-508) syntax.
+Optional dependencies are specified in `[project.optional-dependencies]`, a TOML table that maps from extra name to its dependencies, following [dependency specifiers](#dependency-specifiers) syntax.
 
 Optional dependencies can have entries in `tool.uv.sources` the same as normal dependencies.
 

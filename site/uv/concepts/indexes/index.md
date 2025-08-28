@@ -154,7 +154,7 @@ For security purposes, credentials are *never* stored in the `uv.lock` file; as 
 
 ### [Using credential providers](#using-credential-providers)
 
-In addition to providing credentials directly, uv supports discovery of credentials from netrc and keyring. See the [HTTP authentication](../authentication/#http-authentication) documentation for details on setting up specific credential providers.
+In addition to providing credentials directly, uv supports discovery of credentials from netrc and keyring. See the [HTTP authentication](../authentication/http/) documentation for details on setting up specific credential providers.
 
 By default, uv will attempt an unauthenticated request before querying providers. If the request fails, uv will search for credentials. If credentials are found, an authenticated request will be attempted.
 

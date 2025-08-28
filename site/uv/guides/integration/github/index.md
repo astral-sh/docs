@@ -43,7 +43,7 @@ jobs:
         uses: astral-sh/setup-uv@v6
         with:
           # Install a specific version of uv.
-          version: "0.8.13"
+          version: "0.8.14"
 
 ```
 
@@ -335,7 +335,7 @@ If your project has [dependencies](../../../concepts/projects/dependencies/#git)
 
 After creating a PAT that has read access to the private repositories, add it as a [repository secret](https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository).
 
-Then, you can use the [`gh`](https://cli.github.com/) CLI (which is installed in GitHub Actions runners by default) to configure a [credential helper for Git](../../../concepts/authentication/#git-credential-helpers) to use the PAT for queries to repositories hosted on `github.com`.
+Then, you can use the [`gh`](https://cli.github.com/) CLI (which is installed in GitHub Actions runners by default) to configure a [credential helper for Git](../../../concepts/authentication/git/#git-credential-helpers) to use the PAT for queries to repositories hosted on `github.com`.
 
 For example, if you called your repository secret `MY_PAT`:
 

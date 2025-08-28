@@ -111,8 +111,6 @@ Note
 
 While uv will not build and install the current project without a build system definition, the presence of a `[build-system]` table is not required in other packages. For legacy reasons, if a build system is not defined, then `setuptools.build_meta:__legacy__` is used to build the package. Packages you depend on may not explicitly declare their build system but are still installable. Similarly, if you [add a dependency on a local project](../dependencies/#path) or install it with `uv pip`, uv will attempt to build and install it regardless of the presence of a `[build-system]` table.
 
-### [Build system options](#build-system-options)
-
 Build systems are used to power the following features:
 
 - Including or excluding files from distributions
