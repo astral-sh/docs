@@ -196,50 +196,6 @@ environments = ["sys_platform == 'darwin'"]
 
 ______________________________________________________________________
 
-### \[[`extra-build-dependencies`](#extra-build-dependencies)\](#extra-build-dependencies)
-
-Additional build dependencies for packages.
-
-This allows extending the PEP 517 build environment for the project's dependencies with additional packages. This is useful for packages that assume the presence of packages, like, `pip`, and do not declare them as build dependencies.
-
-**Default value**: `[]`
-
-**Type**: `dict`
-
-**Example usage**:
-
-pyproject.toml
-
-```
-[tool.uv.extra-build-dependencies]
-pytest = ["pip"]
-
-```
-
-______________________________________________________________________
-
-### \[[`extra-build-variables`](#extra-build-variables)\](#extra-build-variables)
-
-Extra environment variables to set when building certain packages.
-
-Environment variables will be added to the environment when building the specified packages.
-
-**Default value**: `{}`
-
-**Type**: `dict[str, dict[str, str]]`
-
-**Example usage**:
-
-pyproject.toml
-
-```
-[tool.uv.extra-build-variables]
-flash-attn = { FLASH_ATTENTION_SKIP_CUDA_BUILD = "TRUE" }
-
-```
-
-______________________________________________________________________
-
 ### \[[`index`](#index)\](#index)
 
 The indexes to use when resolving dependencies.
@@ -1106,14 +1062,12 @@ This allows extending the PEP 517 build environment for the project's dependenci
 
 ```
 [tool.uv]
-[extra-build-dependencies]
-pytest = ["setuptools"]
+extra-build-dependencies = { pytest = ["setuptools"] }
 
 ```
 
 ```
-[extra-build-dependencies]
-pytest = ["setuptools"]
+extra-build-dependencies = { pytest = ["setuptools"] }
 
 ```
 
@@ -1132,14 +1086,13 @@ Environment variables will be added to the environment when building the specifi
 **Example usage**:
 
 ```
-[tool.uv.extra-build-variables]
-flash-attn = { FLASH_ATTENTION_SKIP_CUDA_BUILD = "TRUE" }
+[tool.uv]
+extra-build-variables = { flash-attn = { FLASH_ATTENTION_SKIP_CUDA_BUILD = "TRUE" } }
 
 ```
 
 ```
-[tool.uv.extra-build-variables]
-flash-attn = { FLASH_ATTENTION_SKIP_CUDA_BUILD = "TRUE" }
+extra-build-variables = { flash-attn = { FLASH_ATTENTION_SKIP_CUDA_BUILD = "TRUE" } }
 
 ```
 
@@ -2505,15 +2458,13 @@ This allows extending the PEP 517 build environment for the project's dependenci
 
 ```
 [tool.uv.pip]
-[extra-build-dependencies]
-pytest = ["setuptools"]
+extra-build-dependencies = { pytest = ["setuptools"] }
 
 ```
 
 ```
 [pip]
-[extra-build-dependencies]
-pytest = ["setuptools"]
+extra-build-dependencies = { pytest = ["setuptools"] }
 
 ```
 
@@ -2533,15 +2484,13 @@ Environment variables will be added to the environment when building the specifi
 
 ```
 [tool.uv.pip]
-[extra-build-variables]
-flash-attn = { FLASH_ATTENTION_SKIP_CUDA_BUILD = "TRUE" }
+extra-build-variables = { flash-attn = { FLASH_ATTENTION_SKIP_CUDA_BUILD = "TRUE" } }
 
 ```
 
 ```
 [pip]
-[extra-build-variables]
-flash-attn = { FLASH_ATTENTION_SKIP_CUDA_BUILD = "TRUE" }
+extra-build-variables = { flash-attn = { FLASH_ATTENTION_SKIP_CUDA_BUILD = "TRUE" } }
 
 ```
 

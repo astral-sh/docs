@@ -65,6 +65,7 @@ The following preview features are available:
 - `python-install-default`: Allows [installing `python` and `python3` executables](../python-versions/#installing-python-executables).
 - `python-upgrade`: Allows [transparent Python version upgrades](../python-versions/#upgrading-python-versions).
 - `format`: Allows using `uv format`.
+- `native-auth`: Enables storage of credentials in a [system-native location](../authentication/http/#the-uv-credentials-store).
 
 ## [Disabling preview features](#disabling-preview-features)
 

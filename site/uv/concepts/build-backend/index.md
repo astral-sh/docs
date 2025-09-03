@@ -22,7 +22,7 @@ pyproject.toml
 
 ```
 [build-system]
-requires = ["uv_build>=0.8.14,<0.9.0"]
+requires = ["uv_build>=0.8.15,<0.9.0"]
 build-backend = "uv_build"
 
 ```
@@ -216,7 +216,7 @@ There are no specific wheel includes. There must only be one top level module, a
 
 Tip
 
-When using the uv build backend through a frontend that is not uv, such as pip or `pythom -m build`, debug logging can be enabled through environment variables with `RUST_LOG=uv=debug` or `RUST_LOG=uv=verbose`. When used through uv, the uv build backend shares the verbosity level of uv.
+When using the uv build backend through a frontend that is not uv, such as pip or `python -m build`, debug logging can be enabled through environment variables with `RUST_LOG=uv=debug` or `RUST_LOG=uv=verbose`. When used through uv, the uv build backend shares the verbosity level of uv.
 
 ### [Include and exclude syntax](#include-and-exclude-syntax)
 
