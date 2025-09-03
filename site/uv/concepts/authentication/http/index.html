@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://docs.astral.sh/uv/concepts/authentication/http/">
       
       
-        <link rel="prev" href="../">
+        <link rel="prev" href="../cli/">
       
       
         <link rel="next" href="../git/">
@@ -81,8 +81,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2025-08-28 20:45:31Z",
-        "dateModified": "2025-08-28 20:45:31Z",
+        "datePublished": "2025-09-02 13:37:12Z",
+        "dateModified": "2025-09-02 13:37:12Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -1737,6 +1737,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -1783,6 +1785,32 @@
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    The auth CLI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
               
             
               
@@ -1847,6 +1875,39 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#netrc-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        netrc files
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-uv-credentials-store" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The uv credentials store
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#keyring-providers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keyring providers
+      
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#persistence-of-credentials" class="md-nav__link">
@@ -2874,6 +2935,39 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#netrc-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        netrc files
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-uv-credentials-store" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The uv credentials store
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#keyring-providers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keyring providers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#persistence-of-credentials" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2982,13 +3076,10 @@
 <p>Authentication can come from the following sources, in order of precedence:</p>
 <ul>
 <li>The URL, e.g., <code>https://&lt;user&gt;:&lt;password&gt;@&lt;hostname&gt;/...</code></li>
-<li>A <a href="https://everything.curl.dev/usingcurl/netrc"><code>.netrc</code></a> configuration file</li>
-<li>A <a href="https://github.com/jaraco/keyring">keyring</a> provider (requires opt-in)</li>
+<li>A <a href="#netrc-files">netrc</a> configuration file</li>
+<li>The uv credentials store</li>
+<li>A <a href="#keyring-providers">keyring provider</a> (off by default)</li>
 </ul>
-<p><code>.netrc</code> authentication is enabled by default, and will respect the <code>NETRC</code> environment variable if
-defined, falling back to <code>~/.netrc</code> if not.</p>
-<p>To enable keyring-based authentication, pass the <code>--keyring-provider subprocess</code> command-line
-argument to uv, or set <code>UV_KEYRING_PROVIDER=subprocess</code>.</p>
 <p>Authentication may be used for hosts specified in the following contexts:</p>
 <ul>
 <li><code>[index]</code></li>
@@ -2997,6 +3088,35 @@ argument to uv, or set <code>UV_KEYRING_PROVIDER=subprocess</code>.</p>
 <li><code>find-links</code></li>
 <li><code>package @ https://...</code></li>
 </ul>
+<h2 id="netrc-files"><a class="toclink" href="#netrc-files">netrc files</a></h2>
+<p><a href="https://everything.curl.dev/usingcurl/netrc"><code>.netrc</code></a> files are a long-standing plain text format
+for storing credentials on a system.</p>
+<p>Reading credentials from <code>.netrc</code> files is always enabled. The target file path will be loaded from
+the <code>NETRC</code> environment variable if defined, falling back to <code>~/.netrc</code> if not.</p>
+<h2 id="the-uv-credentials-store"><a class="toclink" href="#the-uv-credentials-store">The uv credentials store</a></h2>
+<p>uv can read and write credentials from a store using the <a href="../cli/"><code>uv auth</code> commands</a>.</p>
+<p>Credentials are stored in a plaintext file in uv's state directory, e.g.,
+<code>~/.local/share/uv/credentials/credentials.toml</code> on Unix. This file is currently not intended to be
+edited manually.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A secure, system native storage mechanism is in <a href="../../preview/">preview</a> — it is still
+experimental and being actively developed. In the future, this will become the default storage
+mechanism.</p>
+<p>When enabled, uv will use the secret storage mechanism native to your operating system. On
+macOS, it uses the Keychain Services. On Windows, it uses the Windows Credential Manager. On
+Linux, it uses the DBus-based Secret Service API.</p>
+<p>Currently, uv only searches the native store for credentials it has added to the secret store —
+it will not retrieve credentials persisted by other applications.</p>
+<p>Set <code>UV_PREVIEW_FEATURES=native-auth</code> to use this storage mechanism.</p>
+</div>
+<h2 id="keyring-providers"><a class="toclink" href="#keyring-providers">Keyring providers</a></h2>
+<p>A keyring provider is a concept from <code>pip</code> allowing retrieval of credentials from an interface
+matching the popular <a href="https://github.com/jaraco/keyring">keyring</a> Python package.</p>
+<p>The "subprocess" keyring provider invokes the <code>keyring</code> command to fetch credentials. uv does not
+support additional keyring provider types at this time.</p>
+<p>Set <code>--keyring-provider subprocess</code>, <code>UV_KEYRING_PROVIDER=subprocess</code>, or
+<code>tool.uv.keyring-provider = "subprocess"</code> to use the provider.</p>
 <h2 id="persistence-of-credentials"><a class="toclink" href="#persistence-of-credentials">Persistence of credentials</a></h2>
 <p>If authentication is found for a single index URL or net location (scheme, host, and port), it will
 be cached for the duration of the command and used for other queries to that index or net location.
@@ -3028,7 +3148,7 @@ on differences from <code>pip</code>.</p>
         <span class="md-icon" title="Last update">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
         </span>
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 28, 2025</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 2, 2025</span>
       </span>
     
     
@@ -3067,7 +3187,7 @@ on differences from <code>pip</code>.</p>
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: Index" rel="prev">
+          <a href="../cli/" class="md-footer__link md-footer__link--prev" aria-label="Previous: The auth CLI" rel="prev">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
@@ -3077,7 +3197,7 @@ on differences from <code>pip</code>.</p>
                 Previous
               </span>
               <div class="md-ellipsis">
-                Index
+                The auth CLI
               </div>
             </div>
           </a>

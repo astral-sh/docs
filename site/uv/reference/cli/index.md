@@ -13,6 +13,8 @@ uv [OPTIONS] <COMMAND>
 
 ### Commands
 
+[`uv auth`](#uv-auth) : Manage authentication
+
 [`uv run`](#uv-run) : Run a command or script
 
 [`uv init`](#uv-init) : Create a new project
@@ -50,6 +52,702 @@ uv [OPTIONS] <COMMAND>
 [`uv self`](#uv-self) : Manage the uv executable
 
 [`uv help`](#uv-help) : Display documentation for a command
+
+## [uv auth](#uv-auth)
+
+Manage authentication
+
+### Usage
+
+```
+uv auth [OPTIONS] <COMMAND>
+
+```
+
+### Commands
+
+[`uv auth login`](#uv-auth-login) : Login to a service
+
+[`uv auth logout`](#uv-auth-logout) : Logout of a service
+
+[`uv auth token`](#uv-auth-token) : Show the authentication token for a service
+
+[`uv auth dir`](#uv-auth-dir) : Show the path to the uv credentials directory
+
+### [uv auth login](#uv-auth-login)
+
+Login to a service
+
+### Usage
+
+```
+uv auth login [OPTIONS] <SERVICE>
+
+```
+
+### Arguments
+
+[SERVICE](#uv-auth-login--service) : The service to log into
+
+### Options
+
+[`--allow-insecure-host`](#uv-auth-login--allow-insecure-host), `--trusted-host` *allow-insecure-host* : Allow insecure connections to a host.
+
+```
+Can be provided multiple times.
+
+Expects to receive either a hostname (e.g., `localhost`), a host-port pair (e.g., `localhost:8080`), or a URL (e.g., `https://localhost`).
+
+WARNING: Hosts included in this list will not be verified against the system's certificate store. Only use `--allow-insecure-host` in a secure network with verified sources, as it bypasses SSL verification and could expose you to MITM attacks.
+
+May also be set with the `UV_INSECURE_HOST` environment variable.
+```
+
+[`--cache-dir`](#uv-auth-login--cache-dir) *cache-dir* : Path to the cache directory.
+
+```
+Defaults to `$XDG_CACHE_HOME/uv` or `$HOME/.cache/uv` on macOS and Linux, and `%LOCALAPPDATA%\uv\cache` on Windows.
+
+To view the location of the cache directory, run `uv cache dir`.
+
+May also be set with the `UV_CACHE_DIR` environment variable.
+```
+
+[`--color`](#uv-auth-login--color) *color-choice* : Control the use of color in output.
+
+```
+By default, uv will automatically detect support for colors when writing to a terminal.
+
+Possible values:
+
+- `auto`: Enables colored output only when the output is going to a terminal or TTY with support
+- `always`: Enables colored output regardless of the detected environment
+- `never`: Disables colored output
+```
+
+[`--config-file`](#uv-auth-login--config-file) *config-file* : The path to a `uv.toml` file to use for configuration.
+
+```
+While uv configuration can be included in a `pyproject.toml` file, it is not allowed in this context.
+
+May also be set with the `UV_CONFIG_FILE` environment variable.
+```
+
+[`--directory`](#uv-auth-login--directory) *directory* : Change to the given directory prior to running the command.
+
+```
+Relative paths are resolved with the given directory as the base.
+
+See `--project` to only change the project root directory.
+```
+
+[`--help`](#uv-auth-login--help), `-h` : Display the concise help for this command
+
+[`--keyring-provider`](#uv-auth-login--keyring-provider) *keyring-provider* : The keyring provider to use for storage of credentials.
+
+```
+Only `--keyring-provider native` is supported for `login`, which uses the system keyring via an integration built into uv.
+
+May also be set with the `UV_KEYRING_PROVIDER` environment variable.
+
+Possible values:
+
+- `disabled`: Do not use keyring for credential lookup
+- `subprocess`: Use the `keyring` command for credential lookup
+```
+
+[`--managed-python`](#uv-auth-login--managed-python) : Require use of uv-managed Python versions.
+
+```
+By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
+
+May also be set with the `UV_MANAGED_PYTHON` environment variable.
+```
+
+[`--native-tls`](#uv-auth-login--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+
+```
+By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
+
+May also be set with the `UV_NATIVE_TLS` environment variable.
+```
+
+[`--no-cache`](#uv-auth-login--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
+
+```
+May also be set with the `UV_NO_CACHE` environment variable.
+```
+
+[`--no-config`](#uv-auth-login--no-config) : Avoid discovering configuration files (`pyproject.toml`, `uv.toml`).
+
+```
+Normally, configuration files are discovered in the current directory, parent directories, or user configuration directories.
+
+May also be set with the `UV_NO_CONFIG` environment variable.
+```
+
+[`--no-managed-python`](#uv-auth-login--no-managed-python) : Disable use of uv-managed Python versions.
+
+```
+Instead, uv will search for a suitable Python version on the system.
+
+May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
+```
+
+[`--no-progress`](#uv-auth-login--no-progress) : Hide all progress outputs.
+
+```
+For example, spinners or progress bars.
+
+May also be set with the `UV_NO_PROGRESS` environment variable.
+```
+
+[`--no-python-downloads`](#uv-auth-login--no-python-downloads) : Disable automatic downloads of Python.
+
+[`--offline`](#uv-auth-login--offline) : Disable network access.
+
+```
+When disabled, uv will only use locally cached data and locally available files.
+
+May also be set with the `UV_OFFLINE` environment variable.
+```
+
+[`--password`](#uv-auth-login--password) *password* : The password to use for the service.
+
+```
+Use `-` to read the password from stdin.
+```
+
+[`--project`](#uv-auth-login--project) *project* : Run the command within the given project directory.
+
+```
+All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
+
+Other command-line arguments (such as relative paths) will be resolved relative to the current working directory.
+
+See `--directory` to change the working directory entirely.
+
+This setting has no effect when used in the `uv pip` interface.
+
+May also be set with the `UV_PROJECT` environment variable.
+```
+
+[`--quiet`](#uv-auth-login--quiet), `-q` : Use quiet output.
+
+```
+Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will write no output to stdout.
+```
+
+[`--token`](#uv-auth-login--token), `-t` *token* : The token to use for the service.
+
+```
+The username will be set to `__token__`.
+
+Use `-` to read the token from stdin.
+```
+
+[`--username`](#uv-auth-login--username), `-u` *username* : The username to use for the service
+
+[`--verbose`](#uv-auth-login--verbose), `-v` : Use verbose output.
+
+```
+You can configure fine-grained logging using the `RUST_LOG` environment variable. (<https://docs.rs/tracing-subscriber/latest/tracing_subscriber/filter/struct.EnvFilter.html#directives>)
+```
+
+### [uv auth logout](#uv-auth-logout)
+
+Logout of a service
+
+### Usage
+
+```
+uv auth logout [OPTIONS] <SERVICE>
+
+```
+
+### Arguments
+
+[SERVICE](#uv-auth-logout--service) : The service to logout of
+
+### Options
+
+[`--allow-insecure-host`](#uv-auth-logout--allow-insecure-host), `--trusted-host` *allow-insecure-host* : Allow insecure connections to a host.
+
+```
+Can be provided multiple times.
+
+Expects to receive either a hostname (e.g., `localhost`), a host-port pair (e.g., `localhost:8080`), or a URL (e.g., `https://localhost`).
+
+WARNING: Hosts included in this list will not be verified against the system's certificate store. Only use `--allow-insecure-host` in a secure network with verified sources, as it bypasses SSL verification and could expose you to MITM attacks.
+
+May also be set with the `UV_INSECURE_HOST` environment variable.
+```
+
+[`--cache-dir`](#uv-auth-logout--cache-dir) *cache-dir* : Path to the cache directory.
+
+```
+Defaults to `$XDG_CACHE_HOME/uv` or `$HOME/.cache/uv` on macOS and Linux, and `%LOCALAPPDATA%\uv\cache` on Windows.
+
+To view the location of the cache directory, run `uv cache dir`.
+
+May also be set with the `UV_CACHE_DIR` environment variable.
+```
+
+[`--color`](#uv-auth-logout--color) *color-choice* : Control the use of color in output.
+
+```
+By default, uv will automatically detect support for colors when writing to a terminal.
+
+Possible values:
+
+- `auto`: Enables colored output only when the output is going to a terminal or TTY with support
+- `always`: Enables colored output regardless of the detected environment
+- `never`: Disables colored output
+```
+
+[`--config-file`](#uv-auth-logout--config-file) *config-file* : The path to a `uv.toml` file to use for configuration.
+
+```
+While uv configuration can be included in a `pyproject.toml` file, it is not allowed in this context.
+
+May also be set with the `UV_CONFIG_FILE` environment variable.
+```
+
+[`--directory`](#uv-auth-logout--directory) *directory* : Change to the given directory prior to running the command.
+
+```
+Relative paths are resolved with the given directory as the base.
+
+See `--project` to only change the project root directory.
+```
+
+[`--help`](#uv-auth-logout--help), `-h` : Display the concise help for this command
+
+[`--keyring-provider`](#uv-auth-logout--keyring-provider) *keyring-provider* : The keyring provider to use for storage of credentials.
+
+```
+Only `--keyring-provider native` is supported for `logout`, which uses the system keyring via an integration built into uv.
+
+May also be set with the `UV_KEYRING_PROVIDER` environment variable.
+
+Possible values:
+
+- `disabled`: Do not use keyring for credential lookup
+- `subprocess`: Use the `keyring` command for credential lookup
+```
+
+[`--managed-python`](#uv-auth-logout--managed-python) : Require use of uv-managed Python versions.
+
+```
+By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
+
+May also be set with the `UV_MANAGED_PYTHON` environment variable.
+```
+
+[`--native-tls`](#uv-auth-logout--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+
+```
+By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
+
+May also be set with the `UV_NATIVE_TLS` environment variable.
+```
+
+[`--no-cache`](#uv-auth-logout--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
+
+```
+May also be set with the `UV_NO_CACHE` environment variable.
+```
+
+[`--no-config`](#uv-auth-logout--no-config) : Avoid discovering configuration files (`pyproject.toml`, `uv.toml`).
+
+```
+Normally, configuration files are discovered in the current directory, parent directories, or user configuration directories.
+
+May also be set with the `UV_NO_CONFIG` environment variable.
+```
+
+[`--no-managed-python`](#uv-auth-logout--no-managed-python) : Disable use of uv-managed Python versions.
+
+```
+Instead, uv will search for a suitable Python version on the system.
+
+May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
+```
+
+[`--no-progress`](#uv-auth-logout--no-progress) : Hide all progress outputs.
+
+```
+For example, spinners or progress bars.
+
+May also be set with the `UV_NO_PROGRESS` environment variable.
+```
+
+[`--no-python-downloads`](#uv-auth-logout--no-python-downloads) : Disable automatic downloads of Python.
+
+[`--offline`](#uv-auth-logout--offline) : Disable network access.
+
+```
+When disabled, uv will only use locally cached data and locally available files.
+
+May also be set with the `UV_OFFLINE` environment variable.
+```
+
+[`--project`](#uv-auth-logout--project) *project* : Run the command within the given project directory.
+
+```
+All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
+
+Other command-line arguments (such as relative paths) will be resolved relative to the current working directory.
+
+See `--directory` to change the working directory entirely.
+
+This setting has no effect when used in the `uv pip` interface.
+
+May also be set with the `UV_PROJECT` environment variable.
+```
+
+[`--quiet`](#uv-auth-logout--quiet), `-q` : Use quiet output.
+
+```
+Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will write no output to stdout.
+```
+
+[`--username`](#uv-auth-logout--username), `-u` *username* : The username to logout
+
+[`--verbose`](#uv-auth-logout--verbose), `-v` : Use verbose output.
+
+```
+You can configure fine-grained logging using the `RUST_LOG` environment variable. (<https://docs.rs/tracing-subscriber/latest/tracing_subscriber/filter/struct.EnvFilter.html#directives>)
+```
+
+### [uv auth token](#uv-auth-token)
+
+Show the authentication token for a service
+
+### Usage
+
+```
+uv auth token [OPTIONS] <SERVICE>
+
+```
+
+### Arguments
+
+[SERVICE](#uv-auth-token--service) : The service to lookup
+
+### Options
+
+[`--allow-insecure-host`](#uv-auth-token--allow-insecure-host), `--trusted-host` *allow-insecure-host* : Allow insecure connections to a host.
+
+```
+Can be provided multiple times.
+
+Expects to receive either a hostname (e.g., `localhost`), a host-port pair (e.g., `localhost:8080`), or a URL (e.g., `https://localhost`).
+
+WARNING: Hosts included in this list will not be verified against the system's certificate store. Only use `--allow-insecure-host` in a secure network with verified sources, as it bypasses SSL verification and could expose you to MITM attacks.
+
+May also be set with the `UV_INSECURE_HOST` environment variable.
+```
+
+[`--cache-dir`](#uv-auth-token--cache-dir) *cache-dir* : Path to the cache directory.
+
+```
+Defaults to `$XDG_CACHE_HOME/uv` or `$HOME/.cache/uv` on macOS and Linux, and `%LOCALAPPDATA%\uv\cache` on Windows.
+
+To view the location of the cache directory, run `uv cache dir`.
+
+May also be set with the `UV_CACHE_DIR` environment variable.
+```
+
+[`--color`](#uv-auth-token--color) *color-choice* : Control the use of color in output.
+
+```
+By default, uv will automatically detect support for colors when writing to a terminal.
+
+Possible values:
+
+- `auto`: Enables colored output only when the output is going to a terminal or TTY with support
+- `always`: Enables colored output regardless of the detected environment
+- `never`: Disables colored output
+```
+
+[`--config-file`](#uv-auth-token--config-file) *config-file* : The path to a `uv.toml` file to use for configuration.
+
+```
+While uv configuration can be included in a `pyproject.toml` file, it is not allowed in this context.
+
+May also be set with the `UV_CONFIG_FILE` environment variable.
+```
+
+[`--directory`](#uv-auth-token--directory) *directory* : Change to the given directory prior to running the command.
+
+```
+Relative paths are resolved with the given directory as the base.
+
+See `--project` to only change the project root directory.
+```
+
+[`--help`](#uv-auth-token--help), `-h` : Display the concise help for this command
+
+[`--keyring-provider`](#uv-auth-token--keyring-provider) *keyring-provider* : The keyring provider to use for reading credentials
+
+```
+May also be set with the `UV_KEYRING_PROVIDER` environment variable.
+
+Possible values:
+
+- `disabled`: Do not use keyring for credential lookup
+- `subprocess`: Use the `keyring` command for credential lookup
+```
+
+[`--managed-python`](#uv-auth-token--managed-python) : Require use of uv-managed Python versions.
+
+```
+By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
+
+May also be set with the `UV_MANAGED_PYTHON` environment variable.
+```
+
+[`--native-tls`](#uv-auth-token--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+
+```
+By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
+
+May also be set with the `UV_NATIVE_TLS` environment variable.
+```
+
+[`--no-cache`](#uv-auth-token--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
+
+```
+May also be set with the `UV_NO_CACHE` environment variable.
+```
+
+[`--no-config`](#uv-auth-token--no-config) : Avoid discovering configuration files (`pyproject.toml`, `uv.toml`).
+
+```
+Normally, configuration files are discovered in the current directory, parent directories, or user configuration directories.
+
+May also be set with the `UV_NO_CONFIG` environment variable.
+```
+
+[`--no-managed-python`](#uv-auth-token--no-managed-python) : Disable use of uv-managed Python versions.
+
+```
+Instead, uv will search for a suitable Python version on the system.
+
+May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
+```
+
+[`--no-progress`](#uv-auth-token--no-progress) : Hide all progress outputs.
+
+```
+For example, spinners or progress bars.
+
+May also be set with the `UV_NO_PROGRESS` environment variable.
+```
+
+[`--no-python-downloads`](#uv-auth-token--no-python-downloads) : Disable automatic downloads of Python.
+
+[`--offline`](#uv-auth-token--offline) : Disable network access.
+
+```
+When disabled, uv will only use locally cached data and locally available files.
+
+May also be set with the `UV_OFFLINE` environment variable.
+```
+
+[`--project`](#uv-auth-token--project) *project* : Run the command within the given project directory.
+
+```
+All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
+
+Other command-line arguments (such as relative paths) will be resolved relative to the current working directory.
+
+See `--directory` to change the working directory entirely.
+
+This setting has no effect when used in the `uv pip` interface.
+
+May also be set with the `UV_PROJECT` environment variable.
+```
+
+[`--quiet`](#uv-auth-token--quiet), `-q` : Use quiet output.
+
+```
+Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will write no output to stdout.
+```
+
+[`--username`](#uv-auth-token--username), `-u` *username* : The username to lookup
+
+[`--verbose`](#uv-auth-token--verbose), `-v` : Use verbose output.
+
+```
+You can configure fine-grained logging using the `RUST_LOG` environment variable. (<https://docs.rs/tracing-subscriber/latest/tracing_subscriber/filter/struct.EnvFilter.html#directives>)
+```
+
+### [uv auth dir](#uv-auth-dir)
+
+Show the path to the uv credentials directory.
+
+By default, credentials are stored in the uv data directory at `$XDG_DATA_HOME/uv/credentials` or `$HOME/.local/share/uv/credentials` on Unix and `%APPDATA%\uv\data\credentials` on Windows.
+
+The credentials directory may be overridden with `$UV_CREDENTIALS_DIR`.
+
+Credentials are only stored in this directory when the plaintext backend is used, as opposed to the native backend, which uses the system keyring.
+
+### Usage
+
+```
+uv auth dir [OPTIONS] [SERVICE]
+
+```
+
+### Arguments
+
+[SERVICE](#uv-auth-dir--service) : The service to lookup
+
+### Options
+
+[`--allow-insecure-host`](#uv-auth-dir--allow-insecure-host), `--trusted-host` *allow-insecure-host* : Allow insecure connections to a host.
+
+```
+Can be provided multiple times.
+
+Expects to receive either a hostname (e.g., `localhost`), a host-port pair (e.g., `localhost:8080`), or a URL (e.g., `https://localhost`).
+
+WARNING: Hosts included in this list will not be verified against the system's certificate store. Only use `--allow-insecure-host` in a secure network with verified sources, as it bypasses SSL verification and could expose you to MITM attacks.
+
+May also be set with the `UV_INSECURE_HOST` environment variable.
+```
+
+[`--cache-dir`](#uv-auth-dir--cache-dir) *cache-dir* : Path to the cache directory.
+
+```
+Defaults to `$XDG_CACHE_HOME/uv` or `$HOME/.cache/uv` on macOS and Linux, and `%LOCALAPPDATA%\uv\cache` on Windows.
+
+To view the location of the cache directory, run `uv cache dir`.
+
+May also be set with the `UV_CACHE_DIR` environment variable.
+```
+
+[`--color`](#uv-auth-dir--color) *color-choice* : Control the use of color in output.
+
+```
+By default, uv will automatically detect support for colors when writing to a terminal.
+
+Possible values:
+
+- `auto`: Enables colored output only when the output is going to a terminal or TTY with support
+- `always`: Enables colored output regardless of the detected environment
+- `never`: Disables colored output
+```
+
+[`--config-file`](#uv-auth-dir--config-file) *config-file* : The path to a `uv.toml` file to use for configuration.
+
+```
+While uv configuration can be included in a `pyproject.toml` file, it is not allowed in this context.
+
+May also be set with the `UV_CONFIG_FILE` environment variable.
+```
+
+[`--directory`](#uv-auth-dir--directory) *directory* : Change to the given directory prior to running the command.
+
+```
+Relative paths are resolved with the given directory as the base.
+
+See `--project` to only change the project root directory.
+```
+
+[`--help`](#uv-auth-dir--help), `-h` : Display the concise help for this command
+
+[`--managed-python`](#uv-auth-dir--managed-python) : Require use of uv-managed Python versions.
+
+```
+By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
+
+May also be set with the `UV_MANAGED_PYTHON` environment variable.
+```
+
+[`--native-tls`](#uv-auth-dir--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+
+```
+By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
+
+May also be set with the `UV_NATIVE_TLS` environment variable.
+```
+
+[`--no-cache`](#uv-auth-dir--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
+
+```
+May also be set with the `UV_NO_CACHE` environment variable.
+```
+
+[`--no-config`](#uv-auth-dir--no-config) : Avoid discovering configuration files (`pyproject.toml`, `uv.toml`).
+
+```
+Normally, configuration files are discovered in the current directory, parent directories, or user configuration directories.
+
+May also be set with the `UV_NO_CONFIG` environment variable.
+```
+
+[`--no-managed-python`](#uv-auth-dir--no-managed-python) : Disable use of uv-managed Python versions.
+
+```
+Instead, uv will search for a suitable Python version on the system.
+
+May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
+```
+
+[`--no-progress`](#uv-auth-dir--no-progress) : Hide all progress outputs.
+
+```
+For example, spinners or progress bars.
+
+May also be set with the `UV_NO_PROGRESS` environment variable.
+```
+
+[`--no-python-downloads`](#uv-auth-dir--no-python-downloads) : Disable automatic downloads of Python.
+
+[`--offline`](#uv-auth-dir--offline) : Disable network access.
+
+```
+When disabled, uv will only use locally cached data and locally available files.
+
+May also be set with the `UV_OFFLINE` environment variable.
+```
+
+[`--project`](#uv-auth-dir--project) *project* : Run the command within the given project directory.
+
+```
+All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
+
+Other command-line arguments (such as relative paths) will be resolved relative to the current working directory.
+
+See `--directory` to change the working directory entirely.
+
+This setting has no effect when used in the `uv pip` interface.
+
+May also be set with the `UV_PROJECT` environment variable.
+```
+
+[`--quiet`](#uv-auth-dir--quiet), `-q` : Use quiet output.
+
+```
+Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will write no output to stdout.
+```
+
+[`--verbose`](#uv-auth-dir--verbose), `-v` : Use verbose output.
+
+```
+You can configure fine-grained logging using the `RUST_LOG` environment variable. (<https://docs.rs/tracing-subscriber/latest/tracing_subscriber/filter/struct.EnvFilter.html#directives>)
+```
 
 ## [uv run](#uv-run)
 
@@ -590,6 +1288,59 @@ used.
 See [uv python](#uv-python) to view supported request formats.
 
 May also be set with the `UV_PYTHON` environment variable.
+```
+
+[`--python-platform`](#uv-run--python-platform) *python-platform* : The platform for which requirements should be installed.
+
+```
+Represented as a "target triple", a string that describes the target platform in terms of its CPU, vendor, and operating system name, like `x86_64-unknown-linux-gnu` or `aarch64-apple-darwin`.
+
+When targeting macOS (Darwin), the default minimum version is `12.0`. Use `MACOSX_DEPLOYMENT_TARGET` to specify a different minimum version, e.g., `13.0`.
+
+WARNING: When specified, uv will select wheels that are compatible with the *target* platform; as a result, the installed distributions may not be compatible with the *current* platform. Conversely, any distributions that are built from source may be incompatible with the *target* platform, as they will be built for the *current* platform. The `--python-platform` option is intended for advanced use cases.
+
+Possible values:
+
+- `windows`: An alias for `x86_64-pc-windows-msvc`, the default target for Windows
+- `linux`: An alias for `x86_64-unknown-linux-gnu`, the default target for Linux
+- `macos`: An alias for `aarch64-apple-darwin`, the default target for macOS
+- `x86_64-pc-windows-msvc`: A 64-bit x86 Windows target
+- `aarch64-pc-windows-msvc`: An ARM64 Windows target
+- `i686-pc-windows-msvc`: A 32-bit x86 Windows target
+- `x86_64-unknown-linux-gnu`: An x86 Linux target. Equivalent to `x86_64-manylinux_2_28`
+- `aarch64-apple-darwin`: An ARM-based macOS target, as seen on Apple Silicon devices
+- `x86_64-apple-darwin`: An x86 macOS target
+- `aarch64-unknown-linux-gnu`: An ARM64 Linux target. Equivalent to `aarch64-manylinux_2_28`
+- `aarch64-unknown-linux-musl`: An ARM64 Linux target
+- `x86_64-unknown-linux-musl`: An `x86_64` Linux target
+- `riscv64-unknown-linux`: A RISCV64 Linux target
+- `x86_64-manylinux2014`: An `x86_64` target for the `manylinux2014` platform. Equivalent to `x86_64-manylinux_2_17`
+- `x86_64-manylinux_2_17`: An `x86_64` target for the `manylinux_2_17` platform
+- `x86_64-manylinux_2_28`: An `x86_64` target for the `manylinux_2_28` platform
+- `x86_64-manylinux_2_31`: An `x86_64` target for the `manylinux_2_31` platform
+- `x86_64-manylinux_2_32`: An `x86_64` target for the `manylinux_2_32` platform
+- `x86_64-manylinux_2_33`: An `x86_64` target for the `manylinux_2_33` platform
+- `x86_64-manylinux_2_34`: An `x86_64` target for the `manylinux_2_34` platform
+- `x86_64-manylinux_2_35`: An `x86_64` target for the `manylinux_2_35` platform
+- `x86_64-manylinux_2_36`: An `x86_64` target for the `manylinux_2_36` platform
+- `x86_64-manylinux_2_37`: An `x86_64` target for the `manylinux_2_37` platform
+- `x86_64-manylinux_2_38`: An `x86_64` target for the `manylinux_2_38` platform
+- `x86_64-manylinux_2_39`: An `x86_64` target for the `manylinux_2_39` platform
+- `x86_64-manylinux_2_40`: An `x86_64` target for the `manylinux_2_40` platform
+- `aarch64-manylinux2014`: An ARM64 target for the `manylinux2014` platform. Equivalent to `aarch64-manylinux_2_17`
+- `aarch64-manylinux_2_17`: An ARM64 target for the `manylinux_2_17` platform
+- `aarch64-manylinux_2_28`: An ARM64 target for the `manylinux_2_28` platform
+- `aarch64-manylinux_2_31`: An ARM64 target for the `manylinux_2_31` platform
+- `aarch64-manylinux_2_32`: An ARM64 target for the `manylinux_2_32` platform
+- `aarch64-manylinux_2_33`: An ARM64 target for the `manylinux_2_33` platform
+- `aarch64-manylinux_2_34`: An ARM64 target for the `manylinux_2_34` platform
+- `aarch64-manylinux_2_35`: An ARM64 target for the `manylinux_2_35` platform
+- `aarch64-manylinux_2_36`: An ARM64 target for the `manylinux_2_36` platform
+- `aarch64-manylinux_2_37`: An ARM64 target for the `manylinux_2_37` platform
+- `aarch64-manylinux_2_38`: An ARM64 target for the `manylinux_2_38` platform
+- `aarch64-manylinux_2_39`: An ARM64 target for the `manylinux_2_39` platform
+- `aarch64-manylinux_2_40`: An ARM64 target for the `manylinux_2_40` platform
+- `wasm32-pyodide2024`: A wasm32 target using the Pyodide 2024 platform. Meant for use with Python 3.12
 ```
 
 [`--quiet`](#uv-run--quiet), `-q` : Use quiet output.
@@ -2976,6 +3727,7 @@ Possible values:
 - `aarch64-unknown-linux-gnu`: An ARM64 Linux target. Equivalent to `aarch64-manylinux_2_28`
 - `aarch64-unknown-linux-musl`: An ARM64 Linux target
 - `x86_64-unknown-linux-musl`: An `x86_64` Linux target
+- `riscv64-unknown-linux`: A RISCV64 Linux target
 - `x86_64-manylinux2014`: An `x86_64` target for the `manylinux2014` platform. Equivalent to `x86_64-manylinux_2_17`
 - `x86_64-manylinux_2_17`: An `x86_64` target for the `manylinux_2_17` platform
 - `x86_64-manylinux_2_28`: An `x86_64` target for the `manylinux_2_28` platform
@@ -4461,6 +5213,7 @@ Possible values:
 - `aarch64-unknown-linux-gnu`: An ARM64 Linux target. Equivalent to `aarch64-manylinux_2_28`
 - `aarch64-unknown-linux-musl`: An ARM64 Linux target
 - `x86_64-unknown-linux-musl`: An `x86_64` Linux target
+- `riscv64-unknown-linux`: A RISCV64 Linux target
 - `x86_64-manylinux2014`: An `x86_64` target for the `manylinux2014` platform. Equivalent to `x86_64-manylinux_2_17`
 - `x86_64-manylinux_2_17`: An `x86_64` target for the `manylinux_2_17` platform
 - `x86_64-manylinux_2_28`: An `x86_64` target for the `manylinux_2_28` platform
@@ -4523,6 +5276,8 @@ Possible values:
 ```
 If provided, uv will resolve the dependencies based on its inline metadata table, in adherence with PEP 723.
 ```
+
+[`--show-sizes`](#uv-tree--show-sizes) : Show compressed wheel sizes for packages in the tree
 
 [`--universal`](#uv-tree--universal) : Show a platform-independent dependency tree.
 
@@ -5164,6 +5919,59 @@ See [uv python](#uv-python) for details on Python discovery and supported reques
 May also be set with the `UV_PYTHON` environment variable.
 ```
 
+[`--python-platform`](#uv-tool-run--python-platform) *python-platform* : The platform for which requirements should be installed.
+
+```
+Represented as a "target triple", a string that describes the target platform in terms of its CPU, vendor, and operating system name, like `x86_64-unknown-linux-gnu` or `aarch64-apple-darwin`.
+
+When targeting macOS (Darwin), the default minimum version is `12.0`. Use `MACOSX_DEPLOYMENT_TARGET` to specify a different minimum version, e.g., `13.0`.
+
+WARNING: When specified, uv will select wheels that are compatible with the *target* platform; as a result, the installed distributions may not be compatible with the *current* platform. Conversely, any distributions that are built from source may be incompatible with the *target* platform, as they will be built for the *current* platform. The `--python-platform` option is intended for advanced use cases.
+
+Possible values:
+
+- `windows`: An alias for `x86_64-pc-windows-msvc`, the default target for Windows
+- `linux`: An alias for `x86_64-unknown-linux-gnu`, the default target for Linux
+- `macos`: An alias for `aarch64-apple-darwin`, the default target for macOS
+- `x86_64-pc-windows-msvc`: A 64-bit x86 Windows target
+- `aarch64-pc-windows-msvc`: An ARM64 Windows target
+- `i686-pc-windows-msvc`: A 32-bit x86 Windows target
+- `x86_64-unknown-linux-gnu`: An x86 Linux target. Equivalent to `x86_64-manylinux_2_28`
+- `aarch64-apple-darwin`: An ARM-based macOS target, as seen on Apple Silicon devices
+- `x86_64-apple-darwin`: An x86 macOS target
+- `aarch64-unknown-linux-gnu`: An ARM64 Linux target. Equivalent to `aarch64-manylinux_2_28`
+- `aarch64-unknown-linux-musl`: An ARM64 Linux target
+- `x86_64-unknown-linux-musl`: An `x86_64` Linux target
+- `riscv64-unknown-linux`: A RISCV64 Linux target
+- `x86_64-manylinux2014`: An `x86_64` target for the `manylinux2014` platform. Equivalent to `x86_64-manylinux_2_17`
+- `x86_64-manylinux_2_17`: An `x86_64` target for the `manylinux_2_17` platform
+- `x86_64-manylinux_2_28`: An `x86_64` target for the `manylinux_2_28` platform
+- `x86_64-manylinux_2_31`: An `x86_64` target for the `manylinux_2_31` platform
+- `x86_64-manylinux_2_32`: An `x86_64` target for the `manylinux_2_32` platform
+- `x86_64-manylinux_2_33`: An `x86_64` target for the `manylinux_2_33` platform
+- `x86_64-manylinux_2_34`: An `x86_64` target for the `manylinux_2_34` platform
+- `x86_64-manylinux_2_35`: An `x86_64` target for the `manylinux_2_35` platform
+- `x86_64-manylinux_2_36`: An `x86_64` target for the `manylinux_2_36` platform
+- `x86_64-manylinux_2_37`: An `x86_64` target for the `manylinux_2_37` platform
+- `x86_64-manylinux_2_38`: An `x86_64` target for the `manylinux_2_38` platform
+- `x86_64-manylinux_2_39`: An `x86_64` target for the `manylinux_2_39` platform
+- `x86_64-manylinux_2_40`: An `x86_64` target for the `manylinux_2_40` platform
+- `aarch64-manylinux2014`: An ARM64 target for the `manylinux2014` platform. Equivalent to `aarch64-manylinux_2_17`
+- `aarch64-manylinux_2_17`: An ARM64 target for the `manylinux_2_17` platform
+- `aarch64-manylinux_2_28`: An ARM64 target for the `manylinux_2_28` platform
+- `aarch64-manylinux_2_31`: An ARM64 target for the `manylinux_2_31` platform
+- `aarch64-manylinux_2_32`: An ARM64 target for the `manylinux_2_32` platform
+- `aarch64-manylinux_2_33`: An ARM64 target for the `manylinux_2_33` platform
+- `aarch64-manylinux_2_34`: An ARM64 target for the `manylinux_2_34` platform
+- `aarch64-manylinux_2_35`: An ARM64 target for the `manylinux_2_35` platform
+- `aarch64-manylinux_2_36`: An ARM64 target for the `manylinux_2_36` platform
+- `aarch64-manylinux_2_37`: An ARM64 target for the `manylinux_2_37` platform
+- `aarch64-manylinux_2_38`: An ARM64 target for the `manylinux_2_38` platform
+- `aarch64-manylinux_2_39`: An ARM64 target for the `manylinux_2_39` platform
+- `aarch64-manylinux_2_40`: An ARM64 target for the `manylinux_2_40` platform
+- `wasm32-pyodide2024`: A wasm32 target using the Pyodide 2024 platform. Meant for use with Python 3.12
+```
+
 [`--quiet`](#uv-tool-run--quiet), `-q` : Use quiet output.
 
 ```
@@ -5606,6 +6414,59 @@ See [uv python](#uv-python) for details on Python discovery and supported reques
 May also be set with the `UV_PYTHON` environment variable.
 ```
 
+[`--python-platform`](#uv-tool-install--python-platform) *python-platform* : The platform for which requirements should be installed.
+
+```
+Represented as a "target triple", a string that describes the target platform in terms of its CPU, vendor, and operating system name, like `x86_64-unknown-linux-gnu` or `aarch64-apple-darwin`.
+
+When targeting macOS (Darwin), the default minimum version is `12.0`. Use `MACOSX_DEPLOYMENT_TARGET` to specify a different minimum version, e.g., `13.0`.
+
+WARNING: When specified, uv will select wheels that are compatible with the *target* platform; as a result, the installed distributions may not be compatible with the *current* platform. Conversely, any distributions that are built from source may be incompatible with the *target* platform, as they will be built for the *current* platform. The `--python-platform` option is intended for advanced use cases.
+
+Possible values:
+
+- `windows`: An alias for `x86_64-pc-windows-msvc`, the default target for Windows
+- `linux`: An alias for `x86_64-unknown-linux-gnu`, the default target for Linux
+- `macos`: An alias for `aarch64-apple-darwin`, the default target for macOS
+- `x86_64-pc-windows-msvc`: A 64-bit x86 Windows target
+- `aarch64-pc-windows-msvc`: An ARM64 Windows target
+- `i686-pc-windows-msvc`: A 32-bit x86 Windows target
+- `x86_64-unknown-linux-gnu`: An x86 Linux target. Equivalent to `x86_64-manylinux_2_28`
+- `aarch64-apple-darwin`: An ARM-based macOS target, as seen on Apple Silicon devices
+- `x86_64-apple-darwin`: An x86 macOS target
+- `aarch64-unknown-linux-gnu`: An ARM64 Linux target. Equivalent to `aarch64-manylinux_2_28`
+- `aarch64-unknown-linux-musl`: An ARM64 Linux target
+- `x86_64-unknown-linux-musl`: An `x86_64` Linux target
+- `riscv64-unknown-linux`: A RISCV64 Linux target
+- `x86_64-manylinux2014`: An `x86_64` target for the `manylinux2014` platform. Equivalent to `x86_64-manylinux_2_17`
+- `x86_64-manylinux_2_17`: An `x86_64` target for the `manylinux_2_17` platform
+- `x86_64-manylinux_2_28`: An `x86_64` target for the `manylinux_2_28` platform
+- `x86_64-manylinux_2_31`: An `x86_64` target for the `manylinux_2_31` platform
+- `x86_64-manylinux_2_32`: An `x86_64` target for the `manylinux_2_32` platform
+- `x86_64-manylinux_2_33`: An `x86_64` target for the `manylinux_2_33` platform
+- `x86_64-manylinux_2_34`: An `x86_64` target for the `manylinux_2_34` platform
+- `x86_64-manylinux_2_35`: An `x86_64` target for the `manylinux_2_35` platform
+- `x86_64-manylinux_2_36`: An `x86_64` target for the `manylinux_2_36` platform
+- `x86_64-manylinux_2_37`: An `x86_64` target for the `manylinux_2_37` platform
+- `x86_64-manylinux_2_38`: An `x86_64` target for the `manylinux_2_38` platform
+- `x86_64-manylinux_2_39`: An `x86_64` target for the `manylinux_2_39` platform
+- `x86_64-manylinux_2_40`: An `x86_64` target for the `manylinux_2_40` platform
+- `aarch64-manylinux2014`: An ARM64 target for the `manylinux2014` platform. Equivalent to `aarch64-manylinux_2_17`
+- `aarch64-manylinux_2_17`: An ARM64 target for the `manylinux_2_17` platform
+- `aarch64-manylinux_2_28`: An ARM64 target for the `manylinux_2_28` platform
+- `aarch64-manylinux_2_31`: An ARM64 target for the `manylinux_2_31` platform
+- `aarch64-manylinux_2_32`: An ARM64 target for the `manylinux_2_32` platform
+- `aarch64-manylinux_2_33`: An ARM64 target for the `manylinux_2_33` platform
+- `aarch64-manylinux_2_34`: An ARM64 target for the `manylinux_2_34` platform
+- `aarch64-manylinux_2_35`: An ARM64 target for the `manylinux_2_35` platform
+- `aarch64-manylinux_2_36`: An ARM64 target for the `manylinux_2_36` platform
+- `aarch64-manylinux_2_37`: An ARM64 target for the `manylinux_2_37` platform
+- `aarch64-manylinux_2_38`: An ARM64 target for the `manylinux_2_38` platform
+- `aarch64-manylinux_2_39`: An ARM64 target for the `manylinux_2_39` platform
+- `aarch64-manylinux_2_40`: An ARM64 target for the `manylinux_2_40` platform
+- `wasm32-pyodide2024`: A wasm32 target using the Pyodide 2024 platform. Meant for use with Python 3.12
+```
+
 [`--quiet`](#uv-tool-install--quiet), `-q` : Use quiet output.
 
 ```
@@ -6010,6 +6871,59 @@ May also be set with the `UV_PROJECT` environment variable.
 See [uv python](#uv-python) for details on Python discovery and supported request formats.
 
 May also be set with the `UV_PYTHON` environment variable.
+```
+
+[`--python-platform`](#uv-tool-upgrade--python-platform) *python-platform* : The platform for which requirements should be installed.
+
+```
+Represented as a "target triple", a string that describes the target platform in terms of its CPU, vendor, and operating system name, like `x86_64-unknown-linux-gnu` or `aarch64-apple-darwin`.
+
+When targeting macOS (Darwin), the default minimum version is `12.0`. Use `MACOSX_DEPLOYMENT_TARGET` to specify a different minimum version, e.g., `13.0`.
+
+WARNING: When specified, uv will select wheels that are compatible with the *target* platform; as a result, the installed distributions may not be compatible with the *current* platform. Conversely, any distributions that are built from source may be incompatible with the *target* platform, as they will be built for the *current* platform. The `--python-platform` option is intended for advanced use cases.
+
+Possible values:
+
+- `windows`: An alias for `x86_64-pc-windows-msvc`, the default target for Windows
+- `linux`: An alias for `x86_64-unknown-linux-gnu`, the default target for Linux
+- `macos`: An alias for `aarch64-apple-darwin`, the default target for macOS
+- `x86_64-pc-windows-msvc`: A 64-bit x86 Windows target
+- `aarch64-pc-windows-msvc`: An ARM64 Windows target
+- `i686-pc-windows-msvc`: A 32-bit x86 Windows target
+- `x86_64-unknown-linux-gnu`: An x86 Linux target. Equivalent to `x86_64-manylinux_2_28`
+- `aarch64-apple-darwin`: An ARM-based macOS target, as seen on Apple Silicon devices
+- `x86_64-apple-darwin`: An x86 macOS target
+- `aarch64-unknown-linux-gnu`: An ARM64 Linux target. Equivalent to `aarch64-manylinux_2_28`
+- `aarch64-unknown-linux-musl`: An ARM64 Linux target
+- `x86_64-unknown-linux-musl`: An `x86_64` Linux target
+- `riscv64-unknown-linux`: A RISCV64 Linux target
+- `x86_64-manylinux2014`: An `x86_64` target for the `manylinux2014` platform. Equivalent to `x86_64-manylinux_2_17`
+- `x86_64-manylinux_2_17`: An `x86_64` target for the `manylinux_2_17` platform
+- `x86_64-manylinux_2_28`: An `x86_64` target for the `manylinux_2_28` platform
+- `x86_64-manylinux_2_31`: An `x86_64` target for the `manylinux_2_31` platform
+- `x86_64-manylinux_2_32`: An `x86_64` target for the `manylinux_2_32` platform
+- `x86_64-manylinux_2_33`: An `x86_64` target for the `manylinux_2_33` platform
+- `x86_64-manylinux_2_34`: An `x86_64` target for the `manylinux_2_34` platform
+- `x86_64-manylinux_2_35`: An `x86_64` target for the `manylinux_2_35` platform
+- `x86_64-manylinux_2_36`: An `x86_64` target for the `manylinux_2_36` platform
+- `x86_64-manylinux_2_37`: An `x86_64` target for the `manylinux_2_37` platform
+- `x86_64-manylinux_2_38`: An `x86_64` target for the `manylinux_2_38` platform
+- `x86_64-manylinux_2_39`: An `x86_64` target for the `manylinux_2_39` platform
+- `x86_64-manylinux_2_40`: An `x86_64` target for the `manylinux_2_40` platform
+- `aarch64-manylinux2014`: An ARM64 target for the `manylinux2014` platform. Equivalent to `aarch64-manylinux_2_17`
+- `aarch64-manylinux_2_17`: An ARM64 target for the `manylinux_2_17` platform
+- `aarch64-manylinux_2_28`: An ARM64 target for the `manylinux_2_28` platform
+- `aarch64-manylinux_2_31`: An ARM64 target for the `manylinux_2_31` platform
+- `aarch64-manylinux_2_32`: An ARM64 target for the `manylinux_2_32` platform
+- `aarch64-manylinux_2_33`: An ARM64 target for the `manylinux_2_33` platform
+- `aarch64-manylinux_2_34`: An ARM64 target for the `manylinux_2_34` platform
+- `aarch64-manylinux_2_35`: An ARM64 target for the `manylinux_2_35` platform
+- `aarch64-manylinux_2_36`: An ARM64 target for the `manylinux_2_36` platform
+- `aarch64-manylinux_2_37`: An ARM64 target for the `manylinux_2_37` platform
+- `aarch64-manylinux_2_38`: An ARM64 target for the `manylinux_2_38` platform
+- `aarch64-manylinux_2_39`: An ARM64 target for the `manylinux_2_39` platform
+- `aarch64-manylinux_2_40`: An ARM64 target for the `manylinux_2_40` platform
+- `wasm32-pyodide2024`: A wasm32 target using the Pyodide 2024 platform. Meant for use with Python 3.12
 ```
 
 [`--quiet`](#uv-tool-upgrade--quiet), `-q` : Use quiet output.
@@ -8792,6 +9706,7 @@ Possible values:
 - `aarch64-unknown-linux-gnu`: An ARM64 Linux target. Equivalent to `aarch64-manylinux_2_28`
 - `aarch64-unknown-linux-musl`: An ARM64 Linux target
 - `x86_64-unknown-linux-musl`: An `x86_64` Linux target
+- `riscv64-unknown-linux`: A RISCV64 Linux target
 - `x86_64-manylinux2014`: An `x86_64` target for the `manylinux2014` platform. Equivalent to `x86_64-manylinux_2_17`
 - `x86_64-manylinux_2_17`: An `x86_64` target for the `manylinux_2_17` platform
 - `x86_64-manylinux_2_28`: An `x86_64` target for the `manylinux_2_28` platform
@@ -9354,6 +10269,7 @@ Possible values:
 - `aarch64-unknown-linux-gnu`: An ARM64 Linux target. Equivalent to `aarch64-manylinux_2_28`
 - `aarch64-unknown-linux-musl`: An ARM64 Linux target
 - `x86_64-unknown-linux-musl`: An `x86_64` Linux target
+- `riscv64-unknown-linux`: A RISCV64 Linux target
 - `x86_64-manylinux2014`: An `x86_64` target for the `manylinux2014` platform. Equivalent to `x86_64-manylinux_2_17`
 - `x86_64-manylinux_2_17`: An `x86_64` target for the `manylinux_2_17` platform
 - `x86_64-manylinux_2_28`: An `x86_64` target for the `manylinux_2_28` platform
@@ -9963,6 +10879,7 @@ Possible values:
 - `aarch64-unknown-linux-gnu`: An ARM64 Linux target. Equivalent to `aarch64-manylinux_2_28`
 - `aarch64-unknown-linux-musl`: An ARM64 Linux target
 - `x86_64-unknown-linux-musl`: An `x86_64` Linux target
+- `riscv64-unknown-linux`: A RISCV64 Linux target
 - `x86_64-manylinux2014`: An `x86_64` target for the `manylinux2014` platform. Equivalent to `x86_64-manylinux_2_17`
 - `x86_64-manylinux_2_17`: An `x86_64` target for the `manylinux_2_17` platform
 - `x86_64-manylinux_2_28`: An `x86_64` target for the `manylinux_2_28` platform
@@ -11245,6 +12162,8 @@ May also be set with the `UV_PYTHON` environment variable.
 Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will write no output to stdout.
 ```
 
+[`--show-sizes`](#uv-pip-tree--show-sizes) : Show compressed wheel sizes for packages in the tree
+
 [`--show-version-specifiers`](#uv-pip-tree--show-version-specifiers) : Show the version constraint(s) imposed on each package
 
 [`--strict`](#uv-pip-tree--strict) : Validate the Python environment, to detect packages with missing dependencies and other issues
@@ -11436,6 +12355,7 @@ Possible values:
 - `aarch64-unknown-linux-gnu`: An ARM64 Linux target. Equivalent to `aarch64-manylinux_2_28`
 - `aarch64-unknown-linux-musl`: An ARM64 Linux target
 - `x86_64-unknown-linux-musl`: An `x86_64` Linux target
+- `riscv64-unknown-linux`: A RISCV64 Linux target
 - `x86_64-manylinux2014`: An `x86_64` target for the `manylinux2014` platform. Equivalent to `x86_64-manylinux_2_17`
 - `x86_64-manylinux_2_17`: An `x86_64` target for the `manylinux_2_17` platform
 - `x86_64-manylinux_2_28`: An `x86_64` target for the `manylinux_2_28` platform
@@ -12393,6 +13313,12 @@ May also be set with the `UV_CONFIG_FILE` environment variable.
 Relative paths are resolved with the given directory as the base.
 
 See `--project` to only change the project root directory.
+```
+
+[`--dry-run`](#uv-publish--dry-run) : Perform a dry run without uploading files.
+
+```
+When enabled, the command will check for existing files if `--check-url` is provided, and will perform validation against the index if supported, but will not upload any files.
 ```
 
 [`--help`](#uv-publish--help), `-h` : Display the concise help for this command

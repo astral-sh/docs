@@ -44,6 +44,10 @@ Equivalent to the `--config-file` command-line argument. Expects a path to a loc
 
 Equivalent to the `--constraint` command-line argument. If set, uv will use this file as the constraints file. Uses space-separated list of files.
 
+### [`UV_CREDENTIALS_DIR`](#uv_credentials_dir)
+
+The directory for storage of credentials when using a plain text backend.
+
 ### [`UV_CUSTOM_COMPILE_COMMAND`](#uv_custom_compile_command)
 
 Equivalent to the `--custom-compile-command` command-line argument.
@@ -583,6 +587,26 @@ See [`PycInvalidationMode`](https://docs.python.org/3/library/py_compile.html#py
 ### [`PYTHONPATH`](#pythonpath)
 
 Adds directories to Python module search path (e.g., `PYTHONPATH=/path/to/modules`).
+
+### [`PYX_API_KEY`](#pyx_api_key)
+
+The pyx API key (e.g., `sk-pyx-...`).
+
+### [`PYX_API_URL`](#pyx_api_url)
+
+The URL of the pyx Simple API server.
+
+### [`PYX_AUTH_TOKEN`](#pyx_auth_token)
+
+The pyx authentication token (e.g., `eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...`), as output by `uv auth token`.
+
+### [`PYX_CDN_DOMAIN`](#pyx_cdn_domain)
+
+The domain of the pyx CDN.
+
+### [`PYX_CREDENTIALS_DIR`](#pyx_credentials_dir)
+
+Specifies the directory where uv stores pyx credentials.
 
 ### [`RUST_BACKTRACE`](#rust_backtrace)
 
