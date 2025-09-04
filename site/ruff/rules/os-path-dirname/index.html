@@ -858,7 +858,16 @@ module's counterparts (e.g., <code>os.path.dirname()</code>).</p>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span>
 </code></pre></div>
 <h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix Safety</a></h2>
-<p>This rule's fix is marked as unsafe if the replacement would remove comments attached to the original expression.</p>
+<p>This rule's fix is always marked as unsafe because the replacement is not always semantically
+equivalent to the original code. In particular, <code>pathlib</code> performs path normalization,
+which can alter the result compared to <code>os.path.dirname</code>. For example, this normalization:</p>
+<ul>
+<li>Collapses consecutive slashes (e.g., <code>"a//b"</code> → <code>"a/b"</code>).</li>
+<li>Removes trailing slashes (e.g., <code>"a/b/"</code> → <code>"a/b"</code>).</li>
+<li>Eliminates <code>"."</code> (e.g., <code>"a/./b"</code> → <code>"a/b"</code>).</li>
+</ul>
+<p>As a result, code relying on the exact string returned by <code>os.path.dirname</code>
+may behave differently after the fix.</p>
 <h2 id="known-issues"><a class="toclink" href="#known-issues">Known issues</a></h2>
 <p>While using <code>pathlib</code> can improve the readability and type safety of your code,
 it can be less performant than the lower-level alternatives that work directly with strings,

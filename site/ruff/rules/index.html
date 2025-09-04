@@ -1658,7 +1658,7 @@ catches a wide variety of common errors (like unused imports) with zero configur
 <tr>
 <td id="AIR002">AIR002</td>
 <td><a href="airflow-dag-no-schedule-argument/">airflow-dag-no-schedule-argument</a></td>
-<td>DAG should have an explicit <code>schedule</code> argument</td>
+<td><code>DAG</code> or <code>@dag</code> should have an explicit <code>schedule</code> argument</td>
 <td style="text-align: right;"><div style='display: flex; gap: 0.5rem; justify-content: end;'><span style='width: 1em; display: inline-block;' title='Rule is in preview'>🧪</span><span style='width: 1em; display: inline-block;'></span></div></td>
 </tr>
 <tr>
@@ -1670,7 +1670,7 @@ catches a wide variety of common errors (like unused imports) with zero configur
 <tr>
 <td id="AIR302">AIR302</td>
 <td><a href="airflow3-moved-to-provider/">airflow3-moved-to-provider</a></td>
-<td><code>{deprecated}</code> is removed in Airflow 3.0</td>
+<td><code>{deprecated}</code> is moved into <code>{provider}</code> provider in Airflow 3.0;</td>
 <td style="text-align: right;"><div style='display: flex; gap: 0.5rem; justify-content: end;'><span style='width: 1em; display: inline-block;' title='Rule is in preview'>🧪</span><span style='width: 1em; display: inline-block;' title='Automatic fix available'>🛠️</span></div></td>
 </tr>
 <tr>
@@ -1682,7 +1682,7 @@ catches a wide variety of common errors (like unused imports) with zero configur
 <tr>
 <td id="AIR312">AIR312</td>
 <td><a href="airflow3-suggested-to-move-to-provider/">airflow3-suggested-to-move-to-provider</a></td>
-<td><code>{deprecated}</code> is removed in Airflow 3.0</td>
+<td><code>{deprecated}</code> is deprecated and moved into <code>{provider}</code> provider in Airflow 3.0; It still works in Airflow 3.0 but is expected to be removed in a future version.</td>
 <td style="text-align: right;"><div style='display: flex; gap: 0.5rem; justify-content: end;'><span style='width: 1em; display: inline-block;' title='Rule is in preview'>🧪</span><span style='width: 1em; display: inline-block;' title='Automatic fix available'>🛠️</span></div></td>
 </tr>
 </tbody>
@@ -1977,6 +1977,12 @@ catches a wide variety of common errors (like unused imports) with zero configur
 <td><a href="blocking-open-call-in-async-function/">blocking-open-call-in-async-function</a></td>
 <td>Async functions should not open files with blocking methods like <code>open</code></td>
 <td style="text-align: right;"><div style='display: flex; gap: 0.5rem; justify-content: end;'><span style='width: 1em; display: inline-block;'></span><span style='width: 1em; display: inline-block;'></span></div></td>
+</tr>
+<tr>
+<td id="ASYNC250">ASYNC250</td>
+<td><a href="blocking-input-in-async-function/">blocking-input-in-async-function</a></td>
+<td>Blocking call to input() in async context</td>
+<td style="text-align: right;"><div style='display: flex; gap: 0.5rem; justify-content: end;'><span style='width: 1em; display: inline-block;' title='Rule is in preview'>🧪</span><span style='width: 1em; display: inline-block;'></span></div></td>
 </tr>
 <tr>
 <td id="ASYNC251">ASYNC251</td>
