@@ -842,6 +842,8 @@
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for the use of implicit <code>Optional</code> in type annotations when the
 default parameter value is <code>None</code>.</p>
+<p>If <a href="../../settings/#lint_future-annotations"><code>lint.future-annotations</code></a> is set to <code>true</code>, <code>from __future__ import annotations</code> will be added if doing so would allow using the <code>|</code> operator on
+a Python version before 3.10.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Implicit <code>Optional</code> is prohibited by <a href="https://peps.python.org/pep-0484/#union-types">PEP 484</a>. It is confusing and
 inconsistent with the rest of the type system.</p>
@@ -884,10 +886,6 @@ For example, the following code will not be flagged:</p>
 <li><a href="../../settings/#target-version"><code>target-version</code></a></li>
 <li><a href="../../settings/#lint_future-annotations"><code>lint.future-annotations</code></a></li>
 </ul>
-<h2 id="preview"><a class="toclink" href="#preview">Preview</a></h2>
-<p>When [preview] is enabled, if <a href="../../settings/#lint_future-annotations"><code>lint.future-annotations</code></a> is set to <code>true</code>,
-<code>from __future__ import annotations</code> will be added if doing so would allow using the <code>|</code>
-operator on a Python version before 3.10.</p>
 <h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
 <p>This fix is always marked as unsafe because it can change the behavior of code that relies on
 type hints, and it assumes the default value is always appropriate—which might not be the case.</p>
