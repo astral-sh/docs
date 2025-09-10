@@ -470,6 +470,12 @@ Used for trusted publishing via `uv publish`. Contains the oidc token url.
 
 General proxy for all network requests.
 
+### [`ANDROID_API_LEVEL`](#android_api_level)
+
+Used with `--python-platform aarch64-linux-android` and related variants to set the Android API level. (i.e., the minimum supported Android API level).
+
+Defaults to `24`.
+
 ### [`APPDATA`](#appdata)
 
 Path to user-level configuration directory on Windows systems.
@@ -529,6 +535,12 @@ Proxy for HTTP requests.
 ### [`HTTP_TIMEOUT`](#http_timeout)
 
 Timeout (in seconds) for HTTP requests. Equivalent to `UV_HTTP_TIMEOUT`.
+
+### [`IPHONEOS_DEPLOYMENT_TARGET`](#iphoneos_deployment_target)
+
+Used with `--python-platform arm64-apple-ios` and related variants to set the deployment target (i.e., the minimum supported iOS version).
+
+Defaults to `13.0`.
 
 ### [`JPY_SESSION_NAME`](#jpy_session_name)
 
