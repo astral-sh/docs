@@ -877,6 +877,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#format_backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        backend
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2174,6 +2185,55 @@ documentation</a> for more details.</p>
 </div>
 </div>
 </div>
+<h3 id="format_backend"><a class="toclink" href="#format_backend"><code>backend</code></a></h3>
+<p>The backend to use for formatting files. Following options are available:</p>
+<ul>
+<li><code>"internal"</code>: Use the built-in Ruff formatter</li>
+<li><code>"uv"</code>: Use uv for formatting (requires uv &gt;= 0.8.13)</li>
+</ul>
+<p>For <code>internal</code>, the formatter version will match the selected Ruff version while for <code>uv</code>, the
+formatter version may differ.</p>
+<p><strong>Default value</strong>: <code>"internal"</code></p>
+<p><strong>Type</strong>: <code>"internal" | "uv"</code></p>
+<p><strong>Example usage</strong>:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="19:3"><input checked="checked" id="__tabbed_19_1" name="__tabbed_19" type="radio" /><input id="__tabbed_19_2" name="__tabbed_19" type="radio" /><input id="__tabbed_19_3" name="__tabbed_19" type="radio" /><div class="tabbed-labels"><label for="__tabbed_19_1">VS Code</label><label for="__tabbed_19_2">Neovim</label><label for="__tabbed_19_3">Zed</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a><span class="p">{</span>
+<a id="__codelineno-54-2" name="__codelineno-54-2" href="#__codelineno-54-2"></a><span class="w">    </span><span class="nt">&quot;ruff.format.backend&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;uv&quot;</span>
+<a id="__codelineno-54-3" name="__codelineno-54-3" href="#__codelineno-54-3"></a><span class="p">}</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a><span class="nb">require</span><span class="p">(</span><span class="s1">&#39;lspconfig&#39;</span><span class="p">).</span><span class="nv">ruff</span><span class="p">.</span><span class="py">setup</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-55-2" name="__codelineno-55-2" href="#__codelineno-55-2"></a><span class="w">  </span><span class="nv">init_options</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-55-3" name="__codelineno-55-3" href="#__codelineno-55-3"></a><span class="w">    </span><span class="nv">settings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-55-4" name="__codelineno-55-4" href="#__codelineno-55-4"></a><span class="w">      </span><span class="nv">format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-55-5" name="__codelineno-55-5" href="#__codelineno-55-5"></a><span class="w">        </span><span class="nv">backend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;uv&quot;</span>
+<a id="__codelineno-55-6" name="__codelineno-55-6" href="#__codelineno-55-6"></a><span class="w">      </span><span class="p">}</span>
+<a id="__codelineno-55-7" name="__codelineno-55-7" href="#__codelineno-55-7"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-55-8" name="__codelineno-55-8" href="#__codelineno-55-8"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-55-9" name="__codelineno-55-9" href="#__codelineno-55-9"></a><span class="p">}</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a><span class="p">{</span>
+<a id="__codelineno-56-2" name="__codelineno-56-2" href="#__codelineno-56-2"></a><span class="w">  </span><span class="nt">&quot;lsp&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-56-3" name="__codelineno-56-3" href="#__codelineno-56-3"></a><span class="w">    </span><span class="nt">&quot;ruff&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-56-4" name="__codelineno-56-4" href="#__codelineno-56-4"></a><span class="w">      </span><span class="nt">&quot;initialization_options&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-56-5" name="__codelineno-56-5" href="#__codelineno-56-5"></a><span class="w">        </span><span class="nt">&quot;settings&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-56-6" name="__codelineno-56-6" href="#__codelineno-56-6"></a><span class="w">          </span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-56-7" name="__codelineno-56-7" href="#__codelineno-56-7"></a><span class="w">            </span><span class="nt">&quot;backend&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;uv&quot;</span>
+<a id="__codelineno-56-8" name="__codelineno-56-8" href="#__codelineno-56-8"></a><span class="w">          </span><span class="p">}</span>
+<a id="__codelineno-56-9" name="__codelineno-56-9" href="#__codelineno-56-9"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-56-10" name="__codelineno-56-10" href="#__codelineno-56-10"></a><span class="w">      </span><span class="p">}</span>
+<a id="__codelineno-56-11" name="__codelineno-56-11" href="#__codelineno-56-11"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-56-12" name="__codelineno-56-12" href="#__codelineno-56-12"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-56-13" name="__codelineno-56-13" href="#__codelineno-56-13"></a><span class="p">}</span>
+</code></pre></div>
+</div>
+</div>
+</div>
 <h2 id="vs-code-specific"><a class="toclink" href="#vs-code-specific">VS Code specific</a></h2>
 <p>Additionally, the Ruff extension provides the following settings specific to VS Code. These settings
 are not used by the language server and are only relevant to the extension.</p>
@@ -2182,9 +2242,9 @@ are not used by the language server and are only relevant to the extension.</p>
 <p><strong>Default value</strong>: <code>true</code></p>
 <p><strong>Type</strong>: <code>bool</code></p>
 <p><strong>Example usage</strong>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a><span class="p">{</span>
-<a id="__codelineno-54-2" name="__codelineno-54-2" href="#__codelineno-54-2"></a><span class="w">    </span><span class="nt">&quot;ruff.enable&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
-<a id="__codelineno-54-3" name="__codelineno-54-3" href="#__codelineno-54-3"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a><span class="p">{</span>
+<a id="__codelineno-57-2" name="__codelineno-57-2" href="#__codelineno-57-2"></a><span class="w">    </span><span class="nt">&quot;ruff.enable&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<a id="__codelineno-57-3" name="__codelineno-57-3" href="#__codelineno-57-3"></a><span class="p">}</span>
 </code></pre></div>
 <h3 id="formatargs"><a class="toclink" href="#formatargs"><code>format.args</code></a></h3>
 <div class="admonition warning">
@@ -2198,9 +2258,9 @@ guide</a> for more information.</p>
 <p><strong>Default value</strong>: <code>[]</code></p>
 <p><strong>Type</strong>: <code>string[]</code></p>
 <p><strong>Example usage</strong>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a><span class="p">{</span>
-<a id="__codelineno-55-2" name="__codelineno-55-2" href="#__codelineno-55-2"></a><span class="w">    </span><span class="nt">&quot;ruff.format.args&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;--line-length&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;100&quot;</span><span class="p">]</span>
-<a id="__codelineno-55-3" name="__codelineno-55-3" href="#__codelineno-55-3"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a><span class="p">{</span>
+<a id="__codelineno-58-2" name="__codelineno-58-2" href="#__codelineno-58-2"></a><span class="w">    </span><span class="nt">&quot;ruff.format.args&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;--line-length&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;100&quot;</span><span class="p">]</span>
+<a id="__codelineno-58-3" name="__codelineno-58-3" href="#__codelineno-58-3"></a><span class="p">}</span>
 </code></pre></div>
 <h3 id="ignorestandardlibrary"><a class="toclink" href="#ignorestandardlibrary"><code>ignoreStandardLibrary</code></a></h3>
 <div class="admonition warning">
@@ -2214,9 +2274,9 @@ guide</a> for more information.</p>
 <p><strong>Default value</strong>: <code>true</code></p>
 <p><strong>Type</strong>: <code>bool</code></p>
 <p><strong>Example usage</strong>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a><span class="p">{</span>
-<a id="__codelineno-56-2" name="__codelineno-56-2" href="#__codelineno-56-2"></a><span class="w">    </span><span class="nt">&quot;ruff.ignoreStandardLibrary&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
-<a id="__codelineno-56-3" name="__codelineno-56-3" href="#__codelineno-56-3"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a><span class="p">{</span>
+<a id="__codelineno-59-2" name="__codelineno-59-2" href="#__codelineno-59-2"></a><span class="w">    </span><span class="nt">&quot;ruff.ignoreStandardLibrary&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<a id="__codelineno-59-3" name="__codelineno-59-3" href="#__codelineno-59-3"></a><span class="p">}</span>
 </code></pre></div>
 <h3 id="importstrategy"><a class="toclink" href="#importstrategy"><code>importStrategy</code></a></h3>
 <p>Strategy for loading the <code>ruff</code> executable.</p>
@@ -2227,9 +2287,9 @@ guide</a> for more information.</p>
 <p><strong>Default value</strong>: <code>"fromEnvironment"</code></p>
 <p><strong>Type</strong>: <code>"fromEnvironment" | "useBundled"</code></p>
 <p><strong>Example usage</strong>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a><span class="p">{</span>
-<a id="__codelineno-57-2" name="__codelineno-57-2" href="#__codelineno-57-2"></a><span class="w">    </span><span class="nt">&quot;ruff.importStrategy&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;useBundled&quot;</span>
-<a id="__codelineno-57-3" name="__codelineno-57-3" href="#__codelineno-57-3"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a><span class="p">{</span>
+<a id="__codelineno-60-2" name="__codelineno-60-2" href="#__codelineno-60-2"></a><span class="w">    </span><span class="nt">&quot;ruff.importStrategy&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;useBundled&quot;</span>
+<a id="__codelineno-60-3" name="__codelineno-60-3" href="#__codelineno-60-3"></a><span class="p">}</span>
 </code></pre></div>
 <h3 id="interpreter"><a class="toclink" href="#interpreter"><code>interpreter</code></a></h3>
 <p>A list of paths to Python interpreters. Even though this is a list, only the first interpreter is
@@ -2243,9 +2303,9 @@ used.</p>
 <p><strong>Default value</strong>: <code>[]</code></p>
 <p><strong>Type</strong>: <code>string[]</code></p>
 <p><strong>Example usage</strong>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a><span class="p">{</span>
-<a id="__codelineno-58-2" name="__codelineno-58-2" href="#__codelineno-58-2"></a><span class="w">    </span><span class="nt">&quot;ruff.interpreter&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;/home/user/.local/bin/python&quot;</span><span class="p">]</span>
-<a id="__codelineno-58-3" name="__codelineno-58-3" href="#__codelineno-58-3"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a><span class="p">{</span>
+<a id="__codelineno-61-2" name="__codelineno-61-2" href="#__codelineno-61-2"></a><span class="w">    </span><span class="nt">&quot;ruff.interpreter&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;/home/user/.local/bin/python&quot;</span><span class="p">]</span>
+<a id="__codelineno-61-3" name="__codelineno-61-3" href="#__codelineno-61-3"></a><span class="p">}</span>
 </code></pre></div>
 <h3 id="lintargs"><a class="toclink" href="#lintargs"><code>lint.args</code></a></h3>
 <div class="admonition warning">
@@ -2259,9 +2319,9 @@ guide</a> for more information.</p>
 <p><strong>Default value</strong>: <code>[]</code></p>
 <p><strong>Type</strong>: <code>string[]</code></p>
 <p><strong>Example usage</strong>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a><span class="p">{</span>
-<a id="__codelineno-59-2" name="__codelineno-59-2" href="#__codelineno-59-2"></a><span class="w">    </span><span class="nt">&quot;ruff.lint.args&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;--config&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;/path/to/pyproject.toml&quot;</span><span class="p">]</span>
-<a id="__codelineno-59-3" name="__codelineno-59-3" href="#__codelineno-59-3"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a><span class="p">{</span>
+<a id="__codelineno-62-2" name="__codelineno-62-2" href="#__codelineno-62-2"></a><span class="w">    </span><span class="nt">&quot;ruff.lint.args&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;--config&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;/path/to/pyproject.toml&quot;</span><span class="p">]</span>
+<a id="__codelineno-62-3" name="__codelineno-62-3" href="#__codelineno-62-3"></a><span class="p">}</span>
 </code></pre></div>
 <h3 id="lintrun"><a class="toclink" href="#lintrun"><code>lint.run</code></a></h3>
 <div class="admonition warning">
@@ -2275,9 +2335,9 @@ guide</a> for more information.</p>
 <p><strong>Default value</strong>: <code>"onType"</code></p>
 <p><strong>Type</strong>: <code>"onType" | "onSave"</code></p>
 <p><strong>Example usage</strong>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a><span class="p">{</span>
-<a id="__codelineno-60-2" name="__codelineno-60-2" href="#__codelineno-60-2"></a><span class="w">    </span><span class="nt">&quot;ruff.lint.run&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;onSave&quot;</span>
-<a id="__codelineno-60-3" name="__codelineno-60-3" href="#__codelineno-60-3"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a><span class="p">{</span>
+<a id="__codelineno-63-2" name="__codelineno-63-2" href="#__codelineno-63-2"></a><span class="w">    </span><span class="nt">&quot;ruff.lint.run&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;onSave&quot;</span>
+<a id="__codelineno-63-3" name="__codelineno-63-3" href="#__codelineno-63-3"></a><span class="p">}</span>
 </code></pre></div>
 <h3 id="nativeserver"><a class="toclink" href="#nativeserver"><code>nativeServer</code></a></h3>
 <p>Whether to use the native language server, <a href="https://github.com/astral-sh/ruff-lsp"><code>ruff-lsp</code></a> or
@@ -2302,9 +2362,9 @@ automatically decide between the two based on the Ruff version and extension set
 <p><strong>Default value</strong>: <code>"auto"</code></p>
 <p><strong>Type</strong>: <code>"on" | "off" | "auto" | true | false</code></p>
 <p><strong>Example usage</strong>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a><span class="p">{</span>
-<a id="__codelineno-61-2" name="__codelineno-61-2" href="#__codelineno-61-2"></a><span class="w">    </span><span class="nt">&quot;ruff.nativeServer&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;on&quot;</span>
-<a id="__codelineno-61-3" name="__codelineno-61-3" href="#__codelineno-61-3"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a><span class="p">{</span>
+<a id="__codelineno-64-2" name="__codelineno-64-2" href="#__codelineno-64-2"></a><span class="w">    </span><span class="nt">&quot;ruff.nativeServer&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;on&quot;</span>
+<a id="__codelineno-64-3" name="__codelineno-64-3" href="#__codelineno-64-3"></a><span class="p">}</span>
 </code></pre></div>
 <h3 id="path"><a class="toclink" href="#path"><code>path</code></a></h3>
 <p>A list of path to <code>ruff</code> executables.</p>
@@ -2313,9 +2373,9 @@ automatically decide between the two based on the Ruff version and extension set
 <p><strong>Default value</strong>: <code>[]</code></p>
 <p><strong>Type</strong>: <code>string[]</code></p>
 <p><strong>Example usage</strong>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a><span class="p">{</span>
-<a id="__codelineno-62-2" name="__codelineno-62-2" href="#__codelineno-62-2"></a><span class="w">    </span><span class="nt">&quot;ruff.path&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;/home/user/.local/bin/ruff&quot;</span><span class="p">]</span>
-<a id="__codelineno-62-3" name="__codelineno-62-3" href="#__codelineno-62-3"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-65-1" name="__codelineno-65-1" href="#__codelineno-65-1"></a><span class="p">{</span>
+<a id="__codelineno-65-2" name="__codelineno-65-2" href="#__codelineno-65-2"></a><span class="w">    </span><span class="nt">&quot;ruff.path&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;/home/user/.local/bin/ruff&quot;</span><span class="p">]</span>
+<a id="__codelineno-65-3" name="__codelineno-65-3" href="#__codelineno-65-3"></a><span class="p">}</span>
 </code></pre></div>
 <h3 id="shownotifications"><a class="toclink" href="#shownotifications"><code>showNotifications</code></a></h3>
 <div class="admonition warning">
@@ -2328,9 +2388,9 @@ guide</a> for more information.</p>
 <p><strong>Default value</strong>: <code>"off"</code></p>
 <p><strong>Type</strong>: <code>"off" | "onError" | "onWarning" | "always"</code></p>
 <p><strong>Example usage</strong>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a><span class="p">{</span>
-<a id="__codelineno-63-2" name="__codelineno-63-2" href="#__codelineno-63-2"></a><span class="w">    </span><span class="nt">&quot;ruff.showNotifications&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;onWarning&quot;</span>
-<a id="__codelineno-63-3" name="__codelineno-63-3" href="#__codelineno-63-3"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-66-1" name="__codelineno-66-1" href="#__codelineno-66-1"></a><span class="p">{</span>
+<a id="__codelineno-66-2" name="__codelineno-66-2" href="#__codelineno-66-2"></a><span class="w">    </span><span class="nt">&quot;ruff.showNotifications&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;onWarning&quot;</span>
+<a id="__codelineno-66-3" name="__codelineno-66-3" href="#__codelineno-66-3"></a><span class="p">}</span>
 </code></pre></div>
 <h3 id="traceserver"><a class="toclink" href="#traceserver"><code>trace.server</code></a></h3>
 <p>The trace level for the language server. Refer to the <a href="https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#traceValue">LSP
@@ -2339,9 +2399,9 @@ for more information.</p>
 <p><strong>Default value</strong>: <code>"off"</code></p>
 <p><strong>Type</strong>: <code>"off" | "messages" | "verbose"</code></p>
 <p><strong>Example usage</strong>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a><span class="p">{</span>
-<a id="__codelineno-64-2" name="__codelineno-64-2" href="#__codelineno-64-2"></a><span class="w">    </span><span class="nt">&quot;ruff.trace.server&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;messages&quot;</span>
-<a id="__codelineno-64-3" name="__codelineno-64-3" href="#__codelineno-64-3"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-67-1" name="__codelineno-67-1" href="#__codelineno-67-1"></a><span class="p">{</span>
+<a id="__codelineno-67-2" name="__codelineno-67-2" href="#__codelineno-67-2"></a><span class="w">    </span><span class="nt">&quot;ruff.trace.server&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;messages&quot;</span>
+<a id="__codelineno-67-3" name="__codelineno-67-3" href="#__codelineno-67-3"></a><span class="p">}</span>
 </code></pre></div>
 
 

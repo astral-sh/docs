@@ -1369,8 +1369,7 @@ first-party.</p>
 <p>When Ruff sees an import like <code>import foo</code>, it will then iterate over the <code>src</code> directories,
 looking for a corresponding Python module (in reality, a directory named <code>foo</code> or a file named
 <code>foo.py</code>). For module paths with multiple components like <code>import foo.bar</code>,
-the default behavior is to search only for a directory named <code>foo</code> or a file
-named <code>foo.py</code>. However, if <code>preview</code> is enabled, Ruff will require that the full relative path <code>foo/bar</code> exists as a directory, or that <code>foo/bar.py</code> or <code>foo/bar.pyi</code> exist as files. Finally, imports of the form <code>from foo import bar</code>, Ruff will only use <code>foo</code> when determining whether a module is first-party or third-party. </p>
+Ruff will require that the full relative path <code>foo/bar</code> exists as a directory, or that <code>foo/bar.py</code> or <code>foo/bar.pyi</code> exist as files. Finally, for imports of the form <code>from foo import bar</code>, Ruff will only use <code>foo</code> when determining whether a module is first-party or third-party.</p>
 <p>If there is a directory
 whose name matches a third-party package, but does not contain Python code,
 it could happen that the above algorithm incorrectly infers an import to be first-party.
