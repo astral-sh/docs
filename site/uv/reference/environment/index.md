@@ -458,14 +458,6 @@ Note that `setuptools` and `wheel` are not included in Python 3.12+ environments
 
 uv also reads the following externally defined environment variables:
 
-### [`ACTIONS_ID_TOKEN_REQUEST_TOKEN`](#actions_id_token_request_token)
-
-Used for trusted publishing via `uv publish`. Contains the oidc request token.
-
-### [`ACTIONS_ID_TOKEN_REQUEST_URL`](#actions_id_token_request_url)
-
-Used for trusted publishing via `uv publish`. Contains the oidc token url.
-
 ### [`ALL_PROXY`](#all_proxy)
 
 General proxy for all network requests.
@@ -496,11 +488,15 @@ This is a quasi-standard variable, described, e.g., in `ncurses(3x)`.
 
 ### [`CONDA_DEFAULT_ENV`](#conda_default_env)
 
-Used to determine if an active Conda environment is the base environment or not.
+Used to determine the name of the active Conda environment.
 
 ### [`CONDA_PREFIX`](#conda_prefix)
 
-Used to detect an activated Conda environment.
+Used to detect the path of an active Conda environment.
+
+### [`CONDA_ROOT`](#conda_root)
+
+Used to determine the root install path of Conda.
 
 ### [`FISH_VERSION`](#fish_version)
 
@@ -514,7 +510,15 @@ See [force-color.org](https://force-color.org).
 
 ### [`GITHUB_ACTIONS`](#github_actions)
 
-Used for trusted publishing via `uv publish`.
+Indicates that the current process is running in GitHub Actions.
+
+`uv publish` may attempt trusted publishing flows when set to `true`.
+
+### [`GITLAB_CI`](#gitlab_ci)
+
+Indicates that the current process is running in GitLab CI.
+
+`uv publish` may attempt trusted publishing flows when set to `true`.
 
 ### [`HF_TOKEN`](#hf_token)
 
@@ -569,6 +573,10 @@ Use to set the .netrc file location.
 Disables colored output (takes precedence over `FORCE_COLOR`).
 
 See [no-color.org](https://no-color.org).
+
+### [`NO_PROXY`](#no_proxy)
+
+Comma-separated list of hostnames (e.g., `example.com`) and/or patterns (e.g., `192.168.1.0/24`) that should bypass the proxy.
 
 ### [`NU_VERSION`](#nu_version)
 
