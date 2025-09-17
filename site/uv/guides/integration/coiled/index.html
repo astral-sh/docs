@@ -6,19 +6,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="A guide to using uv with pre-commit to automatically update lock files, export requirements, and compile requirements files.">
+        <meta name="description" content="A complete guide to using uv with Coiled to manage Python dependencies and deploy serverless scripts.">
       
       
         <meta name="author" content="charliermarsh">
       
       
-        <link rel="canonical" href="https://docs.astral.sh/uv/guides/integration/pre-commit/">
+        <link rel="canonical" href="https://docs.astral.sh/uv/guides/integration/coiled/">
       
       
-        <link rel="prev" href="../gitlab/">
+        <link rel="prev" href="../aws-lambda/">
       
       
-        <link rel="next" href="../pytorch/">
+        <link rel="next" href="../../../concepts/">
       
       
         
@@ -29,7 +29,7 @@
     
     
 
-<title>Using uv with pre-commit | uv</title>
+<title>Using uv with Coiled | uv</title>
 
 
     
@@ -81,8 +81,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2025-09-17 21:13:41Z",
-        "dateModified": "2025-09-17 21:13:41Z",
+        "datePublished": "2025-09-12 12:24:32Z",
+        "dateModified": "2025-09-12 12:24:32Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -110,7 +110,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#using-uv-in-pre-commit" class="md-skip">
+        <a href="#using-uv-with-coiled" class="md-skip">
           Skip to content
         </a>
       
@@ -145,7 +145,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Using uv with pre-commit
+              Using uv with Coiled
             
           </span>
         </div>
@@ -1020,18 +1020,9 @@
                 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../pre-commit/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1046,7 +1037,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -1186,9 +1176,35 @@
                 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../coiled/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    
+  
+    Coiled
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1203,6 +1219,48 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#managing-script-dependencies-with-uv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Managing script dependencies with uv
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-scripts-on-the-cloud-with-coiled" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running scripts on the cloud with Coiled
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -2865,6 +2923,36 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#managing-script-dependencies-with-uv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Managing script dependencies with uv
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-scripts-on-the-cloud-with-coiled" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running scripts on the cloud with Coiled
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2945,63 +3033,110 @@
   
 
 
-<h1 id="using-uv-in-pre-commit"><a class="toclink" href="#using-uv-in-pre-commit">Using uv in pre-commit</a></h1>
-<p>An official pre-commit hook is provided at
-<a href="https://github.com/astral-sh/uv-pre-commit"><code>astral-sh/uv-pre-commit</code></a>.</p>
-<p>To use uv with pre-commit, add one of the following examples to the <code>repos</code> list in the
-<code>.pre-commit-config.yaml</code>.</p>
-<p>To make sure your <code>uv.lock</code> file is up to date even if your <code>pyproject.toml</code> file was changed:</p>
-<div class="highlight"><span class="filename">.pre-commit-config.yaml</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">repos</span><span class="p">:</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">repo</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/astral-sh/uv-pre-commit</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="c1"># uv version.</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="nt">rev</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.8.18</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="nt">hooks</span><span class="p">:</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uv-lock</span>
+<h1 id="using-uv-with-coiled"><a class="toclink" href="#using-uv-with-coiled">Using uv with Coiled</a></h1>
+<p><a href="https://coiled.io?utm_source=uv-docs">Coiled</a> is a serverless, UX-focused cloud computing platform
+that makes it easy to run code on cloud hardware (AWS, GCP, and Azure).</p>
+<p>This guide shows how to run Python scripts on the cloud using uv for dependency management and
+Coiled for cloud deployment.</p>
+<h2 id="managing-script-dependencies-with-uv"><a class="toclink" href="#managing-script-dependencies-with-uv">Managing script dependencies with uv</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We'll use this concrete example throughout this guide, but any Python script can be used with
+uv and Coiled.</p>
+</div>
+<p>We'll use the following script as an example:</p>
+<div class="highlight"><span class="filename">process.py</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="hll"><span class="c1"># /// script</span>
+</span><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="hll"><span class="c1"># requires-python = &quot;&gt;=3.12&quot;</span>
+</span><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="hll"><span class="c1"># dependencies = [</span>
+</span><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="hll"><span class="c1">#   &quot;pandas&quot;,</span>
+</span><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="hll"><span class="c1">#   &quot;pyarrow&quot;,</span>
+</span><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="hll"><span class="c1">#   &quot;s3fs&quot;,</span>
+</span><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="hll"><span class="c1"># ]</span>
+</span><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="hll"><span class="c1"># ///</span>
+</span><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="s2">&quot;s3://coiled-data/uber/part.0.parquet&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="n">storage_options</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;anon&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="p">)</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </code></pre></div>
-<p>To keep a <code>requirements.txt</code> file in sync with your <code>uv.lock</code> file:</p>
-<div class="highlight"><span class="filename">.pre-commit-config.yaml</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">repos</span><span class="p">:</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">repo</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/astral-sh/uv-pre-commit</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="c1"># uv version.</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="nt">rev</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.8.18</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="nt">hooks</span><span class="p">:</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uv-export</span>
+<p>The script uses <a href="https://pandas.pydata.org/docs/"><code>pandas</code></a> to load a Parquet file hosted in a
+public bucket on S3, then prints the first few rows. It uses
+<a href="https://peps.python.org/pep-0723/">inline script metadata</a> to enumerate its dependencies.</p>
+<p>When running this script locally, e.g., with:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>$<span class="w"> </span>uv<span class="w"> </span>run<span class="w"> </span>process.py
 </code></pre></div>
-<p>To compile requirements files:</p>
-<div class="highlight"><span class="filename">.pre-commit-config.yaml</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">repos</span><span class="p">:</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">repo</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/astral-sh/uv-pre-commit</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="c1"># uv version.</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="nt">rev</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.8.18</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="nt">hooks</span><span class="p">:</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">      </span><span class="c1"># Compile requirements</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip-compile</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">        </span><span class="nt">args</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">requirements.in</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-o</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">requirements.txt</span><span class="p p-Indicator">]</span>
+<p>uv will automatically create a virtual environment and installs its dependencies.</p>
+<p>To learn more about using inline script metadata with uv, see the
+<a href="../../scripts/#declaring-script-dependencies">script guide</a>.</p>
+<h2 id="running-scripts-on-the-cloud-with-coiled"><a class="toclink" href="#running-scripts-on-the-cloud-with-coiled">Running scripts on the cloud with Coiled</a></h2>
+<p>Using inline script metadata makes the script fully self-contained: it includes the information that
+is needed to run it. This makes it easier to run on other machines, like a machine in the cloud.</p>
+<p>There are many use cases where resources beyond what's available on a local workstation are needed,
+e.g.:</p>
+<ul>
+<li>Processing large amounts of cloud-hosted data</li>
+<li>Needing accelerated hardware like GPUs or a big machine with more memory</li>
+<li>Running the same script with hundreds or thousands of different inputs, in parallel</li>
+</ul>
+<p>Coiled makes it simple to run code on cloud hardware.</p>
+<p>First, authenticate with Coiled using
+<a href="https://docs.coiled.io/user_guide/api.html?utm_source=uv-docs#coiled-login"><code>coiled login</code></a> :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>$<span class="w"> </span>uvx<span class="w"> </span>coiled<span class="w"> </span>login
 </code></pre></div>
-<p>To compile alternative requirements files, modify <code>args</code> and <code>files</code>:</p>
-<div class="highlight"><span class="filename">.pre-commit-config.yaml</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">repos</span><span class="p">:</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">repo</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/astral-sh/uv-pre-commit</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="c1"># uv version.</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="nt">rev</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.8.18</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="nt">hooks</span><span class="p">:</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">      </span><span class="c1"># Compile requirements</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip-compile</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">        </span><span class="nt">args</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">requirements-dev.in</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-o</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">requirements-dev.txt</span><span class="p p-Indicator">]</span>
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">        </span><span class="nt">files</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">^requirements-dev\.(in|txt)$</span>
+<p>You'll be prompted to create a Coiled account if you don't already have one — it's free to start
+using Coiled.</p>
+<p>To instruct Coiled to run the script on a virtual machine on AWS, add two comments to the top:</p>
+<div class="highlight"><span class="filename">process.py</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="hll"><span class="c1"># COILED container ghcr.io/astral-sh/uv:debian-slim</span>
+</span><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="hll"><span class="c1"># COILED region us-east-2</span>
+</span><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># /// script</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="c1"># requires-python = &quot;&gt;=3.12&quot;</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="c1"># dependencies = [</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1">#   &quot;pandas&quot;,</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="c1">#   &quot;pyarrow&quot;,</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="c1">#   &quot;s3fs&quot;,</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="c1"># ]</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="c1"># ///</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>    <span class="s2">&quot;s3://coiled-data/uber/part.0.parquet&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>    <span class="n">storage_options</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;anon&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="p">)</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </code></pre></div>
-<p>To run the hook over multiple files at the same time, add additional entries:</p>
-<div class="highlight"><span class="filename">.pre-commit-config.yaml</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">repos</span><span class="p">:</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">repo</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/astral-sh/uv-pre-commit</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="c1"># uv version.</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="nt">rev</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.8.18</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="nt">hooks</span><span class="p">:</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">      </span><span class="c1"># Compile requirements</span>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip-compile</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip-compile requirements.in</span>
-<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">        </span><span class="nt">args</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">requirements.in</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-o</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">requirements.txt</span><span class="p p-Indicator">]</span>
-<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip-compile</span>
-<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip-compile requirements-dev.in</span>
-<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">        </span><span class="nt">args</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">requirements-dev.in</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-o</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">requirements-dev.txt</span><span class="p p-Indicator">]</span>
-<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">        </span><span class="nt">files</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">^requirements-dev\.(in|txt)$</span>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>While Coiled supports AWS, GCP, and Azure, this example assumes AWS is being used
+(see the <code>region</code> option above). If you're new to Coiled, you'll automatically have
+access to a free account running on AWS. If you're not running on AWS, you can either use
+a valid <code>region</code> for your cloud provider or remove the <code>region</code> line above.</p>
+</div>
+<p>The comments tell Coiled to use the official <a href="../docker/">uv Docker image</a> when
+running the script (ensuring uv is available) and to run in the <code>us-east-2</code> region on AWS (where
+this example data file happens to live) to avoid any data egress.</p>
+<p>To submit a batch job for Coiled to run, use
+<a href="https://docs.coiled.io/user_guide/api.html?utm_source=uv-docs#coiled-batch-run"><code>coiled batch run</code></a>
+to execute the <code>uv run</code> command in the cloud:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="hll">$<span class="w"> </span>uvx<span class="w"> </span>coiled<span class="w"> </span>batch<span class="w"> </span>run<span class="w"> </span><span class="se">\</span>
+</span><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span>uv<span class="w"> </span>run<span class="w"> </span>process.py
 </code></pre></div>
+<p>The same process that previously ran locally is now running on a remote cloud VM on AWS.</p>
+<p>You can monitor the progress of the batch job in the UI at
+<a href="https://cloud.coiled.io">cloud.coiled.io</a> or from the terminal using the <code>coiled batch status</code>,
+<code>coiled batch wait</code>, and <code>coiled batch logs</code> commands.</p>
+<p><img alt="Coiled UI" src="https://docs.coiled.io/_images/uv-coiled.png" /></p>
+<p>Note there's additional configuration we could have specified, e.g., the instance type (the default
+is a 4-core virtual machine with 16 GiB of memory), disk size, whether to use spot instance, and
+more. See the
+<a href="https://docs.coiled.io/user_guide/batch.html?utm_source=uv-docs">Coiled Batch documentation</a> for
+more details.</p>
+<p>For more details on Coiled, and how it can help with other use cases, see the
+<a href="https://docs.coiled.io?utm_source=uv-docs">Coiled documentation</a>.</p>
 
   
     
@@ -3015,7 +3150,7 @@
         <span class="md-icon" title="Last update">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
         </span>
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 17, 2025</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 12, 2025</span>
       </span>
     
     
@@ -3054,7 +3189,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../gitlab/" class="md-footer__link md-footer__link--prev" aria-label="Previous: GitLab CI/CD" rel="prev">
+          <a href="../aws-lambda/" class="md-footer__link md-footer__link--prev" aria-label="Previous: AWS Lambda" rel="prev">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
@@ -3064,20 +3199,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                GitLab CI/CD
+                AWS Lambda
               </div>
             </div>
           </a>
         
         
           
-          <a href="../pytorch/" class="md-footer__link md-footer__link--next" aria-label="Next: PyTorch" rel="next">
+          <a href="../../../concepts/" class="md-footer__link md-footer__link--next" aria-label="Next: Index" rel="next">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                PyTorch
+                Index
               </div>
             </div>
             <div class="md-footer__button md-icon">

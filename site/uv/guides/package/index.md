@@ -103,6 +103,10 @@ By default, when `uv version` modifies the project it will perform a lock and sy
 
 ## [Publishing your package](#publishing-your-package)
 
+Note
+
+A complete guide to publishing from GitHub Actions to PyPI can be found in the [GitHub Guide](../integration/github/#publishing-to-pypi)
+
 Publish your package with `uv publish`:
 
 ```
@@ -110,7 +114,7 @@ $ uv publish
 
 ```
 
-Set a PyPI token with `--token` or `UV_PUBLISH_TOKEN`, or set a username with `--username` or `UV_PUBLISH_USERNAME` and password with `--password` or `UV_PUBLISH_PASSWORD`. For publishing to PyPI from GitHub Actions, you don't need to set any credentials. Instead, [add a trusted publisher to the PyPI project](https://docs.pypi.org/trusted-publishers/adding-a-publisher/).
+Set a PyPI token with `--token` or `UV_PUBLISH_TOKEN`, or set a username with `--username` or `UV_PUBLISH_USERNAME` and password with `--password` or `UV_PUBLISH_PASSWORD`. For publishing to PyPI from GitHub Actions or another Trusted Publisher, you don't need to set any credentials. Instead, [add a trusted publisher to the PyPI project](https://docs.pypi.org/trusted-publishers/adding-a-publisher/).
 
 Note
 
