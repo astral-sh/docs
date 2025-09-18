@@ -862,7 +862,10 @@ module's counterparts (e.g., as <code>os.path.expanduser()</code>).</p>
 it can be less performant than the lower-level alternatives that work directly with strings,
 especially on older versions of Python.</p>
 <h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix Safety</a></h2>
-<p>This rule's fix is marked as unsafe if the replacement would remove comments attached to the original expression.</p>
+<p>This rule's fix is always marked as unsafe because the behaviors of
+<code>os.path.expanduser</code> and <code>Path.expanduser</code> differ when a user's home
+directory can't be resolved: <code>os.path.expanduser</code> returns the
+input unchanged, while <code>Path.expanduser</code> raises <code>RuntimeError</code>.</p>
 <h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path.expanduser">Python documentation: <code>Path.expanduser</code></a></li>
