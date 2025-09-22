@@ -81,8 +81,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2025-07-25 20:19:24Z",
-        "dateModified": "2025-07-25 20:19:24Z",
+        "datePublished": "2025-09-22 13:59:40Z",
+        "dateModified": "2025-09-22 13:59:40Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -1813,10 +1813,9 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Discovery of Python versions">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
   <a href="#python-pre-releases" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1826,9 +1825,26 @@
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#free-threaded-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Free-threaded Python
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debug-python-variants" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Debug Python variants
+      
+    </span>
+  </a>
   
 </li>
       
@@ -1904,6 +1920,17 @@
     <span class="md-ellipsis">
       
         PyPy distributions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyodide-distributions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pyodide distributions
       
     </span>
   </a>
@@ -3292,10 +3319,9 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Discovery of Python versions">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
   <a href="#python-pre-releases" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3305,9 +3331,26 @@
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#free-threaded-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Free-threaded Python
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debug-python-variants" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Debug Python variants
+      
+    </span>
+  </a>
   
 </li>
       
@@ -3383,6 +3426,17 @@
     <span class="md-ellipsis">
       
         PyPy distributions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyodide-distributions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pyodide distributions
       
     </span>
   </a>
@@ -3496,6 +3550,8 @@ create the virtual environment with it.</p>
 <ul>
 <li><code>&lt;version&gt;</code> (e.g., <code>3</code>, <code>3.12</code>, <code>3.12.3</code>)</li>
 <li><code>&lt;version-specifier&gt;</code> (e.g., <code>&gt;=3.12,&lt;3.13</code>)</li>
+<li><code>&lt;version&gt;&lt;short-variant&gt;</code> (e.g., <code>3.13t</code>, <code>3.12.0d</code>)</li>
+<li><code>&lt;version&gt;+&lt;variant&gt;</code> (e.g., <code>3.13+freethreaded</code>, <code>3.12.0+debug</code>)</li>
 <li><code>&lt;implementation&gt;</code> (e.g., <code>cpython</code> or <code>cp</code>)</li>
 <li><code>&lt;implementation&gt;@&lt;version&gt;</code> (e.g., <code>cpython@3.12</code>)</li>
 <li><code>&lt;implementation&gt;&lt;version&gt;</code> (e.g., <code>cpython3.12</code> or <code>cp312</code>)</li>
@@ -3681,7 +3737,7 @@ without inspecting additional executables.</p>
 a system Python version, uv will use the first compatible version — not the newest version.</p>
 <p>If a Python version cannot be found on the system, uv will check for a compatible managed Python
 version download.</p>
-<h3 id="python-pre-releases"><a class="toclink" href="#python-pre-releases">Python pre-releases</a></h3>
+<h2 id="python-pre-releases"><a class="toclink" href="#python-pre-releases">Python pre-releases</a></h2>
 <p>Python pre-releases will not be selected by default. Python pre-releases will be used if there is no
 other available installation matching the request. For example, if only a pre-release version is
 available it will be used but otherwise a stable release version will be used. Similarly, if the
@@ -3689,6 +3745,31 @@ path to a pre-release Python executable is provided then no other Python version
 and the pre-release version will be used.</p>
 <p>If a pre-release Python version is available and matches the request, uv will not download a stable
 Python version instead.</p>
+<h2 id="free-threaded-python"><a class="toclink" href="#free-threaded-python">Free-threaded Python</a></h2>
+<p>uv supports discovering and installing
+<a href="https://docs.python.org/3.14/glossary.html#term-free-threading">free-threaded</a> Python variants in
+CPython 3.13+.</p>
+<p>Free-threaded Python versions will not be selected by default. Free-threaded Python versions will
+only be selected when explicitly requested, e.g., with <code>3.13t</code> or <code>3.13+freethreaded</code>.</p>
+<h2 id="debug-python-variants"><a class="toclink" href="#debug-python-variants">Debug Python variants</a></h2>
+<p>uv supports discovering and installing
+<a href="https://docs.python.org/3.14/using/configure.html#debug-build">debug builds</a> of Python, i.e., with
+debug assertions enabled.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Debug builds of Python are slower and are not appropriate for general use.</p>
+</div>
+<p>Debug builds will be used if there is no other available installation matching the request. For
+example, if only a debug version is available it will be used but otherwise a stable release version
+will be used. Similarly, if the path to a debug Python executable is provided then no other Python
+version matches the request and the debug version will be used.</p>
+<p>Debug builds of Python can be explicitly requested with, e.g., <code>3.13d</code> or <code>3.13+debug</code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>CPython versions installed by uv usually have debug symbols stripped to reduce the distribution
+size. These debug builds do not have debug symbols stripped, which can be useful when debugging
+Python processes with a C-level debugger.</p>
+</div>
 <h2 id="disabling-automatic-python-downloads"><a class="toclink" href="#disabling-automatic-python-downloads">Disabling automatic Python downloads</a></h2>
 <p>By default, uv will automatically download Python versions when needed.</p>
 <p>The <a href="../../reference/settings/#python-downloads"><code>python-downloads</code></a> option can be used to disable
@@ -3733,19 +3814,20 @@ downloading a managed Python version.</p>
 without changing the preference.</p>
 </div>
 <h2 id="python-implementation-support"><a class="toclink" href="#python-implementation-support">Python implementation support</a></h2>
-<p>uv supports the CPython, PyPy, and GraalPy Python implementations. If a Python implementation is not
-supported, uv will fail to discover its interpreter.</p>
+<p>uv supports the CPython, PyPy, Pyodide, and GraalPy Python implementations. If a Python
+implementation is not supported, uv will fail to discover its interpreter.</p>
 <p>The implementations may be requested with either the long or short name:</p>
 <ul>
 <li>CPython: <code>cpython</code>, <code>cp</code></li>
 <li>PyPy: <code>pypy</code>, <code>pp</code></li>
 <li>GraalPy: <code>graalpy</code>, <code>gp</code></li>
+<li>Pyodide: <code>pyodide</code></li>
 </ul>
 <p>Implementation name requests are not case-sensitive.</p>
 <p>See the <a href="#requesting-a-version">Python version request</a> documentation for more details on the
 supported formats.</p>
 <h2 id="managed-python-distributions"><a class="toclink" href="#managed-python-distributions">Managed Python distributions</a></h2>
-<p>uv supports downloading and installing CPython and PyPy distributions.</p>
+<p>uv supports downloading and installing CPython, PyPy, and Pyodide distributions.</p>
 <h3 id="cpython-distributions"><a class="toclink" href="#cpython-distributions">CPython distributions</a></h3>
 <p>As Python does not publish official distributable CPython binaries, uv instead uses pre-built
 distributions from the Astral
@@ -3761,7 +3843,10 @@ creating optimized, performant builds (e.g., with PGO and LTO enabled) is very s
 documentation for details. Additionally, some platforms may not be supported (e.g., distributions
 are not yet available for musl Linux on ARM).</p>
 <h3 id="pypy-distributions"><a class="toclink" href="#pypy-distributions">PyPy distributions</a></h3>
-<p>PyPy distributions are provided by the PyPy project.</p>
+<p>PyPy distributions are provided by the <a href="https://pypy.org">PyPy project</a>.</p>
+<h3 id="pyodide-distributions"><a class="toclink" href="#pyodide-distributions">Pyodide distributions</a></h3>
+<p>Pyodide distributions are provided by the <a href="https://github.com/pyodide/pyodide">Pyodide project</a>.</p>
+<p>Pyodide is a port of CPython for the WebAssembly / Emscripten platform.</p>
 <h2 id="registration-in-the-windows-registry"><a class="toclink" href="#registration-in-the-windows-registry">Registration in the Windows registry</a></h2>
 <p>On Windows, installation of managed Python versions will register them with the Windows registry as
 defined by <a href="https://peps.python.org/pep-0514/">PEP 514</a>.</p>
@@ -3784,7 +3869,7 @@ registry entries.</p>
         <span class="md-icon" title="Last update">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
         </span>
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 25, 2025</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 22, 2025</span>
       </span>
     
     

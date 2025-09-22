@@ -148,7 +148,7 @@ The `--upgrade-package` flag will attempt to update the specified package to the
 
 See the documentation on [managing dependencies](../../concepts/projects/dependencies/) for more details.
 
-## [Managing version](#managing-version)
+## [Viewing your version](#viewing-your-version)
 
 The `uv version` command can be used to read your package's version.
 
