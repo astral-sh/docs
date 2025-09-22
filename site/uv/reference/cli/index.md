@@ -7679,6 +7679,8 @@ The following Python version request formats are supported:
 
 - `<version>` e.g. `3`, `3.12`, `3.12.3`
 - `<version-specifier>` e.g. `>=3.12,<3.13`
+- `<version><short-variant>` (e.g., `3.13t`, `3.12.0d`)
+- `<version>+<variant>` (e.g., `3.13+freethreaded`, `3.12.0+debug`)
 - `<implementation>` e.g. `cpython` or `cp`
 - `<implementation>@<version>` e.g. `cpython@3.12`
 - `<implementation><version>` e.g. `cpython3.12` or `cp312`
@@ -13692,6 +13694,12 @@ May also be set with the `UV_CONFIG_FILE` environment variable.
 Relative paths are resolved with the given directory as the base.
 
 See `--project` to only change the project root directory.
+```
+
+[`--force`](#uv-cache-clean--force) : Force removal of the cache, ignoring in-use checks.
+
+```
+By default, `uv cache clean` will block until no process is reading the cache. When `--force` is used, `uv cache clean` will proceed without taking a lock.
 ```
 
 [`--help`](#uv-cache-clean--help), `-h` : Display the concise help for this command
