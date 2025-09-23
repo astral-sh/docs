@@ -410,6 +410,10 @@ Equivalent to the `--require-hashes` command-line argument. If set to `true`, uv
 
 Equivalent to the `--resolution` command-line argument. For example, if set to `lowest-direct`, uv will install the lowest compatible versions of all direct dependencies.
 
+### [`UV_S3_ENDPOINT_URL`](#uv_s3_endpoint_url)
+
+The URL to treat as an S3-compatible storage endpoint. Requests to this endpoint will be signed using AWS Signature Version 4 based on the `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_PROFILE`, and `AWS_CONFIG_FILE` environment variables.
+
 ### [`UV_STACK_SIZE`](#uv_stack_size)
 
 Use to set the stack size used by uv.
@@ -471,6 +475,38 @@ Defaults to `24`.
 ### [`APPDATA`](#appdata)
 
 Path to user-level configuration directory on Windows systems.
+
+### [`AWS_ACCESS_KEY_ID`](#aws_access_key_id)
+
+The AWS access key ID to use when signing S3 requests.
+
+### [`AWS_CONFIG_FILE`](#aws_config_file)
+
+The AWS config file to use when signing S3 requests.
+
+### [`AWS_DEFAULT_REGION`](#aws_default_region)
+
+The default AWS region to use when signing S3 requests, if `AWS_REGION` is not set.
+
+### [`AWS_PROFILE`](#aws_profile)
+
+The AWS profile to use when signing S3 requests.
+
+### [`AWS_REGION`](#aws_region)
+
+The AWS region to use when signing S3 requests.
+
+### [`AWS_SECRET_ACCESS_KEY`](#aws_secret_access_key)
+
+The AWS secret access key to use when signing S3 requests.
+
+### [`AWS_SESSION_TOKEN`](#aws_session_token)
+
+The AWS session token to use when signing S3 requests.
+
+### [`AWS_SHARED_CREDENTIALS_FILE`](#aws_shared_credentials_file)
+
+The AWS shared credentials file to use when signing S3 requests.
 
 ### [`BASH_VERSION`](#bash_version)
 
