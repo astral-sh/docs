@@ -6,13 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Checks for uses of weak or broken cryptographic hash functions in">
+        <meta name="description" content="Checks that async functions do not call blocking `os.path` or `pathlib.Path`">
       
       
         <meta name="author" content="charliermarsh">
       
       
-        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/hashlib-insecure-hash-function/">
+        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/blocking-path-method-in-async-function/">
       
       
       
@@ -25,7 +25,7 @@
     
     
 
-<title>hashlib-insecure-hash-function (S324) | Ruff</title>
+<title>blocking-path-method-in-async-function (ASYNC240) | Ruff</title>
 
 
     
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#hashlib-insecure-hash-function-s324" class="md-skip">
+        <a href="#blocking-path-method-in-async-function-async240" class="md-skip">
           Skip to content
         </a>
       
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              hashlib-insecure-hash-function (S324)
+              blocking-path-method-in-async-function (ASYNC240)
             
           </span>
         </div>
@@ -837,62 +837,42 @@
   
 
 
-<h1 id="hashlib-insecure-hash-function-s324"><a class="toclink" href="#hashlib-insecure-hash-function-s324">hashlib-insecure-hash-function (S324)</a></h1>
-<p>Derived from the <strong><a href="../#flake8-bandit-s">flake8-bandit</a></strong> linter.</p>
+<h1 id="blocking-path-method-in-async-function-async240"><a class="toclink" href="#blocking-path-method-in-async-function-async240">blocking-path-method-in-async-function (ASYNC240)</a></h1>
+<p>Derived from the <strong><a href="../#flake8-async-async">flake8-async</a></strong> linter.</p>
+<p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
-<p>Checks for uses of weak or broken cryptographic hash functions in
-<code>hashlib</code> and <code>crypt</code> libraries.</p>
+<p>Checks that async functions do not call blocking <code>os.path</code> or <code>pathlib.Path</code>
+methods.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
-<p>Weak or broken cryptographic hash functions may be susceptible to
-collision attacks (where two different inputs produce the same hash) or
-pre-image attacks (where an attacker can find an input that produces a
-given hash). This can lead to security vulnerabilities in applications
-that rely on these hash functions.</p>
-<p>Avoid using weak or broken cryptographic hash functions in security
-contexts. Instead, use a known secure hash function such as SHA256.</p>
-<p>Note: This rule targets the following weak algorithm names in <code>hashlib</code>:
-<code>md4</code>, <code>md5</code>, <code>sha</code>, and <code>sha1</code>. It also flags uses of <code>crypt.crypt</code> and
-<code>crypt.mksalt</code> when configured with <code>METHOD_CRYPT</code>, <code>METHOD_MD5</code>, or
-<code>METHOD_BLOWFISH</code>.</p>
-<p>It does not attempt to lint OpenSSL- or platform-specific aliases and OIDs
-(for example: <code>"sha-1"</code>, <code>"ssl3-sha1"</code>, <code>"ssl3-md5"</code>, or
-<code>"1.3.14.3.2.26"</code>), nor variations with trailing spaces, as the set of
-accepted aliases depends on the underlying OpenSSL version and varies across
-platforms and Python builds.</p>
+<p>Calling some <code>os.path</code> or <code>pathlib.Path</code> methods in an async function will block
+the entire event loop, preventing it from executing other tasks while waiting
+for the operation. This negates the benefits of asynchronous programming.</p>
+<p>Instead, use the methods' async equivalents from <code>trio.Path</code> or <code>anyio.Path</code>.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">hashlib</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">certificate_is_valid</span><span class="p">(</span><span class="n">certificate</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">known_hash</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="nb">hash</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="n">certificate</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="k">return</span> <span class="nb">hash</span> <span class="o">==</span> <span class="n">known_hash</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">func</span><span class="p">():</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;my_file.txt&quot;</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">file_exists</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 </code></pre></div>
 <p>Use instead:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">hashlib</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">trio</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">certificate_is_valid</span><span class="p">(</span><span class="n">certificate</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">known_hash</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="nb">hash</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">certificate</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="k">return</span> <span class="nb">hash</span> <span class="o">==</span> <span class="n">known_hash</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">func</span><span class="p">():</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="n">path</span> <span class="o">=</span> <span class="n">trio</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;my_file.txt&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="n">file_exists</span> <span class="o">=</span> <span class="k">await</span> <span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span>
 </code></pre></div>
-<p>or add <code>usedforsecurity=False</code> if the hashing algorithm is not used in a security context, e.g.
-as a non-cryptographic one-way compression function:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">hashlib</span>
+<p>Non-blocking methods are OK to use:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pathlib</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">certificate_is_valid</span><span class="p">(</span><span class="n">certificate</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">known_hash</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="nb">hash</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="n">certificate</span><span class="p">,</span> <span class="n">usedforsecurity</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="k">return</span> <span class="nb">hash</span> <span class="o">==</span> <span class="n">known_hash</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">func</span><span class="p">():</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="n">path</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;my_file.txt&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="n">file_dirname</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">()</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="n">new_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;/tmp/src/&quot;</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="references"><a class="toclink" href="#references">References</a></h2>
-<ul>
-<li><a href="https://docs.python.org/3/library/hashlib.html">Python documentation: <code>hashlib</code> — Secure hashes and message digests</a></li>
-<li><a href="https://docs.python.org/3/library/crypt.html">Python documentation: <code>crypt</code> — Function to check Unix passwords</a></li>
-<li><a href="https://docs.python.org/3/library/hashlib.html#hashlib.algorithms_guaranteed">Python documentation: <code>FIPS</code> - FIPS compliant hashlib implementation</a></li>
-<li><a href="https://cwe.mitre.org/data/definitions/327.html">Common Weakness Enumeration: CWE-327</a></li>
-<li><a href="https://cwe.mitre.org/data/definitions/328.html">Common Weakness Enumeration: CWE-328</a></li>
-<li><a href="https://cwe.mitre.org/data/definitions/916.html">Common Weakness Enumeration: CWE-916</a></li>
-</ul>
 
 
 
