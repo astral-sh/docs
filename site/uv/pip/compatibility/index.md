@@ -315,3 +315,9 @@ While this is not strictly compliant with [PEP 440](https://peps.python.org/pep-
 There are usually many possible solutions given a set of requirements, and a resolver must choose between them. uv's resolver and pip's resolver have a different set of package priorities. While both resolvers use the user-provided order as one of their priorities, pip has additional [priorities](https://pip.pypa.io/en/stable/topics/more-dependency-resolution/#the-resolver-algorithm) that uv does not have. Hence, uv is more likely to be affected by a change in user order than pip is.
 
 For example, `uv pip install foo bar` prioritizes newer versions of `foo` over `bar` and could result in a different resolution than `uv pip install bar foo`. Similarly, this behavior applies to the ordering of requirements in input files for `uv pip compile`.
+
+## [Wheel filename and metadata validation](#wheel-filename-and-metadata-validation)
+
+By default, uv will reject wheels whose filenames are inconsistent with the wheel metadata inside the file. For example, a wheel named `foo-1.0.0-py3-none-any.whl` that contains metadata indicating the version is `1.0.1` will be rejected by uv, but accepted by pip.
+
+To force uv to accept such wheels, set `UV_SKIP_WHEEL_FILENAME_CHECK=1` in the environment.

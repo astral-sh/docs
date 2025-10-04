@@ -81,8 +81,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2025-02-04 13:06:27Z",
-        "dateModified": "2025-02-04 13:06:27Z",
+        "datePublished": "2025-09-25 10:18:10Z",
+        "dateModified": "2025-09-25 10:18:10Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -2735,6 +2735,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#url-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        URL dependencies
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#prioritization" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3029,6 +3040,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#url-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        URL dependencies
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#prioritization" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3272,6 +3294,34 @@ Python versions <code>&gt;=3.9,&lt;3.10</code> and <code>&gt;=3.10</code> and re
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>numpy==2.0.0; python_version &gt;= &quot;3.9&quot; and python_version &lt; &quot;3.10&quot;
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>numpy==2.1.0; python_version &gt;= &quot;3.10&quot;
 </code></pre></div>
+<h2 id="url-dependencies"><a class="toclink" href="#url-dependencies">URL dependencies</a></h2>
+<p>In uv, a dependency can either be a registry dependency, a package with a version specifier or the
+plain package name, or a URL dependency. All requirements in the form <code>{name} @ {url}</code> are URL
+dependencies, and also all dependencies that have a <code>git</code>,<code>url</code>, <code>path</code>, or <code>workspace</code> source.</p>
+<p>When a URL is declared for a package, uv pins the package to this URL, and the version this URL
+implies. If there are two conflicting URLs for a package, the resolver errors, as a URL can only be
+declared as something akin to an exact <code>==</code> pin, and not as list of URLs. A list of URLs is
+supported through <a href="../../../concepts/indexes/#flat-indexes">flat indexes</a> instead.</p>
+<p>uv requires that URLs are either declared directly (in the project, in a
+<a href="../../../concepts/projects/workspaces/">workspace member</a>, in a
+<a href="../../../concepts/resolution/#dependency-constraints">constraint</a>, or in an
+<a href="../../../concepts/resolution/#dependency-overrides">override</a>, any location that is discovered
+directly), or by other URL dependencies. uv discovers all URL dependencies and their transitive URL
+dependencies ahead of the resolution and pins all packages to the URLs and the versions they imply.</p>
+<p>uv does not allow URLs in index packages. This has two reasons: One is a security and predictability
+aspect, that forbids registry distributions to point to non-registry distributions and helps
+auditing which URLs can be accessed. For example, when only using one index URL and no URL
+dependencies, uv will not install any package from outside the index.</p>
+<p>The other is that URLs can add additional versions to the resolution. Say the root package depends
+on foo, bar, and baz, all registry dependencies. foo depends on <code>bar &gt;= 2</code>, but bar only has version
+1 on the index. With the incremental approach, this is an error: foo cannot be fulfilled, there is a
+resolver error. If URLs on index packages were allowed, it could be that there is a version of baz
+declares a dependency on baz-core and that has a version that declares
+<code>bar @ https://example.com/bar-2-py3-none-any.whl</code> adding a version of bar that makes requirements
+resolve. If a dependency can add new versions, discarding any version in the resolver would require
+looking at all possible versions of all direct and transitive dependencies. This breaks the core
+assumption incremental resolvers make that the set of versions for a package is static and would
+require to always fetch the metadata for all possibly reachable version.</p>
 <h2 id="prioritization"><a class="toclink" href="#prioritization">Prioritization</a></h2>
 <p>Prioritization is important for both performance and for better resolutions.</p>
 <p>If we try many versions we have to later discard, resolution is slow, both because we have to read
@@ -3315,7 +3365,7 @@ examples.</p>
         <span class="md-icon" title="Last update">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
         </span>
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 4, 2025</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 25, 2025</span>
       </span>
     
     

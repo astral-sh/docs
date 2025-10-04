@@ -414,6 +414,10 @@ Equivalent to the `--resolution` command-line argument. For example, if set to `
 
 The URL to treat as an S3-compatible storage endpoint. Requests to this endpoint will be signed using AWS Signature Version 4 based on the `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_PROFILE`, and `AWS_CONFIG_FILE` environment variables.
 
+### [`UV_SKIP_WHEEL_FILENAME_CHECK`](#uv_skip_wheel_filename_check)
+
+Avoid verifying that wheel filenames match their contents when installing wheels. This is not recommended, as wheels with inconsistent filenames should be considered invalid and corrected by the relevant package maintainers; however, this option can be used to work around invalid artifacts in rare cases.
+
 ### [`UV_STACK_SIZE`](#uv_stack_size)
 
 Use to set the stack size used by uv.
@@ -529,10 +533,6 @@ Used to determine the name of the active Conda environment.
 ### [`CONDA_PREFIX`](#conda_prefix)
 
 Used to detect the path of an active Conda environment.
-
-### [`CONDA_ROOT`](#conda_root)
-
-Used to determine the root install path of Conda.
 
 ### [`FISH_VERSION`](#fish_version)
 
@@ -765,3 +765,7 @@ Used to determine which `.zshenv` to use when Zsh is being used.
 ### [`ZSH_VERSION`](#zsh_version)
 
 Used to detect Zsh shell usage.
+
+### [`_CONDA_ROOT`](#_conda_root)
+
+Used to determine the root install path of Conda.

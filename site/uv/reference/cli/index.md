@@ -7922,8 +7922,6 @@ May also be set with the `UV_PROJECT` environment variable.
 
 ```
 Note that currently, only local paths are supported.
-
-May also be set with the `UV_PYTHON_DOWNLOADS_JSON_URL` environment variable.
 ```
 
 [`--quiet`](#uv-python-list--quiet), `-q` : Use quiet output.
@@ -8071,8 +8069,6 @@ May also be set with the `UV_MANAGED_PYTHON` environment variable.
 The provided URL will replace `https://github.com/astral-sh/python-build-standalone/releases/download` in, e.g., `https://github.com/astral-sh/python-build-standalone/releases/download/20240713/cpython-3.12.4%2B20240713-aarch64-apple-darwin-install_only.tar.gz`.
 
 Distributions can be read from a local directory by using the `file://` URL scheme.
-
-May also be set with the `UV_PYTHON_INSTALL_MIRROR` environment variable.
 ```
 
 [`--native-tls`](#uv-python-install--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
@@ -8157,16 +8153,12 @@ May also be set with the `UV_PROJECT` environment variable.
 The provided URL will replace `https://downloads.python.org/pypy` in, e.g., `https://downloads.python.org/pypy/pypy3.8-v7.3.7-osx64.tar.bz2`.
 
 Distributions can be read from a local directory by using the `file://` URL scheme.
-
-May also be set with the `UV_PYPY_INSTALL_MIRROR` environment variable.
 ```
 
 [`--python-downloads-json-url`](#uv-python-install--python-downloads-json-url) *python-downloads-json-url* : URL pointing to JSON of custom Python installations.
 
 ```
 Note that currently, only local paths are supported.
-
-May also be set with the `UV_PYTHON_DOWNLOADS_JSON_URL` environment variable.
 ```
 
 [`--quiet`](#uv-python-install--quiet), `-q` : Use quiet output.
@@ -8296,8 +8288,6 @@ May also be set with the `UV_MANAGED_PYTHON` environment variable.
 The provided URL will replace `https://github.com/astral-sh/python-build-standalone/releases/download` in, e.g., `https://github.com/astral-sh/python-build-standalone/releases/download/20240713/cpython-3.12.4%2B20240713-aarch64-apple-darwin-install_only.tar.gz`.
 
 Distributions can be read from a local directory by using the `file://` URL scheme.
-
-May also be set with the `UV_PYTHON_INSTALL_MIRROR` environment variable.
 ```
 
 [`--native-tls`](#uv-python-upgrade--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
@@ -8370,16 +8360,12 @@ May also be set with the `UV_PROJECT` environment variable.
 The provided URL will replace `https://downloads.python.org/pypy` in, e.g., `https://downloads.python.org/pypy/pypy3.8-v7.3.7-osx64.tar.bz2`.
 
 Distributions can be read from a local directory by using the `file://` URL scheme.
-
-May also be set with the `UV_PYPY_INSTALL_MIRROR` environment variable.
 ```
 
 [`--python-downloads-json-url`](#uv-python-upgrade--python-downloads-json-url) *python-downloads-json-url* : URL pointing to JSON of custom Python installations.
 
 ```
 Note that currently, only local paths are supported.
-
-May also be set with the `UV_PYTHON_DOWNLOADS_JSON_URL` environment variable.
 ```
 
 [`--quiet`](#uv-python-upgrade--quiet), `-q` : Use quiet output.
