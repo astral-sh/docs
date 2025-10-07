@@ -857,12 +857,14 @@ has a <code>reverse</code> argument that can be used in lieu of an additional
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">sorted</span><span class="p">(</span><span class="n">iterable</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
-<p>This rule's fix is marked as unsafe, as <code>reversed()</code> and <code>reverse=True</code> will
-yield different results in the event of custom sort keys or equality
-functions. Specifically, <code>reversed()</code> will reverse the order of the
-collection, while <code>sorted()</code> with <code>reverse=True</code> will perform a stable
+<p>This rule's fix is marked as unsafe for <code>reversed()</code> cases, as <code>reversed()</code>
+and <code>reverse=True</code> will yield different results in the event of custom sort
+keys or equality functions. Specifically, <code>reversed()</code> will reverse the order
+of the collection, while <code>sorted()</code> with <code>reverse=True</code> will perform a stable
 reverse sort, which will preserve the order of elements that compare as
 equal.</p>
+<p>The fix is marked as safe for <code>list()</code> cases, as removing <code>list()</code> around
+<code>sorted()</code> does not change the behavior.</p>
 
 
 
