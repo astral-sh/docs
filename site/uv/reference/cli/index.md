@@ -13845,6 +13845,12 @@ Relative paths are resolved with the given directory as the base.
 See `--project` to only change the project root directory.
 ```
 
+[`--force`](#uv-cache-prune--force) : Force removal of the cache, ignoring in-use checks.
+
+```
+By default, `uv cache prune` will block until no process is reading the cache. When `--force` is used, `uv cache prune` will proceed without taking a lock.
+```
+
 [`--help`](#uv-cache-prune--help), `-h` : Display the concise help for this command
 
 [`--managed-python`](#uv-cache-prune--managed-python) : Require use of uv-managed Python versions.
