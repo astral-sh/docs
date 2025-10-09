@@ -81,8 +81,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2025-09-25 10:18:10Z",
-        "dateModified": "2025-09-25 10:18:10Z",
+        "datePublished": "2025-10-09 15:15:03Z",
+        "dateModified": "2025-10-09 15:15:03Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -3278,22 +3278,52 @@ Windows, Linux and macOS.</p>
 <p>To ensure that a resolution with <code>requires-python = "&gt;=3.9"</code> can actually be installed for the
 included Python versions, uv requires that all dependencies have the same minimum Python version.
 Package versions that declare a higher minimum Python version, e.g., <code>requires-python = "&gt;=3.10"</code>,
-are rejected, because a resolution with that version can't be installed on Python 3.9. For
-simplicity and forward compatibility, only lower bounds in <code>requires-python</code> are respected. For
-example, if a package declares <code>requires-python = "&gt;=3.8,&lt;4"</code>, the <code>&lt;4</code> marker is not propagated to
-the entire resolution.</p>
-<p>This default is a problem for packages that use the version-dependent C API of CPython, such as
-numpy. Each numpy release support 4 Python minor versions, e.g., numpy 2.0.0 has wheels for CPython
-3.9 through 3.12 and declares <code>requires-python = "&gt;=3.9"</code>, while numpy 2.1.0 has wheels for CPython
-3.10 through 3.13 and declares <code>requires-python = "&gt;=3.10"</code>. The means that when we resolve a
-<code>numpy&gt;=2,&lt;3</code> requirement in a project with <code>requires-python = "&gt;=3.9"</code>, we resolve numpy 2.0.0 and
-the lockfile doesn't install on Python 3.13 or newer. To alleviate this, whenever we reject a
-version due to a too high Python requirement, we fork on that Python version. This behavior is
-controlled by <code>--fork-strategy</code>. In the example case, upon encountering numpy 2.1.0 we fork into
-Python versions <code>&gt;=3.9,&lt;3.10</code> and <code>&gt;=3.10</code> and resolve two different numpy versions:</p>
+are rejected, because a resolution with that version can't be installed on Python 3.9. This ensures
+that when you are on an old Python version, you can install old packages, instead of getting newer
+packages that require newer Python syntax or standard library features.</p>
+<p>uv ignores upper-bounds on <code>requires-python</code>, with special handling for packages with only
+ABI-specific wheels. For example, if a package declares <code>requires-python = "&gt;=3.8,&lt;4"</code>, the <code>&lt;4</code>
+part is ignored. There is a detailed discussion with drawbacks and alternatives in
+<a href="https://github.com/astral-sh/uv/issues/4022">#4022</a> and this
+<a href="https://discuss.python.org/t/requires-python-upper-limits/12663">DPO thread</a>, this section
+summarizes the aspects most relevant to uv's design.</p>
+<p>For most projects, it's not possible to determine whether they will be compatible with a new version
+before it's released, so blocking newer versions in advance would block users from upgrading or
+testing newer Python versions. The exceptions are packages which use the unstable C ABI or internals
+of CPython such as its bytecode format.</p>
+<p>Introducing a <code>requires-python</code> upper bound to a project that previously wasn't using one will not
+prevent the project from being used on a too recent Python version. Instead of failing, the resolver
+will pick an older version without the bound, circumventing the bound.</p>
+<p>For the resolution to be as universally installable as possible, uv ensures that the selected
+dependency versions are compatible with the <code>requires-python</code> range of the project. For example, for
+a project with <code>requires-python = "&gt;=3.12"</code>, uv will not use a dependency version with
+<code>requires-python = "&gt;=3.13"</code>, as otherwise the resolution is not installable on Python 3.12, which
+the project declares to support. Applying the same logic to upper bounds means that bumping the
+upper Python version bound on a project makes it compatible with less dependency versions,
+potentially failing to resolve when no version of a dependency supports the required range. (Bumping
+the lower Python version bound has the inverse effect, it only increases the set of supported
+dependency versions.)</p>
+<p>Note that this is different for Conda, as the Conda solver also determines the Python version, so it
+can choose a lower Python version instead. Conda can also change metadata after a release, so it can
+update compatibility for a new Python version, while metadata on PyPI cannot be changed once
+published.</p>
+<p>Ignoring an upper bound is a problem for packages such as numpy which use the version-dependent C
+API of CPython. As of writing, each numpy release support 4 Python minor versions, e.g., numpy 2.0.0
+has wheels for CPython 3.9 through 3.12 and declares <code>requires-python = "&gt;=3.9"</code>, while numpy 2.1.0
+has wheels for CPython 3.10 through 3.13 and declares <code>requires-python = "&gt;=3.10"</code>. The means that
+when uv resolves a <code>numpy&gt;=2,&lt;3</code> requirement in a project with <code>requires-python = "&gt;=3.9"</code>, it
+selects numpy 2.0.0 and the lockfile doesn't install on Python 3.13 or newer. To alleviate this,
+whenever uv rejects a version that requires a newer Python version, we fork by splitting the
+resolution markers on that Python version. This behavior can be controlled by <code>--fork-strategy</code>. In
+the example case, upon encountering numpy 2.1.0 we fork into Python versions <code>&gt;=3.9,&lt;3.10</code> and
+<code>&gt;=3.10</code> and resolve two different numpy versions:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>numpy==2.0.0; python_version &gt;= &quot;3.9&quot; and python_version &lt; &quot;3.10&quot;
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>numpy==2.1.0; python_version &gt;= &quot;3.10&quot;
 </code></pre></div>
+<p>There's one case where uv does consider the upper bound: When the project uses an upper bound on
+requires Python, such as <code>requires-python = "==3.13.*"</code> for an application that only deploys to
+Python 3.13. uv prunes wheels from the lockfile that are outside the range (e.g., <code>cp312</code> and
+<code>cp314</code>) in a post-processing step, which does not influence the resolution itself.</p>
 <h2 id="url-dependencies"><a class="toclink" href="#url-dependencies">URL dependencies</a></h2>
 <p>In uv, a dependency can either be a registry dependency, a package with a version specifier or the
 plain package name, or a URL dependency. All requirements in the form <code>{name} @ {url}</code> are URL
@@ -3365,7 +3395,7 @@ examples.</p>
         <span class="md-icon" title="Last update">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
         </span>
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 25, 2025</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 9, 2025</span>
       </span>
     
     
