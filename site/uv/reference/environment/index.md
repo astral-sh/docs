@@ -660,6 +660,8 @@ Used ephemeral environments like CI to install uv to a specific path while preve
 
 ### [`UV_UPLOAD_HTTP_TIMEOUT`](#uv_upload_http_timeout)
 
+added in `0.9.1`
+
 Timeout (in seconds) for only upload HTTP requests. (default: 900 s)
 
 ### [`UV_VENV_CLEAR`](#uv_venv_clear)
@@ -677,6 +679,8 @@ Install seed packages (one or more of: `pip`, `setuptools`, and `wheel`) into th
 Note that `setuptools` and `wheel` are not included in Python 3.12+ environments.
 
 ### [`UV_WORKING_DIRECTORY`](#uv_working_directory)
+
+added in `0.9.1`
 
 Equivalent to the `--directory` command-line argument.
 

@@ -7207,6 +7207,8 @@ Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will w
 
 [`--show-paths`](#uv-tool-list--show-paths) : Whether to display the path to each tool environment and installed executable
 
+[`--show-python`](#uv-tool-list--show-python) : Whether to display the Python version associated with run each tool
+
 [`--show-version-specifiers`](#uv-tool-list--show-version-specifiers) : Whether to display the version specifier(s) used to install each tool
 
 [`--show-with`](#uv-tool-list--show-with) : Whether to display the additional requirements installed with each tool
