@@ -859,9 +859,10 @@ different lengths, pass <code>strict=False</code> to make the intention explicit
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">map</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
-<p>This rule's fix is marked as unsafe for <code>map</code> calls that contain
-<code>**kwargs</code>, as adding a <code>strict</code> keyword argument to such a call may lead
-to a duplicate keyword argument error.</p>
+<p>This rule's fix is marked as unsafe. While adding <code>strict=False</code> preserves
+the runtime behavior, it can obscure situations where the iterables are of
+unequal length. Ruff prefers to alert users so they can choose the intended
+behavior themselves.</p>
 <h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/library/functions.html#map">Python documentation: <code>map</code></a></li>

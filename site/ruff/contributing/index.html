@@ -984,6 +984,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#installing-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installing tools
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#creating-a-new-release" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1540,11 +1551,18 @@ Actions, which automatically generates the appropriate wheels across architectur
 them to <a href="https://pypi.org/project/ruff/">PyPI</a>.</p>
 <p>Ruff follows the <a href="https://semver.org/">semver</a> versioning standard. However, as pre-1.0 software,
 even patch releases may contain <a href="https://semver.org/#spec-item-4">non-backwards-compatible changes</a>.</p>
-<h3 id="creating-a-new-release"><a class="toclink" href="#creating-a-new-release">Creating a new release</a></h3>
+<h3 id="installing-tools"><a class="toclink" href="#installing-tools">Installing tools</a></h3>
 <ol>
 <li>
 <p>Install <code>uv</code>: <code>curl -LsSf https://astral.sh/uv/install.sh | sh</code></p>
 </li>
+<li>
+<p>Install <code>npm</code>: <code>brew install npm</code> or similar</p>
+</li>
+</ol>
+<h3 id="creating-a-new-release"><a class="toclink" href="#creating-a-new-release">Creating a new release</a></h3>
+<p>Commit each step of this process separately for easier review.</p>
+<ol>
 <li>
 <p>Run <code>./scripts/release.sh</code>; this command will:</p>
 <ul>
@@ -1560,6 +1578,7 @@ even patch releases may contain <a href="https://semver.org/#spec-item-4">non-ba
 <ul>
 <li>Often labels will be missing from pull requests they will need to be manually organized into the proper section</li>
 <li>Changes should be edited to be user-facing descriptions, avoiding internal details</li>
+<li>Square brackets (eg, <code>[ruff]</code> project name) will be automatically escaped by <code>pre-commit</code></li>
 </ul>
 <p>Additionally, for minor releases:</p>
 <ul>
@@ -1611,8 +1630,7 @@ even patch releases may contain <a href="https://semver.org/#spec-item-4">non-ba
 <li>
 <p>Verify the GitHub release:</p>
 <ol>
-<li>The Changelog should match the content of <code>CHANGELOG.md</code></li>
-<li>Append the contributors from the <code>scripts/release.sh</code> script</li>
+<li>The changelog should match the content of <code>CHANGELOG.md</code></li>
 </ol>
 </li>
 <li>
@@ -1620,6 +1638,7 @@ even patch releases may contain <a href="https://semver.org/#spec-item-4">non-ba
 <ol>
 <li>One can determine if an update is needed when
     <code>git diff old-version-tag new-version-tag -- ruff.schema.json</code> returns a non-empty diff.</li>
+<li>Run <code>uv run --only-dev --no-sync scripts/update_schemastore.py --proto &lt;https|ssh&gt;</code></li>
 <li>Once run successfully, you should follow the link in the output to create a PR.</li>
 </ol>
 </li>
