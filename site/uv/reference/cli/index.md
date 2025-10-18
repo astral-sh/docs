@@ -9928,6 +9928,7 @@ Possible values:
 
 - `auto`: Select the appropriate PyTorch index based on the operating system and CUDA driver version
 - `cpu`: Use the CPU-only PyTorch index
+- `cu130`: Use the PyTorch index for CUDA 13.0
 - `cu129`: Use the PyTorch index for CUDA 12.9
 - `cu128`: Use the PyTorch index for CUDA 12.8
 - `cu126`: Use the PyTorch index for CUDA 12.6
@@ -10508,6 +10509,7 @@ Possible values:
 
 - `auto`: Select the appropriate PyTorch index based on the operating system and CUDA driver version
 - `cpu`: Use the CPU-only PyTorch index
+- `cu130`: Use the PyTorch index for CUDA 13.0
 - `cu129`: Use the PyTorch index for CUDA 12.9
 - `cu128`: Use the PyTorch index for CUDA 12.8
 - `cu126`: Use the PyTorch index for CUDA 12.6
@@ -11153,6 +11155,7 @@ Possible values:
 
 - `auto`: Select the appropriate PyTorch index based on the operating system and CUDA driver version
 - `cpu`: Use the CPU-only PyTorch index
+- `cu130`: Use the PyTorch index for CUDA 13.0
 - `cu129`: Use the PyTorch index for CUDA 12.9
 - `cu128`: Use the PyTorch index for CUDA 12.8
 - `cu126`: Use the PyTorch index for CUDA 12.6
