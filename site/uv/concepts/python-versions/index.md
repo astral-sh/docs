@@ -375,11 +375,11 @@ uv supports downloading and installing CPython, PyPy, and Pyodide distributions.
 
 ### [CPython distributions](#cpython-distributions)
 
-As Python does not publish official distributable CPython binaries, uv instead uses pre-built distributions from the Astral [`python-build-standalone`](https://github.com/astral-sh/python-build-standalone) project. `python-build-standalone` is also is used in many other Python projects, like [Rye](https://github.com/astral-sh/rye), [Mise](https://mise.jdx.dev/lang/python.html), and [bazelbuild/rules_python](https://github.com/bazelbuild/rules_python).
+As Python does not publish official distributable CPython binaries, uv instead uses pre-built distributions from the Astral [`python-build-standalone`](https://github.com/astral-sh/python-build-standalone) project. `python-build-standalone` is also is used in many other Python projects, like [Mise](https://mise.jdx.dev/lang/python.html) and [bazelbuild/rules_python](https://github.com/bazelbuild/rules_python).
 
 The uv Python distributions are self-contained, highly-portable, and performant. While Python can be built from source, as in tools like `pyenv`, doing so requires preinstalled system dependencies, and creating optimized, performant builds (e.g., with PGO and LTO enabled) is very slow.
 
-These distributions have some behavior quirks, generally as a consequence of portability; see the [`python-build-standalone` quirks](https://gregoryszorc.com/docs/python-build-standalone/main/quirks.html) documentation for details. Additionally, some platforms may not be supported (e.g., distributions are not yet available for musl Linux on ARM).
+These distributions have some behavior quirks, generally as a consequence of portability; see the [`python-build-standalone` quirks](https://gregoryszorc.com/docs/python-build-standalone/main/quirks.html) documentation for details.
 
 ### [PyPy distributions](#pypy-distributions)
 

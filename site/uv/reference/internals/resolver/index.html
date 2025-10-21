@@ -81,8 +81,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2025-10-10 15:46:47Z",
-        "dateModified": "2025-10-10 15:46:47Z",
+        "datePublished": "2025-10-19 12:29:47Z",
+        "dateModified": "2025-10-19 12:29:47Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -2724,6 +2724,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#metadata-consistency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metadata consistency
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#requires-python" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3029,6 +3040,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#metadata-consistency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metadata consistency
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#requires-python" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3274,6 +3296,52 @@ version with local tag and without local tag depending on the platform. This hel
 that use the local tag for different hardware accelerators such as torch. While there is no 1:1
 mapping between wheel tags and markers, we can do a mapping for well-known platforms, including
 Windows, Linux and macOS.</p>
+<h2 id="metadata-consistency"><a class="toclink" href="#metadata-consistency">Metadata consistency</a></h2>
+<p>uv, similar to poetry, requires that wheels of a single version of a package in a specific index
+have the same dependencies (<code>Requires-Dist</code> in <code>METADATA</code>), including wheels build from a source
+distribution. More generally, uv assumes that each wheel has the same <code>METADATA</code> file in its
+dist-info directory.</p>
+<p>numpy 2.3.2 for example has 73 wheels. Without this assumption, uv would have to make 73 network
+requests to fetch its metadata, instead of a single one. Another problem we would have without
+metadata consistency is the lack of a 1:1 mapping between markers and wheel tags. Wheel tags can
+include the glibc version while the PEP 508 markers cannot represent it. If wheels had different
+metadata, a universal resolver would have to track two dimensions simultaneously, PEP 508 markers
+and wheel tags. This would increase complexity a lot, and the correspondence between the two is not
+properly specified. PEP 508 markers have been introduced specifically to allow different
+dependencies between different platform, i.e. to have a single dependency declaration for all
+wheels, such as <code>project.[optional-]dependencies</code>. If the markers are not sufficient, we should
+extend PEP 508 markers instead of using a parallel system of wheel tags.</p>
+<p>Another aspect of metadata consistency is that a source distribution must build into a wheel with
+the same metadata as the wheels, or if there are no wheels, into the same metadata each time. If
+this assumption is violated, sound dependency locking becomes impossible: Consider a package A has a
+source distribution. During resolution, we build A v1 and obtain the dependencies <code>B&gt;=2,&lt;3</code>. We lock
+<code>A==1</code> and <code>B==2</code>. When installing the lockfile on the target machine, we build again and obtain
+dependencies <code>B&gt;=3,&lt;4</code> and <code>C&gt;=1,&lt;2</code>. The lockfile fails to install: Due to the changed constraints,
+the locked version of <code>B</code> is incompatible, and there's no locked candidate for <code>C</code>. Re-resolving
+after this would both be a reproducibility problem (the lockfile is effectively ignored) and a
+security concern (<code>C</code> has not been reviewed, neither was <code>B==3</code>). It's possible to fail on
+installation if that happens, but a late error, possibly during deployment, is a bad user
+experience. There is already a case where uv fails on installation, packages with no source
+distribution and only platform specific wheels incompatible with the current platform. While uv has
+<a href="https://docs.astral.sh/uv/concepts/resolution/#required-environments">required environments</a> as
+mitigation, this requires a not well known configuration option, and questions around (un)supported
+environments are one of the most common problem for uv users. A similar situation with source
+distributions should be avoided.</p>
+<p>While older versions of torch and tensorflow had inconsistent metadata, all recent versions have
+consistent metadata, and we are not aware of any major package with inconsistent metadata. There is
+however no requirement in the Python packaging standards that metadata must be consistent, and
+requests to enforce this in the standards have been rejected
+(<a href="https://discuss.python.org/t/enforcing-consistent-metadata-for-packages/50008">https://discuss.python.org/t/enforcing-consistent-metadata-for-packages/50008</a>).</p>
+<p>There are packages that have native code that links against the native code in another package, such
+as torch. These package may support building against a range of torch versions, but once built, they
+are constrained to a specific torch version, and the runtime torch version must match the build-time
+version. These are currently a pain point across all package managers, as all major package managers
+from pip to uv cache source distribution builds. uv supports multiple builds depending on the
+version of the already installed package using
+<a href="https://docs.astral.sh/uv/concepts/projects/config/#augmenting-build-dependencies"> <code>tool.uv.extra-build-dependencies</code></a>
+with <code>match-runtime = true</code>. This is a workaround that needs to be made on the user side for each
+affected package, instead of library developers declaring this requirement, which would be possible
+with native standards support.</p>
 <h2 id="requires-python"><a class="toclink" href="#requires-python">Requires-python</a></h2>
 <p>To ensure that a resolution with <code>requires-python = "&gt;=3.9"</code> can actually be installed for the
 included Python versions, uv requires that all dependencies have the same minimum Python version.
@@ -3395,7 +3463,7 @@ examples.</p>
         <span class="md-icon" title="Last update">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
         </span>
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 10, 2025</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 19, 2025</span>
       </span>
     
     
