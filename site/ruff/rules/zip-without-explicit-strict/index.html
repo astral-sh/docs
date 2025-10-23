@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Checks for `zip` calls without an explicit `strict` parameter.">
+        <meta name="description" content="Checks for `zip` calls without an explicit `strict` parameter when called with two or more iterables, or any starred argument.">
       
       
         <meta name="author" content="charliermarsh">
@@ -838,10 +838,15 @@
 
 
 <h1 id="zip-without-explicit-strict-b905"><a class="toclink" href="#zip-without-explicit-strict-b905">zip-without-explicit-strict (B905)</a></h1>
+<p><small>
+Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.167">v0.0.167</a> ·
+<a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27zip-without-explicit-strict%27%20OR%20B905)" target="_blank">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_bugbear%2Frules%2Fzip_without_explicit_strict.rs#L41" target="_blank">View source</a>
+</small></p>
 <p>Derived from the <strong><a href="../#flake8-bugbear-b">flake8-bugbear</a></strong> linter.</p>
 <p>Fix is always available.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
-<p>Checks for <code>zip</code> calls without an explicit <code>strict</code> parameter.</p>
+<p>Checks for <code>zip</code> calls without an explicit <code>strict</code> parameter when called with two or more iterables, or any starred argument.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>By default, if the iterables passed to <code>zip</code> are of different lengths, the
 resulting iterator will be silently truncated to the length of the shortest
