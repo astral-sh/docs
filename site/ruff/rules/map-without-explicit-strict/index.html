@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Checks for `map` calls without an explicit `strict` parameter when called with two or more iterables.">
+        <meta name="description" content="Checks for `map` calls without an explicit `strict` parameter when called with two or more iterables, or any starred argument.">
       
       
         <meta name="author" content="charliermarsh">
@@ -838,11 +838,16 @@
 
 
 <h1 id="map-without-explicit-strict-b912"><a class="toclink" href="#map-without-explicit-strict-b912">map-without-explicit-strict (B912)</a></h1>
+<p><small>
+Preview (since <a href="https://github.com/astral-sh/ruff/releases/tag/0.13.2">0.13.2</a>) ·
+<a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27map-without-explicit-strict%27%20OR%20B912)" target="_blank">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_bugbear%2Frules%2Fmap_without_explicit_strict.rs#L45" target="_blank">View source</a>
+</small></p>
 <p>Derived from the <strong><a href="../#flake8-bugbear-b">flake8-bugbear</a></strong> linter.</p>
 <p>Fix is always available.</p>
 <p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
-<p>Checks for <code>map</code> calls without an explicit <code>strict</code> parameter when called with two or more iterables.</p>
+<p>Checks for <code>map</code> calls without an explicit <code>strict</code> parameter when called with two or more iterables, or any starred argument.</p>
 <p>This rule applies to Python 3.14 and later, where <code>map</code> accepts a <code>strict</code> keyword
 argument. For details, see: <a href="https://docs.python.org/dev/whatsnew/3.14.html">What’s New in Python 3.14</a>.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
