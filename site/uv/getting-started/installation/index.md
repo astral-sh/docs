@@ -25,7 +25,7 @@ $ wget -qO- https://astral.sh/uv/install.sh | sh
 Request a specific version by including it in the URL:
 
 ```
-$ curl -LsSf https://astral.sh/uv/0.9.5/install.sh | sh
+$ curl -LsSf https://astral.sh/uv/0.9.6/install.sh | sh
 
 ```
 
@@ -41,7 +41,7 @@ Changing the [execution policy](https://learn.microsoft.com/en-us/powershell/mod
 Request a specific version by including it in the URL:
 
 ```
-PS> powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/0.9.5/install.ps1 | iex"
+PS> powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/0.9.6/install.ps1 | iex"
 
 ```
 
@@ -91,6 +91,15 @@ uv is available in the core Homebrew packages.
 
 ```
 $ brew install uv
+
+```
+
+### [MacPorts](#macports)
+
+uv is available via [MacPorts](https://ports.macports.org/port/uv/).
+
+```
+$ sudo port install uv
 
 ```
 
