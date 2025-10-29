@@ -81,8 +81,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2025-08-27 18:16:52Z",
-        "dateModified": "2025-08-27 18:16:52Z",
+        "datePublished": "2025-10-24 19:52:08Z",
+        "dateModified": "2025-10-24 19:52:08Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -3139,9 +3139,10 @@ in <code>.ps1</code>, <code>.cmd</code>, and <code>.bat</code> in that order of 
 <p>uv does not cede control of the process to the spawned command in order to provide better error
 messages on failure. Consequently, uv is responsible for forwarding some signals to the child
 process the requested command runs in.</p>
-<p>On Unix systems, uv will forward SIGINT and SIGTERM to the child process. Since terminals send
-SIGINT to the foreground process group on Ctrl-C, uv will only forward a SIGINT to the child process
-if it is sent more than once or the child process group differs from uv's.</p>
+<p>On Unix systems, uv will forward most signals (with the exception of SIGKILL, SIGCHLD, SIGIO, and
+SIGPOLL) to the child process. Since terminals send SIGINT to the foreground process group on
+Ctrl-C, uv will only forward a SIGINT to the child process if it is sent more than once or the child
+process group differs from uv's.</p>
 <p>On Windows, these concepts do not apply and uv ignores Ctrl-C events, deferring handling to the
 child process so it can exit cleanly.</p>
 
@@ -3157,7 +3158,7 @@ child process so it can exit cleanly.</p>
         <span class="md-icon" title="Last update">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
         </span>
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 27, 2025</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 24, 2025</span>
       </span>
     
     

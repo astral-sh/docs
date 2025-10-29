@@ -115,7 +115,7 @@ dependencies = []
 example-pkg = "example_pkg:main"
 
 [build-system]
-requires = ["uv_build>=0.9.5,<0.10.0"]
+requires = ["uv_build>=0.9.6,<0.10.0"]
 build-backend = "uv_build"
 
 ```
@@ -141,7 +141,7 @@ dependencies = []
 example-pkg = "example_pkg:main"
 
 [build-system]
-requires = ["uv_build>=0.9.5,<0.10.0"]
+requires = ["uv_build>=0.9.6,<0.10.0"]
 build-backend = "uv_build"
 
 ```
@@ -203,7 +203,7 @@ requires-python = ">=3.11"
 dependencies = []
 
 [build-system]
-requires = ["uv_build>=0.9.5,<0.10.0"]
+requires = ["uv_build>=0.9.6,<0.10.0"]
 build-backend = "uv_build"
 
 ```
@@ -279,15 +279,14 @@ src/lib.rs
 ```
 use pyo3::prelude::*;
 
-#[pyfunction]
-fn hello_from_bin() -> String {
-    "Hello from example-ext!".to_string()
-}
-
 #[pymodule]
-fn _core(m: &Bound<'_, PyModule>) -> PyResult<()> {
-    m.add_function(wrap_pyfunction!(hello_from_bin, m)?)?;
-    Ok(())
+mod _core {
+    use pyo3::prelude::*;
+
+    #[pyfunction]
+    fn hello_from_bin() -> String {
+        "Hello from example-ext!".to_string()
+    }
 }
 
 ```

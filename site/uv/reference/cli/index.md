@@ -3884,7 +3884,7 @@ To view the location of the cache directory, run `uv cache dir`.
 May also be set with the `UV_CACHE_DIR` environment variable.
 ```
 
-[`--check`](#uv-lock--check), `--locked` : Check if the lockfile is up-to-date.
+[`--check`](#uv-lock--check) : Check if the lockfile is up-to-date.
 
 ```
 Asserts that the `uv.lock` would remain unchanged after a resolution. If the lockfile is missing or needs to be updated, uv will exit with an error.
@@ -13024,6 +13024,8 @@ To view the location of the cache directory, run `uv cache dir`.
 May also be set with the `UV_CACHE_DIR` environment variable.
 ```
 
+[`--clear`](#uv-build--clear) : Clear the output directory before the build, removing stale artifacts
+
 [`--color`](#uv-build--color) *color-choice* : Control the use of color in output.
 
 ```
@@ -13271,6 +13273,12 @@ May also be set with the `UV_NO_CACHE` environment variable.
 Normally, configuration files are discovered in the current directory, parent directories, or user configuration directories.
 
 May also be set with the `UV_NO_CONFIG` environment variable.
+```
+
+[`--no-create-gitignore`](#uv-build--no-create-gitignore) : Do not create a `.gitignore` file in the output directory.
+
+```
+By default, uv creates a `.gitignore` file in the output directory to exclude build artifacts from version control. When this flag is used, the file will be omitted.
 ```
 
 [`--no-index`](#uv-build--no-index) : Ignore the registry index (e.g., PyPI), instead relying on direct URL dependencies and those provided via `--find-links`
