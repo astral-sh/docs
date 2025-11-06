@@ -3397,12 +3397,19 @@ variable, if set.</p>
 </div>
 <hr />
 <h4 id="extend"><a class="toclink" href="#extend"><a href="#extend"><code>extend</code></a></a></h4>
-<p>A path to a local <code>pyproject.toml</code> file to merge into this
+<p>A path to a local <code>pyproject.toml</code> or <code>ruff.toml</code> file to merge into this
 configuration. User home directory and environment variables will be
 expanded.</p>
-<p>To resolve the current <code>pyproject.toml</code> file, Ruff will first resolve
-this base configuration file, then merge in any properties defined
-in the current configuration file.</p>
+<p>To resolve the current configuration file, Ruff will first load
+this base configuration file, then merge in properties defined
+in the current configuration file. Most settings follow simple override
+behavior where the child value replaces the parent value. However,
+rule selection (<code>lint.select</code> and <code>lint.ignore</code>) has special merging
+behavior: if the child configuration specifies <code>lint.select</code>, it
+establishes a new baseline rule set and the parent's <code>lint.ignore</code>
+rules are discarded; if the child configuration omits <code>lint.select</code>,
+the parent's rule selection is inherited and both parent and child
+<code>lint.ignore</code> rules are accumulated together.</p>
 <p><strong>Default value</strong>: <code>null</code></p>
 <p><strong>Type</strong>: <code>str</code></p>
 <p><strong>Example usage</strong>:</p>

@@ -841,7 +841,7 @@
 <p><small>
 Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.110">v0.0.110</a> ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27get-attr-with-constant%27%20OR%20B009)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_bugbear%2Frules%2Fgetattr_with_constant.rs#L34" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_bugbear%2Frules%2Fgetattr_with_constant.rs#L50" target="_blank">View source</a>
 </small></p>
 <p>Derived from the <strong><a href="../#flake8-bugbear-b">flake8-bugbear</a></strong> linter.</p>
 <p>Fix is always available.</p>
@@ -858,6 +858,18 @@ more concise and idiomatic.</p>
 </code></pre></div>
 <p>Use instead:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">obj</span><span class="o">.</span><span class="n">foo</span>
+</code></pre></div>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
+<p>The fix is marked as unsafe for attribute names that are not in NFKC (Normalization Form KC)
+normalization. Python normalizes identifiers using NFKC when using attribute access syntax
+(e.g., <code>obj.attr</code>), but does not normalize string arguments passed to <code>getattr</code>. Rewriting
+<code>getattr(obj, "ſ")</code> to <code>obj.ſ</code> would be interpreted as <code>obj.s</code> at runtime, changing behavior.</p>
+<p>For example, the long s character <code>"ſ"</code> normalizes to <code>"s"</code> under NFKC, so:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># This accesses an attribute with the exact name &quot;ſ&quot; (if it exists)</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">value</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s2">&quot;ſ&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># But this would normalize to &quot;s&quot; and access a different attribute</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">obj</span><span class="o">.</span><span class="n">ſ</span>  <span class="c1"># This is interpreted as obj.s, not obj.ſ</span>
 </code></pre></div>
 <h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
