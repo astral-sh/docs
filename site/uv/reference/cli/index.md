@@ -1189,6 +1189,8 @@ May be provided multiple times.
 This option always takes precedence over default groups, `--all-groups`, and `--group`.
 
 May be provided multiple times.
+
+May also be set with the `UV_NO_GROUP` environment variable.
 ```
 
 [`--no-index`](#uv-run--no-index) : Ignore the registry index (e.g., PyPI), instead relying on direct URL dependencies and those provided via `--find-links`
@@ -1220,6 +1222,10 @@ If a virtual environment is active or found in a current or parent directory, it
 [`--no-python-downloads`](#uv-run--no-python-downloads) : Disable automatic downloads of Python.
 
 [`--no-sources`](#uv-run--no-sources) : Ignore the `tool.uv.sources` table when resolving dependencies. Used to lock against the standards-compliant, publishable package metadata, as opposed to using any workspace, Git, URL, or local path sources
+
+```
+May also be set with the `UV_NO_SOURCES` environment variable.
+```
 
 [`--no-sync`](#uv-run--no-sync) : Avoid syncing the virtual environment.
 
@@ -2136,6 +2142,10 @@ May also be set with the `UV_NO_PROGRESS` environment variable.
 
 [`--no-sources`](#uv-add--no-sources) : Ignore the `tool.uv.sources` table when resolving dependencies. Used to lock against the standards-compliant, publishable package metadata, as opposed to using any workspace, Git, URL, or local path sources
 
+```
+May also be set with the `UV_NO_SOURCES` environment variable.
+```
+
 [`--no-sync`](#uv-add--no-sync) : Avoid syncing the virtual environment
 
 ```
@@ -2626,6 +2636,10 @@ May also be set with the `UV_NO_PROGRESS` environment variable.
 
 [`--no-sources`](#uv-remove--no-sources) : Ignore the `tool.uv.sources` table when resolving dependencies. Used to lock against the standards-compliant, publishable package metadata, as opposed to using any workspace, Git, URL, or local path sources
 
+```
+May also be set with the `UV_NO_SOURCES` environment variable.
+```
+
 [`--no-sync`](#uv-remove--no-sync) : Avoid syncing the virtual environment after re-locking the project
 
 ```
@@ -3085,6 +3099,10 @@ May also be set with the `UV_NO_PROGRESS` environment variable.
 [`--no-python-downloads`](#uv-version--no-python-downloads) : Disable automatic downloads of Python.
 
 [`--no-sources`](#uv-version--no-sources) : Ignore the `tool.uv.sources` table when resolving dependencies. Used to lock against the standards-compliant, publishable package metadata, as opposed to using any workspace, Git, URL, or local path sources
+
+```
+May also be set with the `UV_NO_SOURCES` environment variable.
+```
 
 [`--no-sync`](#uv-version--no-sync) : Avoid syncing the virtual environment after re-locking the project
 
@@ -3603,6 +3621,8 @@ May be provided multiple times.
 This option always takes precedence over default groups, `--all-groups`, and `--group`.
 
 May be provided multiple times.
+
+May also be set with the `UV_NO_GROUP` environment variable.
 ```
 
 [`--no-index`](#uv-sync--no-index) : Ignore the registry index (e.g., PyPI), instead relying on direct URL dependencies and those provided via `--find-links`
@@ -3651,6 +3671,10 @@ May also be set with the `UV_NO_PROGRESS` environment variable.
 
 [`--no-sources`](#uv-sync--no-sources) : Ignore the `tool.uv.sources` table when resolving dependencies. Used to lock against the standards-compliant, publishable package metadata, as opposed to using any workspace, Git, URL, or local path sources
 
+```
+May also be set with the `UV_NO_SOURCES` environment variable.
+```
+
 [`--offline`](#uv-sync--offline) : Disable network access.
 
 ```
@@ -3686,12 +3710,12 @@ Possible values:
 - `json`: Display the result in JSON format
 ```
 
-[`--package`](#uv-sync--package) *package* : Sync for a specific package in the workspace.
+[`--package`](#uv-sync--package) *package* : Sync for specific packages in the workspace.
 
 ```
-The workspace's environment (`.venv`) is updated to reflect the subset of dependencies declared by the specified workspace member package.
+The workspace's environment (`.venv`) is updated to reflect the subset of dependencies declared by the specified workspace member packages.
 
-If the workspace member does not exist, uv will exit with an error.
+If any workspace member does not exist, uv will exit with an error.
 ```
 
 [`--prerelease`](#uv-sync--prerelease) *prerelease* : The strategy to use when considering pre-release versions.
@@ -3890,8 +3914,6 @@ May also be set with the `UV_CACHE_DIR` environment variable.
 Asserts that the `uv.lock` would remain unchanged after a resolution. If the lockfile is missing or needs to be updated, uv will exit with an error.
 
 Equivalent to `--locked`.
-
-May also be set with the `UV_LOCKED` environment variable.
 ```
 
 [`--check-exists`](#uv-lock--check-exists), `--frozen` : Assert that a `uv.lock` exists without checking if it is up-to-date.
@@ -4171,6 +4193,10 @@ May also be set with the `UV_NO_PROGRESS` environment variable.
 
 [`--no-sources`](#uv-lock--no-sources) : Ignore the `tool.uv.sources` table when resolving dependencies. Used to lock against the standards-compliant, publishable package metadata, as opposed to using any workspace, Git, URL, or local path sources
 
+```
+May also be set with the `UV_NO_SOURCES` environment variable.
+```
+
 [`--offline`](#uv-lock--offline) : Disable network access.
 
 ```
@@ -4273,7 +4299,7 @@ The project is re-locked before exporting unless the `--locked` or `--frozen` fl
 
 uv will search for a project in the current directory or any parent directory. If a project cannot be found, uv will exit with an error.
 
-If operating in a workspace, the root will be exported by default; however, a specific member can be selected using the `--package` option.
+If operating in a workspace, the root will be exported by default; however, specific members can be selected using the `--package` option.
 
 ### Usage
 
@@ -4662,6 +4688,8 @@ May be provided multiple times.
 This option always takes precedence over default groups, `--all-groups`, and `--group`.
 
 May be provided multiple times.
+
+May also be set with the `UV_NO_GROUP` environment variable.
 ```
 
 [`--no-hashes`](#uv-export--no-hashes) : Omit hashes in the generated output
@@ -4690,6 +4718,10 @@ May also be set with the `UV_NO_PROGRESS` environment variable.
 
 [`--no-sources`](#uv-export--no-sources) : Ignore the `tool.uv.sources` table when resolving dependencies. Used to lock against the standards-compliant, publishable package metadata, as opposed to using any workspace, Git, URL, or local path sources
 
+```
+May also be set with the `UV_NO_SOURCES` environment variable.
+```
+
 [`--offline`](#uv-export--offline) : Disable network access.
 
 ```
@@ -4716,10 +4748,10 @@ May be provided multiple times. Implies `--no-default-groups`.
 
 [`--output-file`](#uv-export--output-file), `-o` *output-file* : Write the exported requirements to the given file
 
-[`--package`](#uv-export--package) *package* : Export the dependencies for a specific package in the workspace.
+[`--package`](#uv-export--package) *package* : Export the dependencies for specific packages in the workspace.
 
 ```
-If the workspace member does not exist, uv will exit with an error.
+If any workspace member does not exist, uv will exit with an error.
 ```
 
 [`--prerelease`](#uv-export--prerelease) *prerelease* : The strategy to use when considering pre-release versions.
@@ -5146,6 +5178,8 @@ May also be set with the `UV_NO_DEV` environment variable.
 This option always takes precedence over default groups, `--all-groups`, and `--group`.
 
 May be provided multiple times.
+
+May also be set with the `UV_NO_GROUP` environment variable.
 ```
 
 [`--no-index`](#uv-tree--no-index) : Ignore the registry index (e.g., PyPI), instead relying on direct URL dependencies and those provided via `--find-links`
@@ -5169,6 +5203,10 @@ May also be set with the `UV_NO_PROGRESS` environment variable.
 [`--no-python-downloads`](#uv-tree--no-python-downloads) : Disable automatic downloads of Python.
 
 [`--no-sources`](#uv-tree--no-sources) : Ignore the `tool.uv.sources` table when resolving dependencies. Used to lock against the standards-compliant, publishable package metadata, as opposed to using any workspace, Git, URL, or local path sources
+
+```
+May also be set with the `UV_NO_SOURCES` environment variable.
+```
 
 [`--offline`](#uv-tree--offline) : Disable network access.
 
@@ -5928,6 +5966,10 @@ May also be set with the `UV_NO_PROGRESS` environment variable.
 
 [`--no-sources`](#uv-tool-run--no-sources) : Ignore the `tool.uv.sources` table when resolving dependencies. Used to lock against the standards-compliant, publishable package metadata, as opposed to using any workspace, Git, URL, or local path sources
 
+```
+May also be set with the `UV_NO_SOURCES` environment variable.
+```
+
 [`--offline`](#uv-tool-run--offline) : Disable network access.
 
 ```
@@ -6231,6 +6273,14 @@ Accepts package-date pairs in the format `PACKAGE=DATE`, where `DATE` is an RFC 
 Can be provided multiple times for different packages.
 ```
 
+[`--excludes`](#uv-tool-install--excludes), `--exclude` *excludes* : Exclude packages from resolution using the given requirements files.
+
+```
+Excludes files are `requirements.txt`-like files that specify packages to exclude from the resolution. When a package is excluded, it will be omitted from the dependency list entirely and its own dependencies will be ignored during the resolution phase. Excludes are unconditional in that requirement specifiers and markers are ignored; any package listed in the provided file will be omitted from all resolved environments.
+
+May also be set with the `UV_EXCLUDE` environment variable.
+```
+
 [`--extra-index-url`](#uv-tool-install--extra-index-url) *extra-index-url* : (Deprecated: use `--index` instead) Extra URLs of package indexes to use, in addition to `--index-url`.
 
 ```
@@ -6437,6 +6487,10 @@ May also be set with the `UV_NO_PROGRESS` environment variable.
 [`--no-python-downloads`](#uv-tool-install--no-python-downloads) : Disable automatic downloads of Python.
 
 [`--no-sources`](#uv-tool-install--no-sources) : Ignore the `tool.uv.sources` table when resolving dependencies. Used to lock against the standards-compliant, publishable package metadata, as opposed to using any workspace, Git, URL, or local path sources
+
+```
+May also be set with the `UV_NO_SOURCES` environment variable.
+```
 
 [`--offline`](#uv-tool-install--offline) : Disable network access.
 
@@ -6922,6 +6976,10 @@ May also be set with the `UV_NO_PROGRESS` environment variable.
 
 [`--no-sources`](#uv-tool-upgrade--no-sources) : Ignore the `tool.uv.sources` table when resolving dependencies. Used to lock against the standards-compliant, publishable package metadata, as opposed to using any workspace, Git, URL, or local path sources
 
+```
+May also be set with the `UV_NO_SOURCES` environment variable.
+```
+
 [`--offline`](#uv-tool-upgrade--offline) : Disable network access.
 
 ```
@@ -7207,7 +7265,7 @@ Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will w
 
 [`--show-paths`](#uv-tool-list--show-paths) : Whether to display the path to each tool environment and installed executable
 
-[`--show-python`](#uv-tool-list--show-python) : Whether to display the Python version associated with run each tool
+[`--show-python`](#uv-tool-list--show-python) : Whether to display the Python version associated with each tool
 
 [`--show-version-specifiers`](#uv-tool-list--show-version-specifiers) : Whether to display the version specifier(s) used to install each tool
 
@@ -9498,6 +9556,14 @@ Accepts package-date pairs in the format `PACKAGE=DATE`, where `DATE` is an RFC 
 Can be provided multiple times for different packages.
 ```
 
+[`--excludes`](#uv-pip-compile--excludes), `--exclude` *excludes* : Exclude packages from resolution using the given requirements files.
+
+```
+Excludes files are `requirements.txt`-like files that specify packages to exclude from the resolution. When a package is excluded, it will be omitted from the dependency list entirely and its own dependencies will be ignored during the resolution phase. Excludes are unconditional in that requirement specifiers and markers are ignored; any package listed in the provided file will be omitted from all resolved environments.
+
+May also be set with the `UV_EXCLUDE` environment variable.
+```
+
 [`--extra`](#uv-pip-compile--extra) *extra* : Include optional dependencies from the specified extra name; may be provided more than once.
 
 ```
@@ -9717,6 +9783,10 @@ May also be set with the `UV_NO_PROGRESS` environment variable.
 [`--no-python-downloads`](#uv-pip-compile--no-python-downloads) : Disable automatic downloads of Python.
 
 [`--no-sources`](#uv-pip-compile--no-sources) : Ignore the `tool.uv.sources` table when resolving dependencies. Used to lock against the standards-compliant, publishable package metadata, as opposed to using any workspace, Git, URL, or local path sources
+
+```
+May also be set with the `UV_NO_SOURCES` environment variable.
+```
 
 [`--no-strip-extras`](#uv-pip-compile--no-strip-extras) : Include extras in the output file.
 
@@ -10326,6 +10396,10 @@ May also be set with the `UV_NO_PROGRESS` environment variable.
 
 [`--no-sources`](#uv-pip-sync--no-sources) : Ignore the `tool.uv.sources` table when resolving dependencies. Used to lock against the standards-compliant, publishable package metadata, as opposed to using any workspace, Git, URL, or local path sources
 
+```
+May also be set with the `UV_NO_SOURCES` environment variable.
+```
+
 [`--no-verify-hashes`](#uv-pip-sync--no-verify-hashes) : Disable validation of hashes in the requirements file.
 
 ```
@@ -10715,6 +10789,14 @@ Accepts package-date pairs in the format `PACKAGE=DATE`, where `DATE` is an RFC 
 Can be provided multiple times for different packages.
 ```
 
+[`--excludes`](#uv-pip-install--excludes), `--exclude` *excludes* : Exclude packages from resolution using the given requirements files.
+
+```
+Excludes files are `requirements.txt`-like files that specify packages to exclude from the resolution. When a package is excluded, it will be omitted from the dependency list entirely and its own dependencies will be ignored during the resolution phase. Excludes are unconditional in that requirement specifiers and markers are ignored; any package listed in the provided file will be omitted from all resolved environments.
+
+May also be set with the `UV_EXCLUDE` environment variable.
+```
+
 [`--extra`](#uv-pip-install--extra) *extra* : Include optional dependencies from the specified extra name; may be provided more than once.
 
 ```
@@ -10921,6 +11003,10 @@ May also be set with the `UV_NO_PROGRESS` environment variable.
 [`--no-python-downloads`](#uv-pip-install--no-python-downloads) : Disable automatic downloads of Python.
 
 [`--no-sources`](#uv-pip-install--no-sources) : Ignore the `tool.uv.sources` table when resolving dependencies. Used to lock against the standards-compliant, publishable package metadata, as opposed to using any workspace, Git, URL, or local path sources
+
+```
+May also be set with the `UV_NO_SOURCES` environment variable.
+```
 
 [`--no-verify-hashes`](#uv-pip-install--no-verify-hashes) : Disable validation of hashes in the requirements file.
 
@@ -13303,6 +13389,10 @@ May also be set with the `UV_NO_PROGRESS` environment variable.
 
 [`--no-sources`](#uv-build--no-sources) : Ignore the `tool.uv.sources` table when resolving dependencies. Used to lock against the standards-compliant, publishable package metadata, as opposed to using any workspace, Git, URL, or local path sources
 
+```
+May also be set with the `UV_NO_SOURCES` environment variable.
+```
+
 [`--no-verify-hashes`](#uv-build--no-verify-hashes) : Disable validation of hashes in the requirements file.
 
 ```
@@ -13709,6 +13799,8 @@ uv cache [OPTIONS] <COMMAND>
 [`uv cache prune`](#uv-cache-prune) : Prune all unreachable objects from the cache
 
 [`uv cache dir`](#uv-cache-dir) : Show the cache directory
+
+[`uv cache size`](#uv-cache-size) : Show the cache size
 
 ### [uv cache clean](#uv-cache-clean)
 
@@ -14190,6 +14282,161 @@ Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will w
 ```
 
 [`--verbose`](#uv-cache-dir--verbose), `-v` : Use verbose output.
+
+```
+You can configure fine-grained logging using the `RUST_LOG` environment variable. (<https://docs.rs/tracing-subscriber/latest/tracing_subscriber/filter/struct.EnvFilter.html#directives>)
+```
+
+### [uv cache size](#uv-cache-size)
+
+Show the cache size.
+
+Displays the total size of the cache directory. This includes all downloaded and built wheels, source distributions, and other cached data. By default, outputs the size in raw bytes; use `--human` for human-readable output.
+
+### Usage
+
+```
+uv cache size [OPTIONS]
+
+```
+
+### Options
+
+[`--allow-insecure-host`](#uv-cache-size--allow-insecure-host), `--trusted-host` *allow-insecure-host* : Allow insecure connections to a host.
+
+```
+Can be provided multiple times.
+
+Expects to receive either a hostname (e.g., `localhost`), a host-port pair (e.g., `localhost:8080`), or a URL (e.g., `https://localhost`).
+
+WARNING: Hosts included in this list will not be verified against the system's certificate store. Only use `--allow-insecure-host` in a secure network with verified sources, as it bypasses SSL verification and could expose you to MITM attacks.
+
+May also be set with the `UV_INSECURE_HOST` environment variable.
+```
+
+[`--cache-dir`](#uv-cache-size--cache-dir) *cache-dir* : Path to the cache directory.
+
+```
+Defaults to `$XDG_CACHE_HOME/uv` or `$HOME/.cache/uv` on macOS and Linux, and `%LOCALAPPDATA%\uv\cache` on Windows.
+
+To view the location of the cache directory, run `uv cache dir`.
+
+May also be set with the `UV_CACHE_DIR` environment variable.
+```
+
+[`--color`](#uv-cache-size--color) *color-choice* : Control the use of color in output.
+
+```
+By default, uv will automatically detect support for colors when writing to a terminal.
+
+Possible values:
+
+- `auto`: Enables colored output only when the output is going to a terminal or TTY with support
+- `always`: Enables colored output regardless of the detected environment
+- `never`: Disables colored output
+```
+
+[`--config-file`](#uv-cache-size--config-file) *config-file* : The path to a `uv.toml` file to use for configuration.
+
+```
+While uv configuration can be included in a `pyproject.toml` file, it is not allowed in this context.
+
+May also be set with the `UV_CONFIG_FILE` environment variable.
+```
+
+[`--directory`](#uv-cache-size--directory) *directory* : Change to the given directory prior to running the command.
+
+```
+Relative paths are resolved with the given directory as the base.
+
+See `--project` to only change the project root directory.
+
+May also be set with the `UV_WORKING_DIRECTORY` environment variable.
+```
+
+[`--help`](#uv-cache-size--help), `-h` : Display the concise help for this command
+
+[`--human`](#uv-cache-size--human), `--human-readable`, `-H` : Display the cache size in human-readable format (e.g., `1.2 GiB` instead of raw bytes)
+
+[`--managed-python`](#uv-cache-size--managed-python) : Require use of uv-managed Python versions.
+
+```
+By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
+
+May also be set with the `UV_MANAGED_PYTHON` environment variable.
+```
+
+[`--native-tls`](#uv-cache-size--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+
+```
+By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
+
+May also be set with the `UV_NATIVE_TLS` environment variable.
+```
+
+[`--no-cache`](#uv-cache-size--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
+
+```
+May also be set with the `UV_NO_CACHE` environment variable.
+```
+
+[`--no-config`](#uv-cache-size--no-config) : Avoid discovering configuration files (`pyproject.toml`, `uv.toml`).
+
+```
+Normally, configuration files are discovered in the current directory, parent directories, or user configuration directories.
+
+May also be set with the `UV_NO_CONFIG` environment variable.
+```
+
+[`--no-managed-python`](#uv-cache-size--no-managed-python) : Disable use of uv-managed Python versions.
+
+```
+Instead, uv will search for a suitable Python version on the system.
+
+May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
+```
+
+[`--no-progress`](#uv-cache-size--no-progress) : Hide all progress outputs.
+
+```
+For example, spinners or progress bars.
+
+May also be set with the `UV_NO_PROGRESS` environment variable.
+```
+
+[`--no-python-downloads`](#uv-cache-size--no-python-downloads) : Disable automatic downloads of Python.
+
+[`--offline`](#uv-cache-size--offline) : Disable network access.
+
+```
+When disabled, uv will only use locally cached data and locally available files.
+
+May also be set with the `UV_OFFLINE` environment variable.
+```
+
+[`--project`](#uv-cache-size--project) *project* : Run the command within the given project directory.
+
+```
+All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
+
+Other command-line arguments (such as relative paths) will be resolved relative to the current working directory.
+
+See `--directory` to change the working directory entirely.
+
+This setting has no effect when used in the `uv pip` interface.
+
+May also be set with the `UV_PROJECT` environment variable.
+```
+
+[`--quiet`](#uv-cache-size--quiet), `-q` : Use quiet output.
+
+```
+Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will write no output to stdout.
+```
+
+[`--verbose`](#uv-cache-size--verbose), `-v` : Use verbose output.
 
 ```
 You can configure fine-grained logging using the `RUST_LOG` environment variable. (<https://docs.rs/tracing-subscriber/latest/tracing_subscriber/filter/struct.EnvFilter.html#directives>)
