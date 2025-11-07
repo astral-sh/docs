@@ -14,7 +14,7 @@ WARNING: `UV_BREAK_SYSTEM_PACKAGES=true` is intended for use in continuous integ
 
 added in `0.2.34`
 
-Equivalent to the `--build-constraint` command-line argument. If set, uv will use this file as constraints for any source distribution builds. Uses space-separated list of files.
+Equivalent to the `--build-constraints` command-line argument. If set, uv will use this file as constraints for any source distribution builds. Uses space-separated list of files.
 
 ### [`UV_CACHE_DIR`](#uv_cache_dir)
 
@@ -62,7 +62,7 @@ Equivalent to the `--config-file` command-line argument. Expects a path to a loc
 
 added in `0.1.36`
 
-Equivalent to the `--constraint` command-line argument. If set, uv will use this file as the constraints file. Uses space-separated list of files.
+Equivalent to the `--constraints` command-line argument. If set, uv will use this file as the constraints file. Uses space-separated list of files.
 
 ### [`UV_CREDENTIALS_DIR`](#uv_credentials_dir)
 
@@ -101,6 +101,12 @@ The URL from which to download uv using the standalone installer. By default, in
 added in `0.4.30`
 
 `.env` files from which to load environment variables when executing `uv run` commands.
+
+### [`UV_EXCLUDE`](#uv_exclude)
+
+added in `0.9.8`
+
+Equivalent to the `--excludes` command-line argument. If set, uv will use this as the excludes file. Uses space-separated list of files.
 
 ### [`UV_EXCLUDE_NEWER`](#uv_exclude_newer)
 
@@ -346,6 +352,12 @@ added in `0.7.13`
 
 Disable GitHub-specific requests that allow uv to skip `git fetch` in some circumstances.
 
+### [`UV_NO_GROUP`](#uv_no_group)
+
+added in `0.9.8`
+
+Equivalent to the `--no-group` command-line argument. If set, uv will disable the specified dependency groups for the given space-delimited list of packages.
+
 ### [`UV_NO_HF_TOKEN`](#uv_no_hf_token)
 
 added in `0.8.1`
@@ -376,6 +388,12 @@ added in `0.2.28`
 
 Equivalent to the `--no-progress` command-line argument. Disables all progress output. For example, spinners and progress bars.
 
+### [`UV_NO_SOURCES`](#uv_no_sources)
+
+added in `0.9.8`
+
+Equivalent to the `--no-sources` command-line argument. If set, uv will ignore `[tool.uv.sources]` annotations when resolving dependencies.
+
 ### [`UV_NO_SYNC`](#uv_no_sync)
 
 added in `0.4.18`
@@ -404,7 +422,7 @@ Equivalent to the `--offline` command-line argument. If set, uv will disable net
 
 added in `0.2.22`
 
-Equivalent to the `--override` command-line argument. If set, uv will use this file as the overrides file. Uses space-separated list of files.
+Equivalent to the `--overrides` command-line argument. If set, uv will use this file as the overrides file. Uses space-separated list of files.
 
 ### [`UV_PRERELEASE`](#uv_prerelease)
 
