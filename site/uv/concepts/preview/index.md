@@ -66,6 +66,8 @@ The following preview features are available:
 - `python-upgrade`: Allows [transparent Python version upgrades](../python-versions/#upgrading-python-versions).
 - `format`: Allows using `uv format`.
 - `native-auth`: Enables storage of credentials in a [system-native location](../authentication/http/#the-uv-credentials-store).
+- `workspace-metadata`: Allows using `uv workspace metadata`.
+- `workspace-dir`: Allows using `uv workspace dir`.
 
 ## [Disabling preview features](#disabling-preview-features)
 

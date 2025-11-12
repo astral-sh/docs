@@ -1153,6 +1153,8 @@ May also be set with the `UV_NO_CONFIG` environment variable.
 
 ```
 uv includes the groups defined in `tool.uv.default-groups` by default. This disables that option, however, specific groups can still be included with `--group`.
+
+May also be set with the `UV_NO_DEFAULT_GROUPS` environment variable.
 ```
 
 [`--no-dev`](#uv-run--no-dev) : Disable the development dependency group.
@@ -2108,18 +2110,32 @@ May also be set with the `UV_NO_CONFIG` environment variable.
 
 ```
 Skips the current project, workspace members, and any other local (path or editable) packages. Only remote/indexed dependencies are installed. Useful in Docker builds to cache heavy third-party dependencies first and layer local packages separately.
+
+The inverse `--only-install-local` can be used to install *only* local packages, excluding all remote dependencies.
+```
+
+[`--no-install-package`](#uv-add--no-install-package) *no-install-package* : Do not install the given package(s).
+
+```
+By default, all project's dependencies are installed into the environment. The `--no-install-package` option allows exclusion of specific packages. Note this can result in a broken environment, and should be used with caution.
+
+The inverse `--only-install-package` can be used to install *only* the specified packages, excluding all others.
 ```
 
 [`--no-install-project`](#uv-add--no-install-project) : Do not install the current project.
 
 ```
 By default, the current project is installed into the environment with all of its dependencies. The `--no-install-project` option allows the project to be excluded, but all of its dependencies are still installed. This is particularly useful in situations like building Docker images where installing the project separately from its dependencies allows optimal layer caching.
+
+The inverse `--only-install-project` can be used to install *only* the project itself, excluding all dependencies.
 ```
 
 [`--no-install-workspace`](#uv-add--no-install-workspace) : Do not install any workspace members, including the current project.
 
 ```
-By default, all of the workspace members and their dependencies are installed into the environment. The `--no-install-workspace` option allows exclusion of all the workspace members while retaining their dependencies. This is particularly useful in situations like building Docker images where installing the workspace separately from its dependencies allows optimal layer caching.
+By default, all workspace members and their dependencies are installed into the environment. The `--no-install-workspace` option allows exclusion of all the workspace members while retaining their dependencies. This is particularly useful in situations like building Docker images where installing the workspace separately from its dependencies allows optimal layer caching.
+
+The inverse `--only-install-workspace` can be used to install *only* workspace members, excluding all other dependencies.
 ```
 
 [`--no-managed-python`](#uv-add--no-managed-python) : Disable use of uv-managed Python versions.
@@ -2779,7 +2795,7 @@ WARNING: Hosts included in this list will not be verified against the system's c
 May also be set with the `UV_INSECURE_HOST` environment variable.
 ```
 
-[`--bump`](#uv-version--bump) *bump* : Update the project version using the given semantics
+[`--bump`](#uv-version--bump) *bump[=value]* : Update the project version using the given semantics
 
 ```
 This flag can be passed multiple times.
@@ -3593,6 +3609,8 @@ May also be set with the `UV_NO_CONFIG` environment variable.
 
 ```
 uv includes the groups defined in `tool.uv.default-groups` by default. This disables that option, however, specific groups can still be included with `--group`.
+
+May also be set with the `UV_NO_DEFAULT_GROUPS` environment variable.
 ```
 
 [`--no-dev`](#uv-sync--no-dev) : Disable the development dependency group.
@@ -3631,24 +3649,32 @@ May also be set with the `UV_NO_GROUP` environment variable.
 
 ```
 Skips the current project, workspace members, and any other local (path or editable) packages. Only remote/indexed dependencies are installed. Useful in Docker builds to cache heavy third-party dependencies first and layer local packages separately.
+
+The inverse `--only-install-local` can be used to install *only* local packages, excluding all remote dependencies.
 ```
 
 [`--no-install-package`](#uv-sync--no-install-package) *no-install-package* : Do not install the given package(s).
 
 ```
 By default, all of the project's dependencies are installed into the environment. The `--no-install-package` option allows exclusion of specific packages. Note this can result in a broken environment, and should be used with caution.
+
+The inverse `--only-install-package` can be used to install *only* the specified packages, excluding all others.
 ```
 
 [`--no-install-project`](#uv-sync--no-install-project) : Do not install the current project.
 
 ```
 By default, the current project is installed into the environment with all of its dependencies. The `--no-install-project` option allows the project to be excluded, but all of its dependencies are still installed. This is particularly useful in situations like building Docker images where installing the project separately from its dependencies allows optimal layer caching.
+
+The inverse `--only-install-project` can be used to install *only* the project itself, excluding all dependencies.
 ```
 
 [`--no-install-workspace`](#uv-sync--no-install-workspace) : Do not install any workspace members, including the root project.
 
 ```
-By default, all of the workspace members and their dependencies are installed into the environment. The `--no-install-workspace` option allows exclusion of all the workspace members while retaining their dependencies. This is particularly useful in situations like building Docker images where installing the workspace separately from its dependencies allows optimal layer caching.
+By default, all workspace members and their dependencies are installed into the environment. The `--no-install-workspace` option allows exclusion of all the workspace members while retaining their dependencies. This is particularly useful in situations like building Docker images where installing the workspace separately from its dependencies allows optimal layer caching.
+
+The inverse `--only-install-workspace` can be used to install *only* workspace members, excluding all other dependencies.
 ```
 
 [`--no-managed-python`](#uv-sync--no-managed-python) : Disable use of uv-managed Python versions.
@@ -4636,6 +4662,8 @@ May also be set with the `UV_NO_CONFIG` environment variable.
 
 ```
 uv includes the groups defined in `tool.uv.default-groups` by default. This disables that option, however, specific groups can still be included with `--group`.
+
+May also be set with the `UV_NO_DEFAULT_GROUPS` environment variable.
 ```
 
 [`--no-dev`](#uv-export--no-dev) : Disable the development dependency group.
@@ -4656,24 +4684,32 @@ May also be set with the `UV_NO_EDITABLE` environment variable.
 
 ```
 Omits the current project, workspace members, and any other local (path or editable) packages from the export. Only remote/indexed dependencies are written. Useful for Docker and CI flows that want to export and cache third-party dependencies first.
+
+The inverse `--only-emit-local` can be used to emit *only* local packages, excluding all remote dependencies.
 ```
 
 [`--no-emit-package`](#uv-export--no-emit-package), `--no-install-package` *no-emit-package* : Do not emit the given package(s).
 
 ```
-By default, all of the project's dependencies are included in the exported requirements file. The `--no-emit-package` option allows exclusion of specific packages.
+By default, all project's dependencies are included in the exported requirements file. The `--no-emit-package` option allows exclusion of specific packages.
+
+The inverse `--only-emit-package` can be used to emit *only* the specified packages, excluding all others.
 ```
 
 [`--no-emit-project`](#uv-export--no-emit-project), `--no-install-project` : Do not emit the current project.
 
 ```
 By default, the current project is included in the exported requirements file with all of its dependencies. The `--no-emit-project` option allows the project to be excluded, but all of its dependencies to remain included.
+
+The inverse `--only-emit-project` can be used to emit *only* the project itself, excluding all dependencies.
 ```
 
 [`--no-emit-workspace`](#uv-export--no-emit-workspace), `--no-install-workspace` : Do not emit any workspace members, including the root project.
 
 ```
 By default, all workspace members and their dependencies are included in the exported requirements file, with all of their dependencies. The `--no-emit-workspace` option allows exclusion of all the workspace members while retaining their dependencies.
+
+The inverse `--only-emit-workspace` can be used to emit *only* workspace members, excluding all other dependencies.
 ```
 
 [`--no-extra`](#uv-export--no-extra) *no-extra* : Exclude the specified optional dependencies, if `--all-extras` is supplied.
@@ -5162,6 +5198,8 @@ May also be set with the `UV_NO_CONFIG` environment variable.
 
 ```
 uv includes the groups defined in `tool.uv.default-groups` by default. This disables that option, however, specific groups can still be included with `--group`.
+
+May also be set with the `UV_NO_DEFAULT_GROUPS` environment variable.
 ```
 
 [`--no-dev`](#uv-tree--no-dev) : Disable the development dependency group.

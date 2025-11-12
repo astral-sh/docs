@@ -6,7 +6,7 @@ When creating projects, uv supports two basic templates: [**applications**](#app
 
 ## [Target directory](#target-directory)
 
-uv will create a project in the working directory, or, in a target directory by providing a name, e.g., `uv init foo`. If there's already a project in the target directory, i.e., if there's a `pyproject.toml`, uv will exit with an error.
+uv will create a project in the working directory, or, in a target directory by providing a name, e.g., `uv init foo`. The working directory can be modified with the `--directory` option, which will cause the target directory path will be interpreted relative to the specified working directory. If there's already a project in the target directory, i.e., if there's a `pyproject.toml`, uv will exit with an error.
 
 ## [Applications](#applications)
 
@@ -115,7 +115,7 @@ dependencies = []
 example-pkg = "example_pkg:main"
 
 [build-system]
-requires = ["uv_build>=0.9.8,<0.10.0"]
+requires = ["uv_build>=0.9.9,<0.10.0"]
 build-backend = "uv_build"
 
 ```
@@ -141,7 +141,7 @@ dependencies = []
 example-pkg = "example_pkg:main"
 
 [build-system]
-requires = ["uv_build>=0.9.8,<0.10.0"]
+requires = ["uv_build>=0.9.9,<0.10.0"]
 build-backend = "uv_build"
 
 ```
@@ -203,7 +203,7 @@ requires-python = ">=3.11"
 dependencies = []
 
 [build-system]
-requires = ["uv_build>=0.9.8,<0.10.0"]
+requires = ["uv_build>=0.9.9,<0.10.0"]
 build-backend = "uv_build"
 
 ```
