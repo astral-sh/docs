@@ -955,6 +955,67 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#opening-a-pr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Opening a PR
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Opening a PR">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The summary
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-test-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The test plan
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ecosystem-report" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ecosystem report
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pr-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PR status
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1515,6 +1576,42 @@ variables (e.g., <code>_</code>).</p>
 <code>Settings</code> in <code>crates/ruff_linter/src/flake8_unused_arguments/settings.rs</code> coupled with
 <code>Flake8UnusedArgumentsOptions</code> in <code>crates/ruff_workspace/src/options.rs</code>).</p>
 <p>Finally, regenerate the documentation and generated code with <code>cargo dev generate-all</code>.</p>
+<h3 id="opening-a-pr"><a class="toclink" href="#opening-a-pr">Opening a PR</a></h3>
+<p>After you finish your changes, the next step is to open a PR. By default, two
+sections will be filled into the PR body: the summary and the test plan.</p>
+<h4 id="the-summary"><a class="toclink" href="#the-summary">The summary</a></h4>
+<p>The summary is intended to give us as maintainers information about your PR.
+This should typically include a link to the relevant issue(s) you're addressing
+in your PR, as well as a summary of the issue and your approach to fixing it. If
+you have any questions about your approach or design, or if you considered
+alternative approaches, that can also be helpful to include.</p>
+<p>AI can be helpful in generating both the code and summary of your PR, but a
+successful contribution should still be carefully reviewed by you and the
+summary editorialized before submitting a PR. A great summary is thorough but
+also succinct and gives us the context we need to review your PR.</p>
+<p>You can find examples of excellent issues and PRs by searching for the
+<a href="https://github.com/astral-sh/ruff/issues?q=label%3A%22great%20writeup%22"><code>great writeup</code></a>
+label.</p>
+<h4 id="the-test-plan"><a class="toclink" href="#the-test-plan">The test plan</a></h4>
+<p>The test plan is likely to be shorter than the summary and can be as simple as
+"Added new snapshot tests for <code>RUF123</code>," at least for rule bugs. For LSP or some
+types of CLI changes, in particular, it can also be helpful to include
+screenshots or recordings of your change in action.</p>
+<h4 id="ecosystem-report"><a class="toclink" href="#ecosystem-report">Ecosystem report</a></h4>
+<p>After opening the PR, an ecosystem report will be run as part of CI. This shows
+a diff of linter and formatter behavior before and after the changes in your PR.
+Going through these changes and reporting your findings in the PR summary or an
+additional comment help us to review your PR more efficiently. It's also a great
+way to find new test cases to incorporate into your PR if you identify any
+issues.</p>
+<h4 id="pr-status"><a class="toclink" href="#pr-status">PR status</a></h4>
+<p>To help us know when your PR is ready for review again, please either move your
+PR back to a draft while working on it (marking it ready for review afterwards
+will ping the previous reviewers) or explicitly re-request a review. This helps
+us to avoid re-reviewing a PR while you're still working on it and also to
+prioritize PRs that are definitely ready for review.</p>
+<p>You can also thumbs-up or mark as resolved any comments we leave to let us know
+you addressed them.</p>
 <h2 id="mkdocs"><a class="toclink" href="#mkdocs">MkDocs</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
