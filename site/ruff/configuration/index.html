@@ -1571,81 +1571,82 @@ a specific configuration file is located.</p>
 <a id="__codelineno-25-48" name="__codelineno-25-48" href="#__codelineno-25-48"></a>          notebooks, use `--extension ipy:ipynb`
 <a id="__codelineno-25-49" name="__codelineno-25-49" href="#__codelineno-25-49"></a>      --statistics
 <a id="__codelineno-25-50" name="__codelineno-25-50" href="#__codelineno-25-50"></a>          Show counts for every rule with at least one violation
-<a id="__codelineno-25-51" name="__codelineno-25-51" href="#__codelineno-25-51"></a>      --add-noqa
-<a id="__codelineno-25-52" name="__codelineno-25-52" href="#__codelineno-25-52"></a>          Enable automatic additions of `noqa` directives to failing lines
-<a id="__codelineno-25-53" name="__codelineno-25-53" href="#__codelineno-25-53"></a>      --show-files
-<a id="__codelineno-25-54" name="__codelineno-25-54" href="#__codelineno-25-54"></a>          See the files Ruff will be run against with the current settings
-<a id="__codelineno-25-55" name="__codelineno-25-55" href="#__codelineno-25-55"></a>      --show-settings
-<a id="__codelineno-25-56" name="__codelineno-25-56" href="#__codelineno-25-56"></a>          See the settings Ruff will use to lint a given Python file
-<a id="__codelineno-25-57" name="__codelineno-25-57" href="#__codelineno-25-57"></a>  -h, --help
-<a id="__codelineno-25-58" name="__codelineno-25-58" href="#__codelineno-25-58"></a>          Print help
-<a id="__codelineno-25-59" name="__codelineno-25-59" href="#__codelineno-25-59"></a>
-<a id="__codelineno-25-60" name="__codelineno-25-60" href="#__codelineno-25-60"></a>Rule selection:
-<a id="__codelineno-25-61" name="__codelineno-25-61" href="#__codelineno-25-61"></a>      --select &lt;RULE_CODE&gt;
-<a id="__codelineno-25-62" name="__codelineno-25-62" href="#__codelineno-25-62"></a>          Comma-separated list of rule codes to enable (or ALL, to enable all
-<a id="__codelineno-25-63" name="__codelineno-25-63" href="#__codelineno-25-63"></a>          rules)
-<a id="__codelineno-25-64" name="__codelineno-25-64" href="#__codelineno-25-64"></a>      --ignore &lt;RULE_CODE&gt;
-<a id="__codelineno-25-65" name="__codelineno-25-65" href="#__codelineno-25-65"></a>          Comma-separated list of rule codes to disable
-<a id="__codelineno-25-66" name="__codelineno-25-66" href="#__codelineno-25-66"></a>      --extend-select &lt;RULE_CODE&gt;
-<a id="__codelineno-25-67" name="__codelineno-25-67" href="#__codelineno-25-67"></a>          Like --select, but adds additional rule codes on top of those already
-<a id="__codelineno-25-68" name="__codelineno-25-68" href="#__codelineno-25-68"></a>          specified
-<a id="__codelineno-25-69" name="__codelineno-25-69" href="#__codelineno-25-69"></a>      --per-file-ignores &lt;PER_FILE_IGNORES&gt;
-<a id="__codelineno-25-70" name="__codelineno-25-70" href="#__codelineno-25-70"></a>          List of mappings from file pattern to code to exclude
-<a id="__codelineno-25-71" name="__codelineno-25-71" href="#__codelineno-25-71"></a>      --extend-per-file-ignores &lt;EXTEND_PER_FILE_IGNORES&gt;
-<a id="__codelineno-25-72" name="__codelineno-25-72" href="#__codelineno-25-72"></a>          Like `--per-file-ignores`, but adds additional ignores on top of
-<a id="__codelineno-25-73" name="__codelineno-25-73" href="#__codelineno-25-73"></a>          those already specified
-<a id="__codelineno-25-74" name="__codelineno-25-74" href="#__codelineno-25-74"></a>      --fixable &lt;RULE_CODE&gt;
-<a id="__codelineno-25-75" name="__codelineno-25-75" href="#__codelineno-25-75"></a>          List of rule codes to treat as eligible for fix. Only applicable when
-<a id="__codelineno-25-76" name="__codelineno-25-76" href="#__codelineno-25-76"></a>          fix itself is enabled (e.g., via `--fix`)
-<a id="__codelineno-25-77" name="__codelineno-25-77" href="#__codelineno-25-77"></a>      --unfixable &lt;RULE_CODE&gt;
-<a id="__codelineno-25-78" name="__codelineno-25-78" href="#__codelineno-25-78"></a>          List of rule codes to treat as ineligible for fix. Only applicable
-<a id="__codelineno-25-79" name="__codelineno-25-79" href="#__codelineno-25-79"></a>          when fix itself is enabled (e.g., via `--fix`)
-<a id="__codelineno-25-80" name="__codelineno-25-80" href="#__codelineno-25-80"></a>      --extend-fixable &lt;RULE_CODE&gt;
-<a id="__codelineno-25-81" name="__codelineno-25-81" href="#__codelineno-25-81"></a>          Like --fixable, but adds additional rule codes on top of those
-<a id="__codelineno-25-82" name="__codelineno-25-82" href="#__codelineno-25-82"></a>          already specified
-<a id="__codelineno-25-83" name="__codelineno-25-83" href="#__codelineno-25-83"></a>
-<a id="__codelineno-25-84" name="__codelineno-25-84" href="#__codelineno-25-84"></a>File selection:
-<a id="__codelineno-25-85" name="__codelineno-25-85" href="#__codelineno-25-85"></a>      --exclude &lt;FILE_PATTERN&gt;
-<a id="__codelineno-25-86" name="__codelineno-25-86" href="#__codelineno-25-86"></a>          List of paths, used to omit files and/or directories from analysis
-<a id="__codelineno-25-87" name="__codelineno-25-87" href="#__codelineno-25-87"></a>      --extend-exclude &lt;FILE_PATTERN&gt;
-<a id="__codelineno-25-88" name="__codelineno-25-88" href="#__codelineno-25-88"></a>          Like --exclude, but adds additional files and directories on top of
-<a id="__codelineno-25-89" name="__codelineno-25-89" href="#__codelineno-25-89"></a>          those already excluded
-<a id="__codelineno-25-90" name="__codelineno-25-90" href="#__codelineno-25-90"></a>      --respect-gitignore
-<a id="__codelineno-25-91" name="__codelineno-25-91" href="#__codelineno-25-91"></a>          Respect file exclusions via `.gitignore` and other standard ignore
-<a id="__codelineno-25-92" name="__codelineno-25-92" href="#__codelineno-25-92"></a>          files. Use `--no-respect-gitignore` to disable
-<a id="__codelineno-25-93" name="__codelineno-25-93" href="#__codelineno-25-93"></a>      --force-exclude
-<a id="__codelineno-25-94" name="__codelineno-25-94" href="#__codelineno-25-94"></a>          Enforce exclusions, even for paths passed to Ruff directly on the
-<a id="__codelineno-25-95" name="__codelineno-25-95" href="#__codelineno-25-95"></a>          command-line. Use `--no-force-exclude` to disable
-<a id="__codelineno-25-96" name="__codelineno-25-96" href="#__codelineno-25-96"></a>
-<a id="__codelineno-25-97" name="__codelineno-25-97" href="#__codelineno-25-97"></a>Miscellaneous:
-<a id="__codelineno-25-98" name="__codelineno-25-98" href="#__codelineno-25-98"></a>  -n, --no-cache
-<a id="__codelineno-25-99" name="__codelineno-25-99" href="#__codelineno-25-99"></a>          Disable cache reads [env: RUFF_NO_CACHE=]
-<a id="__codelineno-25-100" name="__codelineno-25-100" href="#__codelineno-25-100"></a>      --cache-dir &lt;CACHE_DIR&gt;
-<a id="__codelineno-25-101" name="__codelineno-25-101" href="#__codelineno-25-101"></a>          Path to the cache directory [env: RUFF_CACHE_DIR=]
-<a id="__codelineno-25-102" name="__codelineno-25-102" href="#__codelineno-25-102"></a>      --stdin-filename &lt;STDIN_FILENAME&gt;
-<a id="__codelineno-25-103" name="__codelineno-25-103" href="#__codelineno-25-103"></a>          The name of the file when passing it through stdin
-<a id="__codelineno-25-104" name="__codelineno-25-104" href="#__codelineno-25-104"></a>  -e, --exit-zero
-<a id="__codelineno-25-105" name="__codelineno-25-105" href="#__codelineno-25-105"></a>          Exit with status code &quot;0&quot;, even upon detecting lint violations
-<a id="__codelineno-25-106" name="__codelineno-25-106" href="#__codelineno-25-106"></a>      --exit-non-zero-on-fix
-<a id="__codelineno-25-107" name="__codelineno-25-107" href="#__codelineno-25-107"></a>          Exit with a non-zero status code if any files were modified via fix,
-<a id="__codelineno-25-108" name="__codelineno-25-108" href="#__codelineno-25-108"></a>          even if no lint violations remain
-<a id="__codelineno-25-109" name="__codelineno-25-109" href="#__codelineno-25-109"></a>
-<a id="__codelineno-25-110" name="__codelineno-25-110" href="#__codelineno-25-110"></a>Log levels:
-<a id="__codelineno-25-111" name="__codelineno-25-111" href="#__codelineno-25-111"></a>  -v, --verbose  Enable verbose logging
-<a id="__codelineno-25-112" name="__codelineno-25-112" href="#__codelineno-25-112"></a>  -q, --quiet    Print diagnostics, but nothing else
-<a id="__codelineno-25-113" name="__codelineno-25-113" href="#__codelineno-25-113"></a>  -s, --silent   Disable all logging (but still exit with status code &quot;1&quot; upon
-<a id="__codelineno-25-114" name="__codelineno-25-114" href="#__codelineno-25-114"></a>                 detecting diagnostics)
-<a id="__codelineno-25-115" name="__codelineno-25-115" href="#__codelineno-25-115"></a>
-<a id="__codelineno-25-116" name="__codelineno-25-116" href="#__codelineno-25-116"></a>Global options:
-<a id="__codelineno-25-117" name="__codelineno-25-117" href="#__codelineno-25-117"></a>      --config &lt;CONFIG_OPTION&gt;
-<a id="__codelineno-25-118" name="__codelineno-25-118" href="#__codelineno-25-118"></a>          Either a path to a TOML configuration file (`pyproject.toml` or
-<a id="__codelineno-25-119" name="__codelineno-25-119" href="#__codelineno-25-119"></a>          `ruff.toml`), or a TOML `&lt;KEY&gt; = &lt;VALUE&gt;` pair (such as you might
-<a id="__codelineno-25-120" name="__codelineno-25-120" href="#__codelineno-25-120"></a>          find in a `ruff.toml` configuration file) overriding a specific
-<a id="__codelineno-25-121" name="__codelineno-25-121" href="#__codelineno-25-121"></a>          configuration option. Overrides of individual settings using this
-<a id="__codelineno-25-122" name="__codelineno-25-122" href="#__codelineno-25-122"></a>          option always take precedence over all configuration files, including
-<a id="__codelineno-25-123" name="__codelineno-25-123" href="#__codelineno-25-123"></a>          configuration files that were also specified using `--config`
-<a id="__codelineno-25-124" name="__codelineno-25-124" href="#__codelineno-25-124"></a>      --isolated
-<a id="__codelineno-25-125" name="__codelineno-25-125" href="#__codelineno-25-125"></a>          Ignore all configuration files
+<a id="__codelineno-25-51" name="__codelineno-25-51" href="#__codelineno-25-51"></a>      --add-noqa[=&lt;REASON&gt;]
+<a id="__codelineno-25-52" name="__codelineno-25-52" href="#__codelineno-25-52"></a>          Enable automatic additions of `noqa` directives to failing lines.
+<a id="__codelineno-25-53" name="__codelineno-25-53" href="#__codelineno-25-53"></a>          Optionally provide a reason to append after the codes
+<a id="__codelineno-25-54" name="__codelineno-25-54" href="#__codelineno-25-54"></a>      --show-files
+<a id="__codelineno-25-55" name="__codelineno-25-55" href="#__codelineno-25-55"></a>          See the files Ruff will be run against with the current settings
+<a id="__codelineno-25-56" name="__codelineno-25-56" href="#__codelineno-25-56"></a>      --show-settings
+<a id="__codelineno-25-57" name="__codelineno-25-57" href="#__codelineno-25-57"></a>          See the settings Ruff will use to lint a given Python file
+<a id="__codelineno-25-58" name="__codelineno-25-58" href="#__codelineno-25-58"></a>  -h, --help
+<a id="__codelineno-25-59" name="__codelineno-25-59" href="#__codelineno-25-59"></a>          Print help
+<a id="__codelineno-25-60" name="__codelineno-25-60" href="#__codelineno-25-60"></a>
+<a id="__codelineno-25-61" name="__codelineno-25-61" href="#__codelineno-25-61"></a>Rule selection:
+<a id="__codelineno-25-62" name="__codelineno-25-62" href="#__codelineno-25-62"></a>      --select &lt;RULE_CODE&gt;
+<a id="__codelineno-25-63" name="__codelineno-25-63" href="#__codelineno-25-63"></a>          Comma-separated list of rule codes to enable (or ALL, to enable all
+<a id="__codelineno-25-64" name="__codelineno-25-64" href="#__codelineno-25-64"></a>          rules)
+<a id="__codelineno-25-65" name="__codelineno-25-65" href="#__codelineno-25-65"></a>      --ignore &lt;RULE_CODE&gt;
+<a id="__codelineno-25-66" name="__codelineno-25-66" href="#__codelineno-25-66"></a>          Comma-separated list of rule codes to disable
+<a id="__codelineno-25-67" name="__codelineno-25-67" href="#__codelineno-25-67"></a>      --extend-select &lt;RULE_CODE&gt;
+<a id="__codelineno-25-68" name="__codelineno-25-68" href="#__codelineno-25-68"></a>          Like --select, but adds additional rule codes on top of those already
+<a id="__codelineno-25-69" name="__codelineno-25-69" href="#__codelineno-25-69"></a>          specified
+<a id="__codelineno-25-70" name="__codelineno-25-70" href="#__codelineno-25-70"></a>      --per-file-ignores &lt;PER_FILE_IGNORES&gt;
+<a id="__codelineno-25-71" name="__codelineno-25-71" href="#__codelineno-25-71"></a>          List of mappings from file pattern to code to exclude
+<a id="__codelineno-25-72" name="__codelineno-25-72" href="#__codelineno-25-72"></a>      --extend-per-file-ignores &lt;EXTEND_PER_FILE_IGNORES&gt;
+<a id="__codelineno-25-73" name="__codelineno-25-73" href="#__codelineno-25-73"></a>          Like `--per-file-ignores`, but adds additional ignores on top of
+<a id="__codelineno-25-74" name="__codelineno-25-74" href="#__codelineno-25-74"></a>          those already specified
+<a id="__codelineno-25-75" name="__codelineno-25-75" href="#__codelineno-25-75"></a>      --fixable &lt;RULE_CODE&gt;
+<a id="__codelineno-25-76" name="__codelineno-25-76" href="#__codelineno-25-76"></a>          List of rule codes to treat as eligible for fix. Only applicable when
+<a id="__codelineno-25-77" name="__codelineno-25-77" href="#__codelineno-25-77"></a>          fix itself is enabled (e.g., via `--fix`)
+<a id="__codelineno-25-78" name="__codelineno-25-78" href="#__codelineno-25-78"></a>      --unfixable &lt;RULE_CODE&gt;
+<a id="__codelineno-25-79" name="__codelineno-25-79" href="#__codelineno-25-79"></a>          List of rule codes to treat as ineligible for fix. Only applicable
+<a id="__codelineno-25-80" name="__codelineno-25-80" href="#__codelineno-25-80"></a>          when fix itself is enabled (e.g., via `--fix`)
+<a id="__codelineno-25-81" name="__codelineno-25-81" href="#__codelineno-25-81"></a>      --extend-fixable &lt;RULE_CODE&gt;
+<a id="__codelineno-25-82" name="__codelineno-25-82" href="#__codelineno-25-82"></a>          Like --fixable, but adds additional rule codes on top of those
+<a id="__codelineno-25-83" name="__codelineno-25-83" href="#__codelineno-25-83"></a>          already specified
+<a id="__codelineno-25-84" name="__codelineno-25-84" href="#__codelineno-25-84"></a>
+<a id="__codelineno-25-85" name="__codelineno-25-85" href="#__codelineno-25-85"></a>File selection:
+<a id="__codelineno-25-86" name="__codelineno-25-86" href="#__codelineno-25-86"></a>      --exclude &lt;FILE_PATTERN&gt;
+<a id="__codelineno-25-87" name="__codelineno-25-87" href="#__codelineno-25-87"></a>          List of paths, used to omit files and/or directories from analysis
+<a id="__codelineno-25-88" name="__codelineno-25-88" href="#__codelineno-25-88"></a>      --extend-exclude &lt;FILE_PATTERN&gt;
+<a id="__codelineno-25-89" name="__codelineno-25-89" href="#__codelineno-25-89"></a>          Like --exclude, but adds additional files and directories on top of
+<a id="__codelineno-25-90" name="__codelineno-25-90" href="#__codelineno-25-90"></a>          those already excluded
+<a id="__codelineno-25-91" name="__codelineno-25-91" href="#__codelineno-25-91"></a>      --respect-gitignore
+<a id="__codelineno-25-92" name="__codelineno-25-92" href="#__codelineno-25-92"></a>          Respect file exclusions via `.gitignore` and other standard ignore
+<a id="__codelineno-25-93" name="__codelineno-25-93" href="#__codelineno-25-93"></a>          files. Use `--no-respect-gitignore` to disable
+<a id="__codelineno-25-94" name="__codelineno-25-94" href="#__codelineno-25-94"></a>      --force-exclude
+<a id="__codelineno-25-95" name="__codelineno-25-95" href="#__codelineno-25-95"></a>          Enforce exclusions, even for paths passed to Ruff directly on the
+<a id="__codelineno-25-96" name="__codelineno-25-96" href="#__codelineno-25-96"></a>          command-line. Use `--no-force-exclude` to disable
+<a id="__codelineno-25-97" name="__codelineno-25-97" href="#__codelineno-25-97"></a>
+<a id="__codelineno-25-98" name="__codelineno-25-98" href="#__codelineno-25-98"></a>Miscellaneous:
+<a id="__codelineno-25-99" name="__codelineno-25-99" href="#__codelineno-25-99"></a>  -n, --no-cache
+<a id="__codelineno-25-100" name="__codelineno-25-100" href="#__codelineno-25-100"></a>          Disable cache reads [env: RUFF_NO_CACHE=]
+<a id="__codelineno-25-101" name="__codelineno-25-101" href="#__codelineno-25-101"></a>      --cache-dir &lt;CACHE_DIR&gt;
+<a id="__codelineno-25-102" name="__codelineno-25-102" href="#__codelineno-25-102"></a>          Path to the cache directory [env: RUFF_CACHE_DIR=]
+<a id="__codelineno-25-103" name="__codelineno-25-103" href="#__codelineno-25-103"></a>      --stdin-filename &lt;STDIN_FILENAME&gt;
+<a id="__codelineno-25-104" name="__codelineno-25-104" href="#__codelineno-25-104"></a>          The name of the file when passing it through stdin
+<a id="__codelineno-25-105" name="__codelineno-25-105" href="#__codelineno-25-105"></a>  -e, --exit-zero
+<a id="__codelineno-25-106" name="__codelineno-25-106" href="#__codelineno-25-106"></a>          Exit with status code &quot;0&quot;, even upon detecting lint violations
+<a id="__codelineno-25-107" name="__codelineno-25-107" href="#__codelineno-25-107"></a>      --exit-non-zero-on-fix
+<a id="__codelineno-25-108" name="__codelineno-25-108" href="#__codelineno-25-108"></a>          Exit with a non-zero status code if any files were modified via fix,
+<a id="__codelineno-25-109" name="__codelineno-25-109" href="#__codelineno-25-109"></a>          even if no lint violations remain
+<a id="__codelineno-25-110" name="__codelineno-25-110" href="#__codelineno-25-110"></a>
+<a id="__codelineno-25-111" name="__codelineno-25-111" href="#__codelineno-25-111"></a>Log levels:
+<a id="__codelineno-25-112" name="__codelineno-25-112" href="#__codelineno-25-112"></a>  -v, --verbose  Enable verbose logging
+<a id="__codelineno-25-113" name="__codelineno-25-113" href="#__codelineno-25-113"></a>  -q, --quiet    Print diagnostics, but nothing else
+<a id="__codelineno-25-114" name="__codelineno-25-114" href="#__codelineno-25-114"></a>  -s, --silent   Disable all logging (but still exit with status code &quot;1&quot; upon
+<a id="__codelineno-25-115" name="__codelineno-25-115" href="#__codelineno-25-115"></a>                 detecting diagnostics)
+<a id="__codelineno-25-116" name="__codelineno-25-116" href="#__codelineno-25-116"></a>
+<a id="__codelineno-25-117" name="__codelineno-25-117" href="#__codelineno-25-117"></a>Global options:
+<a id="__codelineno-25-118" name="__codelineno-25-118" href="#__codelineno-25-118"></a>      --config &lt;CONFIG_OPTION&gt;
+<a id="__codelineno-25-119" name="__codelineno-25-119" href="#__codelineno-25-119"></a>          Either a path to a TOML configuration file (`pyproject.toml` or
+<a id="__codelineno-25-120" name="__codelineno-25-120" href="#__codelineno-25-120"></a>          `ruff.toml`), or a TOML `&lt;KEY&gt; = &lt;VALUE&gt;` pair (such as you might
+<a id="__codelineno-25-121" name="__codelineno-25-121" href="#__codelineno-25-121"></a>          find in a `ruff.toml` configuration file) overriding a specific
+<a id="__codelineno-25-122" name="__codelineno-25-122" href="#__codelineno-25-122"></a>          configuration option. Overrides of individual settings using this
+<a id="__codelineno-25-123" name="__codelineno-25-123" href="#__codelineno-25-123"></a>          option always take precedence over all configuration files, including
+<a id="__codelineno-25-124" name="__codelineno-25-124" href="#__codelineno-25-124"></a>          configuration files that were also specified using `--config`
+<a id="__codelineno-25-125" name="__codelineno-25-125" href="#__codelineno-25-125"></a>      --isolated
+<a id="__codelineno-25-126" name="__codelineno-25-126" href="#__codelineno-25-126"></a>          Ignore all configuration files
 </code></pre></div>
 <!-- End auto-generated check help. -->
 
