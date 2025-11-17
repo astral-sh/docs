@@ -8060,11 +8060,7 @@ This setting has no effect when used in the `uv pip` interface.
 May also be set with the `UV_PROJECT` environment variable.
 ```
 
-[`--python-downloads-json-url`](#uv-python-list--python-downloads-json-url) *python-downloads-json-url* : URL pointing to JSON of custom Python installations.
-
-```
-Note that currently, only local paths are supported.
-```
+[`--python-downloads-json-url`](#uv-python-list--python-downloads-json-url) *python-downloads-json-url* : URL pointing to JSON of custom Python installations
 
 [`--quiet`](#uv-python-list--quiet), `-q` : Use quiet output.
 
@@ -8299,11 +8295,7 @@ The provided URL will replace `https://downloads.python.org/pypy` in, e.g., `htt
 Distributions can be read from a local directory by using the `file://` URL scheme.
 ```
 
-[`--python-downloads-json-url`](#uv-python-install--python-downloads-json-url) *python-downloads-json-url* : URL pointing to JSON of custom Python installations.
-
-```
-Note that currently, only local paths are supported.
-```
+[`--python-downloads-json-url`](#uv-python-install--python-downloads-json-url) *python-downloads-json-url* : URL pointing to JSON of custom Python installations
 
 [`--quiet`](#uv-python-install--quiet), `-q` : Use quiet output.
 
@@ -8315,6 +8307,16 @@ Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will w
 
 ```
 By default, uv will exit successfully if the version is already installed.
+```
+
+[`--upgrade`](#uv-python-install--upgrade), `-U` : Upgrade existing Python installations to the latest patch version.
+
+```
+By default, uv will not upgrade already-installed Python versions to newer patch releases. With `--upgrade`, uv will upgrade to the latest available patch version for the specified minor version(s).
+
+If the requested versions are not yet installed, uv will install them.
+
+This option is only supported for minor version requests, e.g., `3.12`; uv will exit with an error if a patch version, e.g., `3.12.2`, is requested.
 ```
 
 [`--verbose`](#uv-python-install--verbose), `-v` : Use verbose output.
@@ -8508,11 +8510,7 @@ The provided URL will replace `https://downloads.python.org/pypy` in, e.g., `htt
 Distributions can be read from a local directory by using the `file://` URL scheme.
 ```
 
-[`--python-downloads-json-url`](#uv-python-upgrade--python-downloads-json-url) *python-downloads-json-url* : URL pointing to JSON of custom Python installations.
-
-```
-Note that currently, only local paths are supported.
-```
+[`--python-downloads-json-url`](#uv-python-upgrade--python-downloads-json-url) *python-downloads-json-url* : URL pointing to JSON of custom Python installations
 
 [`--quiet`](#uv-python-upgrade--quiet), `-q` : Use quiet output.
 
@@ -8688,6 +8686,8 @@ This setting has no effect when used in the `uv pip` interface.
 
 May also be set with the `UV_PROJECT` environment variable.
 ```
+
+[`--python-downloads-json-url`](#uv-python-find--python-downloads-json-url) *python-downloads-json-url* : URL pointing to JSON of custom Python installations
 
 [`--quiet`](#uv-python-find--quiet), `-q` : Use quiet output.
 
@@ -10466,6 +10466,8 @@ Multiple packages may be provided. Disable binaries for all packages with `:all:
 
 ```
 In general, prefer the use of `--python` to install into an alternate environment, as scripts and other artifacts installed via `--prefix` will reference the installing interpreter, rather than any interpreter added to the `--prefix` directory, rendering them non-portable.
+
+Unlike other install operations, this command does not require discovery of an existing Python environment and only searches for a Python interpreter to use for package resolution. If a suitable Python interpreter cannot be found, uv will install one. To disable this, add `--no-python-downloads`.
 ```
 
 [`--project`](#uv-pip-sync--project) *project* : Run the command within the given project directory.
@@ -10602,7 +10604,11 @@ WARNING: `--system` is intended for use in continuous integration (CI) environme
 May also be set with the `UV_SYSTEM_PYTHON` environment variable.
 ```
 
-[`--target`](#uv-pip-sync--target) *target* : Install packages into the specified directory, rather than into the virtual or system Python environment. The packages will be installed at the top-level of the directory
+[`--target`](#uv-pip-sync--target) *target* : Install packages into the specified directory, rather than into the virtual or system Python environment. The packages will be installed at the top-level of the directory.
+
+```
+Unlike other install operations, this command does not require discovery of an existing Python environment and only searches for a Python interpreter to use for package resolution. If a suitable Python interpreter cannot be found, uv will install one. To disable this, add `--no-python-downloads`.
+```
 
 [`--torch-backend`](#uv-pip-sync--torch-backend) *torch-backend* : The backend to use when fetching packages in the PyTorch ecosystem (e.g., `cpu`, `cu126`, or `auto`).
 
@@ -11084,6 +11090,8 @@ May also be set with the `UV_OVERRIDE` environment variable.
 
 ```
 In general, prefer the use of `--python` to install into an alternate environment, as scripts and other artifacts installed via `--prefix` will reference the installing interpreter, rather than any interpreter added to the `--prefix` directory, rendering them non-portable.
+
+Unlike other install operations, this command does not require discovery of an existing Python environment and only searches for a Python interpreter to use for package resolution. If a suitable Python interpreter cannot be found, uv will install one. To disable this, add `--no-python-downloads`.
 ```
 
 [`--prerelease`](#uv-pip-install--prerelease) *prerelease* : The strategy to use when considering pre-release versions.
@@ -11260,7 +11268,11 @@ WARNING: `--system` is intended for use in continuous integration (CI) environme
 May also be set with the `UV_SYSTEM_PYTHON` environment variable.
 ```
 
-[`--target`](#uv-pip-install--target) *target* : Install packages into the specified directory, rather than into the virtual or system Python environment. The packages will be installed at the top-level of the directory
+[`--target`](#uv-pip-install--target) *target* : Install packages into the specified directory, rather than into the virtual or system Python environment. The packages will be installed at the top-level of the directory.
+
+```
+Unlike other install operations, this command does not require discovery of an existing Python environment and only searches for a Python interpreter to use for package resolution. If a suitable Python interpreter cannot be found, uv will install one. To disable this, add `--no-python-downloads`.
+```
 
 [`--torch-backend`](#uv-pip-install--torch-backend) *torch-backend* : The backend to use when fetching packages in the PyTorch ecosystem (e.g., `cpu`, `cu126`, or `auto`)
 

@@ -22,7 +22,11 @@ In most cases, executing a tool with `uvx` is more appropriate than installing t
 
 When running a tool with `uvx`, a virtual environment is stored in the uv cache directory and is treated as disposable, i.e., if you run `uv cache clean` the environment will be deleted. The environment is only cached to reduce the overhead of repeated invocations. If the environment is removed, a new one will be created automatically.
 
-When installing a tool with `uv tool install`, a virtual environment is created in the uv tools directory. The environment will not be removed unless the tool is uninstalled. If the environment is manually deleted, the tool will fail to run.
+When installing a tool with `uv tool install`, a virtual environment is created in the [uv tools directory](../../reference/storage/#tools). The environment will not be removed unless the tool is uninstalled. If the environment is manually deleted, the tool will fail to run.
+
+Important
+
+Tool environments are *not* intended to be mutated directly. It is strongly recommended never to mutate a tool environment manually, e.g., with a `pip` operation.
 
 ## [Tool versions](#tool-versions)
 
@@ -96,23 +100,6 @@ $ uv tool install ruff@latest
 $ uv tool install ruff@0.6.0
 
 ```
-
-## [Tools directory](#tools-directory)
-
-By default, the uv tools directory is named `tools` and is in the uv application state directory, e.g., `~/.local/share/uv/tools`. The location may be customized with the `UV_TOOL_DIR` environment variable.
-
-To display the path to the tool installation directory:
-
-```
-$ uv tool dir
-
-```
-
-Tool environments are placed in a directory with the same name as the tool package, e.g., `.../tools/<name>`.
-
-Important
-
-Tool environments are *not* intended to be mutated directly. It is strongly recommended never to mutate a tool environment manually, e.g., with a `pip` operation.
 
 ## [Upgrading tools](#upgrading-tools)
 
@@ -239,26 +226,17 @@ If the Python version used by a tool is *uninstalled*, the tool environment will
 
 ## [Tool executables](#tool-executables)
 
-Tool executables include all console entry points, script entry points, and binary scripts provided by a Python package. Tool executables are symlinked into the `bin` directory on Unix and copied on Windows.
+Tool executables include all console entry points, script entry points, and binary scripts provided by a Python package. Tool executables are symlinked into the [executable directory](../../reference/storage/#tool-executables) on Unix and copied on Windows.
 
-### [The `bin` directory](#the-bin-directory)
-
-Executables are installed into the user `bin` directory following the XDG standard, e.g., `~/.local/bin`. Unlike other directory schemes in uv, the XDG standard is used on *all platforms* notably including Windows and macOS — there is no clear alternative location to place executables on these platforms. The installation directory is determined from the first available environment variable:
-
-- `$UV_TOOL_BIN_DIR`
-- `$XDG_BIN_HOME`
-- `$XDG_DATA_HOME/../bin`
-- `$HOME/.local/bin`
+Note
 
 Executables provided by dependencies of tool packages are not installed.
 
-### [The `PATH`](#the-path)
-
-The `bin` directory must be in the `PATH` variable for tool executables to be available from the shell. If it is not in the `PATH`, a warning will be displayed. The `uv tool update-shell` command can be used to add the `bin` directory to the `PATH` in common shell configuration files.
+The [executable directory](../../reference/storage/#executable-directory) must be in the `PATH` variable for tool executables to be available from the shell. If it is not in the `PATH`, a warning will be displayed. The `uv tool update-shell` command can be used to add the executable directory to the `PATH` in common shell configuration files.
 
 ### [Overwriting executables](#overwriting-executables)
 
-Installation of tools will not overwrite executables in the `bin` directory that were not previously installed by uv. For example, if `pipx` has been used to install a tool, `uv tool install` will fail. The `--force` flag can be used to override this behavior.
+Installation of tools will not overwrite executables in the executable directory that were not previously installed by uv. For example, if `pipx` has been used to install a tool, `uv tool install` will fail. The `--force` flag can be used to override this behavior.
 
 ## [Relationship to `uv run`](#relationship-to-uv-run)
 
