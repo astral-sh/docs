@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://docs.astral.sh/uv/reference/installer/">
       
       
-        <link rel="prev" href="../environment/">
+        <link rel="prev" href="../storage/">
       
       
         <link rel="next" href="../troubleshooting/">
@@ -81,8 +81,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2025-07-30 01:24:59Z",
-        "dateModified": "2025-07-30 01:24:59Z",
+        "datePublished": "2025-11-17 14:38:14Z",
+        "dateModified": "2025-11-17 14:38:14Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -2274,6 +2274,8 @@
       
         
       
+        
+      
     
     
       
@@ -2389,6 +2391,32 @@
     
   
     Environment variables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../storage/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Storage
   
 
     
@@ -2542,7 +2570,7 @@
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_7" >
         
           
           
@@ -2563,14 +2591,14 @@
 
             </a>
             
-              <label class="md-nav__link " for="__nav_5_6">
+              <label class="md-nav__link " for="__nav_5_7">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5_6">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_7">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -2664,7 +2692,7 @@
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_8" >
         
           
           
@@ -2685,14 +2713,14 @@
 
             </a>
             
-              <label class="md-nav__link " for="__nav_5_7">
+              <label class="md-nav__link " for="__nav_5_8">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5_7">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_8">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -2790,7 +2818,7 @@
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_9" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_10" >
         
           
           
@@ -2811,14 +2839,14 @@
 
             </a>
             
-              <label class="md-nav__link " for="__nav_5_9">
+              <label class="md-nav__link " for="__nav_5_10">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5_9">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_10">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -3060,9 +3088,7 @@
 
 <h1 id="the-uv-installer"><a class="toclink" href="#the-uv-installer">The uv installer</a></h1>
 <h2 id="changing-the-installation-path"><a class="toclink" href="#changing-the-installation-path">Changing the installation path</a></h2>
-<p>By default, uv is installed to <code>~/.local/bin</code>. If <code>XDG_BIN_HOME</code> is set, it will be used instead.
-Similarly, if <code>XDG_DATA_HOME</code> is set, the target directory will be inferred as
-<code>XDG_DATA_HOME/../bin</code>.</p>
+<p>By default, uv is installed in the user <a href="../storage/#executable-directory">executable directory</a>.</p>
 <p>To change the installation path, use <code>UV_INSTALL_DIR</code>:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">macOS and Linux</label><label for="__tabbed_1_2">Windows</label></div>
 <div class="tabbed-content">
@@ -3075,6 +3101,12 @@ Similarly, if <code>XDG_DATA_HOME</code> is set, the target directory will be in
 </code></pre></div>
 </div>
 </div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Changing the installation path only affects where the uv binary is installed. uv will still store
+its data (cache, Python installations, tools, etc.) in the default locations. See the
+<a href="../storage/">storage reference</a> for details on these locations and how to customize them.</p>
 </div>
 <h2 id="disabling-shell-modifications"><a class="toclink" href="#disabling-shell-modifications">Disabling shell modifications</a></h2>
 <p>The installer may also update your shell profiles to ensure the uv binary is on your <code>PATH</code>. To
@@ -3108,7 +3140,7 @@ options:</p>
         <span class="md-icon" title="Last update">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
         </span>
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 30, 2025</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 17, 2025</span>
       </span>
     
     
@@ -3147,7 +3179,7 @@ options:</p>
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../environment/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Environment variables" rel="prev">
+          <a href="../storage/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Storage" rel="prev">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
@@ -3157,7 +3189,7 @@ options:</p>
                 Previous
               </span>
               <div class="md-ellipsis">
-                Environment variables
+                Storage
               </div>
             </div>
           </a>
