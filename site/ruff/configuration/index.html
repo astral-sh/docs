@@ -1333,8 +1333,9 @@ formatting <code>.pyi</code> files, but would continue to include them in lintin
 </div>
 <p>By default, Ruff will also skip any files that are omitted via <code>.ignore</code>, <code>.gitignore</code>,
 <code>.git/info/exclude</code>, and global <code>gitignore</code> files (see: <a href="../settings/#respect-gitignore"><code>respect-gitignore</code></a>).</p>
-<p>Files that are passed to <code>ruff</code> directly are always analyzed, regardless of the above criteria.
-For example, <code>ruff check /path/to/excluded/file.py</code> will always lint <code>file.py</code>.</p>
+<p>Files that are passed to <code>ruff</code> directly are always analyzed, regardless of the above criteria, 
+unless <a href="../settings/#force-exclude"><code>force-exclude</code></a> is also enabled (via CLI or settings file).
+For example, without <code>force-exclude</code> enabled, <code>ruff check /path/to/excluded/file.py</code> will always lint <code>file.py</code>.</p>
 <h3 id="default-inclusions"><a class="toclink" href="#default-inclusions">Default inclusions</a></h3>
 <p>By default, Ruff will discover files matching <code>*.py</code>, <code>*.pyi</code>, <code>*.ipynb</code>, or <code>pyproject.toml</code>.</p>
 <p>To lint or format files with additional file extensions, use the <a href="../settings/#extend-include"><code>extend-include</code></a> setting.
