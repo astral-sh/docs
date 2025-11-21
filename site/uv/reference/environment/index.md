@@ -812,6 +812,12 @@ added in `0.0.5`
 
 Used to detect the path of an active Conda environment.
 
+### [`DEPENDABOT`](#dependabot)
+
+added in `0.9.11`
+
+Used to determine if we're running in Dependabot.
+
 ### [`FISH_VERSION`](#fish_version)
 
 added in `0.1.28`

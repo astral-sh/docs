@@ -25,7 +25,7 @@ $ wget -qO- https://astral.sh/uv/install.sh | sh
 Request a specific version by including it in the URL:
 
 ```
-$ curl -LsSf https://astral.sh/uv/0.9.10/install.sh | sh
+$ curl -LsSf https://astral.sh/uv/0.9.11/install.sh | sh
 
 ```
 
@@ -41,7 +41,7 @@ Changing the [execution policy](https://learn.microsoft.com/en-us/powershell/mod
 Request a specific version by including it in the URL:
 
 ```
-PS> powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/0.9.10/install.ps1 | iex"
+PS> powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/0.9.11/install.ps1 | iex"
 
 ```
 
@@ -135,10 +135,10 @@ Each release page includes binaries for all supported platforms as well as instr
 
 ### [Cargo](#cargo)
 
-uv is available via Cargo, but must be built from Git rather than [crates.io](https://crates.io) due to its dependency on unpublished crates.
+uv is available via [crates.io](https://crates.io).
 
 ```
-$ cargo install --git https://github.com/astral-sh/uv uv
+$ cargo install --locked uv
 
 ```
 

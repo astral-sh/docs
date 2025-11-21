@@ -81,8 +81,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2025-11-14 22:51:24Z",
-        "dateModified": "2025-11-14 22:51:24Z",
+        "datePublished": "2025-11-20 17:52:31Z",
+        "dateModified": "2025-11-20 17:52:31Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -522,6 +522,8 @@
       
         
       
+        
+      
     
     
       
@@ -682,6 +684,32 @@
   
   
     <li class="md-nav__item">
+      <a href="../../guides/export/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Exporting lockfiles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../guides/package/" class="md-nav__link">
         
   
@@ -724,7 +752,7 @@
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_8" >
         
           
           
@@ -745,14 +773,14 @@
 
             </a>
             
-              <label class="md-nav__link " for="__nav_3_7">
+              <label class="md-nav__link " for="__nav_3_8">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_7">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_8">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -842,7 +870,7 @@
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_9" >
         
           
           
@@ -863,14 +891,14 @@
 
             </a>
             
-              <label class="md-nav__link " for="__nav_3_8">
+              <label class="md-nav__link " for="__nav_3_9">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_8">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_9">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -6067,12 +6095,13 @@ metadata when there are not wheels.</p>
 <li><code>fewest</code>:  Optimize for selecting the fewest number of versions for each package. Older versions may be preferred if they are compatible with a wider range of supported Python versions or platforms</li>
 <li><code>requires-python</code>:  Optimize for selecting latest supported version of each package, for each supported Python version</li>
 </ul></dd><dt id="uv-export--format"><a href="#uv-export--format"><code>--format</code></a> <i>format</i></dt><dd><p>The format to which <code>uv.lock</code> should be exported.</p>
-<p>Supports both <code>requirements.txt</code> and <code>pylock.toml</code> (PEP 751) output formats.</p>
+<p>Supports <code>requirements.txt</code>, <code>pylock.toml</code> (PEP 751) and CycloneDX v1.5 JSON output formats.</p>
 <p>uv will infer the output format from the file extension of the output file, if provided. Otherwise, defaults to <code>requirements.txt</code>.</p>
 <p>Possible values:</p>
 <ul>
 <li><code>requirements.txt</code>:  Export in <code>requirements.txt</code> format</li>
 <li><code>pylock.toml</code>:  Export in <code>pylock.toml</code> format</li>
+<li><code>cyclonedx1.5</code>:  Export in <code>CycloneDX</code> v1.5 JSON format</li>
 </ul></dd><dt id="uv-export--frozen"><a href="#uv-export--frozen"><code>--frozen</code></a></dt><dd><p>Do not update the <code>uv.lock</code> before exporting.</p>
 <p>If a <code>uv.lock</code> does not exist, uv will exit with an error.</p>
 <p>May also be set with the <code>UV_FROZEN</code> environment variable.</p></dd><dt id="uv-export--group"><a href="#uv-export--group"><code>--group</code></a> <i>group</i></dt><dd><p>Include dependencies from the specified dependency group.</p>
@@ -10422,7 +10451,7 @@ uv publish --publish-url https://upload.pypi.org/legacy/ --check-url https://pyp
         <span class="md-icon" title="Last update">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
         </span>
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 14, 2025</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 20, 2025</span>
       </span>
     
     

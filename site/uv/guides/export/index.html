@@ -6,19 +6,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="A guide to using uv to run Python scripts, including support for inline dependency metadata, reproducible scripts, and more.">
+        <meta name="description" content="Exporting a lockfile to different formats">
       
       
         <meta name="author" content="charliermarsh">
       
       
-        <link rel="canonical" href="https://docs.astral.sh/uv/guides/scripts/">
+        <link rel="canonical" href="https://docs.astral.sh/uv/guides/export/">
       
       
-        <link rel="prev" href="../install-python/">
+        <link rel="prev" href="../projects/">
       
       
-        <link rel="next" href="../tools/">
+        <link rel="next" href="../package/">
       
       
         
@@ -29,7 +29,7 @@
     
     
 
-<title>Running scripts | uv</title>
+<title>Exporting a lockfile | uv</title>
 
 
     
@@ -81,8 +81,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2025-06-19 21:47:22Z",
-        "dateModified": "2025-06-19 21:47:22Z",
+        "datePublished": "2025-11-20 17:52:31Z",
+        "dateModified": "2025-11-20 17:52:31Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -110,7 +110,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#running-scripts" class="md-skip">
+        <a href="#exporting-a-lockfile" class="md-skip">
           Skip to content
         </a>
       
@@ -145,7 +145,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Running scripts
+              Exporting a lockfile
             
           </span>
         </div>
@@ -606,35 +606,9 @@
                 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    
-  
-    Running scripts
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../scripts/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -649,147 +623,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#running-a-script-without-dependencies" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Running a script without dependencies
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#running-a-script-with-dependencies" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Running a script with dependencies
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#creating-a-python-script" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Creating a Python script
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#declaring-script-dependencies" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Declaring script dependencies
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#using-a-shebang-to-create-an-executable-file" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Using a shebang to create an executable file
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#using-alternative-package-indexes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Using alternative package indexes
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#locking-dependencies" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Locking dependencies
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#improving-reproducibility" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Improving reproducibility
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#using-different-python-versions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Using different Python versions
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#using-gui-scripts" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Using GUI scripts
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Next steps
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -851,9 +684,35 @@
                 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../export/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    
+  
+    Exporting lockfiles
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -868,6 +727,154 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview-of-export-formats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview of export formats
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requirementstxt-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        requirements.txt format
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="requirements.txt format">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic usage
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pylocktoml-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pylock.toml format
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="pylock.toml format">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-usage_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic usage
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cyclonedx-sbom-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CycloneDX SBOM format
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CycloneDX SBOM format">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-cyclonedx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is CycloneDX?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basic-usage_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic usage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sbom-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SBOM Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -3083,10 +3090,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#running-a-script-without-dependencies" class="md-nav__link">
+  <a href="#overview-of-export-formats" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Running a script without dependencies
+        Overview of export formats
       
     </span>
   </a>
@@ -3094,101 +3101,108 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#running-a-script-with-dependencies" class="md-nav__link">
+  <a href="#requirementstxt-format" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Running a script with dependencies
+        requirements.txt format
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="requirements.txt format">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic usage
       
     </span>
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#creating-a-python-script" class="md-nav__link">
+  <a href="#pylocktoml-format" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Creating a Python script
+        pylock.toml format
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="pylock.toml format">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-usage_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic usage
       
     </span>
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#declaring-script-dependencies" class="md-nav__link">
+  <a href="#cyclonedx-sbom-format" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Declaring script dependencies
+        CycloneDX SBOM format
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CycloneDX SBOM format">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-cyclonedx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is CycloneDX?
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#using-a-shebang-to-create-an-executable-file" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#basic-usage_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Using a shebang to create an executable file
+        Basic usage
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#using-alternative-package-indexes" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#sbom-structure" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Using alternative package indexes
+        SBOM Structure
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#locking-dependencies" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Locking dependencies
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#improving-reproducibility" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Improving reproducibility
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#using-different-python-versions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Using different Python versions
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#using-gui-scripts" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Using GUI scripts
-      
-    </span>
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -3268,274 +3282,87 @@
   
 
 
-<h1 id="running-scripts"><a class="toclink" href="#running-scripts">Running scripts</a></h1>
-<p>A Python script is a file intended for standalone execution, e.g., with <code>python &lt;script&gt;.py</code>. Using
-uv to execute scripts ensures that script dependencies are managed without manually managing
-environments.</p>
+<h1 id="exporting-a-lockfile"><a class="toclink" href="#exporting-a-lockfile">Exporting a lockfile</a></h1>
+<p>uv can export a lockfile to different formats for integration with other tools and workflows. The
+<code>uv export</code> command supports multiple output formats, each suited to different use cases.</p>
+<p>For more details on lockfiles and how they're created, see the
+<a href="../../concepts/projects/layout/">project layout</a> and
+<a href="../../concepts/projects/sync/">locking and syncing</a> documentation.</p>
+<h2 id="overview-of-export-formats"><a class="toclink" href="#overview-of-export-formats">Overview of export formats</a></h2>
+<p>uv supports three export formats:</p>
+<ul>
+<li><code>requirements.txt</code>: The traditional pip-compatible
+  <a href="https://pip.pypa.io/en/stable/reference/requirements-file-format/">requirements file format</a>.</li>
+<li><code>pylock.toml</code>: The standardized Python lockfile format defined in
+  <a href="https://peps.python.org/pep-0751/">PEP 751</a>.</li>
+<li><code>CycloneDX</code>: An industry-standard <a href="https://cyclonedx.org/">Software Bill of Materials (SBOM)</a>
+  format.</li>
+</ul>
+<p>The format can be specified with the <code>--format</code> flag:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">$ </span>uv<span class="w"> </span><span class="nb">export</span><span class="w"> </span>--format<span class="w"> </span>requirements.txt
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="gp">$ </span>uv<span class="w"> </span><span class="nb">export</span><span class="w"> </span>--format<span class="w"> </span>pylock.toml
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="gp">$ </span>uv<span class="w"> </span><span class="nb">export</span><span class="w"> </span>--format<span class="w"> </span>cyclonedx1.5
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>By default, <code>uv export</code> prints to stdout. Use <code>--output-file</code> to write to a file for any format:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="gp">$ </span>uv<span class="w"> </span><span class="nb">export</span><span class="w"> </span>--format<span class="w"> </span>requirements.txt<span class="w"> </span>--output-file<span class="w"> </span>requirements.txt
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="gp">$ </span>uv<span class="w"> </span><span class="nb">export</span><span class="w"> </span>--format<span class="w"> </span>pylock.toml<span class="w"> </span>--output-file<span class="w"> </span>pylock.toml
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="gp">$ </span>uv<span class="w"> </span><span class="nb">export</span><span class="w"> </span>--format<span class="w"> </span>cyclonedx1.5<span class="w"> </span>--output-file<span class="w"> </span>sbom.json
+</code></pre></div>
+</div>
+<h2 id="requirementstxt-format"><a class="toclink" href="#requirementstxt-format"><code>requirements.txt</code> format</a></h2>
+<p>The <code>requirements.txt</code> format is the most widely supported format for Python dependencies. It can be
+used with <code>pip</code> and other Python package managers.</p>
+<h3 id="basic-usage"><a class="toclink" href="#basic-usage">Basic usage</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="gp">$ </span>uv<span class="w"> </span><span class="nb">export</span><span class="w"> </span>--format<span class="w"> </span>requirements.txt
+</code></pre></div>
+<p>The generated <code>requirements.txt</code> file can then be installed via <code>uv pip install</code>, or with other
+tools like <code>pip</code>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>If you are not familiar with Python environments: every Python installation has an environment
-that packages can be installed in. Typically, creating <a href="https://docs.python.org/3/library/venv.html"><em>virtual</em> environments</a> is recommended to
-isolate packages required by each script. uv automatically manages virtual environments for you
-and prefers a <a href="#declaring-script-dependencies">declarative</a> approach to dependencies.</p>
+<p>In general, we recommend against using both a <code>uv.lock</code> and a <code>requirements.txt</code> file. The
+<code>uv.lock</code> format is more powerful and includes features that cannot be expressed in
+<code>requirements.txt</code>. If you find yourself exporting a <code>uv.lock</code> file, consider opening an issue
+to discuss your use case.</p>
 </div>
-<h2 id="running-a-script-without-dependencies"><a class="toclink" href="#running-a-script-without-dependencies">Running a script without dependencies</a></h2>
-<p>If your script has no dependencies, you can execute it with <code>uv run</code>:</p>
-<div class="highlight"><span class="filename">example.py</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello world&quot;</span><span class="p">)</span>
+<h2 id="pylocktoml-format"><a class="toclink" href="#pylocktoml-format"><code>pylock.toml</code> format</a></h2>
+<p><a href="https://peps.python.org/pep-0751/">PEP 751</a> defines a TOML-based lockfile format for Python
+dependencies. uv can export your project's dependency lockfile to this format.</p>
+<h3 id="basic-usage_1"><a class="toclink" href="#basic-usage_1">Basic usage</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="gp">$ </span>uv<span class="w"> </span><span class="nb">export</span><span class="w"> </span>--format<span class="w"> </span>pylock.toml
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>example.py
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="go">Hello world</span>
-</code></pre></div>
-<!-- TODO(zanieb): Once we have a `python` shim, note you can execute it with `python` here -->
-
-<p>Similarly, if your script depends on a module in the standard library, there's nothing more to do:</p>
-<div class="highlight"><span class="filename">example.py</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span> <span class="nn">os</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~&quot;</span><span class="p">))</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>example.py
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="go">/Users/astral</span>
-</code></pre></div>
-<p>Arguments may be provided to the script:</p>
-<div class="highlight"><span class="filename">example.py</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">import</span> <span class="nn">sys</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:]))</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>example.py<span class="w"> </span><span class="nb">test</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="go">test</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>example.py<span class="w"> </span>hello<span class="w"> </span>world!
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="go">hello world!</span>
-</code></pre></div>
-<p>Additionally, your script can be read directly from stdin:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="gp">$ </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;print(&quot;hello world!&quot;)&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>uv<span class="w"> </span>run<span class="w"> </span>-
-</code></pre></div>
-<p>Or, if your shell supports <a href="https://en.wikipedia.org/wiki/Here_document">here-documents</a>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>uv<span class="w"> </span>run<span class="w"> </span>-<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="s">print(&quot;hello world!&quot;)</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="s">EOF</span>
-</code></pre></div>
-<p>Note that if you use <code>uv run</code> in a <em>project</em>, i.e., a directory with a <code>pyproject.toml</code>, it will
-install the current project before running the script. If your script does not depend on the
-project, use the <code>--no-project</code> flag to skip this:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="gp">$ </span><span class="c1"># Note: the `--no-project` flag must be provided _before_ the script name.</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>--no-project<span class="w"> </span>example.py
-</code></pre></div>
-<p>See the <a href="../projects/">projects guide</a> for more details on working in projects.</p>
-<h2 id="running-a-script-with-dependencies"><a class="toclink" href="#running-a-script-with-dependencies">Running a script with dependencies</a></h2>
-<p>When your script requires other packages, they must be installed into the environment that the
-script runs in. uv prefers to create these environments on-demand instead of using a long-lived
-virtual environment with manually managed dependencies. This requires explicit declaration of
-dependencies that are required for the script. Generally, it's recommended to use a
-<a href="../projects/">project</a> or <a href="#declaring-script-dependencies">inline metadata</a> to declare
-dependencies, but uv supports requesting dependencies per invocation as well.</p>
-<p>For example, the following script requires <code>rich</code>.</p>
-<div class="highlight"><span class="filename">example.py</span><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kn">import</span> <span class="nn">time</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="kn">from</span> <span class="nn">rich.progress</span> <span class="kn">import</span> <span class="n">track</span>
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">track</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;For example:&quot;</span><span class="p">):</span>
-<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span>
-</code></pre></div>
-<p>If executed without specifying a dependency, this script will fail:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>--no-project<span class="w"> </span>example.py
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="go">Traceback (most recent call last):</span>
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="go">  File &quot;/Users/astral/example.py&quot;, line 2, in &lt;module&gt;</span>
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="go">    from rich.progress import track</span>
-<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="go">ModuleNotFoundError: No module named &#39;rich&#39;</span>
-</code></pre></div>
-<p>Request the dependency using the <code>--with</code> option:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>--with<span class="w"> </span>rich<span class="w"> </span>example.py
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="go">For example: ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:01</span>
-</code></pre></div>
-<p>Constraints can be added to the requested dependency if specific versions are needed:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>--with<span class="w"> </span><span class="s1">&#39;rich&gt;12,&lt;13&#39;</span><span class="w"> </span>example.py
-</code></pre></div>
-<p>Multiple dependencies can be requested by repeating with <code>--with</code> option.</p>
-<p>Note that if <code>uv run</code> is used in a <em>project</em>, these dependencies will be included <em>in addition</em> to
-the project's dependencies. To opt-out of this behavior, use the <code>--no-project</code> flag.</p>
-<h2 id="creating-a-python-script"><a class="toclink" href="#creating-a-python-script">Creating a Python script</a></h2>
-<p>Python recently added a standard format for
-<a href="https://packaging.python.org/en/latest/specifications/inline-script-metadata/#inline-script-metadata">inline script metadata</a>.
-It allows for selecting Python versions and defining dependencies. Use <code>uv init --script</code> to
-initialize scripts with the inline metadata:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="gp">$ </span>uv<span class="w"> </span>init<span class="w"> </span>--script<span class="w"> </span>example.py<span class="w"> </span>--python<span class="w"> </span><span class="m">3</span>.12
-</code></pre></div>
-<h2 id="declaring-script-dependencies"><a class="toclink" href="#declaring-script-dependencies">Declaring script dependencies</a></h2>
-<p>The inline metadata format allows the dependencies for a script to be declared in the script itself.</p>
-<p>uv supports adding and updating inline script metadata for you. Use <code>uv add --script</code> to declare the
-dependencies for the script:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>--script<span class="w"> </span>example.py<span class="w"> </span><span class="s1">&#39;requests&lt;3&#39;</span><span class="w"> </span><span class="s1">&#39;rich&#39;</span>
-</code></pre></div>
-<p>This will add a <code>script</code> section at the top of the script declaring the dependencies using TOML:</p>
-<div class="highlight"><span class="filename">example.py</span><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># /// script</span>
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="c1"># dependencies = [</span>
-<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="c1">#   &quot;requests&lt;3&quot;,</span>
-<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="c1">#   &quot;rich&quot;,</span>
-<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="c1"># ]</span>
-<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="c1"># ///</span>
-<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>
-<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="kn">import</span> <span class="nn">requests</span>
-<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="kn">from</span> <span class="nn">rich.pretty</span> <span class="kn">import</span> <span class="n">pprint</span>
-<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>
-<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://peps.python.org/api/peps.json&quot;</span><span class="p">)</span>
-<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="n">data</span> <span class="o">=</span> <span class="n">resp</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-<a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="n">pprint</span><span class="p">([(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">])</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">()][:</span><span class="mi">10</span><span class="p">])</span>
-</code></pre></div>
-<p>uv will automatically create an environment with the dependencies necessary to run the script, e.g.:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>example.py
-<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="go">[</span>
-<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="go">│   (&#39;1&#39;, &#39;PEP Purpose and Guidelines&#39;),</span>
-<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="go">│   (&#39;2&#39;, &#39;Procedure for Adding New Modules&#39;),</span>
-<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="go">│   (&#39;3&#39;, &#39;Guidelines for Handling Bug Reports&#39;),</span>
-<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="go">│   (&#39;4&#39;, &#39;Deprecation of Standard Modules&#39;),</span>
-<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="go">│   (&#39;5&#39;, &#39;Guidelines for Language Evolution&#39;),</span>
-<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="go">│   (&#39;6&#39;, &#39;Bug Fix Releases&#39;),</span>
-<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="go">│   (&#39;7&#39;, &#39;Style Guide for C Code&#39;),</span>
-<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="go">│   (&#39;8&#39;, &#39;Style Guide for Python Code&#39;),</span>
-<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="go">│   (&#39;9&#39;, &#39;Sample Plaintext PEP Template&#39;),</span>
-<a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a><span class="go">│   (&#39;10&#39;, &#39;Voting Guidelines&#39;)</span>
-<a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a><span class="go">]</span>
-</code></pre></div>
+<h2 id="cyclonedx-sbom-format"><a class="toclink" href="#cyclonedx-sbom-format">CycloneDX SBOM format</a></h2>
+<p>uv can export your project's dependency lockfile as a Software Bill of Materials (SBOM) in CycloneDX
+format. SBOMs provide a comprehensive inventory of all software components in your application,
+which is useful for security auditing, compliance, and supply chain transparency.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>When using inline script metadata, even if <code>uv run</code> is <a href="../../concepts/projects/run/">used in a <em>project</em></a>, the project's dependencies will be ignored. The <code>--no-project</code> flag is not required.</p>
+<p>Support for exporting to CycloneDX is in <a href="../../concepts/preview/">preview</a>, and may change in any future release.</p>
 </div>
-<p>uv also respects Python version requirements:</p>
-<div class="highlight"><span class="filename">example.py</span><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="c1"># /// script</span>
-<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="c1"># requires-python = &quot;&gt;=3.12&quot;</span>
-<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="c1"># dependencies = []</span>
-<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="c1"># ///</span>
-<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>
-<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="c1"># Use some syntax added in Python 3.12</span>
-<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="nb">type</span> <span class="n">Point</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span>
-<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="nb">print</span><span class="p">(</span><span class="n">Point</span><span class="p">)</span>
+<h3 id="what-is-cyclonedx"><a class="toclink" href="#what-is-cyclonedx">What is CycloneDX?</a></h3>
+<p><a href="https://cyclonedx.org/">CycloneDX</a> is an industry-standard format for creating Software Bill of
+Materials. CycloneDX is machine readable and widely supported by security scanning tools,
+vulnerability databases, and Software Composition Analysis (SCA) platforms.</p>
+<h3 id="basic-usage_2"><a class="toclink" href="#basic-usage_2">Basic usage</a></h3>
+<p>To export your project's lockfile as a CycloneDX SBOM:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="gp">$ </span>uv<span class="w"> </span><span class="nb">export</span><span class="w"> </span>--format<span class="w"> </span>cyclonedx1.5
 </code></pre></div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The <code>dependencies</code> field must be provided even if empty.</p>
-</div>
-<p><code>uv run</code> will search for and use the required Python version. The Python version will download if it
-is not installed — see the documentation on <a href="../../concepts/python-versions/">Python versions</a> for
-more details.</p>
-<h2 id="using-a-shebang-to-create-an-executable-file"><a class="toclink" href="#using-a-shebang-to-create-an-executable-file">Using a shebang to create an executable file</a></h2>
-<p>A shebang can be added to make a script executable without using <code>uv run</code> — this makes it easy to
-run scripts that are on your <code>PATH</code> or in the current folder.</p>
-<p>For example, create a file called <code>greet</code> with the following contents</p>
-<div class="highlight"><span class="filename">greet</span><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="ch">#!/usr/bin/env -S uv run --script</span>
-<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>
-<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello, world!&quot;</span><span class="p">)</span>
-</code></pre></div>
-<p>Ensure that your script is executable, e.g., with <code>chmod +x greet</code>, then run the script:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="gp">$ </span>./greet
-<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="go">Hello, world!</span>
-</code></pre></div>
-<p>Declaration of dependencies is also supported in this context, for example:</p>
-<div class="highlight"><span class="filename">example</span><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="ch">#!/usr/bin/env -S uv run --script</span>
-<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="c1">#</span>
-<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="c1"># /// script</span>
-<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="c1"># requires-python = &quot;&gt;=3.12&quot;</span>
-<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="c1"># dependencies = [&quot;httpx&quot;]</span>
-<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="c1"># ///</span>
-<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>
-<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="kn">import</span> <span class="nn">httpx</span>
-<a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>
-<a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a><span class="nb">print</span><span class="p">(</span><span class="n">httpx</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://example.com&quot;</span><span class="p">))</span>
-</code></pre></div>
-<h2 id="using-alternative-package-indexes"><a class="toclink" href="#using-alternative-package-indexes">Using alternative package indexes</a></h2>
-<p>If you wish to use an alternative <a href="../../concepts/indexes/">package index</a> to resolve dependencies,
-you can provide the index with the <code>--index</code> option:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>--index<span class="w"> </span><span class="s2">&quot;https://example.com/simple&quot;</span><span class="w"> </span>--script<span class="w"> </span>example.py<span class="w"> </span><span class="s1">&#39;requests&lt;3&#39;</span><span class="w"> </span><span class="s1">&#39;rich&#39;</span>
-</code></pre></div>
-<p>This will include the package data in the inline metadata:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="c1"># [[tool.uv.index]]</span>
-<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="c1"># url = &quot;https://example.com/simple&quot;</span>
-</code></pre></div>
-<p>If you require authentication to access the package index, then please refer to the
-<a href="../../concepts/indexes/">package index</a> documentation.</p>
-<h2 id="locking-dependencies"><a class="toclink" href="#locking-dependencies">Locking dependencies</a></h2>
-<p>uv supports locking dependencies for PEP 723 scripts using the <code>uv.lock</code> file format. Unlike with
-projects, scripts must be explicitly locked using <code>uv lock</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="gp">$ </span>uv<span class="w"> </span>lock<span class="w"> </span>--script<span class="w"> </span>example.py
-</code></pre></div>
-<p>Running <code>uv lock --script</code> will create a <code>.lock</code> file adjacent to the script (e.g.,
-<code>example.py.lock</code>).</p>
-<p>Once locked, subsequent operations like <code>uv run --script</code>, <code>uv add --script</code>, <code>uv export --script</code>,
-and <code>uv tree --script</code> will reuse the locked dependencies, updating the lockfile if necessary.</p>
-<p>If no such lockfile is present, commands like <code>uv export --script</code> will still function as expected,
-but will not create a lockfile.</p>
-<h2 id="improving-reproducibility"><a class="toclink" href="#improving-reproducibility">Improving reproducibility</a></h2>
-<p>In addition to locking dependencies, uv supports an <code>exclude-newer</code> field in the <code>tool.uv</code> section
-of inline script metadata to limit uv to only considering distributions released before a specific
-date. This is useful for improving the reproducibility of your script when run at a later point in
-time.</p>
-<p>The date must be specified as an <a href="https://www.rfc-editor.org/rfc/rfc3339.html">RFC 3339</a> timestamp
-(e.g., <code>2006-12-02T02:07:43Z</code>).</p>
-<div class="highlight"><span class="filename">example.py</span><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="c1"># /// script</span>
-<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="c1"># dependencies = [</span>
-<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="c1">#   &quot;requests&quot;,</span>
-<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="c1"># ]</span>
-<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="c1"># [tool.uv]</span>
-<a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a><span class="c1"># exclude-newer = &quot;2023-10-16T00:00:00Z&quot;</span>
-<a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a><span class="c1"># ///</span>
-<a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a>
-<a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a><span class="kn">import</span> <span class="nn">requests</span>
-<a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a>
-<a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a><span class="nb">print</span><span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
-</code></pre></div>
-<h2 id="using-different-python-versions"><a class="toclink" href="#using-different-python-versions">Using different Python versions</a></h2>
-<p>uv allows arbitrary Python versions to be requested on each script invocation, for example:</p>
-<div class="highlight"><span class="filename">example.py</span><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="kn">import</span> <span class="nn">sys</span>
-<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>
-<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span><span class="p">[:</span><span class="mi">3</span><span class="p">])))</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="gp">$ </span><span class="c1"># Use the default Python version, may differ on your machine</span>
-<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>example.py
-<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="go">3.12.6</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="gp">$ </span><span class="c1"># Use a specific Python version</span>
-<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>--python<span class="w"> </span><span class="m">3</span>.10<span class="w"> </span>example.py
-<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="go">3.10.15</span>
-</code></pre></div>
-<p>See the <a href="../../concepts/python-versions/#requesting-a-version">Python version request</a> documentation
-for more details on requesting Python versions.</p>
-<h2 id="using-gui-scripts"><a class="toclink" href="#using-gui-scripts">Using GUI scripts</a></h2>
-<p>On Windows <code>uv</code> will run your script ending with <code>.pyw</code> extension using <code>pythonw</code>:</p>
-<div class="highlight"><span class="filename">example.pyw</span><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">Tk</span><span class="p">,</span> <span class="n">ttk</span>
-<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>
-<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="n">root</span> <span class="o">=</span> <span class="n">Tk</span><span class="p">()</span>
-<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="n">root</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;uv&quot;</span><span class="p">)</span>
-<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="n">frm</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a><span class="n">frm</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
-<a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a><span class="n">ttk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">frm</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Hello World&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a><span class="n">root</span><span class="o">.</span><span class="n">mainloop</span><span class="p">()</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="go">PS&gt; uv run example.pyw</span>
-</code></pre></div>
-<p><img alt="Run Result" src="../../assets/uv_gui_script_hello_world.png" style="height:50px;width:150px" /></p>
-<p>Similarly, it works with dependencies as well:</p>
-<div class="highlight"><span class="filename">example_pyqt.pyw</span><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="kn">import</span> <span class="nn">sys</span>
-<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="kn">from</span> <span class="nn">PyQt5.QtWidgets</span> <span class="kn">import</span> <span class="n">QApplication</span><span class="p">,</span> <span class="n">QWidget</span><span class="p">,</span> <span class="n">QLabel</span><span class="p">,</span> <span class="n">QGridLayout</span>
-<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a>
-<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="n">app</span> <span class="o">=</span> <span class="n">QApplication</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
-<a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a><span class="n">widget</span> <span class="o">=</span> <span class="n">QWidget</span><span class="p">()</span>
-<a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a><span class="n">grid</span> <span class="o">=</span> <span class="n">QGridLayout</span><span class="p">()</span>
-<a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a>
-<a id="__codelineno-30-8" name="__codelineno-30-8" href="#__codelineno-30-8"></a><span class="n">text_label</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">()</span>
-<a id="__codelineno-30-9" name="__codelineno-30-9" href="#__codelineno-30-9"></a><span class="n">text_label</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;Hello World!&quot;</span><span class="p">)</span>
-<a id="__codelineno-30-10" name="__codelineno-30-10" href="#__codelineno-30-10"></a><span class="n">grid</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="n">text_label</span><span class="p">)</span>
-<a id="__codelineno-30-11" name="__codelineno-30-11" href="#__codelineno-30-11"></a>
-<a id="__codelineno-30-12" name="__codelineno-30-12" href="#__codelineno-30-12"></a><span class="n">widget</span><span class="o">.</span><span class="n">setLayout</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
-<a id="__codelineno-30-13" name="__codelineno-30-13" href="#__codelineno-30-13"></a><span class="n">widget</span><span class="o">.</span><span class="n">setGeometry</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
-<a id="__codelineno-30-14" name="__codelineno-30-14" href="#__codelineno-30-14"></a><span class="n">widget</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s2">&quot;uv&quot;</span><span class="p">)</span>
-<a id="__codelineno-30-15" name="__codelineno-30-15" href="#__codelineno-30-15"></a><span class="n">widget</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-<a id="__codelineno-30-16" name="__codelineno-30-16" href="#__codelineno-30-16"></a><span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">exec_</span><span class="p">())</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="go">PS&gt; uv run --with PyQt5 example_pyqt.pyw</span>
-</code></pre></div>
-<p><img alt="Run Result" src="../../assets/uv_gui_script_hello_world_pyqt.png" style="height:50px;width:150px" /></p>
+<p>This will generate a JSON-encoded CycloneDX v1.5 document containing your project and all of its
+dependencies.</p>
+<h3 id="sbom-structure"><a class="toclink" href="#sbom-structure">SBOM Structure</a></h3>
+<p>The generated SBOM follows the
+<a href="https://cyclonedx.org/specification/overview/">CycloneDX specification</a>. uv also includes the
+following custom properties on components:</p>
+<ul>
+<li><code>uv:package:marker</code>: Environment markers (e.g., <code>python_version &gt;= "3.8"</code>)</li>
+<li><code>uv:workspace:path</code>: Relative path for workspace members</li>
+</ul>
 <h2 id="next-steps"><a class="toclink" href="#next-steps">Next steps</a></h2>
-<p>To learn more about <code>uv run</code>, see the <a href="../../reference/cli/#uv-run">command reference</a>.</p>
-<p>Or, read on to learn how to <a href="../tools/">run and install tools</a> with uv.</p>
+<p>To learn more about lockfiles and exporting, see the
+<a href="../../concepts/projects/sync/">locking and syncing</a> documentation and the
+<a href="../../reference/cli/#uv-export">command reference</a>.</p>
+<p>Or, read on to learn how to <a href="../package/">build and publish your project to a package index</a>.</p>
 
   
     
@@ -3549,7 +3376,7 @@ for more details on requesting Python versions.</p>
         <span class="md-icon" title="Last update">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
         </span>
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 19, 2025</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 20, 2025</span>
       </span>
     
     
@@ -3588,7 +3415,7 @@ for more details on requesting Python versions.</p>
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../install-python/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Installing Python" rel="prev">
+          <a href="../projects/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Working on projects" rel="prev">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
@@ -3598,20 +3425,20 @@ for more details on requesting Python versions.</p>
                 Previous
               </span>
               <div class="md-ellipsis">
-                Installing Python
+                Working on projects
               </div>
             </div>
           </a>
         
         
           
-          <a href="../tools/" class="md-footer__link md-footer__link--next" aria-label="Next: Using tools" rel="next">
+          <a href="../package/" class="md-footer__link md-footer__link--next" aria-label="Next: Publishing packages" rel="next">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Using tools
+                Publishing packages
               </div>
             </div>
             <div class="md-footer__button md-icon">
