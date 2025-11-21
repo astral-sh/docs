@@ -43,3 +43,17 @@ Running the following would build the project with the specified version of `set
 $ uv build --build-constraint constraints.txt --require-hashes
 
 ```
+
+## [Preventing publish to PyPI](#preventing-publish-to-pypi)
+
+If you have internal packages that you do not want to be published, you can mark them as private:
+
+```
+[project]
+classifiers = ["Private :: Do Not Upload"]
+
+```
+
+This setting makes PyPI reject your uploaded package from publishing. It does not affect security or privacy settings on alternative registries.
+
+We also recommend only generating [per-project PyPI API tokens](https://pypi.org/help/#apitoken): Without a PyPI token matching the project, it can't be accidentally published.

@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://docs.astral.sh/uv/guides/package/">
       
       
-        <link rel="prev" href="../projects/">
+        <link rel="prev" href="../export/">
       
       
         <link rel="next" href="../migration/">
@@ -81,8 +81,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2025-11-11 17:27:32Z",
-        "dateModified": "2025-11-11 17:27:32Z",
+        "datePublished": "2025-11-20 19:59:59Z",
+        "dateModified": "2025-11-20 19:59:59Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -524,6 +524,8 @@
       
         
       
+        
+      
     
     
       
@@ -682,6 +684,32 @@
                 
   
   
+  
+    <li class="md-nav__item">
+      <a href="../export/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Exporting lockfiles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -742,10 +770,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#preparing-your-project-for-packaging" class="md-nav__link">
+  <a href="#preparing-your-project" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Preparing your project for packaging
+        Preparing your project
       
     </span>
   </a>
@@ -838,7 +866,7 @@
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_8" >
         
           
           
@@ -859,14 +887,14 @@
 
             </a>
             
-              <label class="md-nav__link " for="__nav_3_7">
+              <label class="md-nav__link " for="__nav_3_8">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_7">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_8">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -956,7 +984,7 @@
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_9" >
         
           
           
@@ -977,14 +1005,14 @@
 
             </a>
             
-              <label class="md-nav__link " for="__nav_3_8">
+              <label class="md-nav__link " for="__nav_3_9">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_8">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_9">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -3000,10 +3028,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#preparing-your-project-for-packaging" class="md-nav__link">
+  <a href="#preparing-your-project" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Preparing your project for packaging
+        Preparing your project
       
     </span>
   </a>
@@ -3133,28 +3161,17 @@
 <h1 id="building-and-publishing-a-package"><a class="toclink" href="#building-and-publishing-a-package">Building and publishing a package</a></h1>
 <p>uv supports building Python packages into source and binary distributions via <code>uv build</code> and
 uploading them to a registry with <code>uv publish</code>.</p>
-<h2 id="preparing-your-project-for-packaging"><a class="toclink" href="#preparing-your-project-for-packaging">Preparing your project for packaging</a></h2>
+<h2 id="preparing-your-project"><a class="toclink" href="#preparing-your-project">Preparing your project</a></h2>
 <p>Before attempting to publish your project, you'll want to make sure it's ready to be packaged for
 distribution.</p>
 <p>If your project does not include a <code>[build-system]</code> definition in the <code>pyproject.toml</code>, uv will not
-build it by default. This means that your project may not be ready for distribution. Read more about
-the effect of declaring a build system in the
-<a href="../../concepts/projects/config/#build-systems">project concept</a> documentation.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If you have internal packages that you do not want to be published, you can mark them as
-private:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">[project]</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">classifiers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Private :: Do Not Upload&quot;</span><span class="p">]</span>
-</code></pre></div>
-<p>This setting makes PyPI reject your uploaded package from publishing. It does not affect
-security or privacy settings on alternative registries.</p>
-<p>We also recommend only generating <a href="https://pypi.org/help/#apitoken">per-project PyPI API tokens</a>:
-Without a PyPI token matching the project, it can't be accidentally published.</p>
-</div>
+build it during <code>uv sync</code> operations in the project, but will fall back to the legacy setuptools
+build system during <code>uv build</code>.</p>
+<p>We strongly recommend configuring a build system. Read more about build systems in the
+<a href="../../concepts/projects/config/#build-systems">project configuration</a> documentation.</p>
 <h2 id="building-your-package"><a class="toclink" href="#building-your-package">Building your package</a></h2>
 <p>Build your package with <code>uv build</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="gp">$ </span>uv<span class="w"> </span>build
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">$ </span>uv<span class="w"> </span>build
 </code></pre></div>
 <p>By default, <code>uv build</code> will build the project in the current directory, and place the built
 artifacts in a <code>dist/</code> subdirectory.</p>
@@ -3172,43 +3189,43 @@ is disabled, as is the case when using other build tools, like <a href="https://
 publish it.
 <a href="../projects/#managing-version">See the project docs for reading your package's version</a>.</p>
 <p>To update to an exact version, provide it as a positional argument:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="gp">$ </span>uv<span class="w"> </span>version<span class="w"> </span><span class="m">1</span>.0.0
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="go">hello-world 0.7.0 =&gt; 1.0.0</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="gp">$ </span>uv<span class="w"> </span>version<span class="w"> </span><span class="m">1</span>.0.0
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="go">hello-world 0.7.0 =&gt; 1.0.0</span>
 </code></pre></div>
 <p>To preview the change without updating the <code>pyproject.toml</code>, use the <code>--dry-run</code> flag:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="gp">$ </span>uv<span class="w"> </span>version<span class="w"> </span><span class="m">2</span>.0.0<span class="w"> </span>--dry-run
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="go">hello-world 1.0.0 =&gt; 2.0.0</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="gp">$ </span>uv<span class="w"> </span>version
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="go">hello-world 1.0.0</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="gp">$ </span>uv<span class="w"> </span>version<span class="w"> </span><span class="m">2</span>.0.0<span class="w"> </span>--dry-run
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="go">hello-world 1.0.0 =&gt; 2.0.0</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="gp">$ </span>uv<span class="w"> </span>version
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="go">hello-world 1.0.0</span>
 </code></pre></div>
 <p>To increase the version of your package semantics, use the <code>--bump</code> option:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="gp">$ </span>uv<span class="w"> </span>version<span class="w"> </span>--bump<span class="w"> </span>minor
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="go">hello-world 1.2.3 =&gt; 1.3.0</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="gp">$ </span>uv<span class="w"> </span>version<span class="w"> </span>--bump<span class="w"> </span>minor
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="go">hello-world 1.2.3 =&gt; 1.3.0</span>
 </code></pre></div>
 <p>The <code>--bump</code> option supports the following common version components: <code>major</code>, <code>minor</code>, <code>patch</code>,
 <code>stable</code>, <code>alpha</code>, <code>beta</code>, <code>rc</code>, <code>post</code>, and <code>dev</code>. When provided more than once, the components
 will be applied in order, from largest (<code>major</code>) to smallest (<code>dev</code>).</p>
 <p>You can optionally provide a numeric value with <code>--bump &lt;component&gt;=&lt;value&gt;</code> to set the resulting
 component explicitly:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="gp">$ </span>uv<span class="w"> </span>version<span class="w"> </span>--bump<span class="w"> </span>patch<span class="w"> </span>--bump<span class="w"> </span><span class="nv">dev</span><span class="o">=</span><span class="m">66463664</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="go">hello-world 0.0.1 =&gt; 0.0.2.dev66463664</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="gp">$ </span>uv<span class="w"> </span>version<span class="w"> </span>--bump<span class="w"> </span>patch<span class="w"> </span>--bump<span class="w"> </span><span class="nv">dev</span><span class="o">=</span><span class="m">66463664</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="go">hello-world 0.0.1 =&gt; 0.0.2.dev66463664</span>
 </code></pre></div>
 <p>To move from a stable to pre-release version, bump one of the major, minor, or patch components in
 addition to the pre-release component:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="gp">$ </span>uv<span class="w"> </span>version<span class="w"> </span>--bump<span class="w"> </span>patch<span class="w"> </span>--bump<span class="w"> </span>beta
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="go">hello-world 1.3.0 =&gt; 1.3.1b1</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="gp">$ </span>uv<span class="w"> </span>version<span class="w"> </span>--bump<span class="w"> </span>major<span class="w"> </span>--bump<span class="w"> </span>alpha
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="go">hello-world 1.3.0 =&gt; 2.0.0a1</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="gp">$ </span>uv<span class="w"> </span>version<span class="w"> </span>--bump<span class="w"> </span>patch<span class="w"> </span>--bump<span class="w"> </span>beta
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="go">hello-world 1.3.0 =&gt; 1.3.1b1</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="gp">$ </span>uv<span class="w"> </span>version<span class="w"> </span>--bump<span class="w"> </span>major<span class="w"> </span>--bump<span class="w"> </span>alpha
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="go">hello-world 1.3.0 =&gt; 2.0.0a1</span>
 </code></pre></div>
 <p>When moving from a pre-release to a new pre-release version, just bump the relevant pre-release
 component:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="gp">$ </span>uv<span class="w"> </span>version<span class="w"> </span>--bump<span class="w"> </span>beta
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="go">hello-world 1.3.0b1 =&gt; 1.3.0b2</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="gp">$ </span>uv<span class="w"> </span>version<span class="w"> </span>--bump<span class="w"> </span>beta
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="go">hello-world 1.3.0b1 =&gt; 1.3.0b2</span>
 </code></pre></div>
 <p>When moving from a pre-release to a stable version, the <code>stable</code> option can be used to clear the
 pre-release component:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="gp">$ </span>uv<span class="w"> </span>version<span class="w"> </span>--bump<span class="w"> </span>stable
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="go">hello-world 1.3.1b2 =&gt; 1.3.1</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="gp">$ </span>uv<span class="w"> </span>version<span class="w"> </span>--bump<span class="w"> </span>stable
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="go">hello-world 1.3.1b2 =&gt; 1.3.1</span>
 </code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
@@ -3222,7 +3239,7 @@ prevent locking and syncing, use <code>--frozen</code>, or,  to just prevent syn
 <a href="../integration/github/#publishing-to-pypi">GitHub Guide</a></p>
 </div>
 <p>Publish your package with <code>uv publish</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="gp">$ </span>uv<span class="w"> </span>publish
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="gp">$ </span>uv<span class="w"> </span>publish
 </code></pre></div>
 <p>Set a PyPI token with <code>--token</code> or <code>UV_PUBLISH_TOKEN</code>, or set a username with <code>--username</code> or
 <code>UV_PUBLISH_USERNAME</code> and password with <code>--password</code> or <code>UV_PUBLISH_PASSWORD</code>. For publishing to
@@ -3237,11 +3254,11 @@ token as password.</p>
 </div>
 <p>If you're using a custom index through <code>[[tool.uv.index]]</code>, add <code>publish-url</code> and use
 <code>uv publish --index &lt;name&gt;</code>. For example:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">[[tool.uv.index]]</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;testpypi&quot;</span>
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://test.pypi.org/simple/&quot;</span>
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="n">publish-url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://test.pypi.org/legacy/&quot;</span>
-<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="n">explicit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">[[tool.uv.index]]</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;testpypi&quot;</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://test.pypi.org/simple/&quot;</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="n">publish-url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://test.pypi.org/legacy/&quot;</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="n">explicit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -3258,7 +3275,7 @@ need to match exactly with those previously uploaded to the registry, this avoid
 publishing source distribution and wheels with different contents for the same version.</p>
 <h2 id="installing-your-package"><a class="toclink" href="#installing-your-package">Installing your package</a></h2>
 <p>Test that the package can be installed and imported with <code>uv run</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>--with<span class="w"> </span>&lt;PACKAGE&gt;<span class="w"> </span>--no-project<span class="w"> </span>--<span class="w"> </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import &lt;PACKAGE&gt;&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>--with<span class="w"> </span>&lt;PACKAGE&gt;<span class="w"> </span>--no-project<span class="w"> </span>--<span class="w"> </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import &lt;PACKAGE&gt;&quot;</span>
 </code></pre></div>
 <p>The <code>--no-project</code> flag is used to avoid installing the package from your local project directory.</p>
 <div class="admonition tip">
@@ -3284,7 +3301,7 @@ and publishing.</p>
         <span class="md-icon" title="Last update">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
         </span>
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 11, 2025</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 20, 2025</span>
       </span>
     
     
@@ -3323,7 +3340,7 @@ and publishing.</p>
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../projects/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Working on projects" rel="prev">
+          <a href="../export/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Exporting lockfiles" rel="prev">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
@@ -3333,7 +3350,7 @@ and publishing.</p>
                 Previous
               </span>
               <div class="md-ellipsis">
-                Working on projects
+                Exporting lockfiles
               </div>
             </div>
           </a>

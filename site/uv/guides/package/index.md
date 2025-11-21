@@ -2,25 +2,13 @@
 
 uv supports building Python packages into source and binary distributions via `uv build` and uploading them to a registry with `uv publish`.
 
-## [Preparing your project for packaging](#preparing-your-project-for-packaging)
+## [Preparing your project](#preparing-your-project)
 
 Before attempting to publish your project, you'll want to make sure it's ready to be packaged for distribution.
 
-If your project does not include a `[build-system]` definition in the `pyproject.toml`, uv will not build it by default. This means that your project may not be ready for distribution. Read more about the effect of declaring a build system in the [project concept](../../concepts/projects/config/#build-systems) documentation.
+If your project does not include a `[build-system]` definition in the `pyproject.toml`, uv will not build it during `uv sync` operations in the project, but will fall back to the legacy setuptools build system during `uv build`.
 
-Note
-
-If you have internal packages that you do not want to be published, you can mark them as private:
-
-```
-[project]
-classifiers = ["Private :: Do Not Upload"]
-
-```
-
-This setting makes PyPI reject your uploaded package from publishing. It does not affect security or privacy settings on alternative registries.
-
-We also recommend only generating [per-project PyPI API tokens](https://pypi.org/help/#apitoken): Without a PyPI token matching the project, it can't be accidentally published.
+We strongly recommend configuring a build system. Read more about build systems in the [project configuration](../../concepts/projects/config/#build-systems) documentation.
 
 ## [Building your package](#building-your-package)
 
