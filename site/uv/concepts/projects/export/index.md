@@ -2,7 +2,7 @@
 
 uv can export a lockfile to different formats for integration with other tools and workflows. The `uv export` command supports multiple output formats, each suited to different use cases.
 
-For more details on lockfiles and how they're created, see the [project layout](../../concepts/projects/layout/) and [locking and syncing](../../concepts/projects/sync/) documentation.
+For more details on lockfiles and how they're created, see the [project layout](../layout/) and [locking and syncing](../sync/) documentation.
 
 ## [Overview of export formats](#overview-of-export-formats)
 
@@ -66,7 +66,7 @@ uv can export your project's dependency lockfile as a Software Bill of Materials
 
 Important
 
-Support for exporting to CycloneDX is in [preview](../../concepts/preview/), and may change in any future release.
+Support for exporting to CycloneDX is in [preview](../../preview/), and may change in any future release.
 
 ### [What is CycloneDX?](#what-is-cyclonedx)
 
@@ -92,6 +92,6 @@ The generated SBOM follows the [CycloneDX specification](https://cyclonedx.org/s
 
 ## [Next steps](#next-steps)
 
-To learn more about lockfiles and exporting, see the [locking and syncing](../../concepts/projects/sync/) documentation and the [command reference](../../reference/cli/#uv-export).
+To learn more about lockfiles and exporting, see the [locking and syncing](../sync/) documentation and the [command reference](../../../reference/cli/#uv-export).
 
-Or, read on to learn how to [build and publish your project to a package index](../package/).
+Or, read on to learn how to [build and publish your project to a package index](../../../guides/package/).

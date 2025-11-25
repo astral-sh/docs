@@ -29,7 +29,7 @@ By default, `uv build` respects `tool.uv.sources` when resolving build dependenc
 
 ## [Updating your version](#updating-your-version)
 
-The `uv version` command provides conveniences for updating the version of your package before you publish it. [See the project docs for reading your package's version](../projects/#managing-version).
+The `uv version` command provides conveniences for updating the version of your package before you publish it. [See the project docs for reading your package's version](../projects/#viewing-your-version).
 
 To update to an exact version, provide it as a positional argument:
 
@@ -132,6 +132,29 @@ Note
 When using `uv publish --index <name>`, the `pyproject.toml` must be present, i.e., you need to have a checkout step in a publish CI job.
 
 Even though `uv publish` retries failed uploads, it can happen that publishing fails in the middle, with some files uploaded and some files still missing. With PyPI, you can retry the exact same command, existing identical files will be ignored. With other registries, use `--check-url <index url>` with the index URL (not the publishing URL) the packages belong to. When using `--index`, the index URL is used as check URL. uv will skip uploading files that are identical to files in the registry, and it will also handle raced parallel uploads. Note that existing files need to match exactly with those previously uploaded to the registry, this avoids accidentally publishing source distribution and wheels with different contents for the same version.
+
+### [Uploading attestations with your package](#uploading-attestations-with-your-package)
+
+Note
+
+Some third-party package indexes may not support attestations, and may reject uploads that include them (rather than silently ignoring them). If you encounter issues when uploading, you can use `--no-attestations` or `UV_PUBLISH_NO_ATTESTATIONS` to disable uv's default behavior.
+
+Tip
+
+`uv publish` does not currently generate attestations; attestations must be created separately before publishing.
+
+`uv publish` supports uploading [attestations](https://peps.python.org/pep-0740/) to registries that support them, like PyPI.
+
+uv will automatically discover and match attestations. For example, given the following `dist/` directory, `uv publish` will upload the attestations along with their corresponding distributions:
+
+```
+$ ls dist/
+hello_world-1.0.0-py3-none-any.whl
+hello_world-1.0.0-py3-none-any.whl.publish.attestation
+hello_world-1.0.0.tar.gz
+hello_world-1.0.0.tar.gz.publish.attestation
+
+```
 
 ## [Installing your package](#installing-your-package)
 

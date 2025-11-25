@@ -169,7 +169,7 @@ $ uv export --format cyclonedx1.5
 
 ```
 
-See the [export guide](../../../guides/export/) for comprehensive documentation on all export formats and their use cases.
+See the [export guide](../export/) for comprehensive documentation on all export formats and their use cases.
 
 ## [Partial installations](#partial-installations)
 

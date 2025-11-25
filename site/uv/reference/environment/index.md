@@ -474,6 +474,12 @@ added in `0.5.8`
 
 Equivalent to the `--index` command-line argument in `uv publish`. If set, uv the index with this name in the configuration for publishing.
 
+### [`UV_PUBLISH_NO_ATTESTATIONS`](#uv_publish_no_attestations)
+
+added in `0.9.12`
+
+Equivalent to the `--no-attestations` command-line argument in `uv publish`. If set, uv will skip uploading any collected attestations for the published distributions.
+
 ### [`UV_PUBLISH_PASSWORD`](#uv_publish_password)
 
 added in `0.4.16`

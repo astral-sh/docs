@@ -20,7 +20,7 @@ $ docker run --rm -it ghcr.io/astral-sh/uv:debian uv --help
 The following distroless images are available:
 
 - `ghcr.io/astral-sh/uv:latest`
-- `ghcr.io/astral-sh/uv:{major}.{minor}.{patch}`, e.g., `ghcr.io/astral-sh/uv:0.9.11`
+- `ghcr.io/astral-sh/uv:{major}.{minor}.{patch}`, e.g., `ghcr.io/astral-sh/uv:0.9.12`
 - `ghcr.io/astral-sh/uv:{major}.{minor}`, e.g., `ghcr.io/astral-sh/uv:0.8` (the latest patch version)
 
 And the following derived images are available:
@@ -79,7 +79,7 @@ And the following derived images are available:
   - `ghcr.io/astral-sh/uv:python3.9-bookworm-slim`
   - `ghcr.io/astral-sh/uv:python3.8-bookworm-slim`
 
-As with the distroless image, each derived image is published with uv version tags as `ghcr.io/astral-sh/uv:{major}.{minor}.{patch}-{base}` and `ghcr.io/astral-sh/uv:{major}.{minor}-{base}`, e.g., `ghcr.io/astral-sh/uv:0.9.11-alpine`.
+As with the distroless image, each derived image is published with uv version tags as `ghcr.io/astral-sh/uv:{major}.{minor}.{patch}-{base}` and `ghcr.io/astral-sh/uv:{major}.{minor}-{base}`, e.g., `ghcr.io/astral-sh/uv:0.9.12-alpine`.
 
 In addition, starting with `0.8` each derived image also sets `UV_TOOL_BIN_DIR` to `/usr/local/bin` to allow `uv tool install` to work as expected with the default user.
 
@@ -123,7 +123,7 @@ Note this requires `curl` to be available.
 In either case, it is best practice to pin to a specific uv version, e.g., with:
 
 ```
-COPY --from=ghcr.io/astral-sh/uv:0.9.11 /uv /uvx /bin/
+COPY --from=ghcr.io/astral-sh/uv:0.9.12 /uv /uvx /bin/
 
 ```
 
@@ -140,7 +140,7 @@ COPY --from=ghcr.io/astral-sh/uv@sha256:2381d6aa60c326b71fd40023f921a0a3b8f91b14
 Or, with the installer:
 
 ```
-ADD https://astral.sh/uv/0.9.11/install.sh /uv-installer.sh
+ADD https://astral.sh/uv/0.9.12/install.sh /uv-installer.sh
 
 ```
 
@@ -206,7 +206,7 @@ Alternatively, the [`UV_PROJECT_ENVIRONMENT` setting](../../../concepts/projects
 
 ### [Using installed tools](#using-installed-tools)
 
-To use installed tools, ensure the [tool bin directory](../../../concepts/tools/#the-bin-directory) is on the path:
+To use installed tools, ensure the [tool bin directory](../../../concepts/tools/#tool-executables) is on the path:
 
 Dockerfile
 
@@ -415,9 +415,37 @@ Note that the `pyproject.toml` is required to identify the project root and name
 
 Tip
 
-If you're using a [workspace](../../../concepts/projects/workspaces/), then use the `--no-install-workspace` flag which excludes the project *and* any workspace members.
+If you want to remove additional, specific packages from the sync, use `--no-install-package <name>`.
 
-If you want to remove specific packages from the sync, use `--no-install-package <name>`.
+#### [Intermediate layers in workspaces](#intermediate-layers-in-workspaces)
+
+If you're using a [workspace](../../../concepts/projects/workspaces/), then a couple changes are needed:
+
+- Use `--frozen` instead of `--locked` during the initially sync.
+- Use the `--no-install-workspace` flag which excludes the project *and* any workspace members.
+
+Dockerfile
+
+```
+# Install uv
+FROM python:3.12-slim
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+
+WORKDIR /app
+
+RUN --mount=type=cache,target=/root/.cache/uv \
+    --mount=type=bind,source=uv.lock,target=uv.lock \
+    --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
+    uv sync --frozen --no-install-workspace
+
+ADD . /app
+
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --locked
+
+```
+
+uv cannot assert that the `uv.lock` file is up-to-date without each of the workspace member `pyproject.toml` files, so we use `--frozen` instead of `--locked` to skip the check during the initial sync. The next sync, after all the workspace members have been copied, can still use `--locked` and will validate that the lockfile is correct for all workspace members.
 
 ### [Non-editable installs](#non-editable-installs)
 
@@ -593,4 +621,4 @@ Verified OK
 
 Tip
 
-These examples use `latest`, but best practice is to verify the attestation for a specific version tag, e.g., `ghcr.io/astral-sh/uv:0.9.11`, or (even better) the specific image digest, such as `ghcr.io/astral-sh/uv:0.5.27@sha256:5adf09a5a526f380237408032a9308000d14d5947eafa687ad6c6a2476787b4f`.
+These examples use `latest`, but best practice is to verify the attestation for a specific version tag, e.g., `ghcr.io/astral-sh/uv:0.9.12`, or (even better) the specific image digest, such as `ghcr.io/astral-sh/uv:0.5.27@sha256:5adf09a5a526f380237408032a9308000d14d5947eafa687ad6c6a2476787b4f`.

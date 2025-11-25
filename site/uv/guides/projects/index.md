@@ -257,4 +257,4 @@ See the documentation on [building projects](../../concepts/projects/build/) for
 
 To learn more about working on projects with uv, see the [projects concept](../../concepts/projects/) page and the [command reference](../../reference/cli/#uv).
 
-Or, read on to learn how to [export a uv lockfile to different formats](../export/).
+Or, read on to learn how to [export a uv lockfile to different formats](../../concepts/projects/export/).
