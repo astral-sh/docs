@@ -13584,7 +13584,7 @@ uv publish [OPTIONS] [FILES]...
 [FILES](#uv-publish--files) : Paths to the files to upload. Accepts glob expressions.
 
 ```
-Defaults to the `dist` directory. Selects only wheels and source distributions, while ignoring other files.
+Defaults to the `dist` directory. Selects only wheels and source distributions and their attestations, while ignoring other files.
 ```
 
 ### Options
@@ -13720,6 +13720,14 @@ By default, uv loads certificates from the bundled `webpki-roots` crate. The `we
 However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
 
 May also be set with the `UV_NATIVE_TLS` environment variable.
+```
+
+[`--no-attestations`](#uv-publish--no-attestations) : Do not upload attestations for the published files.
+
+```
+By default, uv attempts to upload matching PEP 740 attestations with each distribution that is published.
+
+May also be set with the `UV_PUBLISH_NO_ATTESTATIONS` environment variable.
 ```
 
 [`--no-cache`](#uv-publish--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
