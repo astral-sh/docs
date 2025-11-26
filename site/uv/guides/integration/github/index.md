@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@v5
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@v7
 
 ```
 
@@ -40,10 +40,10 @@ jobs:
       - uses: actions/checkout@v5
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@v7
         with:
           # Install a specific version of uv.
-          version: "0.9.12"
+          version: "0.9.13"
 
 ```
 
@@ -65,7 +65,7 @@ jobs:
       - uses: actions/checkout@v5
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@v7
 
       - name: Set up Python
         run: uv python install
@@ -97,7 +97,7 @@ jobs:
           python-version-file: ".python-version"
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@v7
 
 ```
 
@@ -122,7 +122,7 @@ jobs:
           python-version-file: "pyproject.toml"
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@v7
 
 ```
 
@@ -148,7 +148,7 @@ jobs:
       - uses: actions/checkout@v5
 
       - name: Install uv and set the Python version
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@v7
         with:
           python-version: ${{ matrix.python-version }}
 
@@ -194,7 +194,7 @@ jobs:
       - uses: actions/checkout@v5
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@v7
 
       - name: Install the project
         run: uv sync --locked --all-extras --dev
@@ -219,7 +219,7 @@ example.yml
 
 ```
 - name: Enable caching
-  uses: astral-sh/setup-uv@v6
+  uses: astral-sh/setup-uv@v7
   with:
     enable-cache: true
 
@@ -381,7 +381,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
       - name: Install uv
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@v7
       - name: Install Python 3.13
         run: uv python install 3.13
       - name: Build
