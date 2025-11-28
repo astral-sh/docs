@@ -841,7 +841,7 @@
 <p><small>
 Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.77">v0.0.77</a> ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27invalid-function-name%27%20OR%20N802)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fpep8_naming%2Frules%2Finvalid_function_name.rs#L44" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fpep8_naming%2Frules%2Finvalid_function_name.rs#L50" target="_blank">View source</a>
 </small></p>
 <p>Derived from the <strong><a href="../#pep8-naming-n">pep8-naming</a></strong> linter.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
@@ -858,6 +858,10 @@ prevailing style (e.g. threading.py), to retain backwards compatibility.</p>
 or <a href="../../settings/#lint_pep8-naming_extend-ignore-names"><code>lint.pep8-naming.extend-ignore-names</code></a> configuration options. For example,
 to ignore all functions starting with <code>test_</code> from this rule, set the
 <a href="../../settings/#lint_pep8-naming_extend-ignore-names"><code>lint.pep8-naming.extend-ignore-names</code></a> option to <code>["test_*"]</code>.</p>
+<p>This rule exempts methods decorated with <a href="https://docs.python.org/3/library/typing.html#typing.override"><code>@typing.override</code></a>.
+Explicitly decorating a method with <code>@override</code> signals to Ruff that the method is intended
+to override a superclass method, and that a type checker will enforce that it does so. Ruff
+therefore knows that it should not enforce naming conventions on such methods.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">myFunction</span><span class="p">():</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="k">pass</span>
