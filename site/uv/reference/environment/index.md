@@ -708,11 +708,11 @@ Install seed packages (one or more of: `pip`, `setuptools`, and `wheel`) into th
 
 Note that `setuptools` and `wheel` are not included in Python 3.12+ environments.
 
-### [`UV_WORKING_DIRECTORY`](#uv_working_directory)
+### [`UV_WORKING_DIR`](#uv_working_dir)
 
-added in `0.9.1`
+added in `next version`
 
-Equivalent to the `--directory` command-line argument.
+Equivalent to the `--directory` command-line argument. `UV_WORKING_DIRECTORY` (added in v0.9.1) is also supported for backwards compatibility.
 
 ## [Externally defined variables](#externally-defined-variables)
 
