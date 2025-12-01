@@ -140,7 +140,7 @@ Relative paths are resolved with the given directory as the base.
 
 See `--project` to only change the project root directory.
 
-May also be set with the `UV_WORKING_DIRECTORY` environment variable.
+May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
 [`--help`](#uv-auth-login--help), `-h` : Display the concise help for this command
@@ -324,7 +324,7 @@ Relative paths are resolved with the given directory as the base.
 
 See `--project` to only change the project root directory.
 
-May also be set with the `UV_WORKING_DIRECTORY` environment variable.
+May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
 [`--help`](#uv-auth-logout--help), `-h` : Display the concise help for this command
@@ -494,7 +494,7 @@ Relative paths are resolved with the given directory as the base.
 
 See `--project` to only change the project root directory.
 
-May also be set with the `UV_WORKING_DIRECTORY` environment variable.
+May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
 [`--help`](#uv-auth-token--help), `-h` : Display the concise help for this command
@@ -668,7 +668,7 @@ Relative paths are resolved with the given directory as the base.
 
 See `--project` to only change the project root directory.
 
-May also be set with the `UV_WORKING_DIRECTORY` environment variable.
+May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
 [`--help`](#uv-auth-dir--help), `-h` : Display the concise help for this command
@@ -881,7 +881,7 @@ Relative paths are resolved with the given directory as the base.
 
 See `--project` to only change the project root directory.
 
-May also be set with the `UV_WORKING_DIRECTORY` environment variable.
+May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
 [`--env-file`](#uv-run--env-file) *env-file* : Load environment variables from a `.env` file.
@@ -1565,7 +1565,7 @@ Relative paths are resolved with the given directory as the base.
 
 See `--project` to only change the project root directory.
 
-May also be set with the `UV_WORKING_DIRECTORY` environment variable.
+May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
 [`--help`](#uv-init--help), `-h` : Display the concise help for this command
@@ -1872,7 +1872,7 @@ Relative paths are resolved with the given directory as the base.
 
 See `--project` to only change the project root directory.
 
-May also be set with the `UV_WORKING_DIRECTORY` environment variable.
+May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
 [`--editable`](#uv-add--editable) : Add the requirements as editable
@@ -2414,7 +2414,7 @@ Relative paths are resolved with the given directory as the base.
 
 See `--project` to only change the project root directory.
 
-May also be set with the `UV_WORKING_DIRECTORY` environment variable.
+May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
 [`--exclude-newer`](#uv-remove--exclude-newer) *exclude-newer* : Limit candidate packages to those that were uploaded prior to the given date.
@@ -2874,7 +2874,7 @@ Relative paths are resolved with the given directory as the base.
 
 See `--project` to only change the project root directory.
 
-May also be set with the `UV_WORKING_DIRECTORY` environment variable.
+May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
 [`--dry-run`](#uv-version--dry-run) : Don't write a new version to the `pyproject.toml`
@@ -3361,7 +3361,7 @@ Relative paths are resolved with the given directory as the base.
 
 See `--project` to only change the project root directory.
 
-May also be set with the `UV_WORKING_DIRECTORY` environment variable.
+May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
 [`--dry-run`](#uv-sync--dry-run) : Perform a dry run, without writing the lockfile or modifying the project environment.
@@ -3991,7 +3991,7 @@ Relative paths are resolved with the given directory as the base.
 
 See `--project` to only change the project root directory.
 
-May also be set with the `UV_WORKING_DIRECTORY` environment variable.
+May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
 [`--dry-run`](#uv-lock--dry-run) : Perform a dry run, without writing the lockfile.
@@ -4415,7 +4415,7 @@ Relative paths are resolved with the given directory as the base.
 
 See `--project` to only change the project root directory.
 
-May also be set with the `UV_WORKING_DIRECTORY` environment variable.
+May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
 [`--exclude-newer`](#uv-export--exclude-newer) *exclude-newer* : Limit candidate packages to those that were uploaded prior to the given date.
@@ -4969,7 +4969,7 @@ Relative paths are resolved with the given directory as the base.
 
 See `--project` to only change the project root directory.
 
-May also be set with the `UV_WORKING_DIRECTORY` environment variable.
+May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
 [`--exclude-newer`](#uv-tree--exclude-newer) *exclude-newer* : Limit candidate packages to those that were uploaded prior to the given date.
@@ -5513,7 +5513,7 @@ Relative paths are resolved with the given directory as the base.
 
 See `--project` to only change the project root directory.
 
-May also be set with the `UV_WORKING_DIRECTORY` environment variable.
+May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
 [`--help`](#uv-format--help), `-h` : Display the concise help for this command
@@ -5759,7 +5759,7 @@ Relative paths are resolved with the given directory as the base.
 
 See `--project` to only change the project root directory.
 
-May also be set with the `UV_WORKING_DIRECTORY` environment variable.
+May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
 [`--env-file`](#uv-tool-run--env-file) *env-file* : Load environment variables from a `.env` file.
@@ -6291,7 +6291,7 @@ Relative paths are resolved with the given directory as the base.
 
 See `--project` to only change the project root directory.
 
-May also be set with the `UV_WORKING_DIRECTORY` environment variable.
+May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
 [`--editable`](#uv-tool-install--editable), `-e` : Install the target package in editable mode, such that changes in the package's source directory are reflected without reinstallation
@@ -6795,7 +6795,7 @@ Relative paths are resolved with the given directory as the base.
 
 See `--project` to only change the project root directory.
 
-May also be set with the `UV_WORKING_DIRECTORY` environment variable.
+May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
 [`--exclude-newer`](#uv-tool-upgrade--exclude-newer) *exclude-newer* : Limit candidate packages to those that were uploaded prior to the given date.
@@ -7219,7 +7219,7 @@ Relative paths are resolved with the given directory as the base.
 
 See `--project` to only change the project root directory.
 
-May also be set with the `UV_WORKING_DIRECTORY` environment variable.
+May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
 [`--help`](#uv-tool-list--help), `-h` : Display the concise help for this command
@@ -7384,7 +7384,7 @@ Relative paths are resolved with the given directory as the base.
 
 See `--project` to only change the project root directory.
 
-May also be set with the `UV_WORKING_DIRECTORY` environment variable.
+May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
 [`--help`](#uv-tool-uninstall--help), `-h` : Display the concise help for this command
@@ -7541,7 +7541,7 @@ Relative paths are resolved with the given directory as the base.
 
 See `--project` to only change the project root directory.
 
-May also be set with the `UV_WORKING_DIRECTORY` environment variable.
+May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
 [`--help`](#uv-tool-update-shell--help), `-h` : Display the concise help for this command
@@ -7715,7 +7715,7 @@ Relative paths are resolved with the given directory as the base.
 
 See `--project` to only change the project root directory.
 
-May also be set with the `UV_WORKING_DIRECTORY` environment variable.
+May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
 [`--help`](#uv-tool-dir--help), `-h` : Display the concise help for this command
@@ -7961,7 +7961,7 @@ Relative paths are resolved with the given directory as the base.
 
 See `--project` to only change the project root directory.
 
-May also be set with the `UV_WORKING_DIRECTORY` environment variable.
+May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
 [`--help`](#uv-python-list--help), `-h` : Display the concise help for this command
@@ -8173,7 +8173,7 @@ Relative paths are resolved with the given directory as the base.
 
 See `--project` to only change the project root directory.
 
-May also be set with the `UV_WORKING_DIRECTORY` environment variable.
+May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
 [`--force`](#uv-python-install--force), `-f` : Replace existing Python executables during installation.
@@ -8408,7 +8408,7 @@ Relative paths are resolved with the given directory as the base.
 
 See `--project` to only change the project root directory.
 
-May also be set with the `UV_WORKING_DIRECTORY` environment variable.
+May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
 [`--help`](#uv-python-upgrade--help), `-h` : Display the concise help for this command
@@ -8605,7 +8605,7 @@ Relative paths are resolved with the given directory as the base.
 
 See `--project` to only change the project root directory.
 
-May also be set with the `UV_WORKING_DIRECTORY` environment variable.
+May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
 [`--help`](#uv-python-find--help), `-h` : Display the concise help for this command
@@ -8796,7 +8796,7 @@ Relative paths are resolved with the given directory as the base.
 
 See `--project` to only change the project root directory.
 
-May also be set with the `UV_WORKING_DIRECTORY` environment variable.
+May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
 [`--global`](#uv-python-pin--global) : Update the global Python version pin.
@@ -8991,7 +8991,7 @@ Relative paths are resolved with the given directory as the base.
 
 See `--project` to only change the project root directory.
 
-May also be set with the `UV_WORKING_DIRECTORY` environment variable.
+May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
 [`--help`](#uv-python-dir--help), `-h` : Display the concise help for this command
@@ -9152,7 +9152,7 @@ Relative paths are resolved with the given directory as the base.
 
 See `--project` to only change the project root directory.
 
-May also be set with the `UV_WORKING_DIRECTORY` environment variable.
+May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
 [`--help`](#uv-python-uninstall--help), `-h` : Display the concise help for this command
@@ -9315,7 +9315,7 @@ Relative paths are resolved with the given directory as the base.
 
 See `--project` to only change the project root directory.
 
-May also be set with the `UV_WORKING_DIRECTORY` environment variable.
+May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
 [`--help`](#uv-python-update-shell--help), `-h` : Display the concise help for this command
@@ -9568,7 +9568,7 @@ Relative paths are resolved with the given directory as the base.
 
 See `--project` to only change the project root directory.
 
-May also be set with the `UV_WORKING_DIRECTORY` environment variable.
+May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
 [`--emit-build-options`](#uv-pip-compile--emit-build-options) : Include `--no-binary` and `--only-binary` entries in the generated output file
@@ -10236,7 +10236,7 @@ Relative paths are resolved with the given directory as the base.
 
 See `--project` to only change the project root directory.
 
-May also be set with the `UV_WORKING_DIRECTORY` environment variable.
+May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
 [`--dry-run`](#uv-pip-sync--dry-run) : Perform a dry run, i.e., don't actually install anything but resolve the dependencies and print the resulting plan
@@ -10805,7 +10805,7 @@ Relative paths are resolved with the given directory as the base.
 
 See `--project` to only change the project root directory.
 
-May also be set with the `UV_WORKING_DIRECTORY` environment variable.
+May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
 [`--dry-run`](#uv-pip-install--dry-run) : Perform a dry run, i.e., don't actually install anything but resolve the dependencies and print the resulting plan
@@ -11423,7 +11423,7 @@ Relative paths are resolved with the given directory as the base.
 
 See `--project` to only change the project root directory.
 
-May also be set with the `UV_WORKING_DIRECTORY` environment variable.
+May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
 [`--dry-run`](#uv-pip-uninstall--dry-run) : Perform a dry run, i.e., don't actually uninstall anything but print the resulting plan
@@ -11625,7 +11625,7 @@ Relative paths are resolved with the given directory as the base.
 
 See `--project` to only change the project root directory.
 
-May also be set with the `UV_WORKING_DIRECTORY` environment variable.
+May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
 [`--exclude-editable`](#uv-pip-freeze--exclude-editable) : Exclude any editable packages from output
@@ -11813,7 +11813,7 @@ Relative paths are resolved with the given directory as the base.
 
 See `--project` to only change the project root directory.
 
-May also be set with the `UV_WORKING_DIRECTORY` environment variable.
+May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
 [`--editable`](#uv-pip-list--editable), `-e` : Only include editable projects
@@ -12096,7 +12096,7 @@ Relative paths are resolved with the given directory as the base.
 
 See `--project` to only change the project root directory.
 
-May also be set with the `UV_WORKING_DIRECTORY` environment variable.
+May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
 [`--files`](#uv-pip-show--files), `-f` : Show the full list of installed files for each package
@@ -12288,7 +12288,7 @@ Relative paths are resolved with the given directory as the base.
 
 See `--project` to only change the project root directory.
 
-May also be set with the `UV_WORKING_DIRECTORY` environment variable.
+May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
 [`--exclude-newer`](#uv-pip-tree--exclude-newer) *exclude-newer* : Limit candidate packages to those that were uploaded prior to the given date.
@@ -12557,7 +12557,7 @@ Relative paths are resolved with the given directory as the base.
 
 See `--project` to only change the project root directory.
 
-May also be set with the `UV_WORKING_DIRECTORY` environment variable.
+May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
 [`--help`](#uv-pip-check--help), `-h` : Display the concise help for this command
@@ -12841,7 +12841,7 @@ Relative paths are resolved with the given directory as the base.
 
 See `--project` to only change the project root directory.
 
-May also be set with the `UV_WORKING_DIRECTORY` environment variable.
+May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
 [`--exclude-newer`](#uv-venv--exclude-newer) *exclude-newer* : Limit candidate packages to those that were uploaded prior to the given date.
@@ -13204,7 +13204,7 @@ Relative paths are resolved with the given directory as the base.
 
 See `--project` to only change the project root directory.
 
-May also be set with the `UV_WORKING_DIRECTORY` environment variable.
+May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
 [`--exclude-newer`](#uv-build--exclude-newer) *exclude-newer* : Limit candidate packages to those that were uploaded prior to the given date.
@@ -13652,7 +13652,7 @@ Relative paths are resolved with the given directory as the base.
 
 See `--project` to only change the project root directory.
 
-May also be set with the `UV_WORKING_DIRECTORY` environment variable.
+May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
 [`--dry-run`](#uv-publish--dry-run) : Perform a dry run without uploading files.
@@ -13927,7 +13927,7 @@ Relative paths are resolved with the given directory as the base.
 
 See `--project` to only change the project root directory.
 
-May also be set with the `UV_WORKING_DIRECTORY` environment variable.
+May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
 [`--force`](#uv-cache-clean--force) : Force removal of the cache, ignoring in-use checks.
@@ -14092,7 +14092,7 @@ Relative paths are resolved with the given directory as the base.
 
 See `--project` to only change the project root directory.
 
-May also be set with the `UV_WORKING_DIRECTORY` environment variable.
+May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
 [`--force`](#uv-cache-prune--force) : Force removal of the cache, ignoring in-use checks.
@@ -14257,7 +14257,7 @@ Relative paths are resolved with the given directory as the base.
 
 See `--project` to only change the project root directory.
 
-May also be set with the `UV_WORKING_DIRECTORY` environment variable.
+May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
 [`--help`](#uv-cache-dir--help), `-h` : Display the concise help for this command
@@ -14410,7 +14410,7 @@ Relative paths are resolved with the given directory as the base.
 
 See `--project` to only change the project root directory.
 
-May also be set with the `UV_WORKING_DIRECTORY` environment variable.
+May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
 [`--help`](#uv-cache-size--help), `-h` : Display the concise help for this command
@@ -14584,7 +14584,7 @@ Relative paths are resolved with the given directory as the base.
 
 See `--project` to only change the project root directory.
 
-May also be set with the `UV_WORKING_DIRECTORY` environment variable.
+May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
 [`--dry-run`](#uv-self-update--dry-run) : Run without performing the update
@@ -14743,7 +14743,7 @@ Relative paths are resolved with the given directory as the base.
 
 See `--project` to only change the project root directory.
 
-May also be set with the `UV_WORKING_DIRECTORY` environment variable.
+May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
 [`--help`](#uv-self-version--help), `-h` : Display the concise help for this command
@@ -14872,7 +14872,7 @@ Relative paths are resolved with the given directory as the base.
 
 See `--project` to only change the project root directory.
 
-May also be set with the `UV_WORKING_DIRECTORY` environment variable.
+May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
 [`--managed-python`](#uv-generate-shell-completion--managed-python) : Require use of uv-managed Python versions.
@@ -14971,7 +14971,7 @@ Relative paths are resolved with the given directory as the base.
 
 See `--project` to only change the project root directory.
 
-May also be set with the `UV_WORKING_DIRECTORY` environment variable.
+May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
 [`--help`](#uv-help--help), `-h` : Display the concise help for this command
