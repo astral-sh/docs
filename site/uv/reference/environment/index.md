@@ -150,6 +150,12 @@ added in `0.5.19`
 
 Enables fetching files stored in Git LFS when installing a package from a Git repository.
 
+### [`UV_HIDE_BUILD_OUTPUT`](#uv_hide_build_output)
+
+added in `0.9.14`
+
+Suppress output from the build backend when building source distributions, even in the event of build failures.
+
 ### [`UV_HTTP_RETRIES`](#uv_http_retries)
 
 added in `0.7.21`
