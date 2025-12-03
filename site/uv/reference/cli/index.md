@@ -2003,6 +2003,12 @@ Possible values:
 - `subprocess`: Use the `keyring` command for credential lookup
 ```
 
+[`--lfs`](#uv-add--lfs) : Whether to use Git LFS when adding a dependency from Git
+
+```
+May also be set with the `UV_GIT_LFS` environment variable.
+```
+
 [`--link-mode`](#uv-add--link-mode) *link-mode* : The method to use when installing packages from the global cache.
 
 ```
@@ -5886,6 +5892,12 @@ Possible values:
 - `subprocess`: Use the `keyring` command for credential lookup
 ```
 
+[`--lfs`](#uv-tool-run--lfs) : Whether to use Git LFS when adding a dependency from Git
+
+```
+May also be set with the `UV_GIT_LFS` environment variable.
+```
+
 [`--link-mode`](#uv-tool-run--link-mode) *link-mode* : The method to use when installing packages from the global cache.
 
 ```
@@ -6412,6 +6424,12 @@ Possible values:
 
 - `disabled`: Do not use keyring for credential lookup
 - `subprocess`: Use the `keyring` command for credential lookup
+```
+
+[`--lfs`](#uv-tool-install--lfs) : Whether to use Git LFS when adding a dependency from Git
+
+```
+May also be set with the `UV_GIT_LFS` environment variable.
 ```
 
 [`--link-mode`](#uv-tool-install--link-mode) *link-mode* : The method to use when installing packages from the global cache.
@@ -10063,6 +10081,7 @@ Possible values:
 - `cu91`: Use the PyTorch index for CUDA 9.1
 - `cu90`: Use the PyTorch index for CUDA 9.0
 - `cu80`: Use the PyTorch index for CUDA 8.0
+- `rocm6.4`: Use the PyTorch index for ROCm 6.4
 - `rocm6.3`: Use the PyTorch index for ROCm 6.3
 - `rocm6.2.4`: Use the PyTorch index for ROCm 6.2.4
 - `rocm6.2`: Use the PyTorch index for ROCm 6.2
@@ -10654,6 +10673,7 @@ Possible values:
 - `cu91`: Use the PyTorch index for CUDA 9.1
 - `cu90`: Use the PyTorch index for CUDA 9.0
 - `cu80`: Use the PyTorch index for CUDA 8.0
+- `rocm6.4`: Use the PyTorch index for ROCm 6.4
 - `rocm6.3`: Use the PyTorch index for ROCm 6.3
 - `rocm6.2.4`: Use the PyTorch index for ROCm 6.2.4
 - `rocm6.2`: Use the PyTorch index for ROCm 6.2
@@ -11318,6 +11338,7 @@ Possible values:
 - `cu91`: Use the PyTorch index for CUDA 9.1
 - `cu90`: Use the PyTorch index for CUDA 9.0
 - `cu80`: Use the PyTorch index for CUDA 8.0
+- `rocm6.4`: Use the PyTorch index for ROCm 6.4
 - `rocm6.3`: Use the PyTorch index for ROCm 6.3
 - `rocm6.2.4`: Use the PyTorch index for ROCm 6.2.4
 - `rocm6.2`: Use the PyTorch index for ROCm 6.2

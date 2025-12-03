@@ -367,6 +367,32 @@ langchain = { git = "https://github.com/langchain-ai/langchain", subdirectory = 
 
 ```
 
+Support for [Git LFS](https://git-lfs.com) is also configurable per source. By default, Git LFS objects will not be fetched.
+
+```
+$ uv add --lfs git+https://github.com/astral-sh/lfs-cowsay
+
+```
+
+pyproject.toml
+
+```
+[project]
+dependencies = ["lfs-cowsay"]
+
+[tool.uv.sources]
+lfs-cowsay = { git = "https://github.com/astral-sh/lfs-cowsay", lfs = true }
+
+```
+
+- When `lfs = true`, uv will always fetch LFS objects for this Git source.
+- When `lfs = false`, uv will never fetch LFS objects for this Git source.
+- When omitted, the `UV_GIT_LFS` environment variable is used for all Git sources without an explicit `lfs` configuration.
+
+Important
+
+Ensure Git LFS is installed and configured on your system before attempting to install sources using Git LFS, otherwise a build failure can occur.
+
 ### [URL](#url)
 
 To add a URL source, provide a `https://` URL to either a wheel (ending in `.whl`) or a source distribution (typically ending in `.tar.gz` or `.zip`; see [here](../../resolution/#source-distribution) for all supported formats).
