@@ -841,7 +841,7 @@
 <p><small>
 Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.231">v0.0.231</a> ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27os-replace%27%20OR%20PTH105)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_use_pathlib%2Frules%2Fos_replace.rs#L52" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_use_pathlib%2Frules%2Fos_replace.rs#L56" target="_blank">View source</a>
 </small></p>
 <p>Derived from the <strong><a href="../#flake8-use-pathlib-pth">flake8-use-pathlib</a></strong> linter.</p>
 <p>Fix is sometimes available.</p>
@@ -869,7 +869,9 @@ e.g., in hot loops.</p>
 it can be less performant than the lower-level alternatives that work directly with strings,
 especially on older versions of Python.</p>
 <h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix Safety</a></h2>
-<p>This rule's fix is marked as unsafe if the replacement would remove comments attached to the original expression.</p>
+<p>This rule's fix is marked as unsafe if the replacement would remove comments attached to the original expression.
+Additionally, the fix is marked as unsafe when the return value is used because the type changes
+from <code>None</code> to a <code>Path</code> object.</p>
 <h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path.replace">Python documentation: <code>Path.replace</code></a></li>
