@@ -108,7 +108,7 @@ This will force uv to rebuild and reinstall `my-package` on every run, regardles
 
 It's safe to run multiple uv commands concurrently, even against the same virtual environment. uv's cache is designed to be thread-safe and append-only, and thus robust to multiple concurrent readers and writers. uv applies a file-based lock to the target virtual environment when installing, to avoid concurrent modifications across processes.
 
-Note that it's *not* safe to modify the uv cache (e.g., `uv cache clean`) while other uv commands are running, and *never* safe to modify the cache directly (e.g., by removing a file or directory).
+Note that it's *never* safe to modify the cache directly (e.g., by removing a file or directory).
 
 ## [Clearing the cache](#clearing-the-cache)
 
@@ -117,6 +117,8 @@ uv provides a few different mechanisms for removing entries from the cache:
 - `uv cache clean` removes *all* cache entries from the cache directory, clearing it out entirely.
 - `uv cache clean ruff` removes all cache entries for the `ruff` package, useful for invalidating the cache for a single or finite set of packages.
 - `uv cache prune` removes all *unused* cache entries. For example, the cache directory may contain entries created in previous uv versions that are no longer necessary and can be safely removed. `uv cache prune` is safe to run periodically, to keep the cache directory clean.
+
+uv blocks cache-modifying operations while other uv commands are running. By default, those `uv cache` commands have a 5 min timeout waiting for other uv processes to terminate to avoid deadlocks. This timeout can be changed with [`UV_LOCK_TIMEOUT`](../../reference/environment/#uv_lock_timeout). In cases where it is known that no other uv processes are reading or writing from the cache, `--force` can be used to ignore the lock.
 
 ## [Caching in continuous integration](#caching-in-continuous-integration)
 

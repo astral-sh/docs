@@ -81,8 +81,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2025-07-16 16:02:29Z",
-        "dateModified": "2025-07-16 16:02:29Z",
+        "datePublished": "2025-12-04 13:59:04Z",
+        "dateModified": "2025-12-04 13:59:04Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -3277,8 +3277,7 @@ package's <code>pyproject.toml</code>, <code>setup.py</code>, or <code>setup.cfg
 cache is designed to be thread-safe and append-only, and thus robust to multiple concurrent readers
 and writers. uv applies a file-based lock to the target virtual environment when installing, to
 avoid concurrent modifications across processes.</p>
-<p>Note that it's <em>not</em> safe to modify the uv cache (e.g., <code>uv cache clean</code>) while other uv commands
-are running, and <em>never</em> safe to modify the cache directly (e.g., by removing a file or directory).</p>
+<p>Note that it's <em>never</em> safe to modify the cache directly (e.g., by removing a file or directory).</p>
 <h2 id="clearing-the-cache"><a class="toclink" href="#clearing-the-cache">Clearing the cache</a></h2>
 <p>uv provides a few different mechanisms for removing entries from the cache:</p>
 <ul>
@@ -3289,6 +3288,11 @@ are running, and <em>never</em> safe to modify the cache directly (e.g., by remo
   entries created in previous uv versions that are no longer necessary and can be safely removed.
   <code>uv cache prune</code> is safe to run periodically, to keep the cache directory clean.</li>
 </ul>
+<p>uv blocks cache-modifying operations while other uv commands are running. By default, those
+<code>uv cache</code> commands have a 5 min timeout waiting for other uv processes to terminate to avoid
+deadlocks. This timeout can be changed with
+<a href="../../reference/environment/#uv_lock_timeout"><code>UV_LOCK_TIMEOUT</code></a>. In cases where it is known that no
+other uv processes are reading or writing from the cache, <code>--force</code> can be used to ignore the lock.</p>
 <h2 id="caching-in-continuous-integration"><a class="toclink" href="#caching-in-continuous-integration">Caching in continuous integration</a></h2>
 <p>It's common to cache package installation artifacts in continuous integration environments (like
 GitHub Actions or GitLab CI) to speed up subsequent runs.</p>
@@ -3350,7 +3354,7 @@ itself may contain duplicate entries in the core metadata bucket due to the chan
         <span class="md-icon" title="Last update">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
         </span>
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 16, 2025</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 4, 2025</span>
       </span>
     
     
