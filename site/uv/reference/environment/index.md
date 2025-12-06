@@ -152,7 +152,7 @@ Enables fetching files stored in Git LFS when installing a package from a Git re
 
 ### [`UV_HIDE_BUILD_OUTPUT`](#uv_hide_build_output)
 
-added in `0.9.14`
+added in `0.9.15`
 
 Suppress output from the build backend when building source distributions, even in the event of build failures.
 
@@ -271,6 +271,14 @@ Equivalent to the `--link-mode` command-line argument. If set, uv will use this 
 added in `0.4.25`
 
 Equivalent to the `--locked` command-line argument. If set, uv will assert that the `uv.lock` remains unchanged.
+
+### [`UV_LOCK_TIMEOUT`](#uv_lock_timeout)
+
+added in `0.9.4`
+
+The time in seconds uv waits for a file lock to become available.
+
+Defaults to 300s (5 min).
 
 ### [`UV_LOG_CONTEXT`](#uv_log_context)
 

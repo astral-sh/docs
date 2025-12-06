@@ -222,7 +222,7 @@ May also be set with the `UV_OFFLINE` environment variable.
 Use `-` to read the password from stdin.
 ```
 
-[`--project`](#uv-auth-login--project) *project* : Run the command within the given project directory.
+[`--project`](#uv-auth-login--project) *project* : Discover a project in the given directory.
 
 ```
 All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
@@ -400,7 +400,7 @@ When disabled, uv will only use locally cached data and locally available files.
 May also be set with the `UV_OFFLINE` environment variable.
 ```
 
-[`--project`](#uv-auth-logout--project) *project* : Run the command within the given project directory.
+[`--project`](#uv-auth-logout--project) *project* : Discover a project in the given directory.
 
 ```
 All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
@@ -568,7 +568,7 @@ When disabled, uv will only use locally cached data and locally available files.
 May also be set with the `UV_OFFLINE` environment variable.
 ```
 
-[`--project`](#uv-auth-token--project) *project* : Run the command within the given project directory.
+[`--project`](#uv-auth-token--project) *project* : Discover a project in the given directory.
 
 ```
 All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
@@ -731,7 +731,7 @@ When disabled, uv will only use locally cached data and locally available files.
 May also be set with the `UV_OFFLINE` environment variable.
 ```
 
-[`--project`](#uv-auth-dir--project) *project* : Run the command within the given project directory.
+[`--project`](#uv-auth-dir--project) *project* : Discover a project in the given directory.
 
 ```
 All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
@@ -1283,7 +1283,7 @@ Possible values:
 - `if-necessary-or-explicit`: Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements
 ```
 
-[`--project`](#uv-run--project) *project* : Run the command within the given project directory.
+[`--project`](#uv-run--project) *project* : Discover a project in the given directory.
 
 ```
 All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
@@ -1674,7 +1674,7 @@ This is the default behavior when using `--lib` or `--build-backend`.
 When using `--app`, this will include a `[project.scripts]` entrypoint and use a `src/` project structure.
 ```
 
-[`--project`](#uv-init--project) *project* : Run the command within the given project directory.
+[`--project`](#uv-init--project) *project* : Discover a project in the given directory.
 
 ```
 All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
@@ -2214,7 +2214,7 @@ Possible values:
 - `if-necessary-or-explicit`: Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements
 ```
 
-[`--project`](#uv-add--project) *project* : Run the command within the given project directory.
+[`--project`](#uv-add--project) *project* : Discover a project in the given directory.
 
 ```
 All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
@@ -2696,7 +2696,7 @@ Possible values:
 - `if-necessary-or-explicit`: Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements
 ```
 
-[`--project`](#uv-remove--project) *project* : Run the command within the given project directory.
+[`--project`](#uv-remove--project) *project* : Discover a project in the given directory.
 
 ```
 All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
@@ -3169,7 +3169,7 @@ Possible values:
 - `if-necessary-or-explicit`: Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements
 ```
 
-[`--project`](#uv-version--project) *project* : Run the command within the given project directory.
+[`--project`](#uv-version--project) *project* : Discover a project in the given directory.
 
 ```
 All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
@@ -3766,7 +3766,7 @@ Possible values:
 - `if-necessary-or-explicit`: Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements
 ```
 
-[`--project`](#uv-sync--project) *project* : Run the command within the given project directory.
+[`--project`](#uv-sync--project) *project* : Discover a project in the given directory.
 
 ```
 All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
@@ -4253,7 +4253,7 @@ Possible values:
 - `if-necessary-or-explicit`: Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements
 ```
 
-[`--project`](#uv-lock--project) *project* : Run the command within the given project directory.
+[`--project`](#uv-lock--project) *project* : Discover a project in the given directory.
 
 ```
 All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
@@ -4813,7 +4813,7 @@ Possible values:
 - `if-necessary-or-explicit`: Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements
 ```
 
-[`--project`](#uv-export--project) *project* : Run the command within the given project directory.
+[`--project`](#uv-export--project) *project* : Discover a project in the given directory.
 
 ```
 All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
@@ -5297,7 +5297,7 @@ Possible values:
 - `if-necessary-or-explicit`: Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements
 ```
 
-[`--project`](#uv-tree--project) *project* : Run the command within the given project directory.
+[`--project`](#uv-tree--project) *project* : Discover a project in the given directory.
 
 ```
 All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
@@ -5588,7 +5588,7 @@ When disabled, uv will only use locally cached data and locally available files.
 May also be set with the `UV_OFFLINE` environment variable.
 ```
 
-[`--project`](#uv-format--project) *project* : Run the command within the given project directory.
+[`--project`](#uv-format--project) *project* : Discover a project in the given directory.
 
 ```
 All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
@@ -6055,7 +6055,7 @@ Possible values:
 - `if-necessary-or-explicit`: Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements
 ```
 
-[`--project`](#uv-tool-run--project) *project* : Run the command within the given project directory.
+[`--project`](#uv-tool-run--project) *project* : Discover a project in the given directory.
 
 ```
 All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
@@ -6583,7 +6583,7 @@ Possible values:
 - `if-necessary-or-explicit`: Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements
 ```
 
-[`--project`](#uv-tool-install--project) *project* : Run the command within the given project directory.
+[`--project`](#uv-tool-install--project) *project* : Discover a project in the given directory.
 
 ```
 All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
@@ -7061,7 +7061,7 @@ Possible values:
 - `if-necessary-or-explicit`: Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements
 ```
 
-[`--project`](#uv-tool-upgrade--project) *project* : Run the command within the given project directory.
+[`--project`](#uv-tool-upgrade--project) *project* : Discover a project in the given directory.
 
 ```
 All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
@@ -7298,7 +7298,7 @@ When disabled, uv will only use locally cached data and locally available files.
 May also be set with the `UV_OFFLINE` environment variable.
 ```
 
-[`--project`](#uv-tool-list--project) *project* : Run the command within the given project directory.
+[`--project`](#uv-tool-list--project) *project* : Discover a project in the given directory.
 
 ```
 All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
@@ -7465,7 +7465,7 @@ When disabled, uv will only use locally cached data and locally available files.
 May also be set with the `UV_OFFLINE` environment variable.
 ```
 
-[`--project`](#uv-tool-uninstall--project) *project* : Run the command within the given project directory.
+[`--project`](#uv-tool-uninstall--project) *project* : Discover a project in the given directory.
 
 ```
 All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
@@ -7622,7 +7622,7 @@ When disabled, uv will only use locally cached data and locally available files.
 May also be set with the `UV_OFFLINE` environment variable.
 ```
 
-[`--project`](#uv-tool-update-shell--project) *project* : Run the command within the given project directory.
+[`--project`](#uv-tool-update-shell--project) *project* : Discover a project in the given directory.
 
 ```
 All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
@@ -7796,7 +7796,7 @@ When disabled, uv will only use locally cached data and locally available files.
 May also be set with the `UV_OFFLINE` environment variable.
 ```
 
-[`--project`](#uv-tool-dir--project) *project* : Run the command within the given project directory.
+[`--project`](#uv-tool-dir--project) *project* : Discover a project in the given directory.
 
 ```
 All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
@@ -8065,7 +8065,7 @@ Possible values:
 - `json`: JSON (for computers)
 ```
 
-[`--project`](#uv-python-list--project) *project* : Run the command within the given project directory.
+[`--project`](#uv-python-list--project) *project* : Discover a project in the given directory.
 
 ```
 All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
@@ -8292,7 +8292,7 @@ When disabled, uv will only use locally cached data and locally available files.
 May also be set with the `UV_OFFLINE` environment variable.
 ```
 
-[`--project`](#uv-python-install--project) *project* : Run the command within the given project directory.
+[`--project`](#uv-python-install--project) *project* : Discover a project in the given directory.
 
 ```
 All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
@@ -8507,7 +8507,7 @@ When disabled, uv will only use locally cached data and locally available files.
 May also be set with the `UV_OFFLINE` environment variable.
 ```
 
-[`--project`](#uv-python-upgrade--project) *project* : Run the command within the given project directory.
+[`--project`](#uv-python-upgrade--project) *project* : Discover a project in the given directory.
 
 ```
 All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
@@ -8692,7 +8692,7 @@ When disabled, uv will only use locally cached data and locally available files.
 May also be set with the `UV_OFFLINE` environment variable.
 ```
 
-[`--project`](#uv-python-find--project) *project* : Run the command within the given project directory.
+[`--project`](#uv-python-find--project) *project* : Discover a project in the given directory.
 
 ```
 All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
@@ -8891,7 +8891,7 @@ When disabled, uv will only use locally cached data and locally available files.
 May also be set with the `UV_OFFLINE` environment variable.
 ```
 
-[`--project`](#uv-python-pin--project) *project* : Run the command within the given project directory.
+[`--project`](#uv-python-pin--project) *project* : Discover a project in the given directory.
 
 ```
 All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
@@ -9072,7 +9072,7 @@ When disabled, uv will only use locally cached data and locally available files.
 May also be set with the `UV_OFFLINE` environment variable.
 ```
 
-[`--project`](#uv-python-dir--project) *project* : Run the command within the given project directory.
+[`--project`](#uv-python-dir--project) *project* : Discover a project in the given directory.
 
 ```
 All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
@@ -9239,7 +9239,7 @@ When disabled, uv will only use locally cached data and locally available files.
 May also be set with the `UV_OFFLINE` environment variable.
 ```
 
-[`--project`](#uv-python-uninstall--project) *project* : Run the command within the given project directory.
+[`--project`](#uv-python-uninstall--project) *project* : Discover a project in the given directory.
 
 ```
 All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
@@ -9396,7 +9396,7 @@ When disabled, uv will only use locally cached data and locally available files.
 May also be set with the `UV_OFFLINE` environment variable.
 ```
 
-[`--project`](#uv-python-update-shell--project) *project* : Run the command within the given project directory.
+[`--project`](#uv-python-update-shell--project) *project* : Discover a project in the given directory.
 
 ```
 All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
@@ -9905,7 +9905,7 @@ Possible values:
 - `if-necessary-or-explicit`: Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements
 ```
 
-[`--project`](#uv-pip-compile--project) *project* : Run the command within the given project directory.
+[`--project`](#uv-pip-compile--project) *project* : Discover a project in the given directory.
 
 ```
 All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
@@ -10490,7 +10490,7 @@ In general, prefer the use of `--python` to install into an alternate environmen
 Unlike other install operations, this command does not require discovery of an existing Python environment and only searches for a Python interpreter to use for package resolution. If a suitable Python interpreter cannot be found, uv will install one. To disable this, add `--no-python-downloads`.
 ```
 
-[`--project`](#uv-pip-sync--project) *project* : Run the command within the given project directory.
+[`--project`](#uv-pip-sync--project) *project* : Discover a project in the given directory.
 
 ```
 All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
@@ -11131,7 +11131,7 @@ Possible values:
 - `if-necessary-or-explicit`: Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements
 ```
 
-[`--project`](#uv-pip-install--project) *project* : Run the command within the given project directory.
+[`--project`](#uv-pip-install--project) *project* : Discover a project in the given directory.
 
 ```
 All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
@@ -11528,7 +11528,7 @@ May also be set with the `UV_OFFLINE` environment variable.
 
 [`--prefix`](#uv-pip-uninstall--prefix) *prefix* : Uninstall packages from the specified `--prefix` directory
 
-[`--project`](#uv-pip-uninstall--project) *project* : Run the command within the given project directory.
+[`--project`](#uv-pip-uninstall--project) *project* : Discover a project in the given directory.
 
 ```
 All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
@@ -11713,7 +11713,9 @@ May also be set with the `UV_OFFLINE` environment variable.
 
 [`--path`](#uv-pip-freeze--path) *paths* : Restrict to the specified installation path for listing packages (can be used multiple times)
 
-[`--project`](#uv-pip-freeze--project) *project* : Run the command within the given project directory.
+[`--prefix`](#uv-pip-freeze--prefix) *prefix* : List packages from the specified `--prefix` directory
+
+[`--project`](#uv-pip-freeze--project) *project* : Discover a project in the given directory.
 
 ```
 All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
@@ -11755,6 +11757,8 @@ See [uv python](#uv-python) for details on Python discovery.
 
 May also be set with the `UV_SYSTEM_PYTHON` environment variable.
 ```
+
+[`--target`](#uv-pip-freeze--target) *target* : List packages from the specified `--target` directory
 
 [`--verbose`](#uv-pip-freeze--verbose), `-v` : Use verbose output.
 
@@ -12002,7 +12006,9 @@ May also be set with the `UV_OFFLINE` environment variable.
 The latest version of each package will be shown alongside the installed version. Up-to-date packages will be omitted from the output.
 ```
 
-[`--project`](#uv-pip-list--project) *project* : Run the command within the given project directory.
+[`--prefix`](#uv-pip-list--prefix) *prefix* : List packages from the specified `--prefix` directory
+
+[`--project`](#uv-pip-list--project) *project* : Discover a project in the given directory.
 
 ```
 All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
@@ -12044,6 +12050,8 @@ See [uv python](#uv-python) for details on Python discovery.
 
 May also be set with the `UV_SYSTEM_PYTHON` environment variable.
 ```
+
+[`--target`](#uv-pip-list--target) *target* : List packages from the specified `--target` directory
 
 [`--verbose`](#uv-pip-list--verbose), `-v` : Use verbose output.
 
@@ -12182,7 +12190,9 @@ When disabled, uv will only use locally cached data and locally available files.
 May also be set with the `UV_OFFLINE` environment variable.
 ```
 
-[`--project`](#uv-pip-show--project) *project* : Run the command within the given project directory.
+[`--prefix`](#uv-pip-show--prefix) *prefix* : Show a package from the specified `--prefix` directory
+
+[`--project`](#uv-pip-show--project) *project* : Discover a project in the given directory.
 
 ```
 All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
@@ -12224,6 +12234,8 @@ See [uv python](#uv-python) for details on Python discovery.
 
 May also be set with the `UV_SYSTEM_PYTHON` environment variable.
 ```
+
+[`--target`](#uv-pip-show--target) *target* : Show a package from the specified `--target` directory
 
 [`--verbose`](#uv-pip-show--verbose), `-v` : Use verbose output.
 
@@ -12461,7 +12473,7 @@ May also be set with the `UV_OFFLINE` environment variable.
 
 [`--package`](#uv-pip-tree--package) *package* : Display only the specified packages
 
-[`--project`](#uv-pip-tree--project) *project* : Run the command within the given project directory.
+[`--project`](#uv-pip-tree--project) *project* : Discover a project in the given directory.
 
 ```
 All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
@@ -12641,7 +12653,7 @@ When disabled, uv will only use locally cached data and locally available files.
 May also be set with the `UV_OFFLINE` environment variable.
 ```
 
-[`--project`](#uv-pip-check--project) *project* : Run the command within the given project directory.
+[`--project`](#uv-pip-check--project) *project* : Discover a project in the given directory.
 
 ```
 All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
@@ -13039,7 +13051,7 @@ When disabled, uv will only use locally cached data and locally available files.
 May also be set with the `UV_OFFLINE` environment variable.
 ```
 
-[`--project`](#uv-venv--project) *project* : Run the command within the given project directory.
+[`--project`](#uv-venv--project) *project* : Discover a project in the given directory.
 
 ```
 All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
@@ -13511,7 +13523,7 @@ Possible values:
 - `if-necessary-or-explicit`: Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements
 ```
 
-[`--project`](#uv-build--project) *project* : Run the command within the given project directory.
+[`--project`](#uv-build--project) *project* : Discover a project in the given directory.
 
 ```
 All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
@@ -13797,7 +13809,7 @@ May also be set with the `UV_OFFLINE` environment variable.
 May also be set with the `UV_PUBLISH_PASSWORD` environment variable.
 ```
 
-[`--project`](#uv-publish--project) *project* : Run the command within the given project directory.
+[`--project`](#uv-publish--project) *project* : Discover a project in the given directory.
 
 ```
 All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
@@ -14017,7 +14029,7 @@ When disabled, uv will only use locally cached data and locally available files.
 May also be set with the `UV_OFFLINE` environment variable.
 ```
 
-[`--project`](#uv-cache-clean--project) *project* : Run the command within the given project directory.
+[`--project`](#uv-cache-clean--project) *project* : Discover a project in the given directory.
 
 ```
 All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
@@ -14182,7 +14194,7 @@ When disabled, uv will only use locally cached data and locally available files.
 May also be set with the `UV_OFFLINE` environment variable.
 ```
 
-[`--project`](#uv-cache-prune--project) *project* : Run the command within the given project directory.
+[`--project`](#uv-cache-prune--project) *project* : Discover a project in the given directory.
 
 ```
 All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
@@ -14341,7 +14353,7 @@ When disabled, uv will only use locally cached data and locally available files.
 May also be set with the `UV_OFFLINE` environment variable.
 ```
 
-[`--project`](#uv-cache-dir--project) *project* : Run the command within the given project directory.
+[`--project`](#uv-cache-dir--project) *project* : Discover a project in the given directory.
 
 ```
 All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
@@ -14496,7 +14508,7 @@ When disabled, uv will only use locally cached data and locally available files.
 May also be set with the `UV_OFFLINE` environment variable.
 ```
 
-[`--project`](#uv-cache-size--project) *project* : Run the command within the given project directory.
+[`--project`](#uv-cache-size--project) *project* : Discover a project in the given directory.
 
 ```
 All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
@@ -14670,7 +14682,7 @@ When disabled, uv will only use locally cached data and locally available files.
 May also be set with the `UV_OFFLINE` environment variable.
 ```
 
-[`--project`](#uv-self-update--project) *project* : Run the command within the given project directory.
+[`--project`](#uv-self-update--project) *project* : Discover a project in the given directory.
 
 ```
 All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
@@ -14829,7 +14841,7 @@ May also be set with the `UV_OFFLINE` environment variable.
 
 [`--output-format`](#uv-self-version--output-format) *output-format*
 
-[`--project`](#uv-self-version--project) *project* : Run the command within the given project directory.
+[`--project`](#uv-self-version--project) *project* : Discover a project in the given directory.
 
 ```
 All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
@@ -14912,7 +14924,7 @@ Instead, uv will search for a suitable Python version on the system.
 May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
 ```
 
-[`--project`](#uv-generate-shell-completion--project) *project* : Run the command within the given project directory.
+[`--project`](#uv-generate-shell-completion--project) *project* : Discover a project in the given directory.
 
 ```
 All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
@@ -15057,7 +15069,7 @@ When disabled, uv will only use locally cached data and locally available files.
 May also be set with the `UV_OFFLINE` environment variable.
 ```
 
-[`--project`](#uv-help--project) *project* : Run the command within the given project directory.
+[`--project`](#uv-help--project) *project* : Discover a project in the given directory.
 
 ```
 All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
