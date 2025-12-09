@@ -22,7 +22,7 @@ pyproject.toml
 
 ```
 [build-system]
-requires = ["uv_build>=0.9.16,<0.10.0"]
+requires = ["uv_build>=0.9.17,<0.10.0"]
 build-backend = "uv_build"
 
 ```
@@ -210,7 +210,7 @@ When building a wheel, the following files and directories are included:
 - The `project.readme`, which is copied into the project metadata.
 - All directories under [`tool.uv.build-backend.data`](../../reference/settings/#build-backend_data), which are copied into the `.data` directory.
 
-From these, [`tool.uv.build-backend.source-exclude`](../../reference/settings/#build-backend_source-exclude), [`tool.uv.build-backend.wheel-exclude`](../../reference/settings/#build-backend_wheel-exclude) and the default excludes are removed. The source dist excludes are applied to avoid source tree to wheel source builds including more files than source tree to source distribution to wheel build.
+From these, [`tool.uv.build-backend.source-exclude`](../../reference/settings/#build-backend_source-exclude), [`tool.uv.build-backend.wheel-exclude`](../../reference/settings/#build-backend_wheel-exclude) and the default excludes are removed. The source dist excludes are applied to avoid source tree to wheel builds including more files than source tree to source distribution to wheel build.
 
 There are no specific wheel includes. There must only be one top level module, and all data files must either be under the module root or in the appropriate [data directory](../../reference/settings/#build-backend_data). Most packages store small data in the module root alongside the source code.
 
