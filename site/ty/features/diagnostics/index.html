@@ -12,31 +12,31 @@
         <meta name="author" content="astral-sh">
       
       
-        <link rel="canonical" href="https://docs.astral.sh/ty/configuration/">
+        <link rel="canonical" href="https://docs.astral.sh/ty/features/diagnostics/">
       
       
-        <link rel="prev" href="../installation/">
+        <link rel="prev" href="../type-checking/">
       
       
-        <link rel="next" href="../modules/">
+        <link rel="next" href="../../reference/configuration/">
       
       
         
       
       
-      <link rel="icon" href="../assets/favicon.ico">
+      <link rel="icon" href="../../assets/favicon.ico">
       <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.7.0">
     
     
 
-<title>Configuration | ty</title>
+<title>Diagnostics | ty</title>
 
 
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.618322db.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.618322db.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -55,9 +55,9 @@
       
     
     
-      <link rel="stylesheet" href="../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -110,7 +110,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#configuration" class="md-skip">
+        <a href="#diagnostics" class="md-skip">
           Skip to content
         </a>
       
@@ -126,9 +126,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="ty" class="md-header__button md-logo" aria-label="ty" data-md-component="logo">
+    <a href="../.." title="ty" class="md-header__button md-logo" aria-label="ty" data-md-component="logo">
       
-  <img src="../assets/logo-letter.svg" alt="logo">
+  <img src="../../assets/logo-letter.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -145,7 +145,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Configuration
+              Diagnostics
             
           </span>
         </div>
@@ -271,9 +271,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="ty" class="md-nav__button md-logo" aria-label="ty" data-md-component="logo">
+    <a href="../.." title="ty" class="md-nav__button md-logo" aria-label="ty" data-md-component="logo">
       
-  <img src="../assets/logo-letter.svg" alt="logo">
+  <img src="../../assets/logo-letter.svg" alt="logo">
 
     </a>
     ty
@@ -300,7 +300,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -324,10 +324,8 @@
       
   
   
-    
   
   
-  
     
     
       
@@ -356,11 +354,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
@@ -381,7 +379,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -399,7 +397,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../installation/" class="md-nav__link">
+      <a href="../../installation/" class="md-nav__link">
         
   
   
@@ -407,6 +405,297 @@
     
   
     Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module discovery
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python-version/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python version
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../exclusions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File exclusions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../suppression/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Suppression
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../editors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Editors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Features
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../type-checking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Type checking
   
 
     
@@ -443,7 +732,7 @@
   <span class="md-ellipsis">
     
   
-    Configuration
+    Diagnostics
   
 
     
@@ -461,7 +750,7 @@
   <span class="md-ellipsis">
     
   
-    Configuration
+    Diagnostics
   
 
     
@@ -487,10 +776,32 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#configuration-files" class="md-nav__link">
+  <a href="#example-typed-dictionaries" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Configuration files
+        Example: Typed dictionaries
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-invalid-arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: Invalid arguments
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-backwards-compatibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: Backwards compatibility
       
     </span>
   </a>
@@ -501,295 +812,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../modules/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Module discovery
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../python-version/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Python version
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../exclusions/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    File exclusions
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../rules/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Rules
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../suppression/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Suppression
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../editors/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Editors
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-      
-        
-      
-        
-      
-    
-    
-    
-      
-        
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
-        
-          
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Features
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Features
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../features/type-checking/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Type checking
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../features/diagnostics/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Diagnostics
-  
-
-    
-  </span>
-  
-  
-
-      </a>
     </li>
   
 
@@ -875,7 +897,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/configuration/" class="md-nav__link">
+      <a href="../../reference/configuration/" class="md-nav__link">
         
   
   
@@ -903,7 +925,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/rules/" class="md-nav__link">
+      <a href="../../reference/rules/" class="md-nav__link">
         
   
   
@@ -931,7 +953,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/cli/" class="md-nav__link">
+      <a href="../../reference/cli/" class="md-nav__link">
         
   
   
@@ -959,7 +981,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/exit-codes/" class="md-nav__link">
+      <a href="../../reference/exit-codes/" class="md-nav__link">
         
   
   
@@ -987,7 +1009,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/environment/" class="md-nav__link">
+      <a href="../../reference/environment/" class="md-nav__link">
         
   
   
@@ -1015,7 +1037,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/editor-settings/" class="md-nav__link">
+      <a href="../../reference/editor-settings/" class="md-nav__link">
         
   
   
@@ -1070,10 +1092,32 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#configuration-files" class="md-nav__link">
+  <a href="#example-typed-dictionaries" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Configuration files
+        Example: Typed dictionaries
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-invalid-arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: Invalid arguments
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-backwards-compatibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: Backwards compatibility
       
     </span>
   </a>
@@ -1105,7 +1149,7 @@
   
   
     <li class="md-path__item">
-      <a href=".." class="md-path__link">
+      <a href="../.." class="md-path__link">
         
   <span class="md-ellipsis">
     Getting started
@@ -1123,10 +1167,10 @@
     
     
       <li class="md-path__item">
-        <a href="../installation/" class="md-path__link">
+        <a href="../type-checking/" class="md-path__link">
           
   <span class="md-ellipsis">
-    Concepts
+    Features
   </span>
 
         </a>
@@ -1148,30 +1192,31 @@
   
 
 
-<h1 id="configuration"><a class="toclink" href="#configuration">Configuration</a></h1>
-<h2 id="configuration-files"><a class="toclink" href="#configuration-files">Configuration files</a></h2>
-<p>ty supports persistent configuration files at both the project- and user-level.</p>
-<p>Specifically, ty will search for a <code>pyproject.toml</code> or <code>ty.toml</code> file in the current directory, or in the nearest parent directory.</p>
-<p>If a <code>pyproject.toml</code> file is found, ty will read configuration from the <code>[tool.ty]</code> table. For example, to ignore the <code>index-out-of-bounds</code> rule, add the following to a <code>pyproject.toml</code>:</p>
-<p><strong><code>pyproject.toml</code></strong>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">[tool.ty.rules]</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">index-out-of-bounds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ignore&quot;</span>
-</code></pre></div>
-<p>(If there is no <code>tool.ty</code> table, the <code>pyproject.toml</code> file will be ignored, and ty will continue searching in the directory hierarchy.)</p>
-<p>ty will also search for <code>ty.toml</code> files, which follow an identical structure, but omit the <code>[tool.ty]</code> prefix. For example:</p>
-<p><strong><code>ty.toml</code></strong>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">[rules]</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">index-out-of-bounds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ignore&quot;</span>
-</code></pre></div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p><code>ty.toml</code> files take precedence over <code>pyproject.toml</code> files, so if both <code>ty.toml</code> and <code>pyproject.toml</code> files are present in a directory, configuration will be read from <code>ty.toml</code>, and the <code>[tool.ty]</code> section in the accompanying <code>pyproject.toml</code> will be ignored.</p>
-</div>
-<p>ty will also discover user-level configuration at <code>~/.config/ty/ty.toml</code> (or <code>$XDG_CONFIG_HOME/ty/ty.toml</code>) on macOS and Linux, or <code>%APPDATA%\ty\ty.toml</code> on Windows. User-level configuration must use the <code>ty.toml</code> format, rather than the <code>pyproject.toml</code> format, as a <code>pyproject.toml</code> is intended to define a Python project.</p>
-<p>If project- and user-level configuration files are found, the settings will be merged, with project-level configuration taking precedence over the user-level configuration.</p>
-<p>For example, if a string, number, or boolean is present in both the project- and user-level configuration tables, the project-level value will be used, and the user-level value will be ignored. If an array is present in both tables, the arrays will be merged, with the project-level settings appearing later in the merged array.</p>
-<p>Settings provided via command line take precedence over persistent configuration.</p>
-<p>See the <a href="../reference/configuration/">configuration</a> reference for an enumeration of the available settings.</p>
+<h1 id="diagnostics"><a class="toclink" href="#diagnostics">Diagnostics</a></h1>
+<p>ty provides diagnostics that include snippets of your source code, annotations and helpful
+explanations. It will sometimes also provide suggestions on how to fix the reported issues.</p>
+<h2 id="example-typed-dictionaries"><a class="toclink" href="#example-typed-dictionaries">Example: Typed dictionaries</a></h2>
+<p>In this first example, ty detected an invalid assignment to a <code>TypedDict</code> key. Notice how the
+diagnostic includes both the context around the line with the error, as well as the reference to the
+<code>age</code> item in the <code>TypedDict</code> definition:</p>
+<p><img alt="TypedDict invalid-assignment diagnostic" src="../screenshots/diagnostics1.dark.png#only-dark" />
+<img alt="TypedDict invalid-assignment diagnostic" src="../screenshots/diagnostics1.light.png#only-light" /></p>
+<p>When a <code>TypedDict</code> key is misspelled, ty will suggest the correct spelling. If you are using an
+editor with language server support, you can also apply this suggestion as a quick fix:</p>
+<p><img alt="TypedDict misspelled-key diagnostic" src="../screenshots/diagnostics2.dark.png#only-dark" />
+<img alt="TypedDict misspelled-key diagnostic" src="../screenshots/diagnostics2.light.png#only-light" /></p>
+<h2 id="example-invalid-arguments"><a class="toclink" href="#example-invalid-arguments">Example: Invalid arguments</a></h2>
+<p>Here, a file has been opened for writing in text mode, but we are trying to write bytes to it.
+The diagnostic points out the type mismatch and also includes the corresponding parameter in the
+function definition for <code>write</code>:</p>
+<p><img alt="Invalid arguments diagnostic" src="../screenshots/diagnostics3.dark.png#only-dark" />
+<img alt="Invalid arguments diagnostic" src="../screenshots/diagnostics3.light.png#only-light" /></p>
+<h2 id="example-backwards-compatibility"><a class="toclink" href="#example-backwards-compatibility">Example: Backwards compatibility</a></h2>
+<p>Instead of just telling you that <code>tomllib</code> can not be found, ty will tell you <em>why</em> it is not
+available for your project. In this case, your project is targeting Python 3.10, but <code>tomllib</code> was
+only added in Python 3.11:</p>
+<p><img alt="Missing import diagnostic" src="../screenshots/diagnostics4.dark.png#only-dark" />
+<img alt="Missing import diagnostic" src="../screenshots/diagnostics4.light.png#only-light" /></p>
 
 
 
@@ -1232,7 +1277,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../installation/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Installation">
+          <a href="../type-checking/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Type checking">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1242,20 +1287,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Installation
+                Type checking
               </div>
             </div>
           </a>
         
         
           
-          <a href="../modules/" class="md-footer__link md-footer__link--next" aria-label="Next: Module discovery">
+          <a href="../../reference/configuration/" class="md-footer__link md-footer__link--next" aria-label="Next: Configuration">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Module discovery
+                Configuration
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -1343,12 +1388,12 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.path", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.sections", "navigation.indexes", "navigation.tracking", "content.code.annotate", "toc.follow", "navigation.footer", "navigation.top", "content.code.copy", "content.tabs.link"], "search": "../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.path", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.sections", "navigation.indexes", "navigation.tracking", "content.code.annotate", "toc.follow", "navigation.footer", "navigation.top", "content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
       
-        <script src="../js/extra.js"></script>
+        <script src="../../js/extra.js"></script>
       
     
   </body>
