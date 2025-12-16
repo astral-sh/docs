@@ -1031,9 +1031,11 @@ ______________________________________________________________________
 
 ### \[[`exclude-newer`](#exclude-newer)\](#exclude-newer)
 
-Limit candidate packages to those that were uploaded prior to a given point in time.
+Limit candidate packages to those that were uploaded prior to the given date.
 
-Accepts a superset of [RFC 3339](https://www.rfc-editor.org/rfc/rfc3339.html) (e.g., `2006-12-02T02:07:43Z`). A full timestamp is required to ensure that the resolver will behave consistently across timezones.
+Accepts RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`), a "friendly" duration (e.g., `24 hours`, `1 week`, `30 days`), or an ISO 8601 duration (e.g., `PT24H`, `P7D`, `P30D`).
+
+Durations do not respect semantics of the local time zone and are always resolved to a fixed number of seconds assuming that a day is 24 hours (e.g., DST transitions are ignored). Calendar units such as months and years are not allowed.
 
 **Default value**: `None`
 
@@ -1058,7 +1060,9 @@ ______________________________________________________________________
 
 Limit candidate packages for specific packages to those that were uploaded prior to the given date.
 
-Accepts package-date pairs in a dictionary format.
+Accepts a dictionary format of `PACKAGE = "DATE"` pairs, where `DATE` is an RFC 3339 timestamp (e.g., `2006-12-02T02:07:43Z`), a "friendly" duration (e.g., `24 hours`, `1 week`, `30 days`), or a ISO 8601 duration (e.g., `PT24H`, `P7D`, `P30D`).
+
+Durations do not respect semantics of the local time zone and are always resolved to a fixed number of seconds assuming that a day is 24 hours (e.g., DST transitions are ignored). Calendar units such as months and years are not allowed.
 
 **Default value**: `None`
 
@@ -1948,6 +1952,39 @@ resolution = "lowest-direct"
 
 ```
 resolution = "lowest-direct"
+
+```
+
+______________________________________________________________________
+
+### \[[`torch-backend`](#torch-backend)\](#torch-backend)
+
+The backend to use when fetching packages in the PyTorch ecosystem.
+
+When set, uv will ignore the configured index URLs for packages in the PyTorch ecosystem, and will instead use the defined backend.
+
+For example, when set to `cpu`, uv will use the CPU-only PyTorch index; when set to `cu126`, uv will use the PyTorch index for CUDA 12.6.
+
+The `auto` mode will attempt to detect the appropriate PyTorch index based on the currently installed CUDA drivers.
+
+This setting is only respected by `uv pip` commands.
+
+This option is in preview and may change in any future release.
+
+**Default value**: `null`
+
+**Type**: `str`
+
+**Example usage**:
+
+```
+[tool.uv]
+torch-backend = "auto"
+
+```
+
+```
+torch-backend = "auto"
 
 ```
 
@@ -3502,6 +3539,8 @@ When set, uv will ignore the configured index URLs for packages in the PyTorch e
 For example, when set to `cpu`, uv will use the CPU-only PyTorch index; when set to `cu126`, uv will use the PyTorch index for CUDA 12.6.
 
 The `auto` mode will attempt to detect the appropriate PyTorch index based on the currently installed CUDA drivers.
+
+This setting is only respected by `uv pip` commands.
 
 This option is in preview and may change in any future release.
 
