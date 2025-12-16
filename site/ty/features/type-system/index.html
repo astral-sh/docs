@@ -12,13 +12,13 @@
         <meta name="author" content="astral-sh">
       
       
-        <link rel="canonical" href="https://docs.astral.sh/ty/reference/cli/">
+        <link rel="canonical" href="https://docs.astral.sh/ty/features/type-system/">
       
       
-        <link rel="prev" href="../rules/">
+        <link rel="prev" href="../../editors/">
       
       
-        <link rel="next" href="../exit-codes/">
+        <link rel="next" href="../diagnostics/">
       
       
         
@@ -29,7 +29,7 @@
     
     
 
-<title>CLI | ty</title>
+<title>Type system | ty</title>
 
 
     
@@ -110,7 +110,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#cli-reference" class="md-skip">
+        <a href="#type-system" class="md-skip">
           Skip to content
         </a>
       
@@ -145,7 +145,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              CLI
+              Type system
             
           </span>
         </div>
@@ -655,8 +655,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -675,11 +677,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
@@ -700,7 +702,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -715,10 +717,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../features/type-system/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Type system
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -734,6 +763,92 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#redeclarations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redeclarations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#intersection-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Intersection types
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#top-and-bottom-materializations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Top and bottom materializations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reachability-based-on-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reachability based on types
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gradual-guarantee" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gradual guarantee
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fixpoint-iteration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixpoint iteration
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -746,7 +861,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../features/diagnostics/" class="md-nav__link">
+      <a href="../diagnostics/" class="md-nav__link">
         
   
   
@@ -774,7 +889,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../features/language-server/" class="md-nav__link">
+      <a href="../language-server/" class="md-nav__link">
         
   
   
@@ -806,10 +921,8 @@
       
   
   
-    
   
   
-  
     
     
       
@@ -834,11 +947,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
@@ -859,7 +972,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
@@ -877,7 +990,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../configuration/" class="md-nav__link">
+      <a href="../../reference/configuration/" class="md-nav__link">
         
   
   
@@ -905,7 +1018,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../rules/" class="md-nav__link">
+      <a href="../../reference/rules/" class="md-nav__link">
         
   
   
@@ -930,37 +1043,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    CLI
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../reference/cli/" class="md-nav__link">
         
   
   
@@ -976,92 +1062,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#ty" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ty
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ty-check" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ty check
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ty-server" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ty server
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ty-version" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ty version
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ty-generate-shell-completion" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ty generate-shell-completion
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ty-help" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ty help
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1074,7 +1074,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../exit-codes/" class="md-nav__link">
+      <a href="../../reference/exit-codes/" class="md-nav__link">
         
   
   
@@ -1102,7 +1102,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../environment/" class="md-nav__link">
+      <a href="../../reference/environment/" class="md-nav__link">
         
   
   
@@ -1130,7 +1130,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../editor-settings/" class="md-nav__link">
+      <a href="../../reference/editor-settings/" class="md-nav__link">
         
   
   
@@ -1185,10 +1185,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#ty" class="md-nav__link">
+  <a href="#redeclarations" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ty
+        Redeclarations
       
     </span>
   </a>
@@ -1196,10 +1196,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ty-check" class="md-nav__link">
+  <a href="#intersection-types" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ty check
+        Intersection types
       
     </span>
   </a>
@@ -1207,10 +1207,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ty-server" class="md-nav__link">
+  <a href="#top-and-bottom-materializations" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ty server
+        Top and bottom materializations
       
     </span>
   </a>
@@ -1218,10 +1218,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ty-version" class="md-nav__link">
+  <a href="#reachability-based-on-types" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ty version
+        Reachability based on types
       
     </span>
   </a>
@@ -1229,10 +1229,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ty-generate-shell-completion" class="md-nav__link">
+  <a href="#gradual-guarantee" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ty generate-shell-completion
+        Gradual guarantee
       
     </span>
   </a>
@@ -1240,10 +1240,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ty-help" class="md-nav__link">
+  <a href="#fixpoint-iteration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ty help
+        Fixpoint iteration
       
     </span>
   </a>
@@ -1293,10 +1293,10 @@
     
     
       <li class="md-path__item">
-        <a href="../configuration/" class="md-path__link">
+        <a href="./" class="md-path__link">
           
   <span class="md-ellipsis">
-    Reference
+    Features
   </span>
 
         </a>
@@ -1318,139 +1318,181 @@
   
 
 
-<!-- WARNING: This file is auto-generated (cargo dev generate-all). Edit the doc comments in 'crates/ty/src/args.rs' if you want to change anything here. -->
-
-<h1 id="cli-reference"><a class="toclink" href="#cli-reference">CLI Reference</a></h1>
-<h2 id="ty"><a class="toclink" href="#ty">ty</a></h2>
-<p>An extremely fast Python type checker.</p>
-<h3 class="cli-reference">Usage</h3>
-
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ty &lt;COMMAND&gt;
+<h1 id="type-system"><a class="toclink" href="#type-system">Type system</a></h1>
+<p>You can generally expect ty to support all typing features that are described and specified in the
+<a href="https://typing.python.org/en/latest/spec/index.html">Python typing documentation</a> (for a detailed overview, please refer to the
+<a href="https://github.com/astral-sh/ty/issues/1889">type system features tracking issue</a>). This page
+highlights some of the unique features that ty's type system provides.</p>
+<h2 id="redeclarations"><a class="toclink" href="#redeclarations">Redeclarations</a></h2>
+<p>ty allows you to reuse the same symbol with a different type. The following example shows how the
+<code>paths</code> parameter is redeclared as a list of strings:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span> <span class="nf">split_paths</span><span class="p">(</span><span class="n">paths</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Path</span><span class="p">]:</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">paths</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">paths</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="k">return</span> <span class="p">[</span><span class="n">Path</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">paths</span><span class="p">]</span>
 </code></pre></div>
-<h3 class="cli-reference">Commands</h3>
-
-<dl class="cli-reference"><dt><a href="#ty-check"><code>ty check</code></a></dt><dd><p>Check a project for type errors</p></dd>
-<dt><a href="#ty-server"><code>ty server</code></a></dt><dd><p>Start the language server</p></dd>
-<dt><a href="#ty-version"><code>ty version</code></a></dt><dd><p>Display ty's version</p></dd>
-<dt><a href="#ty-help"><code>ty help</code></a></dt><dd><p>Print this message or the help of the given subcommand(s)</p></dd>
-</dl>
-
-<h2 id="ty-check"><a class="toclink" href="#ty-check">ty check</a></h2>
-<p>Check a project for type errors</p>
-<h3 class="cli-reference">Usage</h3>
-
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ty check [OPTIONS] [PATH]...
+<p>(Full example in the <a href="https://play.ty.dev/80a74c95-a43e-4a3d-8c26-f88e879d7dcb">playground</a>)</p>
+<h2 id="intersection-types"><a class="toclink" href="#intersection-types">Intersection types</a></h2>
+<p>ty has first-class support for intersection types. In contrast to a union type <code>A | B</code>, which means
+"<em>either</em> A <em>or</em> B", an intersection type <code>A &amp; B</code> means "<em>both</em> A <em>and</em> B". Type narrowing in ty is
+based on intersections. For example, notice how we can call <code>obj.serialize_json()</code> <em>and</em> access the
+<code>.version</code> property in the following function:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">def</span> <span class="nf">output_as_json</span><span class="p">(</span><span class="n">obj</span><span class="p">:</span> <span class="n">Serializable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">Versioned</span><span class="p">):</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>        <span class="n">reveal_type</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>  <span class="c1"># reveals: Serializable &amp; Versioned</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>        <span class="k">return</span> <span class="nb">str</span><span class="p">({</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>            <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">obj</span><span class="o">.</span><span class="n">serialize_json</span><span class="p">(),</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>            <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="n">obj</span><span class="o">.</span><span class="n">version</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>        <span class="p">})</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>        <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="n">serialize_json</span><span class="p">()</span>
 </code></pre></div>
-<h3 class="cli-reference">Arguments</h3>
-
-<dl class="cli-reference"><dt id="ty-check--paths"><a href="#ty-check--paths"><code>PATHS</code></a></dt><dd><p>List of files or directories to check [default: the project root]</p>
-</dd></dl>
-
-<h3 class="cli-reference">Options</h3>
-
-<dl class="cli-reference"><dt id="ty-check--color"><a href="#ty-check--color"><code>--color</code></a> <i>when</i></dt><dd><p>Control when colored output is used</p>
-<p>Possible values:</p>
-<ul>
-<li><code>auto</code>:  Display colors if the output goes to an interactive terminal</li>
-<li><code>always</code>:  Always display colors</li>
-<li><code>never</code>:  Never display colors</li>
-</ul></dd><dt id="ty-check--config"><a href="#ty-check--config"><code>--config</code></a>, <code>-c</code> <i>config-option</i></dt><dd><p>A TOML <code>&lt;KEY&gt; = &lt;VALUE&gt;</code> pair (such as you might find in a <code>ty.toml</code> configuration file)
-overriding a specific configuration option.</p>
-<p>Overrides of individual settings using this option always take precedence
-over all configuration files.</p>
-</dd><dt id="ty-check--config-file"><a href="#ty-check--config-file"><code>--config-file</code></a> <i>path</i></dt><dd><p>The path to a <code>ty.toml</code> file to use for configuration.</p>
-<p>While ty configuration can be included in a <code>pyproject.toml</code> file, it is not allowed in this context.</p>
-<p>May also be set with the <code>TY_CONFIG_FILE</code> environment variable.</p></dd><dt id="ty-check--error"><a href="#ty-check--error"><code>--error</code></a> <i>rule</i></dt><dd><p>Treat the given rule as having severity 'error'. Can be specified multiple times.</p>
-</dd><dt id="ty-check--error-on-warning"><a href="#ty-check--error-on-warning"><code>--error-on-warning</code></a></dt><dd><p>Use exit code 1 if there are any warning-level diagnostics</p>
-</dd><dt id="ty-check--exclude"><a href="#ty-check--exclude"><code>--exclude</code></a> <i>exclude</i></dt><dd><p>Glob patterns for files to exclude from type checking.</p>
-<p>Uses gitignore-style syntax to exclude files and directories from type checking. Supports patterns like <code>tests/</code>, <code>*.tmp</code>, <code>**/__pycache__/**</code>.</p>
-</dd><dt id="ty-check--exit-zero"><a href="#ty-check--exit-zero"><code>--exit-zero</code></a></dt><dd><p>Always use exit code 0, even when there are error-level diagnostics</p>
-</dd><dt id="ty-check--extra-search-path"><a href="#ty-check--extra-search-path"><code>--extra-search-path</code></a> <i>path</i></dt><dd><p>Additional path to use as a module-resolution source (can be passed multiple times).</p>
-<p>This is an advanced option that should usually only be used for first-party or third-party modules that are not installed into your Python environment in a conventional way. Use <code>--python</code> to point ty to your Python environment if it is in an unusual location.</p>
-</dd><dt id="ty-check--help"><a href="#ty-check--help"><code>--help</code></a>, <code>-h</code></dt><dd><p>Print help (see a summary with '-h')</p>
-</dd><dt id="ty-check--ignore"><a href="#ty-check--ignore"><code>--ignore</code></a> <i>rule</i></dt><dd><p>Disables the rule. Can be specified multiple times.</p>
-</dd><dt id="ty-check--no-progress"><a href="#ty-check--no-progress"><code>--no-progress</code></a></dt><dd><p>Hide all progress outputs.</p>
-<p>For example, spinners or progress bars.</p>
-</dd><dt id="ty-check--output-format"><a href="#ty-check--output-format"><code>--output-format</code></a> <i>output-format</i></dt><dd><p>The format to use for printing diagnostic messages</p>
-<p>Possible values:</p>
-<ul>
-<li><code>full</code>:  Print diagnostics verbosely, with context and helpful hints (default)</li>
-<li><code>concise</code>:  Print diagnostics concisely, one per line</li>
-<li><code>gitlab</code>:  Print diagnostics in the JSON format expected by GitLab Code Quality reports</li>
-<li><code>github</code>:  Print diagnostics in the format used by GitHub Actions workflow error annotations</li>
-</ul></dd><dt id="ty-check--project"><a href="#ty-check--project"><code>--project</code></a> <i>project</i></dt><dd><p>Run the command within the given project directory.</p>
-<p>All <code>pyproject.toml</code> files will be discovered by walking up the directory tree from the given project directory, as will the project's virtual environment (<code>.venv</code>) unless the <code>venv-path</code> option is set.</p>
-<p>Other command-line arguments (such as relative paths) will be resolved relative to the current working directory.</p>
-</dd><dt id="ty-check--python"><a href="#ty-check--python"><code>--python</code></a>, <code>--venv</code> <i>path</i></dt><dd><p>Path to your project's Python environment or interpreter.</p>
-<p>ty uses your Python environment to resolve third-party imports in your code.</p>
-<p>If you're using a project management tool such as uv or you have an activated Conda or virtual environment, you should not generally need to specify this option.</p>
-<p>This option can be used to point to virtual or system Python environments.</p>
-</dd><dt id="ty-check--python-platform"><a href="#ty-check--python-platform"><code>--python-platform</code></a>, <code>--platform</code> <i>platform</i></dt><dd><p>Target platform to assume when resolving types.</p>
-<p>This is used to specialize the type of <code>sys.platform</code> and will affect the visibility of platform-specific functions and attributes. If the value is set to <code>all</code>, no assumptions are made about the target platform. If unspecified, the current system's platform will be used.</p>
-</dd><dt id="ty-check--python-version"><a href="#ty-check--python-version"><code>--python-version</code></a>, <code>--target-version</code> <i>version</i></dt><dd><p>Python version to assume when resolving types.</p>
-<p>The Python version affects allowed syntax, type definitions of the standard library, and type definitions of first- and third-party modules that are conditional on the Python version.</p>
-<p>If a version is not specified on the command line or in a configuration file, ty will try the following techniques in order of preference to determine a value: 1. Check for the <code>project.requires-python</code> setting in a <code>pyproject.toml</code> file and use the minimum version from the specified range 2. Check for an activated or configured Python environment and attempt to infer the Python version of that environment 3. Fall back to the latest stable Python version supported by ty (see <code>ty check --help</code> output)</p>
-<p>Possible values:</p>
-<ul>
-<li><code>3.7</code></li>
-<li><code>3.8</code></li>
-<li><code>3.9</code></li>
-<li><code>3.10</code></li>
-<li><code>3.11</code></li>
-<li><code>3.12</code></li>
-<li><code>3.13</code></li>
-<li><code>3.14</code></li>
-</ul></dd><dt id="ty-check--quiet"><a href="#ty-check--quiet"><code>--quiet</code></a>, <code>-q</code></dt><dd><p>Use quiet output (or <code>-qq</code> for silent output)</p>
-</dd><dt id="ty-check--respect-ignore-files"><a href="#ty-check--respect-ignore-files"><code>--respect-ignore-files</code></a></dt><dd><p>Respect file exclusions via <code>.gitignore</code> and other standard ignore files. Use <code>--no-respect-gitignore</code> to disable</p>
-</dd><dt id="ty-check--typeshed"><a href="#ty-check--typeshed"><code>--typeshed</code></a>, <code>--custom-typeshed-dir</code> <i>path</i></dt><dd><p>Custom directory to use for stdlib typeshed stubs</p>
-</dd><dt id="ty-check--verbose"><a href="#ty-check--verbose"><code>--verbose</code></a>, <code>-v</code></dt><dd><p>Use verbose output (or <code>-vv</code> and <code>-vvv</code> for more verbose output)</p>
-</dd><dt id="ty-check--warn"><a href="#ty-check--warn"><code>--warn</code></a> <i>rule</i></dt><dd><p>Treat the given rule as having severity 'warn'. Can be specified multiple times.</p>
-</dd><dt id="ty-check--watch"><a href="#ty-check--watch"><code>--watch</code></a>, <code>-W</code></dt><dd><p>Watch files for changes and recheck files related to the changed files</p>
-</dd></dl>
-
-<h2 id="ty-server"><a class="toclink" href="#ty-server">ty server</a></h2>
-<p>Start the language server</p>
-<h3 class="cli-reference">Usage</h3>
-
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>ty server
+<p>(Full example in the <a href="https://play.ty.dev/39241435-5e78-4ce9-817f-ce65be73a6ed">playground</a>)</p>
+<p>Intersections can also be built using gradual types like <code>Any</code> or its implicit counterpart
+<code>Unknown</code>. For example, imagine you call into untyped (third party) code that returns an object of
+type <code>Unknown</code>. Narrowing the type of that object using <code>isinstance</code> will result in an intersection
+type <code>Unknown &amp; Iterable</code>. This type allows you to use <code>obj</code> as an iterable. But more importantly,
+it still gives you access to attributes defined on the original unknown type (<code>.description</code>, in this
+example):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">def</span> <span class="nf">print_content</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">):</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="n">obj</span> <span class="o">=</span> <span class="n">untyped_library</span><span class="o">.</span><span class="n">deserialize</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">):</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>        <span class="nb">print</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">description</span><span class="p">)</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>        <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="n">obj</span><span class="p">:</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="p">,</span> <span class="n">part</span><span class="o">.</span><span class="n">description</span><span class="p">)</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>        <span class="nb">print</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">description</span><span class="p">)</span>
 </code></pre></div>
-<h3 class="cli-reference">Options</h3>
-
-<dl class="cli-reference"><dt id="ty-server--help"><a href="#ty-server--help"><code>--help</code></a>, <code>-h</code></dt><dd><p>Print help</p>
-</dd></dl>
-
-<h2 id="ty-version"><a class="toclink" href="#ty-version">ty version</a></h2>
-<p>Display ty's version</p>
-<h3 class="cli-reference">Usage</h3>
-
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>ty version
+<p>(Full example in the <a href="https://play.ty.dev/8f98820e-7306-4d69-b572-56d69a92b90f">playground</a>)</p>
+<p>Intersection types are also used in <code>hasattr</code> narrowing. Take a look at the following example where
+we narrow a type of <code>Person | Animal | None</code> using <code>hasattr(…, "name")</code>. <code>Person</code> is preserved in
+the narrowed union type because it has a <code>name</code> attribute. <code>Animal</code> is intersected with a synthetic
+protocol, accounting for the possibility of subclasses of <code>Animal</code> that add a <code>name</code> member.
+<code>None</code> is excluded completely since it is a final type that has no <code>name</code> attribute:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">class</span> <span class="nc">Person</span><span class="p">:</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">class</span> <span class="nc">Animal</span><span class="p">:</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="n">species</span><span class="p">:</span> <span class="nb">str</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="k">def</span> <span class="nf">greet</span><span class="p">(</span><span class="n">being</span><span class="p">:</span> <span class="n">Person</span> <span class="o">|</span> <span class="n">Animal</span> <span class="o">|</span> <span class="kc">None</span><span class="p">):</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">being</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">):</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>        <span class="c1"># `being` is now of type `Person | (Animal &amp; &lt;Protocol with members &#39;name&#39;&gt;)`</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hello, </span><span class="si">{</span><span class="n">being</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">!&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>    <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello there!&quot;</span><span class="p">)</span>
 </code></pre></div>
-<h3 class="cli-reference">Options</h3>
-
-<dl class="cli-reference"><dt id="ty-version--help"><a href="#ty-version--help"><code>--help</code></a>, <code>-h</code></dt><dd><p>Print help</p>
-</dd></dl>
-
-<h2 id="ty-generate-shell-completion"><a class="toclink" href="#ty-generate-shell-completion">ty generate-shell-completion</a></h2>
-<p>Generate shell completion</p>
-<h3 class="cli-reference">Usage</h3>
-
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>ty generate-shell-completion &lt;SHELL&gt;
+<p>(Full example in the <a href="https://play.ty.dev/31f2c718-516a-4a85-80e0-2a4682b818f1">playground</a>)</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>If you run into a situation like this and would like <code>Animal</code> to be excluded from the narrowed
+type as well, you can make <code>Animal</code> a <code>@final</code> class. This also allows ty to infer a more precise
+type for <code>being.name</code> (<code>str</code> instead of <code>object</code>).</p>
+</div>
+<p>If ty is the only type checker you use, you can also make direct use of intersection types in
+annotations by importing <code>Intersection</code> from the special <code>ty_extensions</code> module that is (currently)
+only available at type-checking time:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="kn">from</span> <span class="nn">ty_extensions</span> <span class="kn">import</span> <span class="n">Intersection</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="nb">type</span> <span class="n">SerializableVersioned</span> <span class="o">=</span> <span class="n">Intersection</span><span class="p">[</span><span class="n">Serializable</span><span class="p">,</span> <span class="n">Versioned</span><span class="p">]</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="k">def</span> <span class="nf">output_as_json</span><span class="p">(</span><span class="n">obj</span><span class="p">:</span> <span class="n">SerializableVersioned</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>    <span class="o">...</span>
 </code></pre></div>
-<h3 class="cli-reference">Arguments</h3>
-
-<dl class="cli-reference"><dt id="ty-generate-shell-completion--shell"><a href="#ty-generate-shell-completion--shell"><code>SHELL</code></a></dt></dl>
-
-<h3 class="cli-reference">Options</h3>
-
-<dl class="cli-reference"><dt id="ty-generate-shell-completion--help"><a href="#ty-generate-shell-completion--help"><code>--help</code></a>, <code>-h</code></dt><dd><p>Print help</p>
-</dd></dl>
-
-<h2 id="ty-help"><a class="toclink" href="#ty-help">ty help</a></h2>
-<p>Print this message or the help of the given subcommand(s)</p>
-<h3 class="cli-reference">Usage</h3>
-
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>ty help [COMMAND]
+<p>(Full example in the <a href="https://play.ty.dev/f003e901-0e45-4f45-9759-d6db9d5e5f66">playground</a>)</p>
+<h2 id="top-and-bottom-materializations"><a class="toclink" href="#top-and-bottom-materializations">Top and bottom materializations</a></h2>
+<p>Gradual types generally have two special <a href="https://typing.python.org/en/latest/spec/concepts.html#materialization">materializations</a>. The top materialization represents the
+"largest" type that a gradual type can materialize to: the union of all possible materializations.
+For example, the top materialization of <code>Any</code> is <code>object</code>, and the top materialization of
+<code>Any &amp; int</code> is <code>int</code>. For invariant generic classes, the top materialization cannot be expressed in
+Python's type system, but it is a useful type that ty intersects with when <code>isinstance</code> checks
+involve generic classes. For example, when checking <code>isinstance(…, list)</code>, ty intersects with the
+top materialization of <code>list[Unknown]</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nd">@final</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">class</span> <span class="nc">Item</span><span class="p">:</span> <span class="o">...</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="n">items</span><span class="p">:</span> <span class="n">Item</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="n">Item</span><span class="p">]):</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">items</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>        <span class="c1"># reveals: list[Item]</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>        <span class="n">reveal_type</span><span class="p">(</span><span class="n">items</span><span class="p">)</span>
 </code></pre></div>
+<p>(Full example in the <a href="https://play.ty.dev/f1306120-0b8d-4ed5-b832-1f2d379eae2b">playground</a>)</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>You might wonder why <code>Item</code> is declared <code>@final</code> here. If we remove the <code>@final</code> decorator, the
+inferred type in the <code>if</code> branch becomes <code>(Item &amp; Top[list[Unknown]]) | list[Item]</code> instead.
+This accounts for the possibility of classes that inherit from both <code>Item</code> <em>and</em> <code>list</code>! If
+you run into this situation and want to rule out this case, you can also perform the <code>isinstance</code>
+check against <code>Item</code> instead. The <code>else</code> branch will then have a narrowed type of
+<code>list[Item] &amp; ~Item</code>, which effectively acts like <code>list[Item]</code>.</p>
+</div>
+<h2 id="reachability-based-on-types"><a class="toclink" href="#reachability-based-on-types">Reachability based on types</a></h2>
+<p>Reachability analysis in ty is based on type inference. This allows ty to detect unreachable
+branches in many more situations compared to approaches which match on a few known patterns (e.g.
+<code>sys.version_info &gt;= (3, 10)</code> checks). This has useful practical applications. Consider a case
+where you are writing code that needs to be compatible with two major versions of a dependency.
+The following code can be successfully type-checked with either pydantic 1.x installed, or pydantic
+2.x installed. In both cases, ty will only consider the corresponding branch to be reachable, and
+will not emit any type errors for the other branch. This works because
+<code>pydantic.__version__.startswith("2.")</code> can be evaluated to <code>True</code> or <code>False</code> at type-checking time:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">import</span> <span class="nn">pydantic</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="n">PYDANTIC_V2</span> <span class="o">=</span> <span class="n">pydantic</span><span class="o">.</span><span class="n">__version__</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;2.&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="k">class</span> <span class="nc">Person</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="k">def</span> <span class="nf">to_json</span><span class="p">(</span><span class="n">person</span><span class="p">:</span> <span class="n">Person</span><span class="p">):</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>    <span class="k">if</span> <span class="n">PYDANTIC_V2</span><span class="p">:</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>        <span class="k">return</span> <span class="n">person</span><span class="o">.</span><span class="n">model_dump_json</span><span class="p">()</span>  <span class="c1"># no error here when checking with 1.x</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>    <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>        <span class="k">return</span> <span class="n">person</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre></div>
+<p>(Full example in the <a href="https://play.ty.dev/34a227bb-93d5-405e-86c3-72f57ec5642e">playground</a>)</p>
+<h2 id="gradual-guarantee"><a class="toclink" href="#gradual-guarantee">Gradual guarantee</a></h2>
+<p>ty generally tries to avoid emitting false positive type errors in untyped code. The following
+snippet does not produce any type errors when checked with ty (whereas other type checkers make the
+assumption that <code>max_retries</code> is of type <code>None</code>, leading to an error in the attribute assignment):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">class</span> <span class="nc">RetryPolicy</span><span class="p">:</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    <span class="n">max_retries</span> <span class="o">=</span> <span class="kc">None</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="n">policy</span> <span class="o">=</span> <span class="n">RetryPolicy</span><span class="p">()</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="n">policy</span><span class="o">.</span><span class="n">max_retries</span> <span class="o">=</span> <span class="mi">1</span>
+</code></pre></div>
+<p>(Full example in the <a href="https://play.ty.dev/a5286db1-cdfd-45e7-af54-29649ba5c423">playground</a>)</p>
+<p>This is achieved by treating <code>max_retries</code> as being of type <code>Unknown | None</code>, which means that the
+type of the attribute is not fully known, but <code>None</code> is definitely a possible value.</p>
+<p>Users can always opt into stricter checking by adding type annotations (<code>int | None</code>, in this case).</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>We are also planning to add a mode for users that prefer to have stricter types inferred by default
+in these situations. You can follow <a href="https://github.com/astral-sh/ty/issues/1240">this issue</a> for
+updates.</p>
+</div>
+<h2 id="fixpoint-iteration"><a class="toclink" href="#fixpoint-iteration">Fixpoint iteration</a></h2>
+<p>In a situation where a symbol's type cyclically depends on itself, ty uses a mechanism called fixpoint iteration to
+be able to infer a type for that symbol. In the <code>tick</code> method below, note how the type of <code>self.value</code> depends on
+<code>self.value</code> itself. ty starts by assuming that <code>self.value</code> is just <code>Unknown | Literal[0]</code> (the type inferred
+from the <code>__init__</code> method), and then iterates until the type converges to <code>Unknown | Literal[0, 1, 2, 3, 4]</code>.
+Without the modulo operation, the union would grow indefinitely. In that case, we fall back to <code>int</code> after a certain
+number of iterations.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">class</span> <span class="nc">LoopingCounter</span><span class="p">:</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>    <span class="k">def</span> <span class="nf">tick</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">5</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="c1"># reveals: Unknown | Literal[0, 1, 2, 3, 4]</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="n">reveal_type</span><span class="p">(</span><span class="n">LoopingCounter</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</code></pre></div>
+<p>(Full example in the <a href="https://play.ty.dev/64400d96-ee1b-48f3-8361-b583dddddf82">playground</a>)</p>
 
 
 
@@ -1511,7 +1553,7 @@ over all configuration files.</p>
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../rules/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Rules">
+          <a href="../../editors/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Editors">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1521,20 +1563,20 @@ over all configuration files.</p>
                 Previous
               </span>
               <div class="md-ellipsis">
-                Rules
+                Editors
               </div>
             </div>
           </a>
         
         
           
-          <a href="../exit-codes/" class="md-footer__link md-footer__link--next" aria-label="Next: Exit codes">
+          <a href="../diagnostics/" class="md-footer__link md-footer__link--next" aria-label="Next: Diagnostics">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Exit codes
+                Diagnostics
               </div>
             </div>
             <div class="md-footer__button md-icon">
