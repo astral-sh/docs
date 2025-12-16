@@ -81,8 +81,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2025-12-16 19:57:31Z",
-        "dateModified": "2025-12-16 19:57:31Z",
+        "datePublished": "2025-12-16 20:50:58Z",
+        "dateModified": "2025-12-16 20:50:58Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -487,6 +487,28 @@
     <span class="md-ellipsis">
       
         Installing globally with uv
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installing-with-the-standalone-installer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installing with the standalone installer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installing-from-github-releases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installing from GitHub Releases
       
     </span>
   </a>
@@ -1330,6 +1352,28 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#installing-with-the-standalone-installer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installing with the standalone installer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installing-from-github-releases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installing from GitHub Releases
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#installing-globally-with-pipx" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1486,20 +1530,68 @@ development dependency:</p>
 <p>To update ty, use <code>uv tool upgrade</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>uv<span class="w"> </span>tool<span class="w"> </span>upgrade<span class="w"> </span>ty
 </code></pre></div>
+<h3 id="installing-with-the-standalone-installer"><a class="toclink" href="#installing-with-the-standalone-installer">Installing with the standalone installer</a></h3>
+<p>ty includes a standalone installer.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">macOS and Linux</label><label for="__tabbed_1_2">Windows</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Use <code>curl</code> to download the script and execute it with <code>sh</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="gp">$ </span>curl<span class="w"> </span>-LsSf<span class="w"> </span>https://astral.sh/ty/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
+</code></pre></div>
+<p>If your system doesn't have <code>curl</code>, you can use <code>wget</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="gp">$ </span>wget<span class="w"> </span>-qO-<span class="w"> </span>https://astral.sh/ty/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
+</code></pre></div>
+<p>Request a specific version by including it in the URL:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="gp">$ </span>curl<span class="w"> </span>-LsSf<span class="w"> </span>https://astral.sh/ty/0.0.2/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Use <code>irm</code> to download the script and execute it with <code>iex</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="gp">PS&gt; </span><span class="n">powershell</span> <span class="n">-ExecutionPolicy</span> <span class="n">ByPass</span> <span class="n">-c</span> <span class="s2">&quot;irm https://astral.sh/ty/install.ps1 | iex&quot;</span>
+</code></pre></div>
+<p>Changing the <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-7.4#powershell-execution-policies">execution policy</a> allows running a script from the internet.</p>
+<p>Request a specific version by including it in the URL:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="gp">PS&gt; </span><span class="n">powershell</span> <span class="n">-ExecutionPolicy</span> <span class="n">ByPass</span> <span class="n">-c</span> <span class="s2">&quot;irm https://astral.sh/ty/0.0.2/install.ps1 | iex&quot;</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The installation script may be inspected before use:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">macOS and Linux</label><label for="__tabbed_2_2">Windows</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="gp">$ </span>curl<span class="w"> </span>-LsSf<span class="w"> </span>https://astral.sh/ty/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>less
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="gp">PS&gt; </span><span class="n">powershell</span> <span class="n">-c</span> <span class="s2">&quot;irm https://astral.sh/ty/install.ps1 | more&quot;</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Alternatively, the installer or binaries can be downloaded directly from <a href="#installing-from-github-releases">GitHub</a>.</p>
+</div>
+<h3 id="installing-from-github-releases"><a class="toclink" href="#installing-from-github-releases">Installing from GitHub Releases</a></h3>
+<p>ty release artifacts can be downloaded directly from
+<a href="https://github.com/astral-sh/ty/releases">GitHub Releases</a>.</p>
+<p>Each release page includes binaries for all supported platforms as well as instructions for using
+the standalone installer via <code>github.com</code> instead of <code>astral.sh</code>.</p>
 <h3 id="installing-globally-with-pipx"><a class="toclink" href="#installing-globally-with-pipx">Installing globally with pipx</a></h3>
 <p>Install ty globally with pipx:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>pipx<span class="w"> </span>install<span class="w"> </span>ty
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>pipx<span class="w"> </span>install<span class="w"> </span>ty
 </code></pre></div>
 <p>To update ty, use <code>pipx upgrade</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>pipx<span class="w"> </span>upgrade<span class="w"> </span>ty
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>pipx<span class="w"> </span>upgrade<span class="w"> </span>ty
 </code></pre></div>
 <h3 id="installing-with-pip"><a class="toclink" href="#installing-with-pip">Installing with pip</a></h3>
 <p>Install ty into your current Python environment with pip:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>pip<span class="w"> </span>install<span class="w"> </span>ty
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>pip<span class="w"> </span>install<span class="w"> </span>ty
 </code></pre></div>
 <h3 id="installing-in-docker"><a class="toclink" href="#installing-in-docker">Installing in Docker</a></h3>
 <p>Install ty in Docker by copying the binary from the official image:</p>
-<div class="highlight"><span class="filename">Dockerfile</span><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>ghcr.io/astral-sh/ty:latest<span class="w"> </span>/ty<span class="w"> </span>/bin/
+<div class="highlight"><span class="filename">Dockerfile</span><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>ghcr.io/astral-sh/ty:latest<span class="w"> </span>/ty<span class="w"> </span>/bin/
 </code></pre></div>
 <p>The following tags are available:</p>
 <ul>
@@ -1516,29 +1608,29 @@ development dependency:</p>
 <p>You can run <code>echo $SHELL</code> to help you determine your shell.</p>
 </div>
 <p>To enable shell autocompletion for ty commands, run one of the following:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:5"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Bash</label><label for="__tabbed_1_2">Zsh</label><label for="__tabbed_1_3">fish</label><label for="__tabbed_1_4">Elvish</label><label for="__tabbed_1_5">PowerShell / pwsh</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:5"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><input id="__tabbed_3_4" name="__tabbed_3" type="radio" /><input id="__tabbed_3_5" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Bash</label><label for="__tabbed_3_2">Zsh</label><label for="__tabbed_3_3">fish</label><label for="__tabbed_3_4">Elvish</label><label for="__tabbed_3_5">PowerShell / pwsh</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;eval &quot;$(ty generate-shell-completion bash)&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;eval &quot;$(ty generate-shell-completion bash)&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;eval &quot;$(ty generate-shell-completion zsh)&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.zshrc
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;eval &quot;$(ty generate-shell-completion zsh)&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.zshrc
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;ty generate-shell-completion fish | source&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>~/.config/fish/completions/ty.fish
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;ty generate-shell-completion fish | source&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>~/.config/fish/completions/ty.fish
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;eval (ty generate-shell-completion elvish | slurp)&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.elvish/rc.elv
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;eval (ty generate-shell-completion elvish | slurp)&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.elvish/rc.elv
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">if</span> <span class="p">(!(</span><span class="nb">Test-Path</span> <span class="n">-Path</span> <span class="nv">$PROFILE</span><span class="p">))</span> <span class="p">{</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>  <span class="nb">New-Item</span> <span class="n">-ItemType</span> <span class="n">File</span> <span class="n">-Path</span> <span class="nv">$PROFILE</span> <span class="n">-Force</span>
-<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="p">}</span>
-<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="nb">Add-Content</span> <span class="n">-Path</span> <span class="nv">$PROFILE</span> <span class="n">-Value</span> <span class="s1">&#39;(&amp; ty generate-shell-completion powershell) | Out-String | Invoke-Expression&#39;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="k">if</span> <span class="p">(!(</span><span class="nb">Test-Path</span> <span class="n">-Path</span> <span class="nv">$PROFILE</span><span class="p">))</span> <span class="p">{</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>  <span class="nb">New-Item</span> <span class="n">-ItemType</span> <span class="n">File</span> <span class="n">-Path</span> <span class="nv">$PROFILE</span> <span class="n">-Force</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="p">}</span>
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="nb">Add-Content</span> <span class="n">-Path</span> <span class="nv">$PROFILE</span> <span class="n">-Value</span> <span class="s1">&#39;(&amp; ty generate-shell-completion powershell) | Out-String | Invoke-Expression&#39;</span>
 </code></pre></div>
 </div>
 </div>
