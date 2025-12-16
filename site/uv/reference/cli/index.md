@@ -2013,10 +2013,6 @@ Possible values:
 
 [`--lfs`](#uv-add--lfs) : Whether to use Git LFS when adding a dependency from Git
 
-```
-May also be set with the `UV_GIT_LFS` environment variable.
-```
-
 [`--link-mode`](#uv-add--link-mode) *link-mode* : The method to use when installing packages from the global cache.
 
 ```
@@ -5930,10 +5926,6 @@ Possible values:
 
 [`--lfs`](#uv-tool-run--lfs) : Whether to use Git LFS when adding a dependency from Git
 
-```
-May also be set with the `UV_GIT_LFS` environment variable.
-```
-
 [`--link-mode`](#uv-tool-run--link-mode) *link-mode* : The method to use when installing packages from the global cache.
 
 ```
@@ -6467,10 +6459,6 @@ Possible values:
 ```
 
 [`--lfs`](#uv-tool-install--lfs) : Whether to use Git LFS when adding a dependency from Git
-
-```
-May also be set with the `UV_GIT_LFS` environment variable.
-```
 
 [`--link-mode`](#uv-tool-install--link-mode) *link-mode* : The method to use when installing packages from the global cache.
 
