@@ -81,8 +81,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2025-12-15 10:36:52Z",
-        "dateModified": "2025-12-15 10:36:52Z",
+        "datePublished": "2025-12-16 09:16:06Z",
+        "dateModified": "2025-12-16 09:16:06Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -307,7 +307,7 @@
   <span class="md-ellipsis">
     
   
-    Getting started
+    Introduction
   
 
     
@@ -330,6 +330,8 @@
   
     
     
+      
+        
       
         
       
@@ -407,6 +409,34 @@
     
   
     Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../type-checking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Type checking
   
 
     
@@ -571,10 +601,43 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#default-exclusions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Default exclusions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#explicit-targets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Explicit targets
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#include-and-exclude-syntax" class="md-nav__link">
     <span class="md-ellipsis">
       
         Include and exclude syntax
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#excluding-files-from-virtual-environments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Excluding files from virtual environments
       
     </span>
   </a>
@@ -694,6 +757,8 @@
       
         
       
+        
+      
     
     
     
@@ -746,14 +811,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../features/type-checking/" class="md-nav__link">
+      <a href="../features/type-system/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Type checking
+    Type system
   
 
     
@@ -782,6 +847,34 @@
     
   
     Diagnostics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../features/language-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Language server
   
 
     
@@ -1070,10 +1163,43 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#default-exclusions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Default exclusions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#explicit-targets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Explicit targets
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#include-and-exclude-syntax" class="md-nav__link">
     <span class="md-ellipsis">
       
         Include and exclude syntax
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#excluding-files-from-virtual-environments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Excluding files from virtual environments
       
     </span>
   </a>
@@ -1108,7 +1234,7 @@
       <a href=".." class="md-path__link">
         
   <span class="md-ellipsis">
-    Getting started
+    Introduction
   </span>
 
       </a>
@@ -1151,17 +1277,19 @@
 <h1 id="excluding-files"><a class="toclink" href="#excluding-files">Excluding files</a></h1>
 <p>ty automatically discovers all Python files in your project. You can customize where ty searches by using the <a href="../reference/configuration/#include"><code>src.include</code></a> and <a href="../reference/configuration/#exclude"><code>src.exclude</code></a> settings.</p>
 <p>For example, with the following configuration, ty checks all Python files in the <code>src</code> and <code>tests</code> directories except those in the <code>src/generated</code> directory:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">[tool.ty.src]</span>
+<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">[tool.ty.src]</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">include</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;src&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;tests&quot;</span><span class="p">]</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">exclude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;src/generated&quot;</span><span class="p">]</span>
 </code></pre></div>
+<h2 id="default-exclusions"><a class="toclink" href="#default-exclusions">Default exclusions</a></h2>
 <p>By default, ty excludes a <a href="../reference/configuration/#exclude">variety of commonly ignored directories</a>. If you want to include one of these directories, you can do so by adding a negative <code>exclude</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">[tool.ty.src]</span>
+<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">[tool.ty.src]</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1"># Remove `build` from the excluded directories.</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">exclude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;!**/build/&quot;</span><span class="p">]</span>
 </code></pre></div>
 <p>By default, ty ignores files listed in an <code>.ignore</code> or <code>.gitignore</code> file. To disable this functionality, set <a href="../reference/configuration/#respect-ignore-files"><code>respect-ignore-files</code></a> to <code>false</code>.</p>
-<p>You may also explicitly pass the paths that ty should check, e.g.:</p>
+<h2 id="explicit-targets"><a class="toclink" href="#explicit-targets">Explicit targets</a></h2>
+<p>You may explicitly pass the paths that ty should check, e.g.:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>ty<span class="w"> </span>check<span class="w"> </span>src<span class="w"> </span>scripts/benchmark.py
 </code></pre></div>
 <p>Paths that are passed as positional arguments to <code>ty check</code> are included even if they would otherwise be ignored through <code>exclude</code> filters or an ignore-file.</p>
@@ -1179,11 +1307,20 @@
     so e.g. <code>[0-9]</code> specifies any character between <code>0</code> and <code>9</code> inclusive. An unclosed bracket is invalid.</li>
 </ul>
 <p>All patterns are anchored: The pattern <code>src</code> only includes <code>&lt;project_root&gt;/src</code> but not something like <code>&lt;project_root&gt;/test/src</code>. To include any directory named <code>src</code>, use the prefix match <code>**/src</code>. The same applies for exclude patterns where <code>src</code> only excludes <code>&lt;project_root&gt;/src</code> but not something like <code>&lt;project_root&gt;/test/src</code>.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
 <p>A prefix include pattern like <code>**/src</code> can notably slow down the Python file discovery.</p>
 </div>
 <p>All fields accepting patterns use the reduced portable glob syntax from <a href="https://peps.python.org/pep-0639/#add-license-FILES-key">PEP 639</a>, with the addition that characters can be escaped with a backslash.</p>
+<h2 id="excluding-files-from-virtual-environments"><a class="toclink" href="#excluding-files-from-virtual-environments">Excluding files from virtual environments</a></h2>
+<p>In Python 3.13+, the <code>venv</code> module will add a <code>.gitignore</code> file to the virtual environment root and
+ty will not emit diagnostics for the contained files. However, when using an older version of
+Python, ty may include diagnostics for files in the virtual environment.</p>
+<p>You can resolve this by adding a <code>.gitignore</code> to the environment, e.g., for a virtual environment
+named <code>.venv</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;*&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>.venv/.gitignore
+</code></pre></div>
+<p>Or by adding your virtual environment to your <code>.gitignore</code> or <code>.ignore</code> file.</p>
 
 
 
@@ -1204,7 +1341,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 15, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 16, 2025</span>
   </span>
 
     
