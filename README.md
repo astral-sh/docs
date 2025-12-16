@@ -1,6 +1,6 @@
 # Astral Documentation
 
-This repository contains documentation for the Astral toolchain: [Ruff](https://github.com/astral-sh/ruff) and [uv](https://github.com/astral-sh/uv).
+This repository contains documentation for the Astral toolchain: [Ruff](https://github.com/astral-sh/ruff), [uv](https://github.com/astral-sh/uv), and [ty](https://github.com/astral-sh/ty).
 
 ## License
 
