@@ -12,13 +12,13 @@
         <meta name="author" content="astral-sh">
       
       
-        <link rel="canonical" href="https://docs.astral.sh/ty/reference/exit-codes/">
+        <link rel="canonical" href="https://docs.astral.sh/ty/reference/typing-faq/">
       
       
-        <link rel="prev" href="../cli/">
+        <link rel="prev" href="../configuration/">
       
       
-        <link rel="next" href="../environment/">
+        <link rel="next" href="../rules/">
       
       
         
@@ -29,7 +29,7 @@
     
     
 
-<title>Exit codes | ty</title>
+<title>Typing FAQ | ty</title>
 
 
     
@@ -110,7 +110,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#exit-codes" class="md-skip">
+        <a href="#typing-faq" class="md-skip">
           Skip to content
         </a>
       
@@ -145,7 +145,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Exit codes
+              Typing FAQ
             
           </span>
         </div>
@@ -965,10 +965,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../typing-faq/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Typing FAQ
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -984,6 +1011,114 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-the-unknown-type-and-when-does-it-appear" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is the Unknown type and when does it appear?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-does-ty-show-int-float-when-i-annotate-something-as-float" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why does ty show int | float when I annotate something as float?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#does-ty-have-a-strict-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Does ty have a strict mode?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-cant-ty-resolve-my-imports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why can't ty resolve my imports?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#does-ty-support-monorepos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Does ty support monorepos?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#does-ty-support-pep-723-inline-metadata-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Does ty support PEP 723 inline-metadata scripts?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#is-there-a-pre-commit-hook-for-ty" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Is there a pre-commit hook for ty?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#does-ty-support-mypy-plugins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Does ty support (mypy) plugins?
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1049,19 +1184,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../exit-codes/" class="md-nav__link">
         
   
   
@@ -1077,7 +1203,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -1166,6 +1291,102 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-the-unknown-type-and-when-does-it-appear" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is the Unknown type and when does it appear?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-does-ty-show-int-float-when-i-annotate-something-as-float" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why does ty show int | float when I annotate something as float?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#does-ty-have-a-strict-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Does ty have a strict mode?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-cant-ty-resolve-my-imports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why can't ty resolve my imports?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#does-ty-support-monorepos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Does ty support monorepos?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#does-ty-support-pep-723-inline-metadata-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Does ty support PEP 723 inline-metadata scripts?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#is-there-a-pre-commit-hook-for-ty" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Is there a pre-commit hook for ty?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#does-ty-support-mypy-plugins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Does ty support (mypy) plugins?
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1232,40 +1453,147 @@
   
 
 
-<h1 id="exit-codes"><a class="toclink" href="#exit-codes">Exit codes</a></h1>
-<p>The ty command line interface uses the following exit codes:</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">Exit code</th>
-<th style="text-align: left;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;"><code>0</code></td>
-<td style="text-align: left;">no violations with severity <code>error</code> or higher were found</td>
-</tr>
-<tr>
-<td style="text-align: left;"><code>1</code></td>
-<td style="text-align: left;">violations with severity <code>error</code> or higher were found</td>
-</tr>
-<tr>
-<td style="text-align: left;"><code>2</code></td>
-<td style="text-align: left;">invalid CLI options, invalid configuration, or IO errors</td>
-</tr>
-<tr>
-<td style="text-align: left;"><code>101</code></td>
-<td style="text-align: left;">internal error</td>
-</tr>
-</tbody>
-</table>
-<p>ty supports two command line arguments that change how exit codes work:</p>
-<ul>
-<li><code>--exit-zero</code>: ty will exit with <code>0</code> even if violations were found.</li>
-<li><code>--error-on-warning</code>: ty will exit with <code>1</code> if it finds any violations with severity <code>warning</code> or
-    higher.</li>
-</ul>
+<h1 id="typing-faq"><a class="toclink" href="#typing-faq">Typing FAQ</a></h1>
+<p>This page answers some commonly asked questions about ty and Python's type system.</p>
+<h2 id="what-is-the-unknown-type-and-when-does-it-appear"><a class="toclink" href="#what-is-the-unknown-type-and-when-does-it-appear">What is the <code>Unknown</code> type and when does it appear?</a></h2>
+<p><code>Unknown</code> is ty's way of representing a type that could not be fully inferred. It behaves the same
+way as <code>Any</code>, but appears implicitly, rather than through an explicit <code>Any</code> annotation:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">missing_module</span> <span class="kn">import</span> <span class="n">MissingClass</span>  <span class="c1"># error: unresolved-import</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">reveal_type</span><span class="p">(</span><span class="n">MissingClass</span><span class="p">)</span>  <span class="c1"># Unknown</span>
+</code></pre></div>
+<p>ty also uses unions with <code>Unknown</code> to maintain the
+<a href="../../features/type-system/#gradual-guarantee">gradual guarantee</a>, which helps avoid false positive
+errors in untyped code while still providing useful type information where possible.</p>
+<p>For example, consider the following untyped <code>Message</code> class (which could come from a third-party
+dependency that you have no control over). ty treats the <code>data</code> attribute as having type
+<code>Unknown | None</code>, since there is no type annotation that restricts it further. The <code>Unknown</code> in the
+union allows ty to avoid raising errors on the <code>msg.data = …</code> assignment. On the other hand, the
+<code>None</code> in the union reflects the fact that <code>data</code> <em>could</em> possibly be <code>None</code>, and requires code that
+uses <code>msg.data</code> to handle that case explicitly.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">class</span> <span class="nc">Message</span><span class="p">:</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="n">data</span> <span class="o">=</span> <span class="kc">None</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="p">):</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="n">title</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="k">def</span> <span class="nf">receive</span><span class="p">(</span><span class="n">msg</span><span class="p">:</span> <span class="n">Message</span><span class="p">):</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="n">reveal_type</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>  <span class="c1"># Unknown | None</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="n">msg</span> <span class="o">=</span> <span class="n">Message</span><span class="p">(</span><span class="s2">&quot;Favorite color&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="n">msg</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;blue&quot;</span><span class="p">}</span>
+</code></pre></div>
+<p>(<a href="https://play.ty.dev/862941a8-a3f6-4818-9ea1-d9d59b0bd2fa">Full example in the playground</a>)</p>
+<h2 id="why-does-ty-show-int-float-when-i-annotate-something-as-float"><a class="toclink" href="#why-does-ty-show-int-float-when-i-annotate-something-as-float">Why does ty show <code>int | float</code> when I annotate something as <code>float</code>?</a></h2>
+<p>The <a href="https://typing.python.org/en/latest/spec/special-types.html">Python typing specification</a>
+includes a special rule for numeric types where an <code>int</code> can be used wherever a <code>float</code> is expected:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">def</span> <span class="nf">circle_area</span><span class="p">(</span><span class="n">radius</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="k">return</span> <span class="mf">3.14</span> <span class="o">*</span> <span class="n">radius</span> <span class="o">*</span> <span class="n">radius</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">circle_area</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>      <span class="c1"># OK: int is allowed where float is expected</span>
+</code></pre></div>
+<p>This rule is a special case, since <code>int</code> is not actually a subclass of <code>float</code>. To support this, ty
+treats <code>float</code> annotations as meaning <code>int | float</code>. Unlike some other type checkers, ty makes this
+behavior explicit in type hints and error messages. For example, if you
+<a href="https://play.ty.dev/fdc144c6-031c-4af9-b520-a4c6ccde9261">hover over the <code>radius</code> parameter</a>, ty
+will show <code>int | float</code>.</p>
+<p>A similar rule applies to <code>complex</code>, which is treated as <code>int | float | complex</code>.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>These special rules for <code>float</code> and <code>complex</code> exist for a reason. In almost all cases, you
+probably want to accept both <code>int</code> and <code>float</code> when you annotate something as <code>float</code>.
+If you really need to accept <em>only</em> <code>float</code> and not <code>int</code>, you can use ty's <code>JustFloat</code>
+type. At the time of writing, this import needs to be guarded by a <code>TYPE_CHECKING</code> block:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="kn">from</span> <span class="nn">ty_extensions</span> <span class="kn">import</span> <span class="n">JustFloat</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    <span class="n">JustFloat</span> <span class="o">=</span> <span class="nb">float</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="k">def</span> <span class="nf">only_actual_floats_allowed</span><span class="p">(</span><span class="n">f</span><span class="p">:</span> <span class="n">JustFloat</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="n">only_actual_floats_allowed</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>  <span class="c1"># OK</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="n">only_actual_floats_allowed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>    <span class="c1"># error: invalid-argument-type</span>
+</code></pre></div>
+<p>(<a href="https://play.ty.dev/fb034780-3ba7-4c6a-9449-5b0f44128bab">Full example in the playground</a>)</p>
+<p>If you need this for <code>complex</code>, you can use <code>ty_extensions.JustComplex</code> in a similar way.</p>
+</div>
+<h2 id="does-ty-have-a-strict-mode"><a class="toclink" href="#does-ty-have-a-strict-mode">Does ty have a strict mode?</a></h2>
+<p>Not yet. A stricter inference mode is tracked in
+<a href="https://github.com/astral-sh/ty/issues/1240">this issue</a>. In the meantime, you can consider using Ruff's
+<a href="https://docs.astral.sh/ruff/rules/#flake8-annotations-ann"><code>flake8-annotations</code> rules</a> to enforce
+more explicit type annotations in your code.</p>
+<h2 id="why-cant-ty-resolve-my-imports"><a class="toclink" href="#why-cant-ty-resolve-my-imports">Why can't ty resolve my imports?</a></h2>
+<p>Import resolution issues are often caused by a missing or incorrect environment configuration. When
+ty reports <em>"Cannot resolve imported module …"</em>, check the following:</p>
+<ol>
+<li>
+<p><strong>Virtual environment</strong>: Make sure your virtual environment is discoverable. ty looks for an
+    active virtual environment via <code>VIRTUAL_ENV</code> or a <code>.venv</code> directory in your project root. See the
+    <a href="../../modules/#python-environment">module discovery</a> documentation for more details.</p>
+</li>
+<li>
+<p><strong>Project structure</strong>: If your source code is not in the project root or <code>src/</code> directory,
+    configure <a href="../configuration/#root"><code>environment.root</code></a> in your <code>pyproject.toml</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">[tool.ty.environment]</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;./app&quot;</span><span class="p">]</span>
+</code></pre></div>
+</li>
+<li>
+<p><strong>Third-party packages</strong>: Ensure dependencies are installed in your virtual environment. Run ty
+    with <code>-v</code> to see the search paths being used.</p>
+</li>
+<li>
+<p><strong>Compiled extensions</strong>: ty requires <code>.py</code> or <code>.pyi</code> files for type information. If a package
+    contains only compiled extensions (<code>.so</code> or <code>.pyd</code> files), you'll need stub files (<code>.pyi</code>) for ty
+    to understand the types. See also <a href="https://github.com/astral-sh/ty/issues/487">this issue</a> which
+    tracks improvements in this area.</p>
+</li>
+</ol>
+<h2 id="does-ty-support-monorepos"><a class="toclink" href="#does-ty-support-monorepos">Does ty support monorepos?</a></h2>
+<p>ty can work with monorepos, but automatic discovery of nested projects is limited. By default, ty
+uses the current working directory or the <code>--project</code> option to determine the project root.</p>
+<p>For monorepos with multiple Python packages, you have a few options:</p>
+<ol>
+<li>
+<p><strong>Run ty per-package</strong>: Run <code>ty check</code> from each package directory, or use <code>--project</code> to specify
+    the package:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>ty<span class="w"> </span>check<span class="w"> </span>--project<span class="w"> </span>packages/package-a
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>ty<span class="w"> </span>check<span class="w"> </span>--project<span class="w"> </span>packages/package-b
+</code></pre></div>
+</li>
+<li>
+<p><strong>Configure multiple source roots</strong>: Use <a href="../configuration/#root"><code>environment.root</code></a> to specify
+    multiple source directories:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">[tool.ty.environment]</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;packages/package-a&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;packages/package-b&quot;</span><span class="p">]</span>
+</code></pre></div>
+<p>This has the disadvantage of treating all packages as a single project, which may lead to cases
+in which ty thinks something is importable when it wouldn't be at runtime.</p>
+</li>
+</ol>
+<p>You can follow <a href="https://github.com/astral-sh/ty/issues/819">this issue</a> to get updates on this
+topic.</p>
+<h2 id="does-ty-support-pep-723-inline-metadata-scripts"><a class="toclink" href="#does-ty-support-pep-723-inline-metadata-scripts">Does ty support PEP 723 inline-metadata scripts?</a></h2>
+<p>It depends on what you want to do. If you have a single inline-metadata script, you can type check
+it with ty by using uv's <code>--with-requirements</code> flag to install the dependencies specified in the
+script header:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>uvx<span class="w"> </span>--with-requirements<span class="w"> </span>script.py<span class="w"> </span>ty<span class="w"> </span>check<span class="w"> </span>script.py
+</code></pre></div>
+<p>If you have multiple scripts in your workspace, ty does not yet recognize that they have different
+dependencies based on their inline metadata.</p>
+<p>You can follow <a href="https://github.com/astral-sh/ty/issues/691">this issue</a> for updates.</p>
+<h2 id="is-there-a-pre-commit-hook-for-ty"><a class="toclink" href="#is-there-a-pre-commit-hook-for-ty">Is there a pre-commit hook for ty?</a></h2>
+<p>Not yet. You can track progress in <a href="https://github.com/astral-sh/ty/issues/269">this issue</a>, which
+also includes some suggested manual hooks you can use in the meantime.</p>
+<h2 id="does-ty-support-mypy-plugins"><a class="toclink" href="#does-ty-support-mypy-plugins">Does ty support (mypy) plugins?</a></h2>
+<p>No. ty does not have a plugin system and there is currently no plan to add one.</p>
+<p>We prefer extending the type system with well-specified features rather than relying on
+type-checker-specific plugins. That said, we are considering adding support for popular third-party
+libraries like pydantic, SQLAlchemy, attrs, or django directly into ty.</p>
 
 
 
@@ -1326,7 +1654,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../cli/" class="md-footer__link md-footer__link--prev" aria-label="Previous: CLI">
+          <a href="../configuration/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Configuration">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1336,20 +1664,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                CLI
+                Configuration
               </div>
             </div>
           </a>
         
         
           
-          <a href="../environment/" class="md-footer__link md-footer__link--next" aria-label="Next: Environment variables">
+          <a href="../rules/" class="md-footer__link md-footer__link--next" aria-label="Next: Rules">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Environment variables
+                Rules
               </div>
             </div>
             <div class="md-footer__button md-icon">
