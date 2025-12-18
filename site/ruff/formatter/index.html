@@ -610,6 +610,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#fluent-layout-for-method-chains" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fluent layout for method chains
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1469,11 +1480,40 @@ within any of the expression parts.</p>
 </code></pre></div>
 <p>If you want Ruff to split an f-string across multiple lines, ensure there's a linebreak somewhere within the
 <code>{...}</code> parts of an f-string.</p>
+<h4 id="fluent-layout-for-method-chains"><a class="toclink" href="#fluent-layout-for-method-chains">Fluent layout for method chains</a></h4>
+<p>At times, when developers write long chains of methods on an object, such as</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="n">x</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">cond</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">func</span><span class="p">)</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+</code></pre></div>
+<p>the intent is to perform a sequence of transformations or operations
+on a fixed object of interest - in this example, the object <code>df</code>.
+Assuming the assigned expression exceeds the <code>line-length</code>, this preview
+style will format the above as:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">(</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>    <span class="n">df</span>
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>    <span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">cond</span><span class="p">)</span>
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>    <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>    <span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span class="p">)</span>
+</code></pre></div>
+<p>This deviates from the stable formatting, and also from Black, both
+of which would produce:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">(</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>    <span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">cond</span><span class="p">)</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>    <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>    <span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="p">)</span>
+</code></pre></div>
+<p>Both the stable and preview formatting are variants of something
+called a <strong>fluent layout</strong>.</p>
+<p>In general, this preview style differs from the stable style
+only at the first attribute that precedes
+a call or subscript. The preview formatting breaks <em>before</em> this attribute,
+while the stable formatting breaks <em>after</em> the call or subscript.</p>
 <h2 id="sorting-imports"><a class="toclink" href="#sorting-imports">Sorting imports</a></h2>
 <p>Currently, the Ruff formatter does not sort imports. In order to both sort imports and format,
 call the Ruff linter and then the formatter:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>ruff<span class="w"> </span>check<span class="w"> </span>--select<span class="w"> </span>I<span class="w"> </span>--fix
-<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>ruff<span class="w"> </span>format
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>ruff<span class="w"> </span>check<span class="w"> </span>--select<span class="w"> </span>I<span class="w"> </span>--fix
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>ruff<span class="w"> </span>format
 </code></pre></div>
 <p>A unified command for both linting and formatting is <a href="https://github.com/astral-sh/ruff/issues/8232">planned</a>.</p>
 
