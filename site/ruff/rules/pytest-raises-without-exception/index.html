@@ -864,14 +864,17 @@
 <p><small>
 Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.208">v0.0.208</a> ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27pytest-raises-without-exception%27%20OR%20PT010)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_pytest_style%2Frules%2Fraises.rs#L151" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_pytest_style%2Frules%2Fraises.rs#L154" target="_blank">View source</a>
 </small></p>
 <p>Derived from the <strong><a href="../#flake8-pytest-style-pt">flake8-pytest-style</a></strong> linter.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for <code>pytest.raises</code> calls without an expected exception.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p><code>pytest.raises</code> expects to receive an expected exception as its first
-argument. If omitted, the <code>pytest.raises</code> call will fail at runtime.</p>
+argument. If omitted, the <code>pytest.raises</code> call will fail at runtime.
+The rule will also accept calls without an expected exception but with
+<code>match</code> and/or <code>check</code> keyword arguments, which are also valid after
+pytest version 8.4.0.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
