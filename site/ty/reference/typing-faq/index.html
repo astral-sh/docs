@@ -81,8 +81,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2025-12-18 02:01:02Z",
-        "dateModified": "2025-12-18 02:01:02Z",
+        "datePublished": "2025-12-18 13:04:51Z",
+        "dateModified": "2025-12-18 13:04:51Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -1050,6 +1050,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#why-does-ty-say-callable-has-no-attribute-__name__" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why does ty say Callable has no attribute __name__?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#does-ty-have-a-strict-mode" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1320,6 +1331,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#why-does-ty-say-callable-has-no-attribute-__name__" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why does ty say Callable has no attribute __name__?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#does-ty-have-a-strict-mode" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1521,6 +1543,68 @@ type. At the time of writing, this import needs to be guarded by a <code>TYPE_CH
 <p>(<a href="https://play.ty.dev/fb034780-3ba7-4c6a-9449-5b0f44128bab">Full example in the playground</a>)</p>
 <p>If you need this for <code>complex</code>, you can use <code>ty_extensions.JustComplex</code> in a similar way.</p>
 </div>
+<h2 id="why-does-ty-say-callable-has-no-attribute-__name__"><a class="toclink" href="#why-does-ty-say-callable-has-no-attribute-__name__">Why does ty say <code>Callable</code> has no attribute <code>__name__</code>?</a></h2>
+<p>When you access <code>__name__</code>, <code>__qualname__</code>, <code>__module__</code>, or <code>__doc__</code> on a value typed as <code>Callable</code>,
+ty reports an <code>unresolved-attribute</code> error. This is because not all callables have these attributes.
+Functions do (including lambdas), but other callable objects do not. The <code>FileUpload</code> class below, for
+example, is callable, but instances of <code>FileUpload</code> do not have a <code>__name__</code> attribute. Passing a
+<code>FileUpload</code> instance to <code>retry</code> would lead to an <code>AttributeError</code> at runtime.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">def</span> <span class="nf">retry</span><span class="p">(</span><span class="n">times</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">operation</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="nb">bool</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">times</span><span class="p">):</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>        <span class="c1"># WRONG: `operation` does not necessarily have a `__name__` attribute</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Calling </span><span class="si">{</span><span class="n">operation</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">, attempt </span><span class="si">{</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2"> of </span><span class="si">{</span><span class="n">times</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>        <span class="k">if</span> <span class="n">operation</span><span class="p">():</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>            <span class="k">return</span> <span class="kc">True</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>    <span class="k">return</span> <span class="kc">False</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="k">class</span> <span class="nc">FileUpload</span><span class="p">:</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>        <span class="c1"># …</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>        <span class="c1"># …</span>
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="n">retry</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">FileUpload</span><span class="p">(</span><span class="s2">&quot;image.png&quot;</span><span class="p">))</span>
+</code></pre></div>
+<p>To fix this, you could use <code>getattr</code> with a fall back to a default name when the
+attribute is not present (or use a <code>hasattr(…, "__name__")</code> check if you access
+it multiple times):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">name</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">operation</span><span class="p">,</span> <span class="s2">&quot;__name__&quot;</span><span class="p">,</span> <span class="s2">&quot;operation&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>Alternatively, you could use an <code>isinstance(…, types.FunctionType)</code> check to narrow the type of
+<code>operation</code> to something that definitely has a <code>__name__</code> attribute:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">operation</span><span class="p">,</span> <span class="n">FunctionType</span><span class="p">):</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Calling </span><span class="si">{</span><span class="n">operation</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">, attempt </span><span class="si">{</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2"> of </span><span class="si">{</span><span class="n">times</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Calling operation, attempt </span><span class="si">{</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2"> of </span><span class="si">{</span><span class="n">times</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>You can try various approaches in <a href="https://play.ty.dev/f6f7f35a-47c3-423d-be8d-33d03c61d40c">this playground example</a>.
+See also <a href="https://github.com/astral-sh/ty/issues/1495">this discussion</a> for some plans to improve
+the developer experience around this in the future.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>ty has first-class support for intersection types. If you only want to accept function-like
+callables, you could define <code>FunctionLikeCallable</code> as an intersection of <code>Callable</code> and
+<code>types.FunctionType</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">TYPE_CHECKING</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="kn">from</span> <span class="nn">types</span> <span class="kn">import</span> <span class="n">FunctionType</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    <span class="kn">from</span> <span class="nn">ty_extensions</span> <span class="kn">import</span> <span class="n">Intersection</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>    <span class="nb">type</span> <span class="n">FunctionLikeCallable</span><span class="p">[</span><span class="o">**</span><span class="n">P</span><span class="p">,</span> <span class="n">R</span><span class="p">]</span> <span class="o">=</span> <span class="n">Intersection</span><span class="p">[</span><span class="n">Callable</span><span class="p">[</span><span class="n">P</span><span class="p">,</span> <span class="n">R</span><span class="p">],</span> <span class="n">FunctionType</span><span class="p">]</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>    <span class="n">FunctionLikeCallable</span> <span class="o">=</span> <span class="n">Callable</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="k">def</span> <span class="nf">retry</span><span class="p">(</span><span class="n">times</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">operation</span><span class="p">:</span> <span class="n">FunctionLikeCallable</span><span class="p">[[],</span> <span class="nb">bool</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>    <span class="o">...</span>
+</code></pre></div>
+<p>You can check out the full example <a href="https://play.ty.dev/7a1ea4ab-04e1-4271-adf5-ddc3a5d2fcfd">here</a>,
+which demonstrates that <code>FileUpload</code> instances are no longer accepted by <code>retry</code>.</p>
+</div>
 <h2 id="does-ty-have-a-strict-mode"><a class="toclink" href="#does-ty-have-a-strict-mode">Does ty have a strict mode?</a></h2>
 <p>Not yet. A stricter inference mode is tracked in
 <a href="https://github.com/astral-sh/ty/issues/1240">this issue</a>. In the meantime, you can consider using Ruff's
@@ -1538,8 +1622,8 @@ ty reports <em>"Cannot resolve imported module …"</em>, check the following:</
 <li>
 <p><strong>Project structure</strong>: If your source code is not in the project root or <code>src/</code> directory,
     configure <a href="../configuration/#root"><code>environment.root</code></a> in your <code>pyproject.toml</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">[tool.ty.environment]</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;./app&quot;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">[tool.ty.environment]</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;./app&quot;</span><span class="p">]</span>
 </code></pre></div>
 </li>
 <li>
@@ -1561,15 +1645,15 @@ uses the current working directory or the <code>--project</code> option to deter
 <li>
 <p><strong>Run ty per-package</strong>: Run <code>ty check</code> from each package directory, or use <code>--project</code> to specify
     the package:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>ty<span class="w"> </span>check<span class="w"> </span>--project<span class="w"> </span>packages/package-a
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>ty<span class="w"> </span>check<span class="w"> </span>--project<span class="w"> </span>packages/package-b
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>ty<span class="w"> </span>check<span class="w"> </span>--project<span class="w"> </span>packages/package-a
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>ty<span class="w"> </span>check<span class="w"> </span>--project<span class="w"> </span>packages/package-b
 </code></pre></div>
 </li>
 <li>
 <p><strong>Configure multiple source roots</strong>: Use <a href="../configuration/#root"><code>environment.root</code></a> to specify
     multiple source directories:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">[tool.ty.environment]</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;packages/package-a&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;packages/package-b&quot;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">[tool.ty.environment]</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;packages/package-a&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;packages/package-b&quot;</span><span class="p">]</span>
 </code></pre></div>
 <p>This has the disadvantage of treating all packages as a single project, which may lead to cases
 in which ty thinks something is importable when it wouldn't be at runtime.</p>
@@ -1581,7 +1665,7 @@ topic.</p>
 <p>It depends on what you want to do. If you have a single inline-metadata script, you can type check
 it with ty by using uv's <code>--with-requirements</code> flag to install the dependencies specified in the
 script header:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>uvx<span class="w"> </span>--with-requirements<span class="w"> </span>script.py<span class="w"> </span>ty<span class="w"> </span>check<span class="w"> </span>script.py
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>uvx<span class="w"> </span>--with-requirements<span class="w"> </span>script.py<span class="w"> </span>ty<span class="w"> </span>check<span class="w"> </span>script.py
 </code></pre></div>
 <p>If you have multiple scripts in your workspace, ty does not yet recognize that they have different
 dependencies based on their inline metadata.</p>
