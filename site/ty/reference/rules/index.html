@@ -81,8 +81,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2025-12-18 13:04:51Z",
-        "dateModified": "2025-12-18 13:04:51Z",
+        "datePublished": "2025-12-18 23:59:07Z",
+        "dateModified": "2025-12-18 23:59:07Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -1881,17 +1881,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#possibly-missing-import" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        possibly-missing-import
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#redundant-cast" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1951,6 +1940,17 @@
     <span class="md-ellipsis">
       
         division-by-zero
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#possibly-missing-import" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        possibly-missing-import
       
     </span>
   </a>
@@ -2959,17 +2959,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#possibly-missing-import" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        possibly-missing-import
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#redundant-cast" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3029,6 +3018,17 @@
     <span class="md-ellipsis">
       
         division-by-zero
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#possibly-missing-import" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        possibly-missing-import
       
     </span>
   </a>
@@ -4800,28 +4800,6 @@ Calling a missing method will raise an <code>AttributeError</code> at runtime.</
 <a id="__codelineno-88-6" name="__codelineno-88-6" href="#__codelineno-88-6"></a>
 <a id="__codelineno-88-7" name="__codelineno-88-7" href="#__codelineno-88-7"></a><span class="n">A</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># TypeError: &#39;A&#39; object is not subscriptable</span>
 </code></pre></div>
-<h2 id="possibly-missing-import"><a class="toclink" href="#possibly-missing-import"><code>possibly-missing-import</code></a></h2>
-<p><small>
-Default level: <a href="../rules.md#rule-levels" title="This lint has a default level of 'warn'."><code>warn</code></a> ·
-Added in <a href="https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.22">0.0.1-alpha.22</a> ·
-<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20possibly-missing-import" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1575" target="_blank">View source</a>
-</small></p>
-<p><strong>What it does</strong></p>
-<p>Checks for imports of symbols that may be missing.</p>
-<p><strong>Why is this bad?</strong></p>
-<p>Importing a missing module or name will raise a <code>ModuleNotFoundError</code>
-or <code>ImportError</code> at runtime.</p>
-<p><strong>Examples</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-89-1" name="__codelineno-89-1" href="#__codelineno-89-1"></a><span class="c1"># module.py</span>
-<a id="__codelineno-89-2" name="__codelineno-89-2" href="#__codelineno-89-2"></a><span class="kn">import</span> <span class="nn">datetime</span>
-<a id="__codelineno-89-3" name="__codelineno-89-3" href="#__codelineno-89-3"></a>
-<a id="__codelineno-89-4" name="__codelineno-89-4" href="#__codelineno-89-4"></a><span class="k">if</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">weekday</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">6</span><span class="p">:</span>
-<a id="__codelineno-89-5" name="__codelineno-89-5" href="#__codelineno-89-5"></a>    <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
-<a id="__codelineno-89-6" name="__codelineno-89-6" href="#__codelineno-89-6"></a>
-<a id="__codelineno-89-7" name="__codelineno-89-7" href="#__codelineno-89-7"></a><span class="c1"># main.py</span>
-<a id="__codelineno-89-8" name="__codelineno-89-8" href="#__codelineno-89-8"></a><span class="kn">from</span> <span class="nn">module</span> <span class="kn">import</span> <span class="n">a</span>  <span class="c1"># ImportError: cannot import name &#39;a&#39; from &#39;module&#39;</span>
-</code></pre></div>
 <h2 id="redundant-cast"><a class="toclink" href="#redundant-cast"><code>redundant-cast</code></a></h2>
 <p><small>
 Default level: <a href="../rules.md#rule-levels" title="This lint has a default level of 'warn'."><code>warn</code></a> ·
@@ -4834,10 +4812,10 @@ Added in <a href="https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1">0.
 <p><strong>Why is this bad?</strong></p>
 <p>These casts have no effect and can be removed.</p>
 <p><strong>Example</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-90-1" name="__codelineno-90-1" href="#__codelineno-90-1"></a><span class="k">def</span> <span class="nf">f</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<a id="__codelineno-90-2" name="__codelineno-90-2" href="#__codelineno-90-2"></a>    <span class="k">return</span> <span class="mi">10</span>
-<a id="__codelineno-90-3" name="__codelineno-90-3" href="#__codelineno-90-3"></a>
-<a id="__codelineno-90-4" name="__codelineno-90-4" href="#__codelineno-90-4"></a><span class="n">cast</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">f</span><span class="p">())</span>  <span class="c1"># Redundant</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-89-1" name="__codelineno-89-1" href="#__codelineno-89-1"></a><span class="k">def</span> <span class="nf">f</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<a id="__codelineno-89-2" name="__codelineno-89-2" href="#__codelineno-89-2"></a>    <span class="k">return</span> <span class="mi">10</span>
+<a id="__codelineno-89-3" name="__codelineno-89-3" href="#__codelineno-89-3"></a>
+<a id="__codelineno-89-4" name="__codelineno-89-4" href="#__codelineno-89-4"></a><span class="n">cast</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">f</span><span class="p">())</span>  <span class="c1"># Redundant</span>
 </code></pre></div>
 <h2 id="undefined-reveal"><a class="toclink" href="#undefined-reveal"><code>undefined-reveal</code></a></h2>
 <p><small>
@@ -4851,7 +4829,7 @@ Added in <a href="https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1">0.
 <p><strong>Why is this bad?</strong></p>
 <p>Using <code>reveal_type</code> without importing it will raise a <code>NameError</code> at runtime.</p>
 <p><strong>Examples</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-91-1" name="__codelineno-91-1" href="#__codelineno-91-1"></a><span class="n">reveal_type</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># NameError: name &#39;reveal_type&#39; is not defined</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-90-1" name="__codelineno-90-1" href="#__codelineno-90-1"></a><span class="n">reveal_type</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># NameError: name &#39;reveal_type&#39; is not defined</span>
 </code></pre></div>
 <h2 id="unresolved-global"><a class="toclink" href="#unresolved-global"><code>unresolved-global</code></a></h2>
 <p><small>
@@ -4868,15 +4846,25 @@ bindings or declarations in the global scope.</p>
 it hard for static analysis tools to infer the types of globals without
 explicit definitions or declarations.</p>
 <p><strong>Example</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-92-1" name="__codelineno-92-1" href="#__codelineno-92-1"></a><span class="k">def</span> <span class="nf">f</span><span class="p">():</span>
-<a id="__codelineno-92-2" name="__codelineno-92-2" href="#__codelineno-92-2"></a>    <span class="k">global</span> <span class="n">x</span>  <span class="c1"># unresolved global</span>
-<a id="__codelineno-92-3" name="__codelineno-92-3" href="#__codelineno-92-3"></a>    <span class="n">x</span> <span class="o">=</span> <span class="mi">42</span>
-<a id="__codelineno-92-4" name="__codelineno-92-4" href="#__codelineno-92-4"></a>
-<a id="__codelineno-92-5" name="__codelineno-92-5" href="#__codelineno-92-5"></a><span class="k">def</span> <span class="nf">g</span><span class="p">():</span>
-<a id="__codelineno-92-6" name="__codelineno-92-6" href="#__codelineno-92-6"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># unresolved reference</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-91-1" name="__codelineno-91-1" href="#__codelineno-91-1"></a><span class="k">def</span> <span class="nf">f</span><span class="p">():</span>
+<a id="__codelineno-91-2" name="__codelineno-91-2" href="#__codelineno-91-2"></a>    <span class="k">global</span> <span class="n">x</span>  <span class="c1"># unresolved global</span>
+<a id="__codelineno-91-3" name="__codelineno-91-3" href="#__codelineno-91-3"></a>    <span class="n">x</span> <span class="o">=</span> <span class="mi">42</span>
+<a id="__codelineno-91-4" name="__codelineno-91-4" href="#__codelineno-91-4"></a>
+<a id="__codelineno-91-5" name="__codelineno-91-5" href="#__codelineno-91-5"></a><span class="k">def</span> <span class="nf">g</span><span class="p">():</span>
+<a id="__codelineno-91-6" name="__codelineno-91-6" href="#__codelineno-91-6"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># unresolved reference</span>
 </code></pre></div>
 <p>Use instead:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-93-1" name="__codelineno-93-1" href="#__codelineno-93-1"></a><span class="n">x</span><span class="p">:</span> <span class="nb">int</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-92-1" name="__codelineno-92-1" href="#__codelineno-92-1"></a><span class="n">x</span><span class="p">:</span> <span class="nb">int</span>
+<a id="__codelineno-92-2" name="__codelineno-92-2" href="#__codelineno-92-2"></a>
+<a id="__codelineno-92-3" name="__codelineno-92-3" href="#__codelineno-92-3"></a><span class="k">def</span> <span class="nf">f</span><span class="p">():</span>
+<a id="__codelineno-92-4" name="__codelineno-92-4" href="#__codelineno-92-4"></a>    <span class="k">global</span> <span class="n">x</span>
+<a id="__codelineno-92-5" name="__codelineno-92-5" href="#__codelineno-92-5"></a>    <span class="n">x</span> <span class="o">=</span> <span class="mi">42</span>
+<a id="__codelineno-92-6" name="__codelineno-92-6" href="#__codelineno-92-6"></a>
+<a id="__codelineno-92-7" name="__codelineno-92-7" href="#__codelineno-92-7"></a><span class="k">def</span> <span class="nf">g</span><span class="p">():</span>
+<a id="__codelineno-92-8" name="__codelineno-92-8" href="#__codelineno-92-8"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</code></pre></div>
+<p>Or:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-93-1" name="__codelineno-93-1" href="#__codelineno-93-1"></a><span class="n">x</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
 <a id="__codelineno-93-2" name="__codelineno-93-2" href="#__codelineno-93-2"></a>
 <a id="__codelineno-93-3" name="__codelineno-93-3" href="#__codelineno-93-3"></a><span class="k">def</span> <span class="nf">f</span><span class="p">():</span>
 <a id="__codelineno-93-4" name="__codelineno-93-4" href="#__codelineno-93-4"></a>    <span class="k">global</span> <span class="n">x</span>
@@ -4884,16 +4872,6 @@ explicit definitions or declarations.</p>
 <a id="__codelineno-93-6" name="__codelineno-93-6" href="#__codelineno-93-6"></a>
 <a id="__codelineno-93-7" name="__codelineno-93-7" href="#__codelineno-93-7"></a><span class="k">def</span> <span class="nf">g</span><span class="p">():</span>
 <a id="__codelineno-93-8" name="__codelineno-93-8" href="#__codelineno-93-8"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-</code></pre></div>
-<p>Or:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-94-1" name="__codelineno-94-1" href="#__codelineno-94-1"></a><span class="n">x</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-<a id="__codelineno-94-2" name="__codelineno-94-2" href="#__codelineno-94-2"></a>
-<a id="__codelineno-94-3" name="__codelineno-94-3" href="#__codelineno-94-3"></a><span class="k">def</span> <span class="nf">f</span><span class="p">():</span>
-<a id="__codelineno-94-4" name="__codelineno-94-4" href="#__codelineno-94-4"></a>    <span class="k">global</span> <span class="n">x</span>
-<a id="__codelineno-94-5" name="__codelineno-94-5" href="#__codelineno-94-5"></a>    <span class="n">x</span> <span class="o">=</span> <span class="mi">42</span>
-<a id="__codelineno-94-6" name="__codelineno-94-6" href="#__codelineno-94-6"></a>
-<a id="__codelineno-94-7" name="__codelineno-94-7" href="#__codelineno-94-7"></a><span class="k">def</span> <span class="nf">g</span><span class="p">():</span>
-<a id="__codelineno-94-8" name="__codelineno-94-8" href="#__codelineno-94-8"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="unsupported-base"><a class="toclink" href="#unsupported-base"><code>unsupported-base</code></a></h2>
 <p><small>
@@ -4910,17 +4888,17 @@ ty will not be able to resolve the <a href="https://docs.python.org/3/glossary.h
 This will lead to an inferior understanding of your codebase and unpredictable
 type-checking behavior.</p>
 <p><strong>Examples</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-95-1" name="__codelineno-95-1" href="#__codelineno-95-1"></a><span class="kn">import</span> <span class="nn">datetime</span>
-<a id="__codelineno-95-2" name="__codelineno-95-2" href="#__codelineno-95-2"></a>
-<a id="__codelineno-95-3" name="__codelineno-95-3" href="#__codelineno-95-3"></a><span class="k">class</span> <span class="nc">A</span><span class="p">:</span> <span class="o">...</span>
-<a id="__codelineno-95-4" name="__codelineno-95-4" href="#__codelineno-95-4"></a><span class="k">class</span> <span class="nc">B</span><span class="p">:</span> <span class="o">...</span>
-<a id="__codelineno-95-5" name="__codelineno-95-5" href="#__codelineno-95-5"></a>
-<a id="__codelineno-95-6" name="__codelineno-95-6" href="#__codelineno-95-6"></a><span class="k">if</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">weekday</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">6</span><span class="p">:</span>
-<a id="__codelineno-95-7" name="__codelineno-95-7" href="#__codelineno-95-7"></a>    <span class="n">C</span> <span class="o">=</span> <span class="n">A</span>
-<a id="__codelineno-95-8" name="__codelineno-95-8" href="#__codelineno-95-8"></a><span class="k">else</span><span class="p">:</span>
-<a id="__codelineno-95-9" name="__codelineno-95-9" href="#__codelineno-95-9"></a>    <span class="n">C</span> <span class="o">=</span> <span class="n">B</span>
-<a id="__codelineno-95-10" name="__codelineno-95-10" href="#__codelineno-95-10"></a>
-<a id="__codelineno-95-11" name="__codelineno-95-11" href="#__codelineno-95-11"></a><span class="k">class</span> <span class="nc">D</span><span class="p">(</span><span class="n">C</span><span class="p">):</span> <span class="o">...</span>  <span class="c1"># error: [unsupported-base]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-94-1" name="__codelineno-94-1" href="#__codelineno-94-1"></a><span class="kn">import</span> <span class="nn">datetime</span>
+<a id="__codelineno-94-2" name="__codelineno-94-2" href="#__codelineno-94-2"></a>
+<a id="__codelineno-94-3" name="__codelineno-94-3" href="#__codelineno-94-3"></a><span class="k">class</span> <span class="nc">A</span><span class="p">:</span> <span class="o">...</span>
+<a id="__codelineno-94-4" name="__codelineno-94-4" href="#__codelineno-94-4"></a><span class="k">class</span> <span class="nc">B</span><span class="p">:</span> <span class="o">...</span>
+<a id="__codelineno-94-5" name="__codelineno-94-5" href="#__codelineno-94-5"></a>
+<a id="__codelineno-94-6" name="__codelineno-94-6" href="#__codelineno-94-6"></a><span class="k">if</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">weekday</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">6</span><span class="p">:</span>
+<a id="__codelineno-94-7" name="__codelineno-94-7" href="#__codelineno-94-7"></a>    <span class="n">C</span> <span class="o">=</span> <span class="n">A</span>
+<a id="__codelineno-94-8" name="__codelineno-94-8" href="#__codelineno-94-8"></a><span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-94-9" name="__codelineno-94-9" href="#__codelineno-94-9"></a>    <span class="n">C</span> <span class="o">=</span> <span class="n">B</span>
+<a id="__codelineno-94-10" name="__codelineno-94-10" href="#__codelineno-94-10"></a>
+<a id="__codelineno-94-11" name="__codelineno-94-11" href="#__codelineno-94-11"></a><span class="k">class</span> <span class="nc">D</span><span class="p">(</span><span class="n">C</span><span class="p">):</span> <span class="o">...</span>  <span class="c1"># error: [unsupported-base]</span>
 </code></pre></div>
 <h2 id="useless-overload-body"><a class="toclink" href="#useless-overload-body"><code>useless-overload-body</code></a></h2>
 <p><small>
@@ -4937,35 +4915,35 @@ by the implementation function that follows the series of overloads. While it is
 not illegal to provide a body for an <code>@overload</code>-decorated function, it may indicate
 a misunderstanding of how the <code>@overload</code> decorator works.</p>
 <p><strong>Example</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-96-1" name="__codelineno-96-1" href="#__codelineno-96-1"></a><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">overload</span>
-<a id="__codelineno-96-2" name="__codelineno-96-2" href="#__codelineno-96-2"></a>
-<a id="__codelineno-96-3" name="__codelineno-96-3" href="#__codelineno-96-3"></a><span class="nd">@overload</span>
-<a id="__codelineno-96-4" name="__codelineno-96-4" href="#__codelineno-96-4"></a><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<a id="__codelineno-96-5" name="__codelineno-96-5" href="#__codelineno-96-5"></a>    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>  <span class="c1"># will never be executed</span>
-<a id="__codelineno-96-6" name="__codelineno-96-6" href="#__codelineno-96-6"></a>
-<a id="__codelineno-96-7" name="__codelineno-96-7" href="#__codelineno-96-7"></a><span class="nd">@overload</span>
-<a id="__codelineno-96-8" name="__codelineno-96-8" href="#__codelineno-96-8"></a><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<a id="__codelineno-96-9" name="__codelineno-96-9" href="#__codelineno-96-9"></a>    <span class="k">return</span> <span class="s2">&quot;Oh no, got a string&quot;</span>  <span class="c1"># will never be executed</span>
-<a id="__codelineno-96-10" name="__codelineno-96-10" href="#__codelineno-96-10"></a>
-<a id="__codelineno-96-11" name="__codelineno-96-11" href="#__codelineno-96-11"></a><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">:</span>
-<a id="__codelineno-96-12" name="__codelineno-96-12" href="#__codelineno-96-12"></a>    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;unexpected type encountered&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-95-1" name="__codelineno-95-1" href="#__codelineno-95-1"></a><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">overload</span>
+<a id="__codelineno-95-2" name="__codelineno-95-2" href="#__codelineno-95-2"></a>
+<a id="__codelineno-95-3" name="__codelineno-95-3" href="#__codelineno-95-3"></a><span class="nd">@overload</span>
+<a id="__codelineno-95-4" name="__codelineno-95-4" href="#__codelineno-95-4"></a><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<a id="__codelineno-95-5" name="__codelineno-95-5" href="#__codelineno-95-5"></a>    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>  <span class="c1"># will never be executed</span>
+<a id="__codelineno-95-6" name="__codelineno-95-6" href="#__codelineno-95-6"></a>
+<a id="__codelineno-95-7" name="__codelineno-95-7" href="#__codelineno-95-7"></a><span class="nd">@overload</span>
+<a id="__codelineno-95-8" name="__codelineno-95-8" href="#__codelineno-95-8"></a><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-95-9" name="__codelineno-95-9" href="#__codelineno-95-9"></a>    <span class="k">return</span> <span class="s2">&quot;Oh no, got a string&quot;</span>  <span class="c1"># will never be executed</span>
+<a id="__codelineno-95-10" name="__codelineno-95-10" href="#__codelineno-95-10"></a>
+<a id="__codelineno-95-11" name="__codelineno-95-11" href="#__codelineno-95-11"></a><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-95-12" name="__codelineno-95-12" href="#__codelineno-95-12"></a>    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;unexpected type encountered&quot;</span><span class="p">)</span>
 </code></pre></div>
 <p>Use instead:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-97-1" name="__codelineno-97-1" href="#__codelineno-97-1"></a><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">assert_never</span><span class="p">,</span> <span class="n">overload</span>
-<a id="__codelineno-97-2" name="__codelineno-97-2" href="#__codelineno-97-2"></a>
-<a id="__codelineno-97-3" name="__codelineno-97-3" href="#__codelineno-97-3"></a><span class="nd">@overload</span>
-<a id="__codelineno-97-4" name="__codelineno-97-4" href="#__codelineno-97-4"></a><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span> <span class="o">...</span>
-<a id="__codelineno-97-5" name="__codelineno-97-5" href="#__codelineno-97-5"></a>
-<a id="__codelineno-97-6" name="__codelineno-97-6" href="#__codelineno-97-6"></a><span class="nd">@overload</span>
-<a id="__codelineno-97-7" name="__codelineno-97-7" href="#__codelineno-97-7"></a><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span> <span class="o">...</span>
-<a id="__codelineno-97-8" name="__codelineno-97-8" href="#__codelineno-97-8"></a>
-<a id="__codelineno-97-9" name="__codelineno-97-9" href="#__codelineno-97-9"></a><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">:</span>
-<a id="__codelineno-97-10" name="__codelineno-97-10" href="#__codelineno-97-10"></a>    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
-<a id="__codelineno-97-11" name="__codelineno-97-11" href="#__codelineno-97-11"></a>        <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
-<a id="__codelineno-97-12" name="__codelineno-97-12" href="#__codelineno-97-12"></a>    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-<a id="__codelineno-97-13" name="__codelineno-97-13" href="#__codelineno-97-13"></a>        <span class="k">return</span> <span class="s2">&quot;Oh no, got a string&quot;</span>
-<a id="__codelineno-97-14" name="__codelineno-97-14" href="#__codelineno-97-14"></a>    <span class="k">else</span><span class="p">:</span>
-<a id="__codelineno-97-15" name="__codelineno-97-15" href="#__codelineno-97-15"></a>        <span class="n">assert_never</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-96-1" name="__codelineno-96-1" href="#__codelineno-96-1"></a><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">assert_never</span><span class="p">,</span> <span class="n">overload</span>
+<a id="__codelineno-96-2" name="__codelineno-96-2" href="#__codelineno-96-2"></a>
+<a id="__codelineno-96-3" name="__codelineno-96-3" href="#__codelineno-96-3"></a><span class="nd">@overload</span>
+<a id="__codelineno-96-4" name="__codelineno-96-4" href="#__codelineno-96-4"></a><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span> <span class="o">...</span>
+<a id="__codelineno-96-5" name="__codelineno-96-5" href="#__codelineno-96-5"></a>
+<a id="__codelineno-96-6" name="__codelineno-96-6" href="#__codelineno-96-6"></a><span class="nd">@overload</span>
+<a id="__codelineno-96-7" name="__codelineno-96-7" href="#__codelineno-96-7"></a><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span> <span class="o">...</span>
+<a id="__codelineno-96-8" name="__codelineno-96-8" href="#__codelineno-96-8"></a>
+<a id="__codelineno-96-9" name="__codelineno-96-9" href="#__codelineno-96-9"></a><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-96-10" name="__codelineno-96-10" href="#__codelineno-96-10"></a>    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+<a id="__codelineno-96-11" name="__codelineno-96-11" href="#__codelineno-96-11"></a>        <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
+<a id="__codelineno-96-12" name="__codelineno-96-12" href="#__codelineno-96-12"></a>    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+<a id="__codelineno-96-13" name="__codelineno-96-13" href="#__codelineno-96-13"></a>        <span class="k">return</span> <span class="s2">&quot;Oh no, got a string&quot;</span>
+<a id="__codelineno-96-14" name="__codelineno-96-14" href="#__codelineno-96-14"></a>    <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-96-15" name="__codelineno-96-15" href="#__codelineno-96-15"></a>        <span class="n">assert_never</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>References</strong></p>
 <ul>
@@ -4983,7 +4961,29 @@ Preview (since <a href="https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha
 <p><strong>Why is this bad?</strong></p>
 <p>Dividing by zero raises a <code>ZeroDivisionError</code> at runtime.</p>
 <p><strong>Examples</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-98-1" name="__codelineno-98-1" href="#__codelineno-98-1"></a><span class="mi">5</span> <span class="o">/</span> <span class="mi">0</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-97-1" name="__codelineno-97-1" href="#__codelineno-97-1"></a><span class="mi">5</span> <span class="o">/</span> <span class="mi">0</span>
+</code></pre></div>
+<h2 id="possibly-missing-import"><a class="toclink" href="#possibly-missing-import"><code>possibly-missing-import</code></a></h2>
+<p><small>
+Default level: <a href="../rules.md#rule-levels" title="This lint has a default level of 'ignore'."><code>ignore</code></a> ·
+Added in <a href="https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.22">0.0.1-alpha.22</a> ·
+<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20possibly-missing-import" target="_blank">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1575" target="_blank">View source</a>
+</small></p>
+<p><strong>What it does</strong></p>
+<p>Checks for imports of symbols that may be missing.</p>
+<p><strong>Why is this bad?</strong></p>
+<p>Importing a missing module or name will raise a <code>ModuleNotFoundError</code>
+or <code>ImportError</code> at runtime.</p>
+<p><strong>Examples</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-98-1" name="__codelineno-98-1" href="#__codelineno-98-1"></a><span class="c1"># module.py</span>
+<a id="__codelineno-98-2" name="__codelineno-98-2" href="#__codelineno-98-2"></a><span class="kn">import</span> <span class="nn">datetime</span>
+<a id="__codelineno-98-3" name="__codelineno-98-3" href="#__codelineno-98-3"></a>
+<a id="__codelineno-98-4" name="__codelineno-98-4" href="#__codelineno-98-4"></a><span class="k">if</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">weekday</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">6</span><span class="p">:</span>
+<a id="__codelineno-98-5" name="__codelineno-98-5" href="#__codelineno-98-5"></a>    <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<a id="__codelineno-98-6" name="__codelineno-98-6" href="#__codelineno-98-6"></a>
+<a id="__codelineno-98-7" name="__codelineno-98-7" href="#__codelineno-98-7"></a><span class="c1"># main.py</span>
+<a id="__codelineno-98-8" name="__codelineno-98-8" href="#__codelineno-98-8"></a><span class="kn">from</span> <span class="nn">module</span> <span class="kn">import</span> <span class="n">a</span>  <span class="c1"># ImportError: cannot import name &#39;a&#39; from &#39;module&#39;</span>
 </code></pre></div>
 <h2 id="possibly-unresolved-reference"><a class="toclink" href="#possibly-unresolved-reference"><code>possibly-unresolved-reference</code></a></h2>
 <p><small>
