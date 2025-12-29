@@ -1509,6 +1509,8 @@ Possible values:
 
 ```
 Disables creating extra files like `README.md`, the `src/` tree, `.python-version` files, etc.
+
+When combined with `--script`, the script will only contain the inline metadata header.
 ```
 
 [`--build-backend`](#uv-init--build-backend) *build-backend* : Initialize a build-backend of choice for the project.
@@ -6195,6 +6197,69 @@ Possible values:
 - `lowest-direct`: Resolve the lowest compatible version of any direct dependencies, and the highest compatible version of any transitive dependencies
 ```
 
+[`--torch-backend`](#uv-tool-run--torch-backend) *torch-backend* : The backend to use when fetching packages in the PyTorch ecosystem (e.g., `cpu`, `cu126`, or `auto`)
+
+```
+When set, uv will ignore the configured index URLs for packages in the PyTorch ecosystem, and will instead use the defined backend.
+
+For example, when set to `cpu`, uv will use the CPU-only PyTorch index; when set to `cu126`, uv will use the PyTorch index for CUDA 12.6.
+
+The `auto` mode will attempt to detect the appropriate PyTorch index based on the currently installed CUDA drivers.
+
+This option is in preview and may change in any future release.
+
+May also be set with the `UV_TORCH_BACKEND` environment variable.
+
+Possible values:
+
+- `auto`: Select the appropriate PyTorch index based on the operating system and CUDA driver version
+- `cpu`: Use the CPU-only PyTorch index
+- `cu130`: Use the PyTorch index for CUDA 13.0
+- `cu129`: Use the PyTorch index for CUDA 12.9
+- `cu128`: Use the PyTorch index for CUDA 12.8
+- `cu126`: Use the PyTorch index for CUDA 12.6
+- `cu125`: Use the PyTorch index for CUDA 12.5
+- `cu124`: Use the PyTorch index for CUDA 12.4
+- `cu123`: Use the PyTorch index for CUDA 12.3
+- `cu122`: Use the PyTorch index for CUDA 12.2
+- `cu121`: Use the PyTorch index for CUDA 12.1
+- `cu120`: Use the PyTorch index for CUDA 12.0
+- `cu118`: Use the PyTorch index for CUDA 11.8
+- `cu117`: Use the PyTorch index for CUDA 11.7
+- `cu116`: Use the PyTorch index for CUDA 11.6
+- `cu115`: Use the PyTorch index for CUDA 11.5
+- `cu114`: Use the PyTorch index for CUDA 11.4
+- `cu113`: Use the PyTorch index for CUDA 11.3
+- `cu112`: Use the PyTorch index for CUDA 11.2
+- `cu111`: Use the PyTorch index for CUDA 11.1
+- `cu110`: Use the PyTorch index for CUDA 11.0
+- `cu102`: Use the PyTorch index for CUDA 10.2
+- `cu101`: Use the PyTorch index for CUDA 10.1
+- `cu100`: Use the PyTorch index for CUDA 10.0
+- `cu92`: Use the PyTorch index for CUDA 9.2
+- `cu91`: Use the PyTorch index for CUDA 9.1
+- `cu90`: Use the PyTorch index for CUDA 9.0
+- `cu80`: Use the PyTorch index for CUDA 8.0
+- `rocm6.4`: Use the PyTorch index for ROCm 6.4
+- `rocm6.3`: Use the PyTorch index for ROCm 6.3
+- `rocm6.2.4`: Use the PyTorch index for ROCm 6.2.4
+- `rocm6.2`: Use the PyTorch index for ROCm 6.2
+- `rocm6.1`: Use the PyTorch index for ROCm 6.1
+- `rocm6.0`: Use the PyTorch index for ROCm 6.0
+- `rocm5.7`: Use the PyTorch index for ROCm 5.7
+- `rocm5.6`: Use the PyTorch index for ROCm 5.6
+- `rocm5.5`: Use the PyTorch index for ROCm 5.5
+- `rocm5.4.2`: Use the PyTorch index for ROCm 5.4.2
+- `rocm5.4`: Use the PyTorch index for ROCm 5.4
+- `rocm5.3`: Use the PyTorch index for ROCm 5.3
+- `rocm5.2`: Use the PyTorch index for ROCm 5.2
+- `rocm5.1.1`: Use the PyTorch index for ROCm 5.1.1
+- `rocm4.2`: Use the PyTorch index for ROCm 4.2
+- `rocm4.1`: Use the PyTorch index for ROCm 4.1
+- `rocm4.0.1`: Use the PyTorch index for ROCm 4.0.1
+- `xpu`: Use the PyTorch index for Intel XPU
+```
+
 [`--upgrade`](#uv-tool-run--upgrade), `-U` : Allow package upgrades, ignoring pinned versions in any existing output file. Implies `--refresh`
 
 [`--upgrade-package`](#uv-tool-run--upgrade-package), `-P` *upgrade-package* : Allow upgrades for a specific package, ignoring pinned versions in any existing output file. Implies `--refresh-package`
@@ -6721,6 +6786,69 @@ Possible values:
 - `highest`: Resolve the highest compatible version of each package
 - `lowest`: Resolve the lowest compatible version of each package
 - `lowest-direct`: Resolve the lowest compatible version of any direct dependencies, and the highest compatible version of any transitive dependencies
+```
+
+[`--torch-backend`](#uv-tool-install--torch-backend) *torch-backend* : The backend to use when fetching packages in the PyTorch ecosystem (e.g., `cpu`, `cu126`, or `auto`)
+
+```
+When set, uv will ignore the configured index URLs for packages in the PyTorch ecosystem, and will instead use the defined backend.
+
+For example, when set to `cpu`, uv will use the CPU-only PyTorch index; when set to `cu126`, uv will use the PyTorch index for CUDA 12.6.
+
+The `auto` mode will attempt to detect the appropriate PyTorch index based on the currently installed CUDA drivers.
+
+This option is in preview and may change in any future release.
+
+May also be set with the `UV_TORCH_BACKEND` environment variable.
+
+Possible values:
+
+- `auto`: Select the appropriate PyTorch index based on the operating system and CUDA driver version
+- `cpu`: Use the CPU-only PyTorch index
+- `cu130`: Use the PyTorch index for CUDA 13.0
+- `cu129`: Use the PyTorch index for CUDA 12.9
+- `cu128`: Use the PyTorch index for CUDA 12.8
+- `cu126`: Use the PyTorch index for CUDA 12.6
+- `cu125`: Use the PyTorch index for CUDA 12.5
+- `cu124`: Use the PyTorch index for CUDA 12.4
+- `cu123`: Use the PyTorch index for CUDA 12.3
+- `cu122`: Use the PyTorch index for CUDA 12.2
+- `cu121`: Use the PyTorch index for CUDA 12.1
+- `cu120`: Use the PyTorch index for CUDA 12.0
+- `cu118`: Use the PyTorch index for CUDA 11.8
+- `cu117`: Use the PyTorch index for CUDA 11.7
+- `cu116`: Use the PyTorch index for CUDA 11.6
+- `cu115`: Use the PyTorch index for CUDA 11.5
+- `cu114`: Use the PyTorch index for CUDA 11.4
+- `cu113`: Use the PyTorch index for CUDA 11.3
+- `cu112`: Use the PyTorch index for CUDA 11.2
+- `cu111`: Use the PyTorch index for CUDA 11.1
+- `cu110`: Use the PyTorch index for CUDA 11.0
+- `cu102`: Use the PyTorch index for CUDA 10.2
+- `cu101`: Use the PyTorch index for CUDA 10.1
+- `cu100`: Use the PyTorch index for CUDA 10.0
+- `cu92`: Use the PyTorch index for CUDA 9.2
+- `cu91`: Use the PyTorch index for CUDA 9.1
+- `cu90`: Use the PyTorch index for CUDA 9.0
+- `cu80`: Use the PyTorch index for CUDA 8.0
+- `rocm6.4`: Use the PyTorch index for ROCm 6.4
+- `rocm6.3`: Use the PyTorch index for ROCm 6.3
+- `rocm6.2.4`: Use the PyTorch index for ROCm 6.2.4
+- `rocm6.2`: Use the PyTorch index for ROCm 6.2
+- `rocm6.1`: Use the PyTorch index for ROCm 6.1
+- `rocm6.0`: Use the PyTorch index for ROCm 6.0
+- `rocm5.7`: Use the PyTorch index for ROCm 5.7
+- `rocm5.6`: Use the PyTorch index for ROCm 5.6
+- `rocm5.5`: Use the PyTorch index for ROCm 5.5
+- `rocm5.4.2`: Use the PyTorch index for ROCm 5.4.2
+- `rocm5.4`: Use the PyTorch index for ROCm 5.4
+- `rocm5.3`: Use the PyTorch index for ROCm 5.3
+- `rocm5.2`: Use the PyTorch index for ROCm 5.2
+- `rocm5.1.1`: Use the PyTorch index for ROCm 5.1.1
+- `rocm4.2`: Use the PyTorch index for ROCm 4.2
+- `rocm4.1`: Use the PyTorch index for ROCm 4.1
+- `rocm4.0.1`: Use the PyTorch index for ROCm 4.0.1
+- `xpu`: Use the PyTorch index for Intel XPU
 ```
 
 [`--upgrade`](#uv-tool-install--upgrade), `-U` : Allow package upgrades, ignoring pinned versions in any existing output file. Implies `--refresh`

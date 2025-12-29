@@ -27,11 +27,9 @@
       <link rel="icon" href="../../../assets/favicon.ico">
       <meta name="generator" content="mkdocs-1.5.0, mkdocs-material-9.3.1+insiders-4.41.0">
     
-    
-
+     
 <title>From pip to a uv project | uv</title>
-
-
+ 
     
       <link rel="stylesheet" href="../../../assets/stylesheets/main.176649b9.min.css">
       
@@ -63,32 +61,54 @@
   
 
 
-  <script src="https://cdn.usefathom.com/script.js" data-site="ESKBRHGN" defer></script>
+  <script
+  src="https://cdn.usefathom.com/script.js"
+  data-site="ESKBRHGN"
+  defer
+></script>
   
     <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
   
 
     
     
-<link rel="apple-touch-icon" sizes="180x180" href="https://docs.astral.sh/static/apple-touch-icon.png"/>
-<link rel="icon" type="image/png" sizes="32x32" href="https://docs.astral.sh/static/favicon-32x32.png"/>
-<link rel="icon" type="image/png" sizes="16x16" href="https://docs.astral.sh/static/favicon-16x16.png"/>
-<link rel="manifest" href="https://docs.astral.sh/static/site.webmanifest"/>
-<link rel="mask-icon" href="https://docs.astral.sh/static/safari-pinned-tab.svg" color="#2e183d"/>
-<meta name="msapplication-TileColor" content="#d7ff64"/>
-<meta name="theme-color" content="#ffffff"/>
-<meta name="robots" content="index,follow"/>
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="https://docs.astral.sh/static/apple-touch-icon.png"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="https://docs.astral.sh/static/favicon-32x32.png"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="https://docs.astral.sh/static/favicon-16x16.png"
+/>
+<link rel="manifest" href="https://docs.astral.sh/static/site.webmanifest" />
+<link
+  rel="mask-icon"
+  href="https://docs.astral.sh/static/safari-pinned-tab.svg"
+  color="#2e183d"
+/>
+<meta name="msapplication-TileColor" content="#d7ff64" />
+<meta name="theme-color" content="#ffffff" />
+<meta name="robots" content="index,follow" />
 <script type="application/ld+json">
-    {
-        
-        "datePublished": "2025-07-03 01:02:17Z",
-        "dateModified": "2025-07-03 01:02:17Z",
-        
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "Astral Docs",
-        "url": "https://docs.astral.sh"
-    }
+  {
+      
+      "datePublished": "2025-12-19 15:12:49Z",
+      "dateModified": "2025-12-19 15:12:49Z",
+      
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Astral Docs",
+      "url": "https://docs.astral.sh"
+  }
 </script>
 
   </head>
@@ -954,6 +974,17 @@
     <span class="md-ellipsis">
       
         Importing development dependency files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#importing-dependency-sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Importing dependency sources
       
     </span>
   </a>
@@ -3253,6 +3284,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#importing-dependency-sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Importing dependency sources
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3682,13 +3724,33 @@ also have a dedicated set of dependencies for building your documentation, those
 a <code>docs</code> group:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>-r<span class="w"> </span>requirements-docs.in<span class="w"> </span>-c<span class="w"> </span>requirements-docs.txt<span class="w"> </span>--group<span class="w"> </span>docs
 </code></pre></div>
+<h4 id="importing-dependency-sources"><a class="toclink" href="#importing-dependency-sources">Importing dependency sources</a></h4>
+<p>When importing requirements on local paths or Git repositories, for example:</p>
+<div class="highlight"><span class="filename">requirements.in</span><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="o">./</span><span class="n">path</span><span class="o">-</span><span class="n">dep</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="o">-</span><span class="n">e</span> <span class="o">./</span><span class="n">editable</span><span class="o">-</span><span class="n">path</span><span class="o">-</span><span class="n">dep</span>
+<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="n">git</span><span class="o">-</span><span class="n">dep</span> <span class="o">@</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">astral</span><span class="o">-</span><span class="n">sh</span><span class="o">/</span><span class="n">git</span><span class="o">-</span><span class="n">dep</span>
+</code></pre></div>
+<p>uv will map them to <a href="../../../concepts/projects/dependencies/#dependency-sources">dependency sources</a>
+in the <code>[tool.uv.sources]</code> table of the <code>pyproject.toml</code>:</p>
+<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="k">[project]</span>
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="w">    </span><span class="s2">&quot;path-dep&quot;</span><span class="p">,</span>
+<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="w">    </span><span class="s2">&quot;editable-path-dep&quot;</span><span class="p">,</span>
+<a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a><span class="w">    </span><span class="s2">&quot;git-dep&quot;</span><span class="p">,</span>
+<a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a><span class="p">]</span>
+<a id="__codelineno-31-7" name="__codelineno-31-7" href="#__codelineno-31-7"></a>
+<a id="__codelineno-31-8" name="__codelineno-31-8" href="#__codelineno-31-8"></a><span class="k">[tool.uv.sources]</span>
+<a id="__codelineno-31-9" name="__codelineno-31-9" href="#__codelineno-31-9"></a><span class="n">path-dep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;./path-dep&quot;</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-31-10" name="__codelineno-31-10" href="#__codelineno-31-10"></a><span class="n">editable-path-dep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;./editable-path-dep&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">editable</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-31-11" name="__codelineno-31-11" href="#__codelineno-31-11"></a><span class="n">git-dep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">git</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;https://github.com/astral-sh/git-dep&quot;</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
 <h3 id="project-environments"><a class="toclink" href="#project-environments">Project environments</a></h3>
 <p>Unlike <code>pip</code>, uv is not centered around the concept of an "active" virtual environment. Instead, uv
 uses a dedicated virtual environment for each project in a <code>.venv</code> directory. This environment is
 automatically managed, so when you run a command, like <code>uv add</code>, the environment is synced with the
 project dependencies.</p>
 <p>The preferred way to execute commands in the environment is with <code>uv run</code>, e.g.:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>pytest
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="gp">$ </span>uv<span class="w"> </span>run<span class="w"> </span>pytest
 </code></pre></div>
 <p>Prior to every <code>uv run</code> invocation, uv will verify that the lockfile is up-to-date with the
 <code>pyproject.toml</code>, and that the environment is up-to-date with the lockfile, keeping your project
@@ -3719,7 +3781,7 @@ active environment with the <code>--active</code> flag.</p>
         <span class="md-icon" title="Last update">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
         </span>
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 3, 2025</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 19, 2025</span>
       </span>
     
     
