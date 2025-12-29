@@ -27,11 +27,9 @@
       <link rel="icon" href="../../assets/favicon.ico">
       <meta name="generator" content="mkdocs-1.5.0, mkdocs-material-9.3.1+insiders-4.41.0">
     
-    
-
+     
 <title>Commands | uv</title>
-
-
+ 
     
       <link rel="stylesheet" href="../../assets/stylesheets/main.176649b9.min.css">
       
@@ -63,32 +61,54 @@
   
 
 
-  <script src="https://cdn.usefathom.com/script.js" data-site="ESKBRHGN" defer></script>
+  <script
+  src="https://cdn.usefathom.com/script.js"
+  data-site="ESKBRHGN"
+  defer
+></script>
   
     <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
   
 
     
     
-<link rel="apple-touch-icon" sizes="180x180" href="https://docs.astral.sh/static/apple-touch-icon.png"/>
-<link rel="icon" type="image/png" sizes="32x32" href="https://docs.astral.sh/static/favicon-32x32.png"/>
-<link rel="icon" type="image/png" sizes="16x16" href="https://docs.astral.sh/static/favicon-16x16.png"/>
-<link rel="manifest" href="https://docs.astral.sh/static/site.webmanifest"/>
-<link rel="mask-icon" href="https://docs.astral.sh/static/safari-pinned-tab.svg" color="#2e183d"/>
-<meta name="msapplication-TileColor" content="#d7ff64"/>
-<meta name="theme-color" content="#ffffff"/>
-<meta name="robots" content="index,follow"/>
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="https://docs.astral.sh/static/apple-touch-icon.png"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="https://docs.astral.sh/static/favicon-32x32.png"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="https://docs.astral.sh/static/favicon-16x16.png"
+/>
+<link rel="manifest" href="https://docs.astral.sh/static/site.webmanifest" />
+<link
+  rel="mask-icon"
+  href="https://docs.astral.sh/static/safari-pinned-tab.svg"
+  color="#2e183d"
+/>
+<meta name="msapplication-TileColor" content="#d7ff64" />
+<meta name="theme-color" content="#ffffff" />
+<meta name="robots" content="index,follow" />
 <script type="application/ld+json">
-    {
-        
-        "datePublished": "2025-12-08 12:31:38Z",
-        "dateModified": "2025-12-08 12:31:38Z",
-        
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "Astral Docs",
-        "url": "https://docs.astral.sh"
-    }
+  {
+      
+      "datePublished": "2025-12-08 12:31:38Z",
+      "dateModified": "2025-12-08 12:31:38Z",
+      
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Astral Docs",
+      "url": "https://docs.astral.sh"
+  }
 </script>
 
   </head>
@@ -4950,6 +4970,7 @@ used.</p>
 <li><code>none</code>:  Do not infer the author information</li>
 </ul></dd><dt id="uv-init--bare"><a href="#uv-init--bare"><code>--bare</code></a></dt><dd><p>Only create a <code>pyproject.toml</code>.</p>
 <p>Disables creating extra files like <code>README.md</code>, the <code>src/</code> tree, <code>.python-version</code> files, etc.</p>
+<p>When combined with <code>--script</code>, the script will only contain the inline metadata header.</p>
 </dd><dt id="uv-init--build-backend"><a href="#uv-init--build-backend"><code>--build-backend</code></a> <i>build-backend</i></dt><dd><p>Initialize a build-backend of choice for the project.</p>
 <p>Implicitly sets <code>--package</code>.</p>
 <p>May also be set with the <code>UV_INIT_BUILD_BACKEND</code> environment variable.</p><p>Possible values:</p>
@@ -6792,6 +6813,59 @@ interpreter. Use <code>--universal</code> to display the tree for all platforms,
 <li><code>highest</code>:  Resolve the highest compatible version of each package</li>
 <li><code>lowest</code>:  Resolve the lowest compatible version of each package</li>
 <li><code>lowest-direct</code>:  Resolve the lowest compatible version of any direct dependencies, and the highest compatible version of any transitive dependencies</li>
+</ul></dd><dt id="uv-tool-run--torch-backend"><a href="#uv-tool-run--torch-backend"><code>--torch-backend</code></a> <i>torch-backend</i></dt><dd><p>The backend to use when fetching packages in the PyTorch ecosystem (e.g., <code>cpu</code>, <code>cu126</code>, or <code>auto</code>)</p>
+<p>When set, uv will ignore the configured index URLs for packages in the PyTorch ecosystem, and will instead use the defined backend.</p>
+<p>For example, when set to <code>cpu</code>, uv will use the CPU-only PyTorch index; when set to <code>cu126</code>, uv will use the PyTorch index for CUDA 12.6.</p>
+<p>The <code>auto</code> mode will attempt to detect the appropriate PyTorch index based on the currently installed CUDA drivers.</p>
+<p>This option is in preview and may change in any future release.</p>
+<p>May also be set with the <code>UV_TORCH_BACKEND</code> environment variable.</p><p>Possible values:</p>
+<ul>
+<li><code>auto</code>:  Select the appropriate PyTorch index based on the operating system and CUDA driver version</li>
+<li><code>cpu</code>:  Use the CPU-only PyTorch index</li>
+<li><code>cu130</code>:  Use the PyTorch index for CUDA 13.0</li>
+<li><code>cu129</code>:  Use the PyTorch index for CUDA 12.9</li>
+<li><code>cu128</code>:  Use the PyTorch index for CUDA 12.8</li>
+<li><code>cu126</code>:  Use the PyTorch index for CUDA 12.6</li>
+<li><code>cu125</code>:  Use the PyTorch index for CUDA 12.5</li>
+<li><code>cu124</code>:  Use the PyTorch index for CUDA 12.4</li>
+<li><code>cu123</code>:  Use the PyTorch index for CUDA 12.3</li>
+<li><code>cu122</code>:  Use the PyTorch index for CUDA 12.2</li>
+<li><code>cu121</code>:  Use the PyTorch index for CUDA 12.1</li>
+<li><code>cu120</code>:  Use the PyTorch index for CUDA 12.0</li>
+<li><code>cu118</code>:  Use the PyTorch index for CUDA 11.8</li>
+<li><code>cu117</code>:  Use the PyTorch index for CUDA 11.7</li>
+<li><code>cu116</code>:  Use the PyTorch index for CUDA 11.6</li>
+<li><code>cu115</code>:  Use the PyTorch index for CUDA 11.5</li>
+<li><code>cu114</code>:  Use the PyTorch index for CUDA 11.4</li>
+<li><code>cu113</code>:  Use the PyTorch index for CUDA 11.3</li>
+<li><code>cu112</code>:  Use the PyTorch index for CUDA 11.2</li>
+<li><code>cu111</code>:  Use the PyTorch index for CUDA 11.1</li>
+<li><code>cu110</code>:  Use the PyTorch index for CUDA 11.0</li>
+<li><code>cu102</code>:  Use the PyTorch index for CUDA 10.2</li>
+<li><code>cu101</code>:  Use the PyTorch index for CUDA 10.1</li>
+<li><code>cu100</code>:  Use the PyTorch index for CUDA 10.0</li>
+<li><code>cu92</code>:  Use the PyTorch index for CUDA 9.2</li>
+<li><code>cu91</code>:  Use the PyTorch index for CUDA 9.1</li>
+<li><code>cu90</code>:  Use the PyTorch index for CUDA 9.0</li>
+<li><code>cu80</code>:  Use the PyTorch index for CUDA 8.0</li>
+<li><code>rocm6.4</code>:  Use the PyTorch index for ROCm 6.4</li>
+<li><code>rocm6.3</code>:  Use the PyTorch index for ROCm 6.3</li>
+<li><code>rocm6.2.4</code>:  Use the PyTorch index for ROCm 6.2.4</li>
+<li><code>rocm6.2</code>:  Use the PyTorch index for ROCm 6.2</li>
+<li><code>rocm6.1</code>:  Use the PyTorch index for ROCm 6.1</li>
+<li><code>rocm6.0</code>:  Use the PyTorch index for ROCm 6.0</li>
+<li><code>rocm5.7</code>:  Use the PyTorch index for ROCm 5.7</li>
+<li><code>rocm5.6</code>:  Use the PyTorch index for ROCm 5.6</li>
+<li><code>rocm5.5</code>:  Use the PyTorch index for ROCm 5.5</li>
+<li><code>rocm5.4.2</code>:  Use the PyTorch index for ROCm 5.4.2</li>
+<li><code>rocm5.4</code>:  Use the PyTorch index for ROCm 5.4</li>
+<li><code>rocm5.3</code>:  Use the PyTorch index for ROCm 5.3</li>
+<li><code>rocm5.2</code>:  Use the PyTorch index for ROCm 5.2</li>
+<li><code>rocm5.1.1</code>:  Use the PyTorch index for ROCm 5.1.1</li>
+<li><code>rocm4.2</code>:  Use the PyTorch index for ROCm 4.2</li>
+<li><code>rocm4.1</code>:  Use the PyTorch index for ROCm 4.1</li>
+<li><code>rocm4.0.1</code>:  Use the PyTorch index for ROCm 4.0.1</li>
+<li><code>xpu</code>:  Use the PyTorch index for Intel XPU</li>
 </ul></dd><dt id="uv-tool-run--upgrade"><a href="#uv-tool-run--upgrade"><code>--upgrade</code></a>, <code>-U</code></dt><dd><p>Allow package upgrades, ignoring pinned versions in any existing output file. Implies <code>--refresh</code></p>
 </dd><dt id="uv-tool-run--upgrade-package"><a href="#uv-tool-run--upgrade-package"><code>--upgrade-package</code></a>, <code>-P</code> <i>upgrade-package</i></dt><dd><p>Allow upgrades for a specific package, ignoring pinned versions in any existing output file. Implies <code>--refresh-package</code></p>
 </dd><dt id="uv-tool-run--verbose"><a href="#uv-tool-run--verbose"><code>--verbose</code></a>, <code>-v</code></dt><dd><p>Use verbose output.</p>
@@ -7019,6 +7093,59 @@ interpreter. Use <code>--universal</code> to display the tree for all platforms,
 <li><code>highest</code>:  Resolve the highest compatible version of each package</li>
 <li><code>lowest</code>:  Resolve the lowest compatible version of each package</li>
 <li><code>lowest-direct</code>:  Resolve the lowest compatible version of any direct dependencies, and the highest compatible version of any transitive dependencies</li>
+</ul></dd><dt id="uv-tool-install--torch-backend"><a href="#uv-tool-install--torch-backend"><code>--torch-backend</code></a> <i>torch-backend</i></dt><dd><p>The backend to use when fetching packages in the PyTorch ecosystem (e.g., <code>cpu</code>, <code>cu126</code>, or <code>auto</code>)</p>
+<p>When set, uv will ignore the configured index URLs for packages in the PyTorch ecosystem, and will instead use the defined backend.</p>
+<p>For example, when set to <code>cpu</code>, uv will use the CPU-only PyTorch index; when set to <code>cu126</code>, uv will use the PyTorch index for CUDA 12.6.</p>
+<p>The <code>auto</code> mode will attempt to detect the appropriate PyTorch index based on the currently installed CUDA drivers.</p>
+<p>This option is in preview and may change in any future release.</p>
+<p>May also be set with the <code>UV_TORCH_BACKEND</code> environment variable.</p><p>Possible values:</p>
+<ul>
+<li><code>auto</code>:  Select the appropriate PyTorch index based on the operating system and CUDA driver version</li>
+<li><code>cpu</code>:  Use the CPU-only PyTorch index</li>
+<li><code>cu130</code>:  Use the PyTorch index for CUDA 13.0</li>
+<li><code>cu129</code>:  Use the PyTorch index for CUDA 12.9</li>
+<li><code>cu128</code>:  Use the PyTorch index for CUDA 12.8</li>
+<li><code>cu126</code>:  Use the PyTorch index for CUDA 12.6</li>
+<li><code>cu125</code>:  Use the PyTorch index for CUDA 12.5</li>
+<li><code>cu124</code>:  Use the PyTorch index for CUDA 12.4</li>
+<li><code>cu123</code>:  Use the PyTorch index for CUDA 12.3</li>
+<li><code>cu122</code>:  Use the PyTorch index for CUDA 12.2</li>
+<li><code>cu121</code>:  Use the PyTorch index for CUDA 12.1</li>
+<li><code>cu120</code>:  Use the PyTorch index for CUDA 12.0</li>
+<li><code>cu118</code>:  Use the PyTorch index for CUDA 11.8</li>
+<li><code>cu117</code>:  Use the PyTorch index for CUDA 11.7</li>
+<li><code>cu116</code>:  Use the PyTorch index for CUDA 11.6</li>
+<li><code>cu115</code>:  Use the PyTorch index for CUDA 11.5</li>
+<li><code>cu114</code>:  Use the PyTorch index for CUDA 11.4</li>
+<li><code>cu113</code>:  Use the PyTorch index for CUDA 11.3</li>
+<li><code>cu112</code>:  Use the PyTorch index for CUDA 11.2</li>
+<li><code>cu111</code>:  Use the PyTorch index for CUDA 11.1</li>
+<li><code>cu110</code>:  Use the PyTorch index for CUDA 11.0</li>
+<li><code>cu102</code>:  Use the PyTorch index for CUDA 10.2</li>
+<li><code>cu101</code>:  Use the PyTorch index for CUDA 10.1</li>
+<li><code>cu100</code>:  Use the PyTorch index for CUDA 10.0</li>
+<li><code>cu92</code>:  Use the PyTorch index for CUDA 9.2</li>
+<li><code>cu91</code>:  Use the PyTorch index for CUDA 9.1</li>
+<li><code>cu90</code>:  Use the PyTorch index for CUDA 9.0</li>
+<li><code>cu80</code>:  Use the PyTorch index for CUDA 8.0</li>
+<li><code>rocm6.4</code>:  Use the PyTorch index for ROCm 6.4</li>
+<li><code>rocm6.3</code>:  Use the PyTorch index for ROCm 6.3</li>
+<li><code>rocm6.2.4</code>:  Use the PyTorch index for ROCm 6.2.4</li>
+<li><code>rocm6.2</code>:  Use the PyTorch index for ROCm 6.2</li>
+<li><code>rocm6.1</code>:  Use the PyTorch index for ROCm 6.1</li>
+<li><code>rocm6.0</code>:  Use the PyTorch index for ROCm 6.0</li>
+<li><code>rocm5.7</code>:  Use the PyTorch index for ROCm 5.7</li>
+<li><code>rocm5.6</code>:  Use the PyTorch index for ROCm 5.6</li>
+<li><code>rocm5.5</code>:  Use the PyTorch index for ROCm 5.5</li>
+<li><code>rocm5.4.2</code>:  Use the PyTorch index for ROCm 5.4.2</li>
+<li><code>rocm5.4</code>:  Use the PyTorch index for ROCm 5.4</li>
+<li><code>rocm5.3</code>:  Use the PyTorch index for ROCm 5.3</li>
+<li><code>rocm5.2</code>:  Use the PyTorch index for ROCm 5.2</li>
+<li><code>rocm5.1.1</code>:  Use the PyTorch index for ROCm 5.1.1</li>
+<li><code>rocm4.2</code>:  Use the PyTorch index for ROCm 4.2</li>
+<li><code>rocm4.1</code>:  Use the PyTorch index for ROCm 4.1</li>
+<li><code>rocm4.0.1</code>:  Use the PyTorch index for ROCm 4.0.1</li>
+<li><code>xpu</code>:  Use the PyTorch index for Intel XPU</li>
 </ul></dd><dt id="uv-tool-install--upgrade"><a href="#uv-tool-install--upgrade"><code>--upgrade</code></a>, <code>-U</code></dt><dd><p>Allow package upgrades, ignoring pinned versions in any existing output file. Implies <code>--refresh</code></p>
 </dd><dt id="uv-tool-install--upgrade-package"><a href="#uv-tool-install--upgrade-package"><code>--upgrade-package</code></a>, <code>-P</code> <i>upgrade-package</i></dt><dd><p>Allow upgrades for a specific package, ignoring pinned versions in any existing output file. Implies <code>--refresh-package</code></p>
 </dd><dt id="uv-tool-install--verbose"><a href="#uv-tool-install--verbose"><code>--verbose</code></a>, <code>-v</code></dt><dd><p>Use verbose output.</p>
