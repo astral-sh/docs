@@ -504,7 +504,7 @@ dependencies = ["member1", "member2"]
 
 ## [Lower bounds](#lower-bounds)
 
-By default, `uv add` adds lower bounds to dependencies and, when using uv to manage projects, uv will warn if direct dependencies don't have lower bound.
+By default, `uv add` adds lower bounds to dependencies and, when using uv to manage projects, uv will warn if direct dependencies don't have lower bounds.
 
 Lower bounds are not critical in the "happy path", but they are important for cases where there are dependency conflicts. For example, consider a project that requires two packages and those packages have conflicting dependencies. The resolver needs to check all combinations of all versions within the constraints for the two packages — if all of them conflict, an error is reported because the dependencies are not satisfiable. If there are no lower bounds, the resolver can (and often will) backtrack down to the oldest version of a package. This isn't only problematic because it's slow, the old version of the package often fails to build, or the resolver can end up picking a version that's old enough that it doesn't depend on the conflicting package, but also doesn't work with your code.
 

@@ -8339,7 +8339,7 @@ May also be set with the `UV_CONFIG_FILE` environment variable.
 ```
 By default, only a `python{major}.{minor}` executable is installed, e.g., `python3.10`. When the `--default` flag is used, `python{major}`, e.g., `python3`, and `python` executables are also installed.
 
-Alternative Python variants will still include their tag. For example, installing 3.13+freethreaded with `--default` will include in `python3t` and `pythont`, not `python3` and `python`.
+Alternative Python variants will still include their tag. For example, installing 3.13+freethreaded with `--default` will include `python3t` and `pythont` instead of `python3` and `python`.
 
 If multiple Python versions are requested, uv will exit with an error.
 ```
