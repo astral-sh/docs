@@ -1221,6 +1221,44 @@ fork-strategy = "fewest"
 
 ______________________________________________________________________
 
+### \[[`http-proxy`](#http-proxy)\](#http-proxy)
+
+The URL of the HTTP proxy to use.
+
+**Default value**: `None`
+
+**Type**: `str`
+
+**Example usage**:
+
+uv.toml
+
+```
+http-proxy = "http://proxy.example.com"
+
+```
+
+______________________________________________________________________
+
+### \[[`https-proxy`](#https-proxy)\](#https-proxy)
+
+The URL of the HTTPS proxy to use.
+
+**Default value**: `None`
+
+**Type**: `str`
+
+**Example usage**:
+
+uv.toml
+
+```
+https-proxy = "https://proxy.example.com"
+
+```
+
+______________________________________________________________________
+
 ### \[[`index`](#index)\](#index)
 
 The package indexes to use when resolving dependencies.
@@ -1595,6 +1633,25 @@ no-index = true
 
 ```
 no-index = true
+
+```
+
+______________________________________________________________________
+
+### \[[`no-proxy`](#no-proxy)\](#no-proxy)
+
+A list of hosts to exclude from proxying.
+
+**Default value**: `None`
+
+**Type**: `list[str]`
+
+**Example usage**:
+
+uv.toml
+
+```
+no-proxy = ["localhost", "127.0.0.1"]
 
 ```
 

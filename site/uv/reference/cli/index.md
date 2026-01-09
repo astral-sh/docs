@@ -158,22 +158,18 @@ Possible values:
 - `subprocess`: Use the `keyring` command for credential lookup
 ```
 
-[`--managed-python`](#uv-auth-login--managed-python) : Require use of uv-managed Python versions.
+[`--managed-python`](#uv-auth-login--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-
-May also be set with the `UV_MANAGED_PYTHON` environment variable.
 ```
 
-[`--native-tls`](#uv-auth-login--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+[`--native-tls`](#uv-auth-login--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
 
 ```
 By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
 
 However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-
-May also be set with the `UV_NATIVE_TLS` environment variable.
 ```
 
 [`--no-cache`](#uv-auth-login--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
@@ -190,30 +186,24 @@ Normally, configuration files are discovered in the current directory, parent di
 May also be set with the `UV_NO_CONFIG` environment variable.
 ```
 
-[`--no-managed-python`](#uv-auth-login--no-managed-python) : Disable use of uv-managed Python versions.
+[`--no-managed-python`](#uv-auth-login--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
 
 ```
 Instead, uv will search for a suitable Python version on the system.
-
-May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
 ```
 
-[`--no-progress`](#uv-auth-login--no-progress) : Hide all progress outputs.
+[`--no-progress`](#uv-auth-login--no-progress) : Hide all progress outputs [env: UV_NO_PROGRESS=]
 
 ```
 For example, spinners or progress bars.
-
-May also be set with the `UV_NO_PROGRESS` environment variable.
 ```
 
 [`--no-python-downloads`](#uv-auth-login--no-python-downloads) : Disable automatic downloads of Python.
 
-[`--offline`](#uv-auth-login--offline) : Disable network access.
+[`--offline`](#uv-auth-login--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
 When disabled, uv will only use locally cached data and locally available files.
-
-May also be set with the `UV_OFFLINE` environment variable.
 ```
 
 [`--password`](#uv-auth-login--password) *password* : The password to use for the service.
@@ -342,22 +332,18 @@ Possible values:
 - `subprocess`: Use the `keyring` command for credential lookup
 ```
 
-[`--managed-python`](#uv-auth-logout--managed-python) : Require use of uv-managed Python versions.
+[`--managed-python`](#uv-auth-logout--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-
-May also be set with the `UV_MANAGED_PYTHON` environment variable.
 ```
 
-[`--native-tls`](#uv-auth-logout--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+[`--native-tls`](#uv-auth-logout--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
 
 ```
 By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
 
 However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-
-May also be set with the `UV_NATIVE_TLS` environment variable.
 ```
 
 [`--no-cache`](#uv-auth-logout--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
@@ -374,30 +360,24 @@ Normally, configuration files are discovered in the current directory, parent di
 May also be set with the `UV_NO_CONFIG` environment variable.
 ```
 
-[`--no-managed-python`](#uv-auth-logout--no-managed-python) : Disable use of uv-managed Python versions.
+[`--no-managed-python`](#uv-auth-logout--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
 
 ```
 Instead, uv will search for a suitable Python version on the system.
-
-May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
 ```
 
-[`--no-progress`](#uv-auth-logout--no-progress) : Hide all progress outputs.
+[`--no-progress`](#uv-auth-logout--no-progress) : Hide all progress outputs [env: UV_NO_PROGRESS=]
 
 ```
 For example, spinners or progress bars.
-
-May also be set with the `UV_NO_PROGRESS` environment variable.
 ```
 
 [`--no-python-downloads`](#uv-auth-logout--no-python-downloads) : Disable automatic downloads of Python.
 
-[`--offline`](#uv-auth-logout--offline) : Disable network access.
+[`--offline`](#uv-auth-logout--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
 When disabled, uv will only use locally cached data and locally available files.
-
-May also be set with the `UV_OFFLINE` environment variable.
 ```
 
 [`--project`](#uv-auth-logout--project) *project* : Discover a project in the given directory.
@@ -510,22 +490,18 @@ Possible values:
 - `subprocess`: Use the `keyring` command for credential lookup
 ```
 
-[`--managed-python`](#uv-auth-token--managed-python) : Require use of uv-managed Python versions.
+[`--managed-python`](#uv-auth-token--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-
-May also be set with the `UV_MANAGED_PYTHON` environment variable.
 ```
 
-[`--native-tls`](#uv-auth-token--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+[`--native-tls`](#uv-auth-token--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
 
 ```
 By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
 
 However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-
-May also be set with the `UV_NATIVE_TLS` environment variable.
 ```
 
 [`--no-cache`](#uv-auth-token--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
@@ -542,30 +518,24 @@ Normally, configuration files are discovered in the current directory, parent di
 May also be set with the `UV_NO_CONFIG` environment variable.
 ```
 
-[`--no-managed-python`](#uv-auth-token--no-managed-python) : Disable use of uv-managed Python versions.
+[`--no-managed-python`](#uv-auth-token--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
 
 ```
 Instead, uv will search for a suitable Python version on the system.
-
-May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
 ```
 
-[`--no-progress`](#uv-auth-token--no-progress) : Hide all progress outputs.
+[`--no-progress`](#uv-auth-token--no-progress) : Hide all progress outputs [env: UV_NO_PROGRESS=]
 
 ```
 For example, spinners or progress bars.
-
-May also be set with the `UV_NO_PROGRESS` environment variable.
 ```
 
 [`--no-python-downloads`](#uv-auth-token--no-python-downloads) : Disable automatic downloads of Python.
 
-[`--offline`](#uv-auth-token--offline) : Disable network access.
+[`--offline`](#uv-auth-token--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
 When disabled, uv will only use locally cached data and locally available files.
-
-May also be set with the `UV_OFFLINE` environment variable.
 ```
 
 [`--project`](#uv-auth-token--project) *project* : Discover a project in the given directory.
@@ -673,22 +643,18 @@ May also be set with the `UV_WORKING_DIR` environment variable.
 
 [`--help`](#uv-auth-dir--help), `-h` : Display the concise help for this command
 
-[`--managed-python`](#uv-auth-dir--managed-python) : Require use of uv-managed Python versions.
+[`--managed-python`](#uv-auth-dir--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-
-May also be set with the `UV_MANAGED_PYTHON` environment variable.
 ```
 
-[`--native-tls`](#uv-auth-dir--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+[`--native-tls`](#uv-auth-dir--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
 
 ```
 By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
 
 However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-
-May also be set with the `UV_NATIVE_TLS` environment variable.
 ```
 
 [`--no-cache`](#uv-auth-dir--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
@@ -705,30 +671,24 @@ Normally, configuration files are discovered in the current directory, parent di
 May also be set with the `UV_NO_CONFIG` environment variable.
 ```
 
-[`--no-managed-python`](#uv-auth-dir--no-managed-python) : Disable use of uv-managed Python versions.
+[`--no-managed-python`](#uv-auth-dir--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
 
 ```
 Instead, uv will search for a suitable Python version on the system.
-
-May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
 ```
 
-[`--no-progress`](#uv-auth-dir--no-progress) : Hide all progress outputs.
+[`--no-progress`](#uv-auth-dir--no-progress) : Hide all progress outputs [env: UV_NO_PROGRESS=]
 
 ```
 For example, spinners or progress bars.
-
-May also be set with the `UV_NO_PROGRESS` environment variable.
 ```
 
 [`--no-python-downloads`](#uv-auth-dir--no-python-downloads) : Disable automatic downloads of Python.
 
-[`--offline`](#uv-auth-dir--offline) : Disable network access.
+[`--offline`](#uv-auth-dir--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
 When disabled, uv will only use locally cached data and locally available files.
-
-May also be set with the `UV_OFFLINE` environment variable.
 ```
 
 [`--project`](#uv-auth-dir--project) *project* : Discover a project in the given directory.
@@ -963,12 +923,10 @@ Possible values:
 - `requires-python`: Optimize for selecting latest supported version of each package, for each supported Python version
 ```
 
-[`--frozen`](#uv-run--frozen) : Run without updating the `uv.lock` file.
+[`--frozen`](#uv-run--frozen) : Run without updating the `uv.lock` file [env: UV_FROZEN=]
 
 ```
 Instead of checking if the lockfile is up-to-date, uses the versions in the lockfile as the source of truth. If the lockfile is missing, uv will exit with an error. If the `pyproject.toml` includes changes to dependencies that have not been included in the lockfile yet, they will not be present in the environment.
-
-May also be set with the `UV_FROZEN` environment variable.
 ```
 
 [`--group`](#uv-run--group) *group* : Include dependencies from the specified dependency group.
@@ -1021,7 +979,7 @@ The index given by this flag is given lower priority than all other indexes spec
 May also be set with the `UV_INDEX_URL` environment variable.
 ```
 
-[`--isolated`](#uv-run--isolated) : Run the command in an isolated virtual environment.
+[`--isolated`](#uv-run--isolated) : Run the command in an isolated virtual environment [env: UV_ISOLATED=]
 
 ```
 Usually, the project environment is reused for performance. This option forces a fresh environment to be used for the project, enforcing strict isolation between dependencies and declaration of requirements.
@@ -1029,8 +987,6 @@ Usually, the project environment is reused for performance. This option forces a
 An editable installation is still used for the project.
 
 When used with `--with` or `--with-requirements`, the additional dependencies will still be layered in a second environment.
-
-May also be set with the `UV_ISOLATED` environment variable.
 ```
 
 [`--keyring-provider`](#uv-run--keyring-provider) *keyring-provider* : Attempt to use `keyring` for authentication for index URLs.
@@ -1065,20 +1021,16 @@ Possible values:
 - `symlink`: Symbolically link packages from the wheel into the `site-packages` directory
 ```
 
-[`--locked`](#uv-run--locked) : Assert that the `uv.lock` will remain unchanged.
+[`--locked`](#uv-run--locked) : Assert that the `uv.lock` will remain unchanged [env: UV_LOCKED=]
 
 ```
 Requires that the lockfile is up-to-date. If the lockfile is missing or needs to be updated, uv will exit with an error.
-
-May also be set with the `UV_LOCKED` environment variable.
 ```
 
-[`--managed-python`](#uv-run--managed-python) : Require use of uv-managed Python versions.
+[`--managed-python`](#uv-run--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-
-May also be set with the `UV_MANAGED_PYTHON` environment variable.
 ```
 
 [`--module`](#uv-run--module), `-m` : Run a Python module.
@@ -1087,14 +1039,12 @@ May also be set with the `UV_MANAGED_PYTHON` environment variable.
 Equivalent to `python -m <module>`.
 ```
 
-[`--native-tls`](#uv-run--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+[`--native-tls`](#uv-run--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
 
 ```
 By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
 
 However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-
-May also be set with the `UV_NATIVE_TLS` environment variable.
 ```
 
 [`--no-binary`](#uv-run--no-binary) : Don't install pre-built wheels.
@@ -1161,27 +1111,17 @@ uv includes the groups defined in `tool.uv.default-groups` by default. This disa
 May also be set with the `UV_NO_DEFAULT_GROUPS` environment variable.
 ```
 
-[`--no-dev`](#uv-run--no-dev) : Disable the development dependency group.
+[`--no-dev`](#uv-run--no-dev) : Disable the development dependency group [env: UV_NO_DEV=]
 
 ```
 This option is an alias of `--no-group dev`. See `--no-default-groups` to disable all default groups instead.
 
 This option is only available when running in a project.
-
-May also be set with the `UV_NO_DEV` environment variable.
 ```
 
-[`--no-editable`](#uv-run--no-editable) : Install any editable dependencies, including the project and any workspace members, as non-editable
+[`--no-editable`](#uv-run--no-editable) : Install any editable dependencies, including the project and any workspace members, as non-editable [env: UV_NO_EDITABLE=]
 
-```
-May also be set with the `UV_NO_EDITABLE` environment variable.
-```
-
-[`--no-env-file`](#uv-run--no-env-file) : Avoid reading environment variables from a `.env` file
-
-```
-May also be set with the `UV_NO_ENV_FILE` environment variable.
-```
+[`--no-env-file`](#uv-run--no-env-file) : Avoid reading environment variables from a `.env` file [env: UV_NO_ENV_FILE=]
 
 [`--no-extra`](#uv-run--no-extra) *no-extra* : Exclude the specified optional dependencies, if `--all-extras` is supplied.
 
@@ -1201,20 +1141,16 @@ May also be set with the `UV_NO_GROUP` environment variable.
 
 [`--no-index`](#uv-run--no-index) : Ignore the registry index (e.g., PyPI), instead relying on direct URL dependencies and those provided via `--find-links`
 
-[`--no-managed-python`](#uv-run--no-managed-python) : Disable use of uv-managed Python versions.
+[`--no-managed-python`](#uv-run--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
 
 ```
 Instead, uv will search for a suitable Python version on the system.
-
-May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
 ```
 
-[`--no-progress`](#uv-run--no-progress) : Hide all progress outputs.
+[`--no-progress`](#uv-run--no-progress) : Hide all progress outputs [env: UV_NO_PROGRESS=]
 
 ```
 For example, spinners or progress bars.
-
-May also be set with the `UV_NO_PROGRESS` environment variable.
 ```
 
 [`--no-project`](#uv-run--no-project), `--no_workspace` : Avoid discovering the project or workspace.
@@ -1233,20 +1169,16 @@ If a virtual environment is active or found in a current or parent directory, it
 May also be set with the `UV_NO_SOURCES` environment variable.
 ```
 
-[`--no-sync`](#uv-run--no-sync) : Avoid syncing the virtual environment.
+[`--no-sync`](#uv-run--no-sync) : Avoid syncing the virtual environment [env: UV_NO_SYNC=]
 
 ```
 Implies `--frozen`, as the project dependencies will be ignored (i.e., the lockfile will not be updated, since the environment will not be synced regardless).
-
-May also be set with the `UV_NO_SYNC` environment variable.
 ```
 
-[`--offline`](#uv-run--offline) : Disable network access.
+[`--offline`](#uv-run--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
 When disabled, uv will only use locally cached data and locally available files.
-
-May also be set with the `UV_OFFLINE` environment variable.
 ```
 
 [`--only-dev`](#uv-run--only-dev) : Only include the development dependency group.
@@ -1582,12 +1514,10 @@ May also be set with the `UV_WORKING_DIR` environment variable.
 A library is a project that is intended to be built and distributed as a Python package.
 ```
 
-[`--managed-python`](#uv-init--managed-python) : Require use of uv-managed Python versions.
+[`--managed-python`](#uv-init--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-
-May also be set with the `UV_MANAGED_PYTHON` environment variable.
 ```
 
 [`--name`](#uv-init--name) *name* : The name of the project.
@@ -1596,14 +1526,12 @@ May also be set with the `UV_MANAGED_PYTHON` environment variable.
 Defaults to the name of the directory.
 ```
 
-[`--native-tls`](#uv-init--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+[`--native-tls`](#uv-init--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
 
 ```
 By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
 
 However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-
-May also be set with the `UV_NATIVE_TLS` environment variable.
 ```
 
 [`--no-cache`](#uv-init--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
@@ -1622,12 +1550,10 @@ May also be set with the `UV_NO_CONFIG` environment variable.
 
 [`--no-description`](#uv-init--no-description) : Disable the description for the project
 
-[`--no-managed-python`](#uv-init--no-managed-python) : Disable use of uv-managed Python versions.
+[`--no-managed-python`](#uv-init--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
 
 ```
 Instead, uv will search for a suitable Python version on the system.
-
-May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
 ```
 
 [`--no-package`](#uv-init--no-package) : Do not set up the project to be built as a Python package.
@@ -1644,12 +1570,10 @@ This is the default behavior when using `--app`.
 By default, uv will create a `.python-version` file containing the minor version of the discovered Python interpreter, which will cause subsequent uv commands to use that version.
 ```
 
-[`--no-progress`](#uv-init--no-progress) : Hide all progress outputs.
+[`--no-progress`](#uv-init--no-progress) : Hide all progress outputs [env: UV_NO_PROGRESS=]
 
 ```
 For example, spinners or progress bars.
-
-May also be set with the `UV_NO_PROGRESS` environment variable.
 ```
 
 [`--no-python-downloads`](#uv-init--no-python-downloads) : Disable automatic downloads of Python.
@@ -1662,12 +1586,10 @@ May also be set with the `UV_NO_PROGRESS` environment variable.
 By default, uv searches for workspaces in the current directory or any parent directory.
 ```
 
-[`--offline`](#uv-init--offline) : Disable network access.
+[`--offline`](#uv-init--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
 When disabled, uv will only use locally cached data and locally available files.
-
-May also be set with the `UV_OFFLINE` environment variable.
 ```
 
 [`--package`](#uv-init--package) : Set up the project to be built as a Python package.
@@ -1863,12 +1785,10 @@ The index given by this flag is given lower priority than all other indexes spec
 May also be set with the `UV_DEFAULT_INDEX` environment variable.
 ```
 
-[`--dev`](#uv-add--dev) : Add the requirements to the development dependency group.
+[`--dev`](#uv-add--dev) : Add the requirements to the development dependency group [env: UV_DEV=]
 
 ```
 This option is an alias for `--group dev`.
-
-May also be set with the `UV_DEV` environment variable.
 ```
 
 [`--directory`](#uv-add--directory) *directory* : Change to the given directory prior to running the command.
@@ -1946,12 +1866,10 @@ Possible values:
 - `requires-python`: Optimize for selecting latest supported version of each package, for each supported Python version
 ```
 
-[`--frozen`](#uv-add--frozen) : Add dependencies without re-locking the project.
+[`--frozen`](#uv-add--frozen) : Add dependencies without re-locking the project [env: UV_FROZEN=]
 
 ```
 The project environment will not be synced.
-
-May also be set with the `UV_FROZEN` environment variable.
 ```
 
 [`--group`](#uv-add--group) *group* : Add the requirements to the specified dependency group.
@@ -2032,32 +1950,26 @@ Possible values:
 - `symlink`: Symbolically link packages from the wheel into the `site-packages` directory
 ```
 
-[`--locked`](#uv-add--locked) : Assert that the `uv.lock` will remain unchanged.
+[`--locked`](#uv-add--locked) : Assert that the `uv.lock` will remain unchanged [env: UV_LOCKED=]
 
 ```
 Requires that the lockfile is up-to-date. If the lockfile is missing or needs to be updated, uv will exit with an error.
-
-May also be set with the `UV_LOCKED` environment variable.
 ```
 
-[`--managed-python`](#uv-add--managed-python) : Require use of uv-managed Python versions.
+[`--managed-python`](#uv-add--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-
-May also be set with the `UV_MANAGED_PYTHON` environment variable.
 ```
 
 [`--marker`](#uv-add--marker), `-m` *marker* : Apply this marker to all added packages
 
-[`--native-tls`](#uv-add--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+[`--native-tls`](#uv-add--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
 
 ```
 By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
 
 However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-
-May also be set with the `UV_NATIVE_TLS` environment variable.
 ```
 
 [`--no-binary`](#uv-add--no-binary) : Don't install pre-built wheels.
@@ -2150,20 +2062,16 @@ By default, all workspace members and their dependencies are installed into the 
 The inverse `--only-install-workspace` can be used to install *only* workspace members, excluding all other dependencies.
 ```
 
-[`--no-managed-python`](#uv-add--no-managed-python) : Disable use of uv-managed Python versions.
+[`--no-managed-python`](#uv-add--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
 
 ```
 Instead, uv will search for a suitable Python version on the system.
-
-May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
 ```
 
-[`--no-progress`](#uv-add--no-progress) : Hide all progress outputs.
+[`--no-progress`](#uv-add--no-progress) : Hide all progress outputs [env: UV_NO_PROGRESS=]
 
 ```
 For example, spinners or progress bars.
-
-May also be set with the `UV_NO_PROGRESS` environment variable.
 ```
 
 [`--no-python-downloads`](#uv-add--no-python-downloads) : Disable automatic downloads of Python.
@@ -2174,11 +2082,7 @@ May also be set with the `UV_NO_PROGRESS` environment variable.
 May also be set with the `UV_NO_SOURCES` environment variable.
 ```
 
-[`--no-sync`](#uv-add--no-sync) : Avoid syncing the virtual environment
-
-```
-May also be set with the `UV_NO_SYNC` environment variable.
-```
+[`--no-sync`](#uv-add--no-sync) : Avoid syncing the virtual environment [env: UV_NO_SYNC=]
 
 [`--no-workspace`](#uv-add--no-workspace) : Don't add the dependency as a workspace member.
 
@@ -2186,12 +2090,10 @@ May also be set with the `UV_NO_SYNC` environment variable.
 By default, when adding a dependency that's a local path and is within the workspace directory, uv will add it as a workspace member; pass `--no-workspace` to add the package as direct path dependency instead.
 ```
 
-[`--offline`](#uv-add--offline) : Disable network access.
+[`--offline`](#uv-add--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
 When disabled, uv will only use locally cached data and locally available files.
-
-May also be set with the `UV_OFFLINE` environment variable.
 ```
 
 [`--optional`](#uv-add--optional) *optional* : Add the requirements to the package's optional dependencies for the specified extra.
@@ -2411,12 +2313,10 @@ The index given by this flag is given lower priority than all other indexes spec
 May also be set with the `UV_DEFAULT_INDEX` environment variable.
 ```
 
-[`--dev`](#uv-remove--dev) : Remove the packages from the development dependency group.
+[`--dev`](#uv-remove--dev) : Remove the packages from the development dependency group [env: UV_DEV=]
 
 ```
 This option is an alias for `--group dev`.
-
-May also be set with the `UV_DEV` environment variable.
 ```
 
 [`--directory`](#uv-remove--directory) *directory* : Change to the given directory prior to running the command.
@@ -2484,12 +2384,10 @@ Possible values:
 - `requires-python`: Optimize for selecting latest supported version of each package, for each supported Python version
 ```
 
-[`--frozen`](#uv-remove--frozen) : Remove dependencies without re-locking the project.
+[`--frozen`](#uv-remove--frozen) : Remove dependencies without re-locking the project [env: UV_FROZEN=]
 
 ```
 The project environment will not be synced.
-
-May also be set with the `UV_FROZEN` environment variable.
 ```
 
 [`--group`](#uv-remove--group) *group* : Remove the packages from the specified dependency group
@@ -2564,30 +2462,24 @@ Possible values:
 - `symlink`: Symbolically link packages from the wheel into the `site-packages` directory
 ```
 
-[`--locked`](#uv-remove--locked) : Assert that the `uv.lock` will remain unchanged.
+[`--locked`](#uv-remove--locked) : Assert that the `uv.lock` will remain unchanged [env: UV_LOCKED=]
 
 ```
 Requires that the lockfile is up-to-date. If the lockfile is missing or needs to be updated, uv will exit with an error.
-
-May also be set with the `UV_LOCKED` environment variable.
 ```
 
-[`--managed-python`](#uv-remove--managed-python) : Require use of uv-managed Python versions.
+[`--managed-python`](#uv-remove--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-
-May also be set with the `UV_MANAGED_PYTHON` environment variable.
 ```
 
-[`--native-tls`](#uv-remove--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+[`--native-tls`](#uv-remove--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
 
 ```
 By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
 
 However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-
-May also be set with the `UV_NATIVE_TLS` environment variable.
 ```
 
 [`--no-binary`](#uv-remove--no-binary) : Don't install pre-built wheels.
@@ -2648,20 +2540,16 @@ May also be set with the `UV_NO_CONFIG` environment variable.
 
 [`--no-index`](#uv-remove--no-index) : Ignore the registry index (e.g., PyPI), instead relying on direct URL dependencies and those provided via `--find-links`
 
-[`--no-managed-python`](#uv-remove--no-managed-python) : Disable use of uv-managed Python versions.
+[`--no-managed-python`](#uv-remove--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
 
 ```
 Instead, uv will search for a suitable Python version on the system.
-
-May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
 ```
 
-[`--no-progress`](#uv-remove--no-progress) : Hide all progress outputs.
+[`--no-progress`](#uv-remove--no-progress) : Hide all progress outputs [env: UV_NO_PROGRESS=]
 
 ```
 For example, spinners or progress bars.
-
-May also be set with the `UV_NO_PROGRESS` environment variable.
 ```
 
 [`--no-python-downloads`](#uv-remove--no-python-downloads) : Disable automatic downloads of Python.
@@ -2672,18 +2560,12 @@ May also be set with the `UV_NO_PROGRESS` environment variable.
 May also be set with the `UV_NO_SOURCES` environment variable.
 ```
 
-[`--no-sync`](#uv-remove--no-sync) : Avoid syncing the virtual environment after re-locking the project
+[`--no-sync`](#uv-remove--no-sync) : Avoid syncing the virtual environment after re-locking the project [env: UV_NO_SYNC=]
 
-```
-May also be set with the `UV_NO_SYNC` environment variable.
-```
-
-[`--offline`](#uv-remove--offline) : Disable network access.
+[`--offline`](#uv-remove--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
 When disabled, uv will only use locally cached data and locally available files.
-
-May also be set with the `UV_OFFLINE` environment variable.
 ```
 
 [`--optional`](#uv-remove--optional) *optional* : Remove the packages from the project's optional dependencies for the specified extra
@@ -2954,12 +2836,10 @@ Possible values:
 - `requires-python`: Optimize for selecting latest supported version of each package, for each supported Python version
 ```
 
-[`--frozen`](#uv-version--frozen) : Update the version without re-locking the project.
+[`--frozen`](#uv-version--frozen) : Update the version without re-locking the project [env: UV_FROZEN=]
 
 ```
 The project environment will not be synced.
-
-May also be set with the `UV_FROZEN` environment variable.
 ```
 
 [`--help`](#uv-version--help), `-h` : Display the concise help for this command
@@ -3032,30 +2912,24 @@ Possible values:
 - `symlink`: Symbolically link packages from the wheel into the `site-packages` directory
 ```
 
-[`--locked`](#uv-version--locked) : Assert that the `uv.lock` will remain unchanged.
+[`--locked`](#uv-version--locked) : Assert that the `uv.lock` will remain unchanged [env: UV_LOCKED=]
 
 ```
 Requires that the lockfile is up-to-date. If the lockfile is missing or needs to be updated, uv will exit with an error.
-
-May also be set with the `UV_LOCKED` environment variable.
 ```
 
-[`--managed-python`](#uv-version--managed-python) : Require use of uv-managed Python versions.
+[`--managed-python`](#uv-version--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-
-May also be set with the `UV_MANAGED_PYTHON` environment variable.
 ```
 
-[`--native-tls`](#uv-version--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+[`--native-tls`](#uv-version--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
 
 ```
 By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
 
 However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-
-May also be set with the `UV_NATIVE_TLS` environment variable.
 ```
 
 [`--no-binary`](#uv-version--no-binary) : Don't install pre-built wheels.
@@ -3116,20 +2990,16 @@ May also be set with the `UV_NO_CONFIG` environment variable.
 
 [`--no-index`](#uv-version--no-index) : Ignore the registry index (e.g., PyPI), instead relying on direct URL dependencies and those provided via `--find-links`
 
-[`--no-managed-python`](#uv-version--no-managed-python) : Disable use of uv-managed Python versions.
+[`--no-managed-python`](#uv-version--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
 
 ```
 Instead, uv will search for a suitable Python version on the system.
-
-May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
 ```
 
-[`--no-progress`](#uv-version--no-progress) : Hide all progress outputs.
+[`--no-progress`](#uv-version--no-progress) : Hide all progress outputs [env: UV_NO_PROGRESS=]
 
 ```
 For example, spinners or progress bars.
-
-May also be set with the `UV_NO_PROGRESS` environment variable.
 ```
 
 [`--no-python-downloads`](#uv-version--no-python-downloads) : Disable automatic downloads of Python.
@@ -3140,18 +3010,12 @@ May also be set with the `UV_NO_PROGRESS` environment variable.
 May also be set with the `UV_NO_SOURCES` environment variable.
 ```
 
-[`--no-sync`](#uv-version--no-sync) : Avoid syncing the virtual environment after re-locking the project
+[`--no-sync`](#uv-version--no-sync) : Avoid syncing the virtual environment after re-locking the project [env: UV_NO_SYNC=]
 
-```
-May also be set with the `UV_NO_SYNC` environment variable.
-```
-
-[`--offline`](#uv-version--offline) : Disable network access.
+[`--offline`](#uv-version--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
 When disabled, uv will only use locally cached data and locally available files.
-
-May also be set with the `UV_OFFLINE` environment variable.
 ```
 
 [`--output-format`](#uv-version--output-format) *output-format* : The format of the output
@@ -3455,12 +3319,10 @@ Possible values:
 - `requires-python`: Optimize for selecting latest supported version of each package, for each supported Python version
 ```
 
-[`--frozen`](#uv-sync--frozen) : Sync without updating the `uv.lock` file.
+[`--frozen`](#uv-sync--frozen) : Sync without updating the `uv.lock` file [env: UV_FROZEN=]
 
 ```
 Instead of checking if the lockfile is up-to-date, uses the versions in the lockfile as the source of truth. If the lockfile is missing, uv will exit with an error. If the `pyproject.toml` includes changes to dependencies that have not been included in the lockfile yet, they will not be present in the environment.
-
-May also be set with the `UV_FROZEN` environment variable.
 ```
 
 [`--group`](#uv-sync--group) *group* : Include dependencies from the specified dependency group.
@@ -3547,30 +3409,24 @@ Possible values:
 - `symlink`: Symbolically link packages from the wheel into the `site-packages` directory
 ```
 
-[`--locked`](#uv-sync--locked) : Assert that the `uv.lock` will remain unchanged.
+[`--locked`](#uv-sync--locked) : Assert that the `uv.lock` will remain unchanged [env: UV_LOCKED=]
 
 ```
 Requires that the lockfile is up-to-date. If the lockfile is missing or needs to be updated, uv will exit with an error.
-
-May also be set with the `UV_LOCKED` environment variable.
 ```
 
-[`--managed-python`](#uv-sync--managed-python) : Require use of uv-managed Python versions.
+[`--managed-python`](#uv-sync--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-
-May also be set with the `UV_MANAGED_PYTHON` environment variable.
 ```
 
-[`--native-tls`](#uv-sync--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+[`--native-tls`](#uv-sync--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
 
 ```
 By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
 
 However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-
-May also be set with the `UV_NATIVE_TLS` environment variable.
 ```
 
 [`--no-binary`](#uv-sync--no-binary) : Don't install pre-built wheels.
@@ -3637,19 +3493,13 @@ uv includes the groups defined in `tool.uv.default-groups` by default. This disa
 May also be set with the `UV_NO_DEFAULT_GROUPS` environment variable.
 ```
 
-[`--no-dev`](#uv-sync--no-dev) : Disable the development dependency group.
+[`--no-dev`](#uv-sync--no-dev) : Disable the development dependency group [env: UV_NO_DEV=]
 
 ```
 This option is an alias of `--no-group dev`. See `--no-default-groups` to disable all default groups instead.
-
-May also be set with the `UV_NO_DEV` environment variable.
 ```
 
-[`--no-editable`](#uv-sync--no-editable) : Install any editable dependencies, including the project and any workspace members, as non-editable
-
-```
-May also be set with the `UV_NO_EDITABLE` environment variable.
-```
+[`--no-editable`](#uv-sync--no-editable) : Install any editable dependencies, including the project and any workspace members, as non-editable [env: UV_NO_EDITABLE=]
 
 [`--no-extra`](#uv-sync--no-extra) *no-extra* : Exclude the specified optional dependencies, if `--all-extras` is supplied.
 
@@ -3701,20 +3551,16 @@ By default, all workspace members and their dependencies are installed into the 
 The inverse `--only-install-workspace` can be used to install *only* workspace members, excluding all other dependencies.
 ```
 
-[`--no-managed-python`](#uv-sync--no-managed-python) : Disable use of uv-managed Python versions.
+[`--no-managed-python`](#uv-sync--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
 
 ```
 Instead, uv will search for a suitable Python version on the system.
-
-May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
 ```
 
-[`--no-progress`](#uv-sync--no-progress) : Hide all progress outputs.
+[`--no-progress`](#uv-sync--no-progress) : Hide all progress outputs [env: UV_NO_PROGRESS=]
 
 ```
 For example, spinners or progress bars.
-
-May also be set with the `UV_NO_PROGRESS` environment variable.
 ```
 
 [`--no-python-downloads`](#uv-sync--no-python-downloads) : Disable automatic downloads of Python.
@@ -3725,12 +3571,10 @@ May also be set with the `UV_NO_PROGRESS` environment variable.
 May also be set with the `UV_NO_SOURCES` environment variable.
 ```
 
-[`--offline`](#uv-sync--offline) : Disable network access.
+[`--offline`](#uv-sync--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
 When disabled, uv will only use locally cached data and locally available files.
-
-May also be set with the `UV_OFFLINE` environment variable.
 ```
 
 [`--only-dev`](#uv-sync--only-dev) : Only include the development dependency group.
@@ -3966,12 +3810,10 @@ Asserts that the `uv.lock` would remain unchanged after a resolution. If the loc
 Equivalent to `--locked`.
 ```
 
-[`--check-exists`](#uv-lock--check-exists), `--frozen` : Assert that a `uv.lock` exists without checking if it is up-to-date.
+[`--check-exists`](#uv-lock--check-exists), `--frozen` : Assert that a `uv.lock` exists without checking if it is up-to-date [env: UV_FROZEN=]
 
 ```
 Equivalent to `--frozen`.
-
-May also be set with the `UV_FROZEN` environment variable.
 ```
 
 [`--color`](#uv-lock--color) *color-choice* : Control the use of color in output.
@@ -4151,22 +3993,18 @@ Possible values:
 - `symlink`: Symbolically link packages from the wheel into the `site-packages` directory
 ```
 
-[`--managed-python`](#uv-lock--managed-python) : Require use of uv-managed Python versions.
+[`--managed-python`](#uv-lock--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-
-May also be set with the `UV_MANAGED_PYTHON` environment variable.
 ```
 
-[`--native-tls`](#uv-lock--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+[`--native-tls`](#uv-lock--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
 
 ```
 By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
 
 However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-
-May also be set with the `UV_NATIVE_TLS` environment variable.
 ```
 
 [`--no-binary`](#uv-lock--no-binary) : Don't install pre-built wheels.
@@ -4227,20 +4065,16 @@ May also be set with the `UV_NO_CONFIG` environment variable.
 
 [`--no-index`](#uv-lock--no-index) : Ignore the registry index (e.g., PyPI), instead relying on direct URL dependencies and those provided via `--find-links`
 
-[`--no-managed-python`](#uv-lock--no-managed-python) : Disable use of uv-managed Python versions.
+[`--no-managed-python`](#uv-lock--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
 
 ```
 Instead, uv will search for a suitable Python version on the system.
-
-May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
 ```
 
-[`--no-progress`](#uv-lock--no-progress) : Hide all progress outputs.
+[`--no-progress`](#uv-lock--no-progress) : Hide all progress outputs [env: UV_NO_PROGRESS=]
 
 ```
 For example, spinners or progress bars.
-
-May also be set with the `UV_NO_PROGRESS` environment variable.
 ```
 
 [`--no-python-downloads`](#uv-lock--no-python-downloads) : Disable automatic downloads of Python.
@@ -4251,12 +4085,10 @@ May also be set with the `UV_NO_PROGRESS` environment variable.
 May also be set with the `UV_NO_SOURCES` environment variable.
 ```
 
-[`--offline`](#uv-lock--offline) : Disable network access.
+[`--offline`](#uv-lock--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
 When disabled, uv will only use locally cached data and locally available files.
-
-May also be set with the `UV_OFFLINE` environment variable.
 ```
 
 [`--prerelease`](#uv-lock--prerelease) *prerelease* : The strategy to use when considering pre-release versions.
@@ -4521,12 +4353,10 @@ Possible values:
 - `cyclonedx1.5`: Export in `CycloneDX` v1.5 JSON format
 ```
 
-[`--frozen`](#uv-export--frozen) : Do not update the `uv.lock` before exporting.
+[`--frozen`](#uv-export--frozen) : Do not update the `uv.lock` before exporting [env: UV_FROZEN=]
 
 ```
 If a `uv.lock` does not exist, uv will exit with an error.
-
-May also be set with the `UV_FROZEN` environment variable.
 ```
 
 [`--group`](#uv-export--group) *group* : Include dependencies from the specified dependency group.
@@ -4607,30 +4437,24 @@ Possible values:
 - `symlink`: Symbolically link packages from the wheel into the `site-packages` directory
 ```
 
-[`--locked`](#uv-export--locked) : Assert that the `uv.lock` will remain unchanged.
+[`--locked`](#uv-export--locked) : Assert that the `uv.lock` will remain unchanged [env: UV_LOCKED=]
 
 ```
 Requires that the lockfile is up-to-date. If the lockfile is missing or needs to be updated, uv will exit with an error.
-
-May also be set with the `UV_LOCKED` environment variable.
 ```
 
-[`--managed-python`](#uv-export--managed-python) : Require use of uv-managed Python versions.
+[`--managed-python`](#uv-export--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-
-May also be set with the `UV_MANAGED_PYTHON` environment variable.
 ```
 
-[`--native-tls`](#uv-export--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+[`--native-tls`](#uv-export--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
 
 ```
 By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
 
 However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-
-May also be set with the `UV_NATIVE_TLS` environment variable.
 ```
 
 [`--no-annotate`](#uv-export--no-annotate) : Exclude comment annotations indicating the source of each package
@@ -4699,19 +4523,13 @@ uv includes the groups defined in `tool.uv.default-groups` by default. This disa
 May also be set with the `UV_NO_DEFAULT_GROUPS` environment variable.
 ```
 
-[`--no-dev`](#uv-export--no-dev) : Disable the development dependency group.
+[`--no-dev`](#uv-export--no-dev) : Disable the development dependency group [env: UV_NO_DEV=]
 
 ```
 This option is an alias of `--no-group dev`. See `--no-default-groups` to disable all default groups instead.
-
-May also be set with the `UV_NO_DEV` environment variable.
 ```
 
-[`--no-editable`](#uv-export--no-editable) : Export any editable dependencies, including the project and any workspace members, as non-editable
-
-```
-May also be set with the `UV_NO_EDITABLE` environment variable.
-```
+[`--no-editable`](#uv-export--no-editable) : Export any editable dependencies, including the project and any workspace members, as non-editable [env: UV_NO_EDITABLE=]
 
 [`--no-emit-local`](#uv-export--no-emit-local), `--no-install-local` : Do not include local path dependencies in the exported requirements.
 
@@ -4767,20 +4585,16 @@ May also be set with the `UV_NO_GROUP` environment variable.
 
 [`--no-index`](#uv-export--no-index) : Ignore the registry index (e.g., PyPI), instead relying on direct URL dependencies and those provided via `--find-links`
 
-[`--no-managed-python`](#uv-export--no-managed-python) : Disable use of uv-managed Python versions.
+[`--no-managed-python`](#uv-export--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
 
 ```
 Instead, uv will search for a suitable Python version on the system.
-
-May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
 ```
 
-[`--no-progress`](#uv-export--no-progress) : Hide all progress outputs.
+[`--no-progress`](#uv-export--no-progress) : Hide all progress outputs [env: UV_NO_PROGRESS=]
 
 ```
 For example, spinners or progress bars.
-
-May also be set with the `UV_NO_PROGRESS` environment variable.
 ```
 
 [`--no-python-downloads`](#uv-export--no-python-downloads) : Disable automatic downloads of Python.
@@ -4791,12 +4605,10 @@ May also be set with the `UV_NO_PROGRESS` environment variable.
 May also be set with the `UV_NO_SOURCES` environment variable.
 ```
 
-[`--offline`](#uv-export--offline) : Disable network access.
+[`--offline`](#uv-export--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
 When disabled, uv will only use locally cached data and locally available files.
-
-May also be set with the `UV_OFFLINE` environment variable.
 ```
 
 [`--only-dev`](#uv-export--only-dev) : Only include the development dependency group.
@@ -5059,12 +4871,10 @@ Possible values:
 - `requires-python`: Optimize for selecting latest supported version of each package, for each supported Python version
 ```
 
-[`--frozen`](#uv-tree--frozen) : Display the requirements without locking the project.
+[`--frozen`](#uv-tree--frozen) : Display the requirements without locking the project [env: UV_FROZEN=]
 
 ```
 If the lockfile is missing, uv will exit with an error.
-
-May also be set with the `UV_FROZEN` environment variable.
 ```
 
 [`--group`](#uv-tree--group) *group* : Include dependencies from the specified dependency group.
@@ -5147,30 +4957,24 @@ Possible values:
 - `symlink`: Symbolically link packages from the wheel into the `site-packages` directory
 ```
 
-[`--locked`](#uv-tree--locked) : Assert that the `uv.lock` will remain unchanged.
+[`--locked`](#uv-tree--locked) : Assert that the `uv.lock` will remain unchanged [env: UV_LOCKED=]
 
 ```
 Requires that the lockfile is up-to-date. If the lockfile is missing or needs to be updated, uv will exit with an error.
-
-May also be set with the `UV_LOCKED` environment variable.
 ```
 
-[`--managed-python`](#uv-tree--managed-python) : Require use of uv-managed Python versions.
+[`--managed-python`](#uv-tree--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-
-May also be set with the `UV_MANAGED_PYTHON` environment variable.
 ```
 
-[`--native-tls`](#uv-tree--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+[`--native-tls`](#uv-tree--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
 
 ```
 By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
 
 However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-
-May also be set with the `UV_NATIVE_TLS` environment variable.
 ```
 
 [`--no-binary`](#uv-tree--no-binary) : Don't install pre-built wheels.
@@ -5239,12 +5043,10 @@ uv includes the groups defined in `tool.uv.default-groups` by default. This disa
 May also be set with the `UV_NO_DEFAULT_GROUPS` environment variable.
 ```
 
-[`--no-dev`](#uv-tree--no-dev) : Disable the development dependency group.
+[`--no-dev`](#uv-tree--no-dev) : Disable the development dependency group [env: UV_NO_DEV=]
 
 ```
 This option is an alias of `--no-group dev`. See `--no-default-groups` to disable all default groups instead.
-
-May also be set with the `UV_NO_DEV` environment variable.
 ```
 
 [`--no-group`](#uv-tree--no-group) *no-group* : Disable the specified dependency group.
@@ -5259,20 +5061,16 @@ May also be set with the `UV_NO_GROUP` environment variable.
 
 [`--no-index`](#uv-tree--no-index) : Ignore the registry index (e.g., PyPI), instead relying on direct URL dependencies and those provided via `--find-links`
 
-[`--no-managed-python`](#uv-tree--no-managed-python) : Disable use of uv-managed Python versions.
+[`--no-managed-python`](#uv-tree--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
 
 ```
 Instead, uv will search for a suitable Python version on the system.
-
-May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
 ```
 
-[`--no-progress`](#uv-tree--no-progress) : Hide all progress outputs.
+[`--no-progress`](#uv-tree--no-progress) : Hide all progress outputs [env: UV_NO_PROGRESS=]
 
 ```
 For example, spinners or progress bars.
-
-May also be set with the `UV_NO_PROGRESS` environment variable.
 ```
 
 [`--no-python-downloads`](#uv-tree--no-python-downloads) : Disable automatic downloads of Python.
@@ -5283,12 +5081,10 @@ May also be set with the `UV_NO_PROGRESS` environment variable.
 May also be set with the `UV_NO_SOURCES` environment variable.
 ```
 
-[`--offline`](#uv-tree--offline) : Disable network access.
+[`--offline`](#uv-tree--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
 When disabled, uv will only use locally cached data and locally available files.
-
-May also be set with the `UV_OFFLINE` environment variable.
 ```
 
 [`--only-dev`](#uv-tree--only-dev) : Only include the development dependency group.
@@ -5554,22 +5350,18 @@ May also be set with the `UV_WORKING_DIR` environment variable.
 
 [`--help`](#uv-format--help), `-h` : Display the concise help for this command
 
-[`--managed-python`](#uv-format--managed-python) : Require use of uv-managed Python versions.
+[`--managed-python`](#uv-format--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-
-May also be set with the `UV_MANAGED_PYTHON` environment variable.
 ```
 
-[`--native-tls`](#uv-format--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+[`--native-tls`](#uv-format--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
 
 ```
 By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
 
 However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-
-May also be set with the `UV_NATIVE_TLS` environment variable.
 ```
 
 [`--no-cache`](#uv-format--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
@@ -5586,20 +5378,16 @@ Normally, configuration files are discovered in the current directory, parent di
 May also be set with the `UV_NO_CONFIG` environment variable.
 ```
 
-[`--no-managed-python`](#uv-format--no-managed-python) : Disable use of uv-managed Python versions.
+[`--no-managed-python`](#uv-format--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
 
 ```
 Instead, uv will search for a suitable Python version on the system.
-
-May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
 ```
 
-[`--no-progress`](#uv-format--no-progress) : Hide all progress outputs.
+[`--no-progress`](#uv-format--no-progress) : Hide all progress outputs [env: UV_NO_PROGRESS=]
 
 ```
 For example, spinners or progress bars.
-
-May also be set with the `UV_NO_PROGRESS` environment variable.
 ```
 
 [`--no-project`](#uv-format--no-project) : Avoid discovering a project or workspace.
@@ -5610,12 +5398,10 @@ Instead of running the formatter in the context of the current project, run it i
 
 [`--no-python-downloads`](#uv-format--no-python-downloads) : Disable automatic downloads of Python.
 
-[`--offline`](#uv-format--offline) : Disable network access.
+[`--offline`](#uv-format--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
 When disabled, uv will only use locally cached data and locally available files.
-
-May also be set with the `UV_OFFLINE` environment variable.
 ```
 
 [`--project`](#uv-format--project) *project* : Discover a project in the given directory.
@@ -5905,11 +5691,7 @@ The index given by this flag is given lower priority than all other indexes spec
 May also be set with the `UV_INDEX_URL` environment variable.
 ```
 
-[`--isolated`](#uv-tool-run--isolated) : Run the tool in an isolated virtual environment, ignoring any already-installed tools
-
-```
-May also be set with the `UV_ISOLATED` environment variable.
-```
+[`--isolated`](#uv-tool-run--isolated) : Run the tool in an isolated virtual environment, ignoring any already-installed tools [env: UV_ISOLATED=]
 
 [`--keyring-provider`](#uv-tool-run--keyring-provider) *keyring-provider* : Attempt to use `keyring` for authentication for index URLs.
 
@@ -5945,22 +5727,18 @@ Possible values:
 - `symlink`: Symbolically link packages from the wheel into the `site-packages` directory
 ```
 
-[`--managed-python`](#uv-tool-run--managed-python) : Require use of uv-managed Python versions.
+[`--managed-python`](#uv-tool-run--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-
-May also be set with the `UV_MANAGED_PYTHON` environment variable.
 ```
 
-[`--native-tls`](#uv-tool-run--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+[`--native-tls`](#uv-tool-run--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
 
 ```
 By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
 
 However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-
-May also be set with the `UV_NATIVE_TLS` environment variable.
 ```
 
 [`--no-binary`](#uv-tool-run--no-binary) : Don't install pre-built wheels.
@@ -6019,28 +5797,20 @@ Normally, configuration files are discovered in the current directory, parent di
 May also be set with the `UV_NO_CONFIG` environment variable.
 ```
 
-[`--no-env-file`](#uv-tool-run--no-env-file) : Avoid reading environment variables from a `.env` file
-
-```
-May also be set with the `UV_NO_ENV_FILE` environment variable.
-```
+[`--no-env-file`](#uv-tool-run--no-env-file) : Avoid reading environment variables from a `.env` file [env: UV_NO_ENV_FILE=]
 
 [`--no-index`](#uv-tool-run--no-index) : Ignore the registry index (e.g., PyPI), instead relying on direct URL dependencies and those provided via `--find-links`
 
-[`--no-managed-python`](#uv-tool-run--no-managed-python) : Disable use of uv-managed Python versions.
+[`--no-managed-python`](#uv-tool-run--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
 
 ```
 Instead, uv will search for a suitable Python version on the system.
-
-May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
 ```
 
-[`--no-progress`](#uv-tool-run--no-progress) : Hide all progress outputs.
+[`--no-progress`](#uv-tool-run--no-progress) : Hide all progress outputs [env: UV_NO_PROGRESS=]
 
 ```
 For example, spinners or progress bars.
-
-May also be set with the `UV_NO_PROGRESS` environment variable.
 ```
 
 [`--no-python-downloads`](#uv-tool-run--no-python-downloads) : Disable automatic downloads of Python.
@@ -6051,12 +5821,10 @@ May also be set with the `UV_NO_PROGRESS` environment variable.
 May also be set with the `UV_NO_SOURCES` environment variable.
 ```
 
-[`--offline`](#uv-tool-run--offline) : Disable network access.
+[`--offline`](#uv-tool-run--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
 When disabled, uv will only use locally cached data and locally available files.
-
-May also be set with the `UV_OFFLINE` environment variable.
 ```
 
 [`--overrides`](#uv-tool-run--overrides), `--override` *overrides* : Override versions using the given requirements files.
@@ -6542,22 +6310,18 @@ Possible values:
 - `symlink`: Symbolically link packages from the wheel into the `site-packages` directory
 ```
 
-[`--managed-python`](#uv-tool-install--managed-python) : Require use of uv-managed Python versions.
+[`--managed-python`](#uv-tool-install--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-
-May also be set with the `UV_MANAGED_PYTHON` environment variable.
 ```
 
-[`--native-tls`](#uv-tool-install--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+[`--native-tls`](#uv-tool-install--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
 
 ```
 By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
 
 However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-
-May also be set with the `UV_NATIVE_TLS` environment variable.
 ```
 
 [`--no-binary`](#uv-tool-install--no-binary) : Don't install pre-built wheels.
@@ -6618,20 +6382,16 @@ May also be set with the `UV_NO_CONFIG` environment variable.
 
 [`--no-index`](#uv-tool-install--no-index) : Ignore the registry index (e.g., PyPI), instead relying on direct URL dependencies and those provided via `--find-links`
 
-[`--no-managed-python`](#uv-tool-install--no-managed-python) : Disable use of uv-managed Python versions.
+[`--no-managed-python`](#uv-tool-install--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
 
 ```
 Instead, uv will search for a suitable Python version on the system.
-
-May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
 ```
 
-[`--no-progress`](#uv-tool-install--no-progress) : Hide all progress outputs.
+[`--no-progress`](#uv-tool-install--no-progress) : Hide all progress outputs [env: UV_NO_PROGRESS=]
 
 ```
 For example, spinners or progress bars.
-
-May also be set with the `UV_NO_PROGRESS` environment variable.
 ```
 
 [`--no-python-downloads`](#uv-tool-install--no-python-downloads) : Disable automatic downloads of Python.
@@ -6642,12 +6402,10 @@ May also be set with the `UV_NO_PROGRESS` environment variable.
 May also be set with the `UV_NO_SOURCES` environment variable.
 ```
 
-[`--offline`](#uv-tool-install--offline) : Disable network access.
+[`--offline`](#uv-tool-install--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
 When disabled, uv will only use locally cached data and locally available files.
-
-May also be set with the `UV_OFFLINE` environment variable.
 ```
 
 [`--overrides`](#uv-tool-install--overrides), `--override` *overrides* : Override versions using the given requirements files.
@@ -7097,22 +6855,18 @@ Possible values:
 - `symlink`: Symbolically link packages from the wheel into the `site-packages` directory
 ```
 
-[`--managed-python`](#uv-tool-upgrade--managed-python) : Require use of uv-managed Python versions.
+[`--managed-python`](#uv-tool-upgrade--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-
-May also be set with the `UV_MANAGED_PYTHON` environment variable.
 ```
 
-[`--native-tls`](#uv-tool-upgrade--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+[`--native-tls`](#uv-tool-upgrade--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
 
 ```
 By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
 
 However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-
-May also be set with the `UV_NATIVE_TLS` environment variable.
 ```
 
 [`--no-binary`](#uv-tool-upgrade--no-binary) : Don't install pre-built wheels.
@@ -7173,20 +6927,16 @@ May also be set with the `UV_NO_CONFIG` environment variable.
 
 [`--no-index`](#uv-tool-upgrade--no-index) : Ignore the registry index (e.g., PyPI), instead relying on direct URL dependencies and those provided via `--find-links`
 
-[`--no-managed-python`](#uv-tool-upgrade--no-managed-python) : Disable use of uv-managed Python versions.
+[`--no-managed-python`](#uv-tool-upgrade--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
 
 ```
 Instead, uv will search for a suitable Python version on the system.
-
-May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
 ```
 
-[`--no-progress`](#uv-tool-upgrade--no-progress) : Hide all progress outputs.
+[`--no-progress`](#uv-tool-upgrade--no-progress) : Hide all progress outputs [env: UV_NO_PROGRESS=]
 
 ```
 For example, spinners or progress bars.
-
-May also be set with the `UV_NO_PROGRESS` environment variable.
 ```
 
 [`--no-python-downloads`](#uv-tool-upgrade--no-python-downloads) : Disable automatic downloads of Python.
@@ -7197,12 +6947,10 @@ May also be set with the `UV_NO_PROGRESS` environment variable.
 May also be set with the `UV_NO_SOURCES` environment variable.
 ```
 
-[`--offline`](#uv-tool-upgrade--offline) : Disable network access.
+[`--offline`](#uv-tool-upgrade--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
 When disabled, uv will only use locally cached data and locally available files.
-
-May also be set with the `UV_OFFLINE` environment variable.
 ```
 
 [`--prerelease`](#uv-tool-upgrade--prerelease) *prerelease* : The strategy to use when considering pre-release versions.
@@ -7402,22 +7150,18 @@ May also be set with the `UV_WORKING_DIR` environment variable.
 
 [`--help`](#uv-tool-list--help), `-h` : Display the concise help for this command
 
-[`--managed-python`](#uv-tool-list--managed-python) : Require use of uv-managed Python versions.
+[`--managed-python`](#uv-tool-list--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-
-May also be set with the `UV_MANAGED_PYTHON` environment variable.
 ```
 
-[`--native-tls`](#uv-tool-list--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+[`--native-tls`](#uv-tool-list--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
 
 ```
 By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
 
 However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-
-May also be set with the `UV_NATIVE_TLS` environment variable.
 ```
 
 [`--no-cache`](#uv-tool-list--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
@@ -7434,28 +7178,22 @@ Normally, configuration files are discovered in the current directory, parent di
 May also be set with the `UV_NO_CONFIG` environment variable.
 ```
 
-[`--no-managed-python`](#uv-tool-list--no-managed-python) : Disable use of uv-managed Python versions.
+[`--no-managed-python`](#uv-tool-list--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
 
 ```
 Instead, uv will search for a suitable Python version on the system.
-
-May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
 ```
 
-[`--no-progress`](#uv-tool-list--no-progress) : Hide all progress outputs.
+[`--no-progress`](#uv-tool-list--no-progress) : Hide all progress outputs [env: UV_NO_PROGRESS=]
 
 ```
 For example, spinners or progress bars.
-
-May also be set with the `UV_NO_PROGRESS` environment variable.
 ```
 
-[`--offline`](#uv-tool-list--offline) : Disable network access.
+[`--offline`](#uv-tool-list--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
 When disabled, uv will only use locally cached data and locally available files.
-
-May also be set with the `UV_OFFLINE` environment variable.
 ```
 
 [`--project`](#uv-tool-list--project) *project* : Discover a project in the given directory.
@@ -7567,22 +7305,18 @@ May also be set with the `UV_WORKING_DIR` environment variable.
 
 [`--help`](#uv-tool-uninstall--help), `-h` : Display the concise help for this command
 
-[`--managed-python`](#uv-tool-uninstall--managed-python) : Require use of uv-managed Python versions.
+[`--managed-python`](#uv-tool-uninstall--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-
-May also be set with the `UV_MANAGED_PYTHON` environment variable.
 ```
 
-[`--native-tls`](#uv-tool-uninstall--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+[`--native-tls`](#uv-tool-uninstall--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
 
 ```
 By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
 
 However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-
-May also be set with the `UV_NATIVE_TLS` environment variable.
 ```
 
 [`--no-cache`](#uv-tool-uninstall--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
@@ -7599,30 +7333,24 @@ Normally, configuration files are discovered in the current directory, parent di
 May also be set with the `UV_NO_CONFIG` environment variable.
 ```
 
-[`--no-managed-python`](#uv-tool-uninstall--no-managed-python) : Disable use of uv-managed Python versions.
+[`--no-managed-python`](#uv-tool-uninstall--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
 
 ```
 Instead, uv will search for a suitable Python version on the system.
-
-May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
 ```
 
-[`--no-progress`](#uv-tool-uninstall--no-progress) : Hide all progress outputs.
+[`--no-progress`](#uv-tool-uninstall--no-progress) : Hide all progress outputs [env: UV_NO_PROGRESS=]
 
 ```
 For example, spinners or progress bars.
-
-May also be set with the `UV_NO_PROGRESS` environment variable.
 ```
 
 [`--no-python-downloads`](#uv-tool-uninstall--no-python-downloads) : Disable automatic downloads of Python.
 
-[`--offline`](#uv-tool-uninstall--offline) : Disable network access.
+[`--offline`](#uv-tool-uninstall--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
 When disabled, uv will only use locally cached data and locally available files.
-
-May also be set with the `UV_OFFLINE` environment variable.
 ```
 
 [`--project`](#uv-tool-uninstall--project) *project* : Discover a project in the given directory.
@@ -7724,22 +7452,18 @@ May also be set with the `UV_WORKING_DIR` environment variable.
 
 [`--help`](#uv-tool-update-shell--help), `-h` : Display the concise help for this command
 
-[`--managed-python`](#uv-tool-update-shell--managed-python) : Require use of uv-managed Python versions.
+[`--managed-python`](#uv-tool-update-shell--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-
-May also be set with the `UV_MANAGED_PYTHON` environment variable.
 ```
 
-[`--native-tls`](#uv-tool-update-shell--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+[`--native-tls`](#uv-tool-update-shell--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
 
 ```
 By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
 
 However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-
-May also be set with the `UV_NATIVE_TLS` environment variable.
 ```
 
 [`--no-cache`](#uv-tool-update-shell--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
@@ -7756,30 +7480,24 @@ Normally, configuration files are discovered in the current directory, parent di
 May also be set with the `UV_NO_CONFIG` environment variable.
 ```
 
-[`--no-managed-python`](#uv-tool-update-shell--no-managed-python) : Disable use of uv-managed Python versions.
+[`--no-managed-python`](#uv-tool-update-shell--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
 
 ```
 Instead, uv will search for a suitable Python version on the system.
-
-May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
 ```
 
-[`--no-progress`](#uv-tool-update-shell--no-progress) : Hide all progress outputs.
+[`--no-progress`](#uv-tool-update-shell--no-progress) : Hide all progress outputs [env: UV_NO_PROGRESS=]
 
 ```
 For example, spinners or progress bars.
-
-May also be set with the `UV_NO_PROGRESS` environment variable.
 ```
 
 [`--no-python-downloads`](#uv-tool-update-shell--no-python-downloads) : Disable automatic downloads of Python.
 
-[`--offline`](#uv-tool-update-shell--offline) : Disable network access.
+[`--offline`](#uv-tool-update-shell--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
 When disabled, uv will only use locally cached data and locally available files.
-
-May also be set with the `UV_OFFLINE` environment variable.
 ```
 
 [`--project`](#uv-tool-update-shell--project) *project* : Discover a project in the given directory.
@@ -7898,22 +7616,18 @@ May also be set with the `UV_WORKING_DIR` environment variable.
 
 [`--help`](#uv-tool-dir--help), `-h` : Display the concise help for this command
 
-[`--managed-python`](#uv-tool-dir--managed-python) : Require use of uv-managed Python versions.
+[`--managed-python`](#uv-tool-dir--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-
-May also be set with the `UV_MANAGED_PYTHON` environment variable.
 ```
 
-[`--native-tls`](#uv-tool-dir--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+[`--native-tls`](#uv-tool-dir--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
 
 ```
 By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
 
 However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-
-May also be set with the `UV_NATIVE_TLS` environment variable.
 ```
 
 [`--no-cache`](#uv-tool-dir--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
@@ -7930,30 +7644,24 @@ Normally, configuration files are discovered in the current directory, parent di
 May also be set with the `UV_NO_CONFIG` environment variable.
 ```
 
-[`--no-managed-python`](#uv-tool-dir--no-managed-python) : Disable use of uv-managed Python versions.
+[`--no-managed-python`](#uv-tool-dir--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
 
 ```
 Instead, uv will search for a suitable Python version on the system.
-
-May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
 ```
 
-[`--no-progress`](#uv-tool-dir--no-progress) : Hide all progress outputs.
+[`--no-progress`](#uv-tool-dir--no-progress) : Hide all progress outputs [env: UV_NO_PROGRESS=]
 
 ```
 For example, spinners or progress bars.
-
-May also be set with the `UV_NO_PROGRESS` environment variable.
 ```
 
 [`--no-python-downloads`](#uv-tool-dir--no-python-downloads) : Disable automatic downloads of Python.
 
-[`--offline`](#uv-tool-dir--offline) : Disable network access.
+[`--offline`](#uv-tool-dir--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
 When disabled, uv will only use locally cached data and locally available files.
-
-May also be set with the `UV_OFFLINE` environment variable.
 ```
 
 [`--project`](#uv-tool-dir--project) *project* : Discover a project in the given directory.
@@ -8144,22 +7852,18 @@ May also be set with the `UV_WORKING_DIR` environment variable.
 
 [`--help`](#uv-python-list--help), `-h` : Display the concise help for this command
 
-[`--managed-python`](#uv-python-list--managed-python) : Require use of uv-managed Python versions.
+[`--managed-python`](#uv-python-list--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-
-May also be set with the `UV_MANAGED_PYTHON` environment variable.
 ```
 
-[`--native-tls`](#uv-python-list--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+[`--native-tls`](#uv-python-list--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
 
 ```
 By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
 
 However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-
-May also be set with the `UV_NATIVE_TLS` environment variable.
 ```
 
 [`--no-cache`](#uv-python-list--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
@@ -8176,30 +7880,24 @@ Normally, configuration files are discovered in the current directory, parent di
 May also be set with the `UV_NO_CONFIG` environment variable.
 ```
 
-[`--no-managed-python`](#uv-python-list--no-managed-python) : Disable use of uv-managed Python versions.
+[`--no-managed-python`](#uv-python-list--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
 
 ```
 Instead, uv will search for a suitable Python version on the system.
-
-May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
 ```
 
-[`--no-progress`](#uv-python-list--no-progress) : Hide all progress outputs.
+[`--no-progress`](#uv-python-list--no-progress) : Hide all progress outputs [env: UV_NO_PROGRESS=]
 
 ```
 For example, spinners or progress bars.
-
-May also be set with the `UV_NO_PROGRESS` environment variable.
 ```
 
 [`--no-python-downloads`](#uv-python-list--no-python-downloads) : Disable automatic downloads of Python.
 
-[`--offline`](#uv-python-list--offline) : Disable network access.
+[`--offline`](#uv-python-list--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
 When disabled, uv will only use locally cached data and locally available files.
-
-May also be set with the `UV_OFFLINE` environment variable.
 ```
 
 [`--only-downloads`](#uv-python-list--only-downloads) : Only show available Python downloads.
@@ -8374,12 +8072,10 @@ See `uv python dir` to view the current Python installation directory. Defaults 
 May also be set with the `UV_PYTHON_INSTALL_DIR` environment variable.
 ```
 
-[`--managed-python`](#uv-python-install--managed-python) : Require use of uv-managed Python versions.
+[`--managed-python`](#uv-python-install--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-
-May also be set with the `UV_MANAGED_PYTHON` environment variable.
 ```
 
 [`--mirror`](#uv-python-install--mirror) *mirror* : Set the URL to use as the source for downloading Python installations.
@@ -8390,14 +8086,12 @@ The provided URL will replace `https://github.com/astral-sh/python-build-standal
 Distributions can be read from a local directory by using the `file://` URL scheme.
 ```
 
-[`--native-tls`](#uv-python-install--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+[`--native-tls`](#uv-python-install--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
 
 ```
 By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
 
 However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-
-May also be set with the `UV_NATIVE_TLS` environment variable.
 ```
 
 [`--no-bin`](#uv-python-install--no-bin) : Do not install a Python executable into the `bin` directory.
@@ -8420,20 +8114,16 @@ Normally, configuration files are discovered in the current directory, parent di
 May also be set with the `UV_NO_CONFIG` environment variable.
 ```
 
-[`--no-managed-python`](#uv-python-install--no-managed-python) : Disable use of uv-managed Python versions.
+[`--no-managed-python`](#uv-python-install--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
 
 ```
 Instead, uv will search for a suitable Python version on the system.
-
-May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
 ```
 
-[`--no-progress`](#uv-python-install--no-progress) : Hide all progress outputs.
+[`--no-progress`](#uv-python-install--no-progress) : Hide all progress outputs [env: UV_NO_PROGRESS=]
 
 ```
 For example, spinners or progress bars.
-
-May also be set with the `UV_NO_PROGRESS` environment variable.
 ```
 
 [`--no-python-downloads`](#uv-python-install--no-python-downloads) : Disable automatic downloads of Python.
@@ -8444,12 +8134,10 @@ May also be set with the `UV_NO_PROGRESS` environment variable.
 This can also be set with `UV_PYTHON_INSTALL_REGISTRY=0`.
 ```
 
-[`--offline`](#uv-python-install--offline) : Disable network access.
+[`--offline`](#uv-python-install--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
 When disabled, uv will only use locally cached data and locally available files.
-
-May also be set with the `UV_OFFLINE` environment variable.
 ```
 
 [`--project`](#uv-python-install--project) *project* : Discover a project in the given directory.
@@ -8601,12 +8289,10 @@ See `uv python dir` to view the current Python installation directory. Defaults 
 May also be set with the `UV_PYTHON_INSTALL_DIR` environment variable.
 ```
 
-[`--managed-python`](#uv-python-upgrade--managed-python) : Require use of uv-managed Python versions.
+[`--managed-python`](#uv-python-upgrade--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-
-May also be set with the `UV_MANAGED_PYTHON` environment variable.
 ```
 
 [`--mirror`](#uv-python-upgrade--mirror) *mirror* : Set the URL to use as the source for downloading Python installations.
@@ -8617,14 +8303,12 @@ The provided URL will replace `https://github.com/astral-sh/python-build-standal
 Distributions can be read from a local directory by using the `file://` URL scheme.
 ```
 
-[`--native-tls`](#uv-python-upgrade--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+[`--native-tls`](#uv-python-upgrade--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
 
 ```
 By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
 
 However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-
-May also be set with the `UV_NATIVE_TLS` environment variable.
 ```
 
 [`--no-cache`](#uv-python-upgrade--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
@@ -8641,30 +8325,24 @@ Normally, configuration files are discovered in the current directory, parent di
 May also be set with the `UV_NO_CONFIG` environment variable.
 ```
 
-[`--no-managed-python`](#uv-python-upgrade--no-managed-python) : Disable use of uv-managed Python versions.
+[`--no-managed-python`](#uv-python-upgrade--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
 
 ```
 Instead, uv will search for a suitable Python version on the system.
-
-May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
 ```
 
-[`--no-progress`](#uv-python-upgrade--no-progress) : Hide all progress outputs.
+[`--no-progress`](#uv-python-upgrade--no-progress) : Hide all progress outputs [env: UV_NO_PROGRESS=]
 
 ```
 For example, spinners or progress bars.
-
-May also be set with the `UV_NO_PROGRESS` environment variable.
 ```
 
 [`--no-python-downloads`](#uv-python-upgrade--no-python-downloads) : Disable automatic downloads of Python.
 
-[`--offline`](#uv-python-upgrade--offline) : Disable network access.
+[`--offline`](#uv-python-upgrade--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
 When disabled, uv will only use locally cached data and locally available files.
-
-May also be set with the `UV_OFFLINE` environment variable.
 ```
 
 [`--project`](#uv-python-upgrade--project) *project* : Discover a project in the given directory.
@@ -8788,22 +8466,18 @@ May also be set with the `UV_WORKING_DIR` environment variable.
 
 [`--help`](#uv-python-find--help), `-h` : Display the concise help for this command
 
-[`--managed-python`](#uv-python-find--managed-python) : Require use of uv-managed Python versions.
+[`--managed-python`](#uv-python-find--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-
-May also be set with the `UV_MANAGED_PYTHON` environment variable.
 ```
 
-[`--native-tls`](#uv-python-find--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+[`--native-tls`](#uv-python-find--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
 
 ```
 By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
 
 However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-
-May also be set with the `UV_NATIVE_TLS` environment variable.
 ```
 
 [`--no-cache`](#uv-python-find--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
@@ -8820,20 +8494,16 @@ Normally, configuration files are discovered in the current directory, parent di
 May also be set with the `UV_NO_CONFIG` environment variable.
 ```
 
-[`--no-managed-python`](#uv-python-find--no-managed-python) : Disable use of uv-managed Python versions.
+[`--no-managed-python`](#uv-python-find--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
 
 ```
 Instead, uv will search for a suitable Python version on the system.
-
-May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
 ```
 
-[`--no-progress`](#uv-python-find--no-progress) : Hide all progress outputs.
+[`--no-progress`](#uv-python-find--no-progress) : Hide all progress outputs [env: UV_NO_PROGRESS=]
 
 ```
 For example, spinners or progress bars.
-
-May also be set with the `UV_NO_PROGRESS` environment variable.
 ```
 
 [`--no-project`](#uv-python-find--no-project), `--no_workspace` : Avoid discovering a project or workspace.
@@ -8844,12 +8514,10 @@ Otherwise, when no request is provided, the Python requirement of a project in t
 
 [`--no-python-downloads`](#uv-python-find--no-python-downloads) : Disable automatic downloads of Python.
 
-[`--offline`](#uv-python-find--offline) : Disable network access.
+[`--offline`](#uv-python-find--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
 When disabled, uv will only use locally cached data and locally available files.
-
-May also be set with the `UV_OFFLINE` environment variable.
 ```
 
 [`--project`](#uv-python-find--project) *project* : Discover a project in the given directory.
@@ -8987,22 +8655,18 @@ When a local Python version pin is not found in the working directory or an ance
 
 [`--help`](#uv-python-pin--help), `-h` : Display the concise help for this command
 
-[`--managed-python`](#uv-python-pin--managed-python) : Require use of uv-managed Python versions.
+[`--managed-python`](#uv-python-pin--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-
-May also be set with the `UV_MANAGED_PYTHON` environment variable.
 ```
 
-[`--native-tls`](#uv-python-pin--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+[`--native-tls`](#uv-python-pin--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
 
 ```
 By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
 
 However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-
-May also be set with the `UV_NATIVE_TLS` environment variable.
 ```
 
 [`--no-cache`](#uv-python-pin--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
@@ -9019,20 +8683,16 @@ Normally, configuration files are discovered in the current directory, parent di
 May also be set with the `UV_NO_CONFIG` environment variable.
 ```
 
-[`--no-managed-python`](#uv-python-pin--no-managed-python) : Disable use of uv-managed Python versions.
+[`--no-managed-python`](#uv-python-pin--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
 
 ```
 Instead, uv will search for a suitable Python version on the system.
-
-May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
 ```
 
-[`--no-progress`](#uv-python-pin--no-progress) : Hide all progress outputs.
+[`--no-progress`](#uv-python-pin--no-progress) : Hide all progress outputs [env: UV_NO_PROGRESS=]
 
 ```
 For example, spinners or progress bars.
-
-May also be set with the `UV_NO_PROGRESS` environment variable.
 ```
 
 [`--no-project`](#uv-python-pin--no-project), `--no-workspace` : Avoid validating the Python pin is compatible with the project or workspace.
@@ -9043,12 +8703,10 @@ By default, a project or workspace is discovered in the current directory or any
 
 [`--no-python-downloads`](#uv-python-pin--no-python-downloads) : Disable automatic downloads of Python.
 
-[`--offline`](#uv-python-pin--offline) : Disable network access.
+[`--offline`](#uv-python-pin--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
 When disabled, uv will only use locally cached data and locally available files.
-
-May also be set with the `UV_OFFLINE` environment variable.
 ```
 
 [`--project`](#uv-python-pin--project) *project* : Discover a project in the given directory.
@@ -9174,22 +8832,18 @@ May also be set with the `UV_WORKING_DIR` environment variable.
 
 [`--help`](#uv-python-dir--help), `-h` : Display the concise help for this command
 
-[`--managed-python`](#uv-python-dir--managed-python) : Require use of uv-managed Python versions.
+[`--managed-python`](#uv-python-dir--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-
-May also be set with the `UV_MANAGED_PYTHON` environment variable.
 ```
 
-[`--native-tls`](#uv-python-dir--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+[`--native-tls`](#uv-python-dir--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
 
 ```
 By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
 
 However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-
-May also be set with the `UV_NATIVE_TLS` environment variable.
 ```
 
 [`--no-cache`](#uv-python-dir--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
@@ -9206,30 +8860,24 @@ Normally, configuration files are discovered in the current directory, parent di
 May also be set with the `UV_NO_CONFIG` environment variable.
 ```
 
-[`--no-managed-python`](#uv-python-dir--no-managed-python) : Disable use of uv-managed Python versions.
+[`--no-managed-python`](#uv-python-dir--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
 
 ```
 Instead, uv will search for a suitable Python version on the system.
-
-May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
 ```
 
-[`--no-progress`](#uv-python-dir--no-progress) : Hide all progress outputs.
+[`--no-progress`](#uv-python-dir--no-progress) : Hide all progress outputs [env: UV_NO_PROGRESS=]
 
 ```
 For example, spinners or progress bars.
-
-May also be set with the `UV_NO_PROGRESS` environment variable.
 ```
 
 [`--no-python-downloads`](#uv-python-dir--no-python-downloads) : Disable automatic downloads of Python.
 
-[`--offline`](#uv-python-dir--offline) : Disable network access.
+[`--offline`](#uv-python-dir--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
 When disabled, uv will only use locally cached data and locally available files.
-
-May also be set with the `UV_OFFLINE` environment variable.
 ```
 
 [`--project`](#uv-python-dir--project) *project* : Discover a project in the given directory.
@@ -9341,22 +8989,18 @@ May also be set with the `UV_WORKING_DIR` environment variable.
 May also be set with the `UV_PYTHON_INSTALL_DIR` environment variable.
 ```
 
-[`--managed-python`](#uv-python-uninstall--managed-python) : Require use of uv-managed Python versions.
+[`--managed-python`](#uv-python-uninstall--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-
-May also be set with the `UV_MANAGED_PYTHON` environment variable.
 ```
 
-[`--native-tls`](#uv-python-uninstall--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+[`--native-tls`](#uv-python-uninstall--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
 
 ```
 By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
 
 However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-
-May also be set with the `UV_NATIVE_TLS` environment variable.
 ```
 
 [`--no-cache`](#uv-python-uninstall--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
@@ -9373,30 +9017,24 @@ Normally, configuration files are discovered in the current directory, parent di
 May also be set with the `UV_NO_CONFIG` environment variable.
 ```
 
-[`--no-managed-python`](#uv-python-uninstall--no-managed-python) : Disable use of uv-managed Python versions.
+[`--no-managed-python`](#uv-python-uninstall--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
 
 ```
 Instead, uv will search for a suitable Python version on the system.
-
-May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
 ```
 
-[`--no-progress`](#uv-python-uninstall--no-progress) : Hide all progress outputs.
+[`--no-progress`](#uv-python-uninstall--no-progress) : Hide all progress outputs [env: UV_NO_PROGRESS=]
 
 ```
 For example, spinners or progress bars.
-
-May also be set with the `UV_NO_PROGRESS` environment variable.
 ```
 
 [`--no-python-downloads`](#uv-python-uninstall--no-python-downloads) : Disable automatic downloads of Python.
 
-[`--offline`](#uv-python-uninstall--offline) : Disable network access.
+[`--offline`](#uv-python-uninstall--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
 When disabled, uv will only use locally cached data and locally available files.
-
-May also be set with the `UV_OFFLINE` environment variable.
 ```
 
 [`--project`](#uv-python-uninstall--project) *project* : Discover a project in the given directory.
@@ -9498,22 +9136,18 @@ May also be set with the `UV_WORKING_DIR` environment variable.
 
 [`--help`](#uv-python-update-shell--help), `-h` : Display the concise help for this command
 
-[`--managed-python`](#uv-python-update-shell--managed-python) : Require use of uv-managed Python versions.
+[`--managed-python`](#uv-python-update-shell--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-
-May also be set with the `UV_MANAGED_PYTHON` environment variable.
 ```
 
-[`--native-tls`](#uv-python-update-shell--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+[`--native-tls`](#uv-python-update-shell--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
 
 ```
 By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
 
 However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-
-May also be set with the `UV_NATIVE_TLS` environment variable.
 ```
 
 [`--no-cache`](#uv-python-update-shell--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
@@ -9530,30 +9164,24 @@ Normally, configuration files are discovered in the current directory, parent di
 May also be set with the `UV_NO_CONFIG` environment variable.
 ```
 
-[`--no-managed-python`](#uv-python-update-shell--no-managed-python) : Disable use of uv-managed Python versions.
+[`--no-managed-python`](#uv-python-update-shell--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
 
 ```
 Instead, uv will search for a suitable Python version on the system.
-
-May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
 ```
 
-[`--no-progress`](#uv-python-update-shell--no-progress) : Hide all progress outputs.
+[`--no-progress`](#uv-python-update-shell--no-progress) : Hide all progress outputs [env: UV_NO_PROGRESS=]
 
 ```
 For example, spinners or progress bars.
-
-May also be set with the `UV_NO_PROGRESS` environment variable.
 ```
 
 [`--no-python-downloads`](#uv-python-update-shell--no-python-downloads) : Disable automatic downloads of Python.
 
-[`--offline`](#uv-python-update-shell--offline) : Disable network access.
+[`--offline`](#uv-python-update-shell--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
 When disabled, uv will only use locally cached data and locally available files.
-
-May also be set with the `UV_OFFLINE` environment variable.
 ```
 
 [`--project`](#uv-python-update-shell--project) *project* : Discover a project in the given directory.
@@ -9921,22 +9549,18 @@ Possible values:
 - `symlink`: Symbolically link packages from the wheel into the `site-packages` directory
 ```
 
-[`--managed-python`](#uv-pip-compile--managed-python) : Require use of uv-managed Python versions.
+[`--managed-python`](#uv-pip-compile--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-
-May also be set with the `UV_MANAGED_PYTHON` environment variable.
 ```
 
-[`--native-tls`](#uv-pip-compile--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+[`--native-tls`](#uv-pip-compile--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
 
 ```
 By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
 
 However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-
-May also be set with the `UV_NATIVE_TLS` environment variable.
 ```
 
 [`--no-annotate`](#uv-pip-compile--no-annotate) : Exclude comment annotations indicating the source of each package
@@ -9985,20 +9609,16 @@ May also be set with the `UV_NO_CACHE` environment variable.
 
 [`--no-index`](#uv-pip-compile--no-index) : Ignore the registry index (e.g., PyPI), instead relying on direct URL dependencies and those provided via `--find-links`
 
-[`--no-managed-python`](#uv-pip-compile--no-managed-python) : Disable use of uv-managed Python versions.
+[`--no-managed-python`](#uv-pip-compile--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
 
 ```
 Instead, uv will search for a suitable Python version on the system.
-
-May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
 ```
 
-[`--no-progress`](#uv-pip-compile--no-progress) : Hide all progress outputs.
+[`--no-progress`](#uv-pip-compile--no-progress) : Hide all progress outputs [env: UV_NO_PROGRESS=]
 
 ```
 For example, spinners or progress bars.
-
-May also be set with the `UV_NO_PROGRESS` environment variable.
 ```
 
 [`--no-python-downloads`](#uv-pip-compile--no-python-downloads) : Disable automatic downloads of Python.
@@ -10021,12 +9641,10 @@ By default, uv strips extras, as any packages pulled in by the extras are alread
 By default, uv strips environment markers, as the resolution generated by `compile` is only guaranteed to be correct for the target environment.
 ```
 
-[`--offline`](#uv-pip-compile--offline) : Disable network access.
+[`--offline`](#uv-pip-compile--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
 When disabled, uv will only use locally cached data and locally available files.
-
-May also be set with the `UV_OFFLINE` environment variable.
 ```
 
 [`--only-binary`](#uv-pip-compile--only-binary) *only-binary* : Only use pre-built wheels; don't build source distributions.
@@ -10548,22 +10166,18 @@ Possible values:
 - `symlink`: Symbolically link packages from the wheel into the `site-packages` directory
 ```
 
-[`--managed-python`](#uv-pip-sync--managed-python) : Require use of uv-managed Python versions.
+[`--managed-python`](#uv-pip-sync--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-
-May also be set with the `UV_MANAGED_PYTHON` environment variable.
 ```
 
-[`--native-tls`](#uv-pip-sync--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+[`--native-tls`](#uv-pip-sync--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
 
 ```
 By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
 
 However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-
-May also be set with the `UV_NATIVE_TLS` environment variable.
 ```
 
 [`--no-allow-empty-requirements`](#uv-pip-sync--no-allow-empty-requirements)
@@ -10602,20 +10216,16 @@ May also be set with the `UV_NO_CACHE` environment variable.
 
 [`--no-index`](#uv-pip-sync--no-index) : Ignore the registry index (e.g., PyPI), instead relying on direct URL dependencies and those provided via `--find-links`
 
-[`--no-managed-python`](#uv-pip-sync--no-managed-python) : Disable use of uv-managed Python versions.
+[`--no-managed-python`](#uv-pip-sync--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
 
 ```
 Instead, uv will search for a suitable Python version on the system.
-
-May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
 ```
 
-[`--no-progress`](#uv-pip-sync--no-progress) : Hide all progress outputs.
+[`--no-progress`](#uv-pip-sync--no-progress) : Hide all progress outputs [env: UV_NO_PROGRESS=]
 
 ```
 For example, spinners or progress bars.
-
-May also be set with the `UV_NO_PROGRESS` environment variable.
 ```
 
 [`--no-python-downloads`](#uv-pip-sync--no-python-downloads) : Disable automatic downloads of Python.
@@ -10634,12 +10244,10 @@ By default, uv will verify any available hashes in the requirements file, but wi
 May also be set with the `UV_NO_VERIFY_HASHES` environment variable.
 ```
 
-[`--offline`](#uv-pip-sync--offline) : Disable network access.
+[`--offline`](#uv-pip-sync--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
 When disabled, uv will only use locally cached data and locally available files.
-
-May also be set with the `UV_OFFLINE` environment variable.
 ```
 
 [`--only-binary`](#uv-pip-sync--only-binary) *only-binary* : Only use pre-built wheels; don't build source distributions.
@@ -11153,22 +10761,18 @@ Possible values:
 - `symlink`: Symbolically link packages from the wheel into the `site-packages` directory
 ```
 
-[`--managed-python`](#uv-pip-install--managed-python) : Require use of uv-managed Python versions.
+[`--managed-python`](#uv-pip-install--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-
-May also be set with the `UV_MANAGED_PYTHON` environment variable.
 ```
 
-[`--native-tls`](#uv-pip-install--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+[`--native-tls`](#uv-pip-install--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
 
 ```
 By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
 
 However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-
-May also be set with the `UV_NATIVE_TLS` environment variable.
 ```
 
 [`--no-binary`](#uv-pip-install--no-binary) *no-binary* : Don't install pre-built wheels.
@@ -11221,20 +10825,16 @@ May also be set with the `UV_NO_CONFIG` environment variable.
 
 [`--no-index`](#uv-pip-install--no-index) : Ignore the registry index (e.g., PyPI), instead relying on direct URL dependencies and those provided via `--find-links`
 
-[`--no-managed-python`](#uv-pip-install--no-managed-python) : Disable use of uv-managed Python versions.
+[`--no-managed-python`](#uv-pip-install--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
 
 ```
 Instead, uv will search for a suitable Python version on the system.
-
-May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
 ```
 
-[`--no-progress`](#uv-pip-install--no-progress) : Hide all progress outputs.
+[`--no-progress`](#uv-pip-install--no-progress) : Hide all progress outputs [env: UV_NO_PROGRESS=]
 
 ```
 For example, spinners or progress bars.
-
-May also be set with the `UV_NO_PROGRESS` environment variable.
 ```
 
 [`--no-python-downloads`](#uv-pip-install--no-python-downloads) : Disable automatic downloads of Python.
@@ -11253,12 +10853,10 @@ By default, uv will verify any available hashes in the requirements file, but wi
 May also be set with the `UV_NO_VERIFY_HASHES` environment variable.
 ```
 
-[`--offline`](#uv-pip-install--offline) : Disable network access.
+[`--offline`](#uv-pip-install--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
 When disabled, uv will only use locally cached data and locally available files.
-
-May also be set with the `UV_OFFLINE` environment variable.
 ```
 
 [`--only-binary`](#uv-pip-install--only-binary) *only-binary* : Only use pre-built wheels; don't build source distributions.
@@ -11638,22 +11236,18 @@ Possible values:
 - `subprocess`: Use the `keyring` command for credential lookup
 ```
 
-[`--managed-python`](#uv-pip-uninstall--managed-python) : Require use of uv-managed Python versions.
+[`--managed-python`](#uv-pip-uninstall--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-
-May also be set with the `UV_MANAGED_PYTHON` environment variable.
 ```
 
-[`--native-tls`](#uv-pip-uninstall--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+[`--native-tls`](#uv-pip-uninstall--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
 
 ```
 By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
 
 However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-
-May also be set with the `UV_NATIVE_TLS` environment variable.
 ```
 
 [`--no-break-system-packages`](#uv-pip-uninstall--no-break-system-packages)
@@ -11672,30 +11266,24 @@ Normally, configuration files are discovered in the current directory, parent di
 May also be set with the `UV_NO_CONFIG` environment variable.
 ```
 
-[`--no-managed-python`](#uv-pip-uninstall--no-managed-python) : Disable use of uv-managed Python versions.
+[`--no-managed-python`](#uv-pip-uninstall--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
 
 ```
 Instead, uv will search for a suitable Python version on the system.
-
-May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
 ```
 
-[`--no-progress`](#uv-pip-uninstall--no-progress) : Hide all progress outputs.
+[`--no-progress`](#uv-pip-uninstall--no-progress) : Hide all progress outputs [env: UV_NO_PROGRESS=]
 
 ```
 For example, spinners or progress bars.
-
-May also be set with the `UV_NO_PROGRESS` environment variable.
 ```
 
 [`--no-python-downloads`](#uv-pip-uninstall--no-python-downloads) : Disable automatic downloads of Python.
 
-[`--offline`](#uv-pip-uninstall--offline) : Disable network access.
+[`--offline`](#uv-pip-uninstall--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
 When disabled, uv will only use locally cached data and locally available files.
-
-May also be set with the `UV_OFFLINE` environment variable.
 ```
 
 [`--prefix`](#uv-pip-uninstall--prefix) *prefix* : Uninstall packages from the specified `--prefix` directory
@@ -11825,22 +11413,18 @@ May also be set with the `UV_WORKING_DIR` environment variable.
 
 [`--help`](#uv-pip-freeze--help), `-h` : Display the concise help for this command
 
-[`--managed-python`](#uv-pip-freeze--managed-python) : Require use of uv-managed Python versions.
+[`--managed-python`](#uv-pip-freeze--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-
-May also be set with the `UV_MANAGED_PYTHON` environment variable.
 ```
 
-[`--native-tls`](#uv-pip-freeze--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+[`--native-tls`](#uv-pip-freeze--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
 
 ```
 By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
 
 However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-
-May also be set with the `UV_NATIVE_TLS` environment variable.
 ```
 
 [`--no-cache`](#uv-pip-freeze--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
@@ -11857,30 +11441,24 @@ Normally, configuration files are discovered in the current directory, parent di
 May also be set with the `UV_NO_CONFIG` environment variable.
 ```
 
-[`--no-managed-python`](#uv-pip-freeze--no-managed-python) : Disable use of uv-managed Python versions.
+[`--no-managed-python`](#uv-pip-freeze--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
 
 ```
 Instead, uv will search for a suitable Python version on the system.
-
-May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
 ```
 
-[`--no-progress`](#uv-pip-freeze--no-progress) : Hide all progress outputs.
+[`--no-progress`](#uv-pip-freeze--no-progress) : Hide all progress outputs [env: UV_NO_PROGRESS=]
 
 ```
 For example, spinners or progress bars.
-
-May also be set with the `UV_NO_PROGRESS` environment variable.
 ```
 
 [`--no-python-downloads`](#uv-pip-freeze--no-python-downloads) : Disable automatic downloads of Python.
 
-[`--offline`](#uv-pip-freeze--offline) : Disable network access.
+[`--offline`](#uv-pip-freeze--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
 When disabled, uv will only use locally cached data and locally available files.
-
-May also be set with the `UV_OFFLINE` environment variable.
 ```
 
 [`--path`](#uv-pip-freeze--path) *paths* : Restrict to the specified installation path for listing packages (can be used multiple times)
@@ -12114,22 +11692,18 @@ Possible values:
 - `subprocess`: Use the `keyring` command for credential lookup
 ```
 
-[`--managed-python`](#uv-pip-list--managed-python) : Require use of uv-managed Python versions.
+[`--managed-python`](#uv-pip-list--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-
-May also be set with the `UV_MANAGED_PYTHON` environment variable.
 ```
 
-[`--native-tls`](#uv-pip-list--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+[`--native-tls`](#uv-pip-list--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
 
 ```
 By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
 
 However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-
-May also be set with the `UV_NATIVE_TLS` environment variable.
 ```
 
 [`--no-cache`](#uv-pip-list--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
@@ -12148,30 +11722,24 @@ May also be set with the `UV_NO_CONFIG` environment variable.
 
 [`--no-index`](#uv-pip-list--no-index) : Ignore the registry index (e.g., PyPI), instead relying on direct URL dependencies and those provided via `--find-links`
 
-[`--no-managed-python`](#uv-pip-list--no-managed-python) : Disable use of uv-managed Python versions.
+[`--no-managed-python`](#uv-pip-list--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
 
 ```
 Instead, uv will search for a suitable Python version on the system.
-
-May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
 ```
 
-[`--no-progress`](#uv-pip-list--no-progress) : Hide all progress outputs.
+[`--no-progress`](#uv-pip-list--no-progress) : Hide all progress outputs [env: UV_NO_PROGRESS=]
 
 ```
 For example, spinners or progress bars.
-
-May also be set with the `UV_NO_PROGRESS` environment variable.
 ```
 
 [`--no-python-downloads`](#uv-pip-list--no-python-downloads) : Disable automatic downloads of Python.
 
-[`--offline`](#uv-pip-list--offline) : Disable network access.
+[`--offline`](#uv-pip-list--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
 When disabled, uv will only use locally cached data and locally available files.
-
-May also be set with the `UV_OFFLINE` environment variable.
 ```
 
 [`--outdated`](#uv-pip-list--outdated) : List outdated packages.
@@ -12306,22 +11874,18 @@ May also be set with the `UV_WORKING_DIR` environment variable.
 
 [`--help`](#uv-pip-show--help), `-h` : Display the concise help for this command
 
-[`--managed-python`](#uv-pip-show--managed-python) : Require use of uv-managed Python versions.
+[`--managed-python`](#uv-pip-show--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-
-May also be set with the `UV_MANAGED_PYTHON` environment variable.
 ```
 
-[`--native-tls`](#uv-pip-show--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+[`--native-tls`](#uv-pip-show--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
 
 ```
 By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
 
 However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-
-May also be set with the `UV_NATIVE_TLS` environment variable.
 ```
 
 [`--no-cache`](#uv-pip-show--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
@@ -12338,30 +11902,24 @@ Normally, configuration files are discovered in the current directory, parent di
 May also be set with the `UV_NO_CONFIG` environment variable.
 ```
 
-[`--no-managed-python`](#uv-pip-show--no-managed-python) : Disable use of uv-managed Python versions.
+[`--no-managed-python`](#uv-pip-show--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
 
 ```
 Instead, uv will search for a suitable Python version on the system.
-
-May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
 ```
 
-[`--no-progress`](#uv-pip-show--no-progress) : Hide all progress outputs.
+[`--no-progress`](#uv-pip-show--no-progress) : Hide all progress outputs [env: UV_NO_PROGRESS=]
 
 ```
 For example, spinners or progress bars.
-
-May also be set with the `UV_NO_PROGRESS` environment variable.
 ```
 
 [`--no-python-downloads`](#uv-pip-show--no-python-downloads) : Disable automatic downloads of Python.
 
-[`--offline`](#uv-pip-show--offline) : Disable network access.
+[`--offline`](#uv-pip-show--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
 When disabled, uv will only use locally cached data and locally available files.
-
-May also be set with the `UV_OFFLINE` environment variable.
 ```
 
 [`--prefix`](#uv-pip-show--prefix) *prefix* : Show a package from the specified `--prefix` directory
@@ -12583,22 +12141,18 @@ Possible values:
 - `subprocess`: Use the `keyring` command for credential lookup
 ```
 
-[`--managed-python`](#uv-pip-tree--managed-python) : Require use of uv-managed Python versions.
+[`--managed-python`](#uv-pip-tree--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-
-May also be set with the `UV_MANAGED_PYTHON` environment variable.
 ```
 
-[`--native-tls`](#uv-pip-tree--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+[`--native-tls`](#uv-pip-tree--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
 
 ```
 By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
 
 However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-
-May also be set with the `UV_NATIVE_TLS` environment variable.
 ```
 
 [`--no-cache`](#uv-pip-tree--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
@@ -12619,30 +12173,24 @@ May also be set with the `UV_NO_CONFIG` environment variable.
 
 [`--no-index`](#uv-pip-tree--no-index) : Ignore the registry index (e.g., PyPI), instead relying on direct URL dependencies and those provided via `--find-links`
 
-[`--no-managed-python`](#uv-pip-tree--no-managed-python) : Disable use of uv-managed Python versions.
+[`--no-managed-python`](#uv-pip-tree--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
 
 ```
 Instead, uv will search for a suitable Python version on the system.
-
-May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
 ```
 
-[`--no-progress`](#uv-pip-tree--no-progress) : Hide all progress outputs.
+[`--no-progress`](#uv-pip-tree--no-progress) : Hide all progress outputs [env: UV_NO_PROGRESS=]
 
 ```
 For example, spinners or progress bars.
-
-May also be set with the `UV_NO_PROGRESS` environment variable.
 ```
 
 [`--no-python-downloads`](#uv-pip-tree--no-python-downloads) : Disable automatic downloads of Python.
 
-[`--offline`](#uv-pip-tree--offline) : Disable network access.
+[`--offline`](#uv-pip-tree--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
 When disabled, uv will only use locally cached data and locally available files.
-
-May also be set with the `UV_OFFLINE` environment variable.
 ```
 
 [`--outdated`](#uv-pip-tree--outdated) : Show the latest available version of each package in the tree
@@ -12771,22 +12319,18 @@ May also be set with the `UV_WORKING_DIR` environment variable.
 
 [`--help`](#uv-pip-check--help), `-h` : Display the concise help for this command
 
-[`--managed-python`](#uv-pip-check--managed-python) : Require use of uv-managed Python versions.
+[`--managed-python`](#uv-pip-check--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-
-May also be set with the `UV_MANAGED_PYTHON` environment variable.
 ```
 
-[`--native-tls`](#uv-pip-check--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+[`--native-tls`](#uv-pip-check--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
 
 ```
 By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
 
 However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-
-May also be set with the `UV_NATIVE_TLS` environment variable.
 ```
 
 [`--no-cache`](#uv-pip-check--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
@@ -12803,30 +12347,24 @@ Normally, configuration files are discovered in the current directory, parent di
 May also be set with the `UV_NO_CONFIG` environment variable.
 ```
 
-[`--no-managed-python`](#uv-pip-check--no-managed-python) : Disable use of uv-managed Python versions.
+[`--no-managed-python`](#uv-pip-check--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
 
 ```
 Instead, uv will search for a suitable Python version on the system.
-
-May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
 ```
 
-[`--no-progress`](#uv-pip-check--no-progress) : Hide all progress outputs.
+[`--no-progress`](#uv-pip-check--no-progress) : Hide all progress outputs [env: UV_NO_PROGRESS=]
 
 ```
 For example, spinners or progress bars.
-
-May also be set with the `UV_NO_PROGRESS` environment variable.
 ```
 
 [`--no-python-downloads`](#uv-pip-check--no-python-downloads) : Disable automatic downloads of Python.
 
-[`--offline`](#uv-pip-check--offline) : Disable network access.
+[`--offline`](#uv-pip-check--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
 When disabled, uv will only use locally cached data and locally available files.
-
-May also be set with the `UV_OFFLINE` environment variable.
 ```
 
 [`--project`](#uv-pip-check--project) *project* : Discover a project in the given directory.
@@ -13005,12 +12543,10 @@ To view the location of the cache directory, run `uv cache dir`.
 May also be set with the `UV_CACHE_DIR` environment variable.
 ```
 
-[`--clear`](#uv-venv--clear), `-c` : Remove any existing files or directories at the target path.
+[`--clear`](#uv-venv--clear), `-c` : Remove any existing files or directories at the target path [env: UV_VENV_CLEAR=]
 
 ```
 By default, `uv venv` will exit with an error if the given path is non-empty. The `--clear` option will instead clear a non-empty path before creating a new virtual environment.
-
-May also be set with the `UV_VENV_CLEAR` environment variable.
 ```
 
 [`--color`](#uv-venv--color) *color-choice* : Control the use of color in output.
@@ -13165,22 +12701,18 @@ Possible values:
 - `symlink`: Symbolically link packages from the wheel into the `site-packages` directory
 ```
 
-[`--managed-python`](#uv-venv--managed-python) : Require use of uv-managed Python versions.
+[`--managed-python`](#uv-venv--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-
-May also be set with the `UV_MANAGED_PYTHON` environment variable.
 ```
 
-[`--native-tls`](#uv-venv--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+[`--native-tls`](#uv-venv--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
 
 ```
 By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
 
 However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-
-May also be set with the `UV_NATIVE_TLS` environment variable.
 ```
 
 [`--no-cache`](#uv-venv--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
@@ -13199,20 +12731,16 @@ May also be set with the `UV_NO_CONFIG` environment variable.
 
 [`--no-index`](#uv-venv--no-index) : Ignore the registry index (e.g., PyPI), instead relying on direct URL dependencies and those provided via `--find-links`
 
-[`--no-managed-python`](#uv-venv--no-managed-python) : Disable use of uv-managed Python versions.
+[`--no-managed-python`](#uv-venv--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
 
 ```
 Instead, uv will search for a suitable Python version on the system.
-
-May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
 ```
 
-[`--no-progress`](#uv-venv--no-progress) : Hide all progress outputs.
+[`--no-progress`](#uv-venv--no-progress) : Hide all progress outputs [env: UV_NO_PROGRESS=]
 
 ```
 For example, spinners or progress bars.
-
-May also be set with the `UV_NO_PROGRESS` environment variable.
 ```
 
 [`--no-project`](#uv-venv--no-project), `--no-workspace` : Avoid discovering a project or workspace.
@@ -13223,12 +12751,10 @@ By default, uv searches for projects in the current directory or any parent dire
 
 [`--no-python-downloads`](#uv-venv--no-python-downloads) : Disable automatic downloads of Python.
 
-[`--offline`](#uv-venv--offline) : Disable network access.
+[`--offline`](#uv-venv--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
 When disabled, uv will only use locally cached data and locally available files.
-
-May also be set with the `UV_OFFLINE` environment variable.
 ```
 
 [`--project`](#uv-venv--project) *project* : Discover a project in the given directory.
@@ -13287,12 +12813,10 @@ Note that this can only be guaranteed for standard `console_scripts` and `gui_sc
 As a result of making the environment relocatable (by way of writing relative, rather than absolute paths), the entrypoints and scripts themselves will *not* be relocatable. In other words, copying those entrypoints and scripts to a location outside the environment will not work, as they reference paths relative to the environment itself.
 ```
 
-[`--seed`](#uv-venv--seed) : Install seed packages (one or more of: `pip`, `setuptools`, and `wheel`) into the virtual environment.
+[`--seed`](#uv-venv--seed) : Install seed packages (one or more of: `pip`, `setuptools`, and `wheel`) into the virtual environment [env: UV_VENV_SEED=]
 
 ```
 Note that `setuptools` and `wheel` are not included in Python 3.12+ environments.
-
-May also be set with the `UV_VENV_SEED` environment variable.
 ```
 
 [`--system-site-packages`](#uv-venv--system-site-packages) : Give the virtual environment access to the system site packages directory.
@@ -13553,22 +13077,18 @@ Possible values:
 - `symlink`: Symbolically link packages from the wheel into the `site-packages` directory
 ```
 
-[`--managed-python`](#uv-build--managed-python) : Require use of uv-managed Python versions.
+[`--managed-python`](#uv-build--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-
-May also be set with the `UV_MANAGED_PYTHON` environment variable.
 ```
 
-[`--native-tls`](#uv-build--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+[`--native-tls`](#uv-build--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
 
 ```
 By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
 
 However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-
-May also be set with the `UV_NATIVE_TLS` environment variable.
 ```
 
 [`--no-binary`](#uv-build--no-binary) : Don't install pre-built wheels.
@@ -13637,20 +13157,16 @@ By default, uv creates a `.gitignore` file in the output directory to exclude bu
 
 [`--no-index`](#uv-build--no-index) : Ignore the registry index (e.g., PyPI), instead relying on direct URL dependencies and those provided via `--find-links`
 
-[`--no-managed-python`](#uv-build--no-managed-python) : Disable use of uv-managed Python versions.
+[`--no-managed-python`](#uv-build--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
 
 ```
 Instead, uv will search for a suitable Python version on the system.
-
-May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
 ```
 
-[`--no-progress`](#uv-build--no-progress) : Hide all progress outputs.
+[`--no-progress`](#uv-build--no-progress) : Hide all progress outputs [env: UV_NO_PROGRESS=]
 
 ```
 For example, spinners or progress bars.
-
-May also be set with the `UV_NO_PROGRESS` environment variable.
 ```
 
 [`--no-python-downloads`](#uv-build--no-python-downloads) : Disable automatic downloads of Python.
@@ -13669,12 +13185,10 @@ By default, uv will verify any available hashes in the requirements file, but wi
 May also be set with the `UV_NO_VERIFY_HASHES` environment variable.
 ```
 
-[`--offline`](#uv-build--offline) : Disable network access.
+[`--offline`](#uv-build--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
 When disabled, uv will only use locally cached data and locally available files.
-
-May also be set with the `UV_OFFLINE` environment variable.
 ```
 
 [`--out-dir`](#uv-build--out-dir), `-o` *out-dir* : The output directory to which distributions should be written.
@@ -13921,22 +13435,18 @@ Possible values:
 - `subprocess`: Use the `keyring` command for credential lookup
 ```
 
-[`--managed-python`](#uv-publish--managed-python) : Require use of uv-managed Python versions.
+[`--managed-python`](#uv-publish--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-
-May also be set with the `UV_MANAGED_PYTHON` environment variable.
 ```
 
-[`--native-tls`](#uv-publish--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+[`--native-tls`](#uv-publish--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
 
 ```
 By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
 
 However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-
-May also be set with the `UV_NATIVE_TLS` environment variable.
 ```
 
 [`--no-attestations`](#uv-publish--no-attestations) : Do not upload attestations for the published files.
@@ -13961,30 +13471,24 @@ Normally, configuration files are discovered in the current directory, parent di
 May also be set with the `UV_NO_CONFIG` environment variable.
 ```
 
-[`--no-managed-python`](#uv-publish--no-managed-python) : Disable use of uv-managed Python versions.
+[`--no-managed-python`](#uv-publish--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
 
 ```
 Instead, uv will search for a suitable Python version on the system.
-
-May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
 ```
 
-[`--no-progress`](#uv-publish--no-progress) : Hide all progress outputs.
+[`--no-progress`](#uv-publish--no-progress) : Hide all progress outputs [env: UV_NO_PROGRESS=]
 
 ```
 For example, spinners or progress bars.
-
-May also be set with the `UV_NO_PROGRESS` environment variable.
 ```
 
 [`--no-python-downloads`](#uv-publish--no-python-downloads) : Disable automatic downloads of Python.
 
-[`--offline`](#uv-publish--offline) : Disable network access.
+[`--offline`](#uv-publish--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
 When disabled, uv will only use locally cached data and locally available files.
-
-May also be set with the `UV_OFFLINE` environment variable.
 ```
 
 [`--password`](#uv-publish--password), `-p` *password* : The password for the upload
@@ -14155,22 +13659,18 @@ By default, `uv cache clean` will block until no process is reading the cache. W
 
 [`--help`](#uv-cache-clean--help), `-h` : Display the concise help for this command
 
-[`--managed-python`](#uv-cache-clean--managed-python) : Require use of uv-managed Python versions.
+[`--managed-python`](#uv-cache-clean--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-
-May also be set with the `UV_MANAGED_PYTHON` environment variable.
 ```
 
-[`--native-tls`](#uv-cache-clean--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+[`--native-tls`](#uv-cache-clean--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
 
 ```
 By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
 
 However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-
-May also be set with the `UV_NATIVE_TLS` environment variable.
 ```
 
 [`--no-cache`](#uv-cache-clean--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
@@ -14187,30 +13687,24 @@ Normally, configuration files are discovered in the current directory, parent di
 May also be set with the `UV_NO_CONFIG` environment variable.
 ```
 
-[`--no-managed-python`](#uv-cache-clean--no-managed-python) : Disable use of uv-managed Python versions.
+[`--no-managed-python`](#uv-cache-clean--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
 
 ```
 Instead, uv will search for a suitable Python version on the system.
-
-May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
 ```
 
-[`--no-progress`](#uv-cache-clean--no-progress) : Hide all progress outputs.
+[`--no-progress`](#uv-cache-clean--no-progress) : Hide all progress outputs [env: UV_NO_PROGRESS=]
 
 ```
 For example, spinners or progress bars.
-
-May also be set with the `UV_NO_PROGRESS` environment variable.
 ```
 
 [`--no-python-downloads`](#uv-cache-clean--no-python-downloads) : Disable automatic downloads of Python.
 
-[`--offline`](#uv-cache-clean--offline) : Disable network access.
+[`--offline`](#uv-cache-clean--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
 When disabled, uv will only use locally cached data and locally available files.
-
-May also be set with the `UV_OFFLINE` environment variable.
 ```
 
 [`--project`](#uv-cache-clean--project) *project* : Discover a project in the given directory.
@@ -14320,22 +13814,18 @@ By default, `uv cache prune` will block until no process is reading the cache. W
 
 [`--help`](#uv-cache-prune--help), `-h` : Display the concise help for this command
 
-[`--managed-python`](#uv-cache-prune--managed-python) : Require use of uv-managed Python versions.
+[`--managed-python`](#uv-cache-prune--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-
-May also be set with the `UV_MANAGED_PYTHON` environment variable.
 ```
 
-[`--native-tls`](#uv-cache-prune--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+[`--native-tls`](#uv-cache-prune--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
 
 ```
 By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
 
 However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-
-May also be set with the `UV_NATIVE_TLS` environment variable.
 ```
 
 [`--no-cache`](#uv-cache-prune--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
@@ -14352,30 +13842,24 @@ Normally, configuration files are discovered in the current directory, parent di
 May also be set with the `UV_NO_CONFIG` environment variable.
 ```
 
-[`--no-managed-python`](#uv-cache-prune--no-managed-python) : Disable use of uv-managed Python versions.
+[`--no-managed-python`](#uv-cache-prune--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
 
 ```
 Instead, uv will search for a suitable Python version on the system.
-
-May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
 ```
 
-[`--no-progress`](#uv-cache-prune--no-progress) : Hide all progress outputs.
+[`--no-progress`](#uv-cache-prune--no-progress) : Hide all progress outputs [env: UV_NO_PROGRESS=]
 
 ```
 For example, spinners or progress bars.
-
-May also be set with the `UV_NO_PROGRESS` environment variable.
 ```
 
 [`--no-python-downloads`](#uv-cache-prune--no-python-downloads) : Disable automatic downloads of Python.
 
-[`--offline`](#uv-cache-prune--offline) : Disable network access.
+[`--offline`](#uv-cache-prune--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
 When disabled, uv will only use locally cached data and locally available files.
-
-May also be set with the `UV_OFFLINE` environment variable.
 ```
 
 [`--project`](#uv-cache-prune--project) *project* : Discover a project in the given directory.
@@ -14479,22 +13963,18 @@ May also be set with the `UV_WORKING_DIR` environment variable.
 
 [`--help`](#uv-cache-dir--help), `-h` : Display the concise help for this command
 
-[`--managed-python`](#uv-cache-dir--managed-python) : Require use of uv-managed Python versions.
+[`--managed-python`](#uv-cache-dir--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-
-May also be set with the `UV_MANAGED_PYTHON` environment variable.
 ```
 
-[`--native-tls`](#uv-cache-dir--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+[`--native-tls`](#uv-cache-dir--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
 
 ```
 By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
 
 However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-
-May also be set with the `UV_NATIVE_TLS` environment variable.
 ```
 
 [`--no-cache`](#uv-cache-dir--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
@@ -14511,30 +13991,24 @@ Normally, configuration files are discovered in the current directory, parent di
 May also be set with the `UV_NO_CONFIG` environment variable.
 ```
 
-[`--no-managed-python`](#uv-cache-dir--no-managed-python) : Disable use of uv-managed Python versions.
+[`--no-managed-python`](#uv-cache-dir--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
 
 ```
 Instead, uv will search for a suitable Python version on the system.
-
-May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
 ```
 
-[`--no-progress`](#uv-cache-dir--no-progress) : Hide all progress outputs.
+[`--no-progress`](#uv-cache-dir--no-progress) : Hide all progress outputs [env: UV_NO_PROGRESS=]
 
 ```
 For example, spinners or progress bars.
-
-May also be set with the `UV_NO_PROGRESS` environment variable.
 ```
 
 [`--no-python-downloads`](#uv-cache-dir--no-python-downloads) : Disable automatic downloads of Python.
 
-[`--offline`](#uv-cache-dir--offline) : Disable network access.
+[`--offline`](#uv-cache-dir--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
 When disabled, uv will only use locally cached data and locally available files.
-
-May also be set with the `UV_OFFLINE` environment variable.
 ```
 
 [`--project`](#uv-cache-dir--project) *project* : Discover a project in the given directory.
@@ -14634,22 +14108,18 @@ May also be set with the `UV_WORKING_DIR` environment variable.
 
 [`--human`](#uv-cache-size--human), `--human-readable`, `-H` : Display the cache size in human-readable format (e.g., `1.2 GiB` instead of raw bytes)
 
-[`--managed-python`](#uv-cache-size--managed-python) : Require use of uv-managed Python versions.
+[`--managed-python`](#uv-cache-size--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-
-May also be set with the `UV_MANAGED_PYTHON` environment variable.
 ```
 
-[`--native-tls`](#uv-cache-size--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+[`--native-tls`](#uv-cache-size--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
 
 ```
 By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
 
 However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-
-May also be set with the `UV_NATIVE_TLS` environment variable.
 ```
 
 [`--no-cache`](#uv-cache-size--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
@@ -14666,30 +14136,24 @@ Normally, configuration files are discovered in the current directory, parent di
 May also be set with the `UV_NO_CONFIG` environment variable.
 ```
 
-[`--no-managed-python`](#uv-cache-size--no-managed-python) : Disable use of uv-managed Python versions.
+[`--no-managed-python`](#uv-cache-size--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
 
 ```
 Instead, uv will search for a suitable Python version on the system.
-
-May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
 ```
 
-[`--no-progress`](#uv-cache-size--no-progress) : Hide all progress outputs.
+[`--no-progress`](#uv-cache-size--no-progress) : Hide all progress outputs [env: UV_NO_PROGRESS=]
 
 ```
 For example, spinners or progress bars.
-
-May also be set with the `UV_NO_PROGRESS` environment variable.
 ```
 
 [`--no-python-downloads`](#uv-cache-size--no-python-downloads) : Disable automatic downloads of Python.
 
-[`--offline`](#uv-cache-size--offline) : Disable network access.
+[`--offline`](#uv-cache-size--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
 When disabled, uv will only use locally cached data and locally available files.
-
-May also be set with the `UV_OFFLINE` environment variable.
 ```
 
 [`--project`](#uv-cache-size--project) *project* : Discover a project in the given directory.
@@ -14808,22 +14272,18 @@ May also be set with the `UV_WORKING_DIR` environment variable.
 
 [`--help`](#uv-self-update--help), `-h` : Display the concise help for this command
 
-[`--managed-python`](#uv-self-update--managed-python) : Require use of uv-managed Python versions.
+[`--managed-python`](#uv-self-update--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-
-May also be set with the `UV_MANAGED_PYTHON` environment variable.
 ```
 
-[`--native-tls`](#uv-self-update--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+[`--native-tls`](#uv-self-update--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
 
 ```
 By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
 
 However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-
-May also be set with the `UV_NATIVE_TLS` environment variable.
 ```
 
 [`--no-cache`](#uv-self-update--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
@@ -14840,30 +14300,24 @@ Normally, configuration files are discovered in the current directory, parent di
 May also be set with the `UV_NO_CONFIG` environment variable.
 ```
 
-[`--no-managed-python`](#uv-self-update--no-managed-python) : Disable use of uv-managed Python versions.
+[`--no-managed-python`](#uv-self-update--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
 
 ```
 Instead, uv will search for a suitable Python version on the system.
-
-May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
 ```
 
-[`--no-progress`](#uv-self-update--no-progress) : Hide all progress outputs.
+[`--no-progress`](#uv-self-update--no-progress) : Hide all progress outputs [env: UV_NO_PROGRESS=]
 
 ```
 For example, spinners or progress bars.
-
-May also be set with the `UV_NO_PROGRESS` environment variable.
 ```
 
 [`--no-python-downloads`](#uv-self-update--no-python-downloads) : Disable automatic downloads of Python.
 
-[`--offline`](#uv-self-update--offline) : Disable network access.
+[`--offline`](#uv-self-update--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
 When disabled, uv will only use locally cached data and locally available files.
-
-May also be set with the `UV_OFFLINE` environment variable.
 ```
 
 [`--project`](#uv-self-update--project) *project* : Discover a project in the given directory.
@@ -14965,22 +14419,18 @@ May also be set with the `UV_WORKING_DIR` environment variable.
 
 [`--help`](#uv-self-version--help), `-h` : Display the concise help for this command
 
-[`--managed-python`](#uv-self-version--managed-python) : Require use of uv-managed Python versions.
+[`--managed-python`](#uv-self-version--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-
-May also be set with the `UV_MANAGED_PYTHON` environment variable.
 ```
 
-[`--native-tls`](#uv-self-version--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+[`--native-tls`](#uv-self-version--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
 
 ```
 By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
 
 However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-
-May also be set with the `UV_NATIVE_TLS` environment variable.
 ```
 
 [`--no-cache`](#uv-self-version--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
@@ -14997,30 +14447,24 @@ Normally, configuration files are discovered in the current directory, parent di
 May also be set with the `UV_NO_CONFIG` environment variable.
 ```
 
-[`--no-managed-python`](#uv-self-version--no-managed-python) : Disable use of uv-managed Python versions.
+[`--no-managed-python`](#uv-self-version--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
 
 ```
 Instead, uv will search for a suitable Python version on the system.
-
-May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
 ```
 
-[`--no-progress`](#uv-self-version--no-progress) : Hide all progress outputs.
+[`--no-progress`](#uv-self-version--no-progress) : Hide all progress outputs [env: UV_NO_PROGRESS=]
 
 ```
 For example, spinners or progress bars.
-
-May also be set with the `UV_NO_PROGRESS` environment variable.
 ```
 
 [`--no-python-downloads`](#uv-self-version--no-python-downloads) : Disable automatic downloads of Python.
 
-[`--offline`](#uv-self-version--offline) : Disable network access.
+[`--offline`](#uv-self-version--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
 When disabled, uv will only use locally cached data and locally available files.
-
-May also be set with the `UV_OFFLINE` environment variable.
 ```
 
 [`--output-format`](#uv-self-version--output-format) *output-format*
@@ -15092,20 +14536,16 @@ See `--project` to only change the project root directory.
 May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
-[`--managed-python`](#uv-generate-shell-completion--managed-python) : Require use of uv-managed Python versions.
+[`--managed-python`](#uv-generate-shell-completion--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-
-May also be set with the `UV_MANAGED_PYTHON` environment variable.
 ```
 
-[`--no-managed-python`](#uv-generate-shell-completion--no-managed-python) : Disable use of uv-managed Python versions.
+[`--no-managed-python`](#uv-generate-shell-completion--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
 
 ```
 Instead, uv will search for a suitable Python version on the system.
-
-May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
 ```
 
 [`--project`](#uv-generate-shell-completion--project) *project* : Discover a project in the given directory.
@@ -15193,22 +14633,18 @@ May also be set with the `UV_WORKING_DIR` environment variable.
 
 [`--help`](#uv-help--help), `-h` : Display the concise help for this command
 
-[`--managed-python`](#uv-help--managed-python) : Require use of uv-managed Python versions.
+[`--managed-python`](#uv-help--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-
-May also be set with the `UV_MANAGED_PYTHON` environment variable.
 ```
 
-[`--native-tls`](#uv-help--native-tls) : Whether to load TLS certificates from the platform's native certificate store.
+[`--native-tls`](#uv-help--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
 
 ```
 By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
 
 However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-
-May also be set with the `UV_NATIVE_TLS` environment variable.
 ```
 
 [`--no-cache`](#uv-help--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
@@ -15225,32 +14661,26 @@ Normally, configuration files are discovered in the current directory, parent di
 May also be set with the `UV_NO_CONFIG` environment variable.
 ```
 
-[`--no-managed-python`](#uv-help--no-managed-python) : Disable use of uv-managed Python versions.
+[`--no-managed-python`](#uv-help--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
 
 ```
 Instead, uv will search for a suitable Python version on the system.
-
-May also be set with the `UV_NO_MANAGED_PYTHON` environment variable.
 ```
 
 [`--no-pager`](#uv-help--no-pager) : Disable pager when printing help
 
-[`--no-progress`](#uv-help--no-progress) : Hide all progress outputs.
+[`--no-progress`](#uv-help--no-progress) : Hide all progress outputs [env: UV_NO_PROGRESS=]
 
 ```
 For example, spinners or progress bars.
-
-May also be set with the `UV_NO_PROGRESS` environment variable.
 ```
 
 [`--no-python-downloads`](#uv-help--no-python-downloads) : Disable automatic downloads of Python.
 
-[`--offline`](#uv-help--offline) : Disable network access.
+[`--offline`](#uv-help--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
 When disabled, uv will only use locally cached data and locally available files.
-
-May also be set with the `UV_OFFLINE` environment variable.
 ```
 
 [`--project`](#uv-help--project) *project* : Discover a project in the given directory.
