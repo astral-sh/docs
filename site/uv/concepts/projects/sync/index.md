@@ -76,14 +76,21 @@ Note
 
 If the project does not define a build system, it will not be installed. See the [build systems](../config/#build-systems) documentation for details.
 
-### [Retaining extraneous packages](#retaining-extraneous-packages)
+### [Handling of extraneous packages](#handling-of-extraneous-packages)
 
-Syncing is "exact" by default, which means it will remove any packages that are not present in the lockfile.
+`uv sync` performs "exact" syncing by default, which means it will remove any packages that are not present in the lockfile.
 
-To retain extraneous packages, use the `--inexact` option:
+To retain extraneous packages, use the `--inexact` flag:
 
 ```
 $ uv sync --inexact
+
+```
+
+In contrast, `uv run` uses "inexact" syncing by default, ensuring that all required packages are installed but not removing extraneous packages. To enable exact syncing with `uv run`, use the `--exact` flag:
+
+```
+$ uv run --exact ...
 
 ```
 
