@@ -20,7 +20,7 @@ $ docker run --rm -it ghcr.io/astral-sh/uv:debian uv --help
 The following distroless images are available:
 
 - `ghcr.io/astral-sh/uv:latest`
-- `ghcr.io/astral-sh/uv:{major}.{minor}.{patch}`, e.g., `ghcr.io/astral-sh/uv:0.9.24`
+- `ghcr.io/astral-sh/uv:{major}.{minor}.{patch}`, e.g., `ghcr.io/astral-sh/uv:0.9.25`
 - `ghcr.io/astral-sh/uv:{major}.{minor}`, e.g., `ghcr.io/astral-sh/uv:0.8` (the latest patch version)
 
 And the following derived images are available:
@@ -79,7 +79,7 @@ And the following derived images are available:
   - `ghcr.io/astral-sh/uv:python3.9-bookworm-slim`
   - `ghcr.io/astral-sh/uv:python3.8-bookworm-slim`
 
-As with the distroless image, each derived image is published with uv version tags as `ghcr.io/astral-sh/uv:{major}.{minor}.{patch}-{base}` and `ghcr.io/astral-sh/uv:{major}.{minor}-{base}`, e.g., `ghcr.io/astral-sh/uv:0.9.24-alpine`.
+As with the distroless image, each derived image is published with uv version tags as `ghcr.io/astral-sh/uv:{major}.{minor}.{patch}-{base}` and `ghcr.io/astral-sh/uv:{major}.{minor}-{base}`, e.g., `ghcr.io/astral-sh/uv:0.9.25-alpine`.
 
 In addition, starting with `0.8` each derived image also sets `UV_TOOL_BIN_DIR` to `/usr/local/bin` to allow `uv tool install` to work as expected with the default user.
 
@@ -123,7 +123,7 @@ Note this requires `curl` to be available.
 In either case, it is best practice to pin to a specific uv version, e.g., with:
 
 ```
-COPY --from=ghcr.io/astral-sh/uv:0.9.24 /uv /uvx /bin/
+COPY --from=ghcr.io/astral-sh/uv:0.9.25 /uv /uvx /bin/
 
 ```
 
@@ -140,7 +140,7 @@ COPY --from=ghcr.io/astral-sh/uv@sha256:2381d6aa60c326b71fd40023f921a0a3b8f91b14
 Or, with the installer:
 
 ```
-ADD https://astral.sh/uv/0.9.24/install.sh /uv-installer.sh
+ADD https://astral.sh/uv/0.9.25/install.sh /uv-installer.sh
 
 ```
 
@@ -311,13 +311,14 @@ See a complete example in the [`uv-docker-example` project](https://github.com/a
 
 ### [Compiling bytecode](#compiling-bytecode)
 
-Compiling Python source files to bytecode is typically desirable for production images as it tends to improve startup time (at the cost of increased installation time).
+Compiling Python source files to bytecode is typically desirable for production images as it tends to improve startup time (at the cost of increased installation time and image size).
 
 To enable bytecode compilation, use the `--compile-bytecode` flag:
 
 Dockerfile
 
 ```
+RUN uv python install --compile-bytecode
 RUN uv sync --compile-bytecode
 
 ```
@@ -330,6 +331,10 @@ Dockerfile
 ENV UV_COMPILE_BYTECODE=1
 
 ```
+
+Note
+
+uv will only compile the standard library of *managed* Python versions during `uv python install`. The distributor of unmanaged Python versions decides if the standard library is pre-compiled. For example, the official `python` image will not have a compiled standard library.
 
 ### [Caching](#caching)
 
@@ -615,4 +620,4 @@ Verified OK
 
 Tip
 
-These examples use `latest`, but best practice is to verify the attestation for a specific version tag, e.g., `ghcr.io/astral-sh/uv:0.9.24`, or (even better) the specific image digest, such as `ghcr.io/astral-sh/uv:0.5.27@sha256:5adf09a5a526f380237408032a9308000d14d5947eafa687ad6c6a2476787b4f`.
+These examples use `latest`, but best practice is to verify the attestation for a specific version tag, e.g., `ghcr.io/astral-sh/uv:0.9.25`, or (even better) the specific image digest, such as `ghcr.io/astral-sh/uv:0.5.27@sha256:5adf09a5a526f380237408032a9308000d14d5947eafa687ad6c6a2476787b4f`.
