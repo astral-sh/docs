@@ -729,6 +729,8 @@ When used in a project, the project environment will be created and updated befo
 
 When used outside a project, if a virtual environment can be found in the current directory or a parent directory, the command will be run in that environment. Otherwise, the command will be run in the environment of the discovered interpreter.
 
+By default, the project or workspace is discovered from the current working directory. However, when using `--preview-features target-workspace-discovery`, the project or workspace is instead discovered from the target script's directory.
+
 Arguments following the command (or script) are not interpreted as arguments to uv. All options to uv must be provided before the command, e.g., `uv run --verbose foo`. A `--` can be used to separate the command from uv options for clarity, e.g., `uv run --python 3.12 -- python`.
 
 ### Usage
@@ -8024,6 +8026,16 @@ Possible values:
 - `never`: Disables colored output
 ```
 
+[`--compile-bytecode`](#uv-python-install--compile-bytecode), `--compile` : Compile Python's standard library to bytecode after installation.
+
+```
+By default, uv does not compile Python (`.py`) files to bytecode (`__pycache__/*.pyc`); instead, compilation is performed lazily the first time a module is imported. For use-cases in which start time is important, such as CLI applications and Docker containers, this option can be enabled to trade longer installation times and some additional disk space for faster start times.
+
+When enabled, uv will process the Python version's `stdlib` directory. It will ignore any compilation errors.
+
+May also be set with the `UV_COMPILE_BYTECODE` environment variable.
+```
+
 [`--config-file`](#uv-python-install--config-file) *config-file* : The path to a `uv.toml` file to use for configuration.
 
 ```
@@ -8257,6 +8269,16 @@ Possible values:
 - `auto`: Enables colored output only when the output is going to a terminal or TTY with support
 - `always`: Enables colored output regardless of the detected environment
 - `never`: Disables colored output
+```
+
+[`--compile-bytecode`](#uv-python-upgrade--compile-bytecode), `--compile` : Compile Python's standard library to bytecode after installation.
+
+```
+By default, uv does not compile Python (`.py`) files to bytecode (`__pycache__/*.pyc`); instead, compilation is performed lazily the first time a module is imported. For use-cases in which start time is important, such as CLI applications and Docker containers, this option can be enabled to trade longer installation times and some additional disk space for faster start times.
+
+When enabled, uv will process the Python version's `stdlib` directory. It will ignore any compilation errors.
+
+May also be set with the `UV_COMPILE_BYTECODE` environment variable.
 ```
 
 [`--config-file`](#uv-python-upgrade--config-file) *config-file* : The path to a `uv.toml` file to use for configuration.
