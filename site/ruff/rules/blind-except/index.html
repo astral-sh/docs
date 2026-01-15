@@ -864,7 +864,7 @@
 <p><small>
 Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.127">v0.0.127</a> ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27blind-except%27%20OR%20BLE001)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_blind_except%2Frules%2Fblind_except.rs#L69" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_blind_except%2Frules%2Fblind_except.rs#L71" target="_blank">View source</a>
 </small></p>
 <p>Derived from the <strong><a href="../#flake8-blind-except-ble">flake8-blind-except</a></strong> linter.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
@@ -895,8 +895,7 @@ be caught elsewhere:</p>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">except</span> <span class="ne">BaseException</span><span class="p">:</span>
 <a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="k">raise</span>
 </code></pre></div>
-<p>Exceptions that are logged via <code>logging.exception()</code> or are logged via
-<code>logging.error()</code> or <code>logging.critical()</code> with <code>exc_info</code> enabled will
+<p>Exceptions that are logged with <code>exc_info</code> enabled will
 <em>not</em> be flagged, as this is a common pattern for propagating exception
 traces:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">try</span><span class="p">:</span>
