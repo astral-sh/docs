@@ -138,6 +138,12 @@ added in `0.4.25`
 
 Equivalent to the `--frozen` command-line argument. If set, uv will run without updating the `uv.lock` file.
 
+### [`UV_GCS_ENDPOINT_URL`](#uv_gcs_endpoint_url)
+
+added in `0.9.26`
+
+The URL to treat as a GCS-compatible storage endpoint. Requests to this endpoint will be signed using Google Cloud authentication based on the `GOOGLE_APPLICATION_CREDENTIALS` environment variable or Application Default Credentials.
+
 ### [`UV_GITHUB_TOKEN`](#uv_github_token)
 
 added in `0.4.10`
@@ -413,6 +419,12 @@ Equivalent to the `--no-progress` command-line argument. Disables all progress o
 added in `0.9.8`
 
 Equivalent to the `--no-sources` command-line argument. If set, uv will ignore `[tool.uv.sources]` annotations when resolving dependencies.
+
+### [`UV_NO_SOURCES_PACKAGE`](#uv_no_sources_package)
+
+added in `0.9.26`
+
+Equivalent to the `--no-sources-package` command line argument. If set, uv will ignore the `tool.uv.sources` table for the given space-delimited list of packages.
 
 ### [`UV_NO_SYNC`](#uv_no_sync)
 

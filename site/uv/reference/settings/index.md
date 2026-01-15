@@ -762,11 +762,7 @@ Defaults to `$XDG_CACHE_HOME/uv` or `$HOME/.cache/uv` on Linux and macOS, and `%
 
 **Example usage**:
 
-```
-[tool.uv]
-cache-dir = "./.uv_cache"
-
-```
+uv.toml
 
 ```
 cache-dir = "./.uv_cache"
@@ -1433,11 +1429,7 @@ However, in some cases, you may want to use the platform's native certificate st
 
 **Example usage**:
 
-```
-[tool.uv]
-native-tls = true
-
-```
+uv.toml
 
 ```
 native-tls = true
@@ -1680,6 +1672,29 @@ no-sources = true
 
 ______________________________________________________________________
 
+### \[[`no-sources-package`](#no-sources-package)\](#no-sources-package)
+
+Ignore `tool.uv.sources` for the specified packages.
+
+**Default value**: `[]`
+
+**Type**: `list[str]`
+
+**Example usage**:
+
+```
+[tool.uv]
+no-sources-package = ["ruff"]
+
+```
+
+```
+no-sources-package = ["ruff"]
+
+```
+
+______________________________________________________________________
+
 ### \[[`offline`](#offline)\](#offline)
 
 Disable network access, relying only on locally cached data and locally available files.
@@ -1794,11 +1809,7 @@ Distributions can be read from a local directory by using the `file://` URL sche
 
 **Example usage**:
 
-```
-[tool.uv]
-pypy-install-mirror = "https://downloads.python.org/pypy"
-
-```
+uv.toml
 
 ```
 pypy-install-mirror = "https://downloads.python.org/pypy"
@@ -1844,11 +1855,7 @@ URL pointing to JSON of custom Python installations.
 
 **Example usage**:
 
-```
-[tool.uv]
-python-downloads-json-url = "/etc/uv/python-downloads.json"
-
-```
+uv.toml
 
 ```
 python-downloads-json-url = "/etc/uv/python-downloads.json"
@@ -1871,11 +1878,7 @@ Distributions can be read from a local directory by using the `file://` URL sche
 
 **Example usage**:
 
-```
-[tool.uv]
-python-install-mirror = "https://github.com/astral-sh/python-build-standalone/releases/download"
-
-```
+uv.toml
 
 ```
 python-install-mirror = "https://github.com/astral-sh/python-build-standalone/releases/download"
@@ -3148,6 +3151,30 @@ no-sources = true
 ```
 [pip]
 no-sources = true
+
+```
+
+______________________________________________________________________
+
+#### \[[`no-sources-package`](#pip_no-sources-package)\](#pip_no-sources-package)
+
+Ignore `tool.uv.sources` for the specified packages.
+
+**Default value**: `[]`
+
+**Type**: `list[str]`
+
+**Example usage**:
+
+```
+[tool.uv.pip]
+no-sources-package = ["ruff"]
+
+```
+
+```
+[pip]
+no-sources-package = ["ruff"]
 
 ```
 
