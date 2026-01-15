@@ -1171,6 +1171,12 @@ If a virtual environment is active or found in a current or parent directory, it
 May also be set with the `UV_NO_SOURCES` environment variable.
 ```
 
+[`--no-sources-package`](#uv-run--no-sources-package) *no-sources-package* : Don't use sources from the `tool.uv.sources` table for the specified packages
+
+```
+May also be set with the `UV_NO_SOURCES_PACKAGE` environment variable.
+```
+
 [`--no-sync`](#uv-run--no-sync) : Avoid syncing the virtual environment [env: UV_NO_SYNC=]
 
 ```
@@ -2084,6 +2090,12 @@ For example, spinners or progress bars.
 May also be set with the `UV_NO_SOURCES` environment variable.
 ```
 
+[`--no-sources-package`](#uv-add--no-sources-package) *no-sources-package* : Don't use sources from the `tool.uv.sources` table for the specified packages
+
+```
+May also be set with the `UV_NO_SOURCES_PACKAGE` environment variable.
+```
+
 [`--no-sync`](#uv-add--no-sync) : Avoid syncing the virtual environment [env: UV_NO_SYNC=]
 
 [`--no-workspace`](#uv-add--no-workspace) : Don't add the dependency as a workspace member.
@@ -2562,6 +2574,12 @@ For example, spinners or progress bars.
 May also be set with the `UV_NO_SOURCES` environment variable.
 ```
 
+[`--no-sources-package`](#uv-remove--no-sources-package) *no-sources-package* : Don't use sources from the `tool.uv.sources` table for the specified packages
+
+```
+May also be set with the `UV_NO_SOURCES_PACKAGE` environment variable.
+```
+
 [`--no-sync`](#uv-remove--no-sync) : Avoid syncing the virtual environment after re-locking the project [env: UV_NO_SYNC=]
 
 [`--offline`](#uv-remove--offline) : Disable network access [env: UV_OFFLINE=]
@@ -3010,6 +3028,12 @@ For example, spinners or progress bars.
 
 ```
 May also be set with the `UV_NO_SOURCES` environment variable.
+```
+
+[`--no-sources-package`](#uv-version--no-sources-package) *no-sources-package* : Don't use sources from the `tool.uv.sources` table for the specified packages
+
+```
+May also be set with the `UV_NO_SOURCES_PACKAGE` environment variable.
 ```
 
 [`--no-sync`](#uv-version--no-sync) : Avoid syncing the virtual environment after re-locking the project [env: UV_NO_SYNC=]
@@ -3573,6 +3597,12 @@ For example, spinners or progress bars.
 May also be set with the `UV_NO_SOURCES` environment variable.
 ```
 
+[`--no-sources-package`](#uv-sync--no-sources-package) *no-sources-package* : Don't use sources from the `tool.uv.sources` table for the specified packages
+
+```
+May also be set with the `UV_NO_SOURCES_PACKAGE` environment variable.
+```
+
 [`--offline`](#uv-sync--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
@@ -4085,6 +4115,12 @@ For example, spinners or progress bars.
 
 ```
 May also be set with the `UV_NO_SOURCES` environment variable.
+```
+
+[`--no-sources-package`](#uv-lock--no-sources-package) *no-sources-package* : Don't use sources from the `tool.uv.sources` table for the specified packages
+
+```
+May also be set with the `UV_NO_SOURCES_PACKAGE` environment variable.
 ```
 
 [`--offline`](#uv-lock--offline) : Disable network access [env: UV_OFFLINE=]
@@ -4607,6 +4643,12 @@ For example, spinners or progress bars.
 May also be set with the `UV_NO_SOURCES` environment variable.
 ```
 
+[`--no-sources-package`](#uv-export--no-sources-package) *no-sources-package* : Don't use sources from the `tool.uv.sources` table for the specified packages
+
+```
+May also be set with the `UV_NO_SOURCES_PACKAGE` environment variable.
+```
+
 [`--offline`](#uv-export--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
@@ -5081,6 +5123,12 @@ For example, spinners or progress bars.
 
 ```
 May also be set with the `UV_NO_SOURCES` environment variable.
+```
+
+[`--no-sources-package`](#uv-tree--no-sources-package) *no-sources-package* : Don't use sources from the `tool.uv.sources` table for the specified packages
+
+```
+May also be set with the `UV_NO_SOURCES_PACKAGE` environment variable.
 ```
 
 [`--offline`](#uv-tree--offline) : Disable network access [env: UV_OFFLINE=]
@@ -5823,6 +5871,12 @@ For example, spinners or progress bars.
 May also be set with the `UV_NO_SOURCES` environment variable.
 ```
 
+[`--no-sources-package`](#uv-tool-run--no-sources-package) *no-sources-package* : Don't use sources from the `tool.uv.sources` table for the specified packages
+
+```
+May also be set with the `UV_NO_SOURCES_PACKAGE` environment variable.
+```
+
 [`--offline`](#uv-tool-run--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
@@ -6404,6 +6458,12 @@ For example, spinners or progress bars.
 May also be set with the `UV_NO_SOURCES` environment variable.
 ```
 
+[`--no-sources-package`](#uv-tool-install--no-sources-package) *no-sources-package* : Don't use sources from the `tool.uv.sources` table for the specified packages
+
+```
+May also be set with the `UV_NO_SOURCES_PACKAGE` environment variable.
+```
+
 [`--offline`](#uv-tool-install--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
@@ -6947,6 +7007,12 @@ For example, spinners or progress bars.
 
 ```
 May also be set with the `UV_NO_SOURCES` environment variable.
+```
+
+[`--no-sources-package`](#uv-tool-upgrade--no-sources-package) *no-sources-package* : Don't use sources from the `tool.uv.sources` table for the specified packages
+
+```
+May also be set with the `UV_NO_SOURCES_PACKAGE` environment variable.
 ```
 
 [`--offline`](#uv-tool-upgrade--offline) : Disable network access [env: UV_OFFLINE=]
@@ -9651,6 +9717,12 @@ For example, spinners or progress bars.
 May also be set with the `UV_NO_SOURCES` environment variable.
 ```
 
+[`--no-sources-package`](#uv-pip-compile--no-sources-package) *no-sources-package* : Don't use sources from the `tool.uv.sources` table for the specified packages
+
+```
+May also be set with the `UV_NO_SOURCES_PACKAGE` environment variable.
+```
+
 [`--no-strip-extras`](#uv-pip-compile--no-strip-extras) : Include extras in the output file.
 
 ```
@@ -10256,6 +10328,12 @@ For example, spinners or progress bars.
 
 ```
 May also be set with the `UV_NO_SOURCES` environment variable.
+```
+
+[`--no-sources-package`](#uv-pip-sync--no-sources-package) *no-sources-package* : Don't use sources from the `tool.uv.sources` table for the specified packages
+
+```
+May also be set with the `UV_NO_SOURCES_PACKAGE` environment variable.
 ```
 
 [`--no-verify-hashes`](#uv-pip-sync--no-verify-hashes) : Disable validation of hashes in the requirements file.
@@ -10865,6 +10943,12 @@ For example, spinners or progress bars.
 
 ```
 May also be set with the `UV_NO_SOURCES` environment variable.
+```
+
+[`--no-sources-package`](#uv-pip-install--no-sources-package) *no-sources-package* : Don't use sources from the `tool.uv.sources` table for the specified packages
+
+```
+May also be set with the `UV_NO_SOURCES_PACKAGE` environment variable.
 ```
 
 [`--no-verify-hashes`](#uv-pip-install--no-verify-hashes) : Disable validation of hashes in the requirements file.
@@ -13197,6 +13281,12 @@ For example, spinners or progress bars.
 
 ```
 May also be set with the `UV_NO_SOURCES` environment variable.
+```
+
+[`--no-sources-package`](#uv-build--no-sources-package) *no-sources-package* : Don't use sources from the `tool.uv.sources` table for the specified packages
+
+```
+May also be set with the `UV_NO_SOURCES_PACKAGE` environment variable.
 ```
 
 [`--no-verify-hashes`](#uv-build--no-verify-hashes) : Disable validation of hashes in the requirements file.
