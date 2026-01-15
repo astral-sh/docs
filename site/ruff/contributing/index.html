@@ -1398,10 +1398,10 @@ team before it is appropriate to begin work on an implementation.</p>
 </code></pre></div>
 <p>You'll need <a href="https://docs.astral.sh/uv/getting-started/installation/">uv</a> (or <code>pipx</code> and <code>pip</code>) to
 run Python utility commands.</p>
-<p>You can optionally install pre-commit hooks to automatically run the validation checks
+<p>You can optionally install hooks to automatically run the validation checks
 when making a commit:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>pre-commit
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>pre-commit<span class="w"> </span>install
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>prek
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>prek<span class="w"> </span>install
 </code></pre></div>
 <p>We recommend <a href="https://nexte.st/">nextest</a> to run Ruff's test suite (via <code>cargo nextest run</code>),
 though it's not strictly necessary:</p>
@@ -1417,7 +1417,7 @@ if you choose to install <code>nextest</code>.</p>
 and that it passes both the lint and test validation checks:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>cargo<span class="w"> </span>clippy<span class="w"> </span>--workspace<span class="w"> </span>--all-targets<span class="w"> </span>--all-features<span class="w"> </span>--<span class="w"> </span>-D<span class="w"> </span>warnings<span class="w">  </span><span class="c1"># Rust linting</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nv">RUFF_UPDATE_SCHEMA</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>cargo<span class="w"> </span><span class="nb">test</span><span class="w">  </span><span class="c1"># Rust testing and updating ruff.schema.json</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>uvx<span class="w"> </span>pre-commit<span class="w"> </span>run<span class="w"> </span>--all-files<span class="w"> </span>--show-diff-on-failure<span class="w">  </span><span class="c1"># Rust and Python formatting, Markdown and Python linting, etc.</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>uvx<span class="w"> </span>prek<span class="w"> </span>run<span class="w"> </span>-a<span class="w">  </span><span class="c1"># Rust and Python formatting, Markdown and Python linting, etc.</span>
 </code></pre></div>
 <p>These checks will run on GitHub Actions when you open your pull request, but running them locally
 will save you time and expedite the merge process.</p>
@@ -1688,7 +1688,7 @@ even patch releases may contain <a href="https://semver.org/#spec-item-4">non-ba
 <ul>
 <li>Often labels will be missing from pull requests they will need to be manually organized into the proper section</li>
 <li>Changes should be edited to be user-facing descriptions, avoiding internal details</li>
-<li>Square brackets (eg, <code>[ruff]</code> project name) will be automatically escaped by <code>pre-commit</code></li>
+<li>Square brackets (eg, <code>[ruff]</code> project name) will be automatically escaped by <code>prek</code></li>
 </ul>
 <p>Additionally, for minor releases:</p>
 <ul>
