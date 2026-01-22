@@ -864,7 +864,7 @@
 <p><small>
 Added in <a href="https://github.com/astral-sh/ruff/releases/tag/0.8.0">0.8.0</a> ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27fast-api-redundant-response-model%27%20OR%20FAST001)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Ffastapi%2Frules%2Ffastapi_redundant_response_model.rs#L61" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Ffastapi%2Frules%2Ffastapi_redundant_response_model.rs#L66" target="_blank">View source</a>
 </small></p>
 <p>Derived from the <strong><a href="../#fastapi-fast">FastAPI</a></strong> linter.</p>
 <p>Fix is always available.</p>
@@ -909,6 +909,10 @@ alternative type.</p>
 <a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">create_item</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">Item</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Item</span><span class="p">:</span>
 <a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    <span class="k">return</span> <span class="n">item</span>
 </code></pre></div>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
+<p>This fix is always unsafe, as removing the <code>response_model</code> argument can change
+runtime behavior and API documentation generation. Additionally, comments inside
+the decorator might be removed when the argument is deleted.</p>
 
 
 

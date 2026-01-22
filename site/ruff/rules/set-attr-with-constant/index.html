@@ -864,7 +864,7 @@
 <p><small>
 Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.111">v0.0.111</a> ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27set-attr-with-constant%27%20OR%20B010)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_bugbear%2Frules%2Fsetattr_with_constant.rs#L51" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_bugbear%2Frules%2Fsetattr_with_constant.rs#L54" target="_blank">View source</a>
 </small></p>
 <p>Derived from the <strong><a href="../#flake8-bugbear-b">flake8-bugbear</a></strong> linter.</p>
 <p>Fix is always available.</p>
@@ -888,6 +888,8 @@ normalization. Python normalizes identifiers using NFKC when using attribute acc
 (e.g., <code>obj.attr = value</code>), but does not normalize string arguments passed to <code>setattr</code>.
 Rewriting <code>setattr(obj, "ſ", 1)</code> to <code>obj.ſ = 1</code> would be interpreted as <code>obj.s = 1</code> at
 runtime, changing behavior.</p>
+<p>Additionally, the fix is marked as unsafe if the expression contains comments,
+as the replacement may remove comments attached to the original <code>setattr</code> call.</p>
 <p>For example, the long s character <code>"ſ"</code> normalizes to <code>"s"</code> under NFKC, so:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># This creates an attribute with the exact name &quot;ſ&quot;</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">setattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s2">&quot;ſ&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>

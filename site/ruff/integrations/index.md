@@ -75,7 +75,7 @@ You can add the following configuration to `.gitlab-ci.yml` to run a `ruff forma
   stage: build
   interruptible: true
   image:
-    name: ghcr.io/astral-sh/ruff:0.14.13-alpine
+    name: ghcr.io/astral-sh/ruff:0.14.14-alpine
   before_script:
     - cd $CI_PROJECT_DIR
     - ruff --version
@@ -101,7 +101,7 @@ Ruff can be used as a [pre-commit](https://pre-commit.com) hook via [`ruff-pre-c
 ```
 - repo: https://github.com/astral-sh/ruff-pre-commit
   # Ruff version.
-  rev: v0.14.13
+  rev: v0.14.14
   hooks:
     # Run the linter.
     - id: ruff-check
@@ -114,7 +114,7 @@ To enable lint fixes, add the `--fix` argument to the lint hook:
 ```
 - repo: https://github.com/astral-sh/ruff-pre-commit
   # Ruff version.
-  rev: v0.14.13
+  rev: v0.14.14
   hooks:
     # Run the linter.
     - id: ruff-check
@@ -128,7 +128,7 @@ To avoid running on Jupyter Notebooks, remove `jupyter` from the list of allowed
 ```
 - repo: https://github.com/astral-sh/ruff-pre-commit
   # Ruff version.
-  rev: v0.14.13
+  rev: v0.14.14
   hooks:
     # Run the linter.
     - id: ruff-check

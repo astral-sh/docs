@@ -864,7 +864,7 @@
 <p><small>
 Added in <a href="https://github.com/astral-sh/ruff/releases/tag/0.13.0">0.13.0</a> ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27f-string-number-format%27%20OR%20FURB116)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Frefurb%2Frules%2Ffstring_number_format.rs#L33" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Frefurb%2Frules%2Ffstring_number_format.rs#L34" target="_blank">View source</a>
 </small></p>
 <p>Derived from the <strong><a href="../#refurb-furb">refurb</a></strong> linter.</p>
 <p>Fix is sometimes available.</p>
@@ -883,8 +883,9 @@ string, using f-strings is more concise and readable than using the
 </code></pre></div>
 <h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
 <p>The fix is only marked as safe for integer literals, all other cases
-are display-only, as they may change the runtime behaviour of the program
-or introduce syntax errors.</p>
+are display-only, as they may change the runtime behavior of the program
+or introduce syntax errors. The fix for integer literals is also marked as unsafe
+if the expression contains comments that would be removed by the fix.</p>
 
 
 

@@ -864,15 +864,19 @@
 <p><small>
 Added in <a href="https://github.com/astral-sh/ruff/releases/tag/0.5.0">0.5.0</a> ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27async-busy-wait%27%20OR%20ASYNC110)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_async%2Frules%2Fasync_busy_wait.rs#L44" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_async%2Frules%2Fasync_busy_wait.rs#L49" target="_blank">View source</a>
 </small></p>
 <p>Derived from the <strong><a href="../#flake8-async-async">flake8-async</a></strong> linter.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for the use of an async sleep function in a <code>while</code> loop.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
-<p>Instead of sleeping in a <code>while</code> loop, and waiting for a condition
-to become true, it's preferable to <code>await</code> on an <code>Event</code> object such
-as: <code>asyncio.Event</code>, <code>trio.Event</code>, or <code>anyio.Event</code>.</p>
+<p>Busy-waiting for a condition in a loop forces a tradeoff between
+efficiency and latency: shorter sleep times improve responsiveness
+but waste more CPU cycles, while longer sleep times reduce CPU usage
+but delay reaction to state changes.</p>
+<p>Waiting on an <code>Event</code> object like <code>asyncio.Event</code>, <code>trio.Event</code>, or
+<code>anyio.Event</code> eliminates this tradeoff, allowing immediate response
+with minimal wasted CPU time.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
