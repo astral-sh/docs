@@ -864,7 +864,7 @@
 <p><small>
 Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.211">v0.0.211</a> ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27unnecessary-builtin-import%27%20OR%20UP029)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fpyupgrade%2Frules%2Funnecessary_builtin_import.rs#L54" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fpyupgrade%2Frules%2Funnecessary_builtin_import.rs#L42" target="_blank">View source</a>
 </small></p>
 <p>Derived from the <strong><a href="../#pyupgrade-up">pyupgrade</a></strong> linter.</p>
 <p>Fix is always available.</p>
@@ -882,17 +882,7 @@ removed to avoid confusion.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">str</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
-<p>This fix is marked as unsafe because removing the import
-may change program behavior. For example, in the following
-situation:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">str</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="k">return</span> <span class="n">x</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">builtins</span><span class="w"> </span><span class="kn">import</span> <span class="nb">str</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="nb">str</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># `&quot;1&quot;` with the import, `1` without</span>
-</code></pre></div>
+<p>This fix is marked as unsafe because it will remove comments attached to the unused import.</p>
 <h2 id="options"><a class="toclink" href="#options">Options</a></h2>
 <p>This rule will not trigger on imports required by the <code>isort</code> configuration.</p>
 <ul>

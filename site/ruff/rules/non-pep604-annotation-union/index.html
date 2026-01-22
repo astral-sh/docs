@@ -864,7 +864,7 @@
 <p><small>
 Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.155">v0.0.155</a> ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27non-pep604-annotation-union%27%20OR%20UP007)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fpyupgrade%2Frules%2Fuse_pep604_annotation.rs#L56" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fpyupgrade%2Frules%2Fuse_pep604_annotation.rs#L57" target="_blank">View source</a>
 </small></p>
 <p>Derived from the <strong><a href="../#pyupgrade-up">pyupgrade</a></strong> linter.</p>
 <p>Fix is sometimes available.</p>
@@ -894,9 +894,10 @@ while <code>UP045</code> checks for <code>typing.Optional</code>.</p>
 <h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
 <p>This rule's fix is marked as unsafe, as it may lead to runtime errors when
 alongside libraries that rely on runtime type annotations, like Pydantic,
-on Python versions prior to Python 3.10. It may also lead to runtime errors
-in unusual and likely incorrect type annotations where the type does not
-support the <code>|</code> operator.</p>
+on Python versions prior to Python 3.10, or as it may remove comments if they
+are present within the type annotation being rewritten. It may also lead to
+runtime errors in unusual and likely incorrect type annotations where the type
+does not support the <code>|</code> operator.</p>
 <h2 id="options"><a class="toclink" href="#options">Options</a></h2>
 <ul>
 <li><a href="../../settings/#target-version"><code>target-version</code></a></li>

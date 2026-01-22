@@ -1484,7 +1484,10 @@ at <code>crates/ruff_linter</code>). As a contributor, that's the crate that'll 
 </li>
 <li>
 <p>In that file, define a violation struct (e.g., <code>pub struct AssertFalse</code>). You can grep for
-    <code>#[derive(ViolationMetadata)]</code> to see examples.</p>
+    <code>#[derive(ViolationMetadata)]</code> to see examples. You also need to add a
+    <code>#[violation_metadata(preview_since = "NEXT_RUFF_VERSION")]</code> attribute on your
+    <code>ViolationMetadata</code> struct. This adds the rule in preview, and the version will be filled in
+    automatically in the next release.</p>
 </li>
 <li>
 <p>In that file, define a function that adds the violation to the diagnostic list as appropriate
@@ -1501,8 +1504,7 @@ at <code>crates/ruff_linter</code>). As a contributor, that's the crate that'll 
     expressions, like function calls).</p>
 </li>
 <li>
-<p>Map the violation struct to a rule code in <code>crates/ruff_linter/src/codes.rs</code> (e.g., <code>B011</code>). New rules
-    should be added in <code>RuleGroup::Preview</code>.</p>
+<p>Map the violation struct to a rule code in <code>crates/ruff_linter/src/codes.rs</code> (e.g., <code>B011</code>).</p>
 </li>
 <li>
 <p>Add proper <a href="#rule-testing-fixtures-and-snapshots">testing</a> for your rule.</p>
@@ -1515,8 +1517,9 @@ at <code>crates/ruff_linter</code>). As a contributor, that's the crate that'll 
 to call your new function at the appropriate time and with the appropriate inputs. The <code>Checker</code>
 defined therein is a Python AST visitor, which iterates over the AST, building up a semantic model,
 and calling out to lint rule analyzer functions as it goes.</p>
-<p>If you need to inspect the AST, you can run <code>cargo dev print-ast</code> with a Python file. Grep
-for the <code>Diagnostic::new</code> invocations to understand how other, similar rules are implemented.</p>
+<p>If you need to inspect the AST, you can run <code>cargo dev print-ast</code> with a Python file or use the AST
+panel in the <a href="https://play.ruff.rs/?secondary=AST">playground</a>. Grep for the
+<code>Checker::report_diagnostic</code> invocations to understand how other, similar rules are implemented.</p>
 <p>Once you're satisfied with your code, add tests for your rule
 (see: <a href="#rule-testing-fixtures-and-snapshots">rule testing</a>), and regenerate the documentation and
 associated assets (like our JSON Schema) with <code>cargo dev generate-all</code>.</p>

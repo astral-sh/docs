@@ -6,13 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Checks for `try-except` blocks with duplicate exception handlers.">
+        <meta name="description" content="Detects duplicate elements in `__all__` definitions.">
       
       
         <meta name="author" content="charliermarsh">
       
       
-        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/duplicate-try-block-exception/">
+        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/duplicate-entry-in-dunder-all/">
       
       
       
@@ -25,7 +25,7 @@
     
     
 
-<title>duplicate-try-block-exception (B025) | Ruff</title>
+<title>duplicate-entry-in-dunder-all (RUF068) | Ruff</title>
 
 
     
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#duplicate-try-block-exception-b025" class="md-skip">
+        <a href="#duplicate-entry-in-dunder-all-ruf068" class="md-skip">
           Skip to content
         </a>
       
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              duplicate-try-block-exception (B025)
+              duplicate-entry-in-dunder-all (RUF068)
             
           </span>
         </div>
@@ -860,38 +860,44 @@
   
 
 
-<h1 id="duplicate-try-block-exception-b025"><a class="toclink" href="#duplicate-try-block-exception-b025">duplicate-try-block-exception (B025)</a></h1>
+<h1 id="duplicate-entry-in-dunder-all-ruf068"><a class="toclink" href="#duplicate-entry-in-dunder-all-ruf068">duplicate-entry-in-dunder-all (RUF068)</a></h1>
 <p><small>
-Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.67">v0.0.67</a> ·
-<a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27duplicate-try-block-exception%27%20OR%20B025)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_bugbear%2Frules%2Fduplicate_exceptions.rs#L45" target="_blank">View source</a>
+Preview (since <a href="https://github.com/astral-sh/ruff/releases/tag/0.14.14">0.14.14</a>) ·
+<a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27duplicate-entry-in-dunder-all%27%20OR%20RUF068)" target="_blank">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fruff%2Frules%2Fduplicate_entry_in_dunder_all.rs#L50" target="_blank">View source</a>
 </small></p>
-<p>Derived from the <strong><a href="../#flake8-bugbear-b">flake8-bugbear</a></strong> linter.</p>
+<p>Fix is sometimes available.</p>
+<p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
-<p>Checks for <code>try-except</code> blocks with duplicate exception handlers.</p>
+<p>Detects duplicate elements in <code>__all__</code> definitions.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
-<p>Duplicate exception handlers are redundant, as the first handler will catch
-the exception, making the second handler unreachable.</p>
+<p>Duplicate elements in <code>__all__</code> serve no purpose and can indicate copy-paste errors or
+incomplete refactoring.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">try</span><span class="p">:</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="o">...</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="o">...</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="o">...</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="s2">&quot;DatabaseConnection&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="s2">&quot;Product&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="s2">&quot;User&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="s2">&quot;DatabaseConnection&quot;</span><span class="p">,</span>  <span class="c1"># Duplicate</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">]</span>
 </code></pre></div>
 <p>Use instead:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">try</span><span class="p">:</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="o">...</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="o">...</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="s2">&quot;DatabaseConnection&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="s2">&quot;Product&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="s2">&quot;User&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="p">]</span>
 </code></pre></div>
-<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
-<p>This rule's fix is marked as safe, unless the exception handler contains comments.</p>
-<h2 id="references"><a class="toclink" href="#references">References</a></h2>
-<ul>
-<li><a href="https://docs.python.org/3/reference/compound_stmts.html#except-clause">Python documentation: <code>except</code> clause</a></li>
-</ul>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix Safety</a></h2>
+<p>This rule's fix is marked as unsafe if the replacement would remove comments attached to the
+original expression, potentially losing important context or documentation.</p>
+<p>For example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="s2">&quot;PublicAPI&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="c1"># TODO: Remove this in v2.0</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="s2">&quot;PublicAPI&quot;</span><span class="p">,</span>  <span class="c1"># Deprecated alias</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="p">]</span>
+</code></pre></div>
 
 
 
