@@ -4,11 +4,11 @@
 
 Astral provides [Docker images](../docker/#available-images) with uv preinstalled. Select a variant that is suitable for your workflow.
 
-gitlab-ci.yml
+.gitlab-ci.yml
 
 ```
 variables:
-  UV_VERSION: "0.9.26"
+  UV_VERSION: "0.9.27"
   PYTHON_VERSION: "3.12"
   BASE_LAYER: bookworm-slim
   # GitLab CI creates a separate mountpoint for the build directory,
@@ -67,7 +67,7 @@ The `UV_SYSTEM_PYTHON` variable can be defined in at different scopes. You can r
 
 Opt-in for the entire workflow by defining it at the top level:
 
-gitlab-ci.yml
+.gitlab-ci.yml
 
 ```
 variables:

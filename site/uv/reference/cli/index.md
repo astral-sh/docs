@@ -6064,6 +6064,8 @@ Possible values:
 - `cu91`: Use the PyTorch index for CUDA 9.1
 - `cu90`: Use the PyTorch index for CUDA 9.0
 - `cu80`: Use the PyTorch index for CUDA 8.0
+- `rocm7.1`: Use the PyTorch index for ROCm 7.1
+- `rocm7.0`: Use the PyTorch index for ROCm 7.0
 - `rocm6.4`: Use the PyTorch index for ROCm 6.4
 - `rocm6.3`: Use the PyTorch index for ROCm 6.3
 - `rocm6.2.4`: Use the PyTorch index for ROCm 6.2.4
@@ -6651,6 +6653,8 @@ Possible values:
 - `cu91`: Use the PyTorch index for CUDA 9.1
 - `cu90`: Use the PyTorch index for CUDA 9.0
 - `cu80`: Use the PyTorch index for CUDA 8.0
+- `rocm7.1`: Use the PyTorch index for ROCm 7.1
+- `rocm7.0`: Use the PyTorch index for ROCm 7.0
 - `rocm6.4`: Use the PyTorch index for ROCm 6.4
 - `rocm6.3`: Use the PyTorch index for ROCm 6.3
 - `rocm6.2.4`: Use the PyTorch index for ROCm 6.2.4
@@ -9957,6 +9961,8 @@ Possible values:
 - `cu91`: Use the PyTorch index for CUDA 9.1
 - `cu90`: Use the PyTorch index for CUDA 9.0
 - `cu80`: Use the PyTorch index for CUDA 8.0
+- `rocm7.1`: Use the PyTorch index for ROCm 7.1
+- `rocm7.0`: Use the PyTorch index for ROCm 7.0
 - `rocm6.4`: Use the PyTorch index for ROCm 6.4
 - `rocm6.3`: Use the PyTorch index for ROCm 6.3
 - `rocm6.2.4`: Use the PyTorch index for ROCm 6.2.4
@@ -10500,7 +10506,7 @@ WARNING: `--system` is intended for use in continuous integration (CI) environme
 May also be set with the `UV_SYSTEM_PYTHON` environment variable.
 ```
 
-[`--target`](#uv-pip-sync--target) *target* : Install packages into the specified directory, rather than into the virtual or system Python environment. The packages will be installed at the top-level of the directory.
+[`--target`](#uv-pip-sync--target), `-t` *target* : Install packages into the specified directory, rather than into the virtual or system Python environment. The packages will be installed at the top-level of the directory.
 
 ```
 Unlike other install operations, this command does not require discovery of an existing Python environment and only searches for a Python interpreter to use for package resolution. If a suitable Python interpreter cannot be found, uv will install one. To disable this, add `--no-python-downloads`.
@@ -10549,6 +10555,8 @@ Possible values:
 - `cu91`: Use the PyTorch index for CUDA 9.1
 - `cu90`: Use the PyTorch index for CUDA 9.0
 - `cu80`: Use the PyTorch index for CUDA 8.0
+- `rocm7.1`: Use the PyTorch index for ROCm 7.1
+- `rocm7.0`: Use the PyTorch index for ROCm 7.0
 - `rocm6.4`: Use the PyTorch index for ROCm 6.4
 - `rocm6.3`: Use the PyTorch index for ROCm 6.3
 - `rocm6.2.4`: Use the PyTorch index for ROCm 6.2.4
@@ -11165,7 +11173,7 @@ WARNING: `--system` is intended for use in continuous integration (CI) environme
 May also be set with the `UV_SYSTEM_PYTHON` environment variable.
 ```
 
-[`--target`](#uv-pip-install--target) *target* : Install packages into the specified directory, rather than into the virtual or system Python environment. The packages will be installed at the top-level of the directory.
+[`--target`](#uv-pip-install--target), `-t` *target* : Install packages into the specified directory, rather than into the virtual or system Python environment. The packages will be installed at the top-level of the directory.
 
 ```
 Unlike other install operations, this command does not require discovery of an existing Python environment and only searches for a Python interpreter to use for package resolution. If a suitable Python interpreter cannot be found, uv will install one. To disable this, add `--no-python-downloads`.
@@ -11214,6 +11222,8 @@ Possible values:
 - `cu91`: Use the PyTorch index for CUDA 9.1
 - `cu90`: Use the PyTorch index for CUDA 9.0
 - `cu80`: Use the PyTorch index for CUDA 8.0
+- `rocm7.1`: Use the PyTorch index for ROCm 7.1
+- `rocm7.0`: Use the PyTorch index for ROCm 7.0
 - `rocm6.4`: Use the PyTorch index for ROCm 6.4
 - `rocm6.3`: Use the PyTorch index for ROCm 6.3
 - `rocm6.2.4`: Use the PyTorch index for ROCm 6.2.4
@@ -11442,7 +11452,7 @@ WARNING: `--system` is intended for use in continuous integration (CI) environme
 May also be set with the `UV_SYSTEM_PYTHON` environment variable.
 ```
 
-[`--target`](#uv-pip-uninstall--target) *target* : Uninstall packages from the specified `--target` directory
+[`--target`](#uv-pip-uninstall--target), `-t` *target* : Uninstall packages from the specified `--target` directory
 
 [`--verbose`](#uv-pip-uninstall--verbose), `-v` : Use verbose output.
 
@@ -11514,6 +11524,8 @@ See `--project` to only change the project root directory.
 
 May also be set with the `UV_WORKING_DIR` environment variable.
 ```
+
+[`--exclude`](#uv-pip-freeze--exclude) *exclude* : Exclude the specified package(s) from the output
 
 [`--exclude-editable`](#uv-pip-freeze--exclude-editable) : Exclude any editable packages from output
 
@@ -11614,7 +11626,7 @@ See [uv python](#uv-python) for details on Python discovery.
 May also be set with the `UV_SYSTEM_PYTHON` environment variable.
 ```
 
-[`--target`](#uv-pip-freeze--target) *target* : List packages from the specified `--target` directory
+[`--target`](#uv-pip-freeze--target), `-t` *target* : List packages from the specified `--target` directory
 
 [`--verbose`](#uv-pip-freeze--verbose), `-v` : Use verbose output.
 
@@ -11899,7 +11911,7 @@ See [uv python](#uv-python) for details on Python discovery.
 May also be set with the `UV_SYSTEM_PYTHON` environment variable.
 ```
 
-[`--target`](#uv-pip-list--target) *target* : List packages from the specified `--target` directory
+[`--target`](#uv-pip-list--target), `-t` *target* : List packages from the specified `--target` directory
 
 [`--verbose`](#uv-pip-list--verbose), `-v` : Use verbose output.
 
@@ -12073,7 +12085,7 @@ See [uv python](#uv-python) for details on Python discovery.
 May also be set with the `UV_SYSTEM_PYTHON` environment variable.
 ```
 
-[`--target`](#uv-pip-show--target) *target* : Show a package from the specified `--target` directory
+[`--target`](#uv-pip-show--target), `-t` *target* : Show a package from the specified `--target` directory
 
 [`--verbose`](#uv-pip-show--verbose), `-v` : Use verbose output.
 
