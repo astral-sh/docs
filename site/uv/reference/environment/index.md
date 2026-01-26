@@ -498,7 +498,7 @@ Don't upload a file if it already exists on the index. The value is the URL of t
 
 added in `0.5.8`
 
-Equivalent to the `--index` command-line argument in `uv publish`. If set, uv the index with this name in the configuration for publishing.
+Equivalent to the `--index` command-line argument in `uv publish`. If set, uv will use the index with this name in the configuration for publishing.
 
 ### [`UV_PUBLISH_NO_ATTESTATIONS`](#uv_publish_no_attestations)
 
