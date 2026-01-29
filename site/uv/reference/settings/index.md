@@ -1395,7 +1395,7 @@ WARNING: The use of symlink link mode is discouraged, as they create tight coupl
 
 **Possible values**:
 
-- `"clone"`: Clone (i.e., copy-on-write) packages from the wheel into the `site-packages` directory
+- `"clone"`: Clone (i.e., copy-on-write or reflink) packages from the wheel into the `site-packages` directory
 - `"copy"`: Copy packages from the wheel into the `site-packages` directory
 - `"hardlink"`: Hard link packages from the wheel into the `site-packages` directory
 - `"symlink"`: Symbolically link packages from the wheel into the `site-packages` directory
@@ -2857,7 +2857,7 @@ WARNING: The use of symlink link mode is discouraged, as they create tight coupl
 
 **Possible values**:
 
-- `"clone"`: Clone (i.e., copy-on-write) packages from the wheel into the `site-packages` directory
+- `"clone"`: Clone (i.e., copy-on-write or reflink) packages from the wheel into the `site-packages` directory
 - `"copy"`: Copy packages from the wheel into the `site-packages` directory
 - `"hardlink"`: Hard link packages from the wheel into the `site-packages` directory
 - `"symlink"`: Symbolically link packages from the wheel into the `site-packages` directory

@@ -1017,7 +1017,7 @@ May also be set with the `UV_LINK_MODE` environment variable.
 
 Possible values:
 
-- `clone`: Clone (i.e., copy-on-write) packages from the wheel into the `site-packages` directory
+- `clone`: Clone (i.e., copy-on-write or reflink) packages from the wheel into the `site-packages` directory
 - `copy`: Copy packages from the wheel into the `site-packages` directory
 - `hardlink`: Hard link packages from the wheel into the `site-packages` directory
 - `symlink`: Symbolically link packages from the wheel into the `site-packages` directory
@@ -1952,7 +1952,7 @@ May also be set with the `UV_LINK_MODE` environment variable.
 
 Possible values:
 
-- `clone`: Clone (i.e., copy-on-write) packages from the wheel into the `site-packages` directory
+- `clone`: Clone (i.e., copy-on-write or reflink) packages from the wheel into the `site-packages` directory
 - `copy`: Copy packages from the wheel into the `site-packages` directory
 - `hardlink`: Hard link packages from the wheel into the `site-packages` directory
 - `symlink`: Symbolically link packages from the wheel into the `site-packages` directory
@@ -2470,7 +2470,7 @@ May also be set with the `UV_LINK_MODE` environment variable.
 
 Possible values:
 
-- `clone`: Clone (i.e., copy-on-write) packages from the wheel into the `site-packages` directory
+- `clone`: Clone (i.e., copy-on-write or reflink) packages from the wheel into the `site-packages` directory
 - `copy`: Copy packages from the wheel into the `site-packages` directory
 - `hardlink`: Hard link packages from the wheel into the `site-packages` directory
 - `symlink`: Symbolically link packages from the wheel into the `site-packages` directory
@@ -2926,7 +2926,7 @@ May also be set with the `UV_LINK_MODE` environment variable.
 
 Possible values:
 
-- `clone`: Clone (i.e., copy-on-write) packages from the wheel into the `site-packages` directory
+- `clone`: Clone (i.e., copy-on-write or reflink) packages from the wheel into the `site-packages` directory
 - `copy`: Copy packages from the wheel into the `site-packages` directory
 - `hardlink`: Hard link packages from the wheel into the `site-packages` directory
 - `symlink`: Symbolically link packages from the wheel into the `site-packages` directory
@@ -3429,7 +3429,7 @@ May also be set with the `UV_LINK_MODE` environment variable.
 
 Possible values:
 
-- `clone`: Clone (i.e., copy-on-write) packages from the wheel into the `site-packages` directory
+- `clone`: Clone (i.e., copy-on-write or reflink) packages from the wheel into the `site-packages` directory
 - `copy`: Copy packages from the wheel into the `site-packages` directory
 - `hardlink`: Hard link packages from the wheel into the `site-packages` directory
 - `symlink`: Symbolically link packages from the wheel into the `site-packages` directory
@@ -4019,7 +4019,7 @@ May also be set with the `UV_LINK_MODE` environment variable.
 
 Possible values:
 
-- `clone`: Clone (i.e., copy-on-write) packages from the wheel into the `site-packages` directory
+- `clone`: Clone (i.e., copy-on-write or reflink) packages from the wheel into the `site-packages` directory
 - `copy`: Copy packages from the wheel into the `site-packages` directory
 - `hardlink`: Hard link packages from the wheel into the `site-packages` directory
 - `symlink`: Symbolically link packages from the wheel into the `site-packages` directory
@@ -4469,7 +4469,7 @@ May also be set with the `UV_LINK_MODE` environment variable.
 
 Possible values:
 
-- `clone`: Clone (i.e., copy-on-write) packages from the wheel into the `site-packages` directory
+- `clone`: Clone (i.e., copy-on-write or reflink) packages from the wheel into the `site-packages` directory
 - `copy`: Copy packages from the wheel into the `site-packages` directory
 - `hardlink`: Hard link packages from the wheel into the `site-packages` directory
 - `symlink`: Symbolically link packages from the wheel into the `site-packages` directory
@@ -4995,7 +4995,7 @@ May also be set with the `UV_LINK_MODE` environment variable.
 
 Possible values:
 
-- `clone`: Clone (i.e., copy-on-write) packages from the wheel into the `site-packages` directory
+- `clone`: Clone (i.e., copy-on-write or reflink) packages from the wheel into the `site-packages` directory
 - `copy`: Copy packages from the wheel into the `site-packages` directory
 - `hardlink`: Hard link packages from the wheel into the `site-packages` directory
 - `symlink`: Symbolically link packages from the wheel into the `site-packages` directory
@@ -5771,7 +5771,7 @@ May also be set with the `UV_LINK_MODE` environment variable.
 
 Possible values:
 
-- `clone`: Clone (i.e., copy-on-write) packages from the wheel into the `site-packages` directory
+- `clone`: Clone (i.e., copy-on-write or reflink) packages from the wheel into the `site-packages` directory
 - `copy`: Copy packages from the wheel into the `site-packages` directory
 - `hardlink`: Hard link packages from the wheel into the `site-packages` directory
 - `symlink`: Symbolically link packages from the wheel into the `site-packages` directory
@@ -6362,7 +6362,7 @@ May also be set with the `UV_LINK_MODE` environment variable.
 
 Possible values:
 
-- `clone`: Clone (i.e., copy-on-write) packages from the wheel into the `site-packages` directory
+- `clone`: Clone (i.e., copy-on-write or reflink) packages from the wheel into the `site-packages` directory
 - `copy`: Copy packages from the wheel into the `site-packages` directory
 - `hardlink`: Hard link packages from the wheel into the `site-packages` directory
 - `symlink`: Symbolically link packages from the wheel into the `site-packages` directory
@@ -6915,7 +6915,7 @@ May also be set with the `UV_LINK_MODE` environment variable.
 
 Possible values:
 
-- `clone`: Clone (i.e., copy-on-write) packages from the wheel into the `site-packages` directory
+- `clone`: Clone (i.e., copy-on-write or reflink) packages from the wheel into the `site-packages` directory
 - `copy`: Copy packages from the wheel into the `site-packages` directory
 - `hardlink`: Hard link packages from the wheel into the `site-packages` directory
 - `symlink`: Symbolically link packages from the wheel into the `site-packages` directory
@@ -9635,7 +9635,7 @@ May also be set with the `UV_LINK_MODE` environment variable.
 
 Possible values:
 
-- `clone`: Clone (i.e., copy-on-write) packages from the wheel into the `site-packages` directory
+- `clone`: Clone (i.e., copy-on-write or reflink) packages from the wheel into the `site-packages` directory
 - `copy`: Copy packages from the wheel into the `site-packages` directory
 - `hardlink`: Hard link packages from the wheel into the `site-packages` directory
 - `symlink`: Symbolically link packages from the wheel into the `site-packages` directory
@@ -10260,7 +10260,7 @@ May also be set with the `UV_LINK_MODE` environment variable.
 
 Possible values:
 
-- `clone`: Clone (i.e., copy-on-write) packages from the wheel into the `site-packages` directory
+- `clone`: Clone (i.e., copy-on-write or reflink) packages from the wheel into the `site-packages` directory
 - `copy`: Copy packages from the wheel into the `site-packages` directory
 - `hardlink`: Hard link packages from the wheel into the `site-packages` directory
 - `symlink`: Symbolically link packages from the wheel into the `site-packages` directory
@@ -10863,7 +10863,7 @@ May also be set with the `UV_LINK_MODE` environment variable.
 
 Possible values:
 
-- `clone`: Clone (i.e., copy-on-write) packages from the wheel into the `site-packages` directory
+- `clone`: Clone (i.e., copy-on-write or reflink) packages from the wheel into the `site-packages` directory
 - `copy`: Copy packages from the wheel into the `site-packages` directory
 - `hardlink`: Hard link packages from the wheel into the `site-packages` directory
 - `symlink`: Symbolically link packages from the wheel into the `site-packages` directory
@@ -12813,7 +12813,7 @@ May also be set with the `UV_LINK_MODE` environment variable.
 
 Possible values:
 
-- `clone`: Clone (i.e., copy-on-write) packages from the wheel into the `site-packages` directory
+- `clone`: Clone (i.e., copy-on-write or reflink) packages from the wheel into the `site-packages` directory
 - `copy`: Copy packages from the wheel into the `site-packages` directory
 - `hardlink`: Hard link packages from the wheel into the `site-packages` directory
 - `symlink`: Symbolically link packages from the wheel into the `site-packages` directory
@@ -13189,7 +13189,7 @@ May also be set with the `UV_LINK_MODE` environment variable.
 
 Possible values:
 
-- `clone`: Clone (i.e., copy-on-write) packages from the wheel into the `site-packages` directory
+- `clone`: Clone (i.e., copy-on-write or reflink) packages from the wheel into the `site-packages` directory
 - `copy`: Copy packages from the wheel into the `site-packages` directory
 - `hardlink`: Hard link packages from the wheel into the `site-packages` directory
 - `symlink`: Symbolically link packages from the wheel into the `site-packages` directory
