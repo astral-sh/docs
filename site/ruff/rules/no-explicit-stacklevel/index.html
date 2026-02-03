@@ -864,7 +864,7 @@
 <p><small>
 Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.257">v0.0.257</a> ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27no-explicit-stacklevel%27%20OR%20B028)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_bugbear%2Frules%2Fno_explicit_stacklevel.rs#L43" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_bugbear%2Frules%2Fno_explicit_stacklevel.rs#L48" target="_blank">View source</a>
 </small></p>
 <p>Derived from the <strong><a href="../#flake8-bugbear-b">flake8-bugbear</a></strong> linter.</p>
 <p>Fix is always available.</p>
@@ -878,6 +878,9 @@ is called. Setting it to a higher number will output a stack frame
 from higher up the stack.</p>
 <p>It's recommended to use a <code>stacklevel</code> of 2 or higher, to give the caller
 more context about the warning.</p>
+<p>In Python 3.12 and higher, one may also use <code>skip_file_prefixes</code> to specify
+which file prefixes are ignored when counting the stack level. This implicitly overrides the <code>stacklevel</code> to be
+at least 2, according to the <a href="https://docs.python.org/3/library/warnings.html#warnings.warn">Python documentation</a>.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>

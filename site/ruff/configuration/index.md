@@ -430,7 +430,7 @@ Commands:
   help     Print this message or the help of the given subcommand(s)
 
 Options:
-  -h, --help     Print help
+  -h, --help     Print help (see more with '--help')
   -V, --version  Print version
 
 Log levels:
@@ -449,6 +449,9 @@ Global options:
           configuration files that were also specified using `--config`
       --isolated
           Ignore all configuration files
+      --color <WHEN>
+          Control when colored output is used [possible values: auto, always,
+          never]
 
 For help with a specific command, see: `ruff help <command>`.
 ```
@@ -461,7 +464,8 @@ Run Ruff on the given files or directories
 Usage: ruff check [OPTIONS] [FILES]...
 
 Arguments:
-  [FILES]...  List of files or directories to check [default: .]
+  [FILES]...  List of files or directories to check, or `-` to read from stdin
+              [default: .]
 
 Options:
       --fix
@@ -514,7 +518,7 @@ Options:
       --show-settings
           See the settings Ruff will use to lint a given Python file
   -h, --help
-          Print help
+          Print help (see more with '--help')
 
 Rule selection:
       --select <RULE_CODE>
@@ -582,6 +586,9 @@ Global options:
           configuration files that were also specified using `--config`
       --isolated
           Ignore all configuration files
+      --color <WHEN>
+          Control when colored output is used [possible values: auto, always,
+          never]
 ```
 
 Or `ruff help format` for more on the formatting command:
@@ -592,7 +599,8 @@ Run the Ruff formatter on the given files or directories
 Usage: ruff format [OPTIONS] [FILES]...
 
 Arguments:
-  [FILES]...  List of files or directories to format [default: .]
+  [FILES]...  List of files or directories to format, or `-` to read from stdin
+              [default: .]
 
 Options:
       --check
@@ -668,6 +676,9 @@ Global options:
           configuration files that were also specified using `--config`
       --isolated
           Ignore all configuration files
+      --color <WHEN>
+          Control when colored output is used [possible values: auto, always,
+          never]
 ```
 
 ## [Shell autocompletion](#shell-autocompletion)

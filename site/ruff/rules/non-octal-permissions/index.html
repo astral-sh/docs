@@ -862,12 +862,11 @@
 
 <h1 id="non-octal-permissions-ruf064"><a class="toclink" href="#non-octal-permissions-ruf064">non-octal-permissions (RUF064)</a></h1>
 <p><small>
-Preview (since <a href="https://github.com/astral-sh/ruff/releases/tag/0.12.1">0.12.1</a>) ·
+Added in <a href="https://github.com/astral-sh/ruff/releases/tag/0.15.0">0.15.0</a> ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27non-octal-permissions%27%20OR%20RUF064)" target="_blank">Related issues</a> ·
 <a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fruff%2Frules%2Fnon_octal_permissions.rs#L74" target="_blank">View source</a>
 </small></p>
 <p>Fix is sometimes available.</p>
-<p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for standard library functions which take a numeric <code>mode</code> argument
 where a non-octal integer literal is passed.</p>
@@ -881,7 +880,7 @@ integer to octal may not be the mode the author intended.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">os</span><span class="o">.</span><span class="n">chmod</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="mo">0o644</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
-<p>There are two categories of fix, the first of which is where it looks like
+<p>There are two categories of unsafe fixes, the first of which is where it looks like
 the author intended to use an octal literal but the <code>0o</code> prefix is missing:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">os</span><span class="o">.</span><span class="n">chmod</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">os</span><span class="o">.</span><span class="n">chmod</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="mi">644</span><span class="p">)</span>

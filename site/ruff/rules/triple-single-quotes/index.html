@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Checks for docstrings that use `'''triple single quotes'''` instead of">
+        <meta name="description" content="Checks for docstrings that don't use `"""triple double quotes"""`.">
       
       
         <meta name="author" content="charliermarsh">
@@ -864,13 +864,12 @@
 <p><small>
 Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.69">v0.0.69</a> ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27triple-single-quotes%27%20OR%20D300)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fpydocstyle%2Frules%2Ftriple_quotes.rs#L44" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fpydocstyle%2Frules%2Ftriple_quotes.rs#L49" target="_blank">View source</a>
 </small></p>
 <p>Derived from the <strong><a href="../#pydocstyle-d">pydocstyle</a></strong> linter.</p>
 <p>Fix is sometimes available.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
-<p>Checks for docstrings that use <code>'''triple single quotes'''</code> instead of
-<code>"""triple double quotes"""</code>.</p>
+<p>Checks for docstrings that don't use <code>"""triple double quotes"""</code>.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p><a href="https://peps.python.org/pep-0257/#what-is-a-docstring">PEP 257</a> recommends
 the use of <code>"""triple double quotes"""</code> for docstrings, to ensure
@@ -878,10 +877,16 @@ consistency.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">kos_root</span><span class="p">():</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="sd">&#39;&#39;&#39;Return the pathname of the KOS root directory.&#39;&#39;&#39;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">kos_branch</span><span class="p">():</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="s1">&#39;Return the branch name.&#39;</span>
 </code></pre></div>
 <p>Use instead:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">kos_root</span><span class="p">():</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the pathname of the KOS root directory.&quot;&quot;&quot;</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">kos_branch</span><span class="p">():</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the branch name.&quot;&quot;&quot;</span>
 </code></pre></div>
 <h2 id="formatter-compatibility"><a class="toclink" href="#formatter-compatibility">Formatter compatibility</a></h2>
 <p>We recommend against using this rule alongside the <a href="https://docs.astral.sh/ruff/formatter/">formatter</a>. The
