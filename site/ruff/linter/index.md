@@ -269,8 +269,6 @@ The full inline comment specification is as follows:
 
 #### [Block-level](#block-level)
 
-*Range suppressions are currently only available in [preview mode](../preview/#preview).*
-
 To ignore one or more violations within a range or block of code, a "disable" comment followed by a matching "enable" comment can be used, like so:
 
 ```
