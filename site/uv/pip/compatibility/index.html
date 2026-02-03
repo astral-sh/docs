@@ -101,8 +101,8 @@
 <script type="application/ld+json">
   {
       
-      "datePublished": "2025-11-02 20:39:30Z",
-      "dateModified": "2025-11-02 20:39:30Z",
+      "datePublished": "2026-01-31 21:27:27Z",
+      "dateModified": "2026-01-31 21:27:27Z",
       
       "@context": "https://schema.org",
       "@type": "WebSite",
@@ -3823,24 +3823,21 @@ with <code>--prerelease allow</code>, to allow pre-releases for all dependencies
 <p>Alternatively, you can add the transitive dependency to your <code>requirements.in</code> file with pre-release
 specifier (e.g., <code>flask&gt;=2.0.0rc1</code>) to opt in to pre-release support for that specific dependency.</p>
 <p>In sum, uv needs to know upfront whether the resolver should accept pre-releases for a given
-package. <code>pip</code>, meanwhile, <em>may</em> respect pre-release identifiers in transitive dependencies
-depending on the order in which the resolver encounters the relevant specifiers
-(<a href="https://github.com/astral-sh/uv/issues/1641#issuecomment-1981402429">#1641</a>).</p>
+package. Meanwhile <code>pip</code>, respects pre-release identifiers in transitive dependencies, and allows
+pre-releases of transitive dependencies if no stable versions match the dependency requirements.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Prior to pip 26.0, this behavior was not consistent.</p>
+</div>
 <p>Pre-releases are
 <a href="https://pubgrub-rs-guide.netlify.app/limitations/prerelease_versions">notoriously difficult</a> to
-model, and are a frequent source of bugs in packaging tools. Even <code>pip</code>, which is viewed as a
-reference implementation, has a number of open questions around pre-release handling
-(<a href="https://github.com/pypa/pip/issues/12469">#12469</a>,
-<a href="https://github.com/pypa/pip/issues/12470">#12470</a>,
-<a href="https://discuss.python.org/t/handling-of-pre-releases-when-backtracking/40505/20">#40505</a>, etc.).
-uv's pre-release handling is <em>intentionally</em> limited and <em>intentionally</em> requires user opt-in for
-pre-releases, to ensure correctness.</p>
+model, and are a frequent source of bugs in packaging tools. uv's pre-release handling is
+<em>intentionally</em> limited and <em>intentionally</em> requires user opt-in for pre-releases, to ensure
+correctness.</p>
 <p>In the future, uv <em>may</em> support pre-release identifiers in transitive dependencies. However, it's
 likely contingent on evolution in the Python packaging specifications. The existing PEPs
 <a href="https://discuss.python.org/t/handling-of-pre-releases-when-backtracking/40505/17">do not cover "dependency resolution"</a>
-and are instead focused on behavior for a <em>single</em> version specifier. As such, there are unresolved
-questions around the correct and intended behavior for pre-releases in the packaging ecosystem more
-broadly.</p>
+and are instead focused on behavior for a <em>single</em> version specifier.</p>
 <h2 id="packages-that-exist-on-multiple-indexes"><a class="toclink" href="#packages-that-exist-on-multiple-indexes">Packages that exist on multiple indexes</a></h2>
 <p>In both uv and <code>pip</code>, users can specify multiple package indexes from which to search for the
 available versions of a given package. However, uv and <code>pip</code> differ in how they handle packages that
@@ -4192,7 +4189,7 @@ preserve the verbatim package name as published on the registry.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 2, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 31, 2026</span>
   </span>
 
     
