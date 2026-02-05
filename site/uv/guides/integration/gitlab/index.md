@@ -8,7 +8,7 @@ Astral provides [Docker images](../docker/#available-images) with uv preinstalle
 
 ```
 variables:
-  UV_VERSION: "0.9.30"
+  UV_VERSION: "0.10.0"
   PYTHON_VERSION: "3.12"
   BASE_LAYER: bookworm-slim
   # GitLab CI creates a separate mountpoint for the build directory,

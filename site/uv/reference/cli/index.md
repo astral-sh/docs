@@ -8634,6 +8634,12 @@ May also be set with the `UV_PROJECT` environment variable.
 Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will write no output to stdout.
 ```
 
+[`--resolve-links`](#uv-python-find--resolve-links) : Resolve symlinks in the output path.
+
+```
+When enabled, the output path will be canonicalized, resolving any symlinks.
+```
+
 [`--script`](#uv-python-find--script) *script* : Find the environment for a Python script, rather than the current project
 
 [`--show-version`](#uv-python-find--show-version) : Show the Python version that would be used instead of the path to the interpreter

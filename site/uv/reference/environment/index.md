@@ -162,6 +162,14 @@ added in `0.9.15`
 
 Suppress output from the build backend when building source distributions, even in the event of build failures.
 
+### [`UV_HTTP_CONNECT_TIMEOUT`](#uv_http_connect_timeout)
+
+added in `0.10.0`
+
+Timeout (in seconds) to connect to a server. (default: 10 s)
+
+If `UV_HTTP_TIMEOUT` is lower than this value, `UV_HTTP_TIMEOUT` will be used instead.
+
 ### [`UV_HTTP_RETRIES`](#uv_http_retries)
 
 added in `0.7.21`
@@ -172,7 +180,7 @@ The number of retries for HTTP requests. (default: 3)
 
 added in `0.1.7`
 
-Timeout (in seconds) for HTTP requests. (default: 30 s)
+Timeout (in seconds) for HTTP reads. (default: 30 s)
 
 ### [`UV_INDEX`](#uv_index)
 
@@ -987,6 +995,12 @@ The standard `PATH` env var.
 added in `0.1.16`
 
 Used to detect the use of the Windows Command Prompt (as opposed to PowerShell).
+
+### [`PSModulePath`](#psmodulepath)
+
+added in `next version`
+
+Used to detect PowerShell usage (set by PowerShell on all platforms).
 
 ### [`PWD`](#pwd)
 
