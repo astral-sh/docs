@@ -1,0 +1,98 @@
+# [Suppression](#suppression)
+
+Rules can also be ignored in specific locations in your code (instead of disabling the rule entirely) to silence false positives or permissible violations.
+
+Note
+
+To disable a rule entirely, set it to the `ignore` level as described in [rule levels](../rules/#rule-levels).
+
+## [ty suppression comments](#ty-suppression-comments)
+
+To suppress a rule violation inline add a `# ty: ignore[<rule>]` comment at the end of the line:
+
+```
+a = 10 + "test"  # ty: ignore[unsupported-operator]
+
+```
+
+Rule violations spanning multiple lines can be suppressed by adding the comment at the end of the violation's first or last line:
+
+```
+def sum_three_numbers(a: int, b: int, c: int) -> int: ...
+
+# on the first line
+
+sum_three_numbers(  # ty: ignore[missing-argument]
+    3,
+    2
+)
+
+# or, on the last line
+
+sum_three_numbers(
+    3,
+    2
+)  # ty: ignore[missing-argument]
+
+```
+
+To suppress multiple violations on a single line, enumerate each rule separated by a comma:
+
+```
+sum_three_numbers("one", 5)  # ty: ignore[missing-argument, invalid-argument-type]
+
+```
+
+Note
+
+Enumerating rule names (e.g., `[rule1, rule2]`) is optional. However, we strongly recommend including suppressing specific rules to avoid accidental suppression of other errors.
+
+## [Standard suppression comments](#standard-suppression-comments)
+
+ty supports the standard [`type: ignore`](https://typing.python.org/en/latest/spec/directives.html#type-ignore-comments) comment format introduced by PEP 484.
+
+ty handles these similarly to `ty: ignore` comments, but suppresses all violations on that line, even when `type: ignore[code]` is used.
+
+```
+# Ignore all typing errors on the next line
+sum_three_numbers("one", 5)  # type: ignore
+
+```
+
+## [Multiple suppressions comments](#multiple-suppressions-comments)
+
+To suppress a typing error on a line that already has a suppression comment from another tool, add the `# ty: ignore` comment to the same line.
+
+For example, to suppress a type error and disable formatting for a specific line:
+
+```
+result = calculate()  # ty: ignore[invalid-argument-type]  # fmt: skip
+
+# or
+result = calculate()  # fmt: off  # ty: ignore[invalid-argument-type]
+
+```
+
+## [Unused suppression comments](#unused-suppression-comments)
+
+If the [`unused-ignore-comment`](../reference/rules/#unused-ignore-comment) rule is enabled, ty will report unused `ty: ignore` and `type: ignore` comments.
+
+`unused-ignore-comment` violations can only be suppressed using `# ty: ignore[unused-ignore-comment]`. They cannot be suppressed using `# ty: ignore` without a rule code or `# type: ignore`.
+
+## [`@no_type_check` directive](#no_type_check-directive)
+
+ty supports the [`@no_type_check`](https://typing.python.org/en/latest/spec/directives.html#no-type-check) decorator to suppress all violations inside a function.
+
+```
+from typing import no_type_check
+
+def sum_three_numbers(a: int, b: int, c: int) -> int:
+    return a + b + c
+
+@no_type_check
+def main():
+    sum_three_numbers(1, 2)  # no error for the missing argument
+
+```
+
+Decorating a class with `@no_type_check` isn't supported.

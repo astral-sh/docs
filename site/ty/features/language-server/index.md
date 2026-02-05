@@ -1,0 +1,70 @@
+# [Language server](#language-server)
+
+You can generally expect ty to be a fully-featured [language server](https://microsoft.github.io/language-server-protocol/) for Python. This page describes some of the key features provided by ty's IDE integration and includes a reference table of supported LSP features at the end. See the [editor integration](../../editors/) guide for instructions on how to set up ty with your editor.
+
+## [Diagnostics](#diagnostics)
+
+Example of an inline diagnostic with code-span annotations
+
+ty reports type errors and other [diagnostics](../diagnostics/) directly in your editor. Diagnostics are updated as you type. You can use the [`diagnosticMode`](../../reference/editor-settings/#diagnosticmode) setting to control if you want to see diagnostics for open files only, or for your entire workspace.
+
+Info
+
+ty supports both the "pull" and "push" diagnostic models. Most modern editors will use the "pull" model for better performance, where diagnostics are fetched on demand rather than pushed after every change.
+
+## [Code navigation](#code-navigation)
+
+"Find references" shows usages across the entire workspace
+
+ty powers several language server features that allow you to navigate a Python codebase:
+
+- **Go to Definition**: Jump to where a symbol is defined. ty resolves imports, function calls, class references, and more.
+- **Go to Declaration**: Navigate to the declaration site of a symbol, which can differ from its definition (could be in a stub file).
+- **Go to Type Definition**: Navigate to the type of a symbol. For example, this takes you to the class `Person` when invoked on a variable `user: Person`.
+- **Find all references**: Find every usage of a function, class, or variable across your entire workspace.
+- **Document and workspace symbols**: See an outline of symbols in the current file, or search through symbols across your entire workspace.
+
+## [Code completions](#code-completions)
+
+Accepting this completion will automatically add a `subprocess` import at the top of the file.
+
+ty provides intelligent code completions as you type, offering suggestions for variables, functions, classes, and modules that are in scope. For symbols that are not yet imported, ty suggests auto-import actions to add the necessary `import` statements.
+
+## [Code actions and refactorings](#code-actions-and-refactorings)
+
+ty offers to remove the unused suppression comment
+
+ty offers quick fixes and other code actions to help you resolve issues:
+
+- **Add import**: Automatically add missing import statements
+- **Quick fixes**: Some diagnostics come with quick fix suggestions to resolve the issue
+- **Rename symbol**: Safely rename symbols across your entire codebase
+- **Selection range**: Expand or shrink the text selection in your editor based on ty's understanding of Python syntax
+
+## [Contextual information](#contextual-information)
+
+Gray inlay hints and on-hover information (signature, docstring)
+
+ty surfaces useful contextual information as you code:
+
+- **Hover**: Hover over any symbol to see its type, documentation, function signatures, and other useful information like the variance of type parameters.
+- **Inlay hints**: Display inline type hints for variables and parameters without explicit annotations, as well as parameter names at call sites. These hints can also be double-clicked to insert the type annotations into your source code. You can also click on parts of the inlay hints for go-to-definition navigation.
+- **Signature help**: When calling a function, ty displays the function's parameters and their types. This appears automatically when you type `(` and updates as you navigate between arguments.
+- **Document highlight**: When the cursor is on a symbol, ty highlights all occurrences of that symbol in the current file.
+- **Semantic highlighting**: Syntax highlighting based on the underlying semantics and types.
+
+## [Notebook support](#notebook-support)
+
+ty supports Jupyter notebooks (`.ipynb` files) with language server features. Each cell is analyzed in context, with diagnostics, completions, and other features working across cells.
+
+## [Fine-grained incrementality](#fine-grained-incrementality)
+
+ty's architecture is designed for low-latency updates of diagnostics and other language server features. When you make a change in your editor, ty incrementally updates only the affected parts of the codebase, rather than re-analyzing everything from scratch. This happens at a fine-grained level, down to individual definitions. This incrementality means that you get instant feedback as you type, i.e., within a few milliseconds, even on large projects.
+
+Info
+
+Fine-grained dependencies also allow ty to skip large parts of 3rd-party dependencies when they are not relevant to your codebase.
+
+## [Feature reference](#feature-reference)
+
+| Feature | Status | Notes | | --- | --- | --- | | [`callHierarchy/*`](https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#callHierarchy_incomingCalls) | ❌ Not supported | | | [`notebookDocument/*`](https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#notebookDocument_synchronization) | ✅ Supported | | | [`textDocument/codeAction`](https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#textDocument_codeAction) | ✅ Supported | Quick fixes | | [`textDocument/codeLens`](https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#textDocument_codeLens) | ❌ Not supported | | | [`textDocument/completion`](https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#textDocument_completion) | ✅ Supported | | | [`textDocument/declaration`](https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#textDocument_declaration) | ✅ Supported | | | [`textDocument/definition`](https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#textDocument_definition) | ✅ Supported | | | [`textDocument/diagnostic`](https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#textDocument_diagnostic) | ✅ Supported | | | [`textDocument/documentColor`](https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#textDocument_documentColor) | ❌ Not supported | | | [`textDocument/documentHighlight`](https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#textDocument_documentHighlight) | ✅ Supported | | | [`textDocument/documentLink`](https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#textDocument_documentLink) | ❌ Not supported | | | [`textDocument/documentSymbol`](https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#textDocument_documentSymbol) | ✅ Supported | | | [`textDocument/foldingRange`](https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#textDocument_foldingRange) | ❌ Not supported | | | [`textDocument/formatting`](https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#textDocument_formatting) | — | Use [Ruff](https://docs.astral.sh/ruff/) for formatting | | [`textDocument/hover`](https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#textDocument_hover) | ✅ Supported | | | [`textDocument/implementation`](https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#textDocument_implementation) | ❌ Not supported | | | [`textDocument/inlayHint`](https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#textDocument_inlayHint) | ✅ Supported | | | [`textDocument/onTypeFormatting`](https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#textDocument_onTypeFormatting) | — | [Ruff #16829](https://github.com/astral-sh/ruff/issues/16829) | | [`textDocument/prepareRename`](https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#textDocument_prepareRename) | ✅ Supported | | | [`textDocument/rangeFormatting`](https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#textDocument_rangeFormatting) | — | Use [Ruff](https://docs.astral.sh/ruff/) for formatting | | [`textDocument/references`](https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#textDocument_references) | ✅ Supported | | | [`textDocument/rename`](https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#textDocument_rename) | ✅ Supported | | | [`textDocument/selectionRange`](https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#textDocument_selectionRange) | ✅ Supported | | | [`textDocument/semanticTokens`](https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#textDocument_semanticTokens) | ✅ Supported | | | [`textDocument/signatureHelp`](https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#textDocument_signatureHelp) | ✅ Supported | | | [`textDocument/typeDefinition`](https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#textDocument_typeDefinition) | ✅ Supported | | | [`typeHierarchy/*`](https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#typeHierarchy_supertypes) | ❌ Not supported | [#534](https://github.com/astral-sh/ty/issues/534) | | [`workspace/diagnostic`](https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#workspace_diagnostic) | ✅ Supported | | | [`workspace/symbol`](https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#workspace_symbol) | ✅ Supported | | | [`workspace/willRenameFiles`](https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#workspace_willRenameFiles) | ❌ Not supported | [#1560](https://github.com/astral-sh/ty/issues/1560) |
