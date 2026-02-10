@@ -98,6 +98,8 @@ For example, spinners or progress bars.
 [`--output-format`](#ty-check--output-format) *output-format* : The format to use for printing diagnostic messages
 
 ```
+May also be set with the `TY_OUTPUT_FORMAT` environment variable.
+
 Possible values:
 
 - `full`: Print diagnostics verbosely, with context and helpful hints (default)
@@ -147,6 +149,7 @@ Possible values:
 - `3.12`
 - `3.13`
 - `3.14`
+- `3.15`
 ```
 
 [`--quiet`](#ty-check--quiet), `-q` : Use quiet output (or `-qq` for silent output)

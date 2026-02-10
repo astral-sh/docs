@@ -81,8 +81,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2026-02-05 00:36:40Z",
-        "dateModified": "2026-02-05 00:36:40Z",
+        "datePublished": "2026-02-10 20:07:22Z",
+        "dateModified": "2026-02-10 20:07:22Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -2138,14 +2138,14 @@ to reflect the differing contents of the standard library across Python versions
 <h3 id="root"><a class="toclink" href="#root"><code>root</code></a></h3>
 <p>The root paths of the project, used for finding first-party modules.</p>
 <p>Accepts a list of directory paths searched in priority order (first has highest priority).</p>
-<p>If left unspecified, ty will try to detect common project layouts and initialize <code>root</code> accordingly:</p>
+<p>If left unspecified, ty will try to detect common project layouts and initialize <code>root</code> accordingly.
+The project root (<code>.</code>) is always included. Additionally, the following directories are included
+if they exist and are not packages (i.e. they do not contain <code>__init__.py</code> or <code>__init__.pyi</code> files):</p>
 <ul>
-<li>if a <code>./src</code> directory exists, include <code>.</code> and <code>./src</code> in the first party search path (src layout or flat)</li>
-<li>if a <code>./&lt;project-name&gt;/&lt;project-name&gt;</code> directory exists, include <code>.</code> and <code>./&lt;project-name&gt;</code> in the first party search path</li>
-<li>otherwise, default to <code>.</code> (flat layout)</li>
+<li><code>./src</code></li>
+<li><code>./&lt;project-name&gt;</code> (if a <code>./&lt;project-name&gt;/&lt;project-name&gt;</code> directory exists)</li>
+<li><code>./python</code></li>
 </ul>
-<p>Additionally, if a <code>./python</code> directory exists and is not a package (i.e. it does not contain an <code>__init__.py</code> or <code>__init__.pyi</code> file),
-it will also be included in the first party search path.</p>
 <p><strong>Default value</strong>: <code>null</code></p>
 <p><strong>Type</strong>: <code>list[str]</code></p>
 <p><strong>Example usage</strong>:</p>
@@ -2505,14 +2505,14 @@ Enabled by default.</p>
 <p>This option has been deprecated. Use <code>environment.root</code> instead.</p>
 </div>
 <p>The root of the project, used for finding first-party modules.</p>
-<p>If left unspecified, ty will try to detect common project layouts and initialize <code>src.root</code> accordingly:</p>
+<p>If left unspecified, ty will try to detect common project layouts and initialize <code>src.root</code> accordingly.
+The project root (<code>.</code>) is always included. Additionally, the following directories are included
+if they exist and are not packages (i.e. they do not contain <code>__init__.py</code> or <code>__init__.pyi</code> files):</p>
 <ul>
-<li>if a <code>./src</code> directory exists, include <code>.</code> and <code>./src</code> in the first party search path (src layout or flat)</li>
-<li>if a <code>./&lt;project-name&gt;/&lt;project-name&gt;</code> directory exists, include <code>.</code> and <code>./&lt;project-name&gt;</code> in the first party search path</li>
-<li>otherwise, default to <code>.</code> (flat layout)</li>
+<li><code>./src</code></li>
+<li><code>./&lt;project-name&gt;</code> (if a <code>./&lt;project-name&gt;/&lt;project-name&gt;</code> directory exists)</li>
+<li><code>./python</code></li>
 </ul>
-<p>Additionally, if a <code>./python</code> directory exists and is not a package (i.e. it does not contain an <code>__init__.py</code> file),
-it will also be included in the first party search path.</p>
 <p><strong>Default value</strong>: <code>null</code></p>
 <p><strong>Type</strong>: <code>str</code></p>
 <p><strong>Example usage</strong>:</p>
@@ -2596,7 +2596,7 @@ it will also be included in the first party search path.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 5, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 10, 2026</span>
   </span>
 
     
