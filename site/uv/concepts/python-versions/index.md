@@ -112,7 +112,7 @@ uv installs Python executables into your `PATH` by default, e.g., on Unix `uv py
 
 Tip
 
-If `~/.local/bin` is not in your `PATH`, you can add it with `uv tool update-shell`.
+If `~/.local/bin` is not in your `PATH`, you can add it with `uv python update-shell`.
 
 To install `python` and `python3` executables, include the experimental `--default` option:
 
