@@ -864,7 +864,7 @@
 <p><small>
 Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.18">v0.0.18</a> ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27unused-import%27%20OR%20F401)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fpyflakes%2Frules%2Funused_import.rs#L145" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fpyflakes%2Frules%2Funused_import.rs#L144" target="_blank">View source</a>
 </small></p>
 <p>Derived from the <strong><a href="../#pyflakes-f">Pyflakes</a></strong> linter.</p>
 <p>Fix is sometimes available.</p>
@@ -906,9 +906,8 @@ only the second is marked as unused under stable behavior.</p>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
 <a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">a</span><span class="o">.</span><span class="n">b</span><span class="o">.</span><span class="n">foo</span><span class="p">()</span>
 </code></pre></div>
-<p>then a diagnostic will only be emitted for the first line under <a href="https://docs.astral.sh/ruff/preview/">preview</a>,
-whereas a diagnostic would only be emitted for the second line under
-stable behavior.</p>
+<p>then a diagnostic will be emitted for the second line under <a href="https://docs.astral.sh/ruff/preview/">preview</a>,
+whereas no diagnostic is emitted under stable behavior.</p>
 <p>Note that this behavior is somewhat subjective and is designed
 to conform to the developer's intuition rather than Python's actual
 execution. To wit, the statement <code>import a.b</code> automatically executes

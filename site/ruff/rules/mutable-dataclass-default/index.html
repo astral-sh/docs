@@ -864,7 +864,7 @@
 <p><small>
 Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.262">v0.0.262</a> ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27mutable-dataclass-default%27%20OR%20RUF008)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fruff%2Frules%2Fmutable_dataclass_default.rs#L57" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fruff%2Frules%2Fmutable_dataclass_default.rs#L62" target="_blank">View source</a>
 </small></p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for mutable default values in dataclass attributes.</p>
@@ -876,6 +876,9 @@ those changes will unexpectedly affect all other instances.</p>
 pattern.</p>
 <p>If the default value is intended to be mutable, it must be annotated with
 <code>typing.ClassVar</code>; otherwise, a <code>ValueError</code> will be raised.</p>
+<p>In <a href="https://docs.astral.sh/ruff/preview/">preview</a> this rule also detects mutable defaults passed via the <code>default</code> keyword
+argument in <code>field()</code> (for stdlib dataclasses), <code>attrs.field()</code>, <code>attr.ib()</code>,
+and <code>attr.attrib()</code> calls.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
