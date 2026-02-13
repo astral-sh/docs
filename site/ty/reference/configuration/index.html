@@ -81,8 +81,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2026-02-10 20:07:22Z",
-        "dateModified": "2026-02-10 20:07:22Z",
+        "datePublished": "2026-02-13 13:10:45Z",
+        "dateModified": "2026-02-13 13:10:45Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -2044,14 +2044,18 @@ configuration setting.</p>
 <p>Path to your project's Python environment or interpreter.</p>
 <p>ty uses the <code>site-packages</code> directory of your project's Python environment
 to resolve third-party (and, in some cases, first-party) imports in your code.</p>
-<p>If you're using a project management tool such as uv, you should not generally need
-to specify this option, as commands such as <code>uv run</code> will set the <code>VIRTUAL_ENV</code>
-environment variable to point to your project's virtual environment. ty can also infer
-the location of your environment from an activated Conda environment, and will look for
-a <code>.venv</code> directory in the project root if none of the above apply.</p>
-<p>Passing a path to a Python executable is supported, but passing a path to a dynamic executable
-(such as a shim) is not currently supported.</p>
-<p>This option can be used to point to virtual or system Python environments.</p>
+<p>This can be a path to:</p>
+<ul>
+<li>A Python interpreter, e.g. <code>.venv/bin/python3</code></li>
+<li>A virtual environment directory, e.g. <code>.venv</code></li>
+<li>A system Python [<code>sys.prefix</code>] directory, e.g. <code>/usr</code></li>
+</ul>
+<p>If you're using a project management tool such as uv, you should not generally need to
+specify this option, as commands such as <code>uv run</code> will set the <code>VIRTUAL_ENV</code> environment
+variable to point to your project's virtual environment. ty can also infer the location of
+your environment from an activated Conda environment, and will look for a <code>.venv</code> directory
+in the project root if none of the above apply. Failing that, ty will look for a <code>python3</code>
+or <code>python</code> binary available in <code>PATH</code>.</p>
 <p><strong>Default value</strong>: <code>null</code></p>
 <p><strong>Type</strong>: <code>str</code></p>
 <p><strong>Example usage</strong>:</p>
@@ -2559,7 +2563,7 @@ if they exist and are not packages (i.e. they do not contain <code>__init__.py</
 <p>The format to use for printing diagnostic messages.</p>
 <p>Defaults to <code>full</code>.</p>
 <p><strong>Default value</strong>: <code>full</code></p>
-<p><strong>Type</strong>: <code>full | concise</code></p>
+<p><strong>Type</strong>: <code>full | concise | github | gitlab | junit</code></p>
 <p><strong>Example usage</strong>:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="20:2"><input checked="checked" id="__tabbed_20_1" name="__tabbed_20" type="radio" /><input id="__tabbed_20_2" name="__tabbed_20" type="radio" /><div class="tabbed-labels"><label for="__tabbed_20_1">pyproject.toml</label><label for="__tabbed_20_2">ty.toml</label></div>
 <div class="tabbed-content">
@@ -2596,7 +2600,7 @@ if they exist and are not packages (i.e. they do not contain <code>__init__.py</
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 10, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 13, 2026</span>
   </span>
 
     

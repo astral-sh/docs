@@ -26,7 +26,8 @@ Consult [the configuration reference](../../configuration/) for a list of all su
 ```
 
 ```
-require('lspconfig').ty.setup({
+-- Neovim >=0.11:
+vim.lsp.config('ty', {
   settings = {
     ty = {
       configuration = {
@@ -38,8 +39,8 @@ require('lspconfig').ty.setup({
   },
 })
 
--- For Neovim 0.11.0 and later:
-vim.lsp.config('ty', {
+-- Neovim <0.11:
+require('lspconfig').ty.setup({
   settings = {
     ty = {
       configuration = {
@@ -92,7 +93,8 @@ While ty configuration can be included in a `pyproject.toml` file, it is not all
 ```
 
 ```
-require('lspconfig').ty.setup({
+-- Neovim >=0.11:
+vim.lsp.config('ty', {
   settings = {
     ty = {
       configurationFile = "./.config/ty.toml"
@@ -100,8 +102,8 @@ require('lspconfig').ty.setup({
   },
 })
 
--- For Neovim 0.11.0 and later:
-vim.lsp.config('ty', {
+-- Neovim <0.11:
+require('lspconfig').ty.setup({
   settings = {
     ty = {
       configurationFile = "./.config/ty.toml"
@@ -146,7 +148,8 @@ This is useful if you want to use ty exclusively for type checking and want to u
 ```
 
 ```
-require('lspconfig').ty.setup({
+-- Neovim >=0.11:
+vim.lsp.config('ty', {
   settings = {
     ty = {
       disableLanguageServices = true,
@@ -154,8 +157,8 @@ require('lspconfig').ty.setup({
   },
 })
 
--- For Neovim 0.11.0 and later:
-vim.lsp.config('ty', {
+-- Neovim <0.11:
+require('lspconfig').ty.setup({
   settings = {
     ty = {
       disableLanguageServices = true,
@@ -204,7 +207,8 @@ Setting this to `off` is useful if you want to use ty exclusively for the langua
 ```
 
 ```
-require('lspconfig').ty.setup({
+-- Neovim >=0.11:
+vim.lsp.config('ty', {
   settings = {
     ty = {
       diagnosticMode = 'workspace',
@@ -212,8 +216,8 @@ require('lspconfig').ty.setup({
   },
 })
 
--- For Neovim 0.11.0 and later:
-vim.lsp.config('ty', {
+-- Neovim <0.11:
+require('lspconfig').ty.setup({
   settings = {
     ty = {
       diagnosticMode = 'workspace',
@@ -258,7 +262,8 @@ This is useful when using ty with other language servers, allowing the user to r
 ```
 
 ```
-require('lspconfig').ty.setup({
+-- Neovim >=0.11:
+vim.lsp.config('ty', {
   settings = {
     ty = {
       showSyntaxErrors = false,
@@ -266,8 +271,8 @@ require('lspconfig').ty.setup({
   },
 })
 
--- For Neovim 0.11.0 and later:
-vim.lsp.config('ty', {
+-- Neovim <0.11:
+require('lspconfig').ty.setup({
   settings = {
     ty = {
       showSyntaxErrors = false,
@@ -314,7 +319,8 @@ Whether to show the types of variables as inline hints.
 ```
 
 ```
-require('lspconfig').ty.setup({
+-- Neovim >=0.11:
+vim.lsp.config('ty', {
   settings = {
     ty = {
       inlayHints = {
@@ -324,8 +330,8 @@ require('lspconfig').ty.setup({
   },
 })
 
--- For Neovim 0.11.0 and later:
-vim.lsp.config('ty', {
+-- Neovim <0.11:
+require('lspconfig').ty.setup({
   settings = {
     ty = {
       inlayHints = {
@@ -370,7 +376,8 @@ Whether to show argument names in call expressions as inline hints.
 ```
 
 ```
-require('lspconfig').ty.setup({
+-- Neovim >=0.11:
+vim.lsp.config('ty', {
   settings = {
     ty = {
       inlayHints = {
@@ -380,8 +387,8 @@ require('lspconfig').ty.setup({
   },
 })
 
--- For Neovim 0.11.0 and later:
-vim.lsp.config('ty', {
+-- Neovim <0.11:
+require('lspconfig').ty.setup({
   settings = {
     ty = {
       inlayHints = {
@@ -432,7 +439,8 @@ Whether to include auto-import suggestions in code completions. That is, code co
 ```
 
 ```
-require('lspconfig').ty.setup({
+-- Neovim >=0.11:
+vim.lsp.config('ty', {
   settings = {
     ty = {
       completions = {
@@ -442,8 +450,8 @@ require('lspconfig').ty.setup({
   },
 })
 
--- For Neovim 0.11.0 and later:
-vim.lsp.config('ty', {
+-- Neovim <0.11:
+require('lspconfig').ty.setup({
   settings = {
     ty = {
       completions = {
@@ -585,14 +593,15 @@ Path to the file to which the language server writes its log messages. By defaul
 ```
 
 ```
-require('lspconfig').ty.setup({
+-- Neovim >=0.11:
+vim.lsp.config('ty', {
   init_options = {
     logFile = '/path/to/ty.log',
   },
 })
 
--- For Neovim 0.11.0 and later:
-vim.lsp.config('ty', {
+-- Neovim <0.11:
+require('lspconfig').ty.setup({
   init_options = {
     logFile = '/path/to/ty.log',
   },
@@ -633,14 +642,15 @@ The log level to use for the language server.
 ```
 
 ```
-require('lspconfig').ty.setup({
+-- Neovim >=0.11:
+vim.lsp.config('ty', {
   init_options = {
     logLevel = 'debug',
   },
 })
 
--- For Neovim 0.11.0 and later:
-vim.lsp.config('ty', {
+-- Neovim <0.11:
+require('lspconfig').ty.setup({
   init_options = {
     logLevel = 'debug',
   },
