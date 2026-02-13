@@ -19,7 +19,7 @@ If you're in a project, you may need to use `uv run` or activate your virtual en
 
 The type checker needs to discover your installed packages in order to check your use of imported dependencies.
 
-ty will find installed packages in the active virtual environment (via `VIRTUAL_ENV`) or discover a virtual environment named `.venv` in the project root or working directory. It will not find packages in non-virtual environments without specifying the target path with `--python`.
+ty will find installed packages in the active virtual environment (via `VIRTUAL_ENV`) or discover a virtual environment named `.venv` in the project root or working directory. Failing that, ty will look for a `python3` or `python` binary available in `PATH`. Alternatively, the `--python` flag can be provided to ty to explicitly specify a path to a Python interpreter.
 
 See the [module discovery](../modules/) documentation for details.
 
