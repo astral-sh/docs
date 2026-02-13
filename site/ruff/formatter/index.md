@@ -174,15 +174,42 @@ The Ruff formatter can also format Python code blocks in Markdown files. In thes
 
 If a code example is recognized and treated as Python, the Ruff formatter will automatically skip it if the code does not parse as valid Python or if the reformatted code would produce an invalid Python program.
 
-Code blocks marked as `python`, `py`, `python3`, or `py3` will be formatted with the normal Python code formatting style, while any code blocks marked with `pyi` will be formatted like Python type stub files.
-
-While [formatting suppression](#format-suppression) comments will be handled as usual within code blocks, the formatter will also skip formatting any code block surrounded by appropriate HTML comments, such as:
+Code blocks marked as `python`, `py`, `python3`, or `py3` will be formatted with the normal Python code formatting style, while any code blocks marked with `pyi` will be formatted like Python type stub files:
 
 ````
+```py
+print("hello")
+````
+
+```pyi
+def foo(): ...
+def bar(): ...
+```
+
+```
+
+Ruff also supports [Quarto](https://quarto.org/) style executable code blocks
+with curly braces surrounding the language name:
+
+```
+
+```{python}
+print("hello")
+```
+
+```
+
+While [formatting suppression](#format-suppression) comments will be handled as
+usual within code blocks, the formatter will also skip formatting any code block
+surrounded by appropriate HTML comments, such as:
+
+```
+
 <!-- fmt:off -->
+
 ```py
 print( 'hello' )
-````
+```
 
 <!-- fmt:on -->
 
@@ -237,6 +264,20 @@ extend-include = ["\*.md"]
 # OR
 
 extend-include = ["docs/\*.md"]
+
+```
+
+If you run Ruff via [`ruff-pre-commit`](https://github.com/astral-sh/ruff-pre-commit), Markdown
+support needs to be explicitly included by adding it to `types_or`:
+
+.pre-commit-config.yaml
+
+```
+
+repos:
+
+- repo: https://github.com/astral-sh/ruff-pre-commit rev: v0.15.1 hooks:
+  - id: ruff-format types_or: [python, pyi, jupyter, markdown]
 
 ```
 
