@@ -5398,6 +5398,14 @@ See `--project` to only change the project root directory.
 May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
+[`--exclude-newer`](#uv-format--exclude-newer) *exclude-newer* : Limit candidate Ruff versions to those released prior to the given date.
+
+```
+Accepts a superset of [RFC 3339](https://www.rfc-editor.org/rfc/rfc3339.html) (e.g., `2006-12-02T02:07:43Z`) or local date in the same format (e.g. `2006-12-02`), as well as durations relative to "now" (e.g., `-1 week`).
+
+May also be set with the `UV_EXCLUDE_NEWER` environment variable.
+```
+
 [`--help`](#uv-format--help), `-h` : Display the concise help for this command
 
 [`--managed-python`](#uv-format--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
@@ -5483,7 +5491,9 @@ You can configure fine-grained logging using the `RUST_LOG` environment variable
 [`--version`](#uv-format--version) *version* : The version of Ruff to use for formatting.
 
 ```
-By default, a version of Ruff pinned by uv will be used.
+Accepts either a version (e.g., `0.8.2`) which will be treated as an exact pin, a version specifier (e.g., `>=0.8.0`), or `latest` to use the latest available version.
+
+By default, a constrained version range of Ruff will be used (e.g., `>=0.15,<0.16`).
 ```
 
 ## [uv tool](#uv-tool)
