@@ -6742,7 +6742,9 @@ interpreter. Use <code>--universal</code> to display the tree for all platforms,
 </dd><dt id="uv-format--directory"><a href="#uv-format--directory"><code>--directory</code></a> <i>directory</i></dt><dd><p>Change to the given directory prior to running the command.</p>
 <p>Relative paths are resolved with the given directory as the base.</p>
 <p>See <code>--project</code> to only change the project root directory.</p>
-<p>May also be set with the <code>UV_WORKING_DIR</code> environment variable.</p></dd><dt id="uv-format--help"><a href="#uv-format--help"><code>--help</code></a>, <code>-h</code></dt><dd><p>Display the concise help for this command</p>
+<p>May also be set with the <code>UV_WORKING_DIR</code> environment variable.</p></dd><dt id="uv-format--exclude-newer"><a href="#uv-format--exclude-newer"><code>--exclude-newer</code></a> <i>exclude-newer</i></dt><dd><p>Limit candidate Ruff versions to those released prior to the given date.</p>
+<p>Accepts a superset of <a href="https://www.rfc-editor.org/rfc/rfc3339.html">RFC 3339</a> (e.g., <code>2006-12-02T02:07:43Z</code>) or local date in the same format (e.g. <code>2006-12-02</code>), as well as durations relative to &quot;now&quot; (e.g., <code>-1 week</code>).</p>
+<p>May also be set with the <code>UV_EXCLUDE_NEWER</code> environment variable.</p></dd><dt id="uv-format--help"><a href="#uv-format--help"><code>--help</code></a>, <code>-h</code></dt><dd><p>Display the concise help for this command</p>
 </dd><dt id="uv-format--managed-python"><a href="#uv-format--managed-python"><code>--managed-python</code></a></dt><dd><p>Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]</p>
 <p>By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.</p>
 </dd><dt id="uv-format--native-tls"><a href="#uv-format--native-tls"><code>--native-tls</code></a></dt><dd><p>Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]</p>
@@ -6770,7 +6772,8 @@ interpreter. Use <code>--universal</code> to display the tree for all platforms,
 </dd><dt id="uv-format--verbose"><a href="#uv-format--verbose"><code>--verbose</code></a>, <code>-v</code></dt><dd><p>Use verbose output.</p>
 <p>You can configure fine-grained logging using the <code>RUST_LOG</code> environment variable. (<a href="https://docs.rs/tracing-subscriber/latest/tracing_subscriber/filter/struct.EnvFilter.html#directives">https://docs.rs/tracing-subscriber/latest/tracing_subscriber/filter/struct.EnvFilter.html#directives</a>)</p>
 </dd><dt id="uv-format--version"><a href="#uv-format--version"><code>--version</code></a> <i>version</i></dt><dd><p>The version of Ruff to use for formatting.</p>
-<p>By default, a version of Ruff pinned by uv will be used.</p>
+<p>Accepts either a version (e.g., <code>0.8.2</code>) which will be treated as an exact pin, a version specifier (e.g., <code>&gt;=0.8.0</code>), or <code>latest</code> to use the latest available version.</p>
+<p>By default, a constrained version range of Ruff will be used (e.g., <code>&gt;=0.15,&lt;0.16</code>).</p>
 </dd></dl>
 
 <h2 id="uv-tool"><a class="toclink" href="#uv-tool">uv tool</a></h2>
