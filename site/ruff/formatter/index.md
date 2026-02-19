@@ -276,7 +276,7 @@ support needs to be explicitly included by adding it to `types_or`:
 
 repos:
 
-- repo: https://github.com/astral-sh/ruff-pre-commit rev: v0.15.1 hooks:
+- repo: https://github.com/astral-sh/ruff-pre-commit rev: v0.15.2 hooks:
   - id: ruff-format types_or: [python, pyi, jupyter, markdown]
 
 ```
@@ -376,6 +376,7 @@ When using Ruff as a formatter, we recommend avoiding the following lint rules:
 - [`bad-quotes-multiline-string`](../rules/bad-quotes-multiline-string/) (`Q001`)
 - [`bad-quotes-docstring`](../rules/bad-quotes-docstring/) (`Q002`)
 - [`avoidable-escaped-quote`](../rules/avoidable-escaped-quote/) (`Q003`)
+- [`unnecessary-escaped-quote`](../rules/unnecessary-escaped-quote/) (`Q004`)
 - [`missing-trailing-comma`](../rules/missing-trailing-comma/) (`COM812`)
 - [`prohibited-trailing-comma`](../rules/prohibited-trailing-comma/) (`COM819`)
 - [`multi-line-implicit-string-concatenation`](../rules/multi-line-implicit-string-concatenation/) (`ISC002`) if used without `ISC001` and `flake8-implicit-str-concat.allow-multiline = false`
