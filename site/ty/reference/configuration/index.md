@@ -72,6 +72,42 @@ allowed-unresolved-imports = ["test.**", "!test.foo"]
 
 ______________________________________________________________________
 
+### [`replace-imports-with-any`](#replace-imports-with-any)
+
+A list of module glob patterns whose imports should be replaced with `typing.Any`.
+
+Unlike `allowed-unresolved-imports`, this setting replaces the module's type information with `typing.Any` even if the module can be resolved. Import diagnostics are unconditionally suppressed for matching modules.
+
+- Prefix a pattern with `!` to exclude matching modules
+
+When multiple patterns match, later entries take precedence.
+
+Glob patterns can be used in combinations with each other. For example, to suppress errors for any module where the first component contains the substring `test`, use `*test*.**`.
+
+When multiple patterns match, later entries take precedence.
+
+**Default value**: `[]`
+
+**Type**: `list[str]`
+
+**Example usage**:
+
+```
+[tool.ty.analysis]
+# Replace all pandas and numpy imports with Any
+replace-imports-with-any = ["pandas.**", "numpy.**"]
+
+```
+
+```
+[analysis]
+# Replace all pandas and numpy imports with Any
+replace-imports-with-any = ["pandas.**", "numpy.**"]
+
+```
+
+______________________________________________________________________
+
 ### [`respect-type-ignore-comments`](#respect-type-ignore-comments)
 
 Whether ty should respect `type: ignore` comments.
@@ -458,6 +494,42 @@ allowed-unresolved-imports = ["test.**", "!test.foo"]
 [overrides.analysis]
 # Suppress errors for all `test` modules except `test.foo`
 allowed-unresolved-imports = ["test.**", "!test.foo"]
+
+```
+
+______________________________________________________________________
+
+#### [`replace-imports-with-any`](#replace-imports-with-any_1)
+
+A list of module glob patterns whose imports should be replaced with `typing.Any`.
+
+Unlike `allowed-unresolved-imports`, this setting replaces the module's type information with `typing.Any` even if the module can be resolved. Import diagnostics are unconditionally suppressed for matching modules.
+
+- Prefix a pattern with `!` to exclude matching modules
+
+When multiple patterns match, later entries take precedence.
+
+Glob patterns can be used in combinations with each other. For example, to suppress errors for any module where the first component contains the substring `test`, use `*test*.**`.
+
+When multiple patterns match, later entries take precedence.
+
+**Default value**: `[]`
+
+**Type**: `list[str]`
+
+**Example usage**:
+
+```
+[tool.ty.overrides.analysis]
+# Replace all pandas and numpy imports with Any
+replace-imports-with-any = ["pandas.**", "numpy.**"]
+
+```
+
+```
+[overrides.analysis]
+# Replace all pandas and numpy imports with Any
+replace-imports-with-any = ["pandas.**", "numpy.**"]
 
 ```
 
