@@ -189,13 +189,24 @@ Display ty's version
 ### Usage
 
 ```
-ty version
+ty version [OPTIONS]
 
 ```
 
 ### Options
 
 [`--help`](#ty-version--help), `-h` : Print help
+
+[`--output-format`](#ty-version--output-format) *output-format* : The format in which to display the version information
+
+```
+[default: text]
+
+Possible values:
+
+- `text`
+- `json`
+```
 
 ## [ty generate-shell-completion](#ty-generate-shell-completion)
 
