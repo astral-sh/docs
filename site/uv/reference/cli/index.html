@@ -4956,14 +4956,14 @@
 <li><code>disabled</code>:  Do not use keyring for credential lookup</li>
 <li><code>subprocess</code>:  Use the <code>keyring</code> command for credential lookup</li>
 </ul></dd><dt id="uv-run--link-mode"><a href="#uv-run--link-mode"><code>--link-mode</code></a> <i>link-mode</i></dt><dd><p>The method to use when installing packages from the global cache.</p>
-<p>Defaults to <code>clone</code> (also known as Copy-on-Write) on macOS, and <code>hardlink</code> on Linux and Windows.</p>
+<p>Defaults to <code>clone</code> (also known as Copy-on-Write) on macOS and Linux, and <code>hardlink</code> on Windows.</p>
 <p>WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (<code>uv cache clean</code>) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.</p>
 <p>May also be set with the <code>UV_LINK_MODE</code> environment variable.</p><p>Possible values:</p>
 <ul>
-<li><code>clone</code>:  Clone (i.e., copy-on-write or reflink) packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>copy</code>:  Copy packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>hardlink</code>:  Hard link packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>symlink</code>:  Symbolically link packages from the wheel into the <code>site-packages</code> directory</li>
+<li><code>clone</code>:  Clone (i.e., copy-on-write) packages from the source into the destination</li>
+<li><code>copy</code>:  Copy packages from the source into the destination</li>
+<li><code>hardlink</code>:  Hard link packages from the source into the destination</li>
+<li><code>symlink</code>:  Symbolically link packages from the source into the destination</li>
 </ul></dd><dt id="uv-run--locked"><a href="#uv-run--locked"><code>--locked</code></a></dt><dd><p>Assert that the <code>uv.lock</code> will remain unchanged [env: UV_LOCKED=]</p>
 <p>Requires that the lockfile is up-to-date. If the lockfile is missing or needs to be updated, uv will exit with an error.</p>
 </dd><dt id="uv-run--managed-python"><a href="#uv-run--managed-python"><code>--managed-python</code></a></dt><dd><p>Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]</p>
@@ -5357,14 +5357,14 @@ used.</p>
 <li><code>subprocess</code>:  Use the <code>keyring</code> command for credential lookup</li>
 </ul></dd><dt id="uv-add--lfs"><a href="#uv-add--lfs"><code>--lfs</code></a></dt><dd><p>Whether to use Git LFS when adding a dependency from Git</p>
 </dd><dt id="uv-add--link-mode"><a href="#uv-add--link-mode"><code>--link-mode</code></a> <i>link-mode</i></dt><dd><p>The method to use when installing packages from the global cache.</p>
-<p>Defaults to <code>clone</code> (also known as Copy-on-Write) on macOS, and <code>hardlink</code> on Linux and Windows.</p>
+<p>Defaults to <code>clone</code> (also known as Copy-on-Write) on macOS and Linux, and <code>hardlink</code> on Windows.</p>
 <p>WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (<code>uv cache clean</code>) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.</p>
 <p>May also be set with the <code>UV_LINK_MODE</code> environment variable.</p><p>Possible values:</p>
 <ul>
-<li><code>clone</code>:  Clone (i.e., copy-on-write or reflink) packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>copy</code>:  Copy packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>hardlink</code>:  Hard link packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>symlink</code>:  Symbolically link packages from the wheel into the <code>site-packages</code> directory</li>
+<li><code>clone</code>:  Clone (i.e., copy-on-write) packages from the source into the destination</li>
+<li><code>copy</code>:  Copy packages from the source into the destination</li>
+<li><code>hardlink</code>:  Hard link packages from the source into the destination</li>
+<li><code>symlink</code>:  Symbolically link packages from the source into the destination</li>
 </ul></dd><dt id="uv-add--locked"><a href="#uv-add--locked"><code>--locked</code></a></dt><dd><p>Assert that the <code>uv.lock</code> will remain unchanged [env: UV_LOCKED=]</p>
 <p>Requires that the lockfile is up-to-date. If the lockfile is missing or needs to be updated, uv will exit with an error.</p>
 </dd><dt id="uv-add--managed-python"><a href="#uv-add--managed-python"><code>--managed-python</code></a></dt><dd><p>Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]</p>
@@ -5557,14 +5557,14 @@ used.</p>
 <li><code>disabled</code>:  Do not use keyring for credential lookup</li>
 <li><code>subprocess</code>:  Use the <code>keyring</code> command for credential lookup</li>
 </ul></dd><dt id="uv-remove--link-mode"><a href="#uv-remove--link-mode"><code>--link-mode</code></a> <i>link-mode</i></dt><dd><p>The method to use when installing packages from the global cache.</p>
-<p>Defaults to <code>clone</code> (also known as Copy-on-Write) on macOS, and <code>hardlink</code> on Linux and Windows.</p>
+<p>Defaults to <code>clone</code> (also known as Copy-on-Write) on macOS and Linux, and <code>hardlink</code> on Windows.</p>
 <p>WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (<code>uv cache clean</code>) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.</p>
 <p>May also be set with the <code>UV_LINK_MODE</code> environment variable.</p><p>Possible values:</p>
 <ul>
-<li><code>clone</code>:  Clone (i.e., copy-on-write or reflink) packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>copy</code>:  Copy packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>hardlink</code>:  Hard link packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>symlink</code>:  Symbolically link packages from the wheel into the <code>site-packages</code> directory</li>
+<li><code>clone</code>:  Clone (i.e., copy-on-write) packages from the source into the destination</li>
+<li><code>copy</code>:  Copy packages from the source into the destination</li>
+<li><code>hardlink</code>:  Hard link packages from the source into the destination</li>
+<li><code>symlink</code>:  Symbolically link packages from the source into the destination</li>
 </ul></dd><dt id="uv-remove--locked"><a href="#uv-remove--locked"><code>--locked</code></a></dt><dd><p>Assert that the <code>uv.lock</code> will remain unchanged [env: UV_LOCKED=]</p>
 <p>Requires that the lockfile is up-to-date. If the lockfile is missing or needs to be updated, uv will exit with an error.</p>
 </dd><dt id="uv-remove--managed-python"><a href="#uv-remove--managed-python"><code>--managed-python</code></a></dt><dd><p>Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]</p>
@@ -5738,14 +5738,14 @@ used.</p>
 <li><code>disabled</code>:  Do not use keyring for credential lookup</li>
 <li><code>subprocess</code>:  Use the <code>keyring</code> command for credential lookup</li>
 </ul></dd><dt id="uv-version--link-mode"><a href="#uv-version--link-mode"><code>--link-mode</code></a> <i>link-mode</i></dt><dd><p>The method to use when installing packages from the global cache.</p>
-<p>Defaults to <code>clone</code> (also known as Copy-on-Write) on macOS, and <code>hardlink</code> on Linux and Windows.</p>
+<p>Defaults to <code>clone</code> (also known as Copy-on-Write) on macOS and Linux, and <code>hardlink</code> on Windows.</p>
 <p>WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (<code>uv cache clean</code>) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.</p>
 <p>May also be set with the <code>UV_LINK_MODE</code> environment variable.</p><p>Possible values:</p>
 <ul>
-<li><code>clone</code>:  Clone (i.e., copy-on-write or reflink) packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>copy</code>:  Copy packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>hardlink</code>:  Hard link packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>symlink</code>:  Symbolically link packages from the wheel into the <code>site-packages</code> directory</li>
+<li><code>clone</code>:  Clone (i.e., copy-on-write) packages from the source into the destination</li>
+<li><code>copy</code>:  Copy packages from the source into the destination</li>
+<li><code>hardlink</code>:  Hard link packages from the source into the destination</li>
+<li><code>symlink</code>:  Symbolically link packages from the source into the destination</li>
 </ul></dd><dt id="uv-version--locked"><a href="#uv-version--locked"><code>--locked</code></a></dt><dd><p>Assert that the <code>uv.lock</code> will remain unchanged [env: UV_LOCKED=]</p>
 <p>Requires that the lockfile is up-to-date. If the lockfile is missing or needs to be updated, uv will exit with an error.</p>
 </dd><dt id="uv-version--managed-python"><a href="#uv-version--managed-python"><code>--managed-python</code></a></dt><dd><p>Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]</p>
@@ -5929,14 +5929,14 @@ used.</p>
 <li><code>disabled</code>:  Do not use keyring for credential lookup</li>
 <li><code>subprocess</code>:  Use the <code>keyring</code> command for credential lookup</li>
 </ul></dd><dt id="uv-sync--link-mode"><a href="#uv-sync--link-mode"><code>--link-mode</code></a> <i>link-mode</i></dt><dd><p>The method to use when installing packages from the global cache.</p>
-<p>Defaults to <code>clone</code> (also known as Copy-on-Write) on macOS, and <code>hardlink</code> on Linux and Windows.</p>
+<p>Defaults to <code>clone</code> (also known as Copy-on-Write) on macOS and Linux, and <code>hardlink</code> on Windows.</p>
 <p>WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (<code>uv cache clean</code>) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.</p>
 <p>May also be set with the <code>UV_LINK_MODE</code> environment variable.</p><p>Possible values:</p>
 <ul>
-<li><code>clone</code>:  Clone (i.e., copy-on-write or reflink) packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>copy</code>:  Copy packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>hardlink</code>:  Hard link packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>symlink</code>:  Symbolically link packages from the wheel into the <code>site-packages</code> directory</li>
+<li><code>clone</code>:  Clone (i.e., copy-on-write) packages from the source into the destination</li>
+<li><code>copy</code>:  Copy packages from the source into the destination</li>
+<li><code>hardlink</code>:  Hard link packages from the source into the destination</li>
+<li><code>symlink</code>:  Symbolically link packages from the source into the destination</li>
 </ul></dd><dt id="uv-sync--locked"><a href="#uv-sync--locked"><code>--locked</code></a></dt><dd><p>Assert that the <code>uv.lock</code> will remain unchanged [env: UV_LOCKED=]</p>
 <p>Requires that the lockfile is up-to-date. If the lockfile is missing or needs to be updated, uv will exit with an error.</p>
 </dd><dt id="uv-sync--managed-python"><a href="#uv-sync--managed-python"><code>--managed-python</code></a></dt><dd><p>Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]</p>
@@ -6183,14 +6183,14 @@ environment in the project.</p>
 <li><code>subprocess</code>:  Use the <code>keyring</code> command for credential lookup</li>
 </ul></dd><dt id="uv-lock--link-mode"><a href="#uv-lock--link-mode"><code>--link-mode</code></a> <i>link-mode</i></dt><dd><p>The method to use when installing packages from the global cache.</p>
 <p>This option is only used when building source distributions.</p>
-<p>Defaults to <code>clone</code> (also known as Copy-on-Write) on macOS, and <code>hardlink</code> on Linux and Windows.</p>
+<p>Defaults to <code>clone</code> (also known as Copy-on-Write) on macOS and Linux, and <code>hardlink</code> on Windows.</p>
 <p>WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (<code>uv cache clean</code>) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.</p>
 <p>May also be set with the <code>UV_LINK_MODE</code> environment variable.</p><p>Possible values:</p>
 <ul>
-<li><code>clone</code>:  Clone (i.e., copy-on-write or reflink) packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>copy</code>:  Copy packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>hardlink</code>:  Hard link packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>symlink</code>:  Symbolically link packages from the wheel into the <code>site-packages</code> directory</li>
+<li><code>clone</code>:  Clone (i.e., copy-on-write) packages from the source into the destination</li>
+<li><code>copy</code>:  Copy packages from the source into the destination</li>
+<li><code>hardlink</code>:  Hard link packages from the source into the destination</li>
+<li><code>symlink</code>:  Symbolically link packages from the source into the destination</li>
 </ul></dd><dt id="uv-lock--managed-python"><a href="#uv-lock--managed-python"><code>--managed-python</code></a></dt><dd><p>Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]</p>
 <p>By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.</p>
 </dd><dt id="uv-lock--native-tls"><a href="#uv-lock--native-tls"><code>--native-tls</code></a></dt><dd><p>Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]</p>
@@ -6260,7 +6260,7 @@ metadata when there are not wheels.</p>
 
 <h2 id="uv-export"><a class="toclink" href="#uv-export">uv export</a></h2>
 <p>Export the project's lockfile to an alternate format.</p>
-<p>At present, both <code>requirements.txt</code> and <code>pylock.toml</code> (PEP 751) formats are supported.</p>
+<p>At present, <code>requirements.txt</code>, <code>pylock.toml</code> (PEP 751) and CycloneDX v1.5 JSON output formats are supported.</p>
 <p>The project is re-locked before exporting unless the <code>--locked</code> or <code>--frozen</code> flag is provided.</p>
 <p>uv will search for a project in the current directory or any parent directory. If a project cannot be found, uv will exit with an error.</p>
 <p>If operating in a workspace, the root will be exported by default; however, specific members can be selected using the <code>--package</code> option.</p>
@@ -6358,14 +6358,14 @@ metadata when there are not wheels.</p>
 <li><code>subprocess</code>:  Use the <code>keyring</code> command for credential lookup</li>
 </ul></dd><dt id="uv-export--link-mode"><a href="#uv-export--link-mode"><code>--link-mode</code></a> <i>link-mode</i></dt><dd><p>The method to use when installing packages from the global cache.</p>
 <p>This option is only used when building source distributions.</p>
-<p>Defaults to <code>clone</code> (also known as Copy-on-Write) on macOS, and <code>hardlink</code> on Linux and Windows.</p>
+<p>Defaults to <code>clone</code> (also known as Copy-on-Write) on macOS and Linux, and <code>hardlink</code> on Windows.</p>
 <p>WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (<code>uv cache clean</code>) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.</p>
 <p>May also be set with the <code>UV_LINK_MODE</code> environment variable.</p><p>Possible values:</p>
 <ul>
-<li><code>clone</code>:  Clone (i.e., copy-on-write or reflink) packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>copy</code>:  Copy packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>hardlink</code>:  Hard link packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>symlink</code>:  Symbolically link packages from the wheel into the <code>site-packages</code> directory</li>
+<li><code>clone</code>:  Clone (i.e., copy-on-write) packages from the source into the destination</li>
+<li><code>copy</code>:  Copy packages from the source into the destination</li>
+<li><code>hardlink</code>:  Hard link packages from the source into the destination</li>
+<li><code>symlink</code>:  Symbolically link packages from the source into the destination</li>
 </ul></dd><dt id="uv-export--locked"><a href="#uv-export--locked"><code>--locked</code></a></dt><dd><p>Assert that the <code>uv.lock</code> will remain unchanged [env: UV_LOCKED=]</p>
 <p>Requires that the lockfile is up-to-date. If the lockfile is missing or needs to be updated, uv will exit with an error.</p>
 </dd><dt id="uv-export--managed-python"><a href="#uv-export--managed-python"><code>--managed-python</code></a></dt><dd><p>Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]</p>
@@ -6555,14 +6555,14 @@ metadata when there are not wheels.</p>
 <li><code>subprocess</code>:  Use the <code>keyring</code> command for credential lookup</li>
 </ul></dd><dt id="uv-tree--link-mode"><a href="#uv-tree--link-mode"><code>--link-mode</code></a> <i>link-mode</i></dt><dd><p>The method to use when installing packages from the global cache.</p>
 <p>This option is only used when building source distributions.</p>
-<p>Defaults to <code>clone</code> (also known as Copy-on-Write) on macOS, and <code>hardlink</code> on Linux and Windows.</p>
+<p>Defaults to <code>clone</code> (also known as Copy-on-Write) on macOS and Linux, and <code>hardlink</code> on Windows.</p>
 <p>WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (<code>uv cache clean</code>) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.</p>
 <p>May also be set with the <code>UV_LINK_MODE</code> environment variable.</p><p>Possible values:</p>
 <ul>
-<li><code>clone</code>:  Clone (i.e., copy-on-write or reflink) packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>copy</code>:  Copy packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>hardlink</code>:  Hard link packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>symlink</code>:  Symbolically link packages from the wheel into the <code>site-packages</code> directory</li>
+<li><code>clone</code>:  Clone (i.e., copy-on-write) packages from the source into the destination</li>
+<li><code>copy</code>:  Copy packages from the source into the destination</li>
+<li><code>hardlink</code>:  Hard link packages from the source into the destination</li>
+<li><code>symlink</code>:  Symbolically link packages from the source into the destination</li>
 </ul></dd><dt id="uv-tree--locked"><a href="#uv-tree--locked"><code>--locked</code></a></dt><dd><p>Assert that the <code>uv.lock</code> will remain unchanged [env: UV_LOCKED=]</p>
 <p>Requires that the lockfile is up-to-date. If the lockfile is missing or needs to be updated, uv will exit with an error.</p>
 </dd><dt id="uv-tree--managed-python"><a href="#uv-tree--managed-python"><code>--managed-python</code></a></dt><dd><p>Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]</p>
@@ -6889,14 +6889,14 @@ interpreter. Use <code>--universal</code> to display the tree for all platforms,
 <li><code>subprocess</code>:  Use the <code>keyring</code> command for credential lookup</li>
 </ul></dd><dt id="uv-tool-run--lfs"><a href="#uv-tool-run--lfs"><code>--lfs</code></a></dt><dd><p>Whether to use Git LFS when adding a dependency from Git</p>
 </dd><dt id="uv-tool-run--link-mode"><a href="#uv-tool-run--link-mode"><code>--link-mode</code></a> <i>link-mode</i></dt><dd><p>The method to use when installing packages from the global cache.</p>
-<p>Defaults to <code>clone</code> (also known as Copy-on-Write) on macOS, and <code>hardlink</code> on Linux and Windows.</p>
+<p>Defaults to <code>clone</code> (also known as Copy-on-Write) on macOS and Linux, and <code>hardlink</code> on Windows.</p>
 <p>WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (<code>uv cache clean</code>) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.</p>
 <p>May also be set with the <code>UV_LINK_MODE</code> environment variable.</p><p>Possible values:</p>
 <ul>
-<li><code>clone</code>:  Clone (i.e., copy-on-write or reflink) packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>copy</code>:  Copy packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>hardlink</code>:  Hard link packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>symlink</code>:  Symbolically link packages from the wheel into the <code>site-packages</code> directory</li>
+<li><code>clone</code>:  Clone (i.e., copy-on-write) packages from the source into the destination</li>
+<li><code>copy</code>:  Copy packages from the source into the destination</li>
+<li><code>hardlink</code>:  Hard link packages from the source into the destination</li>
+<li><code>symlink</code>:  Symbolically link packages from the source into the destination</li>
 </ul></dd><dt id="uv-tool-run--managed-python"><a href="#uv-tool-run--managed-python"><code>--managed-python</code></a></dt><dd><p>Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]</p>
 <p>By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.</p>
 </dd><dt id="uv-tool-run--native-tls"><a href="#uv-tool-run--native-tls"><code>--native-tls</code></a></dt><dd><p>Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]</p>
@@ -7173,14 +7173,14 @@ interpreter. Use <code>--universal</code> to display the tree for all platforms,
 <li><code>subprocess</code>:  Use the <code>keyring</code> command for credential lookup</li>
 </ul></dd><dt id="uv-tool-install--lfs"><a href="#uv-tool-install--lfs"><code>--lfs</code></a></dt><dd><p>Whether to use Git LFS when adding a dependency from Git</p>
 </dd><dt id="uv-tool-install--link-mode"><a href="#uv-tool-install--link-mode"><code>--link-mode</code></a> <i>link-mode</i></dt><dd><p>The method to use when installing packages from the global cache.</p>
-<p>Defaults to <code>clone</code> (also known as Copy-on-Write) on macOS, and <code>hardlink</code> on Linux and Windows.</p>
+<p>Defaults to <code>clone</code> (also known as Copy-on-Write) on macOS and Linux, and <code>hardlink</code> on Windows.</p>
 <p>WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (<code>uv cache clean</code>) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.</p>
 <p>May also be set with the <code>UV_LINK_MODE</code> environment variable.</p><p>Possible values:</p>
 <ul>
-<li><code>clone</code>:  Clone (i.e., copy-on-write or reflink) packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>copy</code>:  Copy packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>hardlink</code>:  Hard link packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>symlink</code>:  Symbolically link packages from the wheel into the <code>site-packages</code> directory</li>
+<li><code>clone</code>:  Clone (i.e., copy-on-write) packages from the source into the destination</li>
+<li><code>copy</code>:  Copy packages from the source into the destination</li>
+<li><code>hardlink</code>:  Hard link packages from the source into the destination</li>
+<li><code>symlink</code>:  Symbolically link packages from the source into the destination</li>
 </ul></dd><dt id="uv-tool-install--managed-python"><a href="#uv-tool-install--managed-python"><code>--managed-python</code></a></dt><dd><p>Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]</p>
 <p>By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.</p>
 </dd><dt id="uv-tool-install--native-tls"><a href="#uv-tool-install--native-tls"><code>--native-tls</code></a></dt><dd><p>Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]</p>
@@ -7446,14 +7446,14 @@ interpreter. Use <code>--universal</code> to display the tree for all platforms,
 <li><code>disabled</code>:  Do not use keyring for credential lookup</li>
 <li><code>subprocess</code>:  Use the <code>keyring</code> command for credential lookup</li>
 </ul></dd><dt id="uv-tool-upgrade--link-mode"><a href="#uv-tool-upgrade--link-mode"><code>--link-mode</code></a> <i>link-mode</i></dt><dd><p>The method to use when installing packages from the global cache.</p>
-<p>Defaults to <code>clone</code> (also known as Copy-on-Write) on macOS, and <code>hardlink</code> on Linux and Windows.</p>
+<p>Defaults to <code>clone</code> (also known as Copy-on-Write) on macOS and Linux, and <code>hardlink</code> on Windows.</p>
 <p>WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (<code>uv cache clean</code>) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.</p>
 <p>May also be set with the <code>UV_LINK_MODE</code> environment variable.</p><p>Possible values:</p>
 <ul>
-<li><code>clone</code>:  Clone (i.e., copy-on-write or reflink) packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>copy</code>:  Copy packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>hardlink</code>:  Hard link packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>symlink</code>:  Symbolically link packages from the wheel into the <code>site-packages</code> directory</li>
+<li><code>clone</code>:  Clone (i.e., copy-on-write) packages from the source into the destination</li>
+<li><code>copy</code>:  Copy packages from the source into the destination</li>
+<li><code>hardlink</code>:  Hard link packages from the source into the destination</li>
+<li><code>symlink</code>:  Symbolically link packages from the source into the destination</li>
 </ul></dd><dt id="uv-tool-upgrade--managed-python"><a href="#uv-tool-upgrade--managed-python"><code>--managed-python</code></a></dt><dd><p>Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]</p>
 <p>By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.</p>
 </dd><dt id="uv-tool-upgrade--native-tls"><a href="#uv-tool-upgrade--native-tls"><code>--native-tls</code></a></dt><dd><p>Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]</p>
@@ -8593,14 +8593,14 @@ from the following environment variables, in order of preference:</p>
 <li><code>subprocess</code>:  Use the <code>keyring</code> command for credential lookup</li>
 </ul></dd><dt id="uv-pip-compile--link-mode"><a href="#uv-pip-compile--link-mode"><code>--link-mode</code></a> <i>link-mode</i></dt><dd><p>The method to use when installing packages from the global cache.</p>
 <p>This option is only used when building source distributions.</p>
-<p>Defaults to <code>clone</code> (also known as Copy-on-Write) on macOS, and <code>hardlink</code> on Linux and Windows.</p>
+<p>Defaults to <code>clone</code> (also known as Copy-on-Write) on macOS and Linux, and <code>hardlink</code> on Windows.</p>
 <p>WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (<code>uv cache clean</code>) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.</p>
 <p>May also be set with the <code>UV_LINK_MODE</code> environment variable.</p><p>Possible values:</p>
 <ul>
-<li><code>clone</code>:  Clone (i.e., copy-on-write or reflink) packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>copy</code>:  Copy packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>hardlink</code>:  Hard link packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>symlink</code>:  Symbolically link packages from the wheel into the <code>site-packages</code> directory</li>
+<li><code>clone</code>:  Clone (i.e., copy-on-write) packages from the source into the destination</li>
+<li><code>copy</code>:  Copy packages from the source into the destination</li>
+<li><code>hardlink</code>:  Hard link packages from the source into the destination</li>
+<li><code>symlink</code>:  Symbolically link packages from the source into the destination</li>
 </ul></dd><dt id="uv-pip-compile--managed-python"><a href="#uv-pip-compile--managed-python"><code>--managed-python</code></a></dt><dd><p>Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]</p>
 <p>By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.</p>
 </dd><dt id="uv-pip-compile--native-tls"><a href="#uv-pip-compile--native-tls"><code>--native-tls</code></a></dt><dd><p>Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]</p>
@@ -8896,14 +8896,14 @@ by <code>--python-version</code>.</p>
 <li><code>disabled</code>:  Do not use keyring for credential lookup</li>
 <li><code>subprocess</code>:  Use the <code>keyring</code> command for credential lookup</li>
 </ul></dd><dt id="uv-pip-sync--link-mode"><a href="#uv-pip-sync--link-mode"><code>--link-mode</code></a> <i>link-mode</i></dt><dd><p>The method to use when installing packages from the global cache.</p>
-<p>Defaults to <code>clone</code> (also known as Copy-on-Write) on macOS, and <code>hardlink</code> on Linux and Windows.</p>
+<p>Defaults to <code>clone</code> (also known as Copy-on-Write) on macOS and Linux, and <code>hardlink</code> on Windows.</p>
 <p>WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (<code>uv cache clean</code>) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.</p>
 <p>May also be set with the <code>UV_LINK_MODE</code> environment variable.</p><p>Possible values:</p>
 <ul>
-<li><code>clone</code>:  Clone (i.e., copy-on-write or reflink) packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>copy</code>:  Copy packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>hardlink</code>:  Hard link packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>symlink</code>:  Symbolically link packages from the wheel into the <code>site-packages</code> directory</li>
+<li><code>clone</code>:  Clone (i.e., copy-on-write) packages from the source into the destination</li>
+<li><code>copy</code>:  Copy packages from the source into the destination</li>
+<li><code>hardlink</code>:  Hard link packages from the source into the destination</li>
+<li><code>symlink</code>:  Symbolically link packages from the source into the destination</li>
 </ul></dd><dt id="uv-pip-sync--managed-python"><a href="#uv-pip-sync--managed-python"><code>--managed-python</code></a></dt><dd><p>Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]</p>
 <p>By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.</p>
 </dd><dt id="uv-pip-sync--native-tls"><a href="#uv-pip-sync--native-tls"><code>--native-tls</code></a></dt><dd><p>Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]</p>
@@ -9183,14 +9183,14 @@ be used with caution, as it can modify the system Python installation.</p>
 <li><code>disabled</code>:  Do not use keyring for credential lookup</li>
 <li><code>subprocess</code>:  Use the <code>keyring</code> command for credential lookup</li>
 </ul></dd><dt id="uv-pip-install--link-mode"><a href="#uv-pip-install--link-mode"><code>--link-mode</code></a> <i>link-mode</i></dt><dd><p>The method to use when installing packages from the global cache.</p>
-<p>Defaults to <code>clone</code> (also known as Copy-on-Write) on macOS, and <code>hardlink</code> on Linux and Windows.</p>
+<p>Defaults to <code>clone</code> (also known as Copy-on-Write) on macOS and Linux, and <code>hardlink</code> on Windows.</p>
 <p>WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (<code>uv cache clean</code>) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.</p>
 <p>May also be set with the <code>UV_LINK_MODE</code> environment variable.</p><p>Possible values:</p>
 <ul>
-<li><code>clone</code>:  Clone (i.e., copy-on-write or reflink) packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>copy</code>:  Copy packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>hardlink</code>:  Hard link packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>symlink</code>:  Symbolically link packages from the wheel into the <code>site-packages</code> directory</li>
+<li><code>clone</code>:  Clone (i.e., copy-on-write) packages from the source into the destination</li>
+<li><code>copy</code>:  Copy packages from the source into the destination</li>
+<li><code>hardlink</code>:  Hard link packages from the source into the destination</li>
+<li><code>symlink</code>:  Symbolically link packages from the source into the destination</li>
 </ul></dd><dt id="uv-pip-install--managed-python"><a href="#uv-pip-install--managed-python"><code>--managed-python</code></a></dt><dd><p>Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]</p>
 <p>By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.</p>
 </dd><dt id="uv-pip-install--native-tls"><a href="#uv-pip-install--native-tls"><code>--native-tls</code></a></dt><dd><p>Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]</p>
@@ -10026,14 +10026,14 @@ Python environment if no virtual environment is found.</p>
 <li><code>subprocess</code>:  Use the <code>keyring</code> command for credential lookup</li>
 </ul></dd><dt id="uv-venv--link-mode"><a href="#uv-venv--link-mode"><code>--link-mode</code></a> <i>link-mode</i></dt><dd><p>The method to use when installing packages from the global cache.</p>
 <p>This option is only used for installing seed packages.</p>
-<p>Defaults to <code>clone</code> (also known as Copy-on-Write) on macOS, and <code>hardlink</code> on Linux and Windows.</p>
+<p>Defaults to <code>clone</code> (also known as Copy-on-Write) on macOS and Linux, and <code>hardlink</code> on Windows.</p>
 <p>WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (<code>uv cache clean</code>) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.</p>
 <p>May also be set with the <code>UV_LINK_MODE</code> environment variable.</p><p>Possible values:</p>
 <ul>
-<li><code>clone</code>:  Clone (i.e., copy-on-write or reflink) packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>copy</code>:  Copy packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>hardlink</code>:  Hard link packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>symlink</code>:  Symbolically link packages from the wheel into the <code>site-packages</code> directory</li>
+<li><code>clone</code>:  Clone (i.e., copy-on-write) packages from the source into the destination</li>
+<li><code>copy</code>:  Copy packages from the source into the destination</li>
+<li><code>hardlink</code>:  Hard link packages from the source into the destination</li>
+<li><code>symlink</code>:  Symbolically link packages from the source into the destination</li>
 </ul></dd><dt id="uv-venv--managed-python"><a href="#uv-venv--managed-python"><code>--managed-python</code></a></dt><dd><p>Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]</p>
 <p>By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.</p>
 </dd><dt id="uv-venv--native-tls"><a href="#uv-venv--native-tls"><code>--native-tls</code></a></dt><dd><p>Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]</p>
@@ -10177,14 +10177,14 @@ environments.</p>
 <li><code>subprocess</code>:  Use the <code>keyring</code> command for credential lookup</li>
 </ul></dd><dt id="uv-build--link-mode"><a href="#uv-build--link-mode"><code>--link-mode</code></a> <i>link-mode</i></dt><dd><p>The method to use when installing packages from the global cache.</p>
 <p>This option is only used when building source distributions.</p>
-<p>Defaults to <code>clone</code> (also known as Copy-on-Write) on macOS, and <code>hardlink</code> on Linux and Windows.</p>
+<p>Defaults to <code>clone</code> (also known as Copy-on-Write) on macOS and Linux, and <code>hardlink</code> on Windows.</p>
 <p>WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (<code>uv cache clean</code>) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.</p>
 <p>May also be set with the <code>UV_LINK_MODE</code> environment variable.</p><p>Possible values:</p>
 <ul>
-<li><code>clone</code>:  Clone (i.e., copy-on-write or reflink) packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>copy</code>:  Copy packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>hardlink</code>:  Hard link packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>symlink</code>:  Symbolically link packages from the wheel into the <code>site-packages</code> directory</li>
+<li><code>clone</code>:  Clone (i.e., copy-on-write) packages from the source into the destination</li>
+<li><code>copy</code>:  Copy packages from the source into the destination</li>
+<li><code>hardlink</code>:  Hard link packages from the source into the destination</li>
+<li><code>symlink</code>:  Symbolically link packages from the source into the destination</li>
 </ul></dd><dt id="uv-build--managed-python"><a href="#uv-build--managed-python"><code>--managed-python</code></a></dt><dd><p>Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]</p>
 <p>By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.</p>
 </dd><dt id="uv-build--native-tls"><a href="#uv-build--native-tls"><code>--native-tls</code></a></dt><dd><p>Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]</p>
