@@ -7554,19 +7554,19 @@ use the <code>keyring</code> CLI to handle authentication.</p>
 <hr />
 <h3 id="link-mode"><a class="toclink" href="#link-mode"><a href="#link-mode"><code>link-mode</code></a></a></h3>
 <p>The method to use when installing packages from the global cache.</p>
-<p>Defaults to <code>clone</code> (also known as Copy-on-Write) on macOS, and <code>hardlink</code> on Linux and
+<p>Defaults to <code>clone</code> (also known as Copy-on-Write) on macOS and Linux, and <code>hardlink</code> on
 Windows.</p>
 <p>WARNING: The use of symlink link mode is discouraged, as they create tight coupling between
 the cache and the target environment. For example, clearing the cache (<code>uv cache clean</code>)
 will break all installed packages by way of removing the underlying source files. Use
 symlinks with caution.</p>
-<p><strong>Default value</strong>: <code>"clone" (macOS) or "hardlink" (Linux, Windows)</code></p>
+<p><strong>Default value</strong>: <code>"clone" (macOS, Linux) or "hardlink" (Windows)</code></p>
 <p><strong>Possible values</strong>:</p>
 <ul>
-<li><code>"clone"</code>: Clone (i.e., copy-on-write or reflink) packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>"copy"</code>: Copy packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>"hardlink"</code>: Hard link packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>"symlink"</code>: Symbolically link packages from the wheel into the <code>site-packages</code> directory</li>
+<li><code>"clone"</code>: Clone (i.e., copy-on-write) packages from the source into the destination</li>
+<li><code>"copy"</code>: Copy packages from the source into the destination</li>
+<li><code>"hardlink"</code>: Hard link packages from the source into the destination</li>
+<li><code>"symlink"</code>: Symbolically link packages from the source into the destination</li>
 </ul>
 <p><strong>Example usage</strong>:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="23:2"><input checked="checked" id="__tabbed_23_1" name="__tabbed_23" type="radio" /><input id="__tabbed_23_2" name="__tabbed_23" type="radio" /><div class="tabbed-labels"><label for="__tabbed_23_1">pyproject.toml</label><label for="__tabbed_23_2">uv.toml</label></div>
@@ -8817,19 +8817,19 @@ use the <code>keyring</code> CLI to handle authentication.</p>
 <h4 id="pip_link-mode"><a class="toclink" href="#pip_link-mode"><a href="#pip_link-mode"><code>link-mode</code></a></a></h4>
 <p><span id="link-mode"></span></p>
 <p>The method to use when installing packages from the global cache.</p>
-<p>Defaults to <code>clone</code> (also known as Copy-on-Write) on macOS, and <code>hardlink</code> on Linux and
+<p>Defaults to <code>clone</code> (also known as Copy-on-Write) on macOS and Linux, and <code>hardlink</code> on
 Windows.</p>
 <p>WARNING: The use of symlink link mode is discouraged, as they create tight coupling between
 the cache and the target environment. For example, clearing the cache (<code>uv cache clean</code>)
 will break all installed packages by way of removing the underlying source files. Use
 symlinks with caution.</p>
-<p><strong>Default value</strong>: <code>"clone" (macOS) or "hardlink" (Linux, Windows)</code></p>
+<p><strong>Default value</strong>: <code>"clone" (macOS, Linux) or "hardlink" (Windows)</code></p>
 <p><strong>Possible values</strong>:</p>
 <ul>
-<li><code>"clone"</code>: Clone (i.e., copy-on-write or reflink) packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>"copy"</code>: Copy packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>"hardlink"</code>: Hard link packages from the wheel into the <code>site-packages</code> directory</li>
-<li><code>"symlink"</code>: Symbolically link packages from the wheel into the <code>site-packages</code> directory</li>
+<li><code>"clone"</code>: Clone (i.e., copy-on-write) packages from the source into the destination</li>
+<li><code>"copy"</code>: Copy packages from the source into the destination</li>
+<li><code>"hardlink"</code>: Hard link packages from the source into the destination</li>
+<li><code>"symlink"</code>: Symbolically link packages from the source into the destination</li>
 </ul>
 <p><strong>Example usage</strong>:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="75:2"><input checked="checked" id="__tabbed_75_1" name="__tabbed_75" type="radio" /><input id="__tabbed_75_2" name="__tabbed_75" type="radio" /><div class="tabbed-labels"><label for="__tabbed_75_1">pyproject.toml</label><label for="__tabbed_75_2">uv.toml</label></div>

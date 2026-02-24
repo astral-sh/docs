@@ -1009,7 +1009,7 @@ Possible values:
 [`--link-mode`](#uv-run--link-mode) *link-mode* : The method to use when installing packages from the global cache.
 
 ```
-Defaults to `clone` (also known as Copy-on-Write) on macOS, and `hardlink` on Linux and Windows.
+Defaults to `clone` (also known as Copy-on-Write) on macOS and Linux, and `hardlink` on Windows.
 
 WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (`uv cache clean`) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.
 
@@ -1017,10 +1017,10 @@ May also be set with the `UV_LINK_MODE` environment variable.
 
 Possible values:
 
-- `clone`: Clone (i.e., copy-on-write or reflink) packages from the wheel into the `site-packages` directory
-- `copy`: Copy packages from the wheel into the `site-packages` directory
-- `hardlink`: Hard link packages from the wheel into the `site-packages` directory
-- `symlink`: Symbolically link packages from the wheel into the `site-packages` directory
+- `clone`: Clone (i.e., copy-on-write) packages from the source into the destination
+- `copy`: Copy packages from the source into the destination
+- `hardlink`: Hard link packages from the source into the destination
+- `symlink`: Symbolically link packages from the source into the destination
 ```
 
 [`--locked`](#uv-run--locked) : Assert that the `uv.lock` will remain unchanged [env: UV_LOCKED=]
@@ -1944,7 +1944,7 @@ Possible values:
 [`--link-mode`](#uv-add--link-mode) *link-mode* : The method to use when installing packages from the global cache.
 
 ```
-Defaults to `clone` (also known as Copy-on-Write) on macOS, and `hardlink` on Linux and Windows.
+Defaults to `clone` (also known as Copy-on-Write) on macOS and Linux, and `hardlink` on Windows.
 
 WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (`uv cache clean`) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.
 
@@ -1952,10 +1952,10 @@ May also be set with the `UV_LINK_MODE` environment variable.
 
 Possible values:
 
-- `clone`: Clone (i.e., copy-on-write or reflink) packages from the wheel into the `site-packages` directory
-- `copy`: Copy packages from the wheel into the `site-packages` directory
-- `hardlink`: Hard link packages from the wheel into the `site-packages` directory
-- `symlink`: Symbolically link packages from the wheel into the `site-packages` directory
+- `clone`: Clone (i.e., copy-on-write) packages from the source into the destination
+- `copy`: Copy packages from the source into the destination
+- `hardlink`: Hard link packages from the source into the destination
+- `symlink`: Symbolically link packages from the source into the destination
 ```
 
 [`--locked`](#uv-add--locked) : Assert that the `uv.lock` will remain unchanged [env: UV_LOCKED=]
@@ -2462,7 +2462,7 @@ Possible values:
 [`--link-mode`](#uv-remove--link-mode) *link-mode* : The method to use when installing packages from the global cache.
 
 ```
-Defaults to `clone` (also known as Copy-on-Write) on macOS, and `hardlink` on Linux and Windows.
+Defaults to `clone` (also known as Copy-on-Write) on macOS and Linux, and `hardlink` on Windows.
 
 WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (`uv cache clean`) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.
 
@@ -2470,10 +2470,10 @@ May also be set with the `UV_LINK_MODE` environment variable.
 
 Possible values:
 
-- `clone`: Clone (i.e., copy-on-write or reflink) packages from the wheel into the `site-packages` directory
-- `copy`: Copy packages from the wheel into the `site-packages` directory
-- `hardlink`: Hard link packages from the wheel into the `site-packages` directory
-- `symlink`: Symbolically link packages from the wheel into the `site-packages` directory
+- `clone`: Clone (i.e., copy-on-write) packages from the source into the destination
+- `copy`: Copy packages from the source into the destination
+- `hardlink`: Hard link packages from the source into the destination
+- `symlink`: Symbolically link packages from the source into the destination
 ```
 
 [`--locked`](#uv-remove--locked) : Assert that the `uv.lock` will remain unchanged [env: UV_LOCKED=]
@@ -2918,7 +2918,7 @@ Possible values:
 [`--link-mode`](#uv-version--link-mode) *link-mode* : The method to use when installing packages from the global cache.
 
 ```
-Defaults to `clone` (also known as Copy-on-Write) on macOS, and `hardlink` on Linux and Windows.
+Defaults to `clone` (also known as Copy-on-Write) on macOS and Linux, and `hardlink` on Windows.
 
 WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (`uv cache clean`) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.
 
@@ -2926,10 +2926,10 @@ May also be set with the `UV_LINK_MODE` environment variable.
 
 Possible values:
 
-- `clone`: Clone (i.e., copy-on-write or reflink) packages from the wheel into the `site-packages` directory
-- `copy`: Copy packages from the wheel into the `site-packages` directory
-- `hardlink`: Hard link packages from the wheel into the `site-packages` directory
-- `symlink`: Symbolically link packages from the wheel into the `site-packages` directory
+- `clone`: Clone (i.e., copy-on-write) packages from the source into the destination
+- `copy`: Copy packages from the source into the destination
+- `hardlink`: Hard link packages from the source into the destination
+- `symlink`: Symbolically link packages from the source into the destination
 ```
 
 [`--locked`](#uv-version--locked) : Assert that the `uv.lock` will remain unchanged [env: UV_LOCKED=]
@@ -3421,7 +3421,7 @@ Possible values:
 [`--link-mode`](#uv-sync--link-mode) *link-mode* : The method to use when installing packages from the global cache.
 
 ```
-Defaults to `clone` (also known as Copy-on-Write) on macOS, and `hardlink` on Linux and Windows.
+Defaults to `clone` (also known as Copy-on-Write) on macOS and Linux, and `hardlink` on Windows.
 
 WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (`uv cache clean`) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.
 
@@ -3429,10 +3429,10 @@ May also be set with the `UV_LINK_MODE` environment variable.
 
 Possible values:
 
-- `clone`: Clone (i.e., copy-on-write or reflink) packages from the wheel into the `site-packages` directory
-- `copy`: Copy packages from the wheel into the `site-packages` directory
-- `hardlink`: Hard link packages from the wheel into the `site-packages` directory
-- `symlink`: Symbolically link packages from the wheel into the `site-packages` directory
+- `clone`: Clone (i.e., copy-on-write) packages from the source into the destination
+- `copy`: Copy packages from the source into the destination
+- `hardlink`: Hard link packages from the source into the destination
+- `symlink`: Symbolically link packages from the source into the destination
 ```
 
 [`--locked`](#uv-sync--locked) : Assert that the `uv.lock` will remain unchanged [env: UV_LOCKED=]
@@ -4011,7 +4011,7 @@ Possible values:
 ```
 This option is only used when building source distributions.
 
-Defaults to `clone` (also known as Copy-on-Write) on macOS, and `hardlink` on Linux and Windows.
+Defaults to `clone` (also known as Copy-on-Write) on macOS and Linux, and `hardlink` on Windows.
 
 WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (`uv cache clean`) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.
 
@@ -4019,10 +4019,10 @@ May also be set with the `UV_LINK_MODE` environment variable.
 
 Possible values:
 
-- `clone`: Clone (i.e., copy-on-write or reflink) packages from the wheel into the `site-packages` directory
-- `copy`: Copy packages from the wheel into the `site-packages` directory
-- `hardlink`: Hard link packages from the wheel into the `site-packages` directory
-- `symlink`: Symbolically link packages from the wheel into the `site-packages` directory
+- `clone`: Clone (i.e., copy-on-write) packages from the source into the destination
+- `copy`: Copy packages from the source into the destination
+- `hardlink`: Hard link packages from the source into the destination
+- `symlink`: Symbolically link packages from the source into the destination
 ```
 
 [`--managed-python`](#uv-lock--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
@@ -4217,7 +4217,7 @@ You can configure fine-grained logging using the `RUST_LOG` environment variable
 
 Export the project's lockfile to an alternate format.
 
-At present, both `requirements.txt` and `pylock.toml` (PEP 751) formats are supported.
+At present, `requirements.txt`, `pylock.toml` (PEP 751) and CycloneDX v1.5 JSON output formats are supported.
 
 The project is re-locked before exporting unless the `--locked` or `--frozen` flag is provided.
 
@@ -4461,7 +4461,7 @@ Possible values:
 ```
 This option is only used when building source distributions.
 
-Defaults to `clone` (also known as Copy-on-Write) on macOS, and `hardlink` on Linux and Windows.
+Defaults to `clone` (also known as Copy-on-Write) on macOS and Linux, and `hardlink` on Windows.
 
 WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (`uv cache clean`) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.
 
@@ -4469,10 +4469,10 @@ May also be set with the `UV_LINK_MODE` environment variable.
 
 Possible values:
 
-- `clone`: Clone (i.e., copy-on-write or reflink) packages from the wheel into the `site-packages` directory
-- `copy`: Copy packages from the wheel into the `site-packages` directory
-- `hardlink`: Hard link packages from the wheel into the `site-packages` directory
-- `symlink`: Symbolically link packages from the wheel into the `site-packages` directory
+- `clone`: Clone (i.e., copy-on-write) packages from the source into the destination
+- `copy`: Copy packages from the source into the destination
+- `hardlink`: Hard link packages from the source into the destination
+- `symlink`: Symbolically link packages from the source into the destination
 ```
 
 [`--locked`](#uv-export--locked) : Assert that the `uv.lock` will remain unchanged [env: UV_LOCKED=]
@@ -4987,7 +4987,7 @@ Possible values:
 ```
 This option is only used when building source distributions.
 
-Defaults to `clone` (also known as Copy-on-Write) on macOS, and `hardlink` on Linux and Windows.
+Defaults to `clone` (also known as Copy-on-Write) on macOS and Linux, and `hardlink` on Windows.
 
 WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (`uv cache clean`) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.
 
@@ -4995,10 +4995,10 @@ May also be set with the `UV_LINK_MODE` environment variable.
 
 Possible values:
 
-- `clone`: Clone (i.e., copy-on-write or reflink) packages from the wheel into the `site-packages` directory
-- `copy`: Copy packages from the wheel into the `site-packages` directory
-- `hardlink`: Hard link packages from the wheel into the `site-packages` directory
-- `symlink`: Symbolically link packages from the wheel into the `site-packages` directory
+- `clone`: Clone (i.e., copy-on-write) packages from the source into the destination
+- `copy`: Copy packages from the source into the destination
+- `hardlink`: Hard link packages from the source into the destination
+- `symlink`: Symbolically link packages from the source into the destination
 ```
 
 [`--locked`](#uv-tree--locked) : Assert that the `uv.lock` will remain unchanged [env: UV_LOCKED=]
@@ -5773,7 +5773,7 @@ Possible values:
 [`--link-mode`](#uv-tool-run--link-mode) *link-mode* : The method to use when installing packages from the global cache.
 
 ```
-Defaults to `clone` (also known as Copy-on-Write) on macOS, and `hardlink` on Linux and Windows.
+Defaults to `clone` (also known as Copy-on-Write) on macOS and Linux, and `hardlink` on Windows.
 
 WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (`uv cache clean`) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.
 
@@ -5781,10 +5781,10 @@ May also be set with the `UV_LINK_MODE` environment variable.
 
 Possible values:
 
-- `clone`: Clone (i.e., copy-on-write or reflink) packages from the wheel into the `site-packages` directory
-- `copy`: Copy packages from the wheel into the `site-packages` directory
-- `hardlink`: Hard link packages from the wheel into the `site-packages` directory
-- `symlink`: Symbolically link packages from the wheel into the `site-packages` directory
+- `clone`: Clone (i.e., copy-on-write) packages from the source into the destination
+- `copy`: Copy packages from the source into the destination
+- `hardlink`: Hard link packages from the source into the destination
+- `symlink`: Symbolically link packages from the source into the destination
 ```
 
 [`--managed-python`](#uv-tool-run--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
@@ -6364,7 +6364,7 @@ Possible values:
 [`--link-mode`](#uv-tool-install--link-mode) *link-mode* : The method to use when installing packages from the global cache.
 
 ```
-Defaults to `clone` (also known as Copy-on-Write) on macOS, and `hardlink` on Linux and Windows.
+Defaults to `clone` (also known as Copy-on-Write) on macOS and Linux, and `hardlink` on Windows.
 
 WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (`uv cache clean`) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.
 
@@ -6372,10 +6372,10 @@ May also be set with the `UV_LINK_MODE` environment variable.
 
 Possible values:
 
-- `clone`: Clone (i.e., copy-on-write or reflink) packages from the wheel into the `site-packages` directory
-- `copy`: Copy packages from the wheel into the `site-packages` directory
-- `hardlink`: Hard link packages from the wheel into the `site-packages` directory
-- `symlink`: Symbolically link packages from the wheel into the `site-packages` directory
+- `clone`: Clone (i.e., copy-on-write) packages from the source into the destination
+- `copy`: Copy packages from the source into the destination
+- `hardlink`: Hard link packages from the source into the destination
+- `symlink`: Symbolically link packages from the source into the destination
 ```
 
 [`--managed-python`](#uv-tool-install--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
@@ -6917,7 +6917,7 @@ Possible values:
 [`--link-mode`](#uv-tool-upgrade--link-mode) *link-mode* : The method to use when installing packages from the global cache.
 
 ```
-Defaults to `clone` (also known as Copy-on-Write) on macOS, and `hardlink` on Linux and Windows.
+Defaults to `clone` (also known as Copy-on-Write) on macOS and Linux, and `hardlink` on Windows.
 
 WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (`uv cache clean`) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.
 
@@ -6925,10 +6925,10 @@ May also be set with the `UV_LINK_MODE` environment variable.
 
 Possible values:
 
-- `clone`: Clone (i.e., copy-on-write or reflink) packages from the wheel into the `site-packages` directory
-- `copy`: Copy packages from the wheel into the `site-packages` directory
-- `hardlink`: Hard link packages from the wheel into the `site-packages` directory
-- `symlink`: Symbolically link packages from the wheel into the `site-packages` directory
+- `clone`: Clone (i.e., copy-on-write) packages from the source into the destination
+- `copy`: Copy packages from the source into the destination
+- `hardlink`: Hard link packages from the source into the destination
+- `symlink`: Symbolically link packages from the source into the destination
 ```
 
 [`--managed-python`](#uv-tool-upgrade--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
@@ -9643,7 +9643,7 @@ Possible values:
 ```
 This option is only used when building source distributions.
 
-Defaults to `clone` (also known as Copy-on-Write) on macOS, and `hardlink` on Linux and Windows.
+Defaults to `clone` (also known as Copy-on-Write) on macOS and Linux, and `hardlink` on Windows.
 
 WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (`uv cache clean`) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.
 
@@ -9651,10 +9651,10 @@ May also be set with the `UV_LINK_MODE` environment variable.
 
 Possible values:
 
-- `clone`: Clone (i.e., copy-on-write or reflink) packages from the wheel into the `site-packages` directory
-- `copy`: Copy packages from the wheel into the `site-packages` directory
-- `hardlink`: Hard link packages from the wheel into the `site-packages` directory
-- `symlink`: Symbolically link packages from the wheel into the `site-packages` directory
+- `clone`: Clone (i.e., copy-on-write) packages from the source into the destination
+- `copy`: Copy packages from the source into the destination
+- `hardlink`: Hard link packages from the source into the destination
+- `symlink`: Symbolically link packages from the source into the destination
 ```
 
 [`--managed-python`](#uv-pip-compile--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
@@ -10268,7 +10268,7 @@ Possible values:
 [`--link-mode`](#uv-pip-sync--link-mode) *link-mode* : The method to use when installing packages from the global cache.
 
 ```
-Defaults to `clone` (also known as Copy-on-Write) on macOS, and `hardlink` on Linux and Windows.
+Defaults to `clone` (also known as Copy-on-Write) on macOS and Linux, and `hardlink` on Windows.
 
 WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (`uv cache clean`) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.
 
@@ -10276,10 +10276,10 @@ May also be set with the `UV_LINK_MODE` environment variable.
 
 Possible values:
 
-- `clone`: Clone (i.e., copy-on-write or reflink) packages from the wheel into the `site-packages` directory
-- `copy`: Copy packages from the wheel into the `site-packages` directory
-- `hardlink`: Hard link packages from the wheel into the `site-packages` directory
-- `symlink`: Symbolically link packages from the wheel into the `site-packages` directory
+- `clone`: Clone (i.e., copy-on-write) packages from the source into the destination
+- `copy`: Copy packages from the source into the destination
+- `hardlink`: Hard link packages from the source into the destination
+- `symlink`: Symbolically link packages from the source into the destination
 ```
 
 [`--managed-python`](#uv-pip-sync--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
@@ -10871,7 +10871,7 @@ Possible values:
 [`--link-mode`](#uv-pip-install--link-mode) *link-mode* : The method to use when installing packages from the global cache.
 
 ```
-Defaults to `clone` (also known as Copy-on-Write) on macOS, and `hardlink` on Linux and Windows.
+Defaults to `clone` (also known as Copy-on-Write) on macOS and Linux, and `hardlink` on Windows.
 
 WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (`uv cache clean`) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.
 
@@ -10879,10 +10879,10 @@ May also be set with the `UV_LINK_MODE` environment variable.
 
 Possible values:
 
-- `clone`: Clone (i.e., copy-on-write or reflink) packages from the wheel into the `site-packages` directory
-- `copy`: Copy packages from the wheel into the `site-packages` directory
-- `hardlink`: Hard link packages from the wheel into the `site-packages` directory
-- `symlink`: Symbolically link packages from the wheel into the `site-packages` directory
+- `clone`: Clone (i.e., copy-on-write) packages from the source into the destination
+- `copy`: Copy packages from the source into the destination
+- `hardlink`: Hard link packages from the source into the destination
+- `symlink`: Symbolically link packages from the source into the destination
 ```
 
 [`--managed-python`](#uv-pip-install--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
@@ -12821,7 +12821,7 @@ Possible values:
 ```
 This option is only used for installing seed packages.
 
-Defaults to `clone` (also known as Copy-on-Write) on macOS, and `hardlink` on Linux and Windows.
+Defaults to `clone` (also known as Copy-on-Write) on macOS and Linux, and `hardlink` on Windows.
 
 WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (`uv cache clean`) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.
 
@@ -12829,10 +12829,10 @@ May also be set with the `UV_LINK_MODE` environment variable.
 
 Possible values:
 
-- `clone`: Clone (i.e., copy-on-write or reflink) packages from the wheel into the `site-packages` directory
-- `copy`: Copy packages from the wheel into the `site-packages` directory
-- `hardlink`: Hard link packages from the wheel into the `site-packages` directory
-- `symlink`: Symbolically link packages from the wheel into the `site-packages` directory
+- `clone`: Clone (i.e., copy-on-write) packages from the source into the destination
+- `copy`: Copy packages from the source into the destination
+- `hardlink`: Hard link packages from the source into the destination
+- `symlink`: Symbolically link packages from the source into the destination
 ```
 
 [`--managed-python`](#uv-venv--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
@@ -13197,7 +13197,7 @@ Possible values:
 ```
 This option is only used when building source distributions.
 
-Defaults to `clone` (also known as Copy-on-Write) on macOS, and `hardlink` on Linux and Windows.
+Defaults to `clone` (also known as Copy-on-Write) on macOS and Linux, and `hardlink` on Windows.
 
 WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (`uv cache clean`) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.
 
@@ -13205,10 +13205,10 @@ May also be set with the `UV_LINK_MODE` environment variable.
 
 Possible values:
 
-- `clone`: Clone (i.e., copy-on-write or reflink) packages from the wheel into the `site-packages` directory
-- `copy`: Copy packages from the wheel into the `site-packages` directory
-- `hardlink`: Hard link packages from the wheel into the `site-packages` directory
-- `symlink`: Symbolically link packages from the wheel into the `site-packages` directory
+- `clone`: Clone (i.e., copy-on-write) packages from the source into the destination
+- `copy`: Copy packages from the source into the destination
+- `hardlink`: Hard link packages from the source into the destination
+- `symlink`: Symbolically link packages from the source into the destination
 ```
 
 [`--managed-python`](#uv-build--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]

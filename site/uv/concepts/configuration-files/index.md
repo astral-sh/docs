@@ -38,7 +38,7 @@ Note
 
 `uv.toml` files take precedence over `pyproject.toml` files, so if both `uv.toml` and `pyproject.toml` files are present in a directory, configuration will be read from `uv.toml`, and `[tool.uv]` section in the accompanying `pyproject.toml` will be ignored.
 
-uv will also discover `uv.toml` configuration files in the user- and system-level [configuration directories](../../reference/storage/#configuration-directories), e.g., user-level configuration in `~/.config/uv/uv.toml`, and system-level configuration at `/etc/uv/uv.toml` on macOS and Linux.
+uv will also discover `uv.toml` configuration files in the user- and system-level [configuration directories](../../reference/storage/#configuration-directories), e.g., user-level configuration in `~/.config/uv/uv.toml` on macOS and Linux, or `%APPDATA%\uv\uv.toml` on Windows, and system-level configuration at `/etc/uv/uv.toml` on macOS and Linux, or `%PROGRAMDATA%\uv\uv.toml` on Windows.
 
 Important
 
@@ -58,7 +58,7 @@ uv also accepts a `--config-file` command-line argument, which accepts a path to
 
 See the [settings reference](../../reference/settings/) for an enumeration of the available settings.
 
-## [`.env`](#env)
+## [Environment variable files](#environment-variable-files)
 
 `uv run` can load environment variables from dotenv files (e.g., `.env`, `.env.local`, `.env.development`), powered by the [`dotenvy`](https://github.com/allan2/dotenvy) crate.
 
