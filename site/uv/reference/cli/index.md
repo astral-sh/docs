@@ -751,8 +751,6 @@ If the project virtual environment is active or no virtual environment is active
 [`--all-extras`](#uv-run--all-extras) : Include all optional dependencies.
 
 ```
-Optional dependencies are defined via `project.optional-dependencies` in a `pyproject.toml`.
-
 This option is only available when running in a project.
 ```
 
@@ -884,8 +882,6 @@ Can be provided multiple times for different packages.
 
 ```
 May be provided more than once.
-
-Optional dependencies are defined via `project.optional-dependencies` in a `pyproject.toml`.
 
 This option is only available when running in a project.
 ```
