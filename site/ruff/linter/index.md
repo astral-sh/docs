@@ -357,7 +357,7 @@ Ruff can *automatically add* `noqa` directives to all lines that contain violati
 $ ruff check /path/to/file.py --add-noqa
 ```
 
-### [Action comments](#action-comments)
+### [isort action comments](#isort-action-comments)
 
 Ruff respects isort's [action comments](https://pycqa.github.io/isort/docs/configuration/action_comments.html) (`# isort: skip_file`, `# isort: on`, `# isort: off`, `# isort: skip`, and `# isort: split`), which enable selectively enabling and disabling import sorting for blocks of code and other inline configuration.
 
