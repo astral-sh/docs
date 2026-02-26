@@ -1459,7 +1459,8 @@ want to explicitly set the <code>src</code> option in the extended configuration
 </div>
 </div>
 <p>Beyond this <code>src</code>-based detection, Ruff will also attempt to determine the current Python package
-for a given Python file, and mark imports from within the same package as first-party. For example,
+for a given Python file (determined via the existence of a <code>__init__.py</code> file in a directory), 
+and mark imports from within the same package as first-party. For example,
 above, <code>baz.py</code> would be identified as part of the Python package beginning at
 <code>./my_project/src/foo</code>, and so any imports in <code>baz.py</code> that begin with <code>foo</code> (like <code>import foo.bar</code>)
 would be considered first-party based on this same-package heuristic.</p>
