@@ -6,13 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Checks for docstrings that start with `This`.">
+        <meta name="description" content="Checks for variable assignments that immediately precede a `yield` (or">
       
       
         <meta name="author" content="charliermarsh">
       
       
-        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/docstring-starts-with-this/">
+        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/unnecessary-assign-before-yield/">
       
       
       
@@ -25,7 +25,7 @@
     
     
 
-<title>docstring-starts-with-this (D404) | Ruff</title>
+<title>unnecessary-assign-before-yield (RUF070) | Ruff</title>
 
 
     
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#docstring-starts-with-this-d404" class="md-skip">
+        <a href="#unnecessary-assign-before-yield-ruf070" class="md-skip">
           Skip to content
         </a>
       
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              docstring-starts-with-this (D404)
+              unnecessary-assign-before-yield (RUF070)
             
           </span>
         </div>
@@ -860,39 +860,34 @@
   
 
 
-<h1 id="docstring-starts-with-this-d404"><a class="toclink" href="#docstring-starts-with-this-d404">docstring-starts-with-this (D404)</a></h1>
+<h1 id="unnecessary-assign-before-yield-ruf070"><a class="toclink" href="#unnecessary-assign-before-yield-ruf070">unnecessary-assign-before-yield (RUF070)</a></h1>
 <p><small>
-Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.71">v0.0.71</a> ·
-<a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27docstring-starts-with-this%27%20OR%20D404)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fpydocstyle%2Frules%2Fstarts_with_this.rs#L42" target="_blank">View source</a>
+Preview (since <a href="https://github.com/astral-sh/ruff/releases/tag/0.15.3">0.15.3</a>) ·
+<a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27unnecessary-assign-before-yield%27%20OR%20RUF070)" target="_blank">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fruff%2Frules%2Funnecessary_assign_before_yield.rs#L42" target="_blank">View source</a>
 </small></p>
-<p>Derived from the <strong><a href="../#pydocstyle-d">pydocstyle</a></strong> linter.</p>
+<p>Fix is always available.</p>
+<p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
-<p>Checks for docstrings that start with <code>This</code>.</p>
+<p>Checks for variable assignments that immediately precede a <code>yield</code> (or
+<code>yield from</code>) of the assigned variable, where the variable is not
+referenced anywhere else.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
-<p><a href="https://peps.python.org/pep-0257/">PEP 257</a> recommends that the first line of a docstring be written in the
-imperative mood, for consistency.</p>
-<p>Hint: to rewrite the docstring in the imperative, phrase the first line as
-if it were a command.</p>
-<p>This rule may not apply to all projects; its applicability is a matter of
-convention. By default, this rule is enabled when using the <code>numpy</code>
-convention, and disabled when using the <code>google</code> and <code>pep257</code> conventions.</p>
+<p>The variable assignment is not necessary, as the value can be yielded
+directly.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">average</span><span class="p">(</span><span class="n">values</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;This function returns the mean of the given values.&quot;&quot;&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">gen</span><span class="p">():</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="k">yield</span> <span class="n">x</span>
 </code></pre></div>
 <p>Use instead:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">average</span><span class="p">(</span><span class="n">values</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the mean of the given values.&quot;&quot;&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">gen</span><span class="p">():</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="k">yield</span> <span class="mi">1</span>
 </code></pre></div>
-<h2 id="options"><a class="toclink" href="#options">Options</a></h2>
-<ul>
-<li><a href="../../settings/#lint_pydocstyle_convention"><code>lint.pydocstyle.convention</code></a></li>
-</ul>
-<h2 id="references"><a class="toclink" href="#references">References</a></h2>
-<ul>
-<li><a href="https://peps.python.org/pep-0257/">PEP 257 – Docstring Conventions</a></li>
-</ul>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
+<p>This fix is always marked as unsafe because removing the intermediate
+variable assignment changes the local variable bindings visible to
+<code>locals()</code> and debuggers when the generator is suspended at the <code>yield</code>.</p>
 
 
 
