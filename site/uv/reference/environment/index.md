@@ -218,6 +218,12 @@ Provides the HTTP Basic authentication username for a named index.
 
 The `name` parameter is the name of the index. For example, given an index named `foo`, the environment variable key would be `UV_INDEX_FOO_USERNAME`.
 
+### [`UV_INIT_BARE`](#uv_init_bare)
+
+added in `0.10.7`
+
+Equivalent to the `--bare` argument for `uv init`. If set, uv will only create a `pyproject.toml`.
+
 ### [`UV_INIT_BUILD_BACKEND`](#uv_init_build_backend)
 
 added in `0.8.2`

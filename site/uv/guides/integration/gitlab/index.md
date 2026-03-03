@@ -8,7 +8,7 @@ Astral provides [Docker images](../docker/#available-images) with uv preinstalle
 
 ```
 variables:
-  UV_VERSION: "0.10.7"
+  UV_VERSION: "0.10.8"
   PYTHON_VERSION: "3.12"
   BASE_LAYER: trixie-slim
   # GitLab CI creates a separate mountpoint for the build directory,
@@ -51,6 +51,7 @@ uv-install:
         - $UV_CACHE_DIR
   script:
     # Your `uv` commands
+  after_script:
     - uv cache prune --ci
 
 ```
