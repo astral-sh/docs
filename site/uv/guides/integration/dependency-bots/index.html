@@ -101,8 +101,8 @@
 <script type="application/ld+json">
   {
       
-      "datePublished": "2025-05-28 09:10:14Z",
-      "dateModified": "2025-05-28 09:10:14Z",
+      "datePublished": "2026-03-02 15:18:39Z",
+      "dateModified": "2026-03-02 15:18:39Z",
       
       "@context": "https://schema.org",
       "@type": "WebSite",
@@ -1301,6 +1301,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#dependency-cooldown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependency cooldown
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1314,6 +1325,23 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Dependabot">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dependency-cooldown_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependency cooldown
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -3249,6 +3277,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#dependency-cooldown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependency cooldown
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3262,6 +3301,23 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Dependabot">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dependency-cooldown_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependency cooldown
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -3378,32 +3434,78 @@ option:</p>
 </code></pre></div>
 <h3 id="inline-script-metadata"><a class="toclink" href="#inline-script-metadata">Inline script metadata</a></h3>
 <p>Renovate supports updating dependencies defined using
-<a href="../../scripts/#declaring-script-dependencies">script inline metadata</a>.</p>
-<p>Since it cannot automatically detect which Python files use script inline metadata, their locations
+<a href="../../scripts/#declaring-script-dependencies">inline script metadata</a>.</p>
+<p>Since it cannot automatically detect which Python files use inline script metadata, their locations
 need to be explicitly defined using
-<a href="https://docs.renovatebot.com/configuration-options/#filematch"><code>fileMatch</code></a>, like so:</p>
+<a href="https://docs.renovatebot.com/configuration-options/#managerfilepatterns"><code>managerFilePatterns</code></a>,
+like so:</p>
 <div class="highlight"><span class="filename">renovate.json5</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nx">$schema</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;https://docs.renovatebot.com/renovate-schema.json&quot;</span><span class="p">,</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nx">pep723</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="nx">fileMatch</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">      </span><span class="s2">&quot;scripts/generate_docs\\.py&quot;</span><span class="p">,</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">      </span><span class="s2">&quot;scripts/run_server\\.py&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="nx">managerFilePatterns</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">      </span><span class="s2">&quot;docs/build.py&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">      </span><span class="s2">&quot;scripts/**/*.py&quot;</span><span class="p">,</span>
 <a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="p">],</span>
 <a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span><span class="p">},</span>
 <a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="p">}</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Renovate does not yet support updating the lock file associated to the
+script (<a href="https://github.com/renovatebot/renovate/issues/33591">https://github.com/renovatebot/renovate/issues/33591</a>), so if you rely on this feature
+for a script, the lock file will need to be manually updated.</p>
+</div>
+<h3 id="dependency-cooldown"><a class="toclink" href="#dependency-cooldown">Dependency cooldown</a></h3>
+<p>If you use <a href="../../../reference/settings/#exclude-newer"><code>exclude-newer</code></a> option, it is recommended to
+also set the equivalent
+<a href="https://docs.renovatebot.com/configuration-options/#minimumreleaseage"><code>minimumReleaseAge</code></a> option
+in Renovate, to avoid ending up with pull requests where uv would not be able to lock the
+dependencies.</p>
+<p>For instance, if you've set <code>exclude-newer</code> to <code>1 week</code>, you can set:</p>
+<div class="highlight"><span class="filename">renovate.json5</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">{</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nx">$schema</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;https://docs.renovatebot.com/renovate-schema.json&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="c1">// Enable only for PyPI.</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="nx">packageRules</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">      </span><span class="nx">matchDatasources</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;pypi&quot;</span><span class="p">],</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">      </span><span class="nx">minimumReleaseAge</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;1 week&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">  </span><span class="p">],</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">  </span><span class="c1">// Or enable for every ecosystem.</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">  </span><span class="nx">minimumReleaseAge</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;1 week&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="p">}</span>
 </code></pre></div>
 <h2 id="dependabot"><a class="toclink" href="#dependabot">Dependabot</a></h2>
 <p>Dependabot has announced support for uv, but there are some use cases that are not yet working. See
 <a href="https://github.com/astral-sh/uv/issues/2512">astral-sh/uv#2512</a> for updates.</p>
 <p>Dependabot supports updating <code>uv.lock</code> files. To enable it, add the uv <code>package-ecosystem</code> to your
 <code>updates</code> list in the <code>dependabot.yml</code>:</p>
-<div class="highlight"><span class="filename">dependabot.yml</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nt">updates</span><span class="p">:</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">package-ecosystem</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;uv&quot;</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="nt">directory</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/&quot;</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="nt">schedule</span><span class="p">:</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">      </span><span class="nt">interval</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;weekly&quot;</span>
+<div class="highlight"><span class="filename">dependabot.yml</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nt">updates</span><span class="p">:</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">package-ecosystem</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;uv&quot;</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="nt">directory</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/&quot;</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="nt">schedule</span><span class="p">:</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">      </span><span class="nt">interval</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;weekly&quot;</span>
+</code></pre></div>
+<h3 id="dependency-cooldown_1"><a class="toclink" href="#dependency-cooldown_1">Dependency cooldown</a></h3>
+<p>If you use <a href="../../../reference/settings/#exclude-newer"><code>exclude-newer</code></a> option, it is recommended to
+also set the equivalent
+<a href="https://docs.github.com/en/code-security/reference/supply-chain-security/dependabot-options-reference#cooldown-"><code>cooldown</code></a>
+option in Dependabot, to avoid ending up with pull requests where uv would not be able to lock the
+dependencies.</p>
+<p>For instance, if you've set <code>exclude-newer</code> to <code>1 week</code>, you can set:</p>
+<div class="highlight"><span class="filename">dependabot.yml</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="nt">updates</span><span class="p">:</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">package-ecosystem</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;uv&quot;</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="nt">directory</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/&quot;</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="nt">schedule</span><span class="p">:</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">      </span><span class="nt">interval</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;weekly&quot;</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span><span class="nt">cooldown</span><span class="p">:</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">      </span><span class="nt">default-days</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">7</span>
 </code></pre></div>
 
 
@@ -3425,7 +3527,7 @@ need to be explicitly defined using
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 28, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 2, 2026</span>
   </span>
 
     
