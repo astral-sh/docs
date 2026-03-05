@@ -223,47 +223,25 @@ The Ruff formatter will also recognize HTML comments from [blacken-docs](https:/
 `<!-- blacken-docs:off -->` and `<!-- blacken-docs:on -->`, which are equivalent
 to `<!-- fmt:off -->` and `<!-- fmt:on -->` respectively.
 
-Ruff will not automatically discover or format Markdown files in your project,
-but will format any Markdown files explicitly passed with a `.md` extension:
-
-```
-
-$ ruff format --preview --check docs/ warning: No Python files found under the given path(s)
-
-$ ruff format --preview --check docs/\*.md 13 files already formatted
-
-```
-
-This is likely to change in a future release when the feature is stabilized.
-Including Markdown files without also enabling [preview mode](../preview/#preview)
-will result in an error message and non-zero [exit code](#exit-codes).
-
-To include Markdown files by default when running Ruff on your project, add them
-with [`extend-include`](../settings/#extend-include) in your project settings:
+To format Markdown files with extensions other than `.md`, configure custom
+[`extension`](../settings/#extension) mappings. Ruff will automatically include
+these mapped extensions in file discovery:
 
 ```
 
 [tool.ruff]
 
-# Find and format code blocks in Markdown files
+# Treat `.mdx` and `.qmd` files as Markdown
 
-extend-include = ["\*.md"]
-
-# OR
-
-extend-include = ["docs/\*.md"]
+extension = { mdx = "markdown", qmd = "markdown" }
 
 ```
 
 ```
 
-# Find and format code blocks in Markdown files
+# Treat `.mdx` and `.qmd` files as Markdown
 
-extend-include = ["\*.md"]
-
-# OR
-
-extend-include = ["docs/\*.md"]
+extension = {mdx="markdown", qmd="markdown"}
 
 ```
 
@@ -276,8 +254,29 @@ support needs to be explicitly included by adding it to `types_or`:
 
 repos:
 
-- repo: https://github.com/astral-sh/ruff-pre-commit rev: v0.15.4 hooks:
+- repo: https://github.com/astral-sh/ruff-pre-commit rev: v0.15.5 hooks:
   - id: ruff-format types_or: [python, pyi, jupyter, markdown]
+
+```
+
+To *disable* formatting of Markdown files, add them to
+[`extend-exclude`](../settings/#extend-exclude) in your project settings:
+
+```
+
+[tool.ruff]
+
+# Disable formatting in Markdown files
+
+extend-exclude = ["\*.md"]
+
+```
+
+```
+
+# Disable formatting in Markdown files
+
+extend-exclude = ["\*.md"]
 
 ```
 
