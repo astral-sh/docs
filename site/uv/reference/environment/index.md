@@ -740,6 +740,12 @@ added in `0.8.0`
 
 Equivalent to the `--clear` command-line argument. If set, uv will remove any existing files or directories at the target path.
 
+### [`UV_VENV_RELOCATABLE`](#uv_venv_relocatable)
+
+added in `0.10.8`
+
+Equivalent to the `--relocatable` command-line argument. If set, the virtual environment will be relocatable.
+
 ### [`UV_VENV_SEED`](#uv_venv_seed)
 
 added in `0.5.21`

@@ -8,42 +8,36 @@ To enable all preview features, use the `--preview` flag:
 
 ```
 $ uv run --preview ...
-
 ```
 
 Or, set the `UV_PREVIEW` environment variable:
 
 ```
 $ UV_PREVIEW=1 uv run ...
-
 ```
 
 To enable specific preview features, use the `--preview-features` flag:
 
 ```
 $ uv run --preview-features foo ...
-
 ```
 
 The `--preview-features` flag can be repeated to enable multiple features:
 
 ```
 $ uv run --preview-features foo --preview-features bar ...
-
 ```
 
 Or, features can be provided in a comma separated list:
 
 ```
 $ uv run --preview-features foo,bar ...
-
 ```
 
 The `UV_PREVIEW_FEATURES` environment variable can be used similarly, e.g.:
 
 ```
 $ UV_PREVIEW_FEATURES=foo,bar uv run ...
-
 ```
 
 For backwards compatibility, enabling preview features that do not exist will warn, but not error.

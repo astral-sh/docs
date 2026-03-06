@@ -10,7 +10,6 @@ To disable automatic locking, use the `--locked` option:
 
 ```
 $ uv run --locked ...
-
 ```
 
 If the lockfile is not up-to-date, uv will raise an error instead of updating the lockfile.
@@ -19,14 +18,12 @@ To use the lockfile without checking if it is up-to-date, use the `--frozen` opt
 
 ```
 $ uv run --frozen ...
-
 ```
 
 Similarly, to run a command without checking if the environment is up-to-date, use the `--no-sync` option:
 
 ```
 $ uv run --no-sync ...
-
 ```
 
 ## [Checking the lockfile](#checking-the-lockfile)
@@ -37,7 +34,6 @@ You can check if the lockfile is up-to-date by passing the `--check` flag to `uv
 
 ```
 $ uv lock --check
-
 ```
 
 This is equivalent to the `--locked` flag for other commands.
@@ -52,7 +48,6 @@ While the lockfile is created [automatically](#automatic-lock-and-sync), the loc
 
 ```
 $ uv lock
-
 ```
 
 ## [Syncing the environment](#syncing-the-environment)
@@ -61,7 +56,6 @@ While the environment is synced [automatically](#automatic-lock-and-sync), it ma
 
 ```
 $ uv sync
-
 ```
 
 Syncing the environment manually is especially useful for ensuring your editor has the correct versions of dependencies.
@@ -84,14 +78,12 @@ To retain extraneous packages, use the `--inexact` flag:
 
 ```
 $ uv sync --inexact
-
 ```
 
 In contrast, `uv run` uses "inexact" syncing by default, ensuring that all required packages are installed but not removing extraneous packages. To enable exact syncing with `uv run`, use the `--exact` flag:
 
 ```
 $ uv run --exact ...
-
 ```
 
 ### [Syncing optional dependencies](#syncing-optional-dependencies)
@@ -102,7 +94,6 @@ uv does not sync extras by default. Use the `--extra` option to include an extra
 
 ```
 $ uv sync --extra foo
-
 ```
 
 To quickly enable all extras, use the `--all-extras` option.
@@ -125,7 +116,6 @@ Group exclusions always take precedence over inclusions, so given the command:
 
 ```
 $ uv sync --no-group foo --group foo
-
 ```
 
 The `foo` group would not be installed.
@@ -140,21 +130,18 @@ To upgrade all packages:
 
 ```
 $ uv lock --upgrade
-
 ```
 
 To upgrade a single package to the latest version, while retaining the locked versions of all other packages:
 
 ```
 $ uv lock --upgrade-package <package>
-
 ```
 
 To upgrade a single package to a specific version:
 
 ```
 $ uv lock --upgrade-package <package>==<version>
-
 ```
 
 In all cases, upgrades are limited to the project's dependency constraints. For example, if the project defines an upper bound for a package then an upgrade will not go beyond that version.
@@ -173,7 +160,6 @@ If you need to integrate uv with other tools or workflows, you can export `uv.lo
 $ uv export --format requirements.txt
 $ uv export --format pylock.toml
 $ uv export --format cyclonedx1.5
-
 ```
 
 See the [export guide](../export/) for comprehensive documentation on all export formats and their use cases.

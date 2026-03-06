@@ -16,7 +16,6 @@ pyproject.toml
 [project]
 name = "example"
 version = "0.1.0"
-
 ```
 
 Additional project metadata and configuration includes:
@@ -45,7 +44,6 @@ pyproject.toml
 ```
 [tool.uv]
 managed = false
-
 ```
 
 ## [The lockfile](#the-lockfile)

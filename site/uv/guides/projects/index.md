@@ -9,7 +9,6 @@ You can create a new Python project using the `uv init` command:
 ```
 $ uv init hello-world
 $ cd hello-world
-
 ```
 
 Alternatively, you can initialize a project in the working directory:
@@ -18,7 +17,6 @@ Alternatively, you can initialize a project in the working directory:
 $ mkdir hello-world
 $ cd hello-world
 $ uv init
-
 ```
 
 uv will create the following files:
@@ -29,7 +27,6 @@ uv will create the following files:
 ├── README.md
 ├── main.py
 └── pyproject.toml
-
 ```
 
 The `main.py` file contains a simple "Hello world" program. Try it out with `uv run`:
@@ -37,7 +34,6 @@ The `main.py` file contains a simple "Hello world" program. Try it out with `uv 
 ```
 $ uv run main.py
 Hello from hello-world!
-
 ```
 
 ## [Project structure](#project-structure)
@@ -57,7 +53,6 @@ A complete listing would look like:
 ├── main.py
 ├── pyproject.toml
 └── uv.lock
-
 ```
 
 ### [`pyproject.toml`](#pyprojecttoml)
@@ -73,7 +68,6 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 dependencies = []
-
 ```
 
 You'll use this file to specify dependencies, as well as details about the project such as its description or license. You can edit this file manually, or use commands like `uv add` and `uv remove` to manage your project from the terminal.
@@ -108,7 +102,6 @@ You can add dependencies to your `pyproject.toml` with the `uv add` command. Thi
 
 ```
 $ uv add requests
-
 ```
 
 You can also specify version constraints or alternative sources:
@@ -119,7 +112,6 @@ $ uv add 'requests==2.31.0'
 
 $ # Add a git dependency
 $ uv add git+https://github.com/psf/requests
-
 ```
 
 If you're migrating from a `requirements.txt` file, you can use `uv add` with the `-r` flag to add all dependencies from the file:
@@ -127,21 +119,18 @@ If you're migrating from a `requirements.txt` file, you can use `uv add` with th
 ```
 $ # Add all dependencies from `requirements.txt`.
 $ uv add -r requirements.txt -c constraints.txt
-
 ```
 
 To remove a package, you can use `uv remove`:
 
 ```
 $ uv remove requests
-
 ```
 
 To upgrade a package, run `uv lock` with the `--upgrade-package` flag:
 
 ```
 $ uv lock --upgrade-package requests
-
 ```
 
 The `--upgrade-package` flag will attempt to update the specified package to the latest compatible version, while keeping the rest of the lockfile intact.
@@ -157,7 +146,6 @@ To get the version of your package, run `uv version`:
 ```
 $ uv version
 hello-world 0.7.0
-
 ```
 
 To get the version without the package name, use the `--short` option:
@@ -165,7 +153,6 @@ To get the version without the package name, use the `--short` option:
 ```
 $ uv version --short
 0.7.0
-
 ```
 
 To get version information in a JSON format, use the `--output-format json` option:
@@ -177,7 +164,6 @@ $ uv version --output-format json
     "version": "0.7.0",
     "commit_info": null
 }
-
 ```
 
 See the [publishing guide](../package/#updating-your-version) for details on updating your package version.
@@ -197,7 +183,6 @@ For example, to use `flask`:
 ```
 $ uv add flask
 $ uv run -- flask run -p 3000
-
 ```
 
 Or, to run a script:
@@ -209,12 +194,10 @@ example.py
 import flask
 
 print("hello world")
-
 ```
 
 ```
 $ uv run example.py
-
 ```
 
 Alternatively, you can use `uv sync` to manually update the environment then activate it before executing a command:
@@ -224,7 +207,6 @@ $ uv sync
 $ source .venv/bin/activate
 $ flask run -p 3000
 $ python example.py
-
 ```
 
 ```
@@ -232,7 +214,6 @@ PS> uv sync
 PS> .venv\Scripts\activate
 PS> flask run -p 3000
 PS> python example.py
-
 ```
 
 Note
@@ -252,7 +233,6 @@ $ uv build
 $ ls dist/
 hello-world-0.1.0-py3-none-any.whl
 hello-world-0.1.0.tar.gz
-
 ```
 
 See the documentation on [building projects](../../concepts/projects/build/) for more details.

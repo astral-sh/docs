@@ -23,14 +23,12 @@ project
     └── internal
         ├── __init__.py
         └── admin.py
-
 ```
 
 To use uv with this application, inside the `project` directory run:
 
 ```
 $ uv init --app
-
 ```
 
 This creates a [project with an application layout](../../../concepts/projects/init/#applications) and a `pyproject.toml` file.
@@ -39,7 +37,6 @@ Then, add a dependency on FastAPI:
 
 ```
 $ uv add fastapi --extra standard
-
 ```
 
 You should now have the following structure:
@@ -58,7 +55,6 @@ project
     └── internal
         ├── __init__.py
         └── admin.py
-
 ```
 
 And the contents of the `pyproject.toml` file should look something like this:
@@ -75,14 +71,12 @@ requires-python = ">=3.12"
 dependencies = [
     "fastapi[standard]",
 ]
-
 ```
 
 From there, you can run the FastAPI application with:
 
 ```
 $ uv run fastapi dev
-
 ```
 
 `uv run` will automatically resolve and lock the project dependencies (i.e., create a `uv.lock` alongside the `pyproject.toml`), create a virtual environment, and run the command in that environment.
@@ -110,21 +104,18 @@ RUN uv sync --frozen --no-cache
 
 # Run the application.
 CMD ["/app/.venv/bin/fastapi", "run", "app/main.py", "--port", "80", "--host", "0.0.0.0"]
-
 ```
 
 Build the Docker image with:
 
 ```
 $ docker build -t fastapi-app .
-
 ```
 
 Run the Docker container locally with:
 
 ```
 $ docker run -p 8000:80 fastapi-app
-
 ```
 
 Navigate to <http://127.0.0.1:8000/?token=jessica> in your browser to verify that the app is running correctly.

@@ -75,7 +75,6 @@ As an escape hatch, you can preinstall a package's build dependencies, then run 
 
 ```
 uv pip install wheel && uv pip install --no-build-isolation biopython==1.77
-
 ```
 
 For a list of packages that are known to fail under PEP 517 build isolation, see [#2252](https://github.com/astral-sh/uv/issues/2252).
@@ -117,7 +116,6 @@ requirements.in
 ```
 starlette
 fastapi
-
 ```
 
 At time of writing, the most recent `starlette` version is `0.37.2`, and the most recent `fastapi` version is `0.110.0`. However, `fastapi==0.110.0` also depends on `starlette`, and introduces an upper bound: `starlette>=0.36.3,<0.37.0`.
@@ -148,7 +146,6 @@ typing-extensions==4.10.0
     # via
     #   pydantic
     #   pydantic-core
-
 ```
 
 Alternatively, if a resolver prioritizes including the most recent version of `fastapi`, it would need to use an older version of `starlette` that satisfies the upper bound. In practice, this requires falling back to `starlette==0.36.3`:
@@ -178,7 +175,6 @@ typing-extensions==4.10.0
     #   fastapi
     #   pydantic
     #   pydantic-core
-
 ```
 
 When uv resolutions differ from `pip` in undesirable ways, it's often a sign that the specifiers are too loose, and that the user should consider tightening them. For example, in the case of `starlette` and `fastapi`, the user could require `fastapi>=0.110.0`.
@@ -238,7 +234,6 @@ manylinux2014_compatible = False
 
 def manylinux_compatible(*_, **__):  # PEP 600
     return False
-
 ```
 
 ## [Bytecode compilation](#bytecode-compilation)
@@ -342,5 +337,4 @@ more-itertools   10.7.0                         more-itertools   10.7.0
 pip              25.1                           pip              25.1
 PyMuPDFb         1.24.10                      | pymupdfb         1.24.10
 PyPDF2           3.0.1                        | pypdf2           3.0.1
-
 ```

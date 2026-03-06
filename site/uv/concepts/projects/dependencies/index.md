@@ -21,7 +21,6 @@ To add a dependency:
 
 ```
 $ uv add httpx
-
 ```
 
 An entry will be added in the `project.dependencies` field:
@@ -33,7 +32,6 @@ pyproject.toml
 name = "example"
 version = "0.1.0"
 dependencies = ["httpx>=0.27.2"]
-
 ```
 
 The [`--dev`](#development-dependencies), [`--group`](#dependency-groups), or [`--optional`](#optional-dependencies) flags can be used to add dependencies to an alternative field.
@@ -42,14 +40,12 @@ The dependency will include a constraint, e.g., `>=0.27.2`, for the most recent,
 
 ```
 $ uv add "httpx>=0.20"
-
 ```
 
 When adding a dependency from a source other than a package registry, uv will add an entry in the sources field. For example, when adding `httpx` from GitHub:
 
 ```
 $ uv add "httpx @ git+https://github.com/encode/httpx"
-
 ```
 
 The `pyproject.toml` will include a [Git source entry](#git):
@@ -66,7 +62,6 @@ dependencies = [
 
 [tool.uv.sources]
 httpx = { git = "https://github.com/encode/httpx" }
-
 ```
 
 If a dependency cannot be used, uv will display an error.:
@@ -76,7 +71,6 @@ $ uv add "httpx>9999"
   × No solution found when resolving dependencies:
   ╰─▶ Because only httpx<=1.0.0b0 is available and your project depends on httpx>9999,
       we can conclude that your project's requirements are unsatisfiable.
-
 ```
 
 ### [Importing dependencies from requirements files](#importing-dependencies-from-requirements-files)
@@ -85,7 +79,6 @@ Dependencies declared in a `requirements.txt` file can be added to the project w
 
 ```
 uv add -r requirements.txt
-
 ```
 
 See the [pip migration guide](../../../guides/migration/pip-to-project/#importing-requirements-files) for more details.
@@ -96,7 +89,6 @@ To remove a dependency:
 
 ```
 $ uv remove httpx
-
 ```
 
 The `--dev`, `--group`, or `--optional` flags can be used to remove a dependency from a specific table.
@@ -109,7 +101,6 @@ To change an existing dependency, e.g., to use a different constraint for `httpx
 
 ```
 $ uv add "httpx>0.1.0"
-
 ```
 
 Note
@@ -118,7 +109,6 @@ In this example, we are changing the constraints for the dependency in the `pypr
 
 ```
 $ uv add "httpx>0.1.0" --upgrade-package httpx
-
 ```
 
 See the [lockfile](../sync/#upgrading-locked-package-versions) documentation for more details on upgrading packages.
@@ -127,7 +117,6 @@ Requesting a different dependency source will update the `tool.uv.sources` table
 
 ```
 $ uv add "httpx @ ../httpx"
-
 ```
 
 ## [Platform-specific dependencies](#platform-specific-dependencies)
@@ -138,7 +127,6 @@ For example, to install `jax` on Linux, but not on Windows or macOS:
 
 ```
 $ uv add "jax; sys_platform == 'linux'"
-
 ```
 
 The resulting `pyproject.toml` will then include the environment marker in the dependency definition:
@@ -151,14 +139,12 @@ name = "project"
 version = "0.1.0"
 requires-python = ">=3.11"
 dependencies = ["jax; sys_platform == 'linux'"]
-
 ```
 
 Similarly, to include `numpy` on Python 3.11 and later:
 
 ```
 $ uv add "numpy; python_version >= '3.11'"
-
 ```
 
 See Python's [environment marker](https://peps.python.org/pep-0508/#environment-markers) documentation for a complete enumeration of the available markers and operators.
@@ -191,7 +177,6 @@ dependencies = [
   "importlib_metadata >=7.1.0,<8; python_version < '3.10'",
   "mollymawk ==0.1.0"
 ]
-
 ```
 
 ## [Dependency sources](#dependency-sources)
@@ -210,7 +195,6 @@ dependencies = ["foo"]
 
 [tool.uv.sources]
 foo = { path = "./packages/foo" }
-
 ```
 
 The following dependency sources are supported by uv:
@@ -231,7 +215,6 @@ To add Python package from a specific index, use the `--index` option:
 
 ```
 $ uv add torch --index pytorch=https://download.pytorch.org/whl/cpu
-
 ```
 
 uv will store the index in `[[tool.uv.index]]` and add a `[tool.uv.sources]` entry:
@@ -248,7 +231,6 @@ torch = { index = "pytorch" }
 [[tool.uv.index]]
 name = "pytorch"
 url = "https://download.pytorch.org/whl/cpu"
-
 ```
 
 Tip
@@ -266,7 +248,6 @@ pyproject.toml
 name = "pytorch"
 url = "https://download.pytorch.org/whl/cpu"
 explicit = true
-
 ```
 
 ### [Git](#git)
@@ -281,7 +262,6 @@ $ uv add git+https://github.com/encode/httpx
 
 $ # Install over SSH.
 $ uv add git+ssh://git@github.com/encode/httpx
-
 ```
 
 pyproject.toml
@@ -292,14 +272,12 @@ dependencies = ["httpx"]
 
 [tool.uv.sources]
 httpx = { git = "https://github.com/encode/httpx" }
-
 ```
 
 Specific Git references can be requested, e.g., a tag:
 
 ```
 $ uv add git+https://github.com/encode/httpx --tag 0.27.0
-
 ```
 
 pyproject.toml
@@ -310,14 +288,12 @@ dependencies = ["httpx"]
 
 [tool.uv.sources]
 httpx = { git = "https://github.com/encode/httpx", tag = "0.27.0" }
-
 ```
 
 Or, a branch:
 
 ```
 $ uv add git+https://github.com/encode/httpx --branch main
-
 ```
 
 pyproject.toml
@@ -328,14 +304,12 @@ dependencies = ["httpx"]
 
 [tool.uv.sources]
 httpx = { git = "https://github.com/encode/httpx", branch = "main" }
-
 ```
 
 Or, a revision (commit):
 
 ```
 $ uv add git+https://github.com/encode/httpx --rev 326b9431c761e1ef1e00b9f760d1f654c8db48c6
-
 ```
 
 pyproject.toml
@@ -346,14 +320,12 @@ dependencies = ["httpx"]
 
 [tool.uv.sources]
 httpx = { git = "https://github.com/encode/httpx", rev = "326b9431c761e1ef1e00b9f760d1f654c8db48c6" }
-
 ```
 
 A `subdirectory` may be specified if the package isn't in the repository root:
 
 ```
 $ uv add git+https://github.com/langchain-ai/langchain#subdirectory=libs/langchain
-
 ```
 
 pyproject.toml
@@ -364,14 +336,12 @@ dependencies = ["langchain"]
 
 [tool.uv.sources]
 langchain = { git = "https://github.com/langchain-ai/langchain", subdirectory = "libs/langchain" }
-
 ```
 
 Support for [Git LFS](https://git-lfs.com) is also configurable per source. By default, Git LFS objects will not be fetched.
 
 ```
 $ uv add --lfs git+https://github.com/astral-sh/lfs-cowsay
-
 ```
 
 pyproject.toml
@@ -382,7 +352,6 @@ dependencies = ["lfs-cowsay"]
 
 [tool.uv.sources]
 lfs-cowsay = { git = "https://github.com/astral-sh/lfs-cowsay", lfs = true }
-
 ```
 
 - When `lfs = true`, uv will always fetch LFS objects for this Git source.
@@ -401,7 +370,6 @@ For example:
 
 ```
 $ uv add "https://files.pythonhosted.org/packages/5c/2d/3da5bdf4408b8b2800061c339f240c1802f2e82d55e50bd39c5a881f47f0/httpx-0.27.0.tar.gz"
-
 ```
 
 Will result in a `pyproject.toml` with:
@@ -414,7 +382,6 @@ dependencies = ["httpx"]
 
 [tool.uv.sources]
 httpx = { url = "https://files.pythonhosted.org/packages/5c/2d/3da5bdf4408b8b2800061c339f240c1802f2e82d55e50bd39c5a881f47f0/httpx-0.27.0.tar.gz" }
-
 ```
 
 URL dependencies can also be manually added or edited in the `pyproject.toml` with the `{ url = <url> }` syntax. A `subdirectory` may be specified if the source distribution isn't in the archive root.
@@ -427,7 +394,6 @@ For example:
 
 ```
 $ uv add /example/foo-0.1.0-py3-none-any.whl
-
 ```
 
 Will result in a `pyproject.toml` with:
@@ -440,21 +406,18 @@ dependencies = ["foo"]
 
 [tool.uv.sources]
 foo = { path = "/example/foo-0.1.0-py3-none-any.whl" }
-
 ```
 
 The path may also be a relative path:
 
 ```
 $ uv add ./foo-0.1.0-py3-none-any.whl
-
 ```
 
 Or, a path to a project directory:
 
 ```
 $ uv add ~/projects/bar/
-
 ```
 
 Important
@@ -465,7 +428,6 @@ An [editable installation](#editable-dependencies) is not used for path dependen
 
 ```
 $ uv add --editable ../projects/bar/
-
 ```
 
 Which will result in a `pyproject.toml` with:
@@ -478,7 +440,6 @@ dependencies = ["bar"]
 
 [tool.uv.sources]
 bar = { path = "../projects/bar", editable = true }
-
 ```
 
 Tip
@@ -502,7 +463,6 @@ foo = { workspace = true }
 members = [
   "packages/foo"
 ]
-
 ```
 
 ### [Platform-specific sources](#platform-specific-sources)
@@ -519,7 +479,6 @@ dependencies = ["httpx"]
 
 [tool.uv.sources]
 httpx = { git = "https://github.com/encode/httpx", tag = "0.27.2", marker = "sys_platform == 'darwin'" }
-
 ```
 
 By specifying the marker on the source, uv will still include `httpx` on all platforms, but will download the source from GitHub on macOS, and fall back to PyPI on all other platforms.
@@ -541,7 +500,6 @@ httpx = [
   { git = "https://github.com/encode/httpx", tag = "0.27.2", marker = "sys_platform == 'darwin'" },
   { git = "https://github.com/encode/httpx", tag = "0.24.1", marker = "sys_platform == 'linux'" },
 ]
-
 ```
 
 This strategy extends to using different indexes based on environment markers. For example, to install `torch` from different PyTorch indexes based on the platform:
@@ -567,7 +525,6 @@ explicit = true
 name = "torch-gpu"
 url = "https://download.pytorch.org/whl/cu124"
 explicit = true
-
 ```
 
 ### [Disabling sources](#disabling-sources)
@@ -576,7 +533,6 @@ To instruct uv to ignore the `tool.uv.sources` table (e.g., to simulate resolvin
 
 ```
 $ uv lock --no-sources
-
 ```
 
 The use of `--no-sources` will also prevent uv from discovering any [workspace members](#workspace-member) that could satisfy a given dependency.
@@ -608,14 +564,12 @@ excel = [
   "xlrd>=2.0.1",
   "xlsxwriter>=3.0.5"
 ]
-
 ```
 
 To add an optional dependency, use the `--optional <extra>` option:
 
 ```
 $ uv add httpx --optional network
-
 ```
 
 Note
@@ -651,7 +605,6 @@ url = "https://download.pytorch.org/whl/cpu"
 [[tool.uv.index]]
 name = "torch-gpu"
 url = "https://download.pytorch.org/whl/cu124"
-
 ```
 
 ## [Development dependencies](#development-dependencies)
@@ -664,7 +617,6 @@ To add a development dependency, use the `--dev` flag:
 
 ```
 $ uv add --dev pytest
-
 ```
 
 uv uses the `[dependency-groups]` table (as defined in [PEP 735](https://peps.python.org/pep-0735/)) for declaration of development dependencies. The above command will create a `dev` group:
@@ -676,7 +628,6 @@ pyproject.toml
 dev = [
   "pytest >=8.1.1,<9"
 ]
-
 ```
 
 The `dev` group is special-cased; there are `--dev`, `--only-dev`, and `--no-dev` flags to toggle inclusion or exclusion of its dependencies. See `--no-default-groups` to disable all default groups instead. Additionally, the `dev` group is [synced by default](#default-groups).
@@ -689,7 +640,6 @@ For example, to add a development dependency in the `lint` group:
 
 ```
 $ uv add --group lint ruff
-
 ```
 
 Which results in the following `[dependency-groups]` definition:
@@ -704,7 +654,6 @@ dev = [
 lint = [
   "ruff"
 ]
-
 ```
 
 Once groups are defined, the `--all-groups`, `--no-default-groups`, `--group`, `--only-group`, and `--no-group` options can be used to include or exclude their dependencies.
@@ -739,7 +688,6 @@ lint = [
 test = [
   "pytest"
 ]
-
 ```
 
 An included group's dependencies cannot conflict with the other dependencies declared in a group.
@@ -753,7 +701,6 @@ pyproject.toml
 ```
 [tool.uv]
 default-groups = ["dev", "foo"]
-
 ```
 
 To enable all dependencies groups by default, use `"all"` instead of listing group names:
@@ -763,7 +710,6 @@ pyproject.toml
 ```
 [tool.uv]
 default-groups = "all"
-
 ```
 
 Tip
@@ -789,7 +735,6 @@ dev = ["pytest"]
 
 [tool.uv.dependency-groups]
 dev = {requires-python = ">=3.12"}
-
 ```
 
 ### [Legacy `dev-dependencies`](#legacy-dev-dependencies)
@@ -803,7 +748,6 @@ pyproject.toml
 dev-dependencies = [
   "pytest"
 ]
-
 ```
 
 Dependencies declared in this section will be combined with the contents in the `dependency-groups.dev`. Eventually, the `dev-dependencies` field will be deprecated and removed.
@@ -828,7 +772,6 @@ version = "0.1.0"
 [build-system]
 requires = ["setuptools>=42"]
 build-backend = "setuptools.build_meta"
-
 ```
 
 By default, uv will respect `tool.uv.sources` when resolving build dependencies. For example, to use a local version of `setuptools` for building, add the source to `tool.uv.sources`:
@@ -846,7 +789,6 @@ build-backend = "setuptools.build_meta"
 
 [tool.uv.sources]
 setuptools = { path = "./packages/setuptools" }
-
 ```
 
 When publishing a package, we recommend running `uv build --no-sources` to ensure that the package builds correctly when `tool.uv.sources` is disabled, as is the case when using other build tools, like [`pypa/build`](https://github.com/pypa/build).
@@ -865,14 +807,12 @@ To add an editable dependency, use the `--editable` flag:
 
 ```
 $ uv add --editable ./path/foo
-
 ```
 
 Or, to opt-out of using an editable dependency in a workspace:
 
 ```
 $ uv add --no-editable ./path/foo
-
 ```
 
 ## [Virtual dependencies](#virtual-dependencies)
@@ -881,7 +821,7 @@ uv allows dependencies to be "virtual", in which the dependency itself is not in
 
 By default, dependencies are never virtual.
 
-A dependency with a [`path` source](#path) can be virtual if it explicitly sets [`tool.uv.package = false`](../../../reference/settings/#package). Unlike working *in* the dependent project with uv, the package will be built even if a [build system](../config/#build-systems) is not declared.
+A dependency with a [`path` source](#path) can be virtual if it explicitly sets [`tool.uv.package = false`](../../../reference/settings/#package). Without this setting, uv treats the path dependency as a normal package and will attempt to build it, even if the project does not declare a [build system](../config/#build-systems).
 
 To treat a dependency as virtual, set `package = false` on the source:
 
@@ -893,7 +833,6 @@ dependencies = ["bar"]
 
 [tool.uv.sources]
 bar = { path = "../projects/bar", package = false }
-
 ```
 
 If a dependency sets `tool.uv.package = false`, it can be overridden by declaring `package = true` on the source:
@@ -906,10 +845,9 @@ dependencies = ["bar"]
 
 [tool.uv.sources]
 bar = { path = "../projects/bar", package = true }
-
 ```
 
-Similarly, a dependency with a [`workspace` source](#workspace-member) can be virtual if it explicitly sets [`tool.uv.package = false`](../../../reference/settings/#package). The workspace member will be built even if a [build system](../config/#build-systems) is not declared.
+Similarly, a dependency with a [`workspace` source](#workspace-member) can be virtual if it explicitly sets [`tool.uv.package = false`](../../../reference/settings/#package). Without this setting, the workspace member will be built even if a [build system](../config/#build-systems) is not declared.
 
 Workspace members that are *not* dependencies can be virtual by default, e.g., if the parent `pyproject.toml` is:
 
@@ -923,7 +861,6 @@ dependencies = []
 
 [tool.uv.workspace]
 members = ["child"]
-
 ```
 
 And the child `pyproject.toml` excluded a build system:
@@ -935,7 +872,6 @@ pyproject.toml
 name = "child"
 version = "1.0.0"
 dependencies = ["anyio"]
-
 ```
 
 Then the `child` workspace member would not be installed, but the transitive dependency `anyio` would be.
@@ -955,7 +891,6 @@ child = { workspace = true }
 
 [tool.uv.workspace]
 members = ["child"]
-
 ```
 
 Then `child` would be built and installed.

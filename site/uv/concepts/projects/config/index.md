@@ -13,7 +13,6 @@ pyproject.toml
 name = "example"
 version = "0.1.0"
 requires-python = ">=3.12"
-
 ```
 
 The Python version requirement determines the Python syntax that is allowed in the project and affects selection of dependency versions (they must support the same Python version range).
@@ -41,14 +40,12 @@ pyproject.toml
 ```
 [project.scripts]
 hello = "example:hello"
-
 ```
 
 Then, the command can be run from a console:
 
 ```
 $ uv run hello
-
 ```
 
 ### [Graphical user interfaces](#graphical-user-interfaces)
@@ -66,7 +63,6 @@ pyproject.toml
 ```
 [project.gui-scripts]
 hello = "example:app"
-
 ```
 
 ### [Plugin entry points](#plugin-entry-points)
@@ -80,7 +76,6 @@ pyproject.toml
 ```
 [project.entry-points.'example.plugins']
 a = "example_plugin_a"
-
 ```
 
 Then, in `example`, plugins would be loaded with:
@@ -92,7 +87,6 @@ from importlib.metadata import entry_points
 
 for plugin in entry_points(group='example.plugins'):
     plugin.load()
-
 ```
 
 Note
@@ -157,7 +151,6 @@ To target the system environment, set `UV_PROJECT_ENVIRONMENT` to the prefix of 
 ```
 $ python -c "import sysconfig; print(sysconfig.get_config_var('prefix'))"
 /usr/local
-
 ```
 
 To target this environment, you'd export `UV_PROJECT_ENVIRONMENT=/usr/local`.
@@ -206,7 +199,6 @@ dependencies = ["cchardet"]
 
 [tool.uv.extra-build-dependencies]
 cchardet = ["cython"]
-
 ```
 
 To ensure that a build dependency matches the version of the package that is or will be installed in the project environment, set `match-runtime = true` in the `extra-build-dependencies` table. For example, to build `deepspeed` with `torch` as an additional build dependency, include the following in your `pyproject.toml`:
@@ -224,7 +216,6 @@ dependencies = ["deepspeed", "torch"]
 
 [tool.uv.extra-build-dependencies]
 deepspeed = [{ requirement = "torch", match-runtime = true }]
-
 ```
 
 This will ensure that `deepspeed` is built with the same version of `torch` that is installed in the project environment.
@@ -247,7 +238,6 @@ flash-attn = [{ requirement = "torch", match-runtime = true }]
 
 [tool.uv.extra-build-variables]
 flash-attn = { FLASH_ATTENTION_SKIP_CUDA_BUILD = "TRUE" }
-
 ```
 
 Note
@@ -272,7 +262,6 @@ deep_gemm = { git = "https://github.com/deepseek-ai/DeepGEMM" }
 
 [tool.uv.extra-build-dependencies]
 deep_gemm = [{ requirement = "torch", match-runtime = true }]
-
 ```
 
 The use of `extra-build-dependencies` and `extra-build-variables` are tracked in the uv cache, such that changes to these settings will trigger a reinstall and rebuild of the affected packages. For example, in the case of `flash-attn`, upgrading the version of `torch` used in your project would subsequently trigger a rebuild of `flash-attn` with the new version of `torch`.
@@ -302,7 +291,6 @@ dependencies = ["axolotl[deepspeed, flash-attn]", "torch==2.6.0"]
 axolotl = ["torch==2.6.0"]
 deepspeed = ["torch==2.6.0"]
 flash-attn = ["torch==2.6.0"]
-
 ```
 
 Similarly, older versions of `flash-attn` did not declare static metadata, and thus would not have supported `match-runtime = true` out of the box. Unlike `axolotl`, though, `flash-attn` did not vary its dependencies based on dynamic properties of the build environment. As such, users could instead provide the `flash-attn` metadata upfront via the [`dependency-metadata`](../../../reference/settings/#dependency-metadata) setting, thereby forgoing the need to build the package during the dependency resolution phase. For example, to provide the `flash-attn` metadata upfront:
@@ -314,7 +302,6 @@ pyproject.toml
 name = "flash-attn"
 version = "2.6.3"
 requires-dist = ["torch", "einops"]
-
 ```
 
 Tip
@@ -335,7 +322,6 @@ For example, historically, to install `cchardet` without build isolation, you wo
 $ uv venv
 $ uv pip install cython setuptools
 $ uv pip install cchardet --no-build-isolation
-
 ```
 
 uv simplifies this process by allowing you to specify packages that should not be built in isolation via the `no-build-isolation-package` setting in your `pyproject.toml` and the `--no-build-isolation-package` flag in the command line. Further, when a package is marked for disabling build isolation, uv will perform a two-phase install, first installing any packages that support build isolation, followed by those that do not. As a result, if a project's build dependencies are included as project dependencies, uv will automatically install them before installing the package that requires build isolation to be disabled.
@@ -355,7 +341,6 @@ dependencies = ["cchardet", "cython", "setuptools"]
 
 [tool.uv]
 no-build-isolation-package = ["cchardet"]
-
 ```
 
 When running `uv sync`, uv will first install `cython` and `setuptools` in the project environment, followed by `cchardet` (without build isolation):
@@ -365,7 +350,6 @@ $ uv sync --extra build
  + cchardet==2.1.7
  + cython==3.1.3
  + setuptools==80.9.0
-
 ```
 
 Similarly, to install `flash-attn` without build isolation, include the following in your `pyproject.toml`:
@@ -383,7 +367,6 @@ dependencies = ["flash-attn", "torch"]
 
 [tool.uv]
 no-build-isolation-package = ["flash-attn"]
-
 ```
 
 When running `uv sync`, uv will first install `torch` in the project environment, followed by `flash-attn` (without build isolation). As `torch` is both a project dependency and a build dependency, the version of `torch` is guaranteed to be consistent between the build and runtime environments.
@@ -410,7 +393,6 @@ build = ["setuptools", "cython"]
 
 [tool.uv]
 no-build-isolation-package = ["cchardet"]
-
 ```
 
 Given the above, a user would first sync with the `build` optional group, and then without it to remove the build dependencies:
@@ -423,7 +405,6 @@ $ uv sync --extra build
 $ uv sync
  - cython==3.1.3
  - setuptools==80.9.0
-
 ```
 
 Some packages, like `cchardet`, only require build dependencies for the *installation* phase of `uv sync`. Others require their build dependencies to be present even just to resolve the project's dependencies during the *resolution* phase.
@@ -443,7 +424,6 @@ dependencies = ["flash-attn"]
 
 [tool.uv]
 no-build-isolation-package = ["flash-attn"]
-
 ```
 
 You could run the following sequence of commands to sync `flash-attn`:
@@ -452,7 +432,6 @@ You could run the following sequence of commands to sync `flash-attn`:
 $ uv venv
 $ uv pip install torch setuptools
 $ uv sync
-
 ```
 
 Alternatively, users can instead provide the `flash-attn` metadata upfront via the [`dependency-metadata`](../../../reference/settings/#dependency-metadata) setting, thereby forgoing the need to build the package during the dependency resolution phase. For example, to provide the `flash-attn` metadata upfront:
@@ -464,7 +443,6 @@ pyproject.toml
 name = "flash-attn"
 version = "2.6.3"
 requires-dist = ["torch", "einops"]
-
 ```
 
 ## [Editable mode](#editable-mode)
@@ -487,7 +465,6 @@ conflicts = [
       { extra = "extra2" },
     ],
 ]
-
 ```
 
 Or, to declare the development dependency groups `group1` and `group2` incompatible:
@@ -502,7 +479,6 @@ conflicts = [
       { group = "group2" },
     ],
 ]
-
 ```
 
 See the [resolution documentation](../../resolution/#conflicting-dependencies) for more.
@@ -519,7 +495,6 @@ environments = [
     "sys_platform == 'darwin'",
     "sys_platform == 'linux'",
 ]
-
 ```
 
 See the [resolution documentation](../../resolution/#limited-resolution-environments) for more.
@@ -535,7 +510,6 @@ pyproject.toml
 required-environments = [
     "sys_platform == 'darwin' and platform_machine == 'x86_64'",
 ]
-
 ```
 
 The `required-environments` setting is only relevant for packages that do not publish a source distribution (like PyTorch), as such packages can *only* be installed on environments covered by the set of pre-built binary distributions (wheels) published by that package.

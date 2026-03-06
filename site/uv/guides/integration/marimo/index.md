@@ -10,14 +10,12 @@ For ad-hoc access to marimo notebooks, start a marimo server at any time in an i
 
 ```
 $ uvx marimo edit
-
 ```
 
 Start a specific notebook with:
 
 ```
 $ uvx marimo edit my_notebook.py
-
 ```
 
 ## [Using marimo with inline script metadata](#using-marimo-with-inline-script-metadata)
@@ -26,14 +24,12 @@ Because marimo notebooks are stored as Python scripts, they can encapsulate thei
 
 ```
 $ uv add --script my_notebook.py numpy
-
 ```
 
 To interactively edit a notebook containing inline script metadata, use:
 
 ```
 $ uvx marimo edit --sandbox my_notebook.py
-
 ```
 
 marimo will automatically use uv to start your notebook in an isolated virtual environment with your script's dependencies. Packages installed from the marimo UI will automatically be added to the notebook's script metadata.
@@ -42,7 +38,6 @@ You can optionally run these notebooks as Python scripts, without opening an int
 
 ```
 $ uv run my_notebook.py
-
 ```
 
 ## [Using marimo within a project](#using-marimo-within-a-project)
@@ -51,7 +46,6 @@ If you're working within a [project](../../../concepts/projects/), you can start
 
 ```
 $ uv run marimo edit my_notebook.py
-
 ```
 
 To make additional packages available to your notebook, either add them to your project with `uv add`, or use marimo's built-in package installation UI, which will invoke `uv add` on your behalf.
@@ -60,7 +54,6 @@ If marimo is not a project dependency, you can still run a notebook with the fol
 
 ```
 $ uv run --with marimo marimo edit my_notebook.py
-
 ```
 
 This will let you import your project's modules while editing your notebook. However, packages installed via marimo's UI when running in this way will not be added to your project, and may disappear on subsequent marimo invocations.
@@ -74,7 +67,6 @@ $ uv venv
 $ uv pip install numpy
 $ uv pip install marimo
 $ uv run marimo edit
-
 ```
 
 From here, `import numpy` will work within the notebook, and marimo's UI installer will add packages to the environment with `uv pip install` on your behalf.
@@ -85,7 +77,6 @@ Regardless of how your dependencies are managed (with inline script metadata, wi
 
 ```
 $ uv run my_notebook.py
-
 ```
 
 This executes your notebook as a Python script, without opening an interactive session in your browser.

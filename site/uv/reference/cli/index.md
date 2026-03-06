@@ -8,7 +8,6 @@ An extremely fast Python package manager.
 
 ```
 uv [OPTIONS] <COMMAND>
-
 ```
 
 ### Commands
@@ -61,7 +60,6 @@ Manage authentication
 
 ```
 uv auth [OPTIONS] <COMMAND>
-
 ```
 
 ### Commands
@@ -82,7 +80,6 @@ Login to a service
 
 ```
 uv auth login [OPTIONS] <SERVICE>
-
 ```
 
 ### Arguments
@@ -256,7 +253,6 @@ Logout of a service
 
 ```
 uv auth logout [OPTIONS] <SERVICE>
-
 ```
 
 ### Arguments
@@ -416,7 +412,6 @@ Show the authentication token for a service
 
 ```
 uv auth token [OPTIONS] <SERVICE>
-
 ```
 
 ### Arguments
@@ -580,7 +575,6 @@ Credentials are only stored in this directory when the plaintext backend is used
 
 ```
 uv auth dir [OPTIONS] [SERVICE]
-
 ```
 
 ### Arguments
@@ -737,7 +731,6 @@ Arguments following the command (or script) are not interpreted as arguments to 
 
 ```
 uv run [OPTIONS] [COMMAND]
-
 ```
 
 ### Options
@@ -1392,7 +1385,6 @@ Some project state is not created until needed, e.g., the project virtual enviro
 
 ```
 uv init [OPTIONS] [PATH]
-
 ```
 
 ### Arguments
@@ -1679,7 +1671,6 @@ uv will search for a project in the current directory or any parent directory. I
 
 ```
 uv add [OPTIONS] <PACKAGES|--requirements <REQUIREMENTS>>
-
 ```
 
 ### Arguments
@@ -2242,7 +2233,6 @@ uv will search for a project in the current directory or any parent directory. I
 
 ```
 uv remove [OPTIONS] <PACKAGES>...
-
 ```
 
 ### Arguments
@@ -2678,7 +2668,6 @@ Read or update the project's version
 
 ```
 uv version [OPTIONS] [VALUE]
-
 ```
 
 ### Arguments
@@ -3155,7 +3144,6 @@ Note that, when installing from a lockfile, uv will not provide warnings for yan
 
 ```
 uv sync [OPTIONS]
-
 ```
 
 ### Options
@@ -3803,7 +3791,6 @@ If there are no changes to the project's dependencies, locking will have no effe
 
 ```
 uv lock [OPTIONS]
-
 ```
 
 ### Options
@@ -4225,7 +4212,6 @@ If operating in a workspace, the root will be exported by default; however, spec
 
 ```
 uv export [OPTIONS]
-
 ```
 
 ### Options
@@ -4773,7 +4759,6 @@ Display the project's dependency tree
 
 ```
 uv tree [OPTIONS]
-
 ```
 
 ### Options
@@ -5321,7 +5306,6 @@ Additional arguments can be passed to Ruff after `--`.
 
 ```
 uv format [OPTIONS] [-- <EXTRA_ARGS>...]
-
 ```
 
 ### Arguments
@@ -5500,7 +5484,6 @@ Run and install commands provided by Python packages
 
 ```
 uv tool [OPTIONS] <COMMAND>
-
 ```
 
 ### Commands
@@ -5541,7 +5524,6 @@ Packages are installed into an ephemeral virtual environment in the uv cache dir
 
 ```
 uv tool run [OPTIONS] [COMMAND]
-
 ```
 
 ### Options
@@ -6128,7 +6110,6 @@ If the tool was previously installed, the existing tool will generally be replac
 
 ```
 uv tool install [OPTIONS] <PACKAGE>
-
 ```
 
 ### Arguments
@@ -6715,7 +6696,6 @@ If a tool was installed with specific settings, they will be respected on upgrad
 
 ```
 uv tool upgrade [OPTIONS] <NAME>...
-
 ```
 
 ### Arguments
@@ -7169,7 +7149,6 @@ List installed tools
 
 ```
 uv tool list [OPTIONS]
-
 ```
 
 ### Options
@@ -7318,7 +7297,6 @@ Uninstall a tool
 
 ```
 uv tool uninstall [OPTIONS] <NAME>...
-
 ```
 
 ### Arguments
@@ -7471,7 +7449,6 @@ The tool executable directory is determined according to the XDG standard and ca
 
 ```
 uv tool update-shell [OPTIONS]
-
 ```
 
 ### Options
@@ -7620,7 +7597,6 @@ To instead view the directory uv installs executables into, use the `--bin` flag
 
 ```
 uv tool dir [OPTIONS]
-
 ```
 
 ### Options
@@ -7806,7 +7782,6 @@ uv supports discovering CPython, PyPy, and GraalPy interpreters. Unsupported int
 
 ```
 uv python [OPTIONS] <COMMAND>
-
 ```
 
 ### Commands
@@ -7845,7 +7820,6 @@ Use `--only-installed` to omit available downloads.
 
 ```
 uv python list [OPTIONS] [REQUEST]
-
 ```
 
 ### Arguments
@@ -8053,7 +8027,6 @@ See `uv help python` to view supported request formats.
 
 ```
 uv python install [OPTIONS] [TARGETS]...
-
 ```
 
 ### Arguments
@@ -8300,7 +8273,6 @@ Upgrades are not yet supported for alternative implementations, like PyPy.
 
 ```
 uv python upgrade [OPTIONS] [TARGETS]...
-
 ```
 
 ### Arguments
@@ -8497,7 +8469,6 @@ See `uv help python` to view supported request formats and details on discovery 
 
 ```
 uv python find [OPTIONS] [REQUEST]
-
 ```
 
 ### Arguments
@@ -8680,7 +8651,6 @@ See `uv help python` to view supported request formats.
 
 ```
 uv python pin [OPTIONS] [REQUEST]
-
 ```
 
 ### Arguments
@@ -8863,7 +8833,6 @@ To view the directory where uv installs Python executables instead, use the `--b
 
 ```
 uv python dir [OPTIONS]
-
 ```
 
 ### Options
@@ -9018,7 +8987,6 @@ Uninstall Python versions
 
 ```
 uv python uninstall [OPTIONS] <TARGETS>...
-
 ```
 
 ### Arguments
@@ -9181,7 +9149,6 @@ The Python executable directory is determined according to the XDG standard and 
 
 ```
 uv python update-shell [OPTIONS]
-
 ```
 
 ### Options
@@ -9322,7 +9289,6 @@ Manage Python packages with a pip-compatible interface
 
 ```
 uv pip [OPTIONS] <COMMAND>
-
 ```
 
 ### Commands
@@ -9353,7 +9319,6 @@ Compile a `requirements.in` file to a `requirements.txt` or `pylock.toml` file
 
 ```
 uv pip compile [OPTIONS] <SRC_FILE|--group <GROUP>>
-
 ```
 
 ### Arguments
@@ -10025,7 +9990,6 @@ The input file is presumed to be the output of a `pip compile` or `uv export` op
 
 ```
 uv pip sync [OPTIONS] <SRC_FILE>...
-
 ```
 
 ### Arguments
@@ -10603,7 +10567,6 @@ Install packages into an environment
 
 ```
 uv pip install [OPTIONS] <PACKAGE|--requirements <REQUIREMENTS>|--editable <EDITABLE>|--group <GROUP>>
-
 ```
 
 ### Arguments
@@ -11276,7 +11239,6 @@ Uninstall packages from an environment
 
 ```
 uv pip uninstall [OPTIONS] <PACKAGE|--requirements <REQUIREMENTS>>
-
 ```
 
 ### Arguments
@@ -11480,7 +11442,6 @@ List, in requirements format, packages installed in an environment
 
 ```
 uv pip freeze [OPTIONS]
-
 ```
 
 ### Options
@@ -11654,7 +11615,6 @@ List, in tabular format, packages installed in an environment
 
 ```
 uv pip list [OPTIONS]
-
 ```
 
 ### Options
@@ -11939,7 +11899,6 @@ Show information about one or more installed packages
 
 ```
 uv pip show [OPTIONS] [PACKAGE]...
-
 ```
 
 ### Arguments
@@ -12113,7 +12072,6 @@ Display the dependency tree for an environment
 
 ```
 uv pip tree [OPTIONS]
-
 ```
 
 ### Options
@@ -12390,7 +12348,6 @@ Verify installed packages have compatible dependencies
 
 ```
 uv pip check [OPTIONS]
-
 ```
 
 ### Options
@@ -12628,7 +12585,6 @@ When using uv, the virtual environment does not need to be activated. uv will fi
 
 ```
 uv venv [OPTIONS] [PATH]
-
 ```
 
 ### Arguments
@@ -12933,7 +12889,7 @@ Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will w
 
 [`--refresh-package`](#uv-venv--refresh-package) *refresh-package* : Refresh cached data for a specific package
 
-[`--relocatable`](#uv-venv--relocatable) : Make the virtual environment relocatable.
+[`--relocatable`](#uv-venv--relocatable) : Make the virtual environment relocatable [env: UV_VENV_RELOCATABLE=]
 
 ```
 A relocatable virtual environment can be moved around and redistributed without invalidating its associated entrypoint and activation scripts.
@@ -12977,7 +12933,6 @@ If passed a source distribution, `uv build --wheel` will build a wheel from the 
 
 ```
 uv build [OPTIONS] [SRC]
-
 ```
 
 ### Arguments
@@ -13443,7 +13398,6 @@ Upload distributions to an index
 
 ```
 uv publish [OPTIONS] [FILES]...
-
 ```
 
 ### Arguments
@@ -13540,7 +13494,6 @@ The index must have a `publish-url` setting, for example:
 name = "pypi"
 url = "https://pypi.org/simple"
 publish-url = "https://upload.pypi.org/legacy/"
-
 ```
 
 The index `url` will be used to check for existing files to skip duplicate uploads.
@@ -13550,7 +13503,6 @@ With these settings, the following two calls are equivalent:
 ```
 uv publish --index pypi
 uv publish --publish-url https://upload.pypi.org/legacy/ --check-url https://pypi.org/simple
-
 ```
 
 May also be set with the `UV_PUBLISH_INDEX` environment variable.
@@ -13705,7 +13657,6 @@ Manage uv's cache
 
 ```
 uv cache [OPTIONS] <COMMAND>
-
 ```
 
 ### Commands
@@ -13726,7 +13677,6 @@ Clear the cache, removing all entries or those linked to specific packages
 
 ```
 uv cache clean [OPTIONS] [PACKAGE]...
-
 ```
 
 ### Arguments
@@ -13877,7 +13827,6 @@ Prune all unreachable objects from the cache
 
 ```
 uv cache prune [OPTIONS]
-
 ```
 
 ### Options
@@ -14040,7 +13989,6 @@ Note that it is important for performance for the cache directory to be located 
 
 ```
 uv cache dir [OPTIONS]
-
 ```
 
 ### Options
@@ -14183,7 +14131,6 @@ Displays the total size of the cache directory. This includes all downloaded and
 
 ```
 uv cache size [OPTIONS]
-
 ```
 
 ### Options
@@ -14326,7 +14273,6 @@ Manage the uv executable
 
 ```
 uv self [OPTIONS] <COMMAND>
-
 ```
 
 ### Commands
@@ -14343,7 +14289,6 @@ Update uv
 
 ```
 uv self update [OPTIONS] [TARGET_VERSION]
-
 ```
 
 ### Arguments
@@ -14496,7 +14441,6 @@ Display uv's version
 
 ```
 uv self version [OPTIONS]
-
 ```
 
 ### Options
@@ -14641,7 +14585,6 @@ Generate shell completion
 
 ```
 uv generate-shell-completion [OPTIONS] <SHELL>
-
 ```
 
 ### Arguments
@@ -14706,7 +14649,6 @@ Display documentation for a command
 
 ```
 uv help [OPTIONS] [COMMAND]...
-
 ```
 
 ### Arguments

@@ -18,7 +18,6 @@ pyproject.toml
 [[tool.uv.index]]
 url = "https://test.pypi.org/simple"
 default = true
-
 ```
 
 (If there is no such table, the `pyproject.toml` file will be ignored, and uv will continue searching in the directory hierarchy.)
@@ -31,7 +30,6 @@ uv.toml
 [[index]]
 url = "https://test.pypi.org/simple"
 default = true
-
 ```
 
 Note
@@ -70,7 +68,6 @@ For example, to load environment variables from a `.env` file in the current wor
 $ echo "MY_VAR='Hello, world!'" > .env
 $ uv run --env-file .env -- python -c 'import os; print(os.getenv("MY_VAR"))'
 Hello, world!
-
 ```
 
 The `--env-file` flag can be provided multiple times, with subsequent files overriding values defined in previous files. To provide multiple files via the `UV_ENV_FILE` environment variable, separate the paths with a space (e.g., `UV_ENV_FILE="/path/to/file1 /path/to/file2"`).
@@ -92,5 +89,4 @@ pyproject.toml
 ```
 [tool.uv.pip]
 index-url = "https://test.pypi.org/simple"
-
 ```

@@ -8,12 +8,10 @@ To change the installation path, use `UV_INSTALL_DIR`:
 
 ```
 $ curl -LsSf https://astral.sh/uv/install.sh | env UV_INSTALL_DIR="/custom/path" sh
-
 ```
 
 ```
 PS> powershell -ExecutionPolicy ByPass -c {$env:UV_INSTALL_DIR = "C:\Custom\Path";irm https://astral.sh/uv/install.ps1 | iex}
-
 ```
 
 Note
@@ -26,7 +24,6 @@ The installer may also update your shell profiles to ensure the uv binary is on 
 
 ```
 $ curl -LsSf https://astral.sh/uv/install.sh | env UV_NO_MODIFY_PATH=1 sh
-
 ```
 
 If installed with `UV_NO_MODIFY_PATH`, subsequent operations, like `uv self update`, will not modify your shell profiles.
@@ -37,7 +34,6 @@ In ephemeral environments like CI, use `UV_UNMANAGED_INSTALL` to install uv to a
 
 ```
 $ curl -LsSf https://astral.sh/uv/install.sh | env UV_UNMANAGED_INSTALL="/custom/path" sh
-
 ```
 
 The use of `UV_UNMANAGED_INSTALL` will also disable self-updates (via `uv self update`).
@@ -48,5 +44,4 @@ Using environment variables is recommended because they are consistent across pl
 
 ```
 $ curl -LsSf https://astral.sh/uv/install.sh | sh -s -- --help
-
 ```

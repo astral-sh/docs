@@ -18,7 +18,6 @@ project
 └── app
     ├── __init__.py
     └── main.py
-
 ```
 
 Where the `pyproject.toml` contains:
@@ -42,7 +41,6 @@ dev = [
     # In development mode, include the FastAPI development server.
     "fastapi[standard]>=0.115",
 ]
-
 ```
 
 And the `main.py` file contains:
@@ -65,14 +63,12 @@ handler = Mangum(app)
 @app.get("/")
 async def root() -> str:
     return "Hello, world!"
-
 ```
 
 We can run this application locally with:
 
 ```
 $ uv run fastapi dev
-
 ```
 
 From there, opening <http://127.0.0.1:8000/> in a web browser will display "Hello, world!"
@@ -88,7 +84,7 @@ In the first stage, we'll populate a single directory with all application code 
 Dockerfile
 
 ```
-FROM ghcr.io/astral-sh/uv:0.10.8 AS uv
+FROM ghcr.io/astral-sh/uv:0.10.9 AS uv
 
 # First, bundle the dependencies into the task root.
 FROM public.ecr.aws/lambda/python:3.13 AS builder
@@ -124,7 +120,6 @@ COPY ./app ${LAMBDA_TASK_ROOT}/app
 
 # Set the AWS Lambda handler.
 CMD ["app.main.handler"]
-
 ```
 
 Tip
@@ -136,7 +131,6 @@ We can build the image with, e.g.:
 ```
 $ uv lock
 $ docker build -t fastapi-app .
-
 ```
 
 The core benefits of this Dockerfile structure are as follows:
@@ -163,7 +157,6 @@ Concretely, rebuilding the image after modifying the application source code can
  => exporting to image                                                                                               0.0s
  => => exporting layers                                                                                              0.0s
  => => writing image sha256:6f8f9ef715a7cda466b677a9df4046ebbb90c8e88595242ade3b4771f547652d                         0.0
-
 ```
 
 After building, we can push the image to [Elastic Container Registry (ECR)](https://aws.amazon.com/ecr/) with, e.g.:
@@ -172,7 +165,6 @@ After building, we can push the image to [Elastic Container Registry (ECR)](http
 $ aws ecr get-login-password --region region | docker login --username AWS --password-stdin aws_account_id.dkr.ecr.region.amazonaws.com
 $ docker tag fastapi-app:latest aws_account_id.dkr.ecr.region.amazonaws.com/fastapi-app:latest
 $ docker push aws_account_id.dkr.ecr.region.amazonaws.com/fastapi-app:latest
-
 ```
 
 Finally, we can deploy the image to AWS Lambda using the AWS Management Console or the AWS CLI, e.g.:
@@ -183,7 +175,6 @@ $ aws lambda create-function \
    --package-type Image \
    --code ImageUri=aws_account_id.dkr.ecr.region.amazonaws.com/fastapi-app:latest \
    --role arn:aws:iam::111122223333:role/my-lambda-role
-
 ```
 
 Where the [execution role](https://docs.aws.amazon.com/lambda/latest/dg/lambda-intro-execution-role.html#permissions-executionrole-api) is created via:
@@ -192,7 +183,6 @@ Where the [execution role](https://docs.aws.amazon.com/lambda/latest/dg/lambda-i
 $ aws iam create-role \
    --role-name my-lambda-role \
    --assume-role-policy-document '{"Version": "2012-10-17", "Statement": [{ "Effect": "Allow", "Principal": {"Service": "lambda.amazonaws.com"}, "Action": "sts:AssumeRole"}]}'
-
 ```
 
 Or, update an existing function with:
@@ -202,7 +192,6 @@ $ aws lambda update-function-code \
    --function-name myFunction \
    --image-uri aws_account_id.dkr.ecr.region.amazonaws.com/fastapi-app:latest \
    --publish
-
 ```
 
 To test the Lambda, we can invoke it via the AWS Management Console or the AWS CLI, e.g.:
@@ -217,7 +206,6 @@ $ aws lambda invoke \
   "StatusCode": 200,
   "ExecutedVersion": "$LATEST"
 }
-
 ```
 
 Where `event.json` contains the event payload to pass to the Lambda function:
@@ -231,7 +219,6 @@ event.json
   "requestContext": {},
   "version": "1.0"
 }
-
 ```
 
 And `response.json` contains the response from the Lambda function:
@@ -249,7 +236,6 @@ response.json
   "body": "\"Hello, world!\"",
   "isBase64Encoded": false
 }
-
 ```
 
 For details, see the [AWS Lambda documentation](https://docs.aws.amazon.com/lambda/latest/dg/python-image.html).
@@ -265,7 +251,6 @@ First, we'll create the library itself:
 ```
 $ uv init --lib library
 $ uv add ./library
-
 ```
 
 Running `uv init` within the `project` directory will automatically convert `project` to a workspace and add `library` as a workspace member:
@@ -297,7 +282,6 @@ members = ["library"]
 
 [tool.uv.sources]
 lib = { workspace = true }
-
 ```
 
 By default, `uv init --lib` will create a package that exports a `hello` function. We'll modify the application source code to call that function:
@@ -322,14 +306,12 @@ handler = Mangum(app)
 @app.get("/")
 async def root() -> str:
     return hello()
-
 ```
 
 We can run the modified application locally with:
 
 ```
 $ uv run fastapi dev
-
 ```
 
 And confirm that opening <http://127.0.0.1:8000/> in a web browser displays, "Hello from library!" (instead of "Hello, World!")
@@ -339,7 +321,7 @@ Finally, we'll update the Dockerfile to include the local library in the deploym
 Dockerfile
 
 ```
-FROM ghcr.io/astral-sh/uv:0.10.8 AS uv
+FROM ghcr.io/astral-sh/uv:0.10.9 AS uv
 
 # First, bundle the dependencies into the task root.
 FROM public.ecr.aws/lambda/python:3.13 AS builder
@@ -388,7 +370,6 @@ COPY ./app ${LAMBDA_TASK_ROOT}/app
 
 # Set the AWS Lambda handler.
 CMD ["app.main.handler"]
-
 ```
 
 Tip
@@ -412,7 +393,6 @@ $ uv pip install \
    --python 3.13 \
    --target packages \
    -r requirements.txt
-
 ```
 
 Tip
@@ -425,14 +405,12 @@ Following the [AWS Lambda documentation](https://docs.aws.amazon.com/lambda/late
 $ cd packages
 $ zip -r ../package.zip .
 $ cd ..
-
 ```
 
 Finally, we can add the application code to the zip archive:
 
 ```
 $ zip -r package.zip app
-
 ```
 
 We can then deploy the zip archive to AWS Lambda via the AWS Management Console or the AWS CLI, e.g.:
@@ -444,7 +422,6 @@ $ aws lambda create-function \
    --zip-file fileb://package.zip \
    --handler app.main.handler \
    --role arn:aws:iam::111122223333:role/service-role/my-lambda-role
-
 ```
 
 Where the [execution role](https://docs.aws.amazon.com/lambda/latest/dg/lambda-intro-execution-role.html#permissions-executionrole-api) is created via:
@@ -453,7 +430,6 @@ Where the [execution role](https://docs.aws.amazon.com/lambda/latest/dg/lambda-i
 $ aws iam create-role \
    --role-name my-lambda-role \
    --assume-role-policy-document '{"Version": "2012-10-17", "Statement": [{ "Effect": "Allow", "Principal": {"Service": "lambda.amazonaws.com"}, "Action": "sts:AssumeRole"}]}'
-
 ```
 
 Or, update an existing function with:
@@ -462,7 +438,6 @@ Or, update an existing function with:
 $ aws lambda update-function-code \
    --function-name myFunction \
    --zip-file fileb://package.zip
-
 ```
 
 Note
@@ -481,7 +456,6 @@ $ aws lambda invoke \
   "StatusCode": 200,
   "ExecutedVersion": "$LATEST"
 }
-
 ```
 
 Where `event.json` contains the event payload to pass to the Lambda function:
@@ -495,7 +469,6 @@ event.json
   "requestContext": {},
   "version": "1.0"
 }
-
 ```
 
 And `response.json` contains the response from the Lambda function:
@@ -513,7 +486,6 @@ response.json
   "body": "\"Hello, world!\"",
   "isBase64Encoded": false
 }
-
 ```
 
 ### [Using a Lambda layer](#using-a-lambda-layer)
@@ -535,7 +507,6 @@ $ uv pip install \
    --python 3.13 \
    --prefix packages \
    -r requirements.txt
-
 ```
 
 We'll then zip the dependencies in adherence with the expected layout for Lambda layers:
@@ -544,7 +515,6 @@ We'll then zip the dependencies in adherence with the expected layout for Lambda
 $ mkdir python
 $ cp -r packages/lib python/
 $ zip -r layer_content.zip python
-
 ```
 
 Tip
@@ -558,7 +528,6 @@ $ aws lambda publish-layer-version --layer-name dependencies-layer \
    --zip-file fileb://layer_content.zip \
    --compatible-runtimes python3.13 \
    --compatible-architectures "x86_64"
-
 ```
 
 We can then create the Lambda function as in the previous example, omitting the dependencies:
@@ -574,7 +543,6 @@ $ aws lambda create-function \
    --zip-file fileb://app.zip \
    --handler app.main.handler \
    --role arn:aws:iam::111122223333:role/service-role/my-lambda-role
-
 ```
 
 Finally, we can attach the dependencies layer to the Lambda function, using the ARN returned by the `publish-layer-version` step:
@@ -583,7 +551,6 @@ Finally, we can attach the dependencies layer to the Lambda function, using the 
 $ aws lambda update-function-configuration --function-name myFunction \
     --cli-binary-format raw-in-base64-out \
     --layers "arn:aws:lambda:region:111122223333:layer:dependencies-layer:1"
-
 ```
 
 When the application dependencies change, the layer can be updated independently of the application by republishing the layer and updating the Lambda function configuration:
@@ -599,5 +566,4 @@ $ # Update the Lambda function configuration.
 $ aws lambda update-function-configuration --function-name myFunction \
     --cli-binary-format raw-in-base64-out \
     --layers "arn:aws:lambda:region:111122223333:layer:dependencies-layer:2"
-
 ```

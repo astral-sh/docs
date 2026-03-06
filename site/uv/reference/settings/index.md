@@ -25,7 +25,6 @@ pyproject.toml
 # Ensure that the setuptools v60.0.0 is used whenever a package has a build dependency
 # on setuptools.
 build-constraint-dependencies = ["setuptools==60.0.0"]
-
 ```
 
 ______________________________________________________________________
@@ -66,7 +65,6 @@ conflicts = [
         { group = "group2" },
     ]
 ]
-
 ```
 
 ______________________________________________________________________
@@ -96,7 +94,6 @@ pyproject.toml
 # Ensure that the grpcio version is always less than 1.65, if it's requested by a
 # direct or transitive dependency.
 constraint-dependencies = ["grpcio<1.65"]
-
 ```
 
 ______________________________________________________________________
@@ -118,7 +115,6 @@ pyproject.toml
 ```
 [tool.uv]
 default-groups = ["docs"]
-
 ```
 
 ______________________________________________________________________
@@ -142,7 +138,6 @@ pyproject.toml
 ```
 [tool.uv.dependency-groups]
 my-group = {requires-python = ">=3.12"}
-
 ```
 
 ______________________________________________________________________
@@ -166,7 +161,6 @@ pyproject.toml
 ```
 [tool.uv]
 dev-dependencies = ["ruff==0.5.0"]
-
 ```
 
 ______________________________________________________________________
@@ -191,7 +185,6 @@ pyproject.toml
 [tool.uv]
 # Resolve for macOS, but not for Linux or Windows.
 environments = ["sys_platform == 'darwin'"]
-
 ```
 
 ______________________________________________________________________
@@ -220,7 +213,6 @@ pyproject.toml
 [tool.uv]
 # Exclude Werkzeug from being installed, even if transitive dependencies request it.
 exclude-dependencies = ["werkzeug"]
-
 ```
 
 ______________________________________________________________________
@@ -243,7 +235,6 @@ explicit = true
 
 [tool.uv.sources]
 torch = { index = "pytorch" }
-
 ```
 
 If an index is marked as `default = true`, it will be moved to the end of the prioritized list, such that it is given the lowest priority when resolving packages. Additionally, marking an index as default will disable the PyPI default index.
@@ -260,7 +251,6 @@ pyproject.toml
 [[tool.uv.index]]
 name = "pytorch"
 url = "https://download.pytorch.org/whl/cu121"
-
 ```
 
 ______________________________________________________________________
@@ -280,7 +270,6 @@ pyproject.toml
 ```
 [tool.uv]
 managed = false
-
 ```
 
 ______________________________________________________________________
@@ -312,7 +301,6 @@ pyproject.toml
 # Always install Werkzeug 2.3.0, regardless of whether transitive dependencies request
 # a different version.
 override-dependencies = ["werkzeug==2.3.0"]
-
 ```
 
 ______________________________________________________________________
@@ -336,7 +324,6 @@ pyproject.toml
 ```
 [tool.uv]
 package = false
-
 ```
 
 ______________________________________________________________________
@@ -363,12 +350,15 @@ pyproject.toml
 
 ```
 [tool.uv]
-# Require that the package is available for macOS ARM and x86 (Intel).
+# Require that the package is available on the following platforms:
 required-environments = [
+    # macOS on Apple Silicon (ARM)
     "sys_platform == 'darwin' and platform_machine == 'arm64'",
-    "sys_platform == 'darwin' and platform_machine == 'x86_64'",
+    # Linux on x86_64 (Intel/AMD)
+    "sys_platform == 'linux' and platform_machine == 'x86_64'",
+    # Windows on x86_64 (Intel/AMD)
+    "sys_platform == 'win32' and platform_machine == 'AMD64'",
 ]
-
 ```
 
 ______________________________________________________________________
@@ -394,7 +384,6 @@ pyproject.toml
 httpx = { git = "https://github.com/encode/httpx", tag = "0.27.0" }
 pytest = { url = "https://files.pythonhosted.org/packages/6b/77/7440a06a8ead44c7757a64362dd22df5760f9b12dc5f11b6188cd2fc27a0/pytest-8.3.3-py3-none-any.whl" }
 pydantic = { path = "/path/to/pydantic", editable = true }
-
 ```
 
 ______________________________________________________________________
@@ -434,7 +423,6 @@ pyproject.toml
 ```
 [tool.uv.build-backend]
 data = { headers = "include/headers", scripts = "bin" }
-
 ```
 
 ______________________________________________________________________
@@ -456,7 +444,6 @@ pyproject.toml
 ```
 [tool.uv.build-backend]
 default-excludes = false
-
 ```
 
 ______________________________________________________________________
@@ -486,7 +473,6 @@ pyproject.toml
 ```
 [tool.uv.build-backend]
 module-name = "sklearn"
-
 ```
 
 ______________________________________________________________________
@@ -508,7 +494,6 @@ pyproject.toml
 ```
 [tool.uv.build-backend]
 module-root = ""
-
 ```
 
 ______________________________________________________________________
@@ -533,7 +518,6 @@ src
         └── sql
             ├── parser.py
             └── __init__.py
-
 ```
 
 ```
@@ -554,7 +538,6 @@ src
         └── database_pro
             ├── __init__.py
             └── sql.py
-
 ```
 
 **Default value**: `false`
@@ -568,7 +551,6 @@ pyproject.toml
 ```
 [tool.uv.build-backend]
 namespace = true
-
 ```
 
 ______________________________________________________________________
@@ -590,7 +572,6 @@ pyproject.toml
 ```
 [tool.uv.build-backend]
 source-exclude = ["*.bin"]
-
 ```
 
 ______________________________________________________________________
@@ -612,7 +593,6 @@ pyproject.toml
 ```
 [tool.uv.build-backend]
 source-include = ["tests/**"]
-
 ```
 
 ______________________________________________________________________
@@ -632,7 +612,6 @@ pyproject.toml
 ```
 [tool.uv.build-backend]
 wheel-exclude = ["*.bin"]
-
 ```
 
 ______________________________________________________________________
@@ -658,7 +637,6 @@ pyproject.toml
 ```
 [tool.uv.workspace]
 exclude = ["member1", "path/to/member2", "libs/*"]
-
 ```
 
 ______________________________________________________________________
@@ -682,7 +660,6 @@ pyproject.toml
 ```
 [tool.uv.workspace]
 members = ["member1", "path/to/member2", "libs/*"]
-
 ```
 
 ______________________________________________________________________
@@ -713,12 +690,10 @@ This option is in preview and may change in any future release.
 ```
 [tool.uv]
 add-bounds = "major"
-
 ```
 
 ```
 add-bounds = "major"
-
 ```
 
 ______________________________________________________________________
@@ -740,12 +715,10 @@ WARNING: Hosts included in this list will not be verified against the system's c
 ```
 [tool.uv]
 allow-insecure-host = ["localhost:8080"]
-
 ```
 
 ```
 allow-insecure-host = ["localhost:8080"]
-
 ```
 
 ______________________________________________________________________
@@ -766,7 +739,6 @@ uv.toml
 
 ```
 cache-dir = "./.uv_cache"
-
 ```
 
 ______________________________________________________________________
@@ -779,7 +751,6 @@ Cache keys enable you to specify the files or directories that should trigger a 
 
 ```
 cache-keys = [{ file = "pyproject.toml" }, { file = "setup.py" }, { file = "setup.cfg" }, { dir = "src" }]
-
 ```
 
 As an example: if a project uses dynamic metadata to read its dependencies from a `requirements.txt` file, you can specify `cache-keys = [{ file = "requirements.txt" }, { file = "pyproject.toml" }]` to ensure that the project is rebuilt whenever the `requirements.txt` file is modified (in addition to watching the `pyproject.toml`).
@@ -801,12 +772,10 @@ Cache keys only affect the project defined by the `pyproject.toml` in which they
 ```
 [tool.uv]
 cache-keys = [{ file = "pyproject.toml" }, { file = "requirements.txt" }, { git = { commit = true } }]
-
 ```
 
 ```
 cache-keys = [{ file = "pyproject.toml" }, { file = "requirements.txt" }, { git = { commit = true } }]
-
 ```
 
 ______________________________________________________________________
@@ -832,12 +801,10 @@ The index must provide one of the supported hashes (SHA-256, SHA-384, or SHA-512
 ```
 [tool.uv]
 check-url = "https://test.pypi.org/simple"
-
 ```
 
 ```
 check-url = "https://test.pypi.org/simple"
-
 ```
 
 ______________________________________________________________________
@@ -859,12 +826,10 @@ When enabled, uv will process the entire site-packages directory (including pack
 ```
 [tool.uv]
 compile-bytecode = true
-
 ```
 
 ```
 compile-bytecode = true
-
 ```
 
 ______________________________________________________________________
@@ -884,12 +849,10 @@ Defaults to the number of available CPU cores.
 ```
 [tool.uv]
 concurrent-builds = 4
-
 ```
 
 ```
 concurrent-builds = 4
-
 ```
 
 ______________________________________________________________________
@@ -907,12 +870,10 @@ The maximum number of in-flight concurrent downloads that uv will perform at any
 ```
 [tool.uv]
 concurrent-downloads = 4
-
 ```
 
 ```
 concurrent-downloads = 4
-
 ```
 
 ______________________________________________________________________
@@ -932,12 +893,10 @@ Defaults to the number of available CPU cores.
 ```
 [tool.uv]
 concurrent-installs = 4
-
 ```
 
 ```
 concurrent-installs = 4
-
 ```
 
 ______________________________________________________________________
@@ -955,12 +914,10 @@ Settings to pass to the [PEP 517](https://peps.python.org/pep-0517/) build backe
 ```
 [tool.uv]
 config-settings = { editable_mode = "compat" }
-
 ```
 
 ```
 config-settings = { editable_mode = "compat" }
-
 ```
 
 ______________________________________________________________________
@@ -980,12 +937,10 @@ Accepts a map from package names to string key-value pairs.
 ```
 [tool.uv]
 config-settings-package = { numpy = { editable_mode = "compat" } }
-
 ```
 
 ```
 config-settings-package = { numpy = { editable_mode = "compat" } }
-
 ```
 
 ______________________________________________________________________
@@ -1013,14 +968,12 @@ Metadata should be provided in adherence with the [Metadata 2.3](https://packagi
 dependency-metadata = [
     { name = "flask", version = "1.0.0", requires-dist = ["werkzeug"], requires-python = ">=3.6" },
 ]
-
 ```
 
 ```
 dependency-metadata = [
     { name = "flask", version = "1.0.0", requires-dist = ["werkzeug"], requires-python = ">=3.6" },
 ]
-
 ```
 
 ______________________________________________________________________
@@ -1042,12 +995,10 @@ Durations do not respect semantics of the local time zone and are always resolve
 ```
 [tool.uv]
 exclude-newer = "2006-12-02T02:07:43Z"
-
 ```
 
 ```
 exclude-newer = "2006-12-02T02:07:43Z"
-
 ```
 
 ______________________________________________________________________
@@ -1069,12 +1020,10 @@ Durations do not respect semantics of the local time zone and are always resolve
 ```
 [tool.uv]
 exclude-newer-package = { tqdm = "2022-04-04T00:00:00Z" }
-
 ```
 
 ```
 exclude-newer-package = { tqdm = "2022-04-04T00:00:00Z" }
-
 ```
 
 ______________________________________________________________________
@@ -1094,12 +1043,10 @@ This allows extending the PEP 517 build environment for the project's dependenci
 ```
 [tool.uv]
 extra-build-dependencies = { pytest = ["setuptools"] }
-
 ```
 
 ```
 extra-build-dependencies = { pytest = ["setuptools"] }
-
 ```
 
 ______________________________________________________________________
@@ -1119,12 +1066,10 @@ Environment variables will be added to the environment when building the specifi
 ```
 [tool.uv]
 extra-build-variables = { flash-attn = { FLASH_ATTENTION_SKIP_CUDA_BUILD = "TRUE" } }
-
 ```
 
 ```
 extra-build-variables = { flash-attn = { FLASH_ATTENTION_SKIP_CUDA_BUILD = "TRUE" } }
-
 ```
 
 ______________________________________________________________________
@@ -1150,12 +1095,10 @@ To control uv's resolution strategy when multiple indexes are present, see [`ind
 ```
 [tool.uv]
 extra-index-url = ["https://download.pytorch.org/whl/cpu"]
-
 ```
 
 ```
 extra-index-url = ["https://download.pytorch.org/whl/cpu"]
-
 ```
 
 ______________________________________________________________________
@@ -1177,12 +1120,10 @@ If a URL, the page must contain a flat list of links to package files adhering t
 ```
 [tool.uv]
 find-links = ["https://download.pytorch.org/whl/torch_stable.html"]
-
 ```
 
 ```
 find-links = ["https://download.pytorch.org/whl/torch_stable.html"]
-
 ```
 
 ______________________________________________________________________
@@ -1207,12 +1148,10 @@ Under `fewest`, uv will minimize the number of selected versions for each packag
 ```
 [tool.uv]
 fork-strategy = "fewest"
-
 ```
 
 ```
 fork-strategy = "fewest"
-
 ```
 
 ______________________________________________________________________
@@ -1231,7 +1170,6 @@ uv.toml
 
 ```
 http-proxy = "http://proxy.example.com"
-
 ```
 
 ______________________________________________________________________
@@ -1250,7 +1188,6 @@ uv.toml
 
 ```
 https-proxy = "https://proxy.example.com"
-
 ```
 
 ______________________________________________________________________
@@ -1273,7 +1210,6 @@ explicit = true
 
 [tool.uv.sources]
 torch = { index = "pytorch" }
-
 ```
 
 If an index is marked as `default = true`, it will be moved to the end of the prioritized list, such that it is given the lowest priority when resolving packages. Additionally, marking an index as default will disable the PyPI default index.
@@ -1288,14 +1224,12 @@ If an index is marked as `default = true`, it will be moved to the end of the pr
 [[tool.uv.index]]
 name = "pytorch"
 url = "https://download.pytorch.org/whl/cu121"
-
 ```
 
 ```
 [[tool.uv.index]]
 name = "pytorch"
 url = "https://download.pytorch.org/whl/cu121"
-
 ```
 
 ______________________________________________________________________
@@ -1319,12 +1253,10 @@ By default, uv will stop at the first index on which a given package is availabl
 ```
 [tool.uv]
 index-strategy = "unsafe-best-match"
-
 ```
 
 ```
 index-strategy = "unsafe-best-match"
-
 ```
 
 ______________________________________________________________________
@@ -1348,12 +1280,10 @@ The index provided by this setting is given lower priority than any indexes spec
 ```
 [tool.uv]
 index-url = "https://test.pypi.org/simple"
-
 ```
 
 ```
 index-url = "https://test.pypi.org/simple"
-
 ```
 
 ______________________________________________________________________
@@ -1373,12 +1303,10 @@ At present, only `--keyring-provider subprocess` is supported, which configures 
 ```
 [tool.uv]
 keyring-provider = "subprocess"
-
 ```
 
 ```
 keyring-provider = "subprocess"
-
 ```
 
 ______________________________________________________________________
@@ -1405,12 +1333,10 @@ WARNING: The use of symlink link mode is discouraged, as they create tight coupl
 ```
 [tool.uv]
 link-mode = "copy"
-
 ```
 
 ```
 link-mode = "copy"
-
 ```
 
 ______________________________________________________________________
@@ -1433,7 +1359,6 @@ uv.toml
 
 ```
 native-tls = true
-
 ```
 
 ______________________________________________________________________
@@ -1453,12 +1378,10 @@ The given packages will be built and installed from source. The resolver will st
 ```
 [tool.uv]
 no-binary = true
-
 ```
 
 ```
 no-binary = true
-
 ```
 
 ______________________________________________________________________
@@ -1476,12 +1399,10 @@ Don't install pre-built wheels for a specific package.
 ```
 [tool.uv]
 no-binary-package = ["ruff"]
-
 ```
 
 ```
 no-binary-package = ["ruff"]
-
 ```
 
 ______________________________________________________________________
@@ -1501,12 +1422,10 @@ When enabled, resolving will not run arbitrary Python code. The cached wheels of
 ```
 [tool.uv]
 no-build = true
-
 ```
 
 ```
 no-build = true
-
 ```
 
 ______________________________________________________________________
@@ -1526,12 +1445,10 @@ Assumes that build dependencies specified by [PEP 518](https://peps.python.org/p
 ```
 [tool.uv]
 no-build-isolation = true
-
 ```
 
 ```
 no-build-isolation = true
-
 ```
 
 ______________________________________________________________________
@@ -1551,12 +1468,10 @@ Assumes that the packages' build dependencies specified by [PEP 518](https://pep
 ```
 [tool.uv]
 no-build-isolation-package = ["package1", "package2"]
-
 ```
 
 ```
 no-build-isolation-package = ["package1", "package2"]
-
 ```
 
 ______________________________________________________________________
@@ -1574,12 +1489,10 @@ Don't build source distributions for a specific package.
 ```
 [tool.uv]
 no-build-package = ["ruff"]
-
 ```
 
 ```
 no-build-package = ["ruff"]
-
 ```
 
 ______________________________________________________________________
@@ -1597,12 +1510,10 @@ Avoid reading from or writing to the cache, instead using a temporary directory 
 ```
 [tool.uv]
 no-cache = true
-
 ```
 
 ```
 no-cache = true
-
 ```
 
 ______________________________________________________________________
@@ -1620,12 +1531,10 @@ Ignore all registry indexes (e.g., PyPI), instead relying on direct URL dependen
 ```
 [tool.uv]
 no-index = true
-
 ```
 
 ```
 no-index = true
-
 ```
 
 ______________________________________________________________________
@@ -1644,7 +1553,6 @@ uv.toml
 
 ```
 no-proxy = ["localhost", "127.0.0.1"]
-
 ```
 
 ______________________________________________________________________
@@ -1662,12 +1570,10 @@ Ignore the `tool.uv.sources` table when resolving dependencies. Used to lock aga
 ```
 [tool.uv]
 no-sources = true
-
 ```
 
 ```
 no-sources = true
-
 ```
 
 ______________________________________________________________________
@@ -1685,12 +1591,10 @@ Ignore `tool.uv.sources` for the specified packages.
 ```
 [tool.uv]
 no-sources-package = ["ruff"]
-
 ```
 
 ```
 no-sources-package = ["ruff"]
-
 ```
 
 ______________________________________________________________________
@@ -1708,12 +1612,10 @@ Disable network access, relying only on locally cached data and locally availabl
 ```
 [tool.uv]
 offline = true
-
 ```
 
 ```
 offline = true
-
 ```
 
 ______________________________________________________________________
@@ -1739,12 +1641,10 @@ By default, uv will accept pre-releases for packages that *only* publish pre-rel
 ```
 [tool.uv]
 prerelease = "allow"
-
 ```
 
 ```
 prerelease = "allow"
-
 ```
 
 ______________________________________________________________________
@@ -1762,12 +1662,10 @@ Whether to enable experimental, preview features.
 ```
 [tool.uv]
 preview = true
-
 ```
 
 ```
 preview = true
-
 ```
 
 ______________________________________________________________________
@@ -1785,12 +1683,10 @@ The URL for publishing packages to the Python package index (by default: <https:
 ```
 [tool.uv]
 publish-url = "https://test.pypi.org/legacy/"
-
 ```
 
 ```
 publish-url = "https://test.pypi.org/legacy/"
-
 ```
 
 ______________________________________________________________________
@@ -1813,7 +1709,6 @@ uv.toml
 
 ```
 pypy-install-mirror = "https://downloads.python.org/pypy"
-
 ```
 
 ______________________________________________________________________
@@ -1835,12 +1730,10 @@ Whether to allow Python downloads.
 ```
 [tool.uv]
 python-downloads = "manual"
-
 ```
 
 ```
 python-downloads = "manual"
-
 ```
 
 ______________________________________________________________________
@@ -1859,7 +1752,6 @@ uv.toml
 
 ```
 python-downloads-json-url = "/etc/uv/python-downloads.json"
-
 ```
 
 ______________________________________________________________________
@@ -1882,7 +1774,6 @@ uv.toml
 
 ```
 python-install-mirror = "https://github.com/astral-sh/python-build-standalone/releases/download"
-
 ```
 
 ______________________________________________________________________
@@ -1905,12 +1796,10 @@ Whether to prefer using Python installations that are already present on the sys
 ```
 [tool.uv]
 python-preference = "managed"
-
 ```
 
 ```
 python-preference = "managed"
-
 ```
 
 ______________________________________________________________________
@@ -1928,12 +1817,10 @@ Reinstall all packages, regardless of whether they're already installed. Implies
 ```
 [tool.uv]
 reinstall = true
-
 ```
 
 ```
 reinstall = true
-
 ```
 
 ______________________________________________________________________
@@ -1951,12 +1838,10 @@ Reinstall a specific package, regardless of whether it's already installed. Impl
 ```
 [tool.uv]
 reinstall-package = ["ruff"]
-
 ```
 
 ```
 reinstall-package = ["ruff"]
-
 ```
 
 ______________________________________________________________________
@@ -1978,12 +1863,10 @@ Accepts a [PEP 440](https://peps.python.org/pep-0440/) specifier, like `==0.5.0`
 ```
 [tool.uv]
 required-version = ">=0.5.0"
-
 ```
 
 ```
 required-version = ">=0.5.0"
-
 ```
 
 ______________________________________________________________________
@@ -2007,12 +1890,10 @@ By default, uv will use the latest compatible version of each package (`highest`
 ```
 [tool.uv]
 resolution = "lowest-direct"
-
 ```
 
 ```
 resolution = "lowest-direct"
-
 ```
 
 ______________________________________________________________________
@@ -2040,12 +1921,10 @@ This option is in preview and may change in any future release.
 ```
 [tool.uv]
 torch-backend = "auto"
-
 ```
 
 ```
 torch-backend = "auto"
-
 ```
 
 ______________________________________________________________________
@@ -2067,12 +1946,10 @@ uv's supported environments for trusted publishing include GitHub Actions and Gi
 ```
 [tool.uv]
 trusted-publishing = "always"
-
 ```
 
 ```
 trusted-publishing = "always"
-
 ```
 
 ______________________________________________________________________
@@ -2090,12 +1967,10 @@ Allow package upgrades, ignoring pinned versions in any existing output file.
 ```
 [tool.uv]
 upgrade = true
-
 ```
 
 ```
 upgrade = true
-
 ```
 
 ______________________________________________________________________
@@ -2115,12 +1990,10 @@ Accepts both standalone package names (`ruff`) and version specifiers (`ruff<0.5
 ```
 [tool.uv]
 upgrade-package = ["ruff"]
-
 ```
 
 ```
 upgrade-package = ["ruff"]
-
 ```
 
 ______________________________________________________________________
@@ -2146,13 +2019,11 @@ Only applies to `pyproject.toml`, `setup.py`, and `setup.cfg` sources.
 ```
 [tool.uv.pip]
 all-extras = true
-
 ```
 
 ```
 [pip]
 all-extras = true
-
 ```
 
 ______________________________________________________________________
@@ -2170,13 +2041,11 @@ Allow `uv pip sync` with empty requirements, which will clear the environment of
 ```
 [tool.uv.pip]
 allow-empty-requirements = true
-
 ```
 
 ```
 [pip]
 allow-empty-requirements = true
-
 ```
 
 ______________________________________________________________________
@@ -2197,13 +2066,11 @@ The style of the annotation comments included in the output file, used to indica
 ```
 [tool.uv.pip]
 annotation-style = "line"
-
 ```
 
 ```
 [pip]
 annotation-style = "line"
-
 ```
 
 ______________________________________________________________________
@@ -2223,13 +2090,11 @@ WARNING: `--break-system-packages` is intended for use in continuous integration
 ```
 [tool.uv.pip]
 break-system-packages = true
-
 ```
 
 ```
 [pip]
 break-system-packages = true
-
 ```
 
 ______________________________________________________________________
@@ -2251,13 +2116,11 @@ When enabled, uv will process the entire site-packages directory (including pack
 ```
 [tool.uv.pip]
 compile-bytecode = true
-
 ```
 
 ```
 [pip]
 compile-bytecode = true
-
 ```
 
 ______________________________________________________________________
@@ -2275,13 +2138,11 @@ Settings to pass to the [PEP 517](https://peps.python.org/pep-0517/) build backe
 ```
 [tool.uv.pip]
 config-settings = { editable_mode = "compat" }
-
 ```
 
 ```
 [pip]
 config-settings = { editable_mode = "compat" }
-
 ```
 
 ______________________________________________________________________
@@ -2299,13 +2160,11 @@ Settings to pass to the [PEP 517](https://peps.python.org/pep-0517/) build backe
 ```
 [tool.uv.pip]
 config-settings-package = { numpy = { editable_mode = "compat" } }
-
 ```
 
 ```
 [pip]
 config-settings-package = { numpy = { editable_mode = "compat" } }
-
 ```
 
 ______________________________________________________________________
@@ -2325,13 +2184,11 @@ Used to reflect custom build scripts and commands that wrap `uv pip compile`.
 ```
 [tool.uv.pip]
 custom-compile-command = "./custom-uv-compile.sh"
-
 ```
 
 ```
 [pip]
 custom-compile-command = "./custom-uv-compile.sh"
-
 ```
 
 ______________________________________________________________________
@@ -2359,7 +2216,6 @@ Metadata should be provided in adherence with the [Metadata 2.3](https://packagi
 dependency-metadata = [
     { name = "flask", version = "1.0.0", requires-dist = ["werkzeug"], requires-python = ">=3.6" },
 ]
-
 ```
 
 ```
@@ -2367,7 +2223,6 @@ dependency-metadata = [
 dependency-metadata = [
     { name = "flask", version = "1.0.0", requires-dist = ["werkzeug"], requires-python = ">=3.6" },
 ]
-
 ```
 
 ______________________________________________________________________
@@ -2385,13 +2240,11 @@ Include `--no-binary` and `--only-binary` entries in the output file generated b
 ```
 [tool.uv.pip]
 emit-build-options = true
-
 ```
 
 ```
 [pip]
 emit-build-options = true
-
 ```
 
 ______________________________________________________________________
@@ -2409,13 +2262,11 @@ Include `--find-links` entries in the output file generated by `uv pip compile`.
 ```
 [tool.uv.pip]
 emit-find-links = true
-
 ```
 
 ```
 [pip]
 emit-find-links = true
-
 ```
 
 ______________________________________________________________________
@@ -2433,13 +2284,11 @@ Include comment annotations indicating the index used to resolve each package (e
 ```
 [tool.uv.pip]
 emit-index-annotation = true
-
 ```
 
 ```
 [pip]
 emit-index-annotation = true
-
 ```
 
 ______________________________________________________________________
@@ -2457,13 +2306,11 @@ Include `--index-url` and `--extra-index-url` entries in the output file generat
 ```
 [tool.uv.pip]
 emit-index-url = true
-
 ```
 
 ```
 [pip]
 emit-index-url = true
-
 ```
 
 ______________________________________________________________________
@@ -2483,13 +2330,11 @@ The pinned dependencies may be valid even when the marker expression is false, b
 ```
 [tool.uv.pip]
 emit-marker-expression = true
-
 ```
 
 ```
 [pip]
 emit-marker-expression = true
-
 ```
 
 ______________________________________________________________________
@@ -2509,13 +2354,11 @@ Accepts a superset of [RFC 3339](https://www.rfc-editor.org/rfc/rfc3339.html) (e
 ```
 [tool.uv.pip]
 exclude-newer = "2006-12-02T02:07:43Z"
-
 ```
 
 ```
 [pip]
 exclude-newer = "2006-12-02T02:07:43Z"
-
 ```
 
 ______________________________________________________________________
@@ -2535,13 +2378,11 @@ Accepts package-date pairs in a dictionary format.
 ```
 [tool.uv.pip]
 exclude-newer-package = { tqdm = "2022-04-04T00:00:00Z" }
-
 ```
 
 ```
 [pip]
 exclude-newer-package = { tqdm = "2022-04-04T00:00:00Z" }
-
 ```
 
 ______________________________________________________________________
@@ -2561,13 +2402,11 @@ Only applies to `pyproject.toml`, `setup.py`, and `setup.cfg` sources.
 ```
 [tool.uv.pip]
 extra = ["dev", "docs"]
-
 ```
 
 ```
 [pip]
 extra = ["dev", "docs"]
-
 ```
 
 ______________________________________________________________________
@@ -2587,13 +2426,11 @@ This allows extending the PEP 517 build environment for the project's dependenci
 ```
 [tool.uv.pip]
 extra-build-dependencies = { pytest = ["setuptools"] }
-
 ```
 
 ```
 [pip]
 extra-build-dependencies = { pytest = ["setuptools"] }
-
 ```
 
 ______________________________________________________________________
@@ -2613,13 +2450,11 @@ Environment variables will be added to the environment when building the specifi
 ```
 [tool.uv.pip]
 extra-build-variables = { flash-attn = { FLASH_ATTENTION_SKIP_CUDA_BUILD = "TRUE" } }
-
 ```
 
 ```
 [pip]
 extra-build-variables = { flash-attn = { FLASH_ATTENTION_SKIP_CUDA_BUILD = "TRUE" } }
-
 ```
 
 ______________________________________________________________________
@@ -2643,13 +2478,11 @@ To control uv's resolution strategy when multiple indexes are present, see [`ind
 ```
 [tool.uv.pip]
 extra-index-url = ["https://download.pytorch.org/whl/cpu"]
-
 ```
 
 ```
 [pip]
 extra-index-url = ["https://download.pytorch.org/whl/cpu"]
-
 ```
 
 ______________________________________________________________________
@@ -2671,13 +2504,11 @@ If a URL, the page must contain a flat list of links to package files adhering t
 ```
 [tool.uv.pip]
 find-links = ["https://download.pytorch.org/whl/torch_stable.html"]
-
 ```
 
 ```
 [pip]
 find-links = ["https://download.pytorch.org/whl/torch_stable.html"]
-
 ```
 
 ______________________________________________________________________
@@ -2702,13 +2533,11 @@ Under `fewest`, uv will minimize the number of selected versions for each packag
 ```
 [tool.uv.pip]
 fork-strategy = "fewest"
-
 ```
 
 ```
 [pip]
 fork-strategy = "fewest"
-
 ```
 
 ______________________________________________________________________
@@ -2726,13 +2555,11 @@ Include distribution hashes in the output file.
 ```
 [tool.uv.pip]
 generate-hashes = true
-
 ```
 
 ```
 [pip]
 generate-hashes = true
-
 ```
 
 ______________________________________________________________________
@@ -2750,13 +2577,11 @@ Include the following dependency groups.
 ```
 [tool.uv.pip]
 group = ["dev", "docs"]
-
 ```
 
 ```
 [pip]
 group = ["dev", "docs"]
-
 ```
 
 ______________________________________________________________________
@@ -2780,13 +2605,11 @@ By default, uv will stop at the first index on which a given package is availabl
 ```
 [tool.uv.pip]
 index-strategy = "unsafe-best-match"
-
 ```
 
 ```
 [pip]
 index-strategy = "unsafe-best-match"
-
 ```
 
 ______________________________________________________________________
@@ -2808,13 +2631,11 @@ The index provided by this setting is given lower priority than any indexes spec
 ```
 [tool.uv.pip]
 index-url = "https://test.pypi.org/simple"
-
 ```
 
 ```
 [pip]
 index-url = "https://test.pypi.org/simple"
-
 ```
 
 ______________________________________________________________________
@@ -2834,13 +2655,11 @@ At present, only `--keyring-provider subprocess` is supported, which configures 
 ```
 [tool.uv.pip]
 keyring-provider = "subprocess"
-
 ```
 
 ```
 [pip]
 keyring-provider = "subprocess"
-
 ```
 
 ______________________________________________________________________
@@ -2867,13 +2686,11 @@ WARNING: The use of symlink link mode is discouraged, as they create tight coupl
 ```
 [tool.uv.pip]
 link-mode = "copy"
-
 ```
 
 ```
 [pip]
 link-mode = "copy"
-
 ```
 
 ______________________________________________________________________
@@ -2891,13 +2708,11 @@ Exclude comment annotations indicating the source of each package from the outpu
 ```
 [tool.uv.pip]
 no-annotate = true
-
 ```
 
 ```
 [pip]
 no-annotate = true
-
 ```
 
 ______________________________________________________________________
@@ -2919,13 +2734,11 @@ Multiple packages may be provided. Disable binaries for all packages with `:all:
 ```
 [tool.uv.pip]
 no-binary = ["ruff"]
-
 ```
 
 ```
 [pip]
 no-binary = ["ruff"]
-
 ```
 
 ______________________________________________________________________
@@ -2947,13 +2760,11 @@ Alias for `--only-binary :all:`.
 ```
 [tool.uv.pip]
 no-build = true
-
 ```
 
 ```
 [pip]
 no-build = true
-
 ```
 
 ______________________________________________________________________
@@ -2973,13 +2784,11 @@ Assumes that build dependencies specified by [PEP 518](https://peps.python.org/p
 ```
 [tool.uv.pip]
 no-build-isolation = true
-
 ```
 
 ```
 [pip]
 no-build-isolation = true
-
 ```
 
 ______________________________________________________________________
@@ -2999,13 +2808,11 @@ Assumes that the packages' build dependencies specified by [PEP 518](https://pep
 ```
 [tool.uv.pip]
 no-build-isolation-package = ["package1", "package2"]
-
 ```
 
 ```
 [pip]
 no-build-isolation-package = ["package1", "package2"]
-
 ```
 
 ______________________________________________________________________
@@ -3023,13 +2830,11 @@ Ignore package dependencies, instead only add those packages explicitly listed o
 ```
 [tool.uv.pip]
 no-deps = true
-
 ```
 
 ```
 [pip]
 no-deps = true
-
 ```
 
 ______________________________________________________________________
@@ -3047,13 +2852,11 @@ Specify a package to omit from the output resolution. Its dependencies will stil
 ```
 [tool.uv.pip]
 no-emit-package = ["ruff"]
-
 ```
 
 ```
 [pip]
 no-emit-package = ["ruff"]
-
 ```
 
 ______________________________________________________________________
@@ -3072,14 +2875,12 @@ Exclude the specified optional dependencies if `all-extras` is supplied.
 [tool.uv.pip]
 all-extras = true
 no-extra = ["dev", "docs"]
-
 ```
 
 ```
 [pip]
 all-extras = true
 no-extra = ["dev", "docs"]
-
 ```
 
 ______________________________________________________________________
@@ -3097,13 +2898,11 @@ Exclude the comment header at the top of output file generated by `uv pip compil
 ```
 [tool.uv.pip]
 no-header = true
-
 ```
 
 ```
 [pip]
 no-header = true
-
 ```
 
 ______________________________________________________________________
@@ -3121,13 +2920,11 @@ Ignore all registry indexes (e.g., PyPI), instead relying on direct URL dependen
 ```
 [tool.uv.pip]
 no-index = true
-
 ```
 
 ```
 [pip]
 no-index = true
-
 ```
 
 ______________________________________________________________________
@@ -3145,13 +2942,11 @@ Ignore the `tool.uv.sources` table when resolving dependencies. Used to lock aga
 ```
 [tool.uv.pip]
 no-sources = true
-
 ```
 
 ```
 [pip]
 no-sources = true
-
 ```
 
 ______________________________________________________________________
@@ -3169,13 +2964,11 @@ Ignore `tool.uv.sources` for the specified packages.
 ```
 [tool.uv.pip]
 no-sources-package = ["ruff"]
-
 ```
 
 ```
 [pip]
 no-sources-package = ["ruff"]
-
 ```
 
 ______________________________________________________________________
@@ -3195,13 +2988,11 @@ By default, uv strips extras, as any packages pulled in by the extras are alread
 ```
 [tool.uv.pip]
 no-strip-extras = true
-
 ```
 
 ```
 [pip]
 no-strip-extras = true
-
 ```
 
 ______________________________________________________________________
@@ -3221,13 +3012,11 @@ By default, uv strips environment markers, as the resolution generated by `compi
 ```
 [tool.uv.pip]
 no-strip-markers = true
-
 ```
 
 ```
 [pip]
 no-strip-markers = true
-
 ```
 
 ______________________________________________________________________
@@ -3249,13 +3038,11 @@ Multiple packages may be provided. Disable binaries for all packages with `:all:
 ```
 [tool.uv.pip]
 only-binary = ["ruff"]
-
 ```
 
 ```
 [pip]
 only-binary = ["ruff"]
-
 ```
 
 ______________________________________________________________________
@@ -3275,13 +3062,11 @@ If the file already exists, the existing versions will be preferred when resolvi
 ```
 [tool.uv.pip]
 output-file = "requirements.txt"
-
 ```
 
 ```
 [pip]
 output-file = "requirements.txt"
-
 ```
 
 ______________________________________________________________________
@@ -3301,13 +3086,11 @@ In general, prefer the use of `--python` to install into an alternate environmen
 ```
 [tool.uv.pip]
 prefix = "./prefix"
-
 ```
 
 ```
 [pip]
 prefix = "./prefix"
-
 ```
 
 ______________________________________________________________________
@@ -3333,13 +3116,11 @@ By default, uv will accept pre-releases for packages that *only* publish pre-rel
 ```
 [tool.uv.pip]
 prerelease = "allow"
-
 ```
 
 ```
 [pip]
 prerelease = "allow"
-
 ```
 
 ______________________________________________________________________
@@ -3365,13 +3146,11 @@ Supported formats:
 ```
 [tool.uv.pip]
 python = "3.10"
-
 ```
 
 ```
 [pip]
 python = "3.10"
-
 ```
 
 ______________________________________________________________________
@@ -3391,13 +3170,11 @@ Represented as a "target triple", a string that describes the target platform in
 ```
 [tool.uv.pip]
 python-platform = "x86_64-unknown-linux-gnu"
-
 ```
 
 ```
 [pip]
 python-platform = "x86_64-unknown-linux-gnu"
-
 ```
 
 ______________________________________________________________________
@@ -3417,13 +3194,11 @@ If a patch version is omitted, the minimum patch version is assumed. For example
 ```
 [tool.uv.pip]
 python-version = "3.8"
-
 ```
 
 ```
 [pip]
 python-version = "3.8"
-
 ```
 
 ______________________________________________________________________
@@ -3441,13 +3216,11 @@ Reinstall all packages, regardless of whether they're already installed. Implies
 ```
 [tool.uv.pip]
 reinstall = true
-
 ```
 
 ```
 [pip]
 reinstall = true
-
 ```
 
 ______________________________________________________________________
@@ -3465,13 +3238,11 @@ Reinstall a specific package, regardless of whether it's already installed. Impl
 ```
 [tool.uv.pip]
 reinstall-package = ["ruff"]
-
 ```
 
 ```
 [pip]
 reinstall-package = ["ruff"]
-
 ```
 
 ______________________________________________________________________
@@ -3497,13 +3268,11 @@ Hash-checking mode introduces a number of additional constraints:
 ```
 [tool.uv.pip]
 require-hashes = true
-
 ```
 
 ```
 [pip]
 require-hashes = true
-
 ```
 
 ______________________________________________________________________
@@ -3527,13 +3296,11 @@ By default, uv will use the latest compatible version of each package (`highest`
 ```
 [tool.uv.pip]
 resolution = "lowest-direct"
-
 ```
 
 ```
 [pip]
 resolution = "lowest-direct"
-
 ```
 
 ______________________________________________________________________
@@ -3551,13 +3318,11 @@ Validate the Python environment, to detect packages with missing dependencies an
 ```
 [tool.uv.pip]
 strict = true
-
 ```
 
 ```
 [pip]
 strict = true
-
 ```
 
 ______________________________________________________________________
@@ -3579,13 +3344,11 @@ WARNING: `--system` is intended for use in continuous integration (CI) environme
 ```
 [tool.uv.pip]
 system = true
-
 ```
 
 ```
 [pip]
 system = true
-
 ```
 
 ______________________________________________________________________
@@ -3603,13 +3366,11 @@ Install packages into the specified directory, rather than into the virtual or s
 ```
 [tool.uv.pip]
 target = "./target"
-
 ```
 
 ```
 [pip]
 target = "./target"
-
 ```
 
 ______________________________________________________________________
@@ -3637,13 +3398,11 @@ This option is in preview and may change in any future release.
 ```
 [tool.uv.pip]
 torch-backend = "auto"
-
 ```
 
 ```
 [pip]
 torch-backend = "auto"
-
 ```
 
 ______________________________________________________________________
@@ -3663,13 +3422,11 @@ In universal mode, the current Python version (or user-provided `--python-versio
 ```
 [tool.uv.pip]
 universal = true
-
 ```
 
 ```
 [pip]
 universal = true
-
 ```
 
 ______________________________________________________________________
@@ -3687,13 +3444,11 @@ Allow package upgrades, ignoring pinned versions in any existing output file.
 ```
 [tool.uv.pip]
 upgrade = true
-
 ```
 
 ```
 [pip]
 upgrade = true
-
 ```
 
 ______________________________________________________________________
@@ -3713,13 +3468,11 @@ Accepts both standalone package names (`ruff`) and version specifiers (`ruff<0.5
 ```
 [tool.uv.pip]
 upgrade-package = ["ruff"]
-
 ```
 
 ```
 [pip]
 upgrade-package = ["ruff"]
-
 ```
 
 ______________________________________________________________________
@@ -3739,13 +3492,11 @@ Unlike `--require-hashes`, `--verify-hashes` does not require that all requireme
 ```
 [tool.uv.pip]
 verify-hashes = true
-
 ```
 
 ```
 [pip]
 verify-hashes = true
-
 ```
 
 ______________________________________________________________________

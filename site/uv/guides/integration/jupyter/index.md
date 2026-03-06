@@ -8,7 +8,6 @@ If you're working within a [project](../../../concepts/projects/), you can start
 
 ```
 $ uv run --with jupyter jupyter lab
-
 ```
 
 By default, `jupyter lab` will start the server at <http://localhost:8888/lab>.
@@ -27,21 +26,18 @@ To create a kernel, you'll need to install `ipykernel` as a development dependen
 
 ```
 $ uv add --dev ipykernel
-
 ```
 
 Then, you can create the kernel for `project` with:
 
 ```
 $ uv run ipython kernel install --user --env VIRTUAL_ENV $(pwd)/.venv --name=project
-
 ```
 
 From there, start the server with:
 
 ```
 $ uv run --with jupyter jupyter lab
-
 ```
 
 When creating a notebook, select the `project` kernel from the dropdown. Then use `!uv add pydantic` to add `pydantic` to the project's dependencies, or `!uv pip install pydantic` to install `pydantic` into the project's virtual environment without persisting the change to the project `pyproject.toml` or `uv.lock` files. Either command will make `import pydantic` work within the notebook.
@@ -61,7 +57,6 @@ If you're working with a notebook that relies on pip (e.g., via the `%pip` magic
 ```
 $ uv venv --seed
 $ uv run --with jupyter jupyter lab
-
 ```
 
 Subsequent `%pip install` invocations within the notebook will install packages into the project's virtual environment. However, such modifications will *not* be reflected in the project's `pyproject.toml` or `uv.lock` files.
@@ -79,7 +74,6 @@ $ uv venv --seed
 $ uv pip install pydantic
 $ uv pip install jupyterlab
 $ .venv/bin/jupyter lab
-
 ```
 
 ```
@@ -87,7 +81,6 @@ PS> uv venv --seed
 PS> uv pip install pydantic
 PS> uv pip install jupyterlab
 PS> .venv\Scripts\jupyter lab
-
 ```
 
 From here, `import pydantic` will work within the notebook, and you can install additional packages via `!uv pip install`, or even `!pip install`.
@@ -108,7 +101,6 @@ $ uv add --dev ipykernel
 
 # Open the project in VS Code.
 $ code .
-
 ```
 
 Once the project directory is open in VS Code, you can create a new Jupyter notebook by selecting "Create: New Jupyter Notebook" from the command palette. When prompted to select a kernel, choose "Python Environments" and select the virtual environment you created earlier (e.g., `.venv/bin/python` on macOS and Linux, or `.venv\Scripts\python` on Windows).
@@ -121,7 +113,6 @@ If you need to manipulate the project's environment from within the notebook, yo
 
 ```
 $ uv add --dev uv
-
 ```
 
 From there, you can use `!uv add pydantic` to add `pydantic` to the project's dependencies, or `!uv pip install pydantic` to install `pydantic` into the project's virtual environment without updating the project's `pyproject.toml` or `uv.lock` files.

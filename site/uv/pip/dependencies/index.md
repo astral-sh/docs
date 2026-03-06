@@ -16,7 +16,6 @@ dependencies = [
   "httpx",
   "ruff>=0.3.0"
 ]
-
 ```
 
 To define optional dependencies in a `pyproject.toml` file:
@@ -29,7 +28,6 @@ cli = [
   "rich",
   "click",
 ]
-
 ```
 
 Each of the keys defines an "extra", which can be installed using the `--extra` and `--all-extras` flags or `package[<extra>]` syntax. See the documentation on [installing packages](../packages/#installing-packages-from-files) for more details.
@@ -47,7 +45,6 @@ requirements.in
 ```
 httpx
 ruff>=0.3.0
-
 ```
 
 Optional dependencies groups are not supported in this format.

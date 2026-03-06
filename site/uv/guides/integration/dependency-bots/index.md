@@ -21,7 +21,6 @@ renovate.json5
     enabled: true,
   },
 }
-
 ```
 
 ### [Inline script metadata](#inline-script-metadata)
@@ -42,7 +41,6 @@ renovate.json5
     ],
   },
 }
-
 ```
 
 Note
@@ -72,7 +70,6 @@ renovate.json5
   // Or enable for every ecosystem.
   minimumReleaseAge: "1 week",
 }
-
 ```
 
 ## [Dependabot](#dependabot)
@@ -91,7 +88,6 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
-
 ```
 
 ### [Dependency cooldown](#dependency-cooldown_1)
@@ -112,5 +108,4 @@ updates:
       interval: "weekly"
     cooldown:
       default-days: 7
-
 ```

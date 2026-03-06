@@ -17,7 +17,6 @@ $ uv build
 $ ls dist/
 example-0.1.0-py3-none-any.whl
 example-0.1.0.tar.gz
-
 ```
 
 You can build the project in a different directory by providing a path to `uv build`, e.g., `uv build path/to/project`.
@@ -34,14 +33,12 @@ For example, given the following `constraints.txt`:
 
 ```
 setuptools==68.2.2 --hash=sha256:b454a35605876da60632df1a60f736524eb73cc47bbc9f3f1ef1b644de74fd2a
-
 ```
 
 Running the following would build the project with the specified version of `setuptools`, and verify that the downloaded `setuptools` distribution matches the specified hash:
 
 ```
 $ uv build --build-constraint constraints.txt --require-hashes
-
 ```
 
 ## [Preventing publish to PyPI](#preventing-publish-to-pypi)
@@ -51,7 +48,6 @@ If you have internal packages that you do not want to be published, you can mark
 ```
 [project]
 classifiers = ["Private :: Do Not Upload"]
-
 ```
 
 This setting makes PyPI reject your uploaded package from publishing. It does not affect security or privacy settings on alternative registries.

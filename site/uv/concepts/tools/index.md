@@ -37,7 +37,6 @@ For example, to run a specific version of Ruff:
 ```
 $ uvx ruff@0.6.0 --version
 ruff 0.6.0
-
 ```
 
 A subsequent invocation of `uvx` will use the latest, not the cached, version.
@@ -45,7 +44,6 @@ A subsequent invocation of `uvx` will use the latest, not the cached, version.
 ```
 $ uvx ruff --version
 ruff 0.6.2
-
 ```
 
 But, if a new version of Ruff was released, it would not be used unless the cache was refreshed.
@@ -55,7 +53,6 @@ To request the latest version of Ruff and refresh the cache, use the `@latest` s
 ```
 $ uvx ruff@latest --version
 0.6.2
-
 ```
 
 Once a tool is installed with `uv tool install`, `uvx` will use the installed version by default.
@@ -64,7 +61,6 @@ For example, after installing an older version of Ruff:
 
 ```
 $ uv tool install ruff==0.5.0
-
 ```
 
 The version of `ruff` and `uvx ruff` is the same:
@@ -74,7 +70,6 @@ $ ruff --version
 ruff 0.5.0
 $ uvx ruff --version
 ruff 0.5.0
-
 ```
 
 However, you can ignore the installed version by requesting the latest version explicitly, e.g.:
@@ -82,7 +77,6 @@ However, you can ignore the installed version by requesting the latest version e
 ```
 $ uvx ruff@latest --version
 0.6.2
-
 ```
 
 Or, by using the `--isolated` flag, which will avoid refreshing the cache but ignore the installed version:
@@ -90,7 +84,6 @@ Or, by using the `--isolated` flag, which will avoid refreshing the cache but ig
 ```
 $ uvx --isolated ruff --version
 0.6.2
-
 ```
 
 `uv tool install` will also respect the `{package}@{version}` and `{package}@latest` specifiers, as in:
@@ -98,7 +91,6 @@ $ uvx --isolated ruff --version
 ```
 $ uv tool install ruff@latest
 $ uv tool install ruff@0.6.0
-
 ```
 
 ## [Upgrading tools](#upgrading-tools)
@@ -109,14 +101,12 @@ To upgrade all packages in a tool environment
 
 ```
 $ uv tool upgrade black
-
 ```
 
 To upgrade a single package in a tool environment:
 
 ```
 $ uv tool upgrade black --upgrade-package click
-
 ```
 
 Tool upgrades will respect the version constraints provided when installing the tool. For example, `uv tool install black >=23,<24` followed by `uv tool upgrade black` will upgrade Black to the latest version in the range `>=23,<24`.
@@ -125,7 +115,6 @@ To instead replace the version constraints, reinstall the tool with `uv tool ins
 
 ```
 $ uv tool install black>=24
-
 ```
 
 Similarly, tool upgrades will retain the settings provided when installing the tool. For example, `uv tool install black --prerelease allow` followed by `uv tool upgrade black` will retain the `--prerelease allow` setting.
@@ -140,14 +129,12 @@ To reinstall all packages in a tool environment
 
 ```
 $ uv tool upgrade black --reinstall
-
 ```
 
 To reinstall a single package in a tool environment:
 
 ```
 $ uv tool upgrade black --reinstall-package click
-
 ```
 
 ## [Including additional dependencies](#including-additional-dependencies)
@@ -156,14 +143,12 @@ Additional packages can be included during tool execution:
 
 ```
 $ uvx --with <extra-package> <tool>
-
 ```
 
 And, during tool installation:
 
 ```
 $ uv tool install --with <extra-package> <tool-package>
-
 ```
 
 The `--with` option can be provided multiple times to include additional packages.
@@ -172,14 +157,12 @@ The `--with` option supports package specifications, so a specific version can b
 
 ```
 $ uvx --with <extra-package>==<version> <tool-package>
-
 ```
 
 The `-w` shorthand can be used in place of the `--with` option:
 
 ```
 $ uvx -w <extra-package> <tool-package>
-
 ```
 
 If the requested version conflicts with the requirements of the tool package, package resolution will fail and the command will error.
@@ -192,14 +175,12 @@ The `--with-executables-from` option allows you to specify additional packages w
 
 ```
 $ uv tool install --with-executables-from <package1>,<package2> <tool-package>
-
 ```
 
 For example, to install Ansible along with executables from `ansible-core` and `ansible-lint`:
 
 ```
 $ uv tool install --with-executables-from ansible-core,ansible-lint ansible
-
 ```
 
 This will install all executables from the `ansible`, `ansible-core`, and `ansible-lint` packages into the same tool environment, making them all available on the `PATH`.
@@ -208,7 +189,6 @@ The `--with-executables-from` option can be combined with other installation opt
 
 ```
 $ uv tool install --with-executables-from ansible-core --with mkdocs-material ansible
-
 ```
 
 Note that `--with-executables-from` differs from `--with` in that:
@@ -244,7 +224,6 @@ The invocation `uv tool run <name>` (or `uvx <name>`) is nearly equivalent to:
 
 ```
 $ uv run --no-project --with <name> -- <name>
-
 ```
 
 However, there are a couple notable differences when using uv's tool interface:

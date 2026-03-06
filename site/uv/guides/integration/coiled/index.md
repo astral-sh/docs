@@ -31,7 +31,6 @@ df = pd.read_parquet(
     storage_options={"anon": True},
 )
 print(df.head())
-
 ```
 
 The script uses [`pandas`](https://pandas.pydata.org/docs/) to load a Parquet file hosted in a public bucket on S3, then prints the first few rows. It uses [inline script metadata](https://peps.python.org/pep-0723/) to enumerate its dependencies.
@@ -40,7 +39,6 @@ When running this script locally, e.g., with:
 
 ```
 $ uv run process.py
-
 ```
 
 uv will automatically create a virtual environment and installs its dependencies.
@@ -63,7 +61,6 @@ First, authenticate with Coiled using [`coiled login`](https://docs.coiled.io/us
 
 ```
 $ uvx coiled login
-
 ```
 
 You'll be prompted to create a Coiled account if you don't already have one — it's free to start using Coiled.
@@ -92,7 +89,6 @@ df = pd.read_parquet(
     storage_options={"anon": True},
 )
 print(df.head())
-
 ```
 
 Tip
@@ -106,7 +102,6 @@ To submit a batch job for Coiled to run, use [`coiled batch run`](https://docs.c
 ```
 $ uvx coiled batch run \
     uv run process.py
-
 ```
 
 The same process that previously ran locally is now running on a remote cloud VM on AWS.

@@ -12,7 +12,6 @@ As an example, to run uv in a container using a Debian-based image:
 
 ```
 $ docker run --rm -it ghcr.io/astral-sh/uv:debian uv --help
-
 ```
 
 ### [Available images](#available-images)
@@ -20,7 +19,7 @@ $ docker run --rm -it ghcr.io/astral-sh/uv:debian uv --help
 The following distroless images are available:
 
 - `ghcr.io/astral-sh/uv:latest`
-- `ghcr.io/astral-sh/uv:{major}.{minor}.{patch}`, e.g., `ghcr.io/astral-sh/uv:0.10.8`
+- `ghcr.io/astral-sh/uv:{major}.{minor}.{patch}`, e.g., `ghcr.io/astral-sh/uv:0.10.9`
 - `ghcr.io/astral-sh/uv:{major}.{minor}`, e.g., `ghcr.io/astral-sh/uv:0.8` (the latest patch version)
 
 And the following derived images are available:
@@ -76,7 +75,7 @@ And the following derived images are available:
   - `ghcr.io/astral-sh/uv:python3.10-trixie-slim`
   - `ghcr.io/astral-sh/uv:python3.9-trixie-slim`
 
-As with the distroless image, each derived image is published with uv version tags as `ghcr.io/astral-sh/uv:{major}.{minor}.{patch}-{base}` and `ghcr.io/astral-sh/uv:{major}.{minor}-{base}`, e.g., `ghcr.io/astral-sh/uv:0.10.8-alpine`.
+As with the distroless image, each derived image is published with uv version tags as `ghcr.io/astral-sh/uv:{major}.{minor}.{patch}-{base}` and `ghcr.io/astral-sh/uv:{major}.{minor}-{base}`, e.g., `ghcr.io/astral-sh/uv:0.10.9-alpine`.
 
 In addition, starting with `0.8` each derived image also sets `UV_TOOL_BIN_DIR` to `/usr/local/bin` to allow `uv tool install` to work as expected with the default user.
 
@@ -91,7 +90,6 @@ Dockerfile
 ```
 FROM python:3.12-slim-trixie
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
-
 ```
 
 Or, with the installer:
@@ -112,7 +110,6 @@ RUN sh /uv-installer.sh && rm /uv-installer.sh
 
 # Ensure the installed binary is on the `PATH`
 ENV PATH="/root/.local/bin/:$PATH"
-
 ```
 
 Note this requires `curl` to be available.
@@ -120,8 +117,7 @@ Note this requires `curl` to be available.
 In either case, it is best practice to pin to a specific uv version, e.g., with:
 
 ```
-COPY --from=ghcr.io/astral-sh/uv:0.10.8 /uv /uvx /bin/
-
+COPY --from=ghcr.io/astral-sh/uv:0.10.9 /uv /uvx /bin/
 ```
 
 Tip
@@ -131,14 +127,12 @@ While the Dockerfile example above pins to a specific tag, it's also possible to
 ```
 # e.g., using a hash from a previous release
 COPY --from=ghcr.io/astral-sh/uv@sha256:2381d6aa60c326b71fd40023f921a0a3b8f91b14d5db6b90402e65a635053709 /uv /uvx /bin/
-
 ```
 
 Or, with the installer:
 
 ```
-ADD https://astral.sh/uv/0.10.8/install.sh /uv-installer.sh
-
+ADD https://astral.sh/uv/0.10.9/install.sh /uv-installer.sh
 ```
 
 ### [Installing a project](#installing-a-project)
@@ -157,7 +151,6 @@ ENV UV_NO_DEV=1
 # Sync the project into a new environment, asserting the lockfile is up to date
 WORKDIR /app
 RUN uv sync --locked
-
 ```
 
 Important
@@ -171,7 +164,6 @@ Dockerfile
 ```
 # Presuming there is a `my_app` command provided by the project
 CMD ["uv", "run", "my_app"]
-
 ```
 
 Tip
@@ -188,7 +180,6 @@ Dockerfile
 
 ```
 ENV PATH="/app/.venv/bin:$PATH"
-
 ```
 
 Or, you can use `uv run` for any commands that require the environment:
@@ -197,7 +188,6 @@ Dockerfile
 
 ```
 RUN uv run some_script.py
-
 ```
 
 Tip
@@ -213,7 +203,6 @@ Dockerfile
 ```
 ENV PATH=/root/.local/bin:$PATH
 RUN uv tool install cowsay
-
 ```
 
 ```
@@ -228,7 +217,6 @@ $ docker run -it $(docker build -q .) /bin/bash -c "cowsay -t hello"
         (__)\       )\/\
             ||----w |
             ||     ||
-
 ```
 
 Note
@@ -241,7 +229,6 @@ Dockerfile
 
 ```
 ENV UV_TOOL_BIN_DIR=/opt/uv-bin/
-
 ```
 
 ## [Developing in a container](#developing-in-a-container)
@@ -254,7 +241,6 @@ Bind mount the project (in the working directory) to `/app` while retaining the 
 
 ```
 $ docker run --rm --volume .:/app --volume /app/.venv [...]
-
 ```
 
 Tip
@@ -297,7 +283,6 @@ services:
         # Rebuild the image on changes to the `pyproject.toml`
         - action: rebuild
           path: ./pyproject.toml
-
 ```
 
 Then, run `docker compose watch` to run the container with the development setup.
@@ -317,7 +302,6 @@ Dockerfile
 ```
 RUN uv python install --compile-bytecode
 RUN uv sync --compile-bytecode
-
 ```
 
 Alternatively, you can set the `UV_COMPILE_BYTECODE` environment variable to ensure that all commands within the Dockerfile compile bytecode:
@@ -326,7 +310,6 @@ Dockerfile
 
 ```
 ENV UV_COMPILE_BYTECODE=1
-
 ```
 
 Note
@@ -344,7 +327,6 @@ ENV UV_LINK_MODE=copy
 
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync
-
 ```
 
 Changing the [`UV_LINK_MODE`](../../../reference/settings/#link-mode) silences warnings about not being able to link files since the cache and sync target are on separate file systems.
@@ -360,7 +342,6 @@ ENV UV_PYTHON_CACHE_DIR=/root/.cache/uv/python
 
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv python install
-
 ```
 
 Note
@@ -373,7 +354,6 @@ Dockerfile
 
 ```
 ENV UV_CACHE_DIR=/opt/uv-cache/
-
 ```
 
 ### [Intermediate layers](#intermediate-layers)
@@ -404,7 +384,6 @@ COPY . /app
 # Sync the project
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync --locked
-
 ```
 
 Note that the `pyproject.toml` is required to identify the project root and name, but the project *contents* are not copied into the image until the final `uv sync` command.
@@ -438,7 +417,6 @@ COPY . /app
 
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync --locked
-
 ```
 
 uv cannot assert that the `uv.lock` file is up-to-date without each of the workspace member `pyproject.toml` files, so we use `--frozen` instead of `--locked` to skip the check during the initial sync. The next sync, after all the workspace members have been copied, can still use `--locked` and will validate that the lockfile is correct for all workspace members.
@@ -483,7 +461,6 @@ COPY --from=builder --chown=app:app /app/.venv /app/.venv
 
 # Run the application
 CMD ["/app/.venv/bin/hello"]
-
 ```
 
 ### [Using uv temporarily](#using-uv-temporarily)
@@ -495,7 +472,6 @@ Dockerfile
 ```
 RUN --mount=from=ghcr.io/astral-sh/uv,source=/uv,target=/bin/uv \
     uv sync
-
 ```
 
 ## [Using the pip interface](#using-the-pip-interface)
@@ -508,7 +484,6 @@ Dockerfile
 
 ```
 RUN uv pip install --system ruff
-
 ```
 
 To use the system Python environment by default, set the `UV_SYSTEM_PYTHON` variable:
@@ -517,7 +492,6 @@ Dockerfile
 
 ```
 ENV UV_SYSTEM_PYTHON=1
-
 ```
 
 Alternatively, a virtual environment can be created and activated:
@@ -530,7 +504,6 @@ RUN uv venv /opt/venv
 ENV VIRTUAL_ENV=/opt/venv
 # Place entry points in the environment at the front of the path
 ENV PATH="/opt/venv/bin:$PATH"
-
 ```
 
 When using a virtual environment, the `--system` flag should be omitted from uv invocations:
@@ -539,7 +512,6 @@ Dockerfile
 
 ```
 RUN uv pip install ruff
-
 ```
 
 ### [Installing requirements](#installing-requirements)
@@ -551,7 +523,6 @@ Dockerfile
 ```
 COPY requirements.txt .
 RUN uv pip install -r requirements.txt
-
 ```
 
 ### [Installing a project](#installing-a-project_1)
@@ -565,7 +536,6 @@ COPY pyproject.toml .
 RUN uv pip install -r pyproject.toml
 COPY . .
 RUN uv pip install -e .
-
 ```
 
 ## [Verifying image provenance](#verifying-image-provenance)
@@ -590,7 +560,6 @@ The following policy criteria will be enforced:
 sha256:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx was attested by:
 REPO          PREDICATE_TYPE                  WORKFLOW
 astral-sh/uv  https://slsa.dev/provenance/v1  .github/workflows/build-docker.yml@refs/heads/main
-
 ```
 
 This tells you that the specific Docker image was built by the official uv GitHub release workflow and hasn't been tampered with since.
@@ -612,9 +581,8 @@ $ cosign verify-blob-attestation \
     --certificate-identity-regexp="^https://github\.com/${REPO}/.*" \
     <(jq -j '.|del(.digest,.size)' manifest.json)
 Verified OK
-
 ```
 
 Tip
 
-These examples use `latest`, but best practice is to verify the attestation for a specific version tag, e.g., `ghcr.io/astral-sh/uv:0.10.8`, or (even better) the specific image digest, such as `ghcr.io/astral-sh/uv:0.5.27@sha256:5adf09a5a526f380237408032a9308000d14d5947eafa687ad6c6a2476787b4f`.
+These examples use `latest`, but best practice is to verify the attestation for a specific version tag, e.g., `ghcr.io/astral-sh/uv:0.10.9`, or (even better) the specific image digest, such as `ghcr.io/astral-sh/uv:0.5.27@sha256:5adf09a5a526f380237408032a9308000d14d5947eafa687ad6c6a2476787b4f`.

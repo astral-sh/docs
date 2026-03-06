@@ -90,7 +90,6 @@ environments = [
     "sys_platform == 'darwin'",
     "sys_platform == 'linux'",
 ]
-
 ```
 
 Or, to avoid solving for alternative Python implementations:
@@ -102,7 +101,6 @@ pyproject.toml
 environments = [
     "implementation_name == 'cpython'"
 ]
-
 ```
 
 Entries in the `environments` setting must be disjoint (i.e., they must not overlap). For example, `sys_platform == 'darwin'` and `sys_platform == 'linux'` are disjoint, but `sys_platform == 'darwin'` and `python_version >= '3.9'` are not, since both could be true at the same time.
@@ -130,7 +128,24 @@ pyproject.toml
 required-environments = [
     "sys_platform == 'darwin' and platform_machine == 'x86_64'"
 ]
+```
 
+## [Common marker values](#common-marker-values)
+
+The `environments` and `required-environments` settings accept [PEP 508 environment markers](https://packaging.python.org/en/latest/specifications/dependency-specifiers/#environment-markers). The values for these markers are derived from the Python runtime (e.g., [`sys.platform`](https://docs.python.org/3/library/sys.html#sys.platform), [`platform.machine()`](https://docs.python.org/3/library/platform.html#platform.machine), [`platform.system()`](https://docs.python.org/3/library/platform.html#platform.system), and [`os.name`](https://docs.python.org/3/library/os.html#os.name)).
+
+For quick reference, the most common marker values by platform are:
+
+| Marker | Linux | macOS | Windows | | --- | --- | --- | --- | | `sys_platform` | `'linux'` | `'darwin'` | `'win32'` | | `platform_system` | `'Linux'` | `'Darwin'` | `'Windows'` | | `platform_machine` (x86-64) | `'x86_64'` | `'x86_64'` | `'AMD64'` | | `platform_machine` (ARM64) | `'aarch64'` | `'arm64'` | `'ARM64'` | | `os_name` | `'posix'` | `'posix'` | `'nt'` |
+
+Note
+
+On Windows, `sys_platform` is always `'win32'`, even on 64-bit systems.
+
+You can check the values for your current platform by running:
+
+```
+$ uvx python -c "import sysconfig; print(sysconfig.get_config_vars())"
 ```
 
 ## [Dependency preferences](#dependency-preferences)
@@ -149,7 +164,6 @@ requirements.in
 
 ```
 flask>=2.0.0
-
 ```
 
 Running `uv pip compile requirements.in` would produce the following `requirements.txt` file:
@@ -174,7 +188,6 @@ markupsafe==2.1.3
     #   werkzeug
 werkzeug==3.0.1
     # via flask
-
 ```
 
 However, `uv pip compile --resolution lowest requirements.in` would instead produce:
@@ -195,7 +208,6 @@ markupsafe==2.0.0
     # via jinja2
 werkzeug==2.0.0
     # via flask
-
 ```
 
 When publishing libraries, it is recommended to separately run tests with `--resolution lowest` or `--resolution lowest-direct` in continuous integration to ensure compatibility with the declared lower bounds.
@@ -229,7 +241,6 @@ For example, when resolving `numpy` with a Python requirement of `>=3.8`, uv wou
 numpy==1.24.4 ; python_version == "3.8"
 numpy==2.0.2 ; python_version == "3.9"
 numpy==2.2.0 ; python_version >= "3.10"
-
 ```
 
 This resolution reflects the fact that NumPy 2.2.0 and later require at least Python 3.10, while earlier versions are compatible with Python 3.8 and 3.9.
@@ -273,7 +284,6 @@ For example, to provide metadata for `chumpy` upfront, include its `dependency-m
 name = "chumpy"
 version = "0.70"
 requires-dist = ["numpy>=1.8.1", "scipy>=0.13.0", "six>=1.11.0"]
-
 ```
 
 These declarations are intended for cases in which a package does *not* declare static metadata upfront, though they are also useful for packages that require [disabling build isolation](../projects/config/#build-isolation) In such cases, it may be easier to declare the package metadata upfront, rather than creating a custom build environment prior to resolving the package.
@@ -294,7 +304,6 @@ flash-attn = { git = "https://github.com/Dao-AILab/flash-attention", tag = "v2.6
 name = "flash-attn"
 version = "2.6.3"
 requires-dist = ["torch", "einops"]
-
 ```
 
 Like dependency overrides, `tool.uv.dependency-metadata` can also be used for cases in which a package's metadata is incorrect or incomplete, or when a package is not available in the package index. While dependency overrides allow overriding the allowed versions of a package globally, metadata overrides allow overriding the declared metadata of a *specific package*.
@@ -317,7 +326,6 @@ pyproject.toml
 [project.optional-dependencies]
 extra1 = ["numpy==2.1.2"]
 extra2 = ["numpy==2.0.0"]
-
 ```
 
 If you run `uv lock` with the above dependencies, resolution will fail:
@@ -328,7 +336,6 @@ $ uv lock
   `-> Because myproject[extra2] depends on numpy==2.0.0 and myproject[extra1] depends on numpy==2.1.2, we can conclude that myproject[extra1] and
       myproject[extra2] are incompatible.
       And because your project requires myproject[extra1] and myproject[extra2], we can conclude that your projects's requirements are unsatisfiable.
-
 ```
 
 To work around this, uv supports explicit declaration of conflicts. If you specify that `extra1` and `extra2` are conflicting, uv will resolve them separately. Specify conflicts in the `tool.uv` section:
@@ -343,7 +350,6 @@ conflicts = [
       { extra = "extra2" },
     ],
 ]
-
 ```
 
 Now, running `uv lock` will succeed. However, now you cannot install both `extra1` and `extra2` at the same time:
@@ -352,7 +358,6 @@ Now, running `uv lock` will succeed. However, now you cannot install both `extra
 $ uv sync --extra extra1 --extra extra2
 Resolved 3 packages in 14ms
 error: extra `extra1`, extra `extra2` are incompatible with the declared conflicts: {`myproject[extra1]`, `myproject[extra2]`}
-
 ```
 
 This error occurs because installing both `extra1` and `extra2` would result in installing two different versions of a package into the same environment.
@@ -373,7 +378,6 @@ conflicts = [
       { group = "group2" },
     ],
 ]
-
 ```
 
 The only difference from conflicting extras is that you need to use the `group` key instead of `extra`.
@@ -390,7 +394,6 @@ name = "member1"
 
 [project.optional-dependencies]
 extra1 = ["numpy==2.1.2"]
-
 ```
 
 member2/pyproject.toml
@@ -401,7 +404,6 @@ name = "member2"
 
 [project.optional-dependencies]
 extra2 = ["numpy==2.0.0"]
-
 ```
 
 To declare a conflict between extras in these different workspace members, use the `package` key:
@@ -416,7 +418,6 @@ conflicts = [
       { package = "member2", extra = "extra2" },
     ],
 ]
-
 ```
 
 It's also possible for the project dependencies (i.e., `project.dependencies`) of one workspace member to conflict with the extra of another member, for example:
@@ -427,7 +428,6 @@ member1/pyproject.toml
 [project]
 name = "member1"
 dependencies = ["numpy==2.1.2"]
-
 ```
 
 member2/pyproject.toml
@@ -438,7 +438,6 @@ name = "member2"
 
 [project.optional-dependencies]
 extra2 = ["numpy==2.0.0"]
-
 ```
 
 This conflict can also be declared using the `package` key:
@@ -453,7 +452,6 @@ conflicts = [
       { package = "member2", extra = "extra2" },
     ],
 ]
-
 ```
 
 Similarly, it's possible for some workspace members to have conflicting project dependencies:
@@ -464,7 +462,6 @@ member1/pyproject.toml
 [project]
 name = "member1"
 dependencies = ["numpy==2.1.2"]
-
 ```
 
 member2/pyproject.toml
@@ -473,7 +470,6 @@ member2/pyproject.toml
 [project]
 name = "member2"
 dependencies = ["numpy==2.0.0"]
-
 ```
 
 This conflict can also be declared using the `package` key:
@@ -488,7 +484,6 @@ conflicts = [
       { package = "member2" },
     ],
 ]
-
 ```
 
 These workspace members will not be installable together, e.g., the workspace root cannot define:
@@ -499,7 +494,6 @@ pyproject.toml
 [project]
 name = "root"
 dependencies = ["member1", "member2"]
-
 ```
 
 ## [Lower bounds](#lower-bounds)
@@ -529,7 +523,6 @@ This option is also supported in the `pyproject.toml`, e.g.:
 ```
 [tool.uv]
 exclude-newer = "2006-12-02T02:07:43Z"
-
 ```
 
 When specified in persistent configuration, local date times are not allowed.
@@ -539,7 +532,6 @@ Values may also be specified for specific packages, e.g., `--exclude-newer-packa
 ```
 [tool.uv]
 exclude-newer-package = { setuptools = "2006-12-02T02:07:43Z" }
-
 ```
 
 The same flag also accepts `<package>=false` to opt a package out of the `--exclude-newer` restriction, e.g., to allow resolving packages from an index that does not publish upload times.
@@ -565,7 +557,6 @@ This option is also supported in the `pyproject.toml`, e.g.:
 ```
 [tool.uv]
 exclude-newer = "1 week"
-
 ```
 
 Values may also be specified for specific packages, e.g., `--exclude-newer-package "setuptools=30 days"`, or:
@@ -574,7 +565,6 @@ Values may also be specified for specific packages, e.g., `--exclude-newer-packa
 [tool.uv]
 exclude-newer = "1 week"
 exclude-newer-package = { setuptools = "30 days" }
-
 ```
 
 ## [Source distribution](#source-distribution)

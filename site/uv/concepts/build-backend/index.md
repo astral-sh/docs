@@ -22,9 +22,8 @@ pyproject.toml
 
 ```
 [build-system]
-requires = ["uv_build>=0.10.8,<0.11.0"]
+requires = ["uv_build>=0.10.9,<0.11.0"]
 build-backend = "uv_build"
-
 ```
 
 Note
@@ -35,7 +34,6 @@ To create a new project that uses the uv build backend, use `uv init`:
 
 ```
 $ uv init
-
 ```
 
 When the project is built, e.g., with [`uv build`](../../guides/package/), the uv build backend will be used to create the source distribution and wheel.
@@ -55,7 +53,6 @@ pyproject.toml
 src
 └── foo
     └── __init__.py
-
 ```
 
 uv normalizes the package name to determine the default module name: the package name is lowercased and dots and dashes are replaced with underscores, e.g., `Foo-Bar` would be converted to `foo_bar`.
@@ -68,7 +65,6 @@ These defaults can be changed with the `module-name` and `module-root` settings.
 pyproject.toml
 FOO
 └── __init__.py
-
 ```
 
 The correct build configuration would be:
@@ -79,7 +75,6 @@ pyproject.toml
 [tool.uv.build-backend]
 module-name = "FOO"
 module-root = ""
-
 ```
 
 ## [Namespace packages](#namespace-packages)
@@ -94,7 +89,6 @@ src
 └── foo
     └── bar
         └── __init__.py
-
 ```
 
 And the `module-name` configuration would be:
@@ -104,7 +98,6 @@ pyproject.toml
 ```
 [tool.uv.build-backend]
 module-name = "foo.bar"
-
 ```
 
 Important
@@ -120,7 +113,6 @@ src
 │   └── __init__.py
 └── bar
     └── __init__.py
-
 ```
 
 While we do not recommend this structure (i.e., you should use a workspace with multiple packages instead), it is supported by setting `module-name` to a list of names:
@@ -130,7 +122,6 @@ pyproject.toml
 ```
 [tool.uv.build-backend]
 module-name = ["foo", "bar"]
-
 ```
 
 For packages with many modules or complex namespaces, the `namespace = true` option can be used to avoid explicitly declaring each module name, e.g.:
@@ -140,7 +131,6 @@ pyproject.toml
 ```
 [tool.uv.build-backend]
 namespace = true
-
 ```
 
 Warning
@@ -157,7 +147,6 @@ src
     │   └── __init__.py
     └── baz
         └── __init__.py
-
 ```
 
 The recommended configuration would be:
@@ -168,7 +157,6 @@ pyproject.toml
 [tool.uv.build-backend]
 module-name = "foo"
 namespace = true
-
 ```
 
 ## [Stub packages](#stub-packages)
@@ -180,7 +168,6 @@ pyproject.toml
 src
 └── foo-stubs
     └── __init__.pyi
-
 ```
 
 Type stub modules are also supported for [namespace packages](#namespace-packages).

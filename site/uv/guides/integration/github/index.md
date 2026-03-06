@@ -21,7 +21,6 @@ jobs:
 
       - name: Install uv
         uses: astral-sh/setup-uv@v7
-
 ```
 
 It is considered best practice to pin to a specific uv version, e.g., with:
@@ -43,8 +42,7 @@ jobs:
         uses: astral-sh/setup-uv@v7
         with:
           # Install a specific version of uv.
-          version: "0.10.8"
-
+          version: "0.10.9"
 ```
 
 ## [Setting up Python](#setting-up-python)
@@ -69,7 +67,6 @@ jobs:
 
       - name: Set up Python
         run: uv python install
-
 ```
 
 This will respect the Python version pinned in the project.
@@ -98,7 +95,6 @@ jobs:
 
       - name: Install uv
         uses: astral-sh/setup-uv@v7
-
 ```
 
 Or, specify the `pyproject.toml` file to ignore the pin and use the latest version compatible with the project's `requires-python` constraint:
@@ -123,7 +119,6 @@ jobs:
 
       - name: Install uv
         uses: astral-sh/setup-uv@v7
-
 ```
 
 ## [Multiple Python versions](#multiple-python-versions)
@@ -151,7 +146,6 @@ jobs:
         uses: astral-sh/setup-uv@v7
         with:
           python-version: ${{ matrix.python-version }}
-
 ```
 
 If not using the `setup-uv` action, you can set the `UV_PYTHON` environment variable:
@@ -173,7 +167,6 @@ jobs:
       UV_PYTHON: ${{ matrix.python-version }}
     steps:
       - uses: actions/checkout@v6
-
 ```
 
 ## [Syncing and running](#syncing-and-running)
@@ -202,7 +195,6 @@ jobs:
       - name: Run tests
         # For example, using `pytest`
         run: uv run pytest tests
-
 ```
 
 Tip
@@ -222,7 +214,6 @@ example.yml
   uses: astral-sh/setup-uv@v7
   with:
     enable-cache: true
-
 ```
 
 Alternatively, you can manage the cache manually with the `actions/cache` action:
@@ -252,7 +243,6 @@ jobs:
 
       - name: Minimize uv cache
         run: uv cache prune --ci
-
 ```
 
 The `uv cache prune --ci` command is used to reduce the size of the cache and is optimized for CI. Its effect on performance is dependent on the packages being installed.
@@ -270,7 +260,6 @@ install_job:
   env:
     # Configure a relative location for the uv cache
     UV_CACHE_DIR: ${{ github.workspace }}/.cache/uv
-
 ```
 
 Using a post job hook requires setting the `ACTIONS_RUNNER_HOOK_JOB_STARTED` environment variable on the self-hosted runner to the path of a cleanup script such as the one shown below.
@@ -280,7 +269,6 @@ clean-uv-cache.sh
 ```
 #!/usr/bin/env sh
 uv cache clean
-
 ```
 
 ## [Using `uv pip`](#using-uv-pip)
@@ -298,7 +286,6 @@ env:
   UV_SYSTEM_PYTHON: 1
 
 jobs: ...
-
 ```
 
 Or, opt-in for a specific job in the workflow:
@@ -311,7 +298,6 @@ jobs:
     env:
       UV_SYSTEM_PYTHON: 1
     ...
-
 ```
 
 Or, opt-in for a specific step in a job:
@@ -324,7 +310,6 @@ steps:
     run: uv pip install -r requirements.txt
     env:
       UV_SYSTEM_PYTHON: 1
-
 ```
 
 To opt-out again, the `--no-system` flag can be used in any uv invocation.
@@ -347,7 +332,6 @@ steps:
     run: echo "${{ secrets.MY_PAT }}" | gh auth login --with-token
   - name: Configure the Git credential helper
     run: gh auth setup-git
-
 ```
 
 ## [Publishing to PyPI](#publishing-to-pypi)
@@ -393,7 +377,6 @@ jobs:
         run: uv run --isolated --no-project --with dist/*.tar.gz tests/smoke_test.py
       - name: Publish
         run: uv publish
-
 ```
 
 Then, create the environment defined in the workflow in the GitHub repository under "Settings" -> "Environments".
@@ -407,5 +390,4 @@ Finally, tag a release and push it. Make sure it starts with `v` to match the pa
 ```
 $ git tag -a v0.1.0 -m v0.1.0
 $ git push --tags
-
 ```

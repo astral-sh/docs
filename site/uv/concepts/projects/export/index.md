@@ -18,7 +18,6 @@ The format can be specified with the `--format` flag:
 $ uv export --format requirements.txt
 $ uv export --format pylock.toml
 $ uv export --format cyclonedx1.5
-
 ```
 
 Tip
@@ -29,7 +28,6 @@ By default, `uv export` prints to stdout. Use `--output-file` to write to a file
 $ uv export --format requirements.txt --output-file requirements.txt
 $ uv export --format pylock.toml --output-file pylock.toml
 $ uv export --format cyclonedx1.5 --output-file sbom.json
-
 ```
 
 ## [`requirements.txt` format](#requirementstxt-format)
@@ -40,7 +38,6 @@ The `requirements.txt` format is the most widely supported format for Python dep
 
 ```
 $ uv export --format requirements.txt
-
 ```
 
 The generated `requirements.txt` file can then be installed via `uv pip install`, or with other tools like `pip`.
@@ -57,7 +54,6 @@ In general, we recommend against using both a `uv.lock` and a `requirements.txt`
 
 ```
 $ uv export --format pylock.toml
-
 ```
 
 ## [CycloneDX SBOM format](#cyclonedx-sbom-format)
@@ -78,7 +74,6 @@ To export your project's lockfile as a CycloneDX SBOM:
 
 ```
 $ uv export --format cyclonedx1.5
-
 ```
 
 This will generate a JSON-encoded CycloneDX v1.5 document containing your project and all of its dependencies.
