@@ -16,7 +16,6 @@ Build your package with `uv build`:
 
 ```
 $ uv build
-
 ```
 
 By default, `uv build` will build the project in the current directory, and place the built artifacts in a `dist/` subdirectory.
@@ -36,7 +35,6 @@ To update to an exact version, provide it as a positional argument:
 ```
 $ uv version 1.0.0
 hello-world 0.7.0 => 1.0.0
-
 ```
 
 To preview the change without updating the `pyproject.toml`, use the `--dry-run` flag:
@@ -46,7 +44,6 @@ $ uv version 2.0.0 --dry-run
 hello-world 1.0.0 => 2.0.0
 $ uv version
 hello-world 1.0.0
-
 ```
 
 To increase the version of your package semantics, use the `--bump` option:
@@ -54,7 +51,6 @@ To increase the version of your package semantics, use the `--bump` option:
 ```
 $ uv version --bump minor
 hello-world 1.2.3 => 1.3.0
-
 ```
 
 The `--bump` option supports the following common version components: `major`, `minor`, `patch`, `stable`, `alpha`, `beta`, `rc`, `post`, and `dev`. When provided more than once, the components will be applied in order, from largest (`major`) to smallest (`dev`).
@@ -64,7 +60,6 @@ You can optionally provide a numeric value with `--bump <component>=<value>` to 
 ```
 $ uv version --bump patch --bump dev=66463664
 hello-world 0.0.1 => 0.0.2.dev66463664
-
 ```
 
 To move from a stable to pre-release version, bump one of the major, minor, or patch components in addition to the pre-release component:
@@ -74,7 +69,6 @@ $ uv version --bump patch --bump beta
 hello-world 1.3.0 => 1.3.1b1
 $ uv version --bump major --bump alpha
 hello-world 1.3.0 => 2.0.0a1
-
 ```
 
 When moving from a pre-release to a new pre-release version, just bump the relevant pre-release component:
@@ -82,7 +76,6 @@ When moving from a pre-release to a new pre-release version, just bump the relev
 ```
 $ uv version --bump beta
 hello-world 1.3.0b1 => 1.3.0b2
-
 ```
 
 When moving from a pre-release to a stable version, the `stable` option can be used to clear the pre-release component:
@@ -90,7 +83,6 @@ When moving from a pre-release to a stable version, the `stable` option can be u
 ```
 $ uv version --bump stable
 hello-world 1.3.1b2 => 1.3.1
-
 ```
 
 Info
@@ -107,7 +99,6 @@ Publish your package with `uv publish`:
 
 ```
 $ uv publish
-
 ```
 
 Set a PyPI token with `--token` or `UV_PUBLISH_TOKEN`, or set a username with `--username` or `UV_PUBLISH_USERNAME` and password with `--password` or `UV_PUBLISH_PASSWORD`. For publishing to PyPI from GitHub Actions or another Trusted Publisher, you don't need to set any credentials. Instead, [add a trusted publisher to the PyPI project](https://docs.pypi.org/trusted-publishers/adding-a-publisher/).
@@ -124,7 +115,6 @@ name = "testpypi"
 url = "https://test.pypi.org/simple/"
 publish-url = "https://test.pypi.org/legacy/"
 explicit = true
-
 ```
 
 Note
@@ -153,7 +143,6 @@ hello_world-1.0.0-py3-none-any.whl
 hello_world-1.0.0-py3-none-any.whl.publish.attestation
 hello_world-1.0.0.tar.gz
 hello_world-1.0.0.tar.gz.publish.attestation
-
 ```
 
 ## [Installing your package](#installing-your-package)
@@ -162,7 +151,6 @@ Test that the package can be installed and imported with `uv run`:
 
 ```
 $ uv run --with <PACKAGE> --no-project -- python -c "import <PACKAGE>"
-
 ```
 
 The `--no-project` flag is used to avoid installing the package from your local project directory.

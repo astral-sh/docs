@@ -33,7 +33,6 @@ bird-feeder = { workspace = true }
 [tool.uv.workspace]
 members = ["packages/*"]
 exclude = ["packages/seeds"]
-
 ```
 
 Every directory included by the `members` globs (and not excluded by the `exclude` globs) must contain a `pyproject.toml` file. However, workspace members can be *either* [applications](../init/#applications) or [libraries](../init/#libraries); both are supported in the workspace context.
@@ -62,9 +61,8 @@ bird-feeder = { workspace = true }
 members = ["packages/*"]
 
 [build-system]
-requires = ["uv_build>=0.10.8,<0.11.0"]
+requires = ["uv_build>=0.10.9,<0.11.0"]
 build-backend = "uv_build"
-
 ```
 
 In this example, the `albatross` project depends on the `bird-feeder` project, which is a member of the workspace. The `workspace = true` key-value pair in the `tool.uv.sources` table indicates the `bird-feeder` dependency should be provided by the workspace, rather than fetched from PyPI or another registry.
@@ -92,9 +90,8 @@ tqdm = { git = "https://github.com/tqdm/tqdm" }
 members = ["packages/*"]
 
 [build-system]
-requires = ["uv_build>=0.10.8,<0.11.0"]
+requires = ["uv_build>=0.10.9,<0.11.0"]
 build-backend = "uv_build"
-
 ```
 
 Every workspace member would, by default, install `tqdm` from GitHub, unless a specific member overrides the `tqdm` entry in its own `tool.uv.sources` table.
@@ -130,7 +127,6 @@ albatross
 └── src
     └── albatross
         └── main.py
-
 ```
 
 Since `seeds` was excluded in the `pyproject.toml`, the workspace has two members total: `albatross` (the root) and `bird-feeder`.
@@ -161,9 +157,8 @@ dependencies = ["bird-feeder", "tqdm>=4,<5"]
 bird-feeder = { path = "packages/bird-feeder" }
 
 [build-system]
-requires = ["uv_build>=0.10.8,<0.11.0"]
+requires = ["uv_build>=0.10.9,<0.11.0"]
 build-backend = "uv_build"
-
 ```
 
 This approach conveys many of the same benefits, but allows for more fine-grained control over dependency resolution and virtual environment management (with the downside that `uv run --package` is no longer available; instead, commands must be run from the relevant package directory).

@@ -8,21 +8,18 @@ uv supports creating virtual environments, e.g., to create a virtual environment
 
 ```
 $ uv venv
-
 ```
 
 A specific name or path can be specified, e.g., to create a virtual environment at `my-name`:
 
 ```
 $ uv venv my-name
-
 ```
 
 A Python version can be requested, e.g., to create a virtual environment with Python 3.11:
 
 ```
 $ uv venv --python 3.11
-
 ```
 
 Note this requires the requested Python version to be available on the system. However, if unavailable, uv will download Python for you. See the [Python version](../../concepts/python-versions/) documentation for more details.
@@ -36,19 +33,16 @@ $ uv venv
 
 $ # Install a package in the new virtual environment
 $ uv pip install ruff
-
 ```
 
 The virtual environment can be "activated" to make its packages available:
 
 ```
 $ source .venv/bin/activate
-
 ```
 
 ```
 PS> .venv\Scripts\activate
-
 ```
 
 Note
@@ -57,17 +51,14 @@ The default activation script on Unix is for POSIX compliant shells like `sh`, `
 
 ```
 $ source .venv/bin/activate.fish
-
 ```
 
 ```
 $ source .venv/bin/activate.csh
-
 ```
 
 ```
 $ use .venv\Scripts\activate.nu
-
 ```
 
 ## [Deactivating an environment](#deactivating-an-environment)
@@ -76,7 +67,6 @@ To exit a virtual environment, use the `deactivate` command:
 
 ```
 $ deactivate
-
 ```
 
 ## [Using arbitrary Python environments](#using-arbitrary-python-environments)

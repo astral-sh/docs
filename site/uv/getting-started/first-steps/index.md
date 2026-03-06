@@ -9,7 +9,6 @@ An extremely fast Python package manager.
 Usage: uv [OPTIONS] <COMMAND>
 
 ...
-
 ```
 
 You should see a help menu listing the available commands.

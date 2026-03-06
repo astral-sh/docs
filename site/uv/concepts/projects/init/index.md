@@ -16,7 +16,6 @@ Applications are the default target for `uv init`, but can also be specified wit
 
 ```
 $ uv init example-app
-
 ```
 
 The project includes a `pyproject.toml`, a sample file (`main.py`), a readme, and a Python version pin file (`.python-version`).
@@ -28,7 +27,6 @@ example-app
 ├── README.md
 ├── main.py
 └── pyproject.toml
-
 ```
 
 Note
@@ -47,7 +45,6 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = []
-
 ```
 
 The sample file defines a `main` function with some standard boilerplate:
@@ -61,7 +58,6 @@ def main():
 
 if __name__ == "__main__":
     main()
-
 ```
 
 Python files can be executed with `uv run`:
@@ -70,7 +66,6 @@ Python files can be executed with `uv run`:
 $ cd example-app
 $ uv run main.py
 Hello from example-project!
-
 ```
 
 ## [Packaged applications](#packaged-applications)
@@ -81,7 +76,6 @@ The `--package` flag can be used to create a packaged application:
 
 ```
 $ uv init --package example-pkg
-
 ```
 
 The source code is moved into a `src` directory with a module directory and an `__init__.py` file:
@@ -95,7 +89,6 @@ example-pkg
 └── src
     └── example_pkg
         └── __init__.py
-
 ```
 
 A [build system](../config/#build-systems) is defined, so the project will be installed into the environment:
@@ -115,9 +108,8 @@ dependencies = []
 example-pkg = "example_pkg:main"
 
 [build-system]
-requires = ["uv_build>=0.10.8,<0.11.0"]
+requires = ["uv_build>=0.10.9,<0.11.0"]
 build-backend = "uv_build"
-
 ```
 
 Tip
@@ -141,9 +133,8 @@ dependencies = []
 example-pkg = "example_pkg:main"
 
 [build-system]
-requires = ["uv_build>=0.10.8,<0.11.0"]
+requires = ["uv_build>=0.10.9,<0.11.0"]
 build-backend = "uv_build"
-
 ```
 
 The command can be executed with `uv run`:
@@ -152,7 +143,6 @@ The command can be executed with `uv run`:
 $ cd example-pkg
 $ uv run example-pkg
 Hello from example-pkg!
-
 ```
 
 ## [Libraries](#libraries)
@@ -163,7 +153,6 @@ Libraries can be created by using the `--lib` flag:
 
 ```
 $ uv init --lib example-lib
-
 ```
 
 Note
@@ -182,7 +171,6 @@ example-lib
     └── example_lib
         ├── py.typed
         └── __init__.py
-
 ```
 
 Note
@@ -203,9 +191,8 @@ requires-python = ">=3.11"
 dependencies = []
 
 [build-system]
-requires = ["uv_build>=0.10.8,<0.11.0"]
+requires = ["uv_build>=0.10.9,<0.11.0"]
 build-backend = "uv_build"
-
 ```
 
 Tip
@@ -219,7 +206,6 @@ __init__.py
 ```
 def hello() -> str:
     return "Hello from example-lib!"
-
 ```
 
 And you can import and execute it using `uv run`:
@@ -228,7 +214,6 @@ And you can import and execute it using `uv run`:
 $ cd example-lib
 $ uv run python -c "import example_lib; print(example_lib.hello())"
 Hello from example-lib!
-
 ```
 
 ## [Projects with extension modules](#projects-with-extension-modules)
@@ -244,7 +229,6 @@ Specify the build system with the `--build-backend` flag:
 
 ```
 $ uv init --build-backend maturin example-ext
-
 ```
 
 Note
@@ -265,7 +249,6 @@ example-ext
     └── example_ext
         ├── __init__.py
         └── _core.pyi
-
 ```
 
 Note
@@ -288,7 +271,6 @@ mod _core {
         "Hello from example-ext!".to_string()
     }
 }
-
 ```
 
 And the Python module imports it:
@@ -301,7 +283,6 @@ from example_ext._core import hello_from_bin
 
 def main() -> None:
     print(hello_from_bin())
-
 ```
 
 The command can be executed with `uv run`:
@@ -310,7 +291,6 @@ The command can be executed with `uv run`:
 $ cd example-ext
 $ uv run example-ext
 Hello from example-ext!
-
 ```
 
 Important
@@ -323,7 +303,6 @@ If you only want to create a `pyproject.toml`, use the `--bare` option:
 
 ```
 $ uv init example --bare
-
 ```
 
 uv will skip creating a Python version pin file, a README, and any source directories or files. Additionally, uv will not initialize a version control system (i.e., `git`).
@@ -332,7 +311,6 @@ uv will skip creating a Python version pin file, a README, and any source direct
 $ tree example-bare
 example-bare
 └── pyproject.toml
-
 ```
 
 uv will also not add extra metadata to the `pyproject.toml`, such as the `description` or `authors`.
@@ -343,7 +321,6 @@ name = "example"
 version = "0.1.0"
 requires-python = ">=3.12"
 dependencies = []
-
 ```
 
 The `--bare` option can be used with other options like `--lib` or `--build-backend` — in these cases uv will still configure a build system but will not create the expected file structure.
@@ -352,5 +329,4 @@ When `--bare` is used, additional features can still be used opt-in:
 
 ```
 $ uv init example --bare --description "Hello world" --author-from git --vcs git --python-pin
-
 ```

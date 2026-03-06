@@ -14,13 +14,11 @@ example.py
 
 ```
 print("Hello world")
-
 ```
 
 ```
 $ uv run example.py
 Hello world
-
 ```
 
 Similarly, if your script depends on a module in the standard library, there's nothing more to do:
@@ -31,13 +29,11 @@ example.py
 import os
 
 print(os.path.expanduser("~"))
-
 ```
 
 ```
 $ uv run example.py
 /Users/astral
-
 ```
 
 Arguments may be provided to the script:
@@ -48,7 +44,6 @@ example.py
 import sys
 
 print(" ".join(sys.argv[1:]))
-
 ```
 
 ```
@@ -57,14 +52,12 @@ test
 
 $ uv run example.py hello world!
 hello world!
-
 ```
 
 Additionally, your script can be read directly from stdin:
 
 ```
 $ echo 'print("hello world!")' | uv run -
-
 ```
 
 Or, if your shell supports [here-documents](https://en.wikipedia.org/wiki/Here_document):
@@ -73,7 +66,6 @@ Or, if your shell supports [here-documents](https://en.wikipedia.org/wiki/Here_d
 uv run - <<EOF
 print("hello world!")
 EOF
-
 ```
 
 Note that if you use `uv run` in a *project*, i.e., a directory with a `pyproject.toml`, it will install the current project before running the script. If your script does not depend on the project, use the `--no-project` flag to skip this:
@@ -81,7 +73,6 @@ Note that if you use `uv run` in a *project*, i.e., a directory with a `pyprojec
 ```
 $ # Note: the `--no-project` flag must be provided _before_ the script name.
 $ uv run --no-project example.py
-
 ```
 
 See the [projects guide](../projects/) for more details on working in projects.
@@ -100,7 +91,6 @@ from rich.progress import track
 
 for i in track(range(20), description="For example:"):
     time.sleep(0.05)
-
 ```
 
 If executed without specifying a dependency, this script will fail:
@@ -111,7 +101,6 @@ Traceback (most recent call last):
   File "/Users/astral/example.py", line 2, in <module>
     from rich.progress import track
 ModuleNotFoundError: No module named 'rich'
-
 ```
 
 Request the dependency using the `--with` option:
@@ -119,14 +108,12 @@ Request the dependency using the `--with` option:
 ```
 $ uv run --with rich example.py
 For example: ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:01
-
 ```
 
 Constraints can be added to the requested dependency if specific versions are needed:
 
 ```
 $ uv run --with 'rich>12,<13' example.py
-
 ```
 
 Multiple dependencies can be requested by repeating with `--with` option.
@@ -139,7 +126,6 @@ Python recently added a standard format for [inline script metadata](https://pac
 
 ```
 $ uv init --script example.py --python 3.12
-
 ```
 
 ## [Declaring script dependencies](#declaring-script-dependencies)
@@ -150,7 +136,6 @@ uv supports adding and updating inline script metadata for you. Use `uv add --sc
 
 ```
 $ uv add --script example.py 'requests<3' 'rich'
-
 ```
 
 This will add a `script` section at the top of the script declaring the dependencies using TOML:
@@ -171,7 +156,6 @@ from rich.pretty import pprint
 resp = requests.get("https://peps.python.org/api/peps.json")
 data = resp.json()
 pprint([(k, v["title"]) for k, v in data.items()][:10])
-
 ```
 
 uv will automatically create an environment with the dependencies necessary to run the script, e.g.:
@@ -190,7 +174,6 @@ $ uv run example.py
 │   ('9', 'Sample Plaintext PEP Template'),
 │   ('10', 'Voting Guidelines')
 ]
-
 ```
 
 Important
@@ -210,7 +193,6 @@ example.py
 # Use some syntax added in Python 3.12
 type Point = tuple[float, float]
 print(Point)
-
 ```
 
 Note
@@ -231,7 +213,6 @@ greet
 #!/usr/bin/env -S uv run --script
 
 print("Hello, world!")
-
 ```
 
 Ensure that your script is executable, e.g., with `chmod +x greet`, then run the script:
@@ -239,7 +220,6 @@ Ensure that your script is executable, e.g., with `chmod +x greet`, then run the
 ```
 $ ./greet
 Hello, world!
-
 ```
 
 Declaration of dependencies is also supported in this context, for example:
@@ -257,7 +237,6 @@ example
 import httpx
 
 print(httpx.get("https://example.com"))
-
 ```
 
 ## [Using alternative package indexes](#using-alternative-package-indexes)
@@ -266,7 +245,6 @@ If you wish to use an alternative [package index](../../concepts/indexes/) to re
 
 ```
 $ uv add --index "https://example.com/simple" --script example.py 'requests<3' 'rich'
-
 ```
 
 This will include the package data in the inline metadata:
@@ -274,7 +252,6 @@ This will include the package data in the inline metadata:
 ```
 # [[tool.uv.index]]
 # url = "https://example.com/simple"
-
 ```
 
 If you require authentication to access the package index, then please refer to the [package index](../../concepts/indexes/) documentation.
@@ -285,7 +262,6 @@ uv supports locking dependencies for PEP 723 scripts using the `uv.lock` file fo
 
 ```
 $ uv lock --script example.py
-
 ```
 
 Running `uv lock --script` will create a `.lock` file adjacent to the script (e.g., `example.py.lock`).
@@ -314,7 +290,6 @@ example.py
 import requests
 
 print(requests.__version__)
-
 ```
 
 ## [Using different Python versions](#using-different-python-versions)
@@ -327,21 +302,18 @@ example.py
 import sys
 
 print(".".join(map(str, sys.version_info[:3])))
-
 ```
 
 ```
 $ # Use the default Python version, may differ on your machine
 $ uv run example.py
 3.12.6
-
 ```
 
 ```
 $ # Use a specific Python version
 $ uv run --python 3.10 example.py
 3.10.15
-
 ```
 
 See the [Python version request](../../concepts/python-versions/#requesting-a-version) documentation for more details on requesting Python versions.
@@ -361,12 +333,10 @@ frm = ttk.Frame(root, padding=10)
 frm.grid()
 ttk.Label(frm, text="Hello World").grid(column=0, row=0)
 root.mainloop()
-
 ```
 
 ```
 PS> uv run example.pyw
-
 ```
 
 Similarly, it works with dependencies as well:
@@ -390,12 +360,10 @@ widget.setGeometry(100, 100, 200, 50)
 widget.setWindowTitle("uv")
 widget.show()
 sys.exit(app.exec_())
-
 ```
 
 ```
 PS> uv run --with PyQt5 example_pyqt.pyw
-
 ```
 
 ## [Next steps](#next-steps)

@@ -8,7 +8,7 @@ Astral provides [Docker images](../docker/#available-images) with uv preinstalle
 
 ```
 variables:
-  UV_VERSION: "0.10.8"
+  UV_VERSION: "0.10.9"
   PYTHON_VERSION: "3.12"
   BASE_LAYER: trixie-slim
   # GitLab CI creates a separate mountpoint for the build directory,
@@ -19,7 +19,6 @@ uv:
   image: ghcr.io/astral-sh/uv:$UV_VERSION-python$PYTHON_VERSION-$BASE_LAYER
   script:
     # your `uv` commands
-
 ```
 
 Note
@@ -32,7 +31,6 @@ uv:
     name: ghcr.io/astral-sh/uv:$UV_VERSION
     entrypoint: [""]
   # ...
-
 ```
 
 ## [Caching](#caching)
@@ -53,7 +51,6 @@ uv-install:
     # Your `uv` commands
   after_script:
     - uv cache prune --ci
-
 ```
 
 See the [GitLab caching documentation](https://docs.gitlab.com/ee/ci/caching/) for more details on configuring caching.
@@ -75,7 +72,6 @@ variables:
   UV_SYSTEM_PYTHON: 1
 
 # [...]
-
 ```
 
 To opt-out again, the `--no-system` flag can be used in any uv invocation.

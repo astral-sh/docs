@@ -33,7 +33,6 @@ pyproject.toml
 ```
 [tool.uv]
 cache-keys = [{ file = "pyproject.toml" }, { git = { commit = true } }]
-
 ```
 
 If your dynamic metadata incorporates information from the set of Git tags, you can expand the cache key to include the tags:
@@ -43,7 +42,6 @@ pyproject.toml
 ```
 [tool.uv]
 cache-keys = [{ file = "pyproject.toml" }, { git = { commit = true, tags = true } }]
-
 ```
 
 Similarly, if a project reads from a `requirements.txt` to populate its dependencies, you can add the following to the project's `pyproject.toml`:
@@ -53,7 +51,6 @@ pyproject.toml
 ```
 [tool.uv]
 cache-keys = [{ file = "pyproject.toml" }, { file = "requirements.txt" }]
-
 ```
 
 Globs are supported for `file` keys, following the syntax of the [`glob`](https://docs.rs/glob/0.3.1/glob/struct.Pattern.html) crate. For example, to invalidate the cache whenever a `.toml` file in the project directory or any of its subdirectories is modified, use the following:
@@ -63,7 +60,6 @@ pyproject.toml
 ```
 [tool.uv]
 cache-keys = [{ file = "**/*.toml" }]
-
 ```
 
 Note
@@ -77,7 +73,6 @@ pyproject.toml
 ```
 [tool.uv]
 cache-keys = [{ file = "pyproject.toml" }, { env = "MY_ENV_VAR" }]
-
 ```
 
 Finally, to invalidate a project whenever a specific directory (like `src`) is created or removed, add the following to the project's `pyproject.toml`:
@@ -87,7 +82,6 @@ pyproject.toml
 ```
 [tool.uv]
 cache-keys = [{ file = "pyproject.toml" }, { dir = "src" }]
-
 ```
 
 Note that the `dir` key will only track changes to the directory itself, and not arbitrary changes within the directory.
@@ -99,7 +93,6 @@ pyproject.toml
 ```
 [tool.uv]
 reinstall-package = ["my-package"]
-
 ```
 
 This will force uv to rebuild and reinstall `my-package` on every run, regardless of whether the package's `pyproject.toml`, `setup.py`, or `setup.cfg` file has changed.

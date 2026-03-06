@@ -29,7 +29,6 @@ dependencies = [
   "torch>=2.9.1",
   "torchvision>=0.24.1",
 ]
-
 ```
 
 This is a valid configuration for projects that want to use CPU builds on Windows and macOS, and CUDA-enabled builds on Linux. However, if you need to support different platforms or accelerators, you'll need to configure the project accordingly.
@@ -45,7 +44,6 @@ In such cases, the first step is to add the relevant PyTorch index to your `pypr
 name = "pytorch-cpu"
 url = "https://download.pytorch.org/whl/cpu"
 explicit = true
-
 ```
 
 ```
@@ -53,7 +51,6 @@ explicit = true
 name = "pytorch-cu118"
 url = "https://download.pytorch.org/whl/cu118"
 explicit = true
-
 ```
 
 ```
@@ -61,7 +58,6 @@ explicit = true
 name = "pytorch-cu126"
 url = "https://download.pytorch.org/whl/cu126"
 explicit = true
-
 ```
 
 ```
@@ -69,7 +65,6 @@ explicit = true
 name = "pytorch-cu128"
 url = "https://download.pytorch.org/whl/cu128"
 explicit = true
-
 ```
 
 ```
@@ -77,7 +72,6 @@ explicit = true
 name = "pytorch-cu130"
 url = "https://download.pytorch.org/whl/cu130"
 explicit = true
-
 ```
 
 ```
@@ -85,7 +79,6 @@ explicit = true
 name = "pytorch-rocm"
 url = "https://download.pytorch.org/whl/rocm6.4"
 explicit = true
-
 ```
 
 ```
@@ -93,7 +86,6 @@ explicit = true
 name = "pytorch-xpu"
 url = "https://download.pytorch.org/whl/xpu"
 explicit = true
-
 ```
 
 We recommend the use of `explicit = true` to ensure that the index is *only* used for `torch`, `torchvision`, and other PyTorch-related packages, as opposed to generic dependencies like `jinja2`, which should continue to be sourced from the default index (PyPI).
@@ -108,7 +100,6 @@ torch = [
 torchvision = [
   { index = "pytorch-cpu" },
 ]
-
 ```
 
 PyTorch doesn't publish CUDA builds for macOS. As such, we gate on `sys_platform` to instruct uv to use the PyTorch index on Linux and Windows, but fall back to PyPI on macOS:
@@ -121,7 +112,6 @@ torch = [
 torchvision = [
   { index = "pytorch-cu118", marker = "sys_platform == 'linux' or sys_platform == 'win32'" },
 ]
-
 ```
 
 PyTorch doesn't publish CUDA builds for macOS. As such, we gate on `sys_platform` to instruct uv to limit the PyTorch index to Linux and Windows, falling back to PyPI on macOS:
@@ -134,7 +124,6 @@ torch = [
 torchvision = [
   { index = "pytorch-cu126", marker = "sys_platform == 'linux' or sys_platform == 'win32'" },
 ]
-
 ```
 
 PyTorch doesn't publish CUDA builds for macOS. As such, we gate on `sys_platform` to instruct uv to limit the PyTorch index to Linux and Windows, falling back to PyPI on macOS:
@@ -147,7 +136,6 @@ torch = [
 torchvision = [
   { index = "pytorch-cu128", marker = "sys_platform == 'linux' or sys_platform == 'win32'" },
 ]
-
 ```
 
 PyTorch doesn't publish CUDA builds for macOS. As such, we gate on `sys_platform` to instruct uv to limit the PyTorch index to Linux and Windows, falling back to PyPI on macOS:
@@ -160,7 +148,6 @@ torch = [
 torchvision = [
   { index = "pytorch-cu130", marker = "sys_platform == 'linux' or sys_platform == 'win32'" },
 ]
-
 ```
 
 PyTorch doesn't publish ROCm6 builds for macOS or Windows. As such, we gate on `sys_platform` to instruct uv to limit the PyTorch index to Linux, falling back to PyPI on macOS and Windows:
@@ -178,7 +165,6 @@ torchvision = [
 pytorch-triton-rocm = [
   { index = "pytorch-rocm", marker = "sys_platform == 'linux'" },
 ]
-
 ```
 
 PyTorch doesn't publish Intel GPU builds for macOS. As such, we gate on `sys_platform` to instruct uv to limit the PyTorch index to Linux and Windows, falling back to PyPI on macOS:
@@ -196,7 +182,6 @@ torchvision = [
 pytorch-triton-xpu = [
   { index = "pytorch-xpu", marker = "sys_platform == 'linux' or sys_platform == 'win32'" },
 ]
-
 ```
 
 As a complete example, the following project would use PyTorch's CPU-only builds on all platforms:
@@ -223,7 +208,6 @@ torchvision = [
 name = "pytorch-cpu"
 url = "https://download.pytorch.org/whl/cpu"
 explicit = true
-
 ```
 
 ## [Configuring accelerators with environment markers](#configuring-accelerators-with-environment-markers)
@@ -261,7 +245,6 @@ explicit = true
 name = "pytorch-cu128"
 url = "https://download.pytorch.org/whl/cu128"
 explicit = true
-
 ```
 
 Similarly, the following configuration would use PyTorch's AMD GPU builds on Linux, and CPU-only builds on Windows and macOS (by way of falling back to PyPI):
@@ -292,7 +275,6 @@ pytorch-triton-rocm = [
 name = "pytorch-rocm"
 url = "https://download.pytorch.org/whl/rocm6.4"
 explicit = true
-
 ```
 
 Or, for Intel GPU builds:
@@ -323,7 +305,6 @@ pytorch-triton-xpu = [
 name = "pytorch-xpu"
 url = "https://download.pytorch.org/whl/xpu"
 explicit = true
-
 ```
 
 ## [Configuring accelerators with optional dependencies](#configuring-accelerators-with-optional-dependencies)
@@ -376,7 +357,6 @@ explicit = true
 name = "pytorch-cu128"
 url = "https://download.pytorch.org/whl/cu128"
 explicit = true
-
 ```
 
 Note
@@ -391,14 +371,12 @@ PyTorch itself offers a [dedicated interface](https://pytorch.org/get-started/lo
 
 ```
 $ pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
-
 ```
 
 To use the same workflow with uv, replace `pip3` with `uv pip`:
 
 ```
 $ uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
-
 ```
 
 ## [Automatic backend selection](#automatic-backend-selection)
@@ -411,7 +389,6 @@ $ uv pip install torch --torch-backend=auto
 
 $ # With an environment variable.
 $ UV_TORCH_BACKEND=auto uv pip install torch
-
 ```
 
 When enabled, uv will query for the installed CUDA driver, AMD GPU versions, and Intel GPU presence, then use the most-compatible PyTorch index for all relevant packages (e.g., `torch`, `torchvision`, etc.). If no such GPU is found, uv will fall back to the CPU-only index. uv will continue to respect existing index configuration for any packages outside the PyTorch ecosystem.
@@ -424,7 +401,6 @@ $ uv pip install torch torchvision --torch-backend=cu126
 
 $ # With an environment variable.
 $ UV_TORCH_BACKEND=cu128 uv pip install torch torchvision
-
 ```
 
 At present, `--torch-backend` is only available in the `uv pip` interface.

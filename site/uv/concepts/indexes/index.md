@@ -12,7 +12,6 @@ To include an additional index when resolving dependencies, add a `[[tool.uv.ind
 name = "pytorch"
 # Required URL for the index.
 url = "https://download.pytorch.org/whl/cpu"
-
 ```
 
 Indexes are prioritized in the order in which they’re defined, such that the first index listed in the configuration file is the first index consulted when resolving dependencies, with indexes provided via the command line taking precedence over those in the configuration file.
@@ -24,7 +23,6 @@ By default, uv includes the Python Package Index (PyPI) as the "default" index, 
 name = "pytorch"
 url = "https://download.pytorch.org/whl/cpu"
 default = true
-
 ```
 
 The default index is always treated as lowest priority, regardless of its position in the list of indexes.
@@ -38,7 +36,6 @@ When providing an index on the command line (with `--index` or `--default-index`
 $ uv lock --index pytorch=https://download.pytorch.org/whl/cpu
 # Via an environment variable.
 $ UV_INDEX=pytorch=https://download.pytorch.org/whl/cpu uv lock
-
 ```
 
 ## [Pinning a package to an index](#pinning-a-package-to-an-index)
@@ -52,7 +49,6 @@ torch = { index = "pytorch" }
 [[tool.uv.index]]
 name = "pytorch"
 url = "https://download.pytorch.org/whl/cpu"
-
 ```
 
 Similarly, to pull from a different index based on the platform, you can provide a list of sources disambiguated by environment markers:
@@ -76,7 +72,6 @@ url = "https://download.pytorch.org/whl/cu118"
 [[tool.uv.index]]
 name = "pytorch-cu124"
 url = "https://download.pytorch.org/whl/cu124"
-
 ```
 
 An index can be marked as `explicit = true` to prevent packages from being installed from that index unless explicitly pinned to it. For example, to ensure that `torch` is installed from the `pytorch` index, but all other packages are installed from PyPI, add the following to your `pyproject.toml`:
@@ -89,7 +84,6 @@ torch = { index = "pytorch" }
 name = "pytorch"
 url = "https://download.pytorch.org/whl/cpu"
 explicit = true
-
 ```
 
 Named indexes referenced via `tool.uv.sources` must be defined within the project's `pyproject.toml` file; indexes provided via the command-line, environment variables, or user-level configuration will not be recognized.
@@ -128,7 +122,6 @@ For example, given an index named `internal-proxy` that requires a username (`pu
 [[tool.uv.index]]
 name = "internal-proxy"
 url = "https://example.com/simple"
-
 ```
 
 From there, you can set the `UV_INDEX_INTERNAL_PROXY_USERNAME` and `UV_INDEX_INTERNAL_PROXY_PASSWORD` environment variables, where `INTERNAL_PROXY` is the uppercase version of the index name, with non-alphanumeric characters replaced by underscores:
@@ -136,7 +129,6 @@ From there, you can set the `UV_INDEX_INTERNAL_PROXY_USERNAME` and `UV_INDEX_INT
 ```
 export UV_INDEX_INTERNAL_PROXY_USERNAME=public
 export UV_INDEX_INTERNAL_PROXY_PASSWORD=koala
-
 ```
 
 By providing credentials via environment variables, you can avoid storing sensitive information in the plaintext `pyproject.toml` file.
@@ -147,7 +139,6 @@ Alternatively, credentials can be embedded directly in the index definition:
 [[tool.uv.index]]
 name = "internal"
 url = "https://public:koala@pypi-proxy.corp.dev/simple"
-
 ```
 
 For security purposes, credentials are *never* stored in the `uv.lock` file; as such, uv *must* have access to the authenticated URL at installation time.
@@ -169,7 +160,6 @@ Some indexes (e.g., GitLab) will forward unauthenticated requests to a public in
 name = "example"
 url = "https://example.com/simple"
 authenticate = "always"
-
 ```
 
 When `authenticate` is set to `always`, uv will eagerly search for credentials and error if credentials cannot be found.
@@ -186,7 +176,6 @@ name = "private-index"
 url = "https://private-index.com/simple"
 authenticate = "always"
 ignore-error-codes = [403]
-
 ```
 
 uv will always continue searching across indexes when it encounters a `404 Not Found`. This cannot be overridden.
@@ -200,7 +189,6 @@ To prevent leaking credentials, authentication can be disabled for an index:
 name = "example"
 url = "https://example.com/simple"
 authenticate = "never"
-
 ```
 
 When `authenticate` is set to `never`, uv will never search for credentials for the given index and will error if credentials are provided directly.
@@ -216,7 +204,6 @@ To override the cache control headers for an index, use the `cache-control` sett
 name = "example"
 url = "https://example.com/simple"
 cache-control = { api = "max-age=600", files = "max-age=365000000, immutable" }
-
 ```
 
 The `cache-control` setting accepts an object with two optional keys:
@@ -231,7 +218,6 @@ The values for these keys are strings that follow the [HTTP Cache-Control](https
 name = "example"
 url = "https://example.com/simple"
 cache-control = { api = "no-cache" }
-
 ```
 
 This setting is most commonly used to override the default cache control headers for private indexes that otherwise disable caching, often unintentionally. We typically recommend following PyPI's approach to caching headers, i.e., setting `api = "max-age=600"` and `files = "max-age=365000000, immutable"`.
@@ -247,7 +233,6 @@ To define a flat index in your `pyproject.toml`, use the `format = "flat"` optio
 name = "example"
 url = "/path/to/directory"
 format = "flat"
-
 ```
 
 Flat indexes support the same feature set as Simple Repository API indexes (e.g., `explicit = true`); you can also pin a package to a flat index using `tool.uv.sources`.

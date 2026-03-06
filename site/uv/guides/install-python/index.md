@@ -8,7 +8,6 @@ To install the latest Python version:
 
 ```
 $ uv python install
-
 ```
 
 Note
@@ -19,14 +18,12 @@ Once Python is installed, it will be used by `uv` commands automatically. uv als
 
 ```
 $ python3.13
-
 ```
 
 uv only installs a *versioned* executable by default. To install `python` and `python3` executables, include the experimental `--default` option:
 
 ```
 $ uv python install --default
-
 ```
 
 Tip
@@ -39,21 +36,18 @@ To install a specific Python version:
 
 ```
 $ uv python install 3.12
-
 ```
 
 To install multiple Python versions:
 
 ```
 $ uv python install 3.11 3.12
-
 ```
 
 To install an alternative Python implementation, e.g., PyPy:
 
 ```
 $ uv python install pypy@3.10
-
 ```
 
 See the [`python install`](../../concepts/python-versions/#installing-a-python-version) documentation for more details.
@@ -64,7 +58,6 @@ To reinstall uv-managed Python versions, use `--reinstall`, e.g.:
 
 ```
 $ uv python install --reinstall
-
 ```
 
 This will reinstall all previously installed Python versions. Improvements are constantly being added to the Python distributions, so reinstalling may resolve bugs even if the Python version does not change.
@@ -75,7 +68,6 @@ To view available and installed Python versions:
 
 ```
 $ uv python list
-
 ```
 
 See the [`python list`](../../concepts/python-versions/#viewing-available-python-versions) documentation for more details.
@@ -86,14 +78,12 @@ Python does not need to be explicitly installed to use uv. By default, uv will a
 
 ```
 $ uvx python@3.12 -c "print('hello world')"
-
 ```
 
 Even if a specific Python version is not requested, uv will download the latest version on demand. For example, if there are no Python versions on your system, the following will install Python before creating a new virtual environment:
 
 ```
 $ uv venv
-
 ```
 
 Tip
@@ -116,14 +106,12 @@ To upgrade a Python version to the latest supported patch release:
 
 ```
 $ uv python upgrade 3.12
-
 ```
 
 To upgrade all uv-managed Python versions:
 
 ```
 $ uv python upgrade
-
 ```
 
 See the [`python upgrade`](../../concepts/python-versions/#upgrading-python-versions) documentation for more details.
