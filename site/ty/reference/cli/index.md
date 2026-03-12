@@ -19,6 +19,8 @@ ty <COMMAND>
 
 [`ty version`](#ty-version) : Display ty's version
 
+[`ty explain`](#ty-explain) : Explain rules and other parts of ty
+
 [`ty help`](#ty-help) : Print this message or the help of the given subcommand(s)
 
 ## [ty check](#ty-check)
@@ -226,6 +228,68 @@ ty generate-shell-completion <SHELL>
 ### Options
 
 [`--help`](#ty-generate-shell-completion--help), `-h` : Print help
+
+## [ty explain](#ty-explain)
+
+Explain rules and other parts of ty
+
+### Usage
+
+```
+ty explain <COMMAND>
+
+```
+
+### Commands
+
+[`ty explain rule`](#ty-explain-rule) : Explain a rule (or all rules)
+
+[`ty explain help`](#ty-explain-help) : Print this message or the help of the given subcommand(s)
+
+### [ty explain rule](#ty-explain-rule)
+
+Explain a rule (or all rules)
+
+### Usage
+
+```
+ty explain rule [OPTIONS] [RULE]
+
+```
+
+### Arguments
+
+[`RULE`](#ty-explain-rule--rule) : Rule to explain
+
+```
+Defaults to all rules if omitted.
+```
+
+### Options
+
+[`--help`](#ty-explain-rule--help), `-h` : Print help (see a summary with '-h')
+
+[`--output-format`](#ty-explain-rule--output-format) *output-format* : Output format
+
+```
+[default: text]
+
+Possible values:
+
+- `text`
+- `json`
+```
+
+### [ty explain help](#ty-explain-help)
+
+Print this message or the help of the given subcommand(s)
+
+### Usage
+
+```
+ty explain help [COMMAND]
+
+```
 
 ## [ty help](#ty-help)
 
