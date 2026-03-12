@@ -25,7 +25,7 @@
       
       
       <link rel="icon" href="../assets/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.2">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
     
     
 
@@ -1290,13 +1290,10 @@ to their defaults) as:</p>
 <h2 id="markdown-code-formatting"><a class="toclink" href="#markdown-code-formatting">Markdown code formatting</a></h2>
 <p><em>This feature is currently only available in <a href="../preview/#preview">preview mode</a>.</em></p>
 <p>The Ruff formatter can also format Python code blocks in Markdown files.
-In these files, Ruff will format any CommonMark <a href="https://spec.commonmark.org/0.30/#fenced-code-blocks">fenced code blocks</a>
-with the following info strings: <code>python</code>, <code>py</code>, <code>python3</code>, <code>py3</code>, or <code>pyi</code>.
-Fenced code blocks without an info string are assumed to be Python code examples
-and will also be formatted.</p>
-<p>If a code example is recognized and treated as Python, the Ruff formatter will
-automatically skip it if the code does not parse as valid Python or if the
-reformatted code would produce an invalid Python program.</p>
+In these files, Ruff will format any CommonMark <a href="https://spec.commonmark.org/0.30/#fenced-code-blocks">fenced code blocks</a> with
+the following info strings: <code>python</code>, <code>py</code>, <code>python3</code>, <code>py3</code>, or <code>pyi</code>. The
+formatter will automatically skip a code block if the code does not parse as
+valid Python or if the reformatted code would produce an invalid Python program.</p>
 <p>Code blocks marked as <code>python</code>, <code>py</code>, <code>python3</code>, or <code>py3</code> will be formatted with
 the normal Python code formatting style, while any code blocks marked with
 <code>pyi</code> will be formatted like Python type stub files:</p>
@@ -1352,7 +1349,7 @@ these mapped extensions in file discovery:</p>
 support needs to be explicitly included by adding it to <code>types_or</code>:</p>
 <div class="highlight"><span class="filename">.pre-commit-config.yaml</span><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nt">repos</span><span class="p">:</span>
 <a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">repo</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/astral-sh/ruff-pre-commit</span>
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">    </span><span class="nt">rev</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v0.15.5</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">    </span><span class="nt">rev</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v0.15.6</span>
 <a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">    </span><span class="nt">hooks</span><span class="p">:</span>
 <a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ruff-format</span>
 <a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w">        </span><span class="nt">types_or</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">python</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">pyi</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">jupyter</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">markdown</span><span class="p p-Indicator">]</span>

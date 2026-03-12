@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../assets/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.2">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
     
     
 
@@ -864,7 +864,7 @@
 <p><small>
 Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.138">v0.0.138</a> ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27raise-without-from-inside-except%27%20OR%20B904)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_bugbear%2Frules%2Fraise_without_from_inside_except.rs#L49" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_bugbear%2Frules%2Fraise_without_from_inside_except.rs#L51" target="_blank">View source</a>
 </small></p>
 <p>Derived from the <strong><a href="../#flake8-bugbear-b">flake8-bugbear</a></strong> linter.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
@@ -875,9 +875,11 @@ clause.</p>
 current exception is derived. This is known as exception chaining. When
 printing the stack trace, chained exceptions are displayed in such a way
 so as make it easier to trace the exception back to its root cause.</p>
-<p>When raising an exception from within an <code>except</code> clause, always include a
-<code>from</code> clause to facilitate exception chaining. If the exception is not
-chained, it will be difficult to trace the exception back to its root cause.</p>
+<p>When raising a new exception from within an <code>except</code> clause, it's recommended to
+include a <code>from</code> clause to explicitly set the exception's cause. Without it,
+Python will implicitly chain from the current exception (setting <code>__context__</code>),
+but the <code>__cause__</code> attribute won't be set, which may make debugging slightly
+more difficult.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">try</span><span class="p">:</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="o">...</span>
