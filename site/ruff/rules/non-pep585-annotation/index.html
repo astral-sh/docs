@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../assets/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.2">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
     
     
 
@@ -864,7 +864,7 @@
 <p><small>
 Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.155">v0.0.155</a> ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27non-pep585-annotation%27%20OR%20UP006)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fpyupgrade%2Frules%2Fuse_pep585_annotation.rs#L57" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fpyupgrade%2Frules%2Fuse_pep585_annotation.rs#L64" target="_blank">View source</a>
 </small></p>
 <p>Derived from the <strong><a href="../#pyupgrade-up">pyupgrade</a></strong> linter.</p>
 <p>Fix is sometimes available.</p>
@@ -898,10 +898,14 @@ by setting <a href="../../settings/#lint_pyupgrade_keep-runtime-typing"><code>li
 <p>This rule's fix is marked as unsafe, as it may lead to runtime errors when
 alongside libraries that rely on runtime type annotations, like Pydantic,
 on Python versions prior to Python 3.9.</p>
+<p>In <a href="https://docs.astral.sh/ruff/preview/">preview</a>, this rule can also add its own <code>__future__</code> import on Python
+3.9 and earlier, if the <a href="../../settings/#lint_future-annotations"><code>lint.future-annotations</code></a> setting is enabled. This
+also makes the fix unsafe.</p>
 <h2 id="options"><a class="toclink" href="#options">Options</a></h2>
 <ul>
 <li><a href="../../settings/#target-version"><code>target-version</code></a></li>
 <li><a href="../../settings/#lint_pyupgrade_keep-runtime-typing"><code>lint.pyupgrade.keep-runtime-typing</code></a></li>
+<li><a href="../../settings/#lint_future-annotations"><code>lint.future-annotations</code></a></li>
 </ul>
 
 
