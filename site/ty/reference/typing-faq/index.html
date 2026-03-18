@@ -81,8 +81,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2026-03-13 12:15:22Z",
-        "dateModified": "2026-03-13 12:15:22Z",
+        "datePublished": "2026-03-18 14:25:26Z",
+        "dateModified": "2026-03-18 14:25:26Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -1061,6 +1061,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#invariant-generics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why can't I use list[Subtype] when a list[Supertype] is expected?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#why-does-ty-say-callable-has-no-attribute-__name__" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1375,6 +1386,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#invariant-generics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why can't I use list[Subtype] when a list[Supertype] is expected?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#why-does-ty-say-callable-has-no-attribute-__name__" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1612,42 +1634,125 @@ type. At the time of writing, this import needs to be guarded by a <code>TYPE_CH
 <p>(<a href="https://play.ty.dev/fb034780-3ba7-4c6a-9449-5b0f44128bab">Full example in the playground</a>)</p>
 <p>If you need this for <code>complex</code>, you can use <code>ty_extensions.JustComplex</code> in a similar way.</p>
 </div>
+<h2 id="invariant-generics"><a class="toclink" href="#invariant-generics">Why can't I use <code>list[Subtype]</code> when a <code>list[Supertype]</code> is expected?</a></h2>
+<p>Let's say you have a class hierarchy with an <code>Entry</code> base class as well as <code>Directory</code> and <code>File</code> subclasses. Since
+a <code>Directory</code> <em>is</em> an <code>Entry</code>, you can use it everywhere an <code>Entry</code> is expected.
+You might therefore expect a <code>list[Directory]</code> to
+be usable in any context where a <code>list[Entry]</code> is expected, but this is not
+the case. The reason for this is mutability:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Setup of `Entry`, `Directory`, and `File` classes (1)</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">def</span> <span class="nf">modify</span><span class="p">(</span><span class="n">entries</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Entry</span><span class="p">]):</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="n">entries</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">File</span><span class="p">(</span><span class="s2">&quot;README.txt&quot;</span><span class="p">))</span> <span class="c1"># mutation</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="n">directories</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Directory</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">Directory</span><span class="p">(</span><span class="s2">&quot;Downloads&quot;</span><span class="p">),</span> <span class="n">Directory</span><span class="p">(</span><span class="s2">&quot;Documents&quot;</span><span class="p">)]</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="n">modify</span><span class="p">(</span><span class="n">directories</span><span class="p">)</span>  <span class="c1"># ty emits an error on this call</span>
+</code></pre></div>
+<ol>
+<li>
+<p>The full example might look like this:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nd">@dataclass</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="k">class</span> <span class="nc">Entry</span><span class="p">:</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>     <span class="n">path</span><span class="p">:</span> <span class="nb">str</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>     <span class="k">def</span> <span class="nf">size_bytes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span> <span class="o">...</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="nd">@dataclass</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="k">class</span> <span class="nc">Directory</span><span class="p">(</span><span class="n">Entry</span><span class="p">):</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>    <span class="k">def</span> <span class="nf">children</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Entry</span><span class="p">]:</span> <span class="o">...</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="nd">@dataclass</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="k">class</span> <span class="nc">File</span><span class="p">(</span><span class="n">Entry</span><span class="p">):</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>    <span class="k">def</span> <span class="nf">content</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span> <span class="o">...</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="k">def</span> <span class="nf">modify</span><span class="p">(</span><span class="n">entries</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Entry</span><span class="p">]):</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>    <span class="n">entries</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">File</span><span class="p">(</span><span class="s2">&quot;README.txt&quot;</span><span class="p">))</span> <span class="c1"># mutation</span>
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="n">directories</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Directory</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">Directory</span><span class="p">(</span><span class="s2">&quot;Downloads&quot;</span><span class="p">),</span> <span class="n">Directory</span><span class="p">(</span><span class="s2">&quot;Documents&quot;</span><span class="p">)]</span>
+<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="n">modify</span><span class="p">(</span><span class="n">directories</span><span class="p">)</span>  <span class="c1"># ty emits an error on this call</span>
+</code></pre></div>
+<p>You can try it out in <a href="https://play.ty.dev/01013e73-da54-40c4-a9c5-2af269abda9d">this playground example</a>.</p>
+</li>
+</ol>
+<p>The <code>modify</code> call mutates the contents of the <code>directories</code> list. After this call,
+it contains two directories <em>and one <code>File</code></em>, which clearly violates the
+<code>list[Directory]</code> type annotation. If this call <em>were</em> allowed, subsequent code
+that relies on the fact that <code>directories</code> only contains <code>Directory</code> instances might
+break at runtime:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">for</span> <span class="n">directory</span> <span class="ow">in</span> <span class="n">directories</span><span class="p">:</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="n">directory</span><span class="o">.</span><span class="n">children</span><span class="p">()</span>  <span class="c1"># runtime: &#39;File&#39; object has no attribute &#39;children&#39;</span>
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>In type system terminology, we say <code>list</code> is <em>invariant</em>, which means that
+just because <code>A</code> is a subtype of <code>B</code> does not mean that <code>list[A]</code> will be a
+subtype of <code>list[B]</code>. The same is true for other builtin collections such as
+<code>set</code> or <code>dict</code>. In contrast, read-only collections like <code>tuple</code> or
+<code>frozenset</code> are <em>covariant</em> in their type parameter. It is safe to assign a
+<code>frozenset[bool]</code> to a <code>frozenset[int]</code> because the contents cannot be
+mutated.</p>
+</div>
+<p>You might run into problems with invariance in situations where mutability isn't
+required:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">def</span> <span class="nf">total_size_bytes</span><span class="p">(</span><span class="n">entries</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Entry</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">entry</span><span class="o">.</span><span class="n">size_bytes</span><span class="p">()</span> <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">entries</span><span class="p">)</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="c1"># inferred as `list[Directory]`</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="n">media_entries</span> <span class="o">=</span> <span class="p">[</span><span class="n">Directory</span><span class="p">(</span><span class="s2">&quot;Pictures&quot;</span><span class="p">),</span> <span class="n">Directory</span><span class="p">(</span><span class="s2">&quot;Videos&quot;</span><span class="p">)]</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="c1"># still a type-check error, but should be fine in principle (no mutation occurs)</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="n">size</span> <span class="o">=</span> <span class="n">total_size_bytes</span><span class="p">(</span><span class="n">media_entries</span><span class="p">)</span>
+</code></pre></div>
+<p>To prevent this, you can adapt the signature of <code>total_size_bytes</code> to take an
+argument of type
+<a href="https://docs.python.org/3/library/collections.abc.html#collections-abstract-base-classes"><code>Sequence[Entry]</code></a>
+instead. This type describes read-only sequences (that contain values of type
+<code>Entry</code>). <code>Sequence</code> is therefore covariant in its type parameter.</p>
+<p>If you cannot adapt the signature of the function you are calling, you can also
+widen the type of the argument by annotating <code>media_entries</code> as <code>list[Entry]</code>.
+In some cases it's also a reasonable solution to create a copy of the list
+(<code>total_size_bytes(list(media_entries))</code>).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you are looking for a covariant alternative to <code>dict[str, V]</code>, you can use <a href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping"><code>Mapping[str, V]</code></a>.</p>
+</div>
 <h2 id="why-does-ty-say-callable-has-no-attribute-__name__"><a class="toclink" href="#why-does-ty-say-callable-has-no-attribute-__name__">Why does ty say <code>Callable</code> has no attribute <code>__name__</code>?</a></h2>
 <p>When you access <code>__name__</code>, <code>__qualname__</code>, <code>__module__</code>, or <code>__doc__</code> on a value typed as <code>Callable</code>,
 ty reports an <code>unresolved-attribute</code> error. This is because not all callables have these attributes.
 Functions do (including lambdas), but other callable objects do not. The <code>FileUpload</code> class below, for
 example, is callable, but instances of <code>FileUpload</code> do not have a <code>__name__</code> attribute. Passing a
 <code>FileUpload</code> instance to <code>retry</code> would lead to an <code>AttributeError</code> at runtime.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">def</span> <span class="nf">retry</span><span class="p">(</span><span class="n">times</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">operation</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="nb">bool</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">times</span><span class="p">):</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>        <span class="c1"># WRONG: `operation` does not necessarily have a `__name__` attribute</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Calling </span><span class="si">{</span><span class="n">operation</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">, attempt </span><span class="si">{</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2"> of </span><span class="si">{</span><span class="n">times</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>        <span class="k">if</span> <span class="n">operation</span><span class="p">():</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>            <span class="k">return</span> <span class="kc">True</span>
-<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>    <span class="k">return</span> <span class="kc">False</span>
-<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>
-<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="k">class</span> <span class="nc">FileUpload</span><span class="p">:</span>
-<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>        <span class="c1"># …</span>
-<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>
-<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>        <span class="c1"># …</span>
-<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>
-<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="n">retry</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">FileUpload</span><span class="p">(</span><span class="s2">&quot;image.png&quot;</span><span class="p">))</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="k">def</span> <span class="nf">retry</span><span class="p">(</span><span class="n">times</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">operation</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="nb">bool</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">times</span><span class="p">):</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>        <span class="c1"># WRONG: `operation` does not necessarily have a `__name__` attribute</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Calling </span><span class="si">{</span><span class="n">operation</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">, attempt </span><span class="si">{</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2"> of </span><span class="si">{</span><span class="n">times</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>        <span class="k">if</span> <span class="n">operation</span><span class="p">():</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>            <span class="k">return</span> <span class="kc">True</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>    <span class="k">return</span> <span class="kc">False</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="k">class</span> <span class="nc">FileUpload</span><span class="p">:</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>        <span class="c1"># …</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>        <span class="c1"># …</span>
+<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>
+<a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="n">retry</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">FileUpload</span><span class="p">(</span><span class="s2">&quot;image.png&quot;</span><span class="p">))</span>
 </code></pre></div>
 <p>To fix this, you could use <code>getattr</code> with a fall back to a default name when the
 attribute is not present (or use a <code>hasattr(…, "__name__")</code> check if you access
 it multiple times):</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">name</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">operation</span><span class="p">,</span> <span class="s2">&quot;__name__&quot;</span><span class="p">,</span> <span class="s2">&quot;operation&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">name</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">operation</span><span class="p">,</span> <span class="s2">&quot;__name__&quot;</span><span class="p">,</span> <span class="s2">&quot;operation&quot;</span><span class="p">)</span>
 </code></pre></div>
 <p>Alternatively, you could use an <code>isinstance(…, types.FunctionType)</code> check to narrow the type of
 <code>operation</code> to something that definitely has a <code>__name__</code> attribute:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">operation</span><span class="p">,</span> <span class="n">FunctionType</span><span class="p">):</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Calling </span><span class="si">{</span><span class="n">operation</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">, attempt </span><span class="si">{</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2"> of </span><span class="si">{</span><span class="n">times</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="k">else</span><span class="p">:</span>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Calling operation, attempt </span><span class="si">{</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2"> of </span><span class="si">{</span><span class="n">times</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">operation</span><span class="p">,</span> <span class="n">FunctionType</span><span class="p">):</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Calling </span><span class="si">{</span><span class="n">operation</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">, attempt </span><span class="si">{</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2"> of </span><span class="si">{</span><span class="n">times</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Calling operation, attempt </span><span class="si">{</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2"> of </span><span class="si">{</span><span class="n">times</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
 <p>You can try various approaches in <a href="https://play.ty.dev/f6f7f35a-47c3-423d-be8d-33d03c61d40c">this playground example</a>.
 See also <a href="https://github.com/astral-sh/ty/issues/1495">this discussion</a> for some plans to improve
@@ -1657,19 +1762,19 @@ the developer experience around this in the future.</p>
 <p>ty has first-class support for intersection types. If you only want to accept function-like
 callables, you could define <code>FunctionLikeCallable</code> as an intersection of <code>Callable</code> and
 <code>types.FunctionType</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">TYPE_CHECKING</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="kn">from</span> <span class="nn">types</span> <span class="kn">import</span> <span class="n">FunctionType</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    <span class="kn">from</span> <span class="nn">ty_extensions</span> <span class="kn">import</span> <span class="n">Intersection</span>
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
-<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>    <span class="nb">type</span> <span class="n">FunctionLikeCallable</span><span class="p">[</span><span class="o">**</span><span class="n">P</span><span class="p">,</span> <span class="n">R</span><span class="p">]</span> <span class="o">=</span> <span class="n">Intersection</span><span class="p">[</span><span class="n">Callable</span><span class="p">[</span><span class="n">P</span><span class="p">,</span> <span class="n">R</span><span class="p">],</span> <span class="n">FunctionType</span><span class="p">]</span>
-<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="k">else</span><span class="p">:</span>
-<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>    <span class="n">FunctionLikeCallable</span> <span class="o">=</span> <span class="n">Callable</span>
-<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>
-<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>
-<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="k">def</span> <span class="nf">retry</span><span class="p">(</span><span class="n">times</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">operation</span><span class="p">:</span> <span class="n">FunctionLikeCallable</span><span class="p">[[],</span> <span class="nb">bool</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>    <span class="o">...</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">TYPE_CHECKING</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="kn">from</span> <span class="nn">types</span> <span class="kn">import</span> <span class="n">FunctionType</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>    <span class="kn">from</span> <span class="nn">ty_extensions</span> <span class="kn">import</span> <span class="n">Intersection</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>    <span class="nb">type</span> <span class="n">FunctionLikeCallable</span><span class="p">[</span><span class="o">**</span><span class="n">P</span><span class="p">,</span> <span class="n">R</span><span class="p">]</span> <span class="o">=</span> <span class="n">Intersection</span><span class="p">[</span><span class="n">Callable</span><span class="p">[</span><span class="n">P</span><span class="p">,</span> <span class="n">R</span><span class="p">],</span> <span class="n">FunctionType</span><span class="p">]</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>    <span class="n">FunctionLikeCallable</span> <span class="o">=</span> <span class="n">Callable</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="k">def</span> <span class="nf">retry</span><span class="p">(</span><span class="n">times</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">operation</span><span class="p">:</span> <span class="n">FunctionLikeCallable</span><span class="p">[[],</span> <span class="nb">bool</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>    <span class="o">...</span>
 </code></pre></div>
 <p>You can check out the full example <a href="https://play.ty.dev/7a1ea4ab-04e1-4271-adf5-ddc3a5d2fcfd">here</a>,
 which demonstrates that <code>FileUpload</code> instances are no longer accepted by <code>retry</code>.</p>
@@ -1715,8 +1820,8 @@ ty reports <em>"Cannot resolve imported module …"</em>, check the following:</
 <li>
 <p><strong>Project structure</strong>: If your source code is not in the project root or <code>src/</code> directory,
     configure <a href="../configuration/#root"><code>environment.root</code></a> in your <code>pyproject.toml</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">[tool.ty.environment]</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;./app&quot;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">[tool.ty.environment]</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;./app&quot;</span><span class="p">]</span>
 </code></pre></div>
 </li>
 <li>
@@ -1738,15 +1843,15 @@ uses the current working directory or the <code>--project</code> option to deter
 <li>
 <p><strong>Run ty per-package</strong>: Run <code>ty check</code> from each package directory, or use <code>--project</code> to specify
     the package:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>ty<span class="w"> </span>check<span class="w"> </span>--project<span class="w"> </span>packages/package-a
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>ty<span class="w"> </span>check<span class="w"> </span>--project<span class="w"> </span>packages/package-b
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>ty<span class="w"> </span>check<span class="w"> </span>--project<span class="w"> </span>packages/package-a
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>ty<span class="w"> </span>check<span class="w"> </span>--project<span class="w"> </span>packages/package-b
 </code></pre></div>
 </li>
 <li>
 <p><strong>Configure multiple source roots</strong>: Use <a href="../configuration/#root"><code>environment.root</code></a> to specify
     multiple source directories:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">[tool.ty.environment]</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;packages/package-a&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;packages/package-b&quot;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">[tool.ty.environment]</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;packages/package-a&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;packages/package-b&quot;</span><span class="p">]</span>
 </code></pre></div>
 <p>This has the disadvantage of treating all packages as a single project, which may lead to cases
 in which ty thinks something is importable when it wouldn't be at runtime.</p>
@@ -1758,7 +1863,7 @@ topic.</p>
 <p>It depends on what you want to do. If you have a single inline-metadata script, you can type check
 it with ty by using uv's <code>--with-requirements</code> flag to install the dependencies specified in the
 script header:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>uvx<span class="w"> </span>--with-requirements<span class="w"> </span>script.py<span class="w"> </span>ty<span class="w"> </span>check<span class="w"> </span>script.py
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>uvx<span class="w"> </span>--with-requirements<span class="w"> </span>script.py<span class="w"> </span>ty<span class="w"> </span>check<span class="w"> </span>script.py
 </code></pre></div>
 <p>If you have multiple scripts in your workspace, ty does not yet recognize that they have different
 dependencies based on their inline metadata.</p>
@@ -1802,7 +1907,7 @@ issue</a>.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 13, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 18, 2026</span>
   </span>
 
     
