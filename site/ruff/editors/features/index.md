@@ -18,6 +18,45 @@ Provide code formatting for your Python code. The server can format an entire do
 
 The VS Code extension provides the `Ruff: Format Document` command to format an entire document. In VS Code, the range formatting can be triggered by selecting a range of lines, right-clicking, and selecting `Format Selection` from the context menu.
 
+### [Markdown code blocks](#markdown-code-blocks)
+
+*This feature is currently only available in [preview mode](https://docs.astral.sh/ruff/preview/preview.md#preview).*
+
+The Ruff formatter can also format Python code blocks in Markdown files. The Ruff VS Code extension provides the `Format Document` command for Markdown files, which will then format the code blocks with the same settings as used for regular Python files.
+
+Note that Ruff will not format any other parts of Markdown files. If you want to use Ruff formatting in addition to another Markdown formatting extension, then you will need to set one as the default in VS Code, and manually run the `Format Document With...` (or `Ruff: Format document`) command to run any other formatters separately.
+
+To enable preview mode for formatting in VS Code, add the following to your `settings.json`:
+
+```
+{
+  "ruff.format.preview": true,
+}
+```
+
+To set Ruff as the default formatter for Markdown files in VS Code, add the following to your `settings.json`:
+
+```
+{
+  "[markdown]": {
+    "editor.defaultFormatter": "charliermarsh.ruff"
+  }
+}
+```
+
+Note that Ruff does not support range formatting for Markdown files, so if you have format-on-save enabled, you may also need to specify the following:
+
+```
+{
+  "[markdown]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "file"
+  }
+}
+```
+
+See the [formatter documentation](https://docs.astral.sh/ruff/formatter/#markdown-code-formatting) for more details.
+
 ## [Code Actions](#code-actions)
 
 Code actions are context-sensitive suggestions that can help you fix issues in your code. They are usually triggered by a shortcut or by clicking a light bulb icon in the editor. The Ruff Language Server provides the following code actions:
