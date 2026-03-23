@@ -34,6 +34,8 @@ uv [OPTIONS] <COMMAND>
 
 [`uv format`](#uv-format) : Format Python code in the project
 
+[`uv audit`](#uv-audit) : Audit the project's dependencies
+
 [`uv tool`](#uv-tool) : Run and install commands provided by Python packages
 
 [`uv python`](#uv-python) : Manage Python versions and installations
@@ -161,14 +163,6 @@ Possible values:
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
 ```
 
-[`--native-tls`](#uv-auth-login--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
-
-```
-By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
-
-However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-```
-
 [`--no-cache`](#uv-auth-login--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
 ```
@@ -227,6 +221,14 @@ May also be set with the `UV_PROJECT` environment variable.
 
 ```
 Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will write no output to stdout.
+```
+
+[`--system-certs`](#uv-auth-login--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
 ```
 
 [`--token`](#uv-auth-login--token), `-t` *token* : The token to use for the service.
@@ -334,14 +336,6 @@ Possible values:
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
 ```
 
-[`--native-tls`](#uv-auth-logout--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
-
-```
-By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
-
-However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-```
-
 [`--no-cache`](#uv-auth-logout--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
 ```
@@ -394,6 +388,14 @@ May also be set with the `UV_PROJECT` environment variable.
 
 ```
 Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will write no output to stdout.
+```
+
+[`--system-certs`](#uv-auth-logout--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
 ```
 
 [`--username`](#uv-auth-logout--username), `-u` *username* : The username to logout
@@ -491,14 +493,6 @@ Possible values:
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
 ```
 
-[`--native-tls`](#uv-auth-token--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
-
-```
-By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
-
-However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-```
-
 [`--no-cache`](#uv-auth-token--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
 ```
@@ -551,6 +545,14 @@ May also be set with the `UV_PROJECT` environment variable.
 
 ```
 Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will write no output to stdout.
+```
+
+[`--system-certs`](#uv-auth-token--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
 ```
 
 [`--username`](#uv-auth-token--username), `-u` *username* : The username to lookup
@@ -643,14 +645,6 @@ May also be set with the `UV_WORKING_DIR` environment variable.
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
 ```
 
-[`--native-tls`](#uv-auth-dir--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
-
-```
-By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
-
-However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-```
-
 [`--no-cache`](#uv-auth-dir--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
 ```
@@ -703,6 +697,14 @@ May also be set with the `UV_PROJECT` environment variable.
 
 ```
 Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will write no output to stdout.
+```
+
+[`--system-certs`](#uv-auth-dir--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
 ```
 
 [`--verbose`](#uv-auth-dir--verbose), `-v` : Use verbose output.
@@ -1030,14 +1032,6 @@ By default, uv prefers using Python versions it manages. However, it will use sy
 Equivalent to `python -m <module>`.
 ```
 
-[`--native-tls`](#uv-run--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
-
-```
-By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
-
-However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-```
-
 [`--no-binary`](#uv-run--no-binary) : Don't install pre-built wheels.
 
 ```
@@ -1337,6 +1331,14 @@ Possible values:
 Using `--script` will attempt to parse the path as a PEP 723 script, irrespective of its extension.
 ```
 
+[`--system-certs`](#uv-run--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
+```
+
 [`--upgrade`](#uv-run--upgrade), `-U` : Allow package upgrades, ignoring pinned versions in any existing output file. Implies `--refresh`
 
 [`--upgrade-package`](#uv-run--upgrade-package), `-P` *upgrade-package* : Allow upgrades for a specific package, ignoring pinned versions in any existing output file. Implies `--refresh-package`
@@ -1522,14 +1524,6 @@ By default, uv prefers using Python versions it manages. However, it will use sy
 Defaults to the name of the directory.
 ```
 
-[`--native-tls`](#uv-init--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
-
-```
-By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
-
-However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-```
-
 [`--no-cache`](#uv-init--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
 ```
@@ -1634,6 +1628,14 @@ A script is a standalone file with embedded metadata enumerating its dependencie
 PEP 723 scripts can be executed directly with `uv run`.
 
 By default, adds a requirement on the system Python version; use `--python` to specify an alternative Python version requirement.
+```
+
+[`--system-certs`](#uv-init--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
 ```
 
 [`--vcs`](#uv-init--vcs) *vcs* : Initialize a version control system for the project.
@@ -1959,14 +1961,6 @@ By default, uv prefers using Python versions it manages. However, it will use sy
 
 [`--marker`](#uv-add--marker), `-m` *marker* : Apply this marker to all added packages
 
-[`--native-tls`](#uv-add--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
-
-```
-By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
-
-However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-```
-
 [`--no-binary`](#uv-add--no-binary) : Don't install pre-built wheels.
 
 ```
@@ -2193,6 +2187,14 @@ Possible values:
 
 ```
 If provided, uv will add the dependency to the script's inline metadata table, in adherence with PEP 723. If no such inline metadata table is present, a new one will be created and added to the script. When executed via `uv run`, uv will create a temporary environment for the script with all inline dependencies installed.
+```
+
+[`--system-certs`](#uv-add--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
 ```
 
 [`--tag`](#uv-add--tag) *tag* : Tag to use when adding a dependency from Git
@@ -2474,14 +2476,6 @@ Requires that the lockfile is up-to-date. If the lockfile is missing or needs to
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
 ```
 
-[`--native-tls`](#uv-remove--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
-
-```
-By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
-
-However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-```
-
 [`--no-binary`](#uv-remove--no-binary) : Don't install pre-built wheels.
 
 ```
@@ -2648,6 +2642,14 @@ Possible values:
 
 ```
 If provided, uv will remove the dependency from the script's inline metadata table, in adherence with PEP 723.
+```
+
+[`--system-certs`](#uv-remove--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
 ```
 
 [`--upgrade`](#uv-remove--upgrade), `-U` : Allow package upgrades, ignoring pinned versions in any existing output file. Implies `--refresh`
@@ -2929,14 +2931,6 @@ Requires that the lockfile is up-to-date. If the lockfile is missing or needs to
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
 ```
 
-[`--native-tls`](#uv-version--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
-
-```
-By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
-
-However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-```
-
 [`--no-binary`](#uv-version--no-binary) : Don't install pre-built wheels.
 
 ```
@@ -3112,6 +3106,14 @@ Possible values:
 
 ```
 By default, uv will show the project name before the version.
+```
+
+[`--system-certs`](#uv-version--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
 ```
 
 [`--upgrade`](#uv-version--upgrade), `-U` : Allow package upgrades, ignoring pinned versions in any existing output file. Implies `--refresh`
@@ -3429,14 +3431,6 @@ Requires that the lockfile is up-to-date. If the lockfile is missing or needs to
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-```
-
-[`--native-tls`](#uv-sync--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
-
-```
-By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
-
-However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
 ```
 
 [`--no-binary`](#uv-sync--no-binary) : Don't install pre-built wheels.
@@ -3769,6 +3763,14 @@ Possible values:
 If provided, uv will sync the dependencies based on the script's inline metadata table, in adherence with PEP 723.
 ```
 
+[`--system-certs`](#uv-sync--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
+```
+
 [`--upgrade`](#uv-sync--upgrade), `-U` : Allow package upgrades, ignoring pinned versions in any existing output file. Implies `--refresh`
 
 [`--upgrade-package`](#uv-sync--upgrade-package), `-P` *upgrade-package* : Allow upgrades for a specific package, ignoring pinned versions in any existing output file. Implies `--refresh-package`
@@ -4014,14 +4016,6 @@ Possible values:
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
 ```
 
-[`--native-tls`](#uv-lock--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
-
-```
-By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
-
-However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-```
-
 [`--no-binary`](#uv-lock--no-binary) : Don't install pre-built wheels.
 
 ```
@@ -4184,6 +4178,14 @@ Possible values:
 
 ```
 If provided, uv will lock the script (based on its inline metadata table, in adherence with PEP 723) to a `.lock` file adjacent to the script itself.
+```
+
+[`--system-certs`](#uv-lock--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
 ```
 
 [`--upgrade`](#uv-lock--upgrade), `-U` : Allow package upgrades, ignoring pinned versions in any existing output file. Implies `--refresh`
@@ -4469,14 +4471,6 @@ Requires that the lockfile is up-to-date. If the lockfile is missing or needs to
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
 ```
 
-[`--native-tls`](#uv-export--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
-
-```
-By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
-
-However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-```
-
 [`--no-annotate`](#uv-export--no-annotate) : Exclude comment annotations indicating the source of each package
 
 [`--no-binary`](#uv-export--no-binary) : Don't install pre-built wheels.
@@ -4741,6 +4735,14 @@ Possible values:
 If provided, uv will resolve the dependencies based on its inline metadata table, in adherence with PEP 723.
 ```
 
+[`--system-certs`](#uv-export--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
+```
+
 [`--upgrade`](#uv-export--upgrade), `-U` : Allow package upgrades, ignoring pinned versions in any existing output file. Implies `--refresh`
 
 [`--upgrade-package`](#uv-export--upgrade-package), `-P` *upgrade-package* : Allow upgrades for a specific package, ignoring pinned versions in any existing output file. Implies `--refresh-package`
@@ -4992,14 +4994,6 @@ Requires that the lockfile is up-to-date. If the lockfile is missing or needs to
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-```
-
-[`--native-tls`](#uv-tree--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
-
-```
-By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
-
-However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
 ```
 
 [`--no-binary`](#uv-tree--no-binary) : Don't install pre-built wheels.
@@ -5274,6 +5268,14 @@ If provided, uv will resolve the dependencies based on its inline metadata table
 
 [`--show-sizes`](#uv-tree--show-sizes) : Show compressed wheel sizes for packages in the tree
 
+[`--system-certs`](#uv-tree--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
+```
+
 [`--universal`](#uv-tree--universal) : Show a platform-independent dependency tree.
 
 ```
@@ -5394,14 +5396,6 @@ May also be set with the `UV_EXCLUDE_NEWER` environment variable.
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
 ```
 
-[`--native-tls`](#uv-format--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
-
-```
-By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
-
-However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-```
-
 [`--no-cache`](#uv-format--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
 ```
@@ -5462,6 +5456,14 @@ May also be set with the `UV_PROJECT` environment variable.
 Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will write no output to stdout.
 ```
 
+[`--system-certs`](#uv-format--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
+```
+
 [`--verbose`](#uv-format--verbose), `-v` : Use verbose output.
 
 ```
@@ -5474,6 +5476,557 @@ You can configure fine-grained logging using the `RUST_LOG` environment variable
 Accepts either a version (e.g., `0.8.2`) which will be treated as an exact pin, a version specifier (e.g., `>=0.8.0`), or `latest` to use the latest available version.
 
 By default, a constrained version range of Ruff will be used (e.g., `>=0.15,<0.16`).
+```
+
+## [uv audit](#uv-audit)
+
+Audit the project's dependencies.
+
+Dependencies are audited for known vulnerabilities, as well as 'adverse' statuses such as deprecation and quarantine.
+
+### Usage
+
+```
+uv audit [OPTIONS]
+```
+
+### Options
+
+[`--all-extras`](#uv-audit--all-extras) : Include all optional dependencies.
+
+```
+Optional dependencies are defined via `project.optional-dependencies` in a `pyproject.toml`.
+
+This option is only available when running in a project.
+```
+
+[`--all-groups`](#uv-audit--all-groups) : Include dependencies from all dependency groups.
+
+```
+`--no-group` can be used to exclude specific groups.
+```
+
+[`--allow-insecure-host`](#uv-audit--allow-insecure-host), `--trusted-host` *allow-insecure-host* : Allow insecure connections to a host.
+
+```
+Can be provided multiple times.
+
+Expects to receive either a hostname (e.g., `localhost`), a host-port pair (e.g., `localhost:8080`), or a URL (e.g., `https://localhost`).
+
+WARNING: Hosts included in this list will not be verified against the system's certificate store. Only use `--allow-insecure-host` in a secure network with verified sources, as it bypasses SSL verification and could expose you to MITM attacks.
+
+May also be set with the `UV_INSECURE_HOST` environment variable.
+```
+
+[`--cache-dir`](#uv-audit--cache-dir) *cache-dir* : Path to the cache directory.
+
+```
+Defaults to `$XDG_CACHE_HOME/uv` or `$HOME/.cache/uv` on macOS and Linux, and `%LOCALAPPDATA%\uv\cache` on Windows.
+
+To view the location of the cache directory, run `uv cache dir`.
+
+May also be set with the `UV_CACHE_DIR` environment variable.
+```
+
+[`--color`](#uv-audit--color) *color-choice* : Control the use of color in output.
+
+```
+By default, uv will automatically detect support for colors when writing to a terminal.
+
+Possible values:
+
+- `auto`: Enables colored output only when the output is going to a terminal or TTY with support
+- `always`: Enables colored output regardless of the detected environment
+- `never`: Disables colored output
+```
+
+[`--config-file`](#uv-audit--config-file) *config-file* : The path to a `uv.toml` file to use for configuration.
+
+```
+While uv configuration can be included in a `pyproject.toml` file, it is not allowed in this context.
+
+May also be set with the `UV_CONFIG_FILE` environment variable.
+```
+
+[`--config-setting`](#uv-audit--config-setting), `--config-settings`, `-C` *config-setting* : Settings to pass to the PEP 517 build backend, specified as `KEY=VALUE` pairs
+
+[`--config-settings-package`](#uv-audit--config-settings-package), `--config-settings-package` *config-settings-package* : Settings to pass to the PEP 517 build backend for a specific package, specified as `PACKAGE:KEY=VALUE` pairs
+
+[`--default-index`](#uv-audit--default-index) *default-index* : The URL of the default package index (by default: <https://pypi.org/simple>).
+
+```
+Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
+
+The index given by this flag is given lower priority than all other indexes specified via the `--index` flag.
+
+May also be set with the `UV_DEFAULT_INDEX` environment variable.
+```
+
+[`--directory`](#uv-audit--directory) *directory* : Change to the given directory prior to running the command.
+
+```
+Relative paths are resolved with the given directory as the base.
+
+See `--project` to only change the project root directory.
+
+May also be set with the `UV_WORKING_DIR` environment variable.
+```
+
+[`--exclude-newer`](#uv-audit--exclude-newer) *exclude-newer* : Limit candidate packages to those that were uploaded prior to the given date.
+
+```
+Accepts RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`), local dates in the same format (e.g., `2006-12-02`) resolved based on your system's configured time zone, a "friendly" duration (e.g., `24 hours`, `1 week`, `30 days`), or an ISO 8601 duration (e.g., `PT24H`, `P7D`, `P30D`).
+
+Durations do not respect semantics of the local time zone and are always resolved to a fixed number of seconds assuming that a day is 24 hours (e.g., DST transitions are ignored). Calendar units such as months and years are not allowed.
+
+May also be set with the `UV_EXCLUDE_NEWER` environment variable.
+```
+
+[`--exclude-newer-package`](#uv-audit--exclude-newer-package) *exclude-newer-package* : Limit candidate packages for specific packages to those that were uploaded prior to the given date.
+
+```
+Accepts package-date pairs in the format `PACKAGE=DATE`, where `DATE` is an RFC 3339 timestamp (e.g., `2006-12-02T02:07:43Z`), a local date in the same format (e.g., `2006-12-02`) resolved based on your system's configured time zone, a "friendly" duration (e.g., `24 hours`, `1 week`, `30 days`), or an ISO 8601 duration (e.g., `PT24H`, `P7D`, `P30D`).
+
+Durations do not respect semantics of the local time zone and are always resolved to a fixed number of seconds assuming that a day is 24 hours (e.g., DST transitions are ignored). Calendar units such as months and years are not allowed.
+
+Can be provided multiple times for different packages.
+```
+
+[`--extra`](#uv-audit--extra) *extra* : Include optional dependencies from the specified extra name.
+
+```
+May be provided more than once.
+
+This option is only available when running in a project.
+```
+
+[`--extra-index-url`](#uv-audit--extra-index-url) *extra-index-url* : (Deprecated: use `--index` instead) Extra URLs of package indexes to use, in addition to `--index-url`.
+
+```
+Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
+
+All indexes provided via this flag take priority over the index specified by `--index-url` (which defaults to PyPI). When multiple `--extra-index-url` flags are provided, earlier values take priority.
+
+May also be set with the `UV_EXTRA_INDEX_URL` environment variable.
+```
+
+[`--find-links`](#uv-audit--find-links), `-f` *find-links* : Locations to search for candidate distributions, in addition to those found in the registry indexes.
+
+```
+If a path, the target must be a directory that contains packages as wheel files (`.whl`) or source distributions (e.g., `.tar.gz` or `.zip`) at the top level.
+
+If a URL, the page must contain a flat list of links to package files adhering to the formats described above.
+
+May also be set with the `UV_FIND_LINKS` environment variable.
+```
+
+[`--fork-strategy`](#uv-audit--fork-strategy) *fork-strategy* : The strategy to use when selecting multiple versions of a given package across Python versions and platforms.
+
+```
+By default, uv will optimize for selecting the latest version of each package for each supported Python version (`requires-python`), while minimizing the number of selected versions across platforms.
+
+Under `fewest`, uv will minimize the number of selected versions for each package, preferring older versions that are compatible with a wider range of supported Python versions or platforms.
+
+May also be set with the `UV_FORK_STRATEGY` environment variable.
+
+Possible values:
+
+- `fewest`: Optimize for selecting the fewest number of versions for each package. Older versions may be preferred if they are compatible with a wider range of supported Python versions or platforms
+- `requires-python`: Optimize for selecting latest supported version of each package, for each supported Python version
+```
+
+[`--frozen`](#uv-audit--frozen) : Audit the requirements without locking the project [env: UV_FROZEN=]
+
+```
+If the lockfile is missing, uv will exit with an error.
+```
+
+[`--group`](#uv-audit--group) *group* : Include dependencies from the specified dependency group.
+
+```
+May be provided multiple times.
+```
+
+[`--help`](#uv-audit--help), `-h` : Display the concise help for this command
+
+[`--index`](#uv-audit--index) *index* : The URLs to use when resolving dependencies, in addition to the default index.
+
+```
+Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
+
+All indexes provided via this flag take priority over the index specified by `--default-index` (which defaults to PyPI). When multiple `--index` flags are provided, earlier values take priority.
+
+Index names are not supported as values. Relative paths must be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
+
+May also be set with the `UV_INDEX` environment variable.
+```
+
+[`--index-strategy`](#uv-audit--index-strategy) *index-strategy* : The strategy to use when resolving against multiple index URLs.
+
+```
+By default, uv will stop at the first index on which a given package is available, and limit resolutions to those present on that first index (`first-index`). This prevents "dependency confusion" attacks, whereby an attacker can upload a malicious package under the same name to an alternate index.
+
+May also be set with the `UV_INDEX_STRATEGY` environment variable.
+
+Possible values:
+
+- `first-index`: Only use results from the first index that returns a match for a given package name
+- `unsafe-first-match`: Search for every package name across all indexes, exhausting the versions from the first index before moving on to the next
+- `unsafe-best-match`: Search for every package name across all indexes, preferring the "best" version found. If a package version is in multiple indexes, only look at the entry for the first index
+```
+
+[`--index-url`](#uv-audit--index-url), `-i` *index-url* : (Deprecated: use `--default-index` instead) The URL of the Python package index (by default: <https://pypi.org/simple>).
+
+```
+Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
+
+The index given by this flag is given lower priority than all other indexes specified via the `--extra-index-url` flag.
+
+May also be set with the `UV_INDEX_URL` environment variable.
+```
+
+[`--keyring-provider`](#uv-audit--keyring-provider) *keyring-provider* : Attempt to use `keyring` for authentication for index URLs.
+
+```
+At present, only `--keyring-provider subprocess` is supported, which configures uv to use the `keyring` CLI to handle authentication.
+
+Defaults to `disabled`.
+
+May also be set with the `UV_KEYRING_PROVIDER` environment variable.
+
+Possible values:
+
+- `disabled`: Do not use keyring for credential lookup
+- `subprocess`: Use the `keyring` command for credential lookup
+```
+
+[`--link-mode`](#uv-audit--link-mode) *link-mode* : The method to use when installing packages from the global cache.
+
+```
+This option is only used when building source distributions.
+
+Defaults to `clone` (also known as Copy-on-Write) on macOS and Linux, and `hardlink` on Windows.
+
+WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (`uv cache clean`) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.
+
+May also be set with the `UV_LINK_MODE` environment variable.
+
+Possible values:
+
+- `clone`: Clone (i.e., copy-on-write) packages from the source into the destination
+- `copy`: Copy packages from the source into the destination
+- `hardlink`: Hard link packages from the source into the destination
+- `symlink`: Symbolically link packages from the source into the destination
+```
+
+[`--locked`](#uv-audit--locked) : Assert that the `uv.lock` will remain unchanged [env: UV_LOCKED=]
+
+```
+Requires that the lockfile is up-to-date. If the lockfile is missing or needs to be updated, uv will exit with an error.
+```
+
+[`--managed-python`](#uv-audit--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
+
+```
+By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
+```
+
+[`--no-binary`](#uv-audit--no-binary) : Don't install pre-built wheels.
+
+```
+The given packages will be built and installed from source. The resolver will still use pre-built wheels to extract package metadata, if available.
+
+May also be set with the `UV_NO_BINARY` environment variable.
+```
+
+[`--no-binary-package`](#uv-audit--no-binary-package) *no-binary-package* : Don't install pre-built wheels for a specific package
+
+```
+May also be set with the `UV_NO_BINARY_PACKAGE` environment variable.
+```
+
+[`--no-build`](#uv-audit--no-build) : Don't build source distributions.
+
+```
+When enabled, resolving will not run arbitrary Python code. The cached wheels of already-built source distributions will be reused, but operations that require building distributions will exit with an error.
+
+May also be set with the `UV_NO_BUILD` environment variable.
+```
+
+[`--no-build-isolation`](#uv-audit--no-build-isolation) : Disable isolation when building source distributions.
+
+```
+Assumes that build dependencies specified by PEP 518 are already installed.
+
+May also be set with the `UV_NO_BUILD_ISOLATION` environment variable.
+```
+
+[`--no-build-isolation-package`](#uv-audit--no-build-isolation-package) *no-build-isolation-package* : Disable isolation when building source distributions for a specific package.
+
+```
+Assumes that the packages' build dependencies specified by PEP 518 are already installed.
+```
+
+[`--no-build-package`](#uv-audit--no-build-package) *no-build-package* : Don't build source distributions for a specific package
+
+```
+May also be set with the `UV_NO_BUILD_PACKAGE` environment variable.
+```
+
+[`--no-cache`](#uv-audit--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
+
+```
+May also be set with the `UV_NO_CACHE` environment variable.
+```
+
+[`--no-config`](#uv-audit--no-config) : Avoid discovering configuration files (`pyproject.toml`, `uv.toml`).
+
+```
+Normally, configuration files are discovered in the current directory, parent directories, or user configuration directories.
+
+May also be set with the `UV_NO_CONFIG` environment variable.
+```
+
+[`--no-default-groups`](#uv-audit--no-default-groups) : Ignore the default dependency groups.
+
+```
+uv includes the groups defined in `tool.uv.default-groups` by default. This disables that option, however, specific groups can still be included with `--group`.
+
+May also be set with the `UV_NO_DEFAULT_GROUPS` environment variable.
+```
+
+[`--no-dev`](#uv-audit--no-dev) : Disable the development dependency group [env: UV_NO_DEV=]
+
+```
+This option is an alias of `--no-group dev`. See `--no-default-groups` to disable all default groups instead.
+
+This option is only available when running in a project.
+```
+
+[`--no-extra`](#uv-audit--no-extra) *no-extra* : Exclude the specified optional dependencies, if `--all-extras` is supplied.
+
+```
+May be provided multiple times.
+```
+
+[`--no-group`](#uv-audit--no-group) *no-group* : Disable the specified dependency group.
+
+```
+This option always takes precedence over default groups, `--all-groups`, and `--group`.
+
+May be provided multiple times.
+
+May also be set with the `UV_NO_GROUP` environment variable.
+```
+
+[`--no-index`](#uv-audit--no-index) : Ignore the registry index (e.g., PyPI), instead relying on direct URL dependencies and those provided via `--find-links`
+
+[`--no-managed-python`](#uv-audit--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
+
+```
+Instead, uv will search for a suitable Python version on the system.
+```
+
+[`--no-progress`](#uv-audit--no-progress) : Hide all progress outputs [env: UV_NO_PROGRESS=]
+
+```
+For example, spinners or progress bars.
+```
+
+[`--no-python-downloads`](#uv-audit--no-python-downloads) : Disable automatic downloads of Python.
+
+[`--no-sources`](#uv-audit--no-sources) : Ignore the `tool.uv.sources` table when resolving dependencies. Used to lock against the standards-compliant, publishable package metadata, as opposed to using any workspace, Git, URL, or local path sources
+
+```
+May also be set with the `UV_NO_SOURCES` environment variable.
+```
+
+[`--no-sources-package`](#uv-audit--no-sources-package) *no-sources-package* : Don't use sources from the `tool.uv.sources` table for the specified packages
+
+```
+May also be set with the `UV_NO_SOURCES_PACKAGE` environment variable.
+```
+
+[`--offline`](#uv-audit--offline) : Disable network access [env: UV_OFFLINE=]
+
+```
+When disabled, uv will only use locally cached data and locally available files.
+```
+
+[`--only-dev`](#uv-audit--only-dev) : Only include the development dependency group.
+
+```
+The project and its dependencies will be omitted.
+
+This option is an alias for `--only-group dev`. Implies `--no-default-groups`.
+```
+
+[`--only-group`](#uv-audit--only-group) *only-group* : Only include dependencies from the specified dependency group.
+
+```
+The project and its dependencies will be omitted.
+
+May be provided multiple times. Implies `--no-default-groups`.
+```
+
+[`--prerelease`](#uv-audit--prerelease) *prerelease* : The strategy to use when considering pre-release versions.
+
+```
+By default, uv will accept pre-releases for packages that *only* publish pre-releases, along with first-party requirements that contain an explicit pre-release marker in the declared specifiers (`if-necessary-or-explicit`).
+
+May also be set with the `UV_PRERELEASE` environment variable.
+
+Possible values:
+
+- `disallow`: Disallow all pre-release versions
+- `allow`: Allow all pre-release versions
+- `if-necessary`: Allow pre-release versions if all versions of a package are pre-release
+- `explicit`: Allow pre-release versions for first-party packages with explicit pre-release markers in their version requirements
+- `if-necessary-or-explicit`: Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements
+```
+
+[`--project`](#uv-audit--project) *project* : Discover a project in the given directory.
+
+```
+All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
+
+Other command-line arguments (such as relative paths) will be resolved relative to the current working directory.
+
+See `--directory` to change the working directory entirely.
+
+This setting has no effect when used in the `uv pip` interface.
+
+May also be set with the `UV_PROJECT` environment variable.
+```
+
+[`--python-platform`](#uv-audit--python-platform) *python-platform* : The platform to use when auditing.
+
+```
+For example, pass `--platform windows` to audit the dependencies that would be included when installing on Windows.
+
+Represented as a "target triple", a string that describes the target platform in terms of its CPU, vendor, and operating system name, like `x86_64-unknown-linux-gnu` or `aarch64-apple-darwin`.
+
+Possible values:
+
+- `windows`: An alias for `x86_64-pc-windows-msvc`, the default target for Windows
+- `linux`: An alias for `x86_64-unknown-linux-gnu`, the default target for Linux
+- `macos`: An alias for `aarch64-apple-darwin`, the default target for macOS
+- `x86_64-pc-windows-msvc`: A 64-bit x86 Windows target
+- `aarch64-pc-windows-msvc`: An ARM64 Windows target
+- `i686-pc-windows-msvc`: A 32-bit x86 Windows target
+- `x86_64-unknown-linux-gnu`: An x86 Linux target. Equivalent to `x86_64-manylinux_2_28`
+- `aarch64-apple-darwin`: An ARM-based macOS target, as seen on Apple Silicon devices
+- `x86_64-apple-darwin`: An x86 macOS target
+- `aarch64-unknown-linux-gnu`: An ARM64 Linux target. Equivalent to `aarch64-manylinux_2_28`
+- `aarch64-unknown-linux-musl`: An ARM64 Linux target
+- `x86_64-unknown-linux-musl`: An `x86_64` Linux target
+- `riscv64-unknown-linux`: A RISCV64 Linux target
+- `x86_64-manylinux2014`: An `x86_64` target for the `manylinux2014` platform. Equivalent to `x86_64-manylinux_2_17`
+- `x86_64-manylinux_2_17`: An `x86_64` target for the `manylinux_2_17` platform
+- `x86_64-manylinux_2_28`: An `x86_64` target for the `manylinux_2_28` platform
+- `x86_64-manylinux_2_31`: An `x86_64` target for the `manylinux_2_31` platform
+- `x86_64-manylinux_2_32`: An `x86_64` target for the `manylinux_2_32` platform
+- `x86_64-manylinux_2_33`: An `x86_64` target for the `manylinux_2_33` platform
+- `x86_64-manylinux_2_34`: An `x86_64` target for the `manylinux_2_34` platform
+- `x86_64-manylinux_2_35`: An `x86_64` target for the `manylinux_2_35` platform
+- `x86_64-manylinux_2_36`: An `x86_64` target for the `manylinux_2_36` platform
+- `x86_64-manylinux_2_37`: An `x86_64` target for the `manylinux_2_37` platform
+- `x86_64-manylinux_2_38`: An `x86_64` target for the `manylinux_2_38` platform
+- `x86_64-manylinux_2_39`: An `x86_64` target for the `manylinux_2_39` platform
+- `x86_64-manylinux_2_40`: An `x86_64` target for the `manylinux_2_40` platform
+- `aarch64-manylinux2014`: An ARM64 target for the `manylinux2014` platform. Equivalent to `aarch64-manylinux_2_17`
+- `aarch64-manylinux_2_17`: An ARM64 target for the `manylinux_2_17` platform
+- `aarch64-manylinux_2_28`: An ARM64 target for the `manylinux_2_28` platform
+- `aarch64-manylinux_2_31`: An ARM64 target for the `manylinux_2_31` platform
+- `aarch64-manylinux_2_32`: An ARM64 target for the `manylinux_2_32` platform
+- `aarch64-manylinux_2_33`: An ARM64 target for the `manylinux_2_33` platform
+- `aarch64-manylinux_2_34`: An ARM64 target for the `manylinux_2_34` platform
+- `aarch64-manylinux_2_35`: An ARM64 target for the `manylinux_2_35` platform
+- `aarch64-manylinux_2_36`: An ARM64 target for the `manylinux_2_36` platform
+- `aarch64-manylinux_2_37`: An ARM64 target for the `manylinux_2_37` platform
+- `aarch64-manylinux_2_38`: An ARM64 target for the `manylinux_2_38` platform
+- `aarch64-manylinux_2_39`: An ARM64 target for the `manylinux_2_39` platform
+- `aarch64-manylinux_2_40`: An ARM64 target for the `manylinux_2_40` platform
+- `aarch64-linux-android`: An ARM64 Android target
+- `x86_64-linux-android`: An `x86_64` Android target
+- `wasm32-pyodide2024`: A wasm32 target using the Pyodide 2024 platform. Meant for use with Python 3.12
+- `arm64-apple-ios`: An ARM64 target for iOS device
+- `arm64-apple-ios-simulator`: An ARM64 target for iOS simulator
+- `x86_64-apple-ios-simulator`: An `x86_64` target for iOS simulator
+```
+
+[`--python-version`](#uv-audit--python-version) *python-version* : The Python version to use when auditing.
+
+```
+For example, pass `--python-version 3.10` to audit the dependencies that would be included when installing on Python 3.10.
+
+Defaults to the version of the discovered Python interpreter.
+```
+
+[`--quiet`](#uv-audit--quiet), `-q` : Use quiet output.
+
+```
+Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will write no output to stdout.
+```
+
+[`--resolution`](#uv-audit--resolution) *resolution* : The strategy to use when selecting between the different compatible versions for a given package requirement.
+
+```
+By default, uv will use the latest compatible version of each package (`highest`).
+
+May also be set with the `UV_RESOLUTION` environment variable.
+
+Possible values:
+
+- `highest`: Resolve the highest compatible version of each package
+- `lowest`: Resolve the lowest compatible version of each package
+- `lowest-direct`: Resolve the lowest compatible version of any direct dependencies, and the highest compatible version of any transitive dependencies
+```
+
+[`--script`](#uv-audit--script) *script* : Audit the specified PEP 723 Python script, rather than the current project.
+
+```
+The specified script must be locked, i.e. with `uv lock --script <script>` before it can be audited.
+```
+
+[`--service-format`](#uv-audit--service-format) *service-format* : The service format to use for vulnerability lookups.
+
+```
+Each service format has a default URL, which can be changed with `--service-url`. The defaults are:
+
+- OSV: <https://api.osv.dev/>
+
+[default: osv]
+
+Possible values:
+
+- `osv`
+```
+
+[`--service-url`](#uv-audit--service-url) *service-url* : The URL to vulnerability service API endpoint.
+
+```
+If not provided, the default URL for the selected service will be used.
+
+The service needs to use the OSV protocol, unless a different format was requested by `--service-format`.
+```
+
+[`--system-certs`](#uv-audit--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
+```
+
+[`--upgrade`](#uv-audit--upgrade), `-U` : Allow package upgrades, ignoring pinned versions in any existing output file. Implies `--refresh`
+
+[`--upgrade-package`](#uv-audit--upgrade-package), `-P` *upgrade-package* : Allow upgrades for a specific package, ignoring pinned versions in any existing output file. Implies `--refresh-package`
+
+[`--verbose`](#uv-audit--verbose), `-v` : Use verbose output.
+
+```
+You can configure fine-grained logging using the `RUST_LOG` environment variable. (<https://docs.rs/tracing-subscriber/latest/tracing_subscriber/filter/struct.EnvFilter.html#directives>)
 ```
 
 ## [uv tool](#uv-tool)
@@ -5771,14 +6324,6 @@ Possible values:
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
 ```
 
-[`--native-tls`](#uv-tool-run--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
-
-```
-By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
-
-However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-```
-
 [`--no-binary`](#uv-tool-run--no-binary) : Don't install pre-built wheels.
 
 ```
@@ -6007,6 +6552,14 @@ Possible values:
 - `highest`: Resolve the highest compatible version of each package
 - `lowest`: Resolve the lowest compatible version of each package
 - `lowest-direct`: Resolve the lowest compatible version of any direct dependencies, and the highest compatible version of any transitive dependencies
+```
+
+[`--system-certs`](#uv-tool-run--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
 ```
 
 [`--torch-backend`](#uv-tool-run--torch-backend) *torch-backend* : The backend to use when fetching packages in the PyTorch ecosystem (e.g., `cpu`, `cu126`, or `auto`)
@@ -6265,7 +6818,7 @@ May also be set with the `UV_FIND_LINKS` environment variable.
 [`--force`](#uv-tool-install--force) : Force installation of the tool.
 
 ```
-Will replace any existing entry points with the same name in the executable directory.
+Will recreate any existing environment for the tool and replace any existing entry points with the same name in the executable directory.
 ```
 
 [`--fork-strategy`](#uv-tool-install--fork-strategy) *fork-strategy* : The strategy to use when selecting multiple versions of a given package across Python versions and platforms.
@@ -6359,14 +6912,6 @@ Possible values:
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-```
-
-[`--native-tls`](#uv-tool-install--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
-
-```
-By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
-
-However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
 ```
 
 [`--no-binary`](#uv-tool-install--no-binary) : Don't install pre-built wheels.
@@ -6595,6 +7140,14 @@ Possible values:
 - `highest`: Resolve the highest compatible version of each package
 - `lowest`: Resolve the lowest compatible version of each package
 - `lowest-direct`: Resolve the lowest compatible version of any direct dependencies, and the highest compatible version of any transitive dependencies
+```
+
+[`--system-certs`](#uv-tool-install--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
 ```
 
 [`--torch-backend`](#uv-tool-install--torch-backend) *torch-backend* : The backend to use when fetching packages in the PyTorch ecosystem (e.g., `cpu`, `cu126`, or `auto`)
@@ -6913,14 +7466,6 @@ Possible values:
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
 ```
 
-[`--native-tls`](#uv-tool-upgrade--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
-
-```
-By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
-
-However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-```
-
 [`--no-binary`](#uv-tool-upgrade--no-binary) : Don't install pre-built wheels.
 
 ```
@@ -7135,6 +7680,14 @@ Possible values:
 - `lowest-direct`: Resolve the lowest compatible version of any direct dependencies, and the highest compatible version of any transitive dependencies
 ```
 
+[`--system-certs`](#uv-tool-upgrade--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
+```
+
 [`--verbose`](#uv-tool-upgrade--verbose), `-v` : Use verbose output.
 
 ```
@@ -7213,14 +7766,6 @@ May also be set with the `UV_WORKING_DIR` environment variable.
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
 ```
 
-[`--native-tls`](#uv-tool-list--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
-
-```
-By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
-
-However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-```
-
 [`--no-cache`](#uv-tool-list--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
 ```
@@ -7253,6 +7798,12 @@ For example, spinners or progress bars.
 When disabled, uv will only use locally cached data and locally available files.
 ```
 
+[`--outdated`](#uv-tool-list--outdated) : List outdated tools.
+
+```
+The latest version of each tool will be shown alongside the installed version. Up-to-date tools will be omitted from the output.
+```
+
 [`--project`](#uv-tool-list--project) *project* : Discover a project in the given directory.
 
 ```
@@ -7282,6 +7833,14 @@ Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will w
 [`--show-version-specifiers`](#uv-tool-list--show-version-specifiers) : Whether to display the version specifier(s) used to install each tool
 
 [`--show-with`](#uv-tool-list--show-with) : Whether to display the additional requirements installed with each tool
+
+[`--system-certs`](#uv-tool-list--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
+```
 
 [`--verbose`](#uv-tool-list--verbose), `-v` : Use verbose output.
 
@@ -7367,14 +7926,6 @@ May also be set with the `UV_WORKING_DIR` environment variable.
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
 ```
 
-[`--native-tls`](#uv-tool-uninstall--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
-
-```
-By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
-
-However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-```
-
 [`--no-cache`](#uv-tool-uninstall--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
 ```
@@ -7427,6 +7978,14 @@ May also be set with the `UV_PROJECT` environment variable.
 
 ```
 Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will write no output to stdout.
+```
+
+[`--system-certs`](#uv-tool-uninstall--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
 ```
 
 [`--verbose`](#uv-tool-uninstall--verbose), `-v` : Use verbose output.
@@ -7513,14 +8072,6 @@ May also be set with the `UV_WORKING_DIR` environment variable.
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
 ```
 
-[`--native-tls`](#uv-tool-update-shell--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
-
-```
-By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
-
-However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-```
-
 [`--no-cache`](#uv-tool-update-shell--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
 ```
@@ -7573,6 +8124,14 @@ May also be set with the `UV_PROJECT` environment variable.
 
 ```
 Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will write no output to stdout.
+```
+
+[`--system-certs`](#uv-tool-update-shell--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
 ```
 
 [`--verbose`](#uv-tool-update-shell--verbose), `-v` : Use verbose output.
@@ -7676,14 +8235,6 @@ May also be set with the `UV_WORKING_DIR` environment variable.
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
 ```
 
-[`--native-tls`](#uv-tool-dir--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
-
-```
-By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
-
-However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-```
-
 [`--no-cache`](#uv-tool-dir--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
 ```
@@ -7736,6 +8287,14 @@ May also be set with the `UV_PROJECT` environment variable.
 
 ```
 Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will write no output to stdout.
+```
+
+[`--system-certs`](#uv-tool-dir--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
 ```
 
 [`--verbose`](#uv-tool-dir--verbose), `-v` : Use verbose output.
@@ -7910,14 +8469,6 @@ May also be set with the `UV_WORKING_DIR` environment variable.
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
 ```
 
-[`--native-tls`](#uv-python-list--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
-
-```
-By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
-
-However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-```
-
 [`--no-cache`](#uv-python-list--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
 ```
@@ -8001,6 +8552,14 @@ Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will w
 
 ```
 By default, these display as `<download available>`.
+```
+
+[`--system-certs`](#uv-python-list--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
 ```
 
 [`--verbose`](#uv-python-list--verbose), `-v` : Use verbose output.
@@ -8147,14 +8706,6 @@ The provided URL will replace `https://github.com/astral-sh/python-build-standal
 Distributions can be read from a local directory by using the `file://` URL scheme.
 ```
 
-[`--native-tls`](#uv-python-install--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
-
-```
-By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
-
-However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-```
-
 [`--no-bin`](#uv-python-install--no-bin) : Do not install a Python executable into the `bin` directory.
 
 ```
@@ -8235,6 +8786,14 @@ Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will w
 
 ```
 By default, uv will exit successfully if the version is already installed.
+```
+
+[`--system-certs`](#uv-python-install--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
 ```
 
 [`--upgrade`](#uv-python-install--upgrade), `-U` : Upgrade existing Python installations to the latest patch version.
@@ -8373,14 +8932,6 @@ The provided URL will replace `https://github.com/astral-sh/python-build-standal
 Distributions can be read from a local directory by using the `file://` URL scheme.
 ```
 
-[`--native-tls`](#uv-python-upgrade--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
-
-```
-By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
-
-However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-```
-
 [`--no-cache`](#uv-python-upgrade--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
 ```
@@ -8449,6 +9000,14 @@ Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will w
 
 ```
 By default, uv will exit successfully if the latest patch is already installed.
+```
+
+[`--system-certs`](#uv-python-upgrade--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
 ```
 
 [`--verbose`](#uv-python-upgrade--verbose), `-v` : Use verbose output.
@@ -8541,14 +9100,6 @@ May also be set with the `UV_WORKING_DIR` environment variable.
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
 ```
 
-[`--native-tls`](#uv-python-find--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
-
-```
-By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
-
-However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-```
-
 [`--no-cache`](#uv-python-find--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
 ```
@@ -8629,6 +9180,14 @@ By default, uv will report the first Python interpreter it would use, including 
 The `--system` option instructs uv to skip virtual environment Python interpreters and restrict its search to the system path.
 
 May also be set with the `UV_SYSTEM_PYTHON` environment variable.
+```
+
+[`--system-certs`](#uv-python-find--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
 ```
 
 [`--verbose`](#uv-python-find--verbose), `-v` : Use verbose output.
@@ -8735,14 +9294,6 @@ When a local Python version pin is not found in the working directory or an ance
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
 ```
 
-[`--native-tls`](#uv-python-pin--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
-
-```
-By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
-
-However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-```
-
 [`--no-cache`](#uv-python-pin--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
 ```
@@ -8812,6 +9363,14 @@ This option is usually not safe to use when committing the `.python-version` fil
 ```
 
 [`--rm`](#uv-python-pin--rm) : Remove the Python version pin
+
+[`--system-certs`](#uv-python-pin--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
+```
 
 [`--verbose`](#uv-python-pin--verbose), `-v` : Use verbose output.
 
@@ -8911,14 +9470,6 @@ May also be set with the `UV_WORKING_DIR` environment variable.
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
 ```
 
-[`--native-tls`](#uv-python-dir--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
-
-```
-By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
-
-However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-```
-
 [`--no-cache`](#uv-python-dir--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
 ```
@@ -8971,6 +9522,14 @@ May also be set with the `UV_PROJECT` environment variable.
 
 ```
 Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will write no output to stdout.
+```
+
+[`--system-certs`](#uv-python-dir--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
 ```
 
 [`--verbose`](#uv-python-dir--verbose), `-v` : Use verbose output.
@@ -9067,14 +9626,6 @@ May also be set with the `UV_PYTHON_INSTALL_DIR` environment variable.
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
 ```
 
-[`--native-tls`](#uv-python-uninstall--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
-
-```
-By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
-
-However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-```
-
 [`--no-cache`](#uv-python-uninstall--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
 ```
@@ -9127,6 +9678,14 @@ May also be set with the `UV_PROJECT` environment variable.
 
 ```
 Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will write no output to stdout.
+```
+
+[`--system-certs`](#uv-python-uninstall--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
 ```
 
 [`--verbose`](#uv-python-uninstall--verbose), `-v` : Use verbose output.
@@ -9213,14 +9772,6 @@ May also be set with the `UV_WORKING_DIR` environment variable.
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
 ```
 
-[`--native-tls`](#uv-python-update-shell--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
-
-```
-By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
-
-However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-```
-
 [`--no-cache`](#uv-python-update-shell--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
 ```
@@ -9273,6 +9824,14 @@ May also be set with the `UV_PROJECT` environment variable.
 
 ```
 Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will write no output to stdout.
+```
+
+[`--system-certs`](#uv-python-update-shell--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
 ```
 
 [`--verbose`](#uv-python-update-shell--verbose), `-v` : Use verbose output.
@@ -9624,14 +10183,6 @@ Possible values:
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
 ```
 
-[`--native-tls`](#uv-pip-compile--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
-
-```
-By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
-
-However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-```
-
 [`--no-annotate`](#uv-pip-compile--no-annotate) : Exclude comment annotations indicating the source of each package
 
 [`--no-binary`](#uv-pip-compile--no-binary) *no-binary* : Don't install pre-built wheels.
@@ -9893,6 +10444,14 @@ Possible values:
 By default, uv uses the virtual environment in the current working directory or any parent directory, falling back to searching for a Python executable in `PATH`. The `--system` option instructs uv to avoid using a virtual environment Python and restrict its search to the system path.
 
 May also be set with the `UV_SYSTEM_PYTHON` environment variable.
+```
+
+[`--system-certs`](#uv-pip-compile--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
 ```
 
 [`--torch-backend`](#uv-pip-compile--torch-backend) *torch-backend* : The backend to use when fetching packages in the PyTorch ecosystem (e.g., `cpu`, `cu126`, or `auto`).
@@ -10248,14 +10807,6 @@ Possible values:
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
 ```
 
-[`--native-tls`](#uv-pip-sync--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
-
-```
-By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
-
-However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-```
-
 [`--no-allow-empty-requirements`](#uv-pip-sync--no-allow-empty-requirements)
 
 [`--no-binary`](#uv-pip-sync--no-binary) *no-binary* : Don't install pre-built wheels.
@@ -10480,6 +11031,14 @@ By default, uv installs into the virtual environment in the current working dire
 WARNING: `--system` is intended for use in continuous integration (CI) environments and should be used with caution, as it can modify the system Python installation.
 
 May also be set with the `UV_SYSTEM_PYTHON` environment variable.
+```
+
+[`--system-certs`](#uv-pip-sync--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
 ```
 
 [`--target`](#uv-pip-sync--target), `-t` *target* : Install packages into the specified directory, rather than into the virtual or system Python environment. The packages will be installed at the top-level of the directory.
@@ -10850,14 +11409,6 @@ Possible values:
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
 ```
 
-[`--native-tls`](#uv-pip-install--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
-
-```
-By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
-
-However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-```
-
 [`--no-binary`](#uv-pip-install--no-binary) *no-binary* : Don't install pre-built wheels.
 
 ```
@@ -11148,6 +11699,14 @@ WARNING: `--system` is intended for use in continuous integration (CI) environme
 May also be set with the `UV_SYSTEM_PYTHON` environment variable.
 ```
 
+[`--system-certs`](#uv-pip-install--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
+```
+
 [`--target`](#uv-pip-install--target), `-t` *target* : Install packages into the specified directory, rather than into the virtual or system Python environment. The packages will be installed at the top-level of the directory.
 
 ```
@@ -11332,14 +11891,6 @@ Possible values:
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
 ```
 
-[`--native-tls`](#uv-pip-uninstall--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
-
-```
-By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
-
-However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-```
-
 [`--no-break-system-packages`](#uv-pip-uninstall--no-break-system-packages)
 
 [`--no-cache`](#uv-pip-uninstall--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
@@ -11426,6 +11977,14 @@ WARNING: `--system` is intended for use in continuous integration (CI) environme
 May also be set with the `UV_SYSTEM_PYTHON` environment variable.
 ```
 
+[`--system-certs`](#uv-pip-uninstall--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
+```
+
 [`--target`](#uv-pip-uninstall--target), `-t` *target* : Uninstall packages from the specified `--target` directory
 
 [`--verbose`](#uv-pip-uninstall--verbose), `-v` : Use verbose output.
@@ -11510,14 +12069,6 @@ May also be set with the `UV_WORKING_DIR` environment variable.
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
 ```
 
-[`--native-tls`](#uv-pip-freeze--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
-
-```
-By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
-
-However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-```
-
 [`--no-cache`](#uv-pip-freeze--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
 ```
@@ -11597,6 +12148,14 @@ Disables discovery of virtual environments.
 See [uv python](#uv-python) for details on Python discovery.
 
 May also be set with the `UV_SYSTEM_PYTHON` environment variable.
+```
+
+[`--system-certs`](#uv-pip-freeze--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
 ```
 
 [`--target`](#uv-pip-freeze--target), `-t` *target* : List packages from the specified `--target` directory
@@ -11788,14 +12347,6 @@ Possible values:
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
 ```
 
-[`--native-tls`](#uv-pip-list--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
-
-```
-By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
-
-However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-```
-
 [`--no-cache`](#uv-pip-list--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
 ```
@@ -11881,6 +12432,14 @@ Disables discovery of virtual environments.
 See [uv python](#uv-python) for details on Python discovery.
 
 May also be set with the `UV_SYSTEM_PYTHON` environment variable.
+```
+
+[`--system-certs`](#uv-pip-list--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
 ```
 
 [`--target`](#uv-pip-list--target), `-t` *target* : List packages from the specified `--target` directory
@@ -11969,14 +12528,6 @@ May also be set with the `UV_WORKING_DIR` environment variable.
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
 ```
 
-[`--native-tls`](#uv-pip-show--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
-
-```
-By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
-
-However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-```
-
 [`--no-cache`](#uv-pip-show--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
 ```
@@ -12054,6 +12605,14 @@ Disables discovery of virtual environments.
 See [uv python](#uv-python) for details on Python discovery.
 
 May also be set with the `UV_SYSTEM_PYTHON` environment variable.
+```
+
+[`--system-certs`](#uv-pip-show--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
 ```
 
 [`--target`](#uv-pip-show--target), `-t` *target* : Show a package from the specified `--target` directory
@@ -12235,14 +12794,6 @@ Possible values:
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
 ```
 
-[`--native-tls`](#uv-pip-tree--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
-
-```
-By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
-
-However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-```
-
 [`--no-cache`](#uv-pip-tree--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
 ```
@@ -12334,6 +12885,14 @@ See [uv python](#uv-python) for details on Python discovery.
 May also be set with the `UV_SYSTEM_PYTHON` environment variable.
 ```
 
+[`--system-certs`](#uv-pip-tree--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
+```
+
 [`--verbose`](#uv-pip-tree--verbose), `-v` : Use verbose output.
 
 ```
@@ -12410,14 +12969,6 @@ May also be set with the `UV_WORKING_DIR` environment variable.
 
 ```
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
-```
-
-[`--native-tls`](#uv-pip-check--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
-
-```
-By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
-
-However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
 ```
 
 [`--no-cache`](#uv-pip-check--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
@@ -12561,6 +13112,14 @@ Disables discovery of virtual environments.
 See [uv python](#uv-python) for details on Python discovery.
 
 May also be set with the `UV_SYSTEM_PYTHON` environment variable.
+```
+
+[`--system-certs`](#uv-pip-check--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
 ```
 
 [`--verbose`](#uv-pip-check--verbose), `-v` : Use verbose output.
@@ -12793,14 +13352,6 @@ Possible values:
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
 ```
 
-[`--native-tls`](#uv-venv--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
-
-```
-By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
-
-However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-```
-
 [`--no-cache`](#uv-venv--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
 ```
@@ -12903,6 +13454,14 @@ As a result of making the environment relocatable (by way of writing relative, r
 
 ```
 Note that `setuptools` and `wheel` are not included in Python 3.12+ environments.
+```
+
+[`--system-certs`](#uv-venv--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
 ```
 
 [`--system-site-packages`](#uv-venv--system-site-packages) : Give the virtual environment access to the system site packages directory.
@@ -13168,14 +13727,6 @@ Possible values:
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
 ```
 
-[`--native-tls`](#uv-build--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
-
-```
-By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
-
-However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-```
-
 [`--no-binary`](#uv-build--no-binary) : Don't install pre-built wheels.
 
 ```
@@ -13378,6 +13929,14 @@ Possible values:
 
 [`--sdist`](#uv-build--sdist) : Build a source distribution ("sdist") from the given directory
 
+[`--system-certs`](#uv-build--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
+```
+
 [`--upgrade`](#uv-build--upgrade), `-U` : Allow package upgrades, ignoring pinned versions in any existing output file. Implies `--refresh`
 
 [`--upgrade-package`](#uv-build--upgrade-package), `-P` *upgrade-package* : Allow upgrades for a specific package, ignoring pinned versions in any existing output file. Implies `--refresh-package`
@@ -13529,14 +14088,6 @@ Possible values:
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
 ```
 
-[`--native-tls`](#uv-publish--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
-
-```
-By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
-
-However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-```
-
 [`--no-attestations`](#uv-publish--no-attestations) : Do not upload attestations for the published files.
 
 ```
@@ -13613,6 +14164,14 @@ May also be set with the `UV_PUBLISH_URL` environment variable.
 
 ```
 Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will write no output to stdout.
+```
+
+[`--system-certs`](#uv-publish--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
 ```
 
 [`--token`](#uv-publish--token), `-t` *token* : The token for the upload.
@@ -13751,14 +14310,6 @@ By default, `uv cache clean` will block until no process is reading the cache. W
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
 ```
 
-[`--native-tls`](#uv-cache-clean--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
-
-```
-By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
-
-However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-```
-
 [`--no-cache`](#uv-cache-clean--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
 ```
@@ -13811,6 +14362,14 @@ May also be set with the `UV_PROJECT` environment variable.
 
 ```
 Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will write no output to stdout.
+```
+
+[`--system-certs`](#uv-cache-clean--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
 ```
 
 [`--verbose`](#uv-cache-clean--verbose), `-v` : Use verbose output.
@@ -13905,14 +14464,6 @@ By default, `uv cache prune` will block until no process is reading the cache. W
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
 ```
 
-[`--native-tls`](#uv-cache-prune--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
-
-```
-By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
-
-However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-```
-
 [`--no-cache`](#uv-cache-prune--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
 ```
@@ -13965,6 +14516,14 @@ May also be set with the `UV_PROJECT` environment variable.
 
 ```
 Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will write no output to stdout.
+```
+
+[`--system-certs`](#uv-cache-prune--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
 ```
 
 [`--verbose`](#uv-cache-prune--verbose), `-v` : Use verbose output.
@@ -14053,14 +14612,6 @@ May also be set with the `UV_WORKING_DIR` environment variable.
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
 ```
 
-[`--native-tls`](#uv-cache-dir--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
-
-```
-By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
-
-However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-```
-
 [`--no-cache`](#uv-cache-dir--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
 ```
@@ -14113,6 +14664,14 @@ May also be set with the `UV_PROJECT` environment variable.
 
 ```
 Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will write no output to stdout.
+```
+
+[`--system-certs`](#uv-cache-dir--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
 ```
 
 [`--verbose`](#uv-cache-dir--verbose), `-v` : Use verbose output.
@@ -14197,14 +14756,6 @@ May also be set with the `UV_WORKING_DIR` environment variable.
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
 ```
 
-[`--native-tls`](#uv-cache-size--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
-
-```
-By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
-
-However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-```
-
 [`--no-cache`](#uv-cache-size--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
 ```
@@ -14257,6 +14808,14 @@ May also be set with the `UV_PROJECT` environment variable.
 
 ```
 Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will write no output to stdout.
+```
+
+[`--system-certs`](#uv-cache-size--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
 ```
 
 [`--verbose`](#uv-cache-size--verbose), `-v` : Use verbose output.
@@ -14359,14 +14918,6 @@ May also be set with the `UV_WORKING_DIR` environment variable.
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
 ```
 
-[`--native-tls`](#uv-self-update--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
-
-```
-By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
-
-However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-```
-
 [`--no-cache`](#uv-self-update--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
 ```
@@ -14419,6 +14970,14 @@ May also be set with the `UV_PROJECT` environment variable.
 
 ```
 Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will write no output to stdout.
+```
+
+[`--system-certs`](#uv-self-update--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
 ```
 
 [`--token`](#uv-self-update--token) *token* : A GitHub token for authentication. A token is not required but can be used to reduce the chance of encountering rate limits
@@ -14505,14 +15064,6 @@ May also be set with the `UV_WORKING_DIR` environment variable.
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
 ```
 
-[`--native-tls`](#uv-self-version--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
-
-```
-By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
-
-However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-```
-
 [`--no-cache`](#uv-self-version--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
 ```
@@ -14570,6 +15121,14 @@ Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will w
 ```
 
 [`--short`](#uv-self-version--short) : Only print the version
+
+[`--system-certs`](#uv-self-version--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
+```
 
 [`--verbose`](#uv-self-version--verbose), `-v` : Use verbose output.
 
@@ -14639,6 +15198,14 @@ See `--directory` to change the working directory entirely.
 This setting has no effect when used in the `uv pip` interface.
 
 May also be set with the `UV_PROJECT` environment variable.
+```
+
+[`--system-certs`](#uv-generate-shell-completion--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
 ```
 
 ## [uv help](#uv-help)
@@ -14717,14 +15284,6 @@ May also be set with the `UV_WORKING_DIR` environment variable.
 By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
 ```
 
-[`--native-tls`](#uv-help--native-tls) : Whether to load TLS certificates from the platform's native store [env: UV_NATIVE_TLS=]
-
-```
-By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
-
-However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
-```
-
 [`--no-cache`](#uv-help--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
 ```
@@ -14779,6 +15338,14 @@ May also be set with the `UV_PROJECT` environment variable.
 
 ```
 Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will write no output to stdout.
+```
+
+[`--system-certs`](#uv-help--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
 ```
 
 [`--verbose`](#uv-help--verbose), `-v` : Use verbose output.

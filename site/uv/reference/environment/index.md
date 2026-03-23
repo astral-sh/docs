@@ -318,7 +318,7 @@ Require use of uv-managed Python versions.
 
 added in `0.1.19`
 
-Equivalent to the `--native-tls` command-line argument. If set to `true`, uv will use the system's trust store instead of the bundled `webpki-roots` crate.
+Equivalent to the `--native-tls` command-line argument. If set to `true`, uv will load TLS certificates from the platform's native certificate store instead of the bundled Mozilla root certificates.
 
 ### [`UV_NO_BINARY`](#uv_no_binary)
 
@@ -689,6 +689,12 @@ Use to set the stack size used by uv.
 The value is in bytes, and if both `UV_STACK_SIZE` are `RUST_MIN_STACK` unset, uv uses a 4MB (4194304) stack. `UV_STACK_SIZE` takes precedence over `RUST_MIN_STACK`.
 
 Unlike the normal `RUST_MIN_STACK` semantics, this can affect main thread stack size, because we actually spawn our own main2 thread to work around the fact that Windows' real main thread is only 1MB. That thread has size `max(UV_STACK_SIZE, 1MB)`.
+
+### [`UV_SYSTEM_CERTS`](#uv_system_certs)
+
+added in `0.11.0`
+
+Equivalent to the `--system-certs` command-line argument. If set to `true`, uv will load TLS certificates from the platform's native certificate store instead of the bundled Mozilla root certificates.
 
 ### [`UV_SYSTEM_PYTHON`](#uv_system_python)
 
@@ -1112,17 +1118,27 @@ The standard `SHELL` posix env var.
 
 added in `0.9.10`
 
-Custom path for certificate bundles for SSL connections. Multiple entries are supported separated using a platform-specific delimiter (`:` on Unix, `;` on Windows).
+Path to a directory containing PEM-encoded CA certificate files for TLS connections.
 
-Takes precedence over `UV_NATIVE_TLS` when set.
+Multiple entries are supported, separated using a platform-specific delimiter (`:` on Unix, `;` on Windows).
+
+Certificates are usually stored with `.pem`, `.crt`, or `.cer` extensions, but uv will attempt to read a certificate from any regular file in the provided `SSL_CERT_DIR`.
+
+Files that cannot be parsed as PEM certificates are ignored. uv resolves symlinks and ignores dangling symlinks.
+
+Only PEM-encoded files are supported, i.e., DER-encoded files are not supported.
+
+When set, this overrides the default certificate source (bundled Mozilla roots or system certificates). Only the certificates in this directory will be trusted.
 
 ### [`SSL_CERT_FILE`](#ssl_cert_file)
 
 added in `0.1.14`
 
-Custom certificate bundle file path for SSL connections.
+Path to a CA certificate bundle file for TLS connections.
 
-Takes precedence over `UV_NATIVE_TLS` when set.
+Requires a PEM-encoded certificate file (e.g., `certs.pem`, `ca-bundle.crt`). DER-encoded files are not supported.
+
+When set, this overrides the default certificate source (bundled Mozilla roots or system certificates). Only the certificates in this file will be trusted.
 
 ### [`SSL_CLIENT_CERT`](#ssl_client_cert)
 

@@ -1343,11 +1343,15 @@ ______________________________________________________________________
 
 ### \[[`native-tls`](#native-tls)\](#native-tls)
 
+Deprecated
+
+This option has been deprecated. use `system-certs` instead
+
 Whether to load TLS certificates from the platform's native certificate store.
 
-By default, uv loads certificates from the bundled `webpki-roots` crate. The `webpki-roots` are a reliable set of trust roots from Mozilla, and including them in uv improves portability and performance (especially on macOS).
+By default, uv uses bundled Mozilla root certificates. When enabled, this loads certificates from the platform's native certificate store instead.
 
-However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
+(Deprecated: use `system-certs` instead.)
 
 **Default value**: `false`
 
@@ -1894,6 +1898,26 @@ resolution = "lowest-direct"
 
 ```
 resolution = "lowest-direct"
+```
+
+______________________________________________________________________
+
+### \[[`system-certs`](#system-certs)\](#system-certs)
+
+Whether to load TLS certificates from the platform's native certificate store.
+
+By default, uv uses bundled Mozilla root certificates. When enabled, this loads certificates from the platform's native certificate store instead.
+
+**Default value**: `false`
+
+**Type**: `bool`
+
+**Example usage**:
+
+uv.toml
+
+```
+system-certs = true
 ```
 
 ______________________________________________________________________

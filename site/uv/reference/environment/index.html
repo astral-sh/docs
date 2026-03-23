@@ -894,6 +894,14 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
     
     
     
@@ -1176,14 +1184,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guides/integration/alternative-indexes/" class="md-nav__link">
+      <a href="../../guides/integration/azure/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Alternative indexes
+    Azure Artifacts
   
 
     
@@ -1204,14 +1212,126 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guides/integration/dependency-bots/" class="md-nav__link">
+      <a href="../../guides/integration/google/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Dependency bots
+    Google Artifact Registry
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/integration/aws/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AWS CodeArtifact
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/integration/jfrog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JFrog Artifactory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/integration/renovate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Renovate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/integration/dependabot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dependabot
   
 
     
@@ -3830,6 +3950,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#uv_system_certs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_SYSTEM_CERTS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#uv_system_python" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5061,6 +5192,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -5155,6 +5290,62 @@
     
   
     Platform support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../policies/python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../policies/rust/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rust support
   
 
     
@@ -6426,6 +6617,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#uv_system_certs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_SYSTEM_CERTS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#uv_system_python" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -7587,7 +7789,8 @@ a link mode.</p>
 <h3 id="uv_native_tls"><a class="toclink" href="#uv_native_tls"><code>UV_NATIVE_TLS</code></a></h3>
 <p><small class="added-in">added in <code>0.1.19</code></small></p>
 <p>Equivalent to the <code>--native-tls</code> command-line argument. If set to <code>true</code>, uv will
-use the system's trust store instead of the bundled <code>webpki-roots</code> crate.</p>
+load TLS certificates from the platform's native certificate store instead of the
+bundled Mozilla root certificates.</p>
 <h3 id="uv_no_binary"><a class="toclink" href="#uv_no_binary"><code>UV_NO_BINARY</code></a></h3>
 <p><small class="added-in">added in <code>0.5.30</code></small></p>
 <p>Equivalent to the <code>--no-binary</code> command-line argument. If set, uv will install
@@ -7828,6 +8031,11 @@ around invalid artifacts in rare cases.</p>
 stack size, because we actually spawn our own main2 thread to work around
 the fact that Windows' real main thread is only 1MB. That thread has size
 <code>max(UV_STACK_SIZE, 1MB)</code>.</p>
+<h3 id="uv_system_certs"><a class="toclink" href="#uv_system_certs"><code>UV_SYSTEM_CERTS</code></a></h3>
+<p><small class="added-in">added in <code>0.11.0</code></small></p>
+<p>Equivalent to the <code>--system-certs</code> command-line argument. If set to <code>true</code>, uv will
+load TLS certificates from the platform's native certificate store instead of the
+bundled Mozilla root certificates.</p>
 <h3 id="uv_system_python"><a class="toclink" href="#uv_system_python"><code>UV_SYSTEM_PYTHON</code></a></h3>
 <p><small class="added-in">added in <code>0.1.18</code></small></p>
 <p>Equivalent to the <code>--system</code> command-line argument. If set to <code>true</code>, uv will
@@ -8067,14 +8275,23 @@ the fact that Windows' real main thread is only 1MB. That thread has size
 <p>The standard <code>SHELL</code> posix env var.</p>
 <h3 id="ssl_cert_dir"><a class="toclink" href="#ssl_cert_dir"><code>SSL_CERT_DIR</code></a></h3>
 <p><small class="added-in">added in <code>0.9.10</code></small></p>
-<p>Custom path for certificate bundles for SSL connections.
-Multiple entries are supported separated using a platform-specific
-delimiter (<code>:</code> on Unix, <code>;</code> on Windows).</p>
-<p>Takes precedence over <code>UV_NATIVE_TLS</code> when set.</p>
+<p>Path to a directory containing PEM-encoded CA certificate files for TLS connections.</p>
+<p>Multiple entries are supported, separated using a platform-specific delimiter (<code>:</code> on Unix,
+<code>;</code> on Windows).</p>
+<p>Certificates are usually stored with <code>.pem</code>, <code>.crt</code>, or <code>.cer</code> extensions, but uv will
+attempt to read a certificate from any regular file in the provided <code>SSL_CERT_DIR</code>.</p>
+<p>Files that cannot be parsed as PEM certificates are ignored. uv resolves symlinks and
+ignores dangling symlinks.</p>
+<p>Only PEM-encoded files are supported, i.e., DER-encoded files are not supported.</p>
+<p>When set, this overrides the default certificate source (bundled Mozilla roots or system
+certificates). Only the certificates in this directory will be trusted.</p>
 <h3 id="ssl_cert_file"><a class="toclink" href="#ssl_cert_file"><code>SSL_CERT_FILE</code></a></h3>
 <p><small class="added-in">added in <code>0.1.14</code></small></p>
-<p>Custom certificate bundle file path for SSL connections.</p>
-<p>Takes precedence over <code>UV_NATIVE_TLS</code> when set.</p>
+<p>Path to a CA certificate bundle file for TLS connections.</p>
+<p>Requires a PEM-encoded certificate file (e.g., <code>certs.pem</code>, <code>ca-bundle.crt</code>). DER-encoded
+files are not supported.</p>
+<p>When set, this overrides the default certificate source (bundled Mozilla roots or system
+certificates). Only the certificates in this file will be trusted.</p>
 <h3 id="ssl_client_cert"><a class="toclink" href="#ssl_client_cert"><code>SSL_CLIENT_CERT</code></a></h3>
 <p><small class="added-in">added in <code>0.2.11</code></small></p>
 <p>If set, uv will use this file for mTLS authentication.
