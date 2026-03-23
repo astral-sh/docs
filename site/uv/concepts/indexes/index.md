@@ -110,7 +110,7 @@ Most private package indexes require authentication to access packages, typicall
 
 Tip
 
-See the [alternative index guide](../../guides/integration/alternative-indexes/) for details on authenticating with specific private index providers, e.g., from AWS, Azure, or GCP.
+See the dedicated guides for authenticating with specific private index providers: [Azure Artifacts](../../guides/integration/azure/), [Google Artifact Registry](../../guides/integration/google/), [AWS CodeArtifact](../../guides/integration/aws/), and [JFrog Artifactory](../../guides/integration/jfrog/).
 
 ### [Providing credentials directly](#providing-credentials-directly)
 
