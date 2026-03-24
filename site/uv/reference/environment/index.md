@@ -762,7 +762,7 @@ Note that `setuptools` and `wheel` are not included in Python 3.12+ environments
 
 ### [`UV_WORKING_DIR`](#uv_working_dir)
 
-added in `next version`
+added in `0.9.14`
 
 Equivalent to the `--directory` command-line argument. `UV_WORKING_DIRECTORY` (added in v0.9.1) is also supported for backwards compatibility.
 
@@ -1016,7 +1016,7 @@ Used to detect the use of the Windows Command Prompt (as opposed to PowerShell).
 
 ### [`PSModulePath`](#psmodulepath)
 
-added in `next version`
+added in `0.10.0`
 
 Used to detect PowerShell usage (set by PowerShell on all platforms).
 
