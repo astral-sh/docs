@@ -43,6 +43,15 @@ sum_three_numbers("one", 5)  # ty: ignore[missing-argument, invalid-argument-typ
 
 ```
 
+To suppress specific rules for an entire file, place a `# ty: ignore[<rule>]` comment on its own line before any Python code:
+
+```
+# ty: ignore[invalid-argument-type]
+
+sum_three_numbers(3, 2, "1")
+
+```
+
 Note
 
 Enumerating rule names (e.g., `[rule1, rule2]`) is optional. However, we strongly recommend including suppressing specific rules to avoid accidental suppression of other errors.
@@ -51,11 +60,16 @@ Enumerating rule names (e.g., `[rule1, rule2]`) is optional. However, we strongl
 
 ty supports the standard [`type: ignore`](https://typing.python.org/en/latest/spec/directives.html#type-ignore-comments) comment format introduced by PEP 484.
 
-ty handles these similarly to `ty: ignore` comments, but suppresses all violations on that line, even when `type: ignore[code]` is used.
+`type: ignore` suppresses all violations on that line.
+
+`type: ignore[ty:<rule>]` behaves like `ty: ignore[<rule>]` and only suppresses the matching rule. Codes without a `ty:` prefix are ignored, which makes it possible to combine suppressions for multiple type checkers in a single comment.
 
 ```
 # Ignore all typing errors on the next line
 sum_three_numbers("one", 5)  # type: ignore
+
+# Ignore a mypy code and a ty rule in the same comment
+sum_three_numbers("one", 5, 2)  # type: ignore[arg-type, ty:invalid-argument-type]
 
 ```
 

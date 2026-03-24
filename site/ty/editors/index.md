@@ -113,6 +113,19 @@ Starting with version 2025.3, PyCharm users can enable native ty support in the 
 
 For more information, refer to [PyCharm documentation](https://www.jetbrains.com/help/pycharm/lsp-tools.html#ty).
 
+## [Emacs](#emacs)
+
+ty can be utilized as a language server via the built-in [Eglot](https://www.gnu.org/software/emacs/manual/html_node/eglot/index.html) client, which is part of Emacs since version 29.
+
+```
+(with-eval-after-load 'eglot
+  (add-to-list 'eglot-server-programs
+               '(python-base-mode . ("ty" "server"))))
+
+(add-hook 'python-base-mode-hook 'eglot-ensure)
+
+```
+
 ## [Other editors](#other-editors)
 
 ty can be used with any editor that supports the [language server protocol](https://microsoft.github.io/language-server-protocol/).
