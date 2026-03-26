@@ -5484,6 +5484,8 @@ Audit the project's dependencies.
 
 Dependencies are audited for known vulnerabilities, as well as 'adverse' statuses such as deprecation and quarantine.
 
+By default, all extras and groups within the project are audited. To exclude extras and/or groups from the audit, use the `--no-extra`, `--no-group`, and related options.
+
 ### Usage
 
 ```
@@ -5491,20 +5493,6 @@ uv audit [OPTIONS]
 ```
 
 ### Options
-
-[`--all-extras`](#uv-audit--all-extras) : Include all optional dependencies.
-
-```
-Optional dependencies are defined via `project.optional-dependencies` in a `pyproject.toml`.
-
-This option is only available when running in a project.
-```
-
-[`--all-groups`](#uv-audit--all-groups) : Include dependencies from all dependency groups.
-
-```
-`--no-group` can be used to exclude specific groups.
-```
 
 [`--allow-insecure-host`](#uv-audit--allow-insecure-host), `--trusted-host` *allow-insecure-host* : Allow insecure connections to a host.
 
@@ -5592,14 +5580,6 @@ Durations do not respect semantics of the local time zone and are always resolve
 Can be provided multiple times for different packages.
 ```
 
-[`--extra`](#uv-audit--extra) *extra* : Include optional dependencies from the specified extra name.
-
-```
-May be provided more than once.
-
-This option is only available when running in a project.
-```
-
 [`--extra-index-url`](#uv-audit--extra-index-url) *extra-index-url* : (Deprecated: use `--index` instead) Extra URLs of package indexes to use, in addition to `--index-url`.
 
 ```
@@ -5639,12 +5619,6 @@ Possible values:
 
 ```
 If the lockfile is missing, uv will exit with an error.
-```
-
-[`--group`](#uv-audit--group) *group* : Include dependencies from the specified dependency group.
-
-```
-May be provided multiple times.
 ```
 
 [`--help`](#uv-audit--help), `-h` : Display the concise help for this command
@@ -5787,33 +5761,29 @@ Normally, configuration files are discovered in the current directory, parent di
 May also be set with the `UV_NO_CONFIG` environment variable.
 ```
 
-[`--no-default-groups`](#uv-audit--no-default-groups) : Ignore the default dependency groups.
+[`--no-default-groups`](#uv-audit--no-default-groups) : Don't audit the default dependency groups
 
 ```
-uv includes the groups defined in `tool.uv.default-groups` by default. This disables that option, however, specific groups can still be included with `--group`.
-
 May also be set with the `UV_NO_DEFAULT_GROUPS` environment variable.
 ```
 
-[`--no-dev`](#uv-audit--no-dev) : Disable the development dependency group [env: UV_NO_DEV=]
+[`--no-dev`](#uv-audit--no-dev) : Don't audit the development dependency group [env: UV_NO_DEV=]
 
 ```
-This option is an alias of `--no-group dev`. See `--no-default-groups` to disable all default groups instead.
+This option is an alias of `--no-group dev`. See `--no-default-groups` to exclude all default groups instead.
 
 This option is only available when running in a project.
 ```
 
-[`--no-extra`](#uv-audit--no-extra) *no-extra* : Exclude the specified optional dependencies, if `--all-extras` is supplied.
+[`--no-extra`](#uv-audit--no-extra) *no-extra* : Don't audit the specified optional dependencies.
 
 ```
 May be provided multiple times.
 ```
 
-[`--no-group`](#uv-audit--no-group) *no-group* : Disable the specified dependency group.
+[`--no-group`](#uv-audit--no-group) *no-group* : Don't audit the specified dependency group.
 
 ```
-This option always takes precedence over default groups, `--all-groups`, and `--group`.
-
 May be provided multiple times.
 
 May also be set with the `UV_NO_GROUP` environment variable.
@@ -5853,7 +5823,7 @@ May also be set with the `UV_NO_SOURCES_PACKAGE` environment variable.
 When disabled, uv will only use locally cached data and locally available files.
 ```
 
-[`--only-dev`](#uv-audit--only-dev) : Only include the development dependency group.
+[`--only-dev`](#uv-audit--only-dev) : Only audit the development dependency group.
 
 ```
 The project and its dependencies will be omitted.
@@ -5861,7 +5831,7 @@ The project and its dependencies will be omitted.
 This option is an alias for `--only-group dev`. Implies `--no-default-groups`.
 ```
 
-[`--only-group`](#uv-audit--only-group) *only-group* : Only include dependencies from the specified dependency group.
+[`--only-group`](#uv-audit--only-group) *only-group* : Only audit dependencies from the specified dependency group.
 
 ```
 The project and its dependencies will be omitted.
