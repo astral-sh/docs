@@ -31,10 +31,17 @@ Rule levels can also be changed in the [`rules`](../reference/configuration/#rul
 
 For example, the following is equivalent to the command above:
 
-pyproject.toml
-
 ```
 [tool.ty.rules]
+unused-ignore-comment = "warn"
+redundant-cast = "ignore"
+possibly-missing-attribute = "error"
+possibly-missing-import = "error"
+
+```
+
+```
+[rules]
 unused-ignore-comment = "warn"
 redundant-cast = "ignore"
 possibly-missing-attribute = "error"
@@ -55,10 +62,14 @@ You can also configure this setting in the [`rules`](../reference/configuration/
 
 For example, the following is equivalent to the command above:
 
-pyproject.toml
-
 ```
 [tool.ty.rules]
+all = "error"
+
+```
+
+```
+[rules]
 all = "error"
 
 ```
