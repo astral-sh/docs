@@ -1011,6 +1011,8 @@ Accepts a dictionary format of `PACKAGE = "DATE"` pairs, where `DATE` is an RFC 
 
 Durations do not respect semantics of the local time zone and are always resolved to a fixed number of seconds assuming that a day is 24 hours (e.g., DST transitions are ignored). Calendar units such as months and years are not allowed.
 
+Set a package to `false` to exempt it from the global [`exclude-newer`](#exclude-newer) constraint entirely.
+
 **Default value**: `None`
 
 **Type**: `dict`
@@ -1019,11 +1021,11 @@ Durations do not respect semantics of the local time zone and are always resolve
 
 ```
 [tool.uv]
-exclude-newer-package = { tqdm = "2022-04-04T00:00:00Z" }
+exclude-newer-package = { tqdm = "2022-04-04T00:00:00Z", markupsafe = false }
 ```
 
 ```
-exclude-newer-package = { tqdm = "2022-04-04T00:00:00Z" }
+exclude-newer-package = { tqdm = "2022-04-04T00:00:00Z", markupsafe = false }
 ```
 
 ______________________________________________________________________
@@ -2022,6 +2024,56 @@ upgrade-package = ["ruff"]
 
 ______________________________________________________________________
 
+### [`audit`](#audit)
+
+#### \[[`ignore`](#audit_ignore)\](#audit_ignore)
+
+A list of vulnerability IDs to ignore during auditing.
+
+Vulnerabilities matching any of the provided IDs (including aliases) will be excluded from the audit results.
+
+**Default value**: `[]`
+
+**Type**: `list[str]`
+
+**Example usage**:
+
+```
+[tool.uv.audit]
+ignore = ["PYSEC-2022-43017", "GHSA-5239-wwwm-4pmq"]
+```
+
+```
+[audit]
+ignore = ["PYSEC-2022-43017", "GHSA-5239-wwwm-4pmq"]
+```
+
+______________________________________________________________________
+
+#### \[[`ignore-until-fixed`](#audit_ignore-until-fixed)\](#audit_ignore-until-fixed)
+
+A list of vulnerability IDs to ignore during auditing, but only while no fix is available.
+
+Vulnerabilities matching any of the provided IDs (including aliases) will be excluded from the audit results as long as they have no known fix versions. Once a fix version becomes available, the vulnerability will be reported again.
+
+**Default value**: `[]`
+
+**Type**: `list[str]`
+
+**Example usage**:
+
+```
+[tool.uv.audit]
+ignore-until-fixed = ["PYSEC-2022-43017"]
+```
+
+```
+[audit]
+ignore-until-fixed = ["PYSEC-2022-43017"]
+```
+
+______________________________________________________________________
+
 ### [`pip`](#pip)
 
 Settings that are specific to the `uv pip` command-line interface.
@@ -2391,7 +2443,7 @@ ______________________________________________________________________
 
 Limit candidate packages for specific packages to those that were uploaded prior to the given date.
 
-Accepts package-date pairs in a dictionary format.
+Accepts package-date pairs in a dictionary format. Set a package to `false` to exempt it from the global [`exclude-newer`](#exclude-newer) constraint entirely.
 
 **Default value**: `None`
 
@@ -2401,12 +2453,12 @@ Accepts package-date pairs in a dictionary format.
 
 ```
 [tool.uv.pip]
-exclude-newer-package = { tqdm = "2022-04-04T00:00:00Z" }
+exclude-newer-package = { tqdm = "2022-04-04T00:00:00Z", markupsafe = false }
 ```
 
 ```
 [pip]
-exclude-newer-package = { tqdm = "2022-04-04T00:00:00Z" }
+exclude-newer-package = { tqdm = "2022-04-04T00:00:00Z", markupsafe = false }
 ```
 
 ______________________________________________________________________

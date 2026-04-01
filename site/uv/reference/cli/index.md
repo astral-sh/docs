@@ -5623,6 +5623,22 @@ If the lockfile is missing, uv will exit with an error.
 
 [`--help`](#uv-audit--help), `-h` : Display the concise help for this command
 
+[`--ignore`](#uv-audit--ignore) *ignore* : Ignore a vulnerability by ID.
+
+```
+Vulnerabilities matching any of the provided IDs (including aliases) will be excluded from the audit results.
+
+May be provided multiple times.
+```
+
+[`--ignore-until-fixed`](#uv-audit--ignore-until-fixed) *ignore-until-fixed* : Ignore a vulnerability by ID, but only while no fix is available.
+
+```
+Vulnerabilities matching any of the provided IDs (including aliases) will be excluded from the audit results as long as they have no known fix versions. Once a fix version becomes available, the vulnerability will be reported again.
+
+May be provided multiple times.
+```
+
 [`--index`](#uv-audit--index) *index* : The URLs to use when resolving dependencies, in addition to the default index.
 
 ```
@@ -6575,6 +6591,7 @@ Possible values:
 - `cu91`: Use the PyTorch index for CUDA 9.1
 - `cu90`: Use the PyTorch index for CUDA 9.0
 - `cu80`: Use the PyTorch index for CUDA 8.0
+- `rocm7.2`: Use the PyTorch index for ROCm 7.2
 - `rocm7.1`: Use the PyTorch index for ROCm 7.1
 - `rocm7.0`: Use the PyTorch index for ROCm 7.0
 - `rocm6.4`: Use the PyTorch index for ROCm 6.4
@@ -7163,6 +7180,7 @@ Possible values:
 - `cu91`: Use the PyTorch index for CUDA 9.1
 - `cu90`: Use the PyTorch index for CUDA 9.0
 - `cu80`: Use the PyTorch index for CUDA 8.0
+- `rocm7.2`: Use the PyTorch index for ROCm 7.2
 - `rocm7.1`: Use the PyTorch index for ROCm 7.1
 - `rocm7.0`: Use the PyTorch index for ROCm 7.0
 - `rocm6.4`: Use the PyTorch index for ROCm 6.4
@@ -10467,6 +10485,7 @@ Possible values:
 - `cu91`: Use the PyTorch index for CUDA 9.1
 - `cu90`: Use the PyTorch index for CUDA 9.0
 - `cu80`: Use the PyTorch index for CUDA 8.0
+- `rocm7.2`: Use the PyTorch index for ROCm 7.2
 - `rocm7.1`: Use the PyTorch index for ROCm 7.1
 - `rocm7.0`: Use the PyTorch index for ROCm 7.0
 - `rocm6.4`: Use the PyTorch index for ROCm 6.4
@@ -11060,6 +11079,7 @@ Possible values:
 - `cu91`: Use the PyTorch index for CUDA 9.1
 - `cu90`: Use the PyTorch index for CUDA 9.0
 - `cu80`: Use the PyTorch index for CUDA 8.0
+- `rocm7.2`: Use the PyTorch index for ROCm 7.2
 - `rocm7.1`: Use the PyTorch index for ROCm 7.1
 - `rocm7.0`: Use the PyTorch index for ROCm 7.0
 - `rocm6.4`: Use the PyTorch index for ROCm 6.4
@@ -11726,6 +11746,7 @@ Possible values:
 - `cu91`: Use the PyTorch index for CUDA 9.1
 - `cu90`: Use the PyTorch index for CUDA 9.0
 - `cu80`: Use the PyTorch index for CUDA 8.0
+- `rocm7.2`: Use the PyTorch index for ROCm 7.2
 - `rocm7.1`: Use the PyTorch index for ROCm 7.1
 - `rocm7.0`: Use the PyTorch index for ROCm 7.0
 - `rocm6.4`: Use the PyTorch index for ROCm 6.4
