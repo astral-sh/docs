@@ -12,13 +12,13 @@
         <meta name="author" content="charliermarsh">
       
       
-        <link rel="canonical" href="https://docs.astral.sh/uv/reference/internals/resolver/">
+        <link rel="canonical" href="https://docs.astral.sh/uv/reference/internals/metadata/">
       
       
-        <link rel="prev" href="../">
+        <link rel="prev" href="../resolver/">
       
       
-        <link rel="next" href="../metadata/">
+        <link rel="next" href="../../benchmarks/">
       
       
         
@@ -28,7 +28,7 @@
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
     
      
-<title>Resolver | uv</title>
+<title>Workspace Metadata | uv</title>
  
     
       <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
@@ -101,8 +101,8 @@
 <script type="application/ld+json">
   {
       
-      "datePublished": "2025-10-19 12:29:47Z",
-      "dateModified": "2025-10-19 12:29:47Z",
+      "datePublished": "2026-03-27 13:22:03Z",
+      "dateModified": "2026-03-27 13:22:03Z",
       
       "@context": "https://schema.org",
       "@type": "WebSite",
@@ -130,7 +130,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#resolver-internals" class="md-skip">
+        <a href="#workspace-metadata" class="md-skip">
           Skip to content
         </a>
       
@@ -165,7 +165,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Resolver
+              Workspace Metadata
             
           </span>
         </div>
@@ -2985,6 +2985,34 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../resolver/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resolver
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -3004,7 +3032,7 @@
   <span class="md-ellipsis">
     
   
-    Resolver
+    Workspace Metadata
   
 
     
@@ -3022,7 +3050,7 @@
   <span class="md-ellipsis">
     
   
-    Resolver
+    Workspace Metadata
   
 
     
@@ -3048,10 +3076,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#resolver" class="md-nav__link">
+  <a href="#handling-multiple-versions-of-a-package" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Resolver
+        Handling multiple versions of a package
       
     </span>
   </a>
@@ -3059,76 +3087,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#forking" class="md-nav__link">
+  <a href="#schema" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Forking
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#wheel-tags" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Wheel tags
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#marker-and-wheel-tag-filtering" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Marker and wheel tag filtering
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#metadata-consistency" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Metadata consistency
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#requires-python" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Requires-python
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#url-dependencies" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        URL dependencies
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#prioritization" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Prioritization
+        Schema
       
     </span>
   </a>
@@ -3139,34 +3101,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../metadata/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Workspace Metadata
-  
-
-    
-  </span>
-  
-  
-
-      </a>
     </li>
   
 
@@ -3464,10 +3398,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#resolver" class="md-nav__link">
+  <a href="#handling-multiple-versions-of-a-package" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Resolver
+        Handling multiple versions of a package
       
     </span>
   </a>
@@ -3475,76 +3409,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#forking" class="md-nav__link">
+  <a href="#schema" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Forking
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#wheel-tags" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Wheel tags
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#marker-and-wheel-tag-filtering" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Marker and wheel tag filtering
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#metadata-consistency" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Metadata consistency
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#requires-python" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Requires-python
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#url-dependencies" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        URL dependencies
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#prioritization" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Prioritization
+        Schema
       
     </span>
   </a>
@@ -3637,291 +3505,301 @@
   
 
 
-<h1 id="resolver-internals"><a class="toclink" href="#resolver-internals">Resolver internals</a></h1>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>This document focuses on the internal workings of uv's resolver. For using uv, see the
-<a href="../../../concepts/resolution/">resolution concept</a> documentation.</p>
-</div>
-<h2 id="resolver"><a class="toclink" href="#resolver">Resolver</a></h2>
-<p>As defined in a textbook, resolution, or finding a set of version to install from a given set of
-requirements, is equivalent to the
-<a href="https://en.wikipedia.org/wiki/Boolean_satisfiability_problem">SAT problem</a> and thereby NP-complete:
-in the worst case you have to try all possible combinations of all versions of all packages and
-there are no general, fast algorithms. In practice, this is misleading for a number of reasons:</p>
+<h1 id="workspace-metadata"><a class="toclink" href="#workspace-metadata">Workspace metadata</a></h1>
+<p><code>uv workspace metadata</code> exports the information uv has about your workspace as JSON so other tools
+can use it. In particular, if you want access to the information in a <code>uv.lock</code>, you should prefer
+this command's output, as <code>uv.lock</code> is not a stable format we guarantee anything about.</p>
+<p>The primary structure is the "resolution" field which contains the dependency graph with exact
+package versions that a <code>uv.lock</code> encodes.</p>
+<p>The edges of the graph are the <code>dependencies</code> every node defines. These are the things that must
+also be installed for it to be installed (and their <code>dependencies</code> recursively, keeping in mind that
+cycles are perfectly normal to encounter in this graph). Each dependency entry will include an <code>id</code>
+for the node it refers to, and an optional <code>marker</code> that
+<a href="https://packaging.python.org/en/latest/specifications/dependency-specifiers/#dependency-specifiers">specifies on what platforms the dependency is required</a>
+(if there is no marker the dependency is always required).</p>
+<p>Nodes in the graph are uniquely identified by package <code>name</code>, <code>version</code>, <code>source</code>, and <code>kind</code>.</p>
+<p>There are 3 kinds of node in the graph:</p>
 <ul>
-<li>The slowest part of resolution in uv is loading package and version metadata, even if it's cached.</li>
-<li>There are many possible solutions, but some are preferable to others. For example, we generally
-  prefer using the latest version of packages.</li>
-<li>Package dependencies are complex, e.g., there are contiguous versions ranges — not arbitrary
-  boolean inclusion/exclusions of versions, adjacent releases often have the same or similar
-  requirements, etc.</li>
-<li>For most resolutions, the resolver doesn't need to backtrack, picking versions iteratively is
-  sufficient. If there are version preferences from a previous resolution, barely any work needs to
-  be done.</li>
-<li>When resolution fails, more information is needed than a message that there is no solution (as is
-  seen in SAT solvers). Instead, the resolver should produce an understandable error trace that
-  states which packages are involved in away to allows a user to remove the conflict.</li>
-<li>The most important heuristic for performance and user experience is determining the order in which
-  decisions are made through prioritization.</li>
+<li><code>"package"</code> -- the package itself</li>
+<li><code>{ "extra": "extraname" }</code> -- an extra the package defines</li>
+<li><code>{ "group": "groupname" }</code> -- a dependency group the package defines</li>
 </ul>
-<p>uv uses <a href="https://github.com/pubgrub-rs/pubgrub">pubgrub-rs</a>, the Rust implementation of
-<a href="https://nex3.medium.com/pubgrub-2fb6470504f">PubGrub</a>, an incremental version solver. PubGrub in uv
-works in the following steps:</p>
-<ul>
-<li>Start with a partial solution that declares which packages versions have been selected and which
-  are undecided. Initially, only a virtual root package is decided.</li>
-<li>The highest priority package is selected from the undecided packages. Roughly, packages with URLs
-  (including file, git, etc.) have the highest priority, then those with more exact specifiers (such
-  as <code>==</code>), then those with less strict specifiers. Inside each category, packages are ordered by
-  when they were first seen (i.e. order in a file), making the resolution deterministic.</li>
-<li>A version is picked for the selected package. The version must works with all specifiers from the
-  requirements in the partial solution and must not be previously marked as incompatible. The
-  resolver prefers versions from a lockfile (<code>uv.lock</code> or <code>-o requirements.txt</code>) and those installed
-  in the current environment. Versions are checked from highest to lowest (unless using an
-  alternative <a href="../../../concepts/resolution/#resolution-strategy">resolution strategy</a>).</li>
-<li>All requirements of the selected package version are added to the undecided packages. uv
-  prefetches their metadata in the background to improve performance.</li>
-<li>The process is either repeated with the next package unless a conflict is detected, in which the
-  resolver will backtrack. For example, the partial solution contains, among other packages, <code>a 2</code>
-  then <code>b 2</code> with the requirements <code>a 2 -&gt; c 1</code> and <code>b 2 -&gt; c 2</code>. No compatible version of <code>c</code> can
-  be found. PubGrub can determine this was caused by <code>a 2</code> and <code>b 2</code> and add the incompatibility
-  <code>{a 2, b 2}</code>, meaning that when either is picked, the other cannot be selected. The partial
-  solution is restored to <code>a 2</code> with the tracked incompatibility and the resolver attempts to pick a
-  new version for <code>b</code>.</li>
-</ul>
-<p>Eventually, the resolver either picks compatible versions for all packages (a successful resolution)
-or there is an incompatibility including the virtual "root" package which defines the versions
-requested by the user. An incompatibility with the root package indicates that whatever versions of
-the root dependencies and their transitive dependencies are picked, there will always be a conflict.
-From the incompatibilities tracked in PubGrub, an error message is constructed to enumerate the
-involved packages.</p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>For more details on the PubGrub algorithm, see <a href="https://pubgrub-rs-guide.pages.dev/internals/intro">Internals of the PubGrub
-algorithm</a>.</p>
-</div>
-<p>In addition to PubGrub's base algorithm, we also use a heuristic that backtracks and switches the
-order of two packages if they have been conflicting too much.</p>
-<h2 id="forking"><a class="toclink" href="#forking">Forking</a></h2>
-<p>Python resolvers historically didn't support backtracking, and even with backtracking, resolution
-was usually limited to single environment, which one specific architecture, operating system, Python
-version, and Python implementation. Some packages use contradictory requirements for different
-environments, for example:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>numpy&gt;=2,&lt;3 ; python_version &gt;= &quot;3.11&quot;
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>numpy&gt;=1.16,&lt;2 ; python_version &lt; &quot;3.11&quot;
+<p>(In the future we will add "build" nodes for the dependencies of
+<a href="https://docs.astral.sh/uv/concepts/projects/config/#build-isolation">build environments</a>.)</p>
+<p>If you want to install <code>mypackage</code>, find its <code>"kind": "package"</code> node. This node will also include
+information on its sdist, its wheels, its extras (<code>optional_dependencies</code>), and dependency groups
+(<code>dependency_groups</code>).</p>
+<p>If you want to install <code>mypackage[myextra]</code> then find the node with <code>"kind": { "extra": "myextra" }</code>
+for <code>mypackage</code> (this node will always depend on <code>mypackage</code>). If you want to install
+<code>mypackage[extra1, extra2]</code>, find the two nodes for <code>mypackage[extra1]</code> and <code>mypackage[extra2]</code>.</p>
+<p>If you want to install the dependency group <code>mypackage:mygroup</code> then find the node with
+<code>"kind": { "group": "mygroup" }</code> for <code>mypackage</code> (this node will <em>not</em> depend on <code>mypackage</code>, as
+dependency groups are just lists of things you might want when working on the package itself).</p>
+<h2 id="handling-multiple-versions-of-a-package"><a class="toclink" href="#handling-multiple-versions-of-a-package">Handling multiple versions of a package</a></h2>
+<p>Two versions of a package cannot be installed into a python environment, but the dependency graph
+may still include multiple versions of a package. This can happen for two different reasons.</p>
+<p>The first way is for
+<a href="https://packaging.python.org/en/latest/specifications/dependency-specifiers/#dependency-specifiers">different platforms</a>
+to have conflicting requirements that force different versions of a package to be used.</p>
+<p>The second way is when a workspace has
+<a href="https://docs.astral.sh/uv/concepts/resolution/#conflicting-dependencies">conflicts</a>, implying some
+workspace members or their extras are mutually exclusive, and only one of them can be installed at a
+time. Information about conflicts can be found in the top-level <code>conflicts</code> field.</p>
+<p>The specific guarantee we provide is that <strong>for any concrete choice of
+<a href="https://packaging.python.org/en/latest/specifications/dependency-specifiers/#dependency-specifiers">markers</a>,
+if you select a set of packages to install that has no
+<a href="https://docs.astral.sh/uv/concepts/resolution/#conflicting-dependencies">conflicts</a>, then the
+resulting set of packages to install will not have multiple versions of a package</strong>.</p>
+<p>If you just want to get "every version of pydantic this workspace uses" you're free to iterate
+through the list of nodes and collect up every instance. If however you want to specifically analyze
+the graph and get actual resolutions you will likely need to consult <code>conflicts</code> and need to
+understand how to resolve <code>markers</code> for a specific platform.</p>
+<p>The best way to avoid mistakes when working with multiple versions of a package is to keep your
+queries into the dependency graph rooted in operations on workspace members, as those are the
+natural entry-points to the graph that uv wants to work on, and can give coherent responses for:
+"install <code>member1</code> and <code>member2[extra]</code>".</p>
+<p>Another way to put this is that when possible <em>you should avoid iterating over the <code>resolution</code>
+object to find a node</em>. Only access <code>resolution</code> like a map using ids that were provided by another
+part of the metadata. The only ids this initially gives you access to are the ones listed in the
+<code>members</code> array, which lists all the workspace members. From there you may find the ids of that
+package's dependencies, extras, and dependency groups and recursively discover other packages.</p>
+<p>So rather than trying to find a node for anyio in the dependency graph directly, you should decide
+what workspace member(s) you're interested in analyzing as if they were going to be installed. While
+traversing the <code>dependencies</code> of the things you want to install, you may visit an instance of anyio,
+which is the one you should use. If you visit multiple instances of anyio then that means you've
+selected a conflicting set of things to install which uv would never select.</p>
+<p>So if you wanted to analyze say, installing the <code>dev</code> dependency group of the workspace member
+<code>mypackage</code> it would look something like:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">member</span> <span class="o">=</span> <span class="n">find_by_name</span><span class="p">(</span><span class="n">metadata</span><span class="o">.</span><span class="n">members</span><span class="p">,</span> <span class="s2">&quot;mypackage&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">member_node</span> <span class="o">=</span> <span class="n">metadata</span><span class="o">.</span><span class="n">resolution</span><span class="p">[</span><span class="n">member</span><span class="o">.</span><span class="n">id</span><span class="p">]</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">group</span> <span class="o">=</span> <span class="n">find_by_name</span><span class="p">(</span><span class="n">member_node</span><span class="o">.</span><span class="n">dependency_groups</span><span class="p">,</span> <span class="s2">&quot;dev&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">group_node</span> <span class="o">=</span> <span class="n">metadata</span><span class="o">.</span><span class="n">resolution</span><span class="p">[</span><span class="n">group</span><span class="o">.</span><span class="n">id</span><span class="p">]</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">visit</span><span class="p">(</span><span class="n">metadata</span><span class="p">,</span> <span class="p">[</span><span class="n">group_node</span><span class="p">])</span>
 </code></pre></div>
-<p>Since Python only allows one version of each package, a naive resolver would error here. Inspired by
-<a href="https://github.com/python-poetry/poetry">Poetry</a>, uv uses a forking resolver: whenever there are
-multiple requirements for a package with different markers, the resolution is split.</p>
-<p>In the above example, the partial solution would be split into two resolutions, one for
-<code>python_version &gt;= "3.11"</code> and one for <code>python_version &lt; "3.11"</code>.</p>
-<p>If markers overlap or are missing a part of the marker space, the resolver splits additional times —
-there can be many forks per package. For example, given:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>flask &gt; 1 ; sys_platform == &#39;darwin&#39;
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>flask &gt; 2 ; sys_platform == &#39;win32&#39;
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>flask
+<p>If you wanted to analyze two particular workspace members installed together, it would look
+something like:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">to_analyze</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">for</span> <span class="n">member_name</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;package1&quot;</span><span class="p">,</span> <span class="s2">&quot;package2&quot;</span><span class="p">]:</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>  <span class="n">member</span> <span class="o">=</span> <span class="n">find_by_name</span><span class="p">(</span><span class="n">metadata</span><span class="o">.</span><span class="n">members</span><span class="p">,</span> <span class="n">member_name</span><span class="p">)</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>  <span class="n">member_node</span> <span class="o">=</span> <span class="n">metadata</span><span class="o">.</span><span class="n">resolution</span><span class="p">[</span><span class="n">member</span><span class="o">.</span><span class="n">id</span><span class="p">]</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>  <span class="n">to_analyze</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">member_node</span><span class="p">)</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">visit</span><span class="p">(</span><span class="n">metadata</span><span class="p">,</span> <span class="n">to_analyze</span><span class="p">)</span>
 </code></pre></div>
-<p>A fork would be created for <code>sys_platform == 'darwin'</code>, for <code>sys_platform == 'win32'</code>, and for
-<code>sys_platform != 'darwin' and sys_platform != 'win32'</code>.</p>
-<p>Forks can be nested, e.g., each fork is dependent on any previous forks that occurred. Forks with
-identical packages are merged to keep the number of forks low.</p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>Forking can be observed in the logs of <code>uv lock -v</code> by looking for
-<code>Splitting resolution on ...</code>, <code>Solving split ... (requires-python: ...)</code> and <code>Split ... resolution
-took ...</code>.</p>
-</div>
-<p>One difficulty in a forking resolver is that where splits occur is dependent on the order packages
-are seen, which is in turn dependent on the preferences, e.g., from <code>uv.lock</code>. So it is possible for
-the resolver to solve the requirements with specific forks, write this to the lockfile, and when the
-resolver is invoked again, a different solution is found because the preferences result in different
-fork points. To avoid this, the <code>resolution-markers</code> of each fork and each package that diverges
-between forks is written to the lockfile. When performing a new resolution, the forks from the
-lockfile are used to ensure the resolution is stable. When requirements change, new forks may be
-added to the saved forks.</p>
-<h2 id="wheel-tags"><a class="toclink" href="#wheel-tags">Wheel tags</a></h2>
-<p>While uv's resolution is universal with respect to environment markers, this doesn't extend to wheel
-tags. Wheel tags can encode the Python version, Python implementation, operating system, and
-architecture. For example, <code>torch-2.4.0-cp312-cp312-manylinux2014_aarch64.whl</code> is only compatible
-with CPython 3.12 on arm64 Linux with <code>glibc&gt;=2.17</code> (per the <code>manylinux2014</code> policy), while
-<code>tqdm-4.66.4-py3-none-any.whl</code> works with all Python 3 versions and interpreters on any operating
-system and architecture. Most projects have a universally compatible source distribution that can be
-used when attempted to install a package that has no compatible wheel, but some packages, such as
-<code>torch</code>, don't publish a source distribution. In this case an installation on, e.g., Python 3.13, an
-uncommon operating system, or architecture, will fail and complain that there is no matching wheel.</p>
-<h2 id="marker-and-wheel-tag-filtering"><a class="toclink" href="#marker-and-wheel-tag-filtering">Marker and wheel tag filtering</a></h2>
-<p>In every fork, we know what markers are possible. In non-universal resolution, we know their exact
-values. In universal mode, we know at least a constraint for the python requirement, e.g.,
-<code>requires-python = "&gt;=3.12"</code> means that <code>importlib_metadata; python_version &lt; "3.10"</code> can be
-discarded because it can never be installed. If additionally <code>tool.uv.environments</code> is set, we can
-filter out requirements with markers disjoint with those environments. Inside each fork, we can
-additionally filter by the fork markers.</p>
-<p>There is some redundancy in the marker expressions, where the value of one marker field implies the
-value of another field. Internally, we normalize <code>python_version</code> and <code>python_full_version</code> as well
-as known values of <code>platform_system</code> and <code>sys_platform</code> to a shared canonical representation, so
-they can match against each other.</p>
-<p>When we selected a version with a local tag (e.g.,<code>1.2.3+localtag</code>) and the wheels don't cover
-support for Windows, Linux and macOS, and there is a base version without tag (e.g.,<code>1.2.3</code>) with
-support for a missing platform, we fork trying to extend the platform support by using both the
-version with local tag and without local tag depending on the platform. This helps with packages
-that use the local tag for different hardware accelerators such as torch. While there is no 1:1
-mapping between wheel tags and markers, we can do a mapping for well-known platforms, including
-Windows, Linux and macOS.</p>
-<h2 id="metadata-consistency"><a class="toclink" href="#metadata-consistency">Metadata consistency</a></h2>
-<p>uv, similar to poetry, requires that wheels of a single version of a package in a specific index
-have the same dependencies (<code>Requires-Dist</code> in <code>METADATA</code>), including wheels build from a source
-distribution. More generally, uv assumes that each wheel has the same <code>METADATA</code> file in its
-dist-info directory.</p>
-<p>numpy 2.3.2 for example has 73 wheels. Without this assumption, uv would have to make 73 network
-requests to fetch its metadata, instead of a single one. Another problem we would have without
-metadata consistency is the lack of a 1:1 mapping between markers and wheel tags. Wheel tags can
-include the glibc version while the PEP 508 markers cannot represent it. If wheels had different
-metadata, a universal resolver would have to track two dimensions simultaneously, PEP 508 markers
-and wheel tags. This would increase complexity a lot, and the correspondence between the two is not
-properly specified. PEP 508 markers have been introduced specifically to allow different
-dependencies between different platform, i.e. to have a single dependency declaration for all
-wheels, such as <code>project.[optional-]dependencies</code>. If the markers are not sufficient, we should
-extend PEP 508 markers instead of using a parallel system of wheel tags.</p>
-<p>Another aspect of metadata consistency is that a source distribution must build into a wheel with
-the same metadata as the wheels, or if there are no wheels, into the same metadata each time. If
-this assumption is violated, sound dependency locking becomes impossible: Consider a package A has a
-source distribution. During resolution, we build A v1 and obtain the dependencies <code>B&gt;=2,&lt;3</code>. We lock
-<code>A==1</code> and <code>B==2</code>. When installing the lockfile on the target machine, we build again and obtain
-dependencies <code>B&gt;=3,&lt;4</code> and <code>C&gt;=1,&lt;2</code>. The lockfile fails to install: Due to the changed constraints,
-the locked version of <code>B</code> is incompatible, and there's no locked candidate for <code>C</code>. Re-resolving
-after this would both be a reproducibility problem (the lockfile is effectively ignored) and a
-security concern (<code>C</code> has not been reviewed, neither was <code>B==3</code>). It's possible to fail on
-installation if that happens, but a late error, possibly during deployment, is a bad user
-experience. There is already a case where uv fails on installation, packages with no source
-distribution and only platform specific wheels incompatible with the current platform. While uv has
-<a href="https://docs.astral.sh/uv/concepts/resolution/#required-environments">required environments</a> as
-mitigation, this requires a not well known configuration option, and questions around (un)supported
-environments are one of the most common problem for uv users. A similar situation with source
-distributions should be avoided.</p>
-<p>While older versions of torch and tensorflow had inconsistent metadata, all recent versions have
-consistent metadata, and we are not aware of any major package with inconsistent metadata. There is
-however no requirement in the Python packaging standards that metadata must be consistent, and
-requests to enforce this in the standards have been rejected
-(<a href="https://discuss.python.org/t/enforcing-consistent-metadata-for-packages/50008">https://discuss.python.org/t/enforcing-consistent-metadata-for-packages/50008</a>).</p>
-<p>There are packages that have native code that links against the native code in another package, such
-as torch. These package may support building against a range of torch versions, but once built, they
-are constrained to a specific torch version, and the runtime torch version must match the build-time
-version. These are currently a pain point across all package managers, as all major package managers
-from pip to uv cache source distribution builds. uv supports multiple builds depending on the
-version of the already installed package using
-<a href="https://docs.astral.sh/uv/concepts/projects/config/#augmenting-build-dependencies"> <code>tool.uv.extra-build-dependencies</code></a>
-with <code>match-runtime = true</code>. This is a workaround that needs to be made on the user side for each
-affected package, instead of library developers declaring this requirement, which would be possible
-with native standards support.</p>
-<h2 id="requires-python"><a class="toclink" href="#requires-python">Requires-python</a></h2>
-<p>To ensure that a resolution with <code>requires-python = "&gt;=3.9"</code> can actually be installed for the
-included Python versions, uv requires that all dependencies have the same minimum Python version.
-Package versions that declare a higher minimum Python version, e.g., <code>requires-python = "&gt;=3.10"</code>,
-are rejected, because a resolution with that version can't be installed on Python 3.9. This ensures
-that when you are on an old Python version, you can install old packages, instead of getting newer
-packages that require newer Python syntax or standard library features.</p>
-<p>uv ignores upper-bounds on <code>requires-python</code>, with special handling for packages with only
-ABI-specific wheels. For example, if a package declares <code>requires-python = "&gt;=3.8,&lt;4"</code>, the <code>&lt;4</code>
-part is ignored. There is a detailed discussion with drawbacks and alternatives in
-<a href="https://github.com/astral-sh/uv/issues/4022">#4022</a> and this
-<a href="https://discuss.python.org/t/requires-python-upper-limits/12663">DPO thread</a>, this section
-summarizes the aspects most relevant to uv's design.</p>
-<p>For most projects, it's not possible to determine whether they will be compatible with a new version
-before it's released, so blocking newer versions in advance would block users from upgrading or
-testing newer Python versions. The exceptions are packages which use the unstable C ABI or internals
-of CPython such as its bytecode format.</p>
-<p>Introducing a <code>requires-python</code> upper bound to a project that previously wasn't using one will not
-prevent the project from being used on a too recent Python version. Instead of failing, the resolver
-will pick an older version without the bound, circumventing the bound.</p>
-<p>For the resolution to be as universally installable as possible, uv ensures that the selected
-dependency versions are compatible with the <code>requires-python</code> range of the project. For example, for
-a project with <code>requires-python = "&gt;=3.12"</code>, uv will not use a dependency version with
-<code>requires-python = "&gt;=3.13"</code>, as otherwise the resolution is not installable on Python 3.12, which
-the project declares to support. Applying the same logic to upper bounds means that bumping the
-upper Python version bound on a project makes it compatible with less dependency versions,
-potentially failing to resolve when no version of a dependency supports the required range. (Bumping
-the lower Python version bound has the inverse effect, it only increases the set of supported
-dependency versions.)</p>
-<p>Note that this is different for Conda, as the Conda solver also determines the Python version, so it
-can choose a lower Python version instead. Conda can also change metadata after a release, so it can
-update compatibility for a new Python version, while metadata on PyPI cannot be changed once
-published.</p>
-<p>Ignoring an upper bound is a problem for packages such as numpy which use the version-dependent C
-API of CPython. As of writing, each numpy release support 4 Python minor versions, e.g., numpy 2.0.0
-has wheels for CPython 3.9 through 3.12 and declares <code>requires-python = "&gt;=3.9"</code>, while numpy 2.1.0
-has wheels for CPython 3.10 through 3.13 and declares <code>requires-python = "&gt;=3.10"</code>. This means that
-when uv resolves a <code>numpy&gt;=2,&lt;3</code> requirement in a project with <code>requires-python = "&gt;=3.9"</code>, it
-selects numpy 2.0.0 and the lockfile doesn't install on Python 3.13 or newer. To alleviate this,
-whenever uv rejects a version that requires a newer Python version, we fork by splitting the
-resolution markers on that Python version. This behavior can be controlled by <code>--fork-strategy</code>. In
-the example case, upon encountering numpy 2.1.0 we fork into Python versions <code>&gt;=3.9,&lt;3.10</code> and
-<code>&gt;=3.10</code> and resolve two different numpy versions:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>numpy==2.0.0; python_version &gt;= &quot;3.9&quot; and python_version &lt; &quot;3.10&quot;
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>numpy==2.1.0; python_version &gt;= &quot;3.10&quot;
+<p>Where <code>visit</code> is your favourite graph traversal algorithm like depth-first-search:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">visit</span><span class="p">(</span><span class="n">metadata</span><span class="p">:</span> <span class="n">UvMetadata</span><span class="p">,</span> <span class="n">to_analyze</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Node</span><span class="p">]):</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>  <span class="n">visited</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>  <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">to_analyze</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="n">node</span> <span class="o">=</span> <span class="n">to_analyze</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="c1"># Handle cycles by avoiding revisiting nodes</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">id</span> <span class="ow">in</span> <span class="n">visited</span><span class="p">:</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>      <span class="k">continue</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="n">visited</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    <span class="c1"># We also need to analyze its dependencies</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    <span class="k">for</span> <span class="n">dependency</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">dependencies</span><span class="p">:</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>      <span class="c1"># Only follow edges if they satisfy the desired platform&#39;s markers</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>      <span class="k">if</span> <span class="n">dependency</span><span class="o">.</span><span class="n">marker</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">satisfies</span><span class="p">(</span><span class="n">platform</span><span class="p">,</span> <span class="n">dependency</span><span class="o">.</span><span class="n">marker</span><span class="p">):</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>        <span class="k">continue</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>      <span class="n">to_analyze</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">metadata</span><span class="o">.</span><span class="n">resolution</span><span class="p">[</span><span class="n">dependency</span><span class="o">.</span><span class="n">id</span><span class="p">])</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>    <span class="c1"># Analyze any package node we encounter</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>    <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">kind</span> <span class="o">==</span> <span class="s2">&quot;package&quot;</span><span class="p">:</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>      <span class="nb">print</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">version</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">source</span><span class="p">)</span>
 </code></pre></div>
-<p>There's one case where uv does consider the upper bound: When the project uses an upper bound on
-requires Python, such as <code>requires-python = "==3.13.*"</code> for an application that only deploys to
-Python 3.13. uv prunes wheels from the lockfile that are outside the range (e.g., <code>cp312</code> and
-<code>cp314</code>) in a post-processing step, which does not influence the resolution itself.</p>
-<h2 id="url-dependencies"><a class="toclink" href="#url-dependencies">URL dependencies</a></h2>
-<p>In uv, a dependency can either be a registry dependency, a package with a version specifier or the
-plain package name, or a URL dependency. All requirements in the form <code>{name} @ {url}</code> are URL
-dependencies, and also all dependencies that have a <code>git</code>,<code>url</code>, <code>path</code>, or <code>workspace</code> source.</p>
-<p>When a URL is declared for a package, uv pins the package to this URL, and the version this URL
-implies. If there are two conflicting URLs for a package, the resolver errors, as a URL can only be
-declared as something akin to an exact <code>==</code> pin, and not as list of URLs. A list of URLs is
-supported through <a href="../../../concepts/indexes/#flat-indexes">flat indexes</a> instead.</p>
-<p>uv requires that URLs are either declared directly (in the project, in a
-<a href="../../../concepts/projects/workspaces/">workspace member</a>, in a
-<a href="../../../concepts/resolution/#dependency-constraints">constraint</a>, or in an
-<a href="../../../concepts/resolution/#dependency-overrides">override</a>, any location that is discovered
-directly), or by other URL dependencies. uv discovers all URL dependencies and their transitive URL
-dependencies ahead of the resolution and pins all packages to the URLs and the versions they imply.</p>
-<p>uv does not allow URLs in index packages. This has two reasons: One is a security and predictability
-aspect, that forbids registry distributions to point to non-registry distributions and helps
-auditing which URLs can be accessed. For example, when only using one index URL and no URL
-dependencies, uv will not install any package from outside the index.</p>
-<p>The other is that URLs can add additional versions to the resolution. Say the root package depends
-on foo, bar, and baz, all registry dependencies. foo depends on <code>bar &gt;= 2</code>, but bar only has version
-1 on the index. With the incremental approach, this is an error: foo cannot be fulfilled, there is a
-resolver error. If URLs on index packages were allowed, it could be that there is a version of baz
-declares a dependency on baz-core and that has a version that declares
-<code>bar @ https://example.com/bar-2-py3-none-any.whl</code> adding a version of bar that makes requirements
-resolve. If a dependency can add new versions, discarding any version in the resolver would require
-looking at all possible versions of all direct and transitive dependencies. This breaks the core
-assumption incremental resolvers make that the set of versions for a package is static and would
-require to always fetch the metadata for all possibly reachable version.</p>
-<h2 id="prioritization"><a class="toclink" href="#prioritization">Prioritization</a></h2>
-<p>Prioritization is important for both performance and for better resolutions.</p>
-<p>If we try many versions we have to later discard, resolution is slow, both because we have to read
-metadata we didn't need and because we have to track a lot of (conflict) information for this
-discarded subtree.</p>
-<p>There are expectations about which solution uv should choose, even if the version constraints allow
-multiple solutions. Generally, a desirable solution prioritizes use the highest versions for direct
-dependencies over those for indirect dependencies, it avoids backtracking to very old versions and
-can be installed on a target machine.</p>
-<p>Internally, uv represent each package with a given package name as a number of virtual packages, for
-example, one package for each activated extra, for dependency groups, or for having a marker. While
-PubGrub needs to choose a version for each virtual package, uv's prioritization works on the package
-name level.</p>
-<p>Whenever we encounter a requirement on a package, we match it to a priority. The root package and
-URL requirements have the highest priority, then singleton requirements with the <code>==</code> operator, as
-their version can be directly determined, then highly conflicting packages (next paragraph), and
-finally all other packages. Inside each category, packages are sorted by when they were first
-encountered, creating a breadth first search that prioritizes direct dependencies including
-workspace dependencies over transitive dependencies.</p>
-<p>A common problem is that we have a package A with a higher priority than package B, and B is only
-compatible with older versions of A. We decide the latest version for package A. Each time we decide
-a version for B, it is immediately discarded due to the conflict with A. We have to try all possible
-versions of B, until we have either exhausted the possible range (slow), pick a very old version
-that doesn't depend on A, but most likely isn't compatible with the project either (bad) or fail to
-build a very old version (bad). Once we see such conflict happen five time, we set A and B to
-special highly-conflicting priority levels, and set them so that B is decided before A. We then
-manually backtrack to a state before deciding A, in the next iteration now deciding B instead of A.
-See <a href="https://github.com/astral-sh/uv/issues/8157">#8157</a> and
-<a href="https://github.com/astral-sh/uv/pull/9843">#9843</a> for a more detailed description with real world
-examples.</p>
+<h2 id="schema"><a class="toclink" href="#schema">Schema</a></h2>
+<p>A full JSON schema for the format will be provided when the format is finalized.</p>
+<p>Here is a human-readable annotated example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">{</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="c1">// Information about the schema of this output</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="s2">&quot;schema&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">        </span><span class="c1">// The version of this output, currently &quot;preview&quot;</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">        </span><span class="s2">&quot;version&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;preview&quot;</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="c1">// The directory the uv.lock can be found in</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="s2">&quot;workspace_root&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;/workspace&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="c1">// Any requirements on the python version this workspace has</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">  </span><span class="c1">//</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">  </span><span class="c1">// `marker` fields all have this as an implicit constraint that is omitted for cleanliness</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">    </span><span class="s2">&quot;requires_python&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&gt;=3.12&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">    </span><span class="c1">// A list of workspace members</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">    </span><span class="s2">&quot;members&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">      </span><span class="c1">// The name of the package</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">      </span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;mypackage&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">      </span><span class="c1">// The directory that contains its pyproject.toml</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="w">      </span><span class="s2">&quot;path&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;/workspace/packages/mypackage&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="w">      </span><span class="c1">// The id of this package&#39;s info in the `resolution` map below</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="w">      </span><span class="s2">&quot;id&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;mypackage==0.1.0@editable+/workspace/packages/mypackage&quot;</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="w">    </span><span class="p">],</span>
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="w">  </span><span class="c1">// A list-of-sets of workspace items that are mutually-exclusive to install,</span>
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="w">  </span><span class="c1">// presumably because they need to install different versions of the same package.</span>
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="w">  </span><span class="c1">//</span>
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="w">  </span><span class="c1">// Any attempt to install two things that belong to the same set must be rejected.</span>
+<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a><span class="w">  </span><span class="c1">//</span>
+<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="w">  </span><span class="c1">// There are 3 kinds of item:</span>
+<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a><span class="w">  </span><span class="c1">//</span>
+<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a><span class="w">  </span><span class="c1">// * Project -- &quot;kind&quot;: &quot;project&quot;</span>
+<a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a><span class="w">  </span><span class="c1">// * Extra   -- &quot;kind&quot;: { &quot;extra&quot;: &quot;extraname&quot; }</span>
+<a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a><span class="w">  </span><span class="c1">// * Group   -- &quot;kind&quot;: { &quot;group&quot;: &quot;groupname&quot; }</span>
+<a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a><span class="w">  </span><span class="s2">&quot;conflicts&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a><span class="w">    </span><span class="s2">&quot;sets&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a><span class="w">      </span><span class="p">{</span>
+<a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a><span class="w">        </span><span class="s2">&quot;items&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a><span class="w">          </span><span class="p">{</span>
+<a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a><span class="w">            </span><span class="s2">&quot;package&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;mypackage&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a><span class="w">            </span><span class="s2">&quot;kind&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;extra&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;myextra&quot;</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a><span class="w">            </span><span class="s2">&quot;id&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;mypackage[myextra]==0.1.0@editable+/workspace/packages/mypackage&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-42" name="__codelineno-3-42" href="#__codelineno-3-42"></a><span class="w">          </span><span class="p">}</span>
+<a id="__codelineno-3-43" name="__codelineno-3-43" href="#__codelineno-3-43"></a><span class="w">          </span><span class="p">{</span>
+<a id="__codelineno-3-44" name="__codelineno-3-44" href="#__codelineno-3-44"></a><span class="w">            </span><span class="s2">&quot;package&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;mypackage&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-45" name="__codelineno-3-45" href="#__codelineno-3-45"></a><span class="w">            </span><span class="s2">&quot;kind&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;group&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;mygroup&quot;</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-3-46" name="__codelineno-3-46" href="#__codelineno-3-46"></a><span class="w">            </span><span class="s2">&quot;id&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;mypackage:mygroup==0.1.0@editable+/workspace/packages/mypackage&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-47" name="__codelineno-3-47" href="#__codelineno-3-47"></a><span class="w">          </span><span class="p">}</span>
+<a id="__codelineno-3-48" name="__codelineno-3-48" href="#__codelineno-3-48"></a><span class="w">        </span><span class="p">]</span>
+<a id="__codelineno-3-49" name="__codelineno-3-49" href="#__codelineno-3-49"></a><span class="w">      </span><span class="p">}</span>
+<a id="__codelineno-3-50" name="__codelineno-3-50" href="#__codelineno-3-50"></a><span class="w">    </span><span class="p">]</span>
+<a id="__codelineno-3-51" name="__codelineno-3-51" href="#__codelineno-3-51"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-3-52" name="__codelineno-3-52" href="#__codelineno-3-52"></a><span class="w">  </span><span class="c1">// Resolved information about packages and dependencies.</span>
+<a id="__codelineno-3-53" name="__codelineno-3-53" href="#__codelineno-3-53"></a><span class="w">  </span><span class="c1">//</span>
+<a id="__codelineno-3-54" name="__codelineno-3-54" href="#__codelineno-3-54"></a><span class="w">  </span><span class="c1">// Each entry in this map is a node in the dependency graph. There are currently</span>
+<a id="__codelineno-3-55" name="__codelineno-3-55" href="#__codelineno-3-55"></a><span class="w">  </span><span class="c1">// 3 kinds of node in the dependency graph, although more are planned in the future.</span>
+<a id="__codelineno-3-56" name="__codelineno-3-56" href="#__codelineno-3-56"></a><span class="w">  </span><span class="c1">//</span>
+<a id="__codelineno-3-57" name="__codelineno-3-57" href="#__codelineno-3-57"></a><span class="w">  </span><span class="c1">// * Packages -- &quot;kind&quot;: &quot;package&quot;</span>
+<a id="__codelineno-3-58" name="__codelineno-3-58" href="#__codelineno-3-58"></a><span class="w">  </span><span class="c1">// * Extras   -- &quot;kind&quot;: { &quot;extra&quot;: &quot;extraname&quot; }</span>
+<a id="__codelineno-3-59" name="__codelineno-3-59" href="#__codelineno-3-59"></a><span class="w">  </span><span class="c1">// * Groups   -- &quot;kind&quot;: { &quot;group&quot;: &quot;groupname&quot; }</span>
+<a id="__codelineno-3-60" name="__codelineno-3-60" href="#__codelineno-3-60"></a><span class="w">  </span><span class="c1">//</span>
+<a id="__codelineno-3-61" name="__codelineno-3-61" href="#__codelineno-3-61"></a><span class="w">  </span><span class="c1">// Package nodes contain most of the metadata, while other nodes are mostly just a list</span>
+<a id="__codelineno-3-62" name="__codelineno-3-62" href="#__codelineno-3-62"></a><span class="w">  </span><span class="c1">// of dependencies. The different kinds of node are included like this to encourage correct</span>
+<a id="__codelineno-3-63" name="__codelineno-3-63" href="#__codelineno-3-63"></a><span class="w">  </span><span class="c1">// analysis of the graph. For instance, a node for `mypackage[someextra]` always depends on</span>
+<a id="__codelineno-3-64" name="__codelineno-3-64" href="#__codelineno-3-64"></a><span class="w">  </span><span class="c1">// `mypackage`, while `mypackage:somegroup` does not (because dependency-groups are just a</span>
+<a id="__codelineno-3-65" name="__codelineno-3-65" href="#__codelineno-3-65"></a><span class="w">  </span><span class="c1">// list of packages you might want to install while working on `mypackage`). Sugars like</span>
+<a id="__codelineno-3-66" name="__codelineno-3-66" href="#__codelineno-3-66"></a><span class="w">  </span><span class="c1">// `mypackage[extra1, extra2]` are decomposed into separate dependencies on `mypackage[extra1]`</span>
+<a id="__codelineno-3-67" name="__codelineno-3-67" href="#__codelineno-3-67"></a><span class="w">  </span><span class="c1">// and `mypackage[extra2]`.</span>
+<a id="__codelineno-3-68" name="__codelineno-3-68" href="#__codelineno-3-68"></a><span class="w">  </span><span class="c1">//</span>
+<a id="__codelineno-3-69" name="__codelineno-3-69" href="#__codelineno-3-69"></a><span class="w">  </span><span class="c1">// The ids used here are human-readable but should be handled as opaque (the nodes contain</span>
+<a id="__codelineno-3-70" name="__codelineno-3-70" href="#__codelineno-3-70"></a><span class="w">  </span><span class="c1">// the same information in a more convenient form).</span>
+<a id="__codelineno-3-71" name="__codelineno-3-71" href="#__codelineno-3-71"></a><span class="w">  </span><span class="s2">&quot;resolution&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-72" name="__codelineno-3-72" href="#__codelineno-3-72"></a>
+<a id="__codelineno-3-73" name="__codelineno-3-73" href="#__codelineno-3-73"></a><span class="w">    </span><span class="c1">// This node is a workspace member</span>
+<a id="__codelineno-3-74" name="__codelineno-3-74" href="#__codelineno-3-74"></a><span class="w">    </span><span class="s2">&quot;mypackage==0.1.0@editable+/workspace/packages/mypackage&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-75" name="__codelineno-3-75" href="#__codelineno-3-75"></a><span class="w">      </span><span class="c1">// The name of the package</span>
+<a id="__codelineno-3-76" name="__codelineno-3-76" href="#__codelineno-3-76"></a><span class="w">      </span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;mypackage&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-77" name="__codelineno-3-77" href="#__codelineno-3-77"></a><span class="w">      </span><span class="c1">// The version of the package (this may be missing, as source trees do not need versions)</span>
+<a id="__codelineno-3-78" name="__codelineno-3-78" href="#__codelineno-3-78"></a><span class="w">      </span><span class="s2">&quot;version&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-79" name="__codelineno-3-79" href="#__codelineno-3-79"></a><span class="w">      </span><span class="c1">// The source of the package, in this case it&#39;s an editable whose path relative to the</span>
+<a id="__codelineno-3-80" name="__codelineno-3-80" href="#__codelineno-3-80"></a><span class="w">      </span><span class="c1">// `workspace_root` is `./packages/mypackage`</span>
+<a id="__codelineno-3-81" name="__codelineno-3-81" href="#__codelineno-3-81"></a><span class="w">      </span><span class="s2">&quot;source&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-82" name="__codelineno-3-82" href="#__codelineno-3-82"></a><span class="w">        </span><span class="s2">&quot;editable&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;/workspace/packages/mypackage&quot;</span>
+<a id="__codelineno-3-83" name="__codelineno-3-83" href="#__codelineno-3-83"></a><span class="w">      </span><span class="p">},</span>
+<a id="__codelineno-3-84" name="__codelineno-3-84" href="#__codelineno-3-84"></a><span class="w">      </span><span class="c1">// The kind of the node, in this case &quot;package&quot; (see the docs on `resolution` above for details)</span>
+<a id="__codelineno-3-85" name="__codelineno-3-85" href="#__codelineno-3-85"></a><span class="w">      </span><span class="s2">&quot;kind&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;package&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-86" name="__codelineno-3-86" href="#__codelineno-3-86"></a><span class="w">      </span><span class="c1">// The dependencies that must be installed to also install this node into an environment</span>
+<a id="__codelineno-3-87" name="__codelineno-3-87" href="#__codelineno-3-87"></a><span class="w">      </span><span class="s2">&quot;dependencies&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-3-88" name="__codelineno-3-88" href="#__codelineno-3-88"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-3-89" name="__codelineno-3-89" href="#__codelineno-3-89"></a><span class="w">          </span><span class="c1">// The id of the node to lookup for details</span>
+<a id="__codelineno-3-90" name="__codelineno-3-90" href="#__codelineno-3-90"></a><span class="w">          </span><span class="s2">&quot;id&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;iniconfig==2.0.0@registry+https://pypi.org/simple&quot;</span>
+<a id="__codelineno-3-91" name="__codelineno-3-91" href="#__codelineno-3-91"></a><span class="w">          </span><span class="s2">&quot;marker&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;marker&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;sys_platform == &#39;linux&#39;&quot;</span>
+<a id="__codelineno-3-92" name="__codelineno-3-92" href="#__codelineno-3-92"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-3-93" name="__codelineno-3-93" href="#__codelineno-3-93"></a><span class="w">      </span><span class="p">],</span>
+<a id="__codelineno-3-94" name="__codelineno-3-94" href="#__codelineno-3-94"></a><span class="w">      </span><span class="c1">// The extras that this package defines</span>
+<a id="__codelineno-3-95" name="__codelineno-3-95" href="#__codelineno-3-95"></a><span class="w">      </span><span class="s2">&quot;optional_dependencies&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-3-96" name="__codelineno-3-96" href="#__codelineno-3-96"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-3-97" name="__codelineno-3-97" href="#__codelineno-3-97"></a><span class="w">          </span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;myextra&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-98" name="__codelineno-3-98" href="#__codelineno-3-98"></a><span class="w">          </span><span class="s2">&quot;id&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;mypackage[myextra]==0.1.0@editable+/workspace/packages/mypackage&quot;</span>
+<a id="__codelineno-3-99" name="__codelineno-3-99" href="#__codelineno-3-99"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-3-100" name="__codelineno-3-100" href="#__codelineno-3-100"></a><span class="w">      </span><span class="p">],</span>
+<a id="__codelineno-3-101" name="__codelineno-3-101" href="#__codelineno-3-101"></a><span class="w">      </span><span class="c1">// The dependency groups this package defines</span>
+<a id="__codelineno-3-102" name="__codelineno-3-102" href="#__codelineno-3-102"></a><span class="w">      </span><span class="s2">&quot;dependency_groups&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-3-103" name="__codelineno-3-103" href="#__codelineno-3-103"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-3-104" name="__codelineno-3-104" href="#__codelineno-3-104"></a><span class="w">          </span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;mygroup&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-105" name="__codelineno-3-105" href="#__codelineno-3-105"></a><span class="w">          </span><span class="s2">&quot;id&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;mypackage:mygroup==0.1.0@editable+/workspace/packages/mypackage&quot;</span>
+<a id="__codelineno-3-106" name="__codelineno-3-106" href="#__codelineno-3-106"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-3-107" name="__codelineno-3-107" href="#__codelineno-3-107"></a><span class="w">      </span><span class="p">]</span>
+<a id="__codelineno-3-108" name="__codelineno-3-108" href="#__codelineno-3-108"></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-3-109" name="__codelineno-3-109" href="#__codelineno-3-109"></a>
+<a id="__codelineno-3-110" name="__codelineno-3-110" href="#__codelineno-3-110"></a><span class="w">    </span><span class="c1">// This node is an extra on a workspace member</span>
+<a id="__codelineno-3-111" name="__codelineno-3-111" href="#__codelineno-3-111"></a><span class="w">    </span><span class="s2">&quot;mypackage[myextra]==0.1.0@editable+/workspace/packages/mypackage&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-112" name="__codelineno-3-112" href="#__codelineno-3-112"></a><span class="w">      </span><span class="c1">// These fields will match the package node above</span>
+<a id="__codelineno-3-113" name="__codelineno-3-113" href="#__codelineno-3-113"></a><span class="w">      </span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;mypackage&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-114" name="__codelineno-3-114" href="#__codelineno-3-114"></a><span class="w">      </span><span class="s2">&quot;version&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-115" name="__codelineno-3-115" href="#__codelineno-3-115"></a><span class="w">      </span><span class="s2">&quot;source&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-116" name="__codelineno-3-116" href="#__codelineno-3-116"></a><span class="w">        </span><span class="s2">&quot;editable&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;/workspace/packages/mypackage&quot;</span>
+<a id="__codelineno-3-117" name="__codelineno-3-117" href="#__codelineno-3-117"></a><span class="w">      </span><span class="p">},</span>
+<a id="__codelineno-3-118" name="__codelineno-3-118" href="#__codelineno-3-118"></a><span class="w">      </span><span class="c1">// But these two will differ from the package node above</span>
+<a id="__codelineno-3-119" name="__codelineno-3-119" href="#__codelineno-3-119"></a><span class="w">      </span><span class="s2">&quot;kind&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;extra&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;myextra&quot;</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-3-120" name="__codelineno-3-120" href="#__codelineno-3-120"></a><span class="w">      </span><span class="s2">&quot;dependencies&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-3-121" name="__codelineno-3-121" href="#__codelineno-3-121"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-3-122" name="__codelineno-3-122" href="#__codelineno-3-122"></a><span class="w">          </span><span class="s2">&quot;id&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;mypackage==0.1.0@editable+/workspace/packages/mypackage&quot;</span>
+<a id="__codelineno-3-123" name="__codelineno-3-123" href="#__codelineno-3-123"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-3-124" name="__codelineno-3-124" href="#__codelineno-3-124"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-3-125" name="__codelineno-3-125" href="#__codelineno-3-125"></a><span class="w">          </span><span class="s2">&quot;id&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;anyio==2.0.0@registry+https://pypi.org/simple&quot;</span>
+<a id="__codelineno-3-126" name="__codelineno-3-126" href="#__codelineno-3-126"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-3-127" name="__codelineno-3-127" href="#__codelineno-3-127"></a><span class="w">      </span><span class="p">]</span>
+<a id="__codelineno-3-128" name="__codelineno-3-128" href="#__codelineno-3-128"></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-3-129" name="__codelineno-3-129" href="#__codelineno-3-129"></a>
+<a id="__codelineno-3-130" name="__codelineno-3-130" href="#__codelineno-3-130"></a><span class="w">    </span><span class="c1">// This node is a dependency-group on a workspace member</span>
+<a id="__codelineno-3-131" name="__codelineno-3-131" href="#__codelineno-3-131"></a><span class="w">    </span><span class="s2">&quot;mypackage:mygroup==0.1.0@editable+/workspace/packages/mypackage&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-132" name="__codelineno-3-132" href="#__codelineno-3-132"></a><span class="w">      </span><span class="c1">// These fields will match the package node above</span>
+<a id="__codelineno-3-133" name="__codelineno-3-133" href="#__codelineno-3-133"></a><span class="w">      </span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;mypackage&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-134" name="__codelineno-3-134" href="#__codelineno-3-134"></a><span class="w">      </span><span class="s2">&quot;version&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-135" name="__codelineno-3-135" href="#__codelineno-3-135"></a><span class="w">      </span><span class="s2">&quot;source&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-136" name="__codelineno-3-136" href="#__codelineno-3-136"></a><span class="w">        </span><span class="s2">&quot;editable&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;/workspace/packages/mypackage&quot;</span>
+<a id="__codelineno-3-137" name="__codelineno-3-137" href="#__codelineno-3-137"></a><span class="w">      </span><span class="p">},</span>
+<a id="__codelineno-3-138" name="__codelineno-3-138" href="#__codelineno-3-138"></a><span class="w">      </span><span class="c1">// But these two will differ from the package node above</span>
+<a id="__codelineno-3-139" name="__codelineno-3-139" href="#__codelineno-3-139"></a><span class="w">      </span><span class="s2">&quot;kind&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;extra&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;myextra&quot;</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-3-140" name="__codelineno-3-140" href="#__codelineno-3-140"></a><span class="w">      </span><span class="s2">&quot;dependencies&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-3-141" name="__codelineno-3-141" href="#__codelineno-3-141"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-3-142" name="__codelineno-3-142" href="#__codelineno-3-142"></a><span class="w">          </span><span class="s2">&quot;id&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;anyio==1.0.0@registry+https://pypi.org/simple&quot;</span>
+<a id="__codelineno-3-143" name="__codelineno-3-143" href="#__codelineno-3-143"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-3-144" name="__codelineno-3-144" href="#__codelineno-3-144"></a><span class="w">      </span><span class="p">]</span>
+<a id="__codelineno-3-145" name="__codelineno-3-145" href="#__codelineno-3-145"></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-3-146" name="__codelineno-3-146" href="#__codelineno-3-146"></a>
+<a id="__codelineno-3-147" name="__codelineno-3-147" href="#__codelineno-3-147"></a><span class="w">    </span><span class="c1">// This node is a package on pypi</span>
+<a id="__codelineno-3-148" name="__codelineno-3-148" href="#__codelineno-3-148"></a><span class="w">    </span><span class="s2">&quot;iniconfig==2.0.0@registry+https://pypi.org/simple&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-149" name="__codelineno-3-149" href="#__codelineno-3-149"></a><span class="w">      </span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;iniconfig&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-150" name="__codelineno-3-150" href="#__codelineno-3-150"></a><span class="w">      </span><span class="s2">&quot;version&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2.0.0&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-151" name="__codelineno-3-151" href="#__codelineno-3-151"></a><span class="w">      </span><span class="c1">// registry sources look like this</span>
+<a id="__codelineno-3-152" name="__codelineno-3-152" href="#__codelineno-3-152"></a><span class="w">      </span><span class="s2">&quot;source&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-153" name="__codelineno-3-153" href="#__codelineno-3-153"></a><span class="w">        </span><span class="s2">&quot;registry&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-154" name="__codelineno-3-154" href="#__codelineno-3-154"></a><span class="w">          </span><span class="s2">&quot;url&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;https://pypi.org/simple&quot;</span>
+<a id="__codelineno-3-155" name="__codelineno-3-155" href="#__codelineno-3-155"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-3-156" name="__codelineno-3-156" href="#__codelineno-3-156"></a><span class="w">      </span><span class="p">},</span>
+<a id="__codelineno-3-157" name="__codelineno-3-157" href="#__codelineno-3-157"></a><span class="w">      </span><span class="s2">&quot;kind&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;package&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-158" name="__codelineno-3-158" href="#__codelineno-3-158"></a><span class="w">      </span><span class="s2">&quot;dependencies&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[],</span>
+<a id="__codelineno-3-159" name="__codelineno-3-159" href="#__codelineno-3-159"></a><span class="w">      </span><span class="c1">// Details on the package&#39;s source distribution</span>
+<a id="__codelineno-3-160" name="__codelineno-3-160" href="#__codelineno-3-160"></a><span class="w">      </span><span class="s2">&quot;sdist&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-161" name="__codelineno-3-161" href="#__codelineno-3-161"></a><span class="w">        </span><span class="c1">// May alternatively be `path`</span>
+<a id="__codelineno-3-162" name="__codelineno-3-162" href="#__codelineno-3-162"></a><span class="w">        </span><span class="s2">&quot;url&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;https://files.pythonhosted.org/packages/d7/4b/cbd8e699e64a6f16ca3a8220661b5f83792b3017d0f79807cb8708d33913/iniconfig-2.0.0.tar.gz&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-163" name="__codelineno-3-163" href="#__codelineno-3-163"></a><span class="w">        </span><span class="s2">&quot;hashes&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-164" name="__codelineno-3-164" href="#__codelineno-3-164"></a><span class="w">          </span><span class="s2">&quot;sha256&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2d91e135bf72d31a410b17c16da610a82cb55f6b0477d1a902134b24a455b8b3&quot;</span>
+<a id="__codelineno-3-165" name="__codelineno-3-165" href="#__codelineno-3-165"></a><span class="w">        </span><span class="p">},</span>
+<a id="__codelineno-3-166" name="__codelineno-3-166" href="#__codelineno-3-166"></a><span class="w">        </span><span class="s2">&quot;size&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">4646</span><span class="p">,</span>
+<a id="__codelineno-3-167" name="__codelineno-3-167" href="#__codelineno-3-167"></a><span class="w">        </span><span class="s2">&quot;upload_time&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2023-01-07T11:08:11.254Z&quot;</span>
+<a id="__codelineno-3-168" name="__codelineno-3-168" href="#__codelineno-3-168"></a><span class="w">      </span><span class="p">},</span>
+<a id="__codelineno-3-169" name="__codelineno-3-169" href="#__codelineno-3-169"></a><span class="w">      </span><span class="c1">// The wheels we found for this package</span>
+<a id="__codelineno-3-170" name="__codelineno-3-170" href="#__codelineno-3-170"></a><span class="w">      </span><span class="s2">&quot;wheels&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-3-171" name="__codelineno-3-171" href="#__codelineno-3-171"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-3-172" name="__codelineno-3-172" href="#__codelineno-3-172"></a><span class="w">          </span><span class="c1">// May alternatively be `path`</span>
+<a id="__codelineno-3-173" name="__codelineno-3-173" href="#__codelineno-3-173"></a><span class="w">          </span><span class="s2">&quot;url&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;https://files.pythonhosted.org/packages/ef/a6/62565a6e1cf69e10f5727360368e451d4b7f58beeac6173dc9db836a5b46/iniconfig-2.0.0-py3-none-any.whl&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-174" name="__codelineno-3-174" href="#__codelineno-3-174"></a><span class="w">          </span><span class="s2">&quot;hashes&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-175" name="__codelineno-3-175" href="#__codelineno-3-175"></a><span class="w">            </span><span class="s2">&quot;sha256&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;b6a85871a79d2e3b22d2d1b94ac2824226a63c6b741c88f7ae975f18b6778374&quot;</span>
+<a id="__codelineno-3-176" name="__codelineno-3-176" href="#__codelineno-3-176"></a><span class="w">          </span><span class="p">},</span>
+<a id="__codelineno-3-177" name="__codelineno-3-177" href="#__codelineno-3-177"></a><span class="w">          </span><span class="s2">&quot;size&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">5892</span><span class="p">,</span>
+<a id="__codelineno-3-178" name="__codelineno-3-178" href="#__codelineno-3-178"></a><span class="w">          </span><span class="s2">&quot;upload_time&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2023-01-07T11:08:09.864Z&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-179" name="__codelineno-3-179" href="#__codelineno-3-179"></a><span class="w">          </span><span class="c1">// Parsing this name is how you know what platform a wheel supports</span>
+<a id="__codelineno-3-180" name="__codelineno-3-180" href="#__codelineno-3-180"></a><span class="w">          </span><span class="s2">&quot;filename&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;iniconfig-2.0.0-py3-none-any.whl&quot;</span>
+<a id="__codelineno-3-181" name="__codelineno-3-181" href="#__codelineno-3-181"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-3-182" name="__codelineno-3-182" href="#__codelineno-3-182"></a><span class="w">      </span><span class="p">]</span>
+<a id="__codelineno-3-183" name="__codelineno-3-183" href="#__codelineno-3-183"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-3-184" name="__codelineno-3-184" href="#__codelineno-3-184"></a>
+<a id="__codelineno-3-185" name="__codelineno-3-185" href="#__codelineno-3-185"></a><span class="w">    </span><span class="c1">// ...and so on</span>
+<a id="__codelineno-3-186" name="__codelineno-3-186" href="#__codelineno-3-186"></a><span class="w">    </span><span class="s2">&quot;anyio==1.0.0@registry+https://pypi.org/simple&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-3-187" name="__codelineno-3-187" href="#__codelineno-3-187"></a><span class="w">    </span><span class="s2">&quot;anyio==2.0.0@registry+https://pypi.org/simple&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-3-188" name="__codelineno-3-188" href="#__codelineno-3-188"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-3-189" name="__codelineno-3-189" href="#__codelineno-3-189"></a><span class="p">}</span>
+</code></pre></div>
 
 
 
@@ -3942,7 +3820,7 @@ examples.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 19, 2025 12:29:47 UTC">October 19, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 27, 2026 13:22:03 UTC">March 27, 2026</span>
   </span>
 
     
@@ -3982,7 +3860,7 @@ examples.</p>
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: Internals">
+          <a href="../resolver/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Resolver">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -3992,20 +3870,20 @@ examples.</p>
                 Previous
               </span>
               <div class="md-ellipsis">
-                Internals
+                Resolver
               </div>
             </div>
           </a>
         
         
           
-          <a href="../metadata/" class="md-footer__link md-footer__link--next" aria-label="Next: Workspace Metadata">
+          <a href="../../benchmarks/" class="md-footer__link md-footer__link--next" aria-label="Next: Benchmarks">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Workspace Metadata
+                Benchmarks
               </div>
             </div>
             <div class="md-footer__button md-icon">

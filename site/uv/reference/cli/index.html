@@ -3636,6 +3636,8 @@
       
         
       
+        
+      
     
     
     
@@ -3702,6 +3704,34 @@
     
   
     Resolver
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../internals/metadata/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workspace Metadata
   
 
     
@@ -7034,6 +7064,12 @@ interpreter. Use <code>--universal</code> to display the tree for all platforms,
 </ul></dd><dt id="uv-audit--frozen"><a href="#uv-audit--frozen"><code>--frozen</code></a></dt><dd><p>Audit the requirements without locking the project [env: UV_FROZEN=]</p>
 <p>If the lockfile is missing, uv will exit with an error.</p>
 </dd><dt id="uv-audit--help"><a href="#uv-audit--help"><code>--help</code></a>, <code>-h</code></dt><dd><p>Display the concise help for this command</p>
+</dd><dt id="uv-audit--ignore"><a href="#uv-audit--ignore"><code>--ignore</code></a> <i>ignore</i></dt><dd><p>Ignore a vulnerability by ID.</p>
+<p>Vulnerabilities matching any of the provided IDs (including aliases) will be excluded from the audit results.</p>
+<p>May be provided multiple times.</p>
+</dd><dt id="uv-audit--ignore-until-fixed"><a href="#uv-audit--ignore-until-fixed"><code>--ignore-until-fixed</code></a> <i>ignore-until-fixed</i></dt><dd><p>Ignore a vulnerability by ID, but only while no fix is available.</p>
+<p>Vulnerabilities matching any of the provided IDs (including aliases) will be excluded from the audit results as long as they have no known fix versions. Once a fix version becomes available, the vulnerability will be reported again.</p>
+<p>May be provided multiple times.</p>
 </dd><dt id="uv-audit--index"><a href="#uv-audit--index"><code>--index</code></a> <i>index</i></dt><dd><p>The URLs to use when resolving dependencies, in addition to the default index.</p>
 <p>Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.</p>
 <p>All indexes provided via this flag take priority over the index specified by <code>--default-index</code> (which defaults to PyPI). When multiple <code>--index</code> flags are provided, earlier values take priority.</p>
@@ -7474,6 +7510,7 @@ interpreter. Use <code>--universal</code> to display the tree for all platforms,
 <li><code>cu91</code>:  Use the PyTorch index for CUDA 9.1</li>
 <li><code>cu90</code>:  Use the PyTorch index for CUDA 9.0</li>
 <li><code>cu80</code>:  Use the PyTorch index for CUDA 8.0</li>
+<li><code>rocm7.2</code>:  Use the PyTorch index for ROCm 7.2</li>
 <li><code>rocm7.1</code>:  Use the PyTorch index for ROCm 7.1</li>
 <li><code>rocm7.0</code>:  Use the PyTorch index for ROCm 7.0</li>
 <li><code>rocm6.4</code>:  Use the PyTorch index for ROCm 6.4</li>
@@ -7757,6 +7794,7 @@ interpreter. Use <code>--universal</code> to display the tree for all platforms,
 <li><code>cu91</code>:  Use the PyTorch index for CUDA 9.1</li>
 <li><code>cu90</code>:  Use the PyTorch index for CUDA 9.0</li>
 <li><code>cu80</code>:  Use the PyTorch index for CUDA 8.0</li>
+<li><code>rocm7.2</code>:  Use the PyTorch index for ROCm 7.2</li>
 <li><code>rocm7.1</code>:  Use the PyTorch index for ROCm 7.1</li>
 <li><code>rocm7.0</code>:  Use the PyTorch index for ROCm 7.0</li>
 <li><code>rocm6.4</code>:  Use the PyTorch index for ROCm 6.4</li>
@@ -9200,6 +9238,7 @@ by <code>--python-version</code>.</p>
 <li><code>cu91</code>:  Use the PyTorch index for CUDA 9.1</li>
 <li><code>cu90</code>:  Use the PyTorch index for CUDA 9.0</li>
 <li><code>cu80</code>:  Use the PyTorch index for CUDA 8.0</li>
+<li><code>rocm7.2</code>:  Use the PyTorch index for ROCm 7.2</li>
 <li><code>rocm7.1</code>:  Use the PyTorch index for ROCm 7.1</li>
 <li><code>rocm7.0</code>:  Use the PyTorch index for ROCm 7.0</li>
 <li><code>rocm6.4</code>:  Use the PyTorch index for ROCm 6.4</li>
@@ -9485,6 +9524,7 @@ be used with caution, as it can modify the system Python installation.</p>
 <li><code>cu91</code>:  Use the PyTorch index for CUDA 9.1</li>
 <li><code>cu90</code>:  Use the PyTorch index for CUDA 9.0</li>
 <li><code>cu80</code>:  Use the PyTorch index for CUDA 8.0</li>
+<li><code>rocm7.2</code>:  Use the PyTorch index for ROCm 7.2</li>
 <li><code>rocm7.1</code>:  Use the PyTorch index for ROCm 7.1</li>
 <li><code>rocm7.0</code>:  Use the PyTorch index for ROCm 7.0</li>
 <li><code>rocm6.4</code>:  Use the PyTorch index for ROCm 6.4</li>
@@ -9800,6 +9840,7 @@ should be used with caution, as it can modify the system Python installation.</p
 <li><code>cu91</code>:  Use the PyTorch index for CUDA 9.1</li>
 <li><code>cu90</code>:  Use the PyTorch index for CUDA 9.0</li>
 <li><code>cu80</code>:  Use the PyTorch index for CUDA 8.0</li>
+<li><code>rocm7.2</code>:  Use the PyTorch index for ROCm 7.2</li>
 <li><code>rocm7.1</code>:  Use the PyTorch index for ROCm 7.1</li>
 <li><code>rocm7.0</code>:  Use the PyTorch index for ROCm 7.0</li>
 <li><code>rocm6.4</code>:  Use the PyTorch index for ROCm 6.4</li>
