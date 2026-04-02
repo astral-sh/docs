@@ -25,7 +25,7 @@
       
       
       <link rel="icon" href="../assets/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
 
@@ -1349,7 +1349,7 @@ these mapped extensions in file discovery:</p>
 support needs to be explicitly included by adding it to <code>types_or</code>:</p>
 <div class="highlight"><span class="filename">.pre-commit-config.yaml</span><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nt">repos</span><span class="p">:</span>
 <a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">repo</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/astral-sh/ruff-pre-commit</span>
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">    </span><span class="nt">rev</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v0.15.8</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">    </span><span class="nt">rev</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v0.15.9</span>
 <a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">    </span><span class="nt">hooks</span><span class="p">:</span>
 <a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ruff-format</span>
 <a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w">        </span><span class="nt">types_or</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">python</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">pyi</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">jupyter</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">markdown</span><span class="p p-Indicator">]</span>
@@ -1543,14 +1543,19 @@ the curly braces (<code>{...}</code>) with a format specifier containing the <a 
 <a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="c1"># This f-string cannot be formatted as follows for all target Python versions</span>
 <a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="mi">1</span><span class="si">=:</span><span class="s2">&quot;</span><span class="n">foo</span><span class="p">}</span><span class="s2">&quot;</span>
 </code></pre></div>
-<p>For nested f-strings, Ruff alternates quote styles, starting with the <a href="../settings/#format_quote-style">configured quote style</a> for the
-outermost f-string. For example, consider the following f-string:</p>
+<p>By default, or when targeting Python versions below 3.12, Ruff alternates quote styles for nested
+f-strings, starting with the <a href="../settings/#format_quote-style">configured quote style</a> for the outermost f-string.
+For example, consider the following f-string:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="c1"># format.quote-style = &quot;double&quot;</span>
 <a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>
 <a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="sa">f</span><span class="s2">&quot;outer f-string </span><span class="si">{</span><span class="sa">f</span><span class="s2">&quot;nested f-string </span><span class="si">{</span><span class="sa">f</span><span class="s2">&quot;another nested f-string&quot;</span><span class="si">}</span><span class="s2"> end&quot;</span><span class="si">}</span><span class="s2"> end&quot;</span>
 </code></pre></div>
-<p>Ruff formats it as:</p>
+<p>With default settings, Ruff formats it as:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="sa">f</span><span class="s2">&quot;outer f-string </span><span class="si">{</span><span class="sa">f</span><span class="s1">&#39;nested f-string </span><span class="si">{</span><span class="sa">f</span><span class="s2">&quot;another nested f-string&quot;</span><span class="si">}</span><span class="s1"> end&#39;</span><span class="si">}</span><span class="s2"> end&quot;</span>
+</code></pre></div>
+<p>When targeting Python 3.12+ and with <code>nested-string-quote-style = "preferred"</code>,
+Ruff will use the configured quote style for nested strings:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="sa">f</span><span class="s2">&quot;outer f-string </span><span class="si">{</span><span class="sa">f</span><span class="s2">&quot;nested f-string </span><span class="si">{</span><span class="sa">f</span><span class="s2">&quot;another nested f-string&quot;</span><span class="si">}</span><span class="s2"> end&quot;</span><span class="si">}</span><span class="s2"> end&quot;</span>
 </code></pre></div>
 <h4 id="line-breaks"><a class="toclink" href="#line-breaks">Line breaks</a></h4>
 <p>Starting with Python 3.12 (<a href="https://peps.python.org/pep-0701/">PEP 701</a>), the expression parts of an f-string can
@@ -1561,47 +1566,47 @@ doesn't have enough information to make that decision, it adopts a heuristic sim
 it will only split the expression parts of an f-string across multiple lines if there was already a line break
 within any of the expression parts.</p>
 <p>For example, the following code:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="sa">f</span><span class="s2">&quot;this f-string has a multiline expression </span><span class="si">{</span>
-<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="w">  </span><span class="p">[</span><span class="s1">&#39;red&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;green&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;yellow&#39;</span><span class="p">,]</span><span class="si">}</span><span class="s2"> and does not fit within the line length&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="sa">f</span><span class="s2">&quot;this f-string has a multiline expression </span><span class="si">{</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="w">  </span><span class="p">[</span><span class="s1">&#39;red&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;green&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;yellow&#39;</span><span class="p">,]</span><span class="si">}</span><span class="s2"> and does not fit within the line length&quot;</span>
 </code></pre></div>
 <p>... is formatted as:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="c1"># The list expression is split across multiple lines because of the trailing comma</span>
-<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="sa">f</span><span class="s2">&quot;this f-string has a multiline expression </span><span class="si">{</span>
-<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="w">    </span><span class="p">[</span>
-<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="w">        </span><span class="s1">&#39;red&#39;</span><span class="p">,</span>
-<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="w">        </span><span class="s1">&#39;green&#39;</span><span class="p">,</span>
-<a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a><span class="w">        </span><span class="s1">&#39;blue&#39;</span><span class="p">,</span>
-<a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a><span class="w">        </span><span class="s1">&#39;yellow&#39;</span><span class="p">,</span>
-<a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a><span class="w">    </span><span class="p">]</span>
-<a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a><span class="si">}</span><span class="s2"> and does not fit within the line length&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="c1"># The list expression is split across multiple lines because of the trailing comma</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="sa">f</span><span class="s2">&quot;this f-string has a multiline expression </span><span class="si">{</span>
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="w">    </span><span class="p">[</span>
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="w">        </span><span class="s1">&#39;red&#39;</span><span class="p">,</span>
+<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a><span class="w">        </span><span class="s1">&#39;green&#39;</span><span class="p">,</span>
+<a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a><span class="w">        </span><span class="s1">&#39;blue&#39;</span><span class="p">,</span>
+<a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a><span class="w">        </span><span class="s1">&#39;yellow&#39;</span><span class="p">,</span>
+<a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a><span class="w">    </span><span class="p">]</span>
+<a id="__codelineno-29-9" name="__codelineno-29-9" href="#__codelineno-29-9"></a><span class="si">}</span><span class="s2"> and does not fit within the line length&quot;</span>
 </code></pre></div>
 <p>But, the following will not be split across multiple lines even though it exceeds the line length:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="sa">f</span><span class="s2">&quot;this f-string has a multiline expression </span><span class="si">{</span><span class="p">[</span><span class="s1">&#39;red&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;green&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;yellow&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> and does not fit within the line length&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="sa">f</span><span class="s2">&quot;this f-string has a multiline expression </span><span class="si">{</span><span class="p">[</span><span class="s1">&#39;red&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;green&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;yellow&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> and does not fit within the line length&quot;</span>
 </code></pre></div>
 <p>If you want Ruff to split an f-string across multiple lines, ensure there's a linebreak somewhere within the
 <code>{...}</code> parts of an f-string.</p>
 <h3 id="fluent-layout-for-method-chains"><a class="toclink" href="#fluent-layout-for-method-chains">Fluent layout for method chains</a></h3>
 <p>At times, when developers write long chains of methods on an object, such as</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="n">x</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">cond</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">func</span><span class="p">)</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="n">x</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">cond</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">func</span><span class="p">)</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
 </code></pre></div>
 <p>the intent is to perform a sequence of transformations or operations
 on a fixed object of interest - in this example, the object <code>df</code>.
 Assuming the assigned expression exceeds the <code>line-length</code>, this preview
 style will format the above as:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">(</span>
-<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>    <span class="n">df</span>
-<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>    <span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">cond</span><span class="p">)</span>
-<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a>    <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
-<a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a>    <span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
-<a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">(</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>    <span class="n">df</span>
+<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>    <span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">cond</span><span class="p">)</span>
+<a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a>    <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+<a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a>    <span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+<a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a><span class="p">)</span>
 </code></pre></div>
 <p>This deviates from the stable formatting, and also from Black, both
 of which would produce:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">(</span>
-<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>    <span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">cond</span><span class="p">)</span>
-<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>    <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
-<a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a>    <span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
-<a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="n">x</span> <span class="o">=</span> <span class="p">(</span>
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>    <span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">cond</span><span class="p">)</span>
+<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>    <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+<a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a>    <span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+<a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a><span class="p">)</span>
 </code></pre></div>
 <p>Both the stable and preview formatting are variants of something
 called a <strong>fluent layout</strong>.</p>
@@ -1612,8 +1617,8 @@ while the stable formatting breaks <em>after</em> the call or subscript.</p>
 <h2 id="sorting-imports"><a class="toclink" href="#sorting-imports">Sorting imports</a></h2>
 <p>Currently, the Ruff formatter does not sort imports. In order to both sort imports and format,
 call the Ruff linter and then the formatter:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>ruff<span class="w"> </span>check<span class="w"> </span>--select<span class="w"> </span>I<span class="w"> </span>--fix
-<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>ruff<span class="w"> </span>format
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>ruff<span class="w"> </span>check<span class="w"> </span>--select<span class="w"> </span>I<span class="w"> </span>--fix
+<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>ruff<span class="w"> </span>format
 </code></pre></div>
 <p>A unified command for both linting and formatting is <a href="https://github.com/astral-sh/ruff/issues/8232">planned</a>.</p>
 
