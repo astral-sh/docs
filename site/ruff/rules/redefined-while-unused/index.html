@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../assets/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
 
@@ -864,7 +864,7 @@
 <p><small>
 Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.171">v0.0.171</a> ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27redefined-while-unused%27%20OR%20F811)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fpyflakes%2Frules%2Fredefined_while_unused.rs#L39" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fpyflakes%2Frules%2Fredefined_while_unused.rs#L49" target="_blank">View source</a>
 </small></p>
 <p>Derived from the <strong><a href="../#pyflakes-f">Pyflakes</a></strong> linter.</p>
 <p>Fix is sometimes available.</p>
@@ -883,6 +883,11 @@ mistake.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">foo</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">bar</span>
 </code></pre></div>
+<h2 id="preview"><a class="toclink" href="#preview">Preview</a></h2>
+<p>When <a href="https://docs.astral.sh/ruff/preview/">preview</a> is enabled, this rule also flags annotated variable
+redeclarations. For example, <code>bar: int = 1</code> followed by <code>bar: int = 2</code>
+will be flagged as a redefinition of an unused variable, whereas plain
+reassignments like <code>bar = 1</code> followed by <code>bar = 2</code> remain unflagged.</p>
 <h2 id="options"><a class="toclink" href="#options">Options</a></h2>
 <p>This rule ignores dummy variables, as determined by:</p>
 <ul>

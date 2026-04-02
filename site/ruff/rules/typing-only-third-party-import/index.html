@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../assets/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
 
@@ -864,7 +864,7 @@
 <p><small>
 Added in <a href="https://github.com/astral-sh/ruff/releases/tag/0.8.0">0.8.0</a> ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27typing-only-third-party-import%27%20OR%20TC002)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_type_checking%2Frules%2Ftyping_only_runtime_import.rs#L166" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_type_checking%2Frules%2Ftyping_only_runtime_import.rs#L167" target="_blank">View source</a>
 </small></p>
 <p>Derived from the <strong><a href="../#flake8-type-checking-tc">flake8-type-checking</a></strong> linter.</p>
 <p>Fix is sometimes available.</p>
@@ -872,8 +872,8 @@ Added in <a href="https://github.com/astral-sh/ruff/releases/tag/0.8.0">0.8.0</a
 <p>Checks for third-party imports that are only used for type annotations, but
 aren't defined in a type-checking block.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
-<p>Unused imports add a performance overhead at runtime, and risk creating
-import cycles. If an import is <em>only</em> used in typing-only contexts, it can
+<p>Imports that are only used for type annotations add a performance overhead
+at runtime. If an import is <em>only</em> used in typing-only contexts, it can
 instead be imported conditionally under an <code>if TYPE_CHECKING:</code> block to
 minimize runtime overhead.</p>
 <p>If <a href="../../settings/#lint_flake8-type-checking_quote-annotations"><code>lint.flake8-type-checking.quote-annotations</code></a> is set to <code>true</code>,

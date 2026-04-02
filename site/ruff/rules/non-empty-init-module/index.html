@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../assets/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
 
@@ -864,7 +864,7 @@
 <p><small>
 Preview (since <a href="https://github.com/astral-sh/ruff/releases/tag/0.14.11">0.14.11</a>) ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27non-empty-init-module%27%20OR%20RUF067)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fruff%2Frules%2Fnon_empty_init_module.rs#L73" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fruff%2Frules%2Fnon_empty_init_module.rs#L75" target="_blank">View source</a>
 </small></p>
 <p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
@@ -901,7 +901,8 @@ disallow any code in <code>__init__.py</code> files, you can enable the
 <p>In non-strict mode, this rule allows several common patterns in <code>__init__.py</code> files:</p>
 <ul>
 <li>Imports</li>
-<li>Assignments to <code>__all__</code>, <code>__path__</code>, <code>__version__</code>, and <code>__author__</code></li>
+<li>Assignments to dunder names (identifiers starting and ending with <code>__</code>, such as <code>__all__</code> or
+    <code>__submodules__</code>)</li>
 <li>Module-level and attribute docstrings</li>
 <li><code>if TYPE_CHECKING</code> blocks</li>
 <li><a href="https://peps.python.org/pep-0562/">PEP-562</a> module-level <code>__getattr__</code> and <code>__dir__</code> functions</li>

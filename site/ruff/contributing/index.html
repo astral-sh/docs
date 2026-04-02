@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../assets/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
 
@@ -1741,12 +1741,16 @@ even patch releases may contain <a href="https://semver.org/#spec-item-4">non-ba
 </ul>
 </li>
 <li>
+<p>Request a deployment approval from another team member</p>
+</li>
+<li>
 <p>The release workflow will do the following:</p>
 <ol>
 <li>Build all the assets. If this fails (even though we tested in step 4), we haven't tagged or
     uploaded anything, you can restart after pushing a fix. If you just need to rerun the build,
     make sure you're <a href="https://docs.github.com/en/actions/managing-workflow-runs/re-running-workflows-and-jobs#re-running-failed-jobs-in-a-workflow">re-running all the failed
     jobs</a> and not just a single failed job.</li>
+<li>Wait for aforementioned approval</li>
 <li>Upload to PyPI.</li>
 <li>Create and push the Git tag (as extracted from <code>pyproject.toml</code>). We create the Git tag only
     after building the wheels and uploading to PyPI, since we can't delete or modify the tag (<a href="https://github.com/astral-sh/ruff/issues/4468">#4468</a>).</li>
