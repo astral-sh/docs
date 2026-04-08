@@ -101,8 +101,8 @@
 <script type="application/ld+json">
   {
       
-      "datePublished": "2026-04-07 13:15:38Z",
-      "dateModified": "2026-04-07 13:15:38Z",
+      "datePublished": "2026-04-08 18:52:40Z",
+      "dateModified": "2026-04-08 18:52:40Z",
       
       "@context": "https://schema.org",
       "@type": "WebSite",
@@ -4508,7 +4508,9 @@ configured time zone.</p>
 <p>The package index must support the <code>upload-time</code> field as specified in
 <a href="https://peps.python.org/pep-0700/"><code>PEP 700</code></a>. If the field is not present for a given
 distribution, the distribution will be treated as unavailable unless the package is opted out
-via <code>--exclude-newer-package &lt;package&gt;=false</code>. PyPI provides <code>upload-time</code> for all packages.</p>
+via <code>--exclude-newer-package &lt;package&gt;=false</code>, or the index is configured with its own
+<code>exclude-newer</code> value, or the index is opted out via <code>[[tool.uv.index]] exclude-newer = false</code>.
+PyPI provides <code>upload-time</code> for all packages.</p>
 </div>
 <p>To ensure reproducibility, messages for unsatisfiable resolutions will not mention that
 distributions were excluded due to the <code>--exclude-newer</code> flag — newer distributions will be treated
@@ -4537,7 +4539,24 @@ uv will perform a new resolution.</p>
 </code></pre></div>
 <p>This is useful to temporarily use a newer version of package or to allow resolving a package from an
 index that does not publish upload times.</p>
-<p>Package-specific values will take precedence over global values.</p>
+<p>Package-specific values will take precedence over both global and index-specific values.</p>
+<p>Likewise, an individual index can override the global cutoff:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>[tool.uv]
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>exclude-newer = &quot;2006-12-02T02:07:43Z&quot;
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>[[tool.uv.index]]
+<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a>name = &quot;internal&quot;
+<a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a>url = &quot;https://internal.example.com/simple&quot;
+<a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a>exclude-newer = &quot;7 days&quot;
+</code></pre></div>
+<p>Or disable it entirely for that index:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>[[tool.uv.index]]
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>name = &quot;internal&quot;
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>url = &quot;https://internal.example.com/simple&quot;
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>exclude-newer = false
+</code></pre></div>
+<p>This is useful for private indexes that don't publish <code>upload-time</code>, or for applying a different
+reproducibility window to a specific index while preserving the global behavior elsewhere.</p>
 <h2 id="dependency-cooldowns"><a class="toclink" href="#dependency-cooldowns">Dependency cooldowns</a></h2>
 <p>uv also supports dependency "cooldowns" in which resolution will ignore packages newer than a
 duration. This is a good way to improve security posture by delaying package updates until the
@@ -4558,14 +4577,14 @@ using a <code>uv.lock</code> file, the timestamp is included in the lockfile. uv
 when the current time changes, instead, uv will update the timestamp when a new resolution is
 performed, e.g., when <code>--upgrade</code> or <code>--refresh</code> is used.</p>
 <p>This option is also supported in the <code>pyproject.toml</code>, e.g.:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>[tool.uv]
-<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>exclude-newer = &quot;1 week&quot;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>[tool.uv]
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>exclude-newer = &quot;1 week&quot;
 </code></pre></div>
 <p>Values may also be specified for specific packages, e.g.,
 <code>--exclude-newer-package "setuptools=30 days"</code>, or:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>[tool.uv]
-<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>exclude-newer = &quot;1 week&quot;
-<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>exclude-newer-package = { setuptools = &quot;30 days&quot; }
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>[tool.uv]
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>exclude-newer = &quot;1 week&quot;
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>exclude-newer-package = { setuptools = &quot;30 days&quot; }
 </code></pre></div>
 <h2 id="source-distribution"><a class="toclink" href="#source-distribution">Source distribution</a></h2>
 <p><a href="https://peps.python.org/pep-0625/">PEP 625</a> specifies that packages must distribute source
@@ -4631,7 +4650,7 @@ versions of uv to error.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="April 7, 2026 13:15:38 UTC">April 7, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="April 8, 2026 18:52:40 UTC">April 8, 2026</span>
   </span>
 
     

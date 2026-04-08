@@ -108,7 +108,7 @@ dependencies = []
 example-pkg = "example_pkg:main"
 
 [build-system]
-requires = ["uv_build>=0.11.4,<0.12"]
+requires = ["uv_build>=0.11.5,<0.12"]
 build-backend = "uv_build"
 ```
 
@@ -133,7 +133,7 @@ dependencies = []
 example-pkg = "example_pkg:main"
 
 [build-system]
-requires = ["uv_build>=0.11.4,<0.12"]
+requires = ["uv_build>=0.11.5,<0.12"]
 build-backend = "uv_build"
 ```
 
@@ -191,7 +191,7 @@ requires-python = ">=3.11"
 dependencies = []
 
 [build-system]
-requires = ["uv_build>=0.11.4,<0.12"]
+requires = ["uv_build>=0.11.5,<0.12"]
 build-backend = "uv_build"
 ```
 
@@ -302,7 +302,7 @@ When creating a project with maturin or scikit-build-core, uv configures [`tool.
 If you only want to create a `pyproject.toml`, use the `--bare` option:
 
 ```
-$ uv init example --bare
+$ uv init example-bare --bare
 ```
 
 uv will skip creating a Python version pin file, a README, and any source directories or files. Additionally, uv will not initialize a version control system (i.e., `git`).
@@ -317,7 +317,7 @@ uv will also not add extra metadata to the `pyproject.toml`, such as the `descri
 
 ```
 [project]
-name = "example"
+name = "example-bare"
 version = "0.1.0"
 requires-python = ">=3.12"
 dependencies = []
@@ -328,5 +328,5 @@ The `--bare` option can be used with other options like `--lib` or `--build-back
 When `--bare` is used, additional features can still be used opt-in:
 
 ```
-$ uv init example --bare --description "Hello world" --author-from git --vcs git --python-pin
+$ uv init example-bare --bare --description "Hello world" --author-from git --vcs git --python-pin
 ```

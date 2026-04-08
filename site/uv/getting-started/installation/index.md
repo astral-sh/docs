@@ -23,7 +23,7 @@ $ wget -qO- https://astral.sh/uv/install.sh | sh
 Request a specific version by including it in the URL:
 
 ```
-$ curl -LsSf https://astral.sh/uv/0.11.4/install.sh | sh
+$ curl -LsSf https://astral.sh/uv/0.11.5/install.sh | sh
 ```
 
 Use `irm` to download the script and execute it with `iex`:
@@ -37,7 +37,7 @@ Changing the [execution policy](https://learn.microsoft.com/en-us/powershell/mod
 Request a specific version by including it in the URL:
 
 ```
-PS> powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/0.11.4/install.ps1 | iex"
+PS> powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/0.11.5/install.ps1 | iex"
 ```
 
 Tip

@@ -222,6 +222,28 @@ cache-control = { api = "no-cache" }
 
 This setting is most commonly used to override the default cache control headers for private indexes that otherwise disable caching, often unintentionally. We typically recommend following PyPI's approach to caching headers, i.e., setting `api = "max-age=600"` and `files = "max-age=365000000, immutable"`.
 
+### [Configuring `exclude-newer` for an index](#configuring-exclude-newer-for-an-index)
+
+If you're using [`exclude-newer`](../resolution/#reproducible-resolutions), you can configure a different cutoff for a specific index:
+
+```
+[[tool.uv.index]]
+name = "internal"
+url = "https://internal.example.com/simple"
+exclude-newer = "7 days"
+```
+
+Index-specific values only affect packages served from that index. Package-specific `exclude-newer-package` overrides still take precedence.
+
+If an index does not provide `upload-time` metadata, you can disable the cutoff for that index entirely:
+
+```
+[[tool.uv.index]]
+name = "internal"
+url = "https://internal.example.com/simple"
+exclude-newer = false
+```
+
 ## ["Flat" indexes](#flat-indexes)
 
 By default, `[[tool.uv.index]]` entries are assumed to be PyPI-style registries that implement the [PEP 503](https://peps.python.org/pep-0503/) Simple Repository API. However, uv also supports "flat" indexes, which are local directories or HTML pages that contain flat lists of wheels and source distributions. In pip, such indexes are specified using the `--find-links` option.
