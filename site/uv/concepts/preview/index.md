@@ -56,6 +56,7 @@ The following preview features are available:
 - `pylock`: Allows installing from `pylock.toml` files.
 - `python-install-default`: Allows [installing `python` and `python3` executables](../python-versions/#installing-python-executables).
 - `format`: Allows using `uv format`.
+- `index-exclude-newer`: Allows setting `exclude-newer` on configured package indexes.
 - `native-auth`: Enables storage of credentials in a [system-native location](../authentication/http/#the-uv-credentials-store).
 - `workspace-metadata`: Allows using `uv workspace metadata`.
 - `workspace-dir`: Allows using `uv workspace dir`.
