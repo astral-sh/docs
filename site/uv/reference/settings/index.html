@@ -7563,6 +7563,9 @@ standard, though only the following fields are respected:</p>
 <hr />
 <h3 id="exclude-newer"><a class="toclink" href="#exclude-newer"><a href="#exclude-newer"><code>exclude-newer</code></a></a></h3>
 <p>Limit candidate packages to those that were uploaded prior to the given date.</p>
+<p>The date is compared against the upload time of each individual distribution artifact
+(i.e., when each file was uploaded to the package index), not the release date of the
+package version.</p>
 <p>Accepts RFC 3339 timestamps (e.g., <code>2006-12-02T02:07:43Z</code>), a "friendly" duration (e.g.,
 <code>24 hours</code>, <code>1 week</code>, <code>30 days</code>), or an ISO 8601 duration (e.g., <code>PT24H</code>, <code>P7D</code>, <code>P30D</code>).</p>
 <p>Durations do not respect semantics of the local time zone and are always resolved to a fixed
@@ -8872,6 +8875,9 @@ be correct.</p>
 <h4 id="pip_exclude-newer"><a class="toclink" href="#pip_exclude-newer"><a href="#pip_exclude-newer"><code>exclude-newer</code></a></a></h4>
 <p><span id="exclude-newer"></span></p>
 <p>Limit candidate packages to those that were uploaded prior to a given point in time.</p>
+<p>The date is compared against the upload time of each individual distribution artifact
+(i.e., when each file was uploaded to the package index), not the release date of the
+package version.</p>
 <p>Accepts a superset of <a href="https://www.rfc-editor.org/rfc/rfc3339.html">RFC 3339</a> (e.g.,
 <code>2006-12-02T02:07:43Z</code>). A full timestamp is required to ensure that the resolver will
 behave consistently across timezones.</p>

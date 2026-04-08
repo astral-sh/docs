@@ -982,6 +982,8 @@ ______________________________________________________________________
 
 Limit candidate packages to those that were uploaded prior to the given date.
 
+The date is compared against the upload time of each individual distribution artifact (i.e., when each file was uploaded to the package index), not the release date of the package version.
+
 Accepts RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`), a "friendly" duration (e.g., `24 hours`, `1 week`, `30 days`), or an ISO 8601 duration (e.g., `PT24H`, `P7D`, `P30D`).
 
 Durations do not respect semantics of the local time zone and are always resolved to a fixed number of seconds assuming that a day is 24 hours (e.g., DST transitions are ignored). Calendar units such as months and years are not allowed.
@@ -2418,6 +2420,8 @@ ______________________________________________________________________
 #### \[[`exclude-newer`](#pip_exclude-newer)\](#pip_exclude-newer)
 
 Limit candidate packages to those that were uploaded prior to a given point in time.
+
+The date is compared against the upload time of each individual distribution artifact (i.e., when each file was uploaded to the package index), not the release date of the package version.
 
 Accepts a superset of [RFC 3339](https://www.rfc-editor.org/rfc/rfc3339.html) (e.g., `2006-12-02T02:07:43Z`). A full timestamp is required to ensure that the resolver will behave consistently across timezones.
 

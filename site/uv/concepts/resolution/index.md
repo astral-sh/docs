@@ -506,7 +506,7 @@ Lower bounds are particularly critical when writing a library. It's important to
 
 ## [Reproducible resolutions](#reproducible-resolutions)
 
-uv supports an `--exclude-newer` option to limit resolution to distributions published before a specific date, allowing reproduction of installations regardless of new package releases. The date may be specified as an [RFC 3339](https://www.rfc-editor.org/rfc/rfc3339.html) timestamp (e.g., `2006-12-02T02:07:43Z`) or a local date in the same format (e.g., `2006-12-02`) in your system's configured time zone.
+uv supports an `--exclude-newer` option to limit resolution to distributions uploaded before a specific date, allowing reproduction of installations regardless of new package releases. The date is compared against the upload time of each individual distribution artifact (i.e., when each file was uploaded to the package index), not the release date of the package version. The date may be specified as an [RFC 3339](https://www.rfc-editor.org/rfc/rfc3339.html) timestamp (e.g., `2006-12-02T02:07:43Z`) or a local date in the same format (e.g., `2006-12-02`) in your system's configured time zone.
 
 Important
 
