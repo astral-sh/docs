@@ -61,7 +61,7 @@ bird-feeder = { workspace = true }
 members = ["packages/*"]
 
 [build-system]
-requires = ["uv_build>=0.11.3,<0.12"]
+requires = ["uv_build>=0.11.4,<0.12"]
 build-backend = "uv_build"
 ```
 
@@ -90,7 +90,7 @@ tqdm = { git = "https://github.com/tqdm/tqdm" }
 members = ["packages/*"]
 
 [build-system]
-requires = ["uv_build>=0.11.3,<0.12"]
+requires = ["uv_build>=0.11.4,<0.12"]
 build-backend = "uv_build"
 ```
 
@@ -157,7 +157,7 @@ dependencies = ["bird-feeder", "tqdm>=4,<5"]
 bird-feeder = { path = "packages/bird-feeder" }
 
 [build-system]
-requires = ["uv_build>=0.11.3,<0.12"]
+requires = ["uv_build>=0.11.4,<0.12"]
 build-backend = "uv_build"
 ```
 
