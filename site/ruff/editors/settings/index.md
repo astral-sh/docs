@@ -561,7 +561,7 @@ require('lspconfig').ruff.setup {
       "initialization_options": {
         "settings": {
           "codeAction": {
-            "fixViolation": = {
+            "fixViolation": {
               "enable": false
             }
           }

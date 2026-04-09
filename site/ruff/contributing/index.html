@@ -980,6 +980,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#example-adding-an-auto-fix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: Adding an auto-fix
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#example-adding-a-new-configuration-option" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1601,6 +1612,42 @@ you activate it by adding <code>--select ${rule_code}</code> to the command.</p>
 <p>Run <code>cargo test</code> again to ensure that your test passes.</p>
 </li>
 </ol>
+<h3 id="example-adding-an-auto-fix"><a class="toclink" href="#example-adding-an-auto-fix">Example: Adding an auto-fix</a></h3>
+<p>Sometimes a lint violation has a natural fix in the form of an edit to the
+source code. To surface this suggestion to the user, you will need to attach
+a <code>Fix</code> to the diagnostic using one of the helper methods on <code>DiagnosticGuard</code> found in <code>crates/ruff_linter/src/checkers/ast/mod.rs</code> (e.g. <code>set_fix</code>).</p>
+<p>You will also need to decide when to offer this fix
+and whether it is safe or unsafe. Please refer to the documentation on
+<a href="https://docs.astral.sh/ruff/linter/#fix-safety">fix safety</a> to determine
+whether to offer a safe or unsafe fix. If a fix is (sometimes) unsafe,
+update the rule's documentation with an explanation under the heading
+<code>## Fix safety</code>.</p>
+<p>Often the nontrivial work lies in generating
+the new source code in the form of an <code>Edit</code>.
+There are three main ways to do this:</p>
+<ol>
+<li><strong>AST-based edits</strong>. Here we construct the AST node that we wish
+    the new source code to parse to, and then generate the text using a method on
+    <code>checker.generator()</code>. The benefit of such edits is that they should essentially
+    never introduce syntax errors and they will have predictable formatting. On the
+    other hand, it can be cumbersome to build an AST node by hand, and one has less
+    fine-grained control over comments.</li>
+<li><strong>CST-based edits</strong>. This is similar to
+    the above except that one leverages LibCST to first parse the source
+    into a concrete syntax tree and then modifies it as needed. This
+    retains more of the formatting of the original source while retaining
+    the other benefits of AST-based edits. However, it introduces
+    overhead.</li>
+<li><strong>Text-based edits</strong>. Here we directly construct the replacement
+    text as a string. This gives you the most control over what the
+    edit will look like, and is often more performant. However,
+    it can be much more difficult to ensure that the fix does not
+    introduce syntax errors, especially on unusual source code.
+    If you adopt this approach, be sure to add even more test fixtures
+    than usual.</li>
+</ol>
+<p>You can find helpers for common edits in <code>crates/ruff_linter/src/fix/edits.rs</code>
+and <code>crates/ruff_linter/src/fix/codemods.rs</code>.</p>
 <h3 id="example-adding-a-new-configuration-option"><a class="toclink" href="#example-adding-a-new-configuration-option">Example: Adding a new configuration option</a></h3>
 <p>Ruff's user-facing settings live in a few different places.</p>
 <p>First, the command-line options are defined via the <code>Args</code> struct in <code>crates/ruff/src/args.rs</code>.</p>
