@@ -240,7 +240,7 @@ ______________________________________________________________________
 
 ### [`python-version`](#python-version)
 
-Specifies the version of Python that will be used to analyze the source code. The version should be specified as a string in the format `M.m` where `M` is the major version and `m` is the minor (e.g. `"3.0"` or `"3.6"`). If a version is provided, ty will generate errors if the source code makes use of language features that are not supported in that version.
+Specifies the version of Python that will be used to analyze the source code. The version should be specified as a string in the format `M.m` where `M` is the major version and `m` is the minor (e.g. `"3.7"` or `"3.12"`). If a version is provided, ty will generate errors if the source code makes use of language features that are not supported in that version.
 
 If a version is not specified, ty will try the following techniques in order of preference to determine a value:
 
@@ -252,7 +252,7 @@ For some language features, ty can also understand conditionals based on compari
 
 **Default value**: `"3.14"`
 
-**Type**: `"3.7" | "3.8" | "3.9" | "3.10" | "3.11" | "3.12" | "3.13" | "3.14" | <major>.<minor>`
+**Type**: `"3.7" | "3.8" | "3.9" | "3.10" | "3.11" | "3.12" | "3.13" | "3.14" | "3.15"`
 
 **Example usage**:
 

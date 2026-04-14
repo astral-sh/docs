@@ -2,7 +2,7 @@
 
 ## [`abstract-method-in-final-class`](#abstract-method-in-final-class)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.13](https://github.com/astral-sh/ty/releases/tag/0.0.13) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22abstract-method-in-final-class%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2345)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.13](https://github.com/astral-sh/ty/releases/tag/0.0.13) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22abstract-method-in-final-class%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2404)
 
 **What it does**
 
@@ -32,7 +32,7 @@ class Derived(Base):  # Error: `Derived` does not implement `method`
 
 ## [`ambiguous-protocol-member`](#ambiguous-protocol-member)
 
-Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.1-alpha.20](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.20) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22ambiguous-protocol-member%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L653)
+Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.1-alpha.20](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.20) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22ambiguous-protocol-member%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L655)
 
 **What it does**
 
@@ -65,7 +65,7 @@ class SubProto(BaseProto, Protocol):
 
 ## [`assert-type-unspellable-subtype`](#assert-type-unspellable-subtype)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.14](https://github.com/astral-sh/ty/releases/tag/0.0.14) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22assert-type-unspellable-subtype%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2481)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.14](https://github.com/astral-sh/ty/releases/tag/0.0.14) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22assert-type-unspellable-subtype%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2540)
 
 **What it does**
 
@@ -89,7 +89,7 @@ def _(x: int):
 
 ## [`call-abstract-method`](#call-abstract-method)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Preview (since [0.0.16](https://github.com/astral-sh/ty/releases/tag/0.0.16)) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22call-abstract-method%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2380)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Preview (since [0.0.16](https://github.com/astral-sh/ty/releases/tag/0.0.16)) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22call-abstract-method%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2439)
 
 **What it does**
 
@@ -121,7 +121,7 @@ Foo.method()  # Error: cannot call abstract classmethod
 
 ## [`call-non-callable`](#call-non-callable)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22call-non-callable%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L169)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22call-non-callable%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L171)
 
 **What it does**
 
@@ -140,7 +140,7 @@ Calling a non-callable object will raise a `TypeError` at runtime.
 
 ## [`call-top-callable`](#call-top-callable)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.7](https://github.com/astral-sh/ty/releases/tag/0.0.7) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22call-top-callable%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L187)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.7](https://github.com/astral-sh/ty/releases/tag/0.0.7) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22call-top-callable%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L189)
 
 **What it does**
 
@@ -161,7 +161,7 @@ def f(x: object):
 
 ## [`conflicting-argument-forms`](#conflicting-argument-forms)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22conflicting-argument-forms%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L238)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22conflicting-argument-forms%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L240)
 
 **What it does**
 
@@ -188,7 +188,7 @@ f(int)  # error
 
 ## [`conflicting-declarations`](#conflicting-declarations)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22conflicting-declarations%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L264)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22conflicting-declarations%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L266)
 
 **What it does**
 
@@ -212,7 +212,7 @@ a = 1
 
 ## [`conflicting-metaclass`](#conflicting-metaclass)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22conflicting-metaclass%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L289)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22conflicting-metaclass%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L291)
 
 **What it does**
 
@@ -237,7 +237,7 @@ class C(A, B): ...
 
 ## [`cyclic-class-definition`](#cyclic-class-definition)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22cyclic-class-definition%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L315)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22cyclic-class-definition%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L317)
 
 **What it does**
 
@@ -258,7 +258,7 @@ class B(A): ...
 
 ## [`cyclic-type-alias-definition`](#cyclic-type-alias-definition)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.29](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.29) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22cyclic-type-alias-definition%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L341)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.29](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.29) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22cyclic-type-alias-definition%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L343)
 
 **What it does**
 
@@ -280,7 +280,7 @@ type B = A
 
 ## [`dataclass-field-order`](#dataclass-field-order)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.15](https://github.com/astral-sh/ty/releases/tag/0.0.15) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22dataclass-field-order%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L459)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.15](https://github.com/astral-sh/ty/releases/tag/0.0.15) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22dataclass-field-order%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L461)
 
 **What it does**
 
@@ -304,7 +304,7 @@ class Example:
 
 ## [`deprecated`](#deprecated)
 
-Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.1-alpha.16](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.16) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22deprecated%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L385)
+Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.1-alpha.16](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.16) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22deprecated%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L387)
 
 **What it does**
 
@@ -326,7 +326,7 @@ old_func()  # emits [deprecated] diagnostic
 
 ## [`division-by-zero`](#division-by-zero)
 
-Default level: [`ignore`](../../rules#rule-levels "This lint has a default level of 'ignore'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22division-by-zero%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L363)
+Default level: [`ignore`](../../rules#rule-levels "This lint has a default level of 'ignore'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22division-by-zero%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L365)
 
 **What it does**
 
@@ -349,7 +349,7 @@ This rule is currently disabled by default because of the number of false positi
 
 ## [`duplicate-base`](#duplicate-base)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22duplicate-base%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L406)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22duplicate-base%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L408)
 
 **What it does**
 
@@ -371,7 +371,7 @@ class B(A, A): ...
 
 ## [`duplicate-kw-only`](#duplicate-kw-only)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.12](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.12) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22duplicate-kw-only%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L427)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.12](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.12) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22duplicate-kw-only%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L429)
 
 **What it does**
 
@@ -400,7 +400,7 @@ class A:  # Crash at runtime
 
 ## [`empty-body`](#empty-body)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.14](https://github.com/astral-sh/ty/releases/tag/0.0.14) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22empty-body%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L967)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.14](https://github.com/astral-sh/ty/releases/tag/0.0.14) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22empty-body%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L969)
 
 **What it does**
 
@@ -452,7 +452,7 @@ def foo() -> "intt\b": ...
 
 ## [`final-on-non-method`](#final-on-non-method)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.20](https://github.com/astral-sh/ty/releases/tag/0.0.20) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22final-on-non-method%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2292)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.20](https://github.com/astral-sh/ty/releases/tag/0.0.20) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22final-on-non-method%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2351)
 
 **What it does**
 
@@ -476,7 +476,7 @@ def my_function() -> int:
 
 ## [`final-without-value`](#final-without-value)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.15](https://github.com/astral-sh/ty/releases/tag/0.0.15) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22final-without-value%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2318)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.15](https://github.com/astral-sh/ty/releases/tag/0.0.15) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22final-without-value%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2377)
 
 **What it does**
 
@@ -555,7 +555,7 @@ def test(): -> "Literal[5]":
 
 ## [`inconsistent-mro`](#inconsistent-mro)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22inconsistent-mro%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L736)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22inconsistent-mro%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L738)
 
 **What it does**
 
@@ -578,7 +578,7 @@ class C(A, B): ...
 
 ## [`index-out-of-bounds`](#index-out-of-bounds)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22index-out-of-bounds%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L760)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22index-out-of-bounds%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L762)
 
 **What it does**
 
@@ -598,7 +598,7 @@ t[3]  # IndexError: tuple index out of range
 
 ## [`ineffective-final`](#ineffective-final)
 
-Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.1-alpha.33](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.33) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22ineffective-final%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2264)
+Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.1-alpha.33](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.33) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22ineffective-final%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2323)
 
 **What it does**
 
@@ -624,7 +624,7 @@ class MyClass: ...
 
 ## [`instance-layout-conflict`](#instance-layout-conflict)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.12](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.12) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22instance-layout-conflict%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L542)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.12](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.12) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22instance-layout-conflict%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L544)
 
 **What it does**
 
@@ -686,7 +686,7 @@ Additionally, this check is not exhaustive: many C extensions (including several
 
 ## [`invalid-argument-type`](#invalid-argument-type)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-argument-type%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L898)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-argument-type%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L900)
 
 **What it does**
 
@@ -706,7 +706,7 @@ func("foo")  # error: [invalid-argument-type]
 
 ## [`invalid-assignment`](#invalid-assignment)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-assignment%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1007)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-assignment%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1009)
 
 **What it does**
 
@@ -725,7 +725,7 @@ a: int = ''
 
 ## [`invalid-attribute-access`](#invalid-attribute-access)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-attribute-access%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2810)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-attribute-access%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2869)
 
 **What it does**
 
@@ -752,7 +752,7 @@ C.instance_var = 3  # error: Cannot assign to instance variable
 
 ## [`invalid-await`](#invalid-await)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.19](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.19) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-await%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1029)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.19](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.19) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-await%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1031)
 
 **What it does**
 
@@ -781,7 +781,7 @@ asyncio.run(main())
 
 ## [`invalid-base`](#invalid-base)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-base%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1059)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-base%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1061)
 
 **What it does**
 
@@ -800,7 +800,7 @@ class A(42): ...  # error: [invalid-base]
 
 ## [`invalid-context-manager`](#invalid-context-manager)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-context-manager%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1143)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-context-manager%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1145)
 
 **What it does**
 
@@ -821,7 +821,7 @@ with 1:
 
 ## [`invalid-dataclass`](#invalid-dataclass)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.12](https://github.com/astral-sh/ty/releases/tag/0.0.12) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-dataclass%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L511)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.12](https://github.com/astral-sh/ty/releases/tag/0.0.12) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-dataclass%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L513)
 
 **What it does**
 
@@ -849,7 +849,7 @@ class Foo(NamedTuple):
 
 ## [`invalid-dataclass-override`](#invalid-dataclass-override)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.13](https://github.com/astral-sh/ty/releases/tag/0.0.13) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-dataclass-override%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L485)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.13](https://github.com/astral-sh/ty/releases/tag/0.0.13) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-dataclass-override%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L487)
 
 **What it does**
 
@@ -874,7 +874,7 @@ class A:
 
 ## [`invalid-declaration`](#invalid-declaration)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-declaration%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1164)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-declaration%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1166)
 
 **What it does**
 
@@ -894,7 +894,7 @@ a: str
 
 ## [`invalid-enum-member-annotation`](#invalid-enum-member-annotation)
 
-Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.20](https://github.com/astral-sh/ty/releases/tag/0.0.20) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-enum-member-annotation%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1223)
+Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.20](https://github.com/astral-sh/ty/releases/tag/0.0.20) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-enum-member-annotation%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1225)
 
 **What it does**
 
@@ -934,7 +934,7 @@ class Pet(Enum):
 
 ## [`invalid-exception-caught`](#invalid-exception-caught)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-exception-caught%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1187)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-exception-caught%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1189)
 
 **What it does**
 
@@ -975,7 +975,7 @@ This rule corresponds to Ruff's [`except-with-non-exception-classes` (`B030`)](h
 
 ## [`invalid-explicit-override`](#invalid-explicit-override)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.28](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.28) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-explicit-override%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2423)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.28](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.28) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-explicit-override%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2482)
 
 **What it does**
 
@@ -1010,7 +1010,7 @@ class D(A):
 
 ## [`invalid-frozen-dataclass-subclass`](#invalid-frozen-dataclass-subclass)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.35](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.35) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-frozen-dataclass-subclass%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L3168)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.35](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.35) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-frozen-dataclass-subclass%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L3227)
 
 **What it does**
 
@@ -1048,7 +1048,7 @@ class NonFrozenChild(FrozenBase):  # Error raised here
 
 ## [`invalid-generic-class`](#invalid-generic-class)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-generic-class%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1307)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-generic-class%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1309)
 
 **What it does**
 
@@ -1080,7 +1080,7 @@ class D(Generic[U, T]): ...
 
 ## [`invalid-generic-enum`](#invalid-generic-enum)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.12](https://github.com/astral-sh/ty/releases/tag/0.0.12) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-generic-enum%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1265)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.12](https://github.com/astral-sh/ty/releases/tag/0.0.12) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-generic-enum%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1267)
 
 **What it does**
 
@@ -1147,7 +1147,7 @@ a = 20 / 0  # type: ignore
 
 ## [`invalid-key`](#invalid-key)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.17](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.17) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-key%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L781)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.17](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.17) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-key%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L783)
 
 **What it does**
 
@@ -1179,7 +1179,7 @@ carol = Person(name="Carol", aeg=25)  # typo!
 
 ## [`invalid-legacy-positional-parameter`](#invalid-legacy-positional-parameter)
 
-Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.15](https://github.com/astral-sh/ty/releases/tag/0.0.15) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-legacy-positional-parameter%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L3246)
+Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.15](https://github.com/astral-sh/ty/releases/tag/0.0.15) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-legacy-positional-parameter%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L3305)
 
 **What it does**
 
@@ -1222,7 +1222,7 @@ def f(x, y, /):  # Python 3.8+ syntax
 
 ## [`invalid-legacy-type-variable`](#invalid-legacy-type-variable)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-legacy-type-variable%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1338)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-legacy-type-variable%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1366)
 
 **What it does**
 
@@ -1252,7 +1252,7 @@ def f(t: TypeVar("U")): ...
 
 ## [`invalid-match-pattern`](#invalid-match-pattern)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.18](https://github.com/astral-sh/ty/releases/tag/0.0.18) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-match-pattern%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1711)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.18](https://github.com/astral-sh/ty/releases/tag/0.0.18) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-match-pattern%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1770)
 
 **What it does**
 
@@ -1275,7 +1275,7 @@ match x:
 
 ## [`invalid-metaclass`](#invalid-metaclass)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-metaclass%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1435)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-metaclass%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1494)
 
 **What it does**
 
@@ -1301,7 +1301,7 @@ class B(metaclass=f): ...
 
 ## [`invalid-method-override`](#invalid-method-override)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.20](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.20) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-method-override%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L3070)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.20](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.20) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-method-override%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L3129)
 
 **What it does**
 
@@ -1377,7 +1377,7 @@ Correct use of `@override` is enforced by ty's [`invalid-explicit-override`](#in
 
 ## [`invalid-named-tuple`](#invalid-named-tuple)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.19](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.19) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-named-tuple%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L688)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.19](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.19) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-named-tuple%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L690)
 
 **What it does**
 
@@ -1421,7 +1421,7 @@ AttributeError: Cannot overwrite NamedTuple attribute _asdict
 
 ## [`invalid-newtype`](#invalid-newtype)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.27](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.27) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-newtype%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1411)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.27](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.27) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-newtype%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1439)
 
 **What it does**
 
@@ -1446,7 +1446,7 @@ Baz = NewType("Baz", int | str)  # error: invalid base for `typing.NewType`
 
 ## [`invalid-overload`](#invalid-overload)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-overload%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1462)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-overload%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1521)
 
 **What it does**
 
@@ -1488,7 +1488,7 @@ def foo(x: int) -> int: ...
 
 ## [`invalid-parameter-default`](#invalid-parameter-default)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-parameter-default%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1561)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-parameter-default%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1620)
 
 **What it does**
 
@@ -1507,7 +1507,7 @@ def f(a: int = ''): ...
 
 ## [`invalid-paramspec`](#invalid-paramspec)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-paramspec%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1366)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-paramspec%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1394)
 
 **What it does**
 
@@ -1533,7 +1533,7 @@ P2 = ParamSpec("S2")  # error: ParamSpec name must match the variable it's assig
 
 ## [`invalid-protocol`](#invalid-protocol)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-protocol%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L624)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-protocol%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L626)
 
 **What it does**
 
@@ -1560,7 +1560,7 @@ TypeError: Protocols can only inherit from other protocols, got <class 'int'>
 
 ## [`invalid-raise`](#invalid-raise)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-raise%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1581)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-raise%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1640)
 
 Checks for `raise` statements that raise non-exceptions or use invalid causes for their raised exceptions.
 
@@ -1603,7 +1603,7 @@ def g():
 
 ## [`invalid-return-type`](#invalid-return-type)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-return-type%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L919)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-return-type%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L921)
 
 **What it does**
 
@@ -1625,7 +1625,7 @@ def func() -> int:
 
 ## [`invalid-super-argument`](#invalid-super-argument)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-super-argument%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1624)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-super-argument%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1683)
 
 **What it does**
 
@@ -1707,7 +1707,7 @@ class C: ...
 
 ## [`invalid-total-ordering`](#invalid-total-ordering)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.10](https://github.com/astral-sh/ty/releases/tag/0.0.10) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-total-ordering%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L3206)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.10](https://github.com/astral-sh/ty/releases/tag/0.0.10) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-total-ordering%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L3265)
 
 **What it does**
 
@@ -1746,7 +1746,7 @@ class MyClass:
 
 ## [`invalid-type-alias-type`](#invalid-type-alias-type)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.6](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.6) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-type-alias-type%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1390)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.6](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.6) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-type-alias-type%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1418)
 
 **What it does**
 
@@ -1768,7 +1768,7 @@ NewAlias = TypeAliasType(get_name(), int)        # error: TypeAliasType name mus
 
 ## [`invalid-type-arguments`](#invalid-type-arguments)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.29](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.29) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-type-arguments%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1971)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.29](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.29) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-type-arguments%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2030)
 
 **What it does**
 
@@ -1809,7 +1809,7 @@ Bar[int]  # error: too few arguments
 
 ## [`invalid-type-checking-constant`](#invalid-type-checking-constant)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-type-checking-constant%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1663)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-type-checking-constant%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1722)
 
 **What it does**
 
@@ -1829,7 +1829,7 @@ TYPE_CHECKING = ''
 
 ## [`invalid-type-form`](#invalid-type-form)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-type-form%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1687)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-type-form%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1746)
 
 **What it does**
 
@@ -1851,7 +1851,7 @@ b: Annotated[int]  # `Annotated` expects at least two arguments
 
 ## [`invalid-type-guard-call`](#invalid-type-guard-call)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.11](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.11) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-type-guard-call%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1761)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.11](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.11) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-type-guard-call%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1820)
 
 **What it does**
 
@@ -1878,7 +1878,7 @@ f(10)  # Error
 
 ## [`invalid-type-guard-definition`](#invalid-type-guard-definition)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.11](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.11) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-type-guard-definition%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1733)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.11](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.11) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-type-guard-definition%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1792)
 
 **What it does**
 
@@ -1905,7 +1905,7 @@ class C:
 
 ## [`invalid-type-variable-bound`](#invalid-type-variable-bound)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.15](https://github.com/astral-sh/ty/releases/tag/0.0.15) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-type-variable-bound%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1830)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.15](https://github.com/astral-sh/ty/releases/tag/0.0.15) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-type-variable-bound%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1889)
 
 **What it does**
 
@@ -1929,7 +1929,7 @@ def g[U, T: U](): ...  # error: [invalid-type-variable-bound]
 
 ## [`invalid-type-variable-constraints`](#invalid-type-variable-constraints)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-type-variable-constraints%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1789)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-type-variable-constraints%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1848)
 
 **What it does**
 
@@ -1966,7 +1966,7 @@ U = TypeVar('U', list[int], int)  # valid constrained Type
 
 ## [`invalid-type-variable-default`](#invalid-type-variable-default)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.16](https://github.com/astral-sh/ty/releases/tag/0.0.16) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-type-variable-default%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1855)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.16](https://github.com/astral-sh/ty/releases/tag/0.0.16) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-type-variable-default%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1914)
 
 **What it does**
 
@@ -1986,7 +1986,7 @@ U = TypeVar("U", int, str, default=bytes)  # error: [invalid-type-variable-defau
 
 ## [`invalid-typed-dict-field`](#invalid-typed-dict-field)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.28](https://github.com/astral-sh/ty/releases/tag/0.0.28) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-typed-dict-field%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L3016)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.28](https://github.com/astral-sh/ty/releases/tag/0.0.28) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-typed-dict-field%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L3075)
 
 **What it does**
 
@@ -2011,7 +2011,7 @@ class Child(Base):
 
 ## [`invalid-typed-dict-header`](#invalid-typed-dict-header)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.14](https://github.com/astral-sh/ty/releases/tag/0.0.14) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-typed-dict-header%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L3041)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.14](https://github.com/astral-sh/ty/releases/tag/0.0.14) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-typed-dict-header%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L3100)
 
 **What it does**
 
@@ -2037,7 +2037,7 @@ def f(x: dict):
 
 ## [`invalid-typed-dict-statement`](#invalid-typed-dict-statement)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.9](https://github.com/astral-sh/ty/releases/tag/0.0.9) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-typed-dict-statement%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2991)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.9](https://github.com/astral-sh/ty/releases/tag/0.0.9) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-typed-dict-statement%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L3050)
 
 **What it does**
 
@@ -2060,7 +2060,7 @@ class Foo(TypedDict):
 
 ## [`invalid-yield`](#invalid-yield)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.25](https://github.com/astral-sh/ty/releases/tag/0.0.25) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-yield%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L942)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.25](https://github.com/astral-sh/ty/releases/tag/0.0.25) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-yield%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L944)
 
 **What it does**
 
@@ -2082,7 +2082,7 @@ def gen() -> Iterator[int]:
 
 ## [`isinstance-against-protocol`](#isinstance-against-protocol)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.14](https://github.com/astral-sh/ty/releases/tag/0.0.14) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22isinstance-against-protocol%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L814)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.14](https://github.com/astral-sh/ty/releases/tag/0.0.14) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22isinstance-against-protocol%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L816)
 
 **What it does**
 
@@ -2128,7 +2128,7 @@ def h(arg2: type):
 
 ## [`isinstance-against-typed-dict`](#isinstance-against-typed-dict)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.15](https://github.com/astral-sh/ty/releases/tag/0.0.15) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22isinstance-against-typed-dict%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L862)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.15](https://github.com/astral-sh/ty/releases/tag/0.0.15) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22isinstance-against-typed-dict%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L864)
 
 **What it does**
 
@@ -2162,9 +2162,37 @@ def g(arg: object):
 
 - [Typing specification: `TypedDict`](https://typing.python.org/en/latest/spec/typeddict.html)
 
+## [`mismatched-type-name`](#mismatched-type-name)
+
+Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.30](https://github.com/astral-sh/ty/releases/tag/0.0.30) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22mismatched-type-name%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1463)
+
+**What it does**
+
+Checks for functional typing definitions whose declared name does not match the variable they are assigned to.
+
+**Why is this bad?**
+
+Constructors like `TypeVar`, `ParamSpec`, `NewType`, `NamedTuple`, `TypedDict`, and `TypeAliasType` all take a name argument that is normally expected to match the assigned variable. A mismatch is usually a typo and makes later diagnostics harder to understand.
+
+**Default level**
+
+This rule is a warning by default because ty can usually recover and continue understanding the resulting type.
+
+**Examples**
+
+```
+from typing import NewType, TypeVar
+from typing_extensions import TypedDict
+
+T = TypeVar("U")  # error: [mismatched-type-name]
+UserId = NewType("Id", int)  # error: [mismatched-type-name]
+Movie = TypedDict("Film", {"title": str})  # error: [mismatched-type-name]
+
+```
+
 ## [`missing-argument`](#missing-argument)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22missing-argument%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1911)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22missing-argument%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1970)
 
 **What it does**
 
@@ -2184,7 +2212,7 @@ func()  # TypeError: func() missing 1 required positional argument: 'x'
 
 ## [`missing-typed-dict-key`](#missing-typed-dict-key)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.20](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.20) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22missing-typed-dict-key%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2964)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.20](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.20) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22missing-typed-dict-key%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L3023)
 
 **What it does**
 
@@ -2211,7 +2239,7 @@ alice["age"]  # KeyError
 
 ## [`no-matching-overload`](#no-matching-overload)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22no-matching-overload%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1930)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22no-matching-overload%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1989)
 
 **What it does**
 
@@ -2232,9 +2260,35 @@ func("string")  # error: [no-matching-overload]
 
 ```
 
+## [`non-callable-init-subclass`](#non-callable-init-subclass)
+
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.30](https://github.com/astral-sh/ty/releases/tag/0.0.30) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22non-callable-init-subclass%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1340)
+
+**What it does**
+
+Checks for class definitions that will fail due to non-callable `__init_subclass__` methods.
+
+**Why is this bad?**
+
+If a class defines a non-callable `__init_subclass__` method/attribute, any attempt to subclass that class will raise a `TypeError` at runtime.
+
+**Examples**
+
+```
+class Super:
+    __init_subclass__ = None
+
+class Sub(Super): ...  # error: [non-callable-init-subclass]
+
+```
+
+**References**
+
+- [Python data model: Customizing class creation](https://docs.python.org/3/reference/datamodel.html#customizing-class-creation)
+
 ## [`not-iterable`](#not-iterable)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22not-iterable%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2012)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22not-iterable%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2071)
 
 **What it does**
 
@@ -2254,7 +2308,7 @@ for i in 34:  # TypeError: 'int' object is not iterable
 
 ## [`not-subscriptable`](#not-subscriptable)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22not-subscriptable%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1953)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22not-subscriptable%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2012)
 
 **What it does**
 
@@ -2273,7 +2327,7 @@ Subscripting an object that does not support it will raise a `TypeError` at runt
 
 ## [`override-of-final-method`](#override-of-final-method)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.29](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.29) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22override-of-final-method%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2210)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.29](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.29) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22override-of-final-method%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2269)
 
 **What it does**
 
@@ -2299,7 +2353,7 @@ class B(A):
 
 ## [`override-of-final-variable`](#override-of-final-variable)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.16](https://github.com/astral-sh/ty/releases/tag/0.0.16) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22override-of-final-variable%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2237)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.16](https://github.com/astral-sh/ty/releases/tag/0.0.16) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22override-of-final-variable%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2296)
 
 **What it does**
 
@@ -2324,7 +2378,7 @@ class B(A):
 
 ## [`parameter-already-assigned`](#parameter-already-assigned)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22parameter-already-assigned%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2063)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22parameter-already-assigned%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2122)
 
 **What it does**
 
@@ -2345,7 +2399,7 @@ f(1, x=2)  # Error raised here
 
 ## [`positional-only-parameter-as-kwarg`](#positional-only-parameter-as-kwarg)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.22](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.22) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22positional-only-parameter-as-kwarg%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2637)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.22](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.22) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22positional-only-parameter-as-kwarg%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2696)
 
 **What it does**
 
@@ -2366,7 +2420,7 @@ f(x=1)  # Error raised here
 
 ## [`possibly-missing-attribute`](#possibly-missing-attribute)
 
-Default level: [`ignore`](../../rules#rule-levels "This lint has a default level of 'ignore'.") · Added in [0.0.1-alpha.22](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.22) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22possibly-missing-attribute%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2084)
+Default level: [`ignore`](../../rules#rule-levels "This lint has a default level of 'ignore'.") · Added in [0.0.1-alpha.22](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.22) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22possibly-missing-attribute%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2143)
 
 **What it does**
 
@@ -2393,7 +2447,7 @@ A.c  # AttributeError: type object 'A' has no attribute 'c'
 
 ## [`possibly-missing-implicit-call`](#possibly-missing-implicit-call)
 
-Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.1-alpha.22](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.22) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22possibly-missing-implicit-call%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L212)
+Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.1-alpha.22](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.22) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22possibly-missing-implicit-call%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L214)
 
 **What it does**
 
@@ -2418,7 +2472,7 @@ A()[0]  # TypeError: 'A' object is not subscriptable
 
 ## [`possibly-missing-import`](#possibly-missing-import)
 
-Default level: [`ignore`](../../rules#rule-levels "This lint has a default level of 'ignore'.") · Added in [0.0.1-alpha.22](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.22) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22possibly-missing-import%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2131)
+Default level: [`ignore`](../../rules#rule-levels "This lint has a default level of 'ignore'.") · Added in [0.0.1-alpha.22](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.22) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22possibly-missing-import%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2190)
 
 **What it does**
 
@@ -2448,7 +2502,7 @@ from module import a  # ImportError: cannot import name 'a' from 'module'
 
 ## [`possibly-missing-submodule`](#possibly-missing-submodule)
 
-Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.23](https://github.com/astral-sh/ty/releases/tag/0.0.23) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22possibly-missing-submodule%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2110)
+Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.23](https://github.com/astral-sh/ty/releases/tag/0.0.23) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22possibly-missing-submodule%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2169)
 
 **What it does**
 
@@ -2468,7 +2522,7 @@ html.parser  # AttributeError: module 'html' has no attribute 'parser'
 
 ## [`possibly-unresolved-reference`](#possibly-unresolved-reference)
 
-Default level: [`ignore`](../../rules#rule-levels "This lint has a default level of 'ignore'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22possibly-unresolved-reference%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2161)
+Default level: [`ignore`](../../rules#rule-levels "This lint has a default level of 'ignore'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22possibly-unresolved-reference%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2220)
 
 **What it does**
 
@@ -2522,7 +2576,7 @@ def test(): -> "int":
 
 ## [`redundant-cast`](#redundant-cast)
 
-Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22redundant-cast%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2838)
+Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22redundant-cast%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2897)
 
 **What it does**
 
@@ -2544,7 +2598,7 @@ cast(int, f())  # Redundant
 
 ## [`redundant-final-classvar`](#redundant-final-classvar)
 
-Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.18](https://github.com/astral-sh/ty/releases/tag/0.0.18) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22redundant-final-classvar%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2859)
+Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.18](https://github.com/astral-sh/ty/releases/tag/0.0.18) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22redundant-final-classvar%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2918)
 
 **What it does**
 
@@ -2569,7 +2623,7 @@ class C:
 
 ## [`shadowed-type-variable`](#shadowed-type-variable)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.20](https://github.com/astral-sh/ty/releases/tag/0.0.20) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22shadowed-type-variable%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2885)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.20](https://github.com/astral-sh/ty/releases/tag/0.0.20) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22shadowed-type-variable%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2944)
 
 **What it does**
 
@@ -2597,7 +2651,7 @@ class Outer[T]:
 
 ## [`static-assert-error`](#static-assert-error)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22static-assert-error%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2786)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22static-assert-error%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2845)
 
 **What it does**
 
@@ -2620,7 +2674,7 @@ static_assert(int(2.0 * 3.0) == 6)  # error: does not have a statically known tr
 
 ## [`subclass-of-final-class`](#subclass-of-final-class)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22subclass-of-final-class%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2187)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22subclass-of-final-class%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2246)
 
 **What it does**
 
@@ -2643,7 +2697,7 @@ class B(A): ...  # Error raised here
 
 ## [`super-call-in-named-tuple-method`](#super-call-in-named-tuple-method)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.30](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.30) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22super-call-in-named-tuple-method%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2571)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.30](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.30) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22super-call-in-named-tuple-method%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2630)
 
 **What it does**
 
@@ -2672,7 +2726,7 @@ class F(NamedTuple):
 
 ## [`too-many-positional-arguments`](#too-many-positional-arguments)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22too-many-positional-arguments%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2511)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22too-many-positional-arguments%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2570)
 
 **What it does**
 
@@ -2693,7 +2747,7 @@ f("foo")  # Error raised here
 
 ## [`type-assertion-failure`](#type-assertion-failure)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22type-assertion-failure%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2459)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22type-assertion-failure%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2518)
 
 **What it does**
 
@@ -2714,7 +2768,7 @@ def _(x: int):
 
 ## [`unavailable-implicit-super-arguments`](#unavailable-implicit-super-arguments)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unavailable-implicit-super-arguments%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2532)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unavailable-implicit-super-arguments%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2591)
 
 **What it does**
 
@@ -2753,7 +2807,7 @@ class A:
 
 ## [`unbound-type-variable`](#unbound-type-variable)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.20](https://github.com/astral-sh/ty/releases/tag/0.0.20) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unbound-type-variable%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1881)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.20](https://github.com/astral-sh/ty/releases/tag/0.0.20) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unbound-type-variable%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1940)
 
 **What it does**
 
@@ -2784,7 +2838,7 @@ class C(Generic[T]):
 
 ## [`undefined-reveal`](#undefined-reveal)
 
-Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22undefined-reveal%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2598)
+Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22undefined-reveal%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2657)
 
 **What it does**
 
@@ -2803,7 +2857,7 @@ reveal_type(1)  # NameError: name 'reveal_type' is not defined
 
 ## [`unknown-argument`](#unknown-argument)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unknown-argument%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2616)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unknown-argument%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2675)
 
 **What it does**
 
@@ -2824,7 +2878,7 @@ f(x=1, y=2)  # Error raised here
 
 ## [`unresolved-attribute`](#unresolved-attribute)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unresolved-attribute%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2658)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unresolved-attribute%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2717)
 
 **What it does**
 
@@ -2845,7 +2899,7 @@ A().foo  # AttributeError: 'A' object has no attribute 'foo'
 
 ## [`unresolved-global`](#unresolved-global)
 
-Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.1-alpha.15](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.15) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unresolved-global%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2912)
+Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.1-alpha.15](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.15) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unresolved-global%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2971)
 
 **What it does**
 
@@ -2897,7 +2951,7 @@ def g():
 
 ## [`unresolved-import`](#unresolved-import)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unresolved-import%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2680)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unresolved-import%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2739)
 
 **What it does**
 
@@ -2916,7 +2970,7 @@ import foo  # ModuleNotFoundError: No module named 'foo'
 
 ## [`unresolved-reference`](#unresolved-reference)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unresolved-reference%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2699)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unresolved-reference%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2758)
 
 **What it does**
 
@@ -2935,7 +2989,7 @@ print(x)  # NameError: name 'x' is not defined
 
 ## [`unsupported-base`](#unsupported-base)
 
-Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.1-alpha.7](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.7) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unsupported-base%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1077)
+Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.1-alpha.7](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.7) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unsupported-base%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1079)
 
 **What it does**
 
@@ -2964,7 +3018,7 @@ class D(C): ...  # error: [unsupported-base]
 
 ## [`unsupported-bool-conversion`](#unsupported-bool-conversion)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unsupported-bool-conversion%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2032)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unsupported-bool-conversion%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2091)
 
 **What it does**
 
@@ -2994,7 +3048,7 @@ b1 < b2 < b1  # exception raised here
 
 ## [`unsupported-dynamic-base`](#unsupported-dynamic-base)
 
-Default level: [`ignore`](../../rules#rule-levels "This lint has a default level of 'ignore'.") · Added in [0.0.12](https://github.com/astral-sh/ty/releases/tag/0.0.12) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unsupported-dynamic-base%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1110)
+Default level: [`ignore`](../../rules#rule-levels "This lint has a default level of 'ignore'.") · Added in [0.0.12](https://github.com/astral-sh/ty/releases/tag/0.0.12) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unsupported-dynamic-base%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1112)
 
 **What it does**
 
@@ -3021,7 +3075,7 @@ def factory(base: type[Base]) -> type:
 
 ## [`unsupported-operator`](#unsupported-operator)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unsupported-operator%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2718)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unsupported-operator%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2777)
 
 **What it does**
 
@@ -3042,7 +3096,7 @@ A() + A()  # TypeError: unsupported operand type(s) for +: 'A' and 'A'
 
 ## [`unused-awaitable`](#unused-awaitable)
 
-Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Preview (since [0.0.21](https://github.com/astral-sh/ty/releases/tag/0.0.21)) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unused-awaitable%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2740)
+Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Preview (since [0.0.21](https://github.com/astral-sh/ty/releases/tag/0.0.21)) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unused-awaitable%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2799)
 
 **What it does**
 
@@ -3126,7 +3180,7 @@ This rule is skipped if [`analysis.respect-type-ignore-comments`](https://docs.a
 
 ## [`useless-overload-body`](#useless-overload-body)
 
-Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.1-alpha.22](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.22) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22useless-overload-body%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1505)
+Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.1-alpha.22](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.22) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22useless-overload-body%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1564)
 
 **What it does**
 
@@ -3181,7 +3235,7 @@ def foo(x: int | str) -> int | str:
 
 ## [`zero-stepsize-in-slice`](#zero-stepsize-in-slice)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22zero-stepsize-in-slice%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2767)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22zero-stepsize-in-slice%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L2826)
 
 **What it does**
 
