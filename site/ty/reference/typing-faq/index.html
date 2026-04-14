@@ -81,8 +81,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2026-04-05 14:46:41Z",
-        "dateModified": "2026-04-05 14:46:41Z",
+        "datePublished": "2026-04-14 13:37:46Z",
+        "dateModified": "2026-04-14 13:37:46Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -1083,6 +1083,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#what-is-toplistunknown-and-why-does-it-appear" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is Top[list[Unknown]], and why does it appear?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#does-ty-have-a-strict-mode" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1153,17 +1164,6 @@
     <span class="md-ellipsis">
       
         Does ty support (mypy) plugins?
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#what-is-toplistunknown-and-why-does-it-appear" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        What is Top[list[Unknown]], and why does it appear?
       
     </span>
   </a>
@@ -1408,6 +1408,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#what-is-toplistunknown-and-why-does-it-appear" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is Top[list[Unknown]], and why does it appear?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#does-ty-have-a-strict-mode" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1478,17 +1489,6 @@
     <span class="md-ellipsis">
       
         Does ty support (mypy) plugins?
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#what-is-toplistunknown-and-why-does-it-appear" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        What is Top[list[Unknown]], and why does it appear?
       
     </span>
   </a>
@@ -1779,6 +1779,17 @@ callables, you could define <code>FunctionLikeCallable</code> as an intersection
 <p>You can check out the full example <a href="https://play.ty.dev/7a1ea4ab-04e1-4271-adf5-ddc3a5d2fcfd">here</a>,
 which demonstrates that <code>FileUpload</code> instances are no longer accepted by <code>retry</code>.</p>
 </div>
+<h2 id="what-is-toplistunknown-and-why-does-it-appear"><a class="toclink" href="#what-is-toplistunknown-and-why-does-it-appear">What is <code>Top[list[Unknown]]</code>, and why does it appear?</a></h2>
+<p>This type represents "all possible lists of any element type" (as opposed to <code>list[Unknown]</code>, which
+represents "a list of some unknown element type"). It usually arises from a check such as
+<code>if isinstance(x, list):</code>. If <code>x</code> was previously of type <code>Item | list[Item]</code>, you might expect this
+check to narrow the type to <code>list[Item]</code>, but ty respects the possibility that there could be a
+common subclass of both <code>Item</code> and <code>list</code> (which may not be a list of <code>Item</code>!), and so the narrowed
+type is instead <code>(Item &amp; Top[list[Unknown]]) | list[Item]</code>. This code can be made more robust by
+instead checking <code>if instance(x, Item)</code>, or by declaring the <code>Item</code> type as <code>@typing.final</code>.</p>
+<p>See also the <a href="https://docs.astral.sh/ty/features/type-system/#top-and-bottom-materializations">discussion
+here</a> and <a href="https://github.com/astral-sh/ty/issues/1578">in this
+issue</a>.</p>
 <h2 id="does-ty-have-a-strict-mode"><a class="toclink" href="#does-ty-have-a-strict-mode">Does ty have a strict mode?</a></h2>
 <p>Not yet. A stricter inference mode is tracked in
 <a href="https://github.com/astral-sh/ty/issues/1240">this issue</a>. In the meantime, you can consider using Ruff's
@@ -1876,17 +1887,6 @@ also includes some suggested manual hooks you can use in the meantime.</p>
 <p>We prefer extending the type system with well-specified features rather than relying on
 type-checker-specific plugins. That said, we are considering adding support for popular third-party
 libraries like pydantic, SQLAlchemy, attrs, or django directly into ty.</p>
-<h2 id="what-is-toplistunknown-and-why-does-it-appear"><a class="toclink" href="#what-is-toplistunknown-and-why-does-it-appear">What is <code>Top[list[Unknown]]</code>, and why does it appear?</a></h2>
-<p>This type represents "all possible lists of any element type" (as opposed to <code>list[Unknown]</code>, which
-represents "a list of some unknown element type"). It usually arises from a check such as
-<code>if isinstance(x, list):</code>. If <code>x</code> was previously of type <code>Item | list[Item]</code>, you might expect this
-check to narrow the type to <code>list[Item]</code>, but ty respects the possibility that there could be a
-common subclass of both <code>Item</code> and <code>list</code> (which may not be a list of <code>Item</code>!), and so the narrowed
-type is instead <code>(Item &amp; Top[list[Unknown]]) | list[Item]</code>. This code can be made more robust by
-instead checking <code>if instance(x, Item)</code>, or by declaring the <code>Item</code> type as <code>@typing.final</code>.</p>
-<p>See also the <a href="https://docs.astral.sh/ty/features/type-system/#top-and-bottom-materializations">discussion
-here</a> and <a href="https://github.com/astral-sh/ty/issues/1578">in this
-issue</a>.</p>
 
 
 
@@ -1907,7 +1907,7 @@ issue</a>.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 5, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 14, 2026</span>
   </span>
 
     
