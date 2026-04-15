@@ -85,6 +85,8 @@ Uses gitignore-style syntax to exclude files and directories from type checking.
 This is an advanced option that should usually only be used for first-party or third-party modules that are not installed into your Python environment in a conventional way. Use `--python` to point ty to your Python environment if it is in an unusual location.
 ```
 
+[`--fix`](#ty-check--fix) : Apply fixes to resolve errors
+
 [`--force-exclude`](#ty-check--force-exclude) : Enforce exclusions, even for paths passed to ty directly on the command-line. Use `--no-force-exclude` to disable
 
 [`--help`](#ty-check--help), `-h` : Print help (see a summary with '-h')
