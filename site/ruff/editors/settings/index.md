@@ -44,13 +44,13 @@ For example, if the line length is specified in all three sources, Ruff will use
 ```
 
 ```
-require('lspconfig').ruff.setup {
+vim.lsp.config('ruff', {
   init_options = {
     settings = {
       configuration = "~/path/to/ruff.toml"
     }
   }
-}
+})
 ```
 
 ```
@@ -91,7 +91,7 @@ require('lspconfig').ruff.setup {
 ```
 
 ```
-require('lspconfig').ruff.setup {
+vim.lsp.config('ruff', {
   init_options = {
     settings = {
       configuration = {
@@ -112,7 +112,7 @@ require('lspconfig').ruff.setup {
       }
     }
   }
-}
+})
 ```
 
 ```
@@ -165,13 +165,13 @@ The strategy to use when resolving settings across VS Code and the filesystem. B
 ```
 
 ```
-require('lspconfig').ruff.setup {
+vim.lsp.config('ruff', {
   init_options = {
     settings = {
       configurationPreference = "filesystemFirst"
     }
   }
-}
+})
 ```
 
 ```
@@ -205,13 +205,13 @@ A list of file patterns to exclude from linting and formatting. See [the documen
 ```
 
 ```
-require('lspconfig').ruff.setup {
+vim.lsp.config('ruff', {
   init_options = {
     settings = {
       exclude = ["**/tests/**"]
     }
   }
-}
+})
 ```
 
 ```
@@ -245,13 +245,13 @@ The line length to use for the linter and formatter.
 ```
 
 ```
-require('lspconfig').ruff.setup {
+vim.lsp.config('ruff', {
   init_options = {
     settings = {
       lineLength = 100
     }
   }
-}
+})
 ```
 
 ```
@@ -285,13 +285,13 @@ Whether to register the server as capable of handling `source.fixAll` code actio
 ```
 
 ```
-require('lspconfig').ruff.setup {
+vim.lsp.config('ruff', {
   init_options = {
     settings = {
       fixAll = false
     }
   }
-}
+})
 ```
 
 ```
@@ -325,13 +325,13 @@ Whether to register the server as capable of handling `source.organizeImports` c
 ```
 
 ```
-require('lspconfig').ruff.setup {
+vim.lsp.config('ruff', {
   init_options = {
     settings = {
       organizeImports = false
     }
   }
-}
+})
 ```
 
 ```
@@ -367,13 +367,13 @@ Whether to show syntax error diagnostics.
 ```
 
 ```
-require('lspconfig').ruff.setup {
+vim.lsp.config('ruff', {
   init_options = {
     settings = {
       showSyntaxErrors = false
     }
   }
-}
+})
 ```
 
 ```
@@ -407,13 +407,13 @@ The log level to use for the server.
 ```
 
 ```
-require('lspconfig').ruff.setup {
+vim.lsp.config('ruff', {
   init_options = {
     settings = {
       logLevel = "debug"
     }
   }
-}
+})
 ```
 
 ```
@@ -449,13 +449,13 @@ If not set, logs will be written to stderr.
 ```
 
 ```
-require('lspconfig').ruff.setup {
+vim.lsp.config('ruff', {
   init_options = {
     settings = {
       logFile = "~/path/to/ruff.log"
     }
   }
-}
+})
 ```
 
 ```
@@ -493,7 +493,7 @@ Whether to display Quick Fix actions to disable rules via `noqa` suppression com
 ```
 
 ```
-require('lspconfig').ruff.setup {
+vim.lsp.config('ruff', {
   init_options = {
     settings = {
       codeAction = {
@@ -503,7 +503,7 @@ require('lspconfig').ruff.setup {
       }
     }
   }
-}
+})
 ```
 
 ```
@@ -541,7 +541,7 @@ Whether to display Quick Fix actions to autofix violations.
 ```
 
 ```
-require('lspconfig').ruff.setup {
+vim.lsp.config('ruff', {
   init_options = {
     settings = {
       codeAction = {
@@ -551,7 +551,7 @@ require('lspconfig').ruff.setup {
       }
     }
   }
-}
+})
 ```
 
 ```
@@ -593,7 +593,7 @@ Whether to enable linting. Set to `false` to use Ruff exclusively as a formatter
 ```
 
 ```
-require('lspconfig').ruff.setup {
+vim.lsp.config('ruff', {
   init_options = {
     settings = {
       lint = {
@@ -601,7 +601,7 @@ require('lspconfig').ruff.setup {
       }
     }
   }
-}
+})
 ```
 
 ```
@@ -637,7 +637,7 @@ Whether to enable Ruff's preview mode when linting.
 ```
 
 ```
-require('lspconfig').ruff.setup {
+vim.lsp.config('ruff', {
   init_options = {
     settings = {
       lint = {
@@ -645,7 +645,7 @@ require('lspconfig').ruff.setup {
       }
     }
   }
-}
+})
 ```
 
 ```
@@ -681,7 +681,7 @@ Rules to enable by default. See [the documentation](https://docs.astral.sh/ruff/
 ```
 
 ```
-require('lspconfig').ruff.setup {
+vim.lsp.config('ruff', {
   init_options = {
     settings = {
       lint = {
@@ -689,7 +689,7 @@ require('lspconfig').ruff.setup {
       }
     }
   }
-}
+})
 ```
 
 ```
@@ -725,7 +725,7 @@ Rules to enable in addition to those in [`lint.select`](#select).
 ```
 
 ```
-require('lspconfig').ruff.setup {
+vim.lsp.config('ruff', {
   init_options = {
     settings = {
       lint = {
@@ -733,7 +733,7 @@ require('lspconfig').ruff.setup {
       }
     }
   }
-}
+})
 ```
 
 ```
@@ -769,7 +769,7 @@ Rules to disable by default. See [the documentation](https://docs.astral.sh/ruff
 ```
 
 ```
-require('lspconfig').ruff.setup {
+vim.lsp.config('ruff', {
   init_options = {
     settings = {
       lint = {
@@ -777,7 +777,7 @@ require('lspconfig').ruff.setup {
       }
     }
   }
-}
+})
 ```
 
 ```
@@ -817,7 +817,7 @@ Whether to enable Ruff's preview mode when formatting.
 ```
 
 ```
-require('lspconfig').ruff.setup {
+vim.lsp.config('ruff', {
   init_options = {
     settings = {
       format = {
@@ -825,7 +825,7 @@ require('lspconfig').ruff.setup {
       }
     }
   }
-}
+})
 ```
 
 ```
@@ -866,7 +866,7 @@ For `internal`, the formatter version will match the selected Ruff version while
 ```
 
 ```
-require('lspconfig').ruff.setup {
+vim.lsp.config('ruff', {
   init_options = {
     settings = {
       format = {
@@ -874,7 +874,7 @@ require('lspconfig').ruff.setup {
       }
     }
   }
-}
+})
 ```
 
 ```
