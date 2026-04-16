@@ -252,7 +252,7 @@ support needs to be explicitly included by adding it to `types_or`:
 
 repos:
 
-- repo: https://github.com/astral-sh/ruff-pre-commit rev: v0.15.10 hooks:
+- repo: https://github.com/astral-sh/ruff-pre-commit rev: v0.15.11 hooks:
   - id: ruff-format types_or: [python, pyi, jupyter, markdown]
 
 ```
