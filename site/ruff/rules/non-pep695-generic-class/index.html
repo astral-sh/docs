@@ -864,7 +864,7 @@
 <p><small>
 Added in <a href="https://github.com/astral-sh/ruff/releases/tag/0.12.0">0.12.0</a> ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27non-pep695-generic-class%27%20OR%20UP046)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fpyupgrade%2Frules%2Fpep695%2Fnon_pep695_generic_class.rs#L92" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fpyupgrade%2Frules%2Fpep695%2Fnon_pep695_generic_class.rs#L133" target="_blank">View source</a>
 </small></p>
 <p>Derived from the <strong><a href="../#pyupgrade-up">pyupgrade</a></strong> linter.</p>
 <p>Fix is sometimes available.</p>
@@ -873,6 +873,10 @@ Added in <a href="https://github.com/astral-sh/ruff/releases/tag/0.12.0">0.12.0<
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Special type parameter syntax was introduced in Python 3.12 by <a href="https://peps.python.org/pep-0695/">PEP 695</a> for defining generic
 classes. This syntax is easier to read and provides cleaner support for generics.</p>
+<p>In particular, old-style <code>TypeVar</code> variables are typically allocated at module scope, but their
+semantic meaning is only valid within the context of a generic class, function, or type alias.
+<a href="https://peps.python.org/pep-0695/">PEP 695</a> eliminates this <a href="https://peps.python.org/pep-0695/#points-of-confusion">source of confusion</a> by declaring type parameters at their point of
+use.</p>
 <h2 id="known-problems"><a class="toclink" href="#known-problems">Known problems</a></h2>
 <p>The rule currently skips generic classes nested inside of other functions or classes. It also
 skips type parameters with the <code>default</code> argument introduced in <a href="https://peps.python.org/pep-0696/">PEP 696</a> and implemented in
@@ -886,7 +890,7 @@ cause type checking to <a href="https://github.com/python/mypy/issues/18507">fai
 <p>This fix is marked as unsafe, as <a href="https://peps.python.org/pep-0695/">PEP 695</a> uses inferred variance for type parameters, instead
 of the <code>covariant</code> and <code>contravariant</code> keywords used by <code>TypeVar</code> variables. As such, replacing
 a <code>TypeVar</code> variable with an inline type parameter may change its variance.</p>
-<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
+<h2 id="examples"><a class="toclink" href="#examples">Examples</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Generic</span><span class="p">,</span> <span class="n">TypeVar</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">)</span>
@@ -898,6 +902,34 @@ a <code>TypeVar</code> variable with an inline type parameter may change its var
 <p>Use instead:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">GenericClass</span><span class="p">[</span><span class="n">T</span><span class="p">]:</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="n">var</span><span class="p">:</span> <span class="n">T</span>
+</code></pre></div>
+<p>In cases where you've intentionally defined a reusable <code>TypeVar</code> to share
+the bounds across multiple uses:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Generic</span><span class="p">,</span> <span class="n">TypeVar</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">ReusableT</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;ReusableT&quot;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">])</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="k">class</span><span class="w"> </span><span class="nc">GenericClass1</span><span class="p">(</span><span class="n">Generic</span><span class="p">[</span><span class="n">ReusableT</span><span class="p">]):</span> <span class="o">...</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="k">class</span><span class="w"> </span><span class="nc">GenericClass2</span><span class="p">(</span><span class="n">Generic</span><span class="p">[</span><span class="n">ReusableT</span><span class="p">]):</span> <span class="o">...</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="k">class</span><span class="w"> </span><span class="nc">GenericClass3</span><span class="p">(</span><span class="n">Generic</span><span class="p">[</span><span class="n">ReusableT</span><span class="p">]):</span> <span class="o">...</span>
+</code></pre></div>
+<p>You can instead extract the bound as a <a href="https://docs.python.org/3/reference/simple_stmts.html#type-aliases">type alias</a> to retain both the
+benefits of the PEP 695 syntax and the reuse of the bound:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">type</span> <span class="n">ReusableTBound</span> <span class="o">=</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">class</span><span class="w"> </span><span class="nc">GenericClass1</span><span class="p">[</span><span class="n">ReusableT</span><span class="p">:</span> <span class="n">ReusableTBound</span><span class="p">]:</span> <span class="o">...</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="k">class</span><span class="w"> </span><span class="nc">GenericClass2</span><span class="p">[</span><span class="n">ReusableT</span><span class="p">:</span> <span class="n">ReusableTBound</span><span class="p">]:</span> <span class="o">...</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="k">class</span><span class="w"> </span><span class="nc">GenericClass3</span><span class="p">[</span><span class="n">ReusableT</span><span class="p">:</span> <span class="n">ReusableTBound</span><span class="p">]:</span> <span class="o">...</span>
 </code></pre></div>
 <h2 id="see-also"><a class="toclink" href="#see-also">See also</a></h2>
 <p>This rule replaces standalone type variables in classes but doesn't remove

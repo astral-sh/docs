@@ -265,7 +265,56 @@ import abc
 The full inline comment specification is as follows:
 
 - An inline blanket `noqa` comment is given by a case-insensitive match for `#noqa` with optional whitespace after the `#` symbol, followed by either: the end of the comment, the beginning of a new comment (`#`), or whitespace followed by any character other than `:`.
-- An inline rule suppression is given by first finding a case-insensitive match for `#noqa` with optional whitespace after the `#` symbol, optional whitespace after `noqa`, and followed by the symbol `:`. After this we are expected to have a list of rule codes which is given by sequences of uppercase ASCII characters followed by ASCII digits, separated by whitespace or commas. The list ends at the last valid code. We will attempt to interpret rules with a missing delimiter (e.g. `F401F841`), though a warning will be emitted in this case.
+- An inline `noqa` suppression is given by first finding a case-insensitive match for `#noqa` with optional whitespace after the `#` symbol, optional whitespace after `noqa`, and followed by the symbol `:`. After this we are expected to have a list of rule codes which is given by sequences of uppercase ASCII characters followed by ASCII digits, separated by whitespace or commas. The list ends at the last valid code. We will attempt to interpret rules with a missing delimiter (e.g. `F401F841`), though a warning will be emitted in this case.
+
+*The following is currently only available in [preview mode](preview.md).*
+
+To cover an entire "logical" line (a multi-line statement or suite header), an "ignore" comment may be placed above the first line:
+
+```
+# ruff: ignore[ARG001]  # Covers the entire function signature
+def foo(
+    arg1,
+    arg2,
+):
+    pass
+
+# ruff: ignore[E501]  # Covers the entire list literal
+things = [
+    "really long string literal ...",
+    "really long string literal ...",
+]
+```
+
+Alternately, placing the "ignore" comment inside of a multi-line statement, or at the end of a line, will cover only a single "physical" line, leaving the rest of the multi-line statement or header uncovered:
+
+```
+def foo(
+    arg1,
+    # ruff: ignore[ARG001]  # Only covers `arg2`
+    arg2,
+):
+    pass
+
+things = [
+    "really long string literal ...",  # ruff: ignore[E501]  # Only covers this line
+    "really long string literal ...",
+]
+```
+
+Ignore comments can also be "stacked" with other comments or pragmas, and will still cover the next logical line:
+
+```
+# ruff: ignore[E741]
+# ruff: ignore[F841]
+# I definitely know what I'm doing.
+i = 1
+```
+
+The full line-level suppression comment specification is as follows:
+
+- An own-line or trailing comment starting with case sensitive `#ruff:`, with optional whitespace after the `#` symbol and `:` symbol, followed by `ignore[`, any codes to be suppressed, and ending with `]`.
+- Codes to be suppressed must be separated by commas, with optional whitespace before or after each code, and may be followed by an optional trailing comma after the last code.
 
 #### [Block-level](#block-level)
 
@@ -334,6 +383,17 @@ Note that Ruff will also respect Flake8's `# flake8: noqa` directive, and will t
 The file-level suppression comment specification is as follows:
 
 - A file-level exemption comment is given by a case-sensitive match for `#ruff:` or `#flake8:`, with optional whitespace after `#` and before `:`, followed by optional whitespace and a case-insensitive match for `noqa`. After this, the specification is as in the inline `noqa` suppressions above.
+
+In [`preview`](../preview/) mode, one or more rules can be ignored across an entire file with a `file-ignore` comment on its own line, at global module scope, and preferably near the top of the file:
+
+```
+# ruff: file-ignore[F401, ARG001]
+```
+
+The full-level suppression comment specification is as follows:
+
+- An own-line comment starting with case sensitive `#ruff:`, with optional whitespace after the `#` symbol and `:` symbol, followed by `file-ignore[`, any codes to be suppressed, and ending with `]`.
+- Codes to be suppressed must be separated by commas, with optional whitespace before or after each code, and may be followed by an optional trailing comma after the last code.
 
 ### [Detecting unused suppressions](#detecting-unused-suppressions)
 
