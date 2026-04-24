@@ -6,13 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Checks for operations that compare a name to itself.">
+        <meta name="description" content="Checks for branching logic that could be replaced with a short-circuit">
       
       
         <meta name="author" content="charliermarsh">
       
       
-        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/comparison-with-itself/">
+        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/airflow-task-branch-as-short-circuit/">
       
       
       
@@ -25,7 +25,7 @@
     
     
 
-<title>comparison-with-itself (PLR0124) | Ruff</title>
+<title>airflow-task-branch-as-short-circuit (AIR004) | Ruff</title>
 
 
     
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#comparison-with-itself-plr0124" class="md-skip">
+        <a href="#airflow-task-branch-as-short-circuit-air004" class="md-skip">
           Skip to content
         </a>
       
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              comparison-with-itself (PLR0124)
+              airflow-task-branch-as-short-circuit (AIR004)
             
           </span>
         </div>
@@ -860,31 +860,64 @@
   
 
 
-<h1 id="comparison-with-itself-plr0124"><a class="toclink" href="#comparison-with-itself-plr0124">comparison-with-itself (PLR0124)</a></h1>
+<h1 id="airflow-task-branch-as-short-circuit-air004"><a class="toclink" href="#airflow-task-branch-as-short-circuit-air004">airflow-task-branch-as-short-circuit (AIR004)</a></h1>
 <p><small>
-Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.273">v0.0.273</a> ·
-<a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27comparison-with-itself%27%20OR%20PLR0124)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fpylint%2Frules%2Fcomparison_with_itself.rs#L33" target="_blank">View source</a>
+Preview (since <a href="https://github.com/astral-sh/ruff/releases/tag/0.15.12">0.15.12</a>) ·
+<a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27airflow-task-branch-as-short-circuit%27%20OR%20AIR004)" target="_blank">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fairflow%2Frules%2Ftask_branch_as_short_circuit.rs#L72" target="_blank">View source</a>
 </small></p>
-<p>Derived from the <strong><a href="../#pylint-pl">Pylint</a></strong> linter.</p>
+<p>Derived from the <strong><a href="../#airflow-air">Airflow</a></strong> linter.</p>
+<p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
-<p>Checks for operations that compare a name to itself.</p>
+<p>Checks for branching logic that could be replaced with a short-circuit
+pattern, either via <code>@task.branch</code> decorated functions or
+<code>BranchPythonOperator</code> callables.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
-<p>Comparing a name to itself typically results in a truthy value, and is
-likely a mistake.</p>
+<p>When a branch function has at least two <code>return</code> statements and exactly
+one of them returns a non-empty list, the function is effectively acting
+as a short-circuit operator. Using <code>@task.short_circuit</code> or
+<code>ShortCircuitOperator</code> is simpler and more readable in such cases.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">foo</span> <span class="o">==</span> <span class="n">foo</span>
+<p>Using the <code>TaskFlow</code> API:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">airflow.decorators</span><span class="w"> </span><span class="kn">import</span> <span class="n">task</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nd">@task</span><span class="o">.</span><span class="n">branch</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">def</span><span class="w"> </span><span class="nf">my_task</span><span class="p">():</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="k">if</span> <span class="n">condition</span><span class="p">:</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>        <span class="k">return</span> <span class="p">[</span><span class="s2">&quot;my_downstream_task&quot;</span><span class="p">]</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="k">return</span> <span class="p">[]</span>
 </code></pre></div>
-<p>In some cases, self-comparisons are used to determine whether a float is
-NaN. Instead, prefer <code>math.isnan</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<p>Use instead:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">airflow.decorators</span><span class="w"> </span><span class="kn">import</span> <span class="n">task</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">math</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">foo</span><span class="p">)</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="nd">@task</span><span class="o">.</span><span class="n">short_circuit</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">def</span><span class="w"> </span><span class="nf">my_task</span><span class="p">():</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="k">return</span> <span class="n">condition</span>
 </code></pre></div>
-<h2 id="references"><a class="toclink" href="#references">References</a></h2>
-<ul>
-<li><a href="https://docs.python.org/3/reference/expressions.html#comparisons">Python documentation: Comparisons</a></li>
-</ul>
+<p>Using the standard operator API:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">airflow.operators.python</span><span class="w"> </span><span class="kn">import</span> <span class="n">BranchPythonOperator</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">my_callable</span><span class="p">():</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="k">if</span> <span class="n">condition</span><span class="p">:</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>        <span class="k">return</span> <span class="p">[</span><span class="s2">&quot;my_downstream_task&quot;</span><span class="p">]</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="k">return</span> <span class="p">[]</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="n">task</span> <span class="o">=</span> <span class="n">BranchPythonOperator</span><span class="p">(</span><span class="n">task_id</span><span class="o">=</span><span class="s2">&quot;my_task&quot;</span><span class="p">,</span> <span class="n">python_callable</span><span class="o">=</span><span class="n">my_callable</span><span class="p">)</span>
+</code></pre></div>
+<p>Use instead:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">airflow.operators.python</span><span class="w"> </span><span class="kn">import</span> <span class="n">ShortCircuitOperator</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">my_callable</span><span class="p">():</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="k">return</span> <span class="n">condition</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="n">task</span> <span class="o">=</span> <span class="n">ShortCircuitOperator</span><span class="p">(</span><span class="n">task_id</span><span class="o">=</span><span class="s2">&quot;my_task&quot;</span><span class="p">,</span> <span class="n">python_callable</span><span class="o">=</span><span class="n">my_callable</span><span class="p">)</span>
+</code></pre></div>
 
 
 
