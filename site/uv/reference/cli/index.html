@@ -5235,7 +5235,7 @@
 </dd><dt id="uv-run--no-project"><a href="#uv-run--no-project"><code>--no-project</code></a>, <code>--no_workspace</code></dt><dd><p>Avoid discovering the project or workspace.</p>
 <p>Instead of searching for projects in the current directory and parent directories, run in an isolated, ephemeral environment populated by the <code>--with</code> requirements.</p>
 <p>If a virtual environment is active or found in a current or parent directory, it will be used as if there was no project or workspace.</p>
-</dd><dt id="uv-run--no-python-downloads"><a href="#uv-run--no-python-downloads"><code>--no-python-downloads</code></a></dt><dd><p>Disable automatic downloads of Python.</p>
+<p>May also be set with the <code>UV_NO_PROJECT</code> environment variable.</p></dd><dt id="uv-run--no-python-downloads"><a href="#uv-run--no-python-downloads"><code>--no-python-downloads</code></a></dt><dd><p>Disable automatic downloads of Python.</p>
 </dd><dt id="uv-run--no-sources"><a href="#uv-run--no-sources"><code>--no-sources</code></a></dt><dd><p>Ignore the <code>tool.uv.sources</code> table when resolving dependencies. Used to lock against the standards-compliant, publishable package metadata, as opposed to using any workspace, Git, URL, or local path sources</p>
 <p>May also be set with the <code>UV_NO_SOURCES</code> environment variable.</p></dd><dt id="uv-run--no-sources-package"><a href="#uv-run--no-sources-package"><code>--no-sources-package</code></a> <i>no-sources-package</i></dt><dd><p>Don't use sources from the <code>tool.uv.sources</code> table for the specified packages</p>
 <p>May also be set with the <code>UV_NO_SOURCES_PACKAGE</code> environment variable.</p></dd><dt id="uv-run--no-sync"><a href="#uv-run--no-sync"><code>--no-sync</code></a></dt><dd><p>Avoid syncing the virtual environment [env: UV_NO_SYNC=]</p>
@@ -7003,7 +7003,7 @@ interpreter. Use <code>--universal</code> to display the tree for all platforms,
 <p>For example, spinners or progress bars.</p>
 </dd><dt id="uv-format--no-project"><a href="#uv-format--no-project"><code>--no-project</code></a></dt><dd><p>Avoid discovering a project or workspace.</p>
 <p>Instead of running the formatter in the context of the current project, run it in the context of the current directory. This is useful when the current directory is not a project.</p>
-</dd><dt id="uv-format--no-python-downloads"><a href="#uv-format--no-python-downloads"><code>--no-python-downloads</code></a></dt><dd><p>Disable automatic downloads of Python.</p>
+<p>May also be set with the <code>UV_NO_PROJECT</code> environment variable.</p></dd><dt id="uv-format--no-python-downloads"><a href="#uv-format--no-python-downloads"><code>--no-python-downloads</code></a></dt><dd><p>Disable automatic downloads of Python.</p>
 </dd><dt id="uv-format--offline"><a href="#uv-format--offline"><code>--offline</code></a></dt><dd><p>Disable network access [env: UV_OFFLINE=]</p>
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 </dd><dt id="uv-format--project"><a href="#uv-format--project"><code>--project</code></a> <i>project</i></dt><dd><p>Discover a project in the given directory.</p>
@@ -8664,7 +8664,7 @@ uv will exit with an error.</p>
 <p>For example, spinners or progress bars.</p>
 </dd><dt id="uv-python-find--no-project"><a href="#uv-python-find--no-project"><code>--no-project</code></a>, <code>--no_workspace</code></dt><dd><p>Avoid discovering a project or workspace.</p>
 <p>Otherwise, when no request is provided, the Python requirement of a project in the current directory or parent directories will be used.</p>
-</dd><dt id="uv-python-find--no-python-downloads"><a href="#uv-python-find--no-python-downloads"><code>--no-python-downloads</code></a></dt><dd><p>Disable automatic downloads of Python.</p>
+<p>May also be set with the <code>UV_NO_PROJECT</code> environment variable.</p></dd><dt id="uv-python-find--no-python-downloads"><a href="#uv-python-find--no-python-downloads"><code>--no-python-downloads</code></a></dt><dd><p>Disable automatic downloads of Python.</p>
 </dd><dt id="uv-python-find--offline"><a href="#uv-python-find--offline"><code>--offline</code></a></dt><dd><p>Disable network access [env: UV_OFFLINE=]</p>
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 </dd><dt id="uv-python-find--project"><a href="#uv-python-find--project"><code>--project</code></a> <i>project</i></dt><dd><p>Discover a project in the given directory.</p>
@@ -8742,7 +8742,7 @@ uv will exit with an error.</p>
 <p>For example, spinners or progress bars.</p>
 </dd><dt id="uv-python-pin--no-project"><a href="#uv-python-pin--no-project"><code>--no-project</code></a>, <code>--no-workspace</code></dt><dd><p>Avoid validating the Python pin is compatible with the project or workspace.</p>
 <p>By default, a project or workspace is discovered in the current directory or any parent directory. If a workspace is found, the Python pin is validated against the workspace's <code>requires-python</code> constraint.</p>
-</dd><dt id="uv-python-pin--no-python-downloads"><a href="#uv-python-pin--no-python-downloads"><code>--no-python-downloads</code></a></dt><dd><p>Disable automatic downloads of Python.</p>
+<p>May also be set with the <code>UV_NO_PROJECT</code> environment variable.</p></dd><dt id="uv-python-pin--no-python-downloads"><a href="#uv-python-pin--no-python-downloads"><code>--no-python-downloads</code></a></dt><dd><p>Disable automatic downloads of Python.</p>
 </dd><dt id="uv-python-pin--offline"><a href="#uv-python-pin--offline"><code>--offline</code></a></dt><dd><p>Disable network access [env: UV_OFFLINE=]</p>
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 </dd><dt id="uv-python-pin--project"><a href="#uv-python-pin--project"><code>--project</code></a> <i>project</i></dt><dd><p>Discover a project in the given directory.</p>
@@ -8750,7 +8750,8 @@ uv will exit with an error.</p>
 <p>Other command-line arguments (such as relative paths) will be resolved relative to the current working directory.</p>
 <p>See <code>--directory</code> to change the working directory entirely.</p>
 <p>This setting has no effect when used in the <code>uv pip</code> interface.</p>
-<p>May also be set with the <code>UV_PROJECT</code> environment variable.</p></dd><dt id="uv-python-pin--quiet"><a href="#uv-python-pin--quiet"><code>--quiet</code></a>, <code>-q</code></dt><dd><p>Use quiet output.</p>
+<p>May also be set with the <code>UV_PROJECT</code> environment variable.</p></dd><dt id="uv-python-pin--python-downloads-json-url"><a href="#uv-python-pin--python-downloads-json-url"><code>--python-downloads-json-url</code></a> <i>python-downloads-json-url</i></dt><dd><p>URL pointing to JSON of custom Python installations</p>
+</dd><dt id="uv-python-pin--quiet"><a href="#uv-python-pin--quiet"><code>--quiet</code></a>, <code>-q</code></dt><dd><p>Use quiet output.</p>
 <p>Repeating this option, e.g., <code>-qq</code>, will enable a silent mode in which uv will write no output to stdout.</p>
 </dd><dt id="uv-python-pin--resolved"><a href="#uv-python-pin--resolved"><code>--resolved</code></a></dt><dd><p>Write the resolved Python interpreter path instead of the request.</p>
 <p>Ensures that the exact same interpreter is used.</p>
@@ -10551,7 +10552,7 @@ Python environment if no virtual environment is found.</p>
 <p>For example, spinners or progress bars.</p>
 </dd><dt id="uv-venv--no-project"><a href="#uv-venv--no-project"><code>--no-project</code></a>, <code>--no-workspace</code></dt><dd><p>Avoid discovering a project or workspace.</p>
 <p>By default, uv searches for projects in the current directory or any parent directory to determine the default path of the virtual environment and check for Python version constraints, if any.</p>
-</dd><dt id="uv-venv--no-python-downloads"><a href="#uv-venv--no-python-downloads"><code>--no-python-downloads</code></a></dt><dd><p>Disable automatic downloads of Python.</p>
+<p>May also be set with the <code>UV_NO_PROJECT</code> environment variable.</p></dd><dt id="uv-venv--no-python-downloads"><a href="#uv-venv--no-python-downloads"><code>--no-python-downloads</code></a></dt><dd><p>Disable automatic downloads of Python.</p>
 </dd><dt id="uv-venv--offline"><a href="#uv-venv--offline"><code>--offline</code></a></dt><dd><p>Disable network access [env: UV_OFFLINE=]</p>
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 </dd><dt id="uv-venv--project"><a href="#uv-venv--project"><code>--project</code></a> <i>project</i></dt><dd><p>Discover a project in the given directory.</p>

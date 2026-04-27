@@ -428,6 +428,12 @@ added in `0.2.28`
 
 Equivalent to the `--no-progress` command-line argument. Disables all progress output. For example, spinners and progress bars.
 
+### [`UV_NO_PROJECT`](#uv_no_project)
+
+added in `0.11.8`
+
+Equivalent to the `--no-project` command-line argument.
+
 ### [`UV_NO_SOURCES`](#uv_no_sources)
 
 added in `0.9.8`
@@ -628,6 +634,14 @@ added in `0.8.0`
 
 Whether to install the Python executable into the Windows registry.
 
+### [`UV_PYTHON_NO_REGISTRY`](#uv_python_no_registry)
+
+added in `0.11.8`
+
+Disable use of the Windows registry for Python discovery and registration.
+
+When set, uv will not discover Python interpreters from the Windows registry or Microsoft Store locations, and managed Python installations will not be registered in the Windows registry.
+
 ### [`UV_PYTHON_PREFERENCE`](#uv_python_preference)
 
 added in `0.3.2`
@@ -649,6 +663,14 @@ added in `0.8.14`
 Pin managed PyPy versions to a specific build version.
 
 For PyPy, this should be the PyPy version (e.g., "7.3.20").
+
+### [`UV_PYTHON_SEARCH_PATH`](#uv_python_search_path)
+
+added in `0.11.8`
+
+Used to override `PATH` for Python executable discovery.
+
+When set, uv will search for Python interpreters in the directories specified by this variable instead of `PATH`.
 
 ### [`UV_REQUEST_TIMEOUT`](#uv_request_timeout)
 

@@ -230,7 +230,7 @@ If an index is marked as `explicit = true`, it will be used exclusively for the 
 ```
 [[tool.uv.index]]
 name = "pytorch"
-url = "https://download.pytorch.org/whl/cu121"
+url = "https://download.pytorch.org/whl/cu130"
 explicit = true
 
 [tool.uv.sources]
@@ -250,7 +250,7 @@ pyproject.toml
 ```
 [[tool.uv.index]]
 name = "pytorch"
-url = "https://download.pytorch.org/whl/cu121"
+url = "https://download.pytorch.org/whl/cu130"
 ```
 
 ______________________________________________________________________
@@ -1209,7 +1209,7 @@ If an index is marked as `explicit = true`, it will be used exclusively for thos
 ```
 [[tool.uv.index]]
 name = "pytorch"
-url = "https://download.pytorch.org/whl/cu121"
+url = "https://download.pytorch.org/whl/cu130"
 explicit = true
 
 [tool.uv.sources]
@@ -1227,13 +1227,13 @@ If an index is marked as `default = true`, it will be moved to the end of the pr
 ```
 [[tool.uv.index]]
 name = "pytorch"
-url = "https://download.pytorch.org/whl/cu121"
+url = "https://download.pytorch.org/whl/cu130"
 ```
 
 ```
 [[tool.uv.index]]
 name = "pytorch"
-url = "https://download.pytorch.org/whl/cu121"
+url = "https://download.pytorch.org/whl/cu130"
 ```
 
 ______________________________________________________________________

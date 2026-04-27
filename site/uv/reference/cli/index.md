@@ -1146,6 +1146,8 @@ For example, spinners or progress bars.
 Instead of searching for projects in the current directory and parent directories, run in an isolated, ephemeral environment populated by the `--with` requirements.
 
 If a virtual environment is active or found in a current or parent directory, it will be used as if there was no project or workspace.
+
+May also be set with the `UV_NO_PROJECT` environment variable.
 ```
 
 [`--no-python-downloads`](#uv-run--no-python-downloads) : Disable automatic downloads of Python.
@@ -5458,6 +5460,8 @@ For example, spinners or progress bars.
 
 ```
 Instead of running the formatter in the context of the current project, run it in the context of the current directory. This is useful when the current directory is not a project.
+
+May also be set with the `UV_NO_PROJECT` environment variable.
 ```
 
 [`--no-python-downloads`](#uv-format--no-python-downloads) : Disable automatic downloads of Python.
@@ -9174,6 +9178,8 @@ For example, spinners or progress bars.
 
 ```
 Otherwise, when no request is provided, the Python requirement of a project in the current directory or parent directories will be used.
+
+May also be set with the `UV_NO_PROJECT` environment variable.
 ```
 
 [`--no-python-downloads`](#uv-python-find--no-python-downloads) : Disable automatic downloads of Python.
@@ -9368,6 +9374,8 @@ For example, spinners or progress bars.
 
 ```
 By default, a project or workspace is discovered in the current directory or any parent directory. If a workspace is found, the Python pin is validated against the workspace's `requires-python` constraint.
+
+May also be set with the `UV_NO_PROJECT` environment variable.
 ```
 
 [`--no-python-downloads`](#uv-python-pin--no-python-downloads) : Disable automatic downloads of Python.
@@ -9391,6 +9399,8 @@ This setting has no effect when used in the `uv pip` interface.
 
 May also be set with the `UV_PROJECT` environment variable.
 ```
+
+[`--python-downloads-json-url`](#uv-python-pin--python-downloads-json-url) *python-downloads-json-url* : URL pointing to JSON of custom Python installations
 
 [`--quiet`](#uv-python-pin--quiet), `-q` : Use quiet output.
 
@@ -13447,6 +13457,8 @@ For example, spinners or progress bars.
 
 ```
 By default, uv searches for projects in the current directory or any parent directory to determine the default path of the virtual environment and check for Python version constraints, if any.
+
+May also be set with the `UV_NO_PROJECT` environment variable.
 ```
 
 [`--no-python-downloads`](#uv-venv--no-python-downloads) : Disable automatic downloads of Python.
