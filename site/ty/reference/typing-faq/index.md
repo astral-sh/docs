@@ -17,7 +17,7 @@ reveal_type(MissingClass)  # Unknown
 
 ```
 
-ty also uses unions with `Unknown` to maintain the [gradual guarantee](../../features/type-system/#gradual-guarantee), which helps avoid false positive errors in untyped code while still providing useful type information where possible.
+ty also uses unions with `Unknown` to avoid false positive errors in untyped code while still providing useful type information where possible.
 
 For example, consider the following untyped `Message` class (which could come from a third-party dependency that you have no control over). ty treats the `data` attribute as having type `Unknown | None`, since there is no type annotation that restricts it further. The `Unknown` in the union allows ty to avoid raising errors on the `msg.data = …` assignment. On the other hand, the `None` in the union reflects the fact that `data` *could* possibly be `None`, and requires code that uses `msg.data` to handle that case explicitly.
 
