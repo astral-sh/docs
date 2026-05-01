@@ -232,7 +232,7 @@ See also the [discussion here](https://docs.astral.sh/ty/features/type-system/#t
 
 ## [Does ty have a strict mode?](#does-ty-have-a-strict-mode)
 
-Not yet. A stricter inference mode is tracked in [this issue](https://github.com/astral-sh/ty/issues/1240). In the meantime, you can consider using Ruff's [`flake8-annotations` rules](https://docs.astral.sh/ruff/rules/#flake8-annotations-ann) to enforce more explicit type annotations in your code.
+Not yet. A stricter inference mode is tracked in [this issue](https://github.com/astral-sh/ty/issues/527). In the meantime, you can consider using Ruff's [`flake8-annotations` rules](https://docs.astral.sh/ruff/rules/#flake8-annotations-ann) to enforce more explicit type annotations in your code.
 
 ## [Why doesn't ty warn about missing type annotations?](#why-doesnt-ty-warn-about-missing-type-annotations)
 
