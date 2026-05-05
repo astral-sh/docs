@@ -278,7 +278,7 @@ Equivalent to the `--keyring-provider` command-line argument. If set, uv will us
 
 added in `0.7.22`
 
-Overrides the environment-determined libc on linux systems when filling in the current platform within Python version requests. Options are: `gnu`, `gnueabi`, `gnueabihf`, `musl`, and `none`.
+Overrides the environment-determined libc on linux systems when filling in the current platform within Python version requests. Options are: `gnu`, `gnueabi`, `gnueabihf`, `musl`, `musleabi`, `musleabihf`, and `none`.
 
 ### [`UV_LINK_MODE`](#uv_link_mode)
 
@@ -318,7 +318,7 @@ Require use of uv-managed Python versions.
 
 added in `0.1.19`
 
-Equivalent to the `--native-tls` command-line argument. If set to `true`, uv will load TLS certificates from the platform's native certificate store instead of the bundled Mozilla root certificates.
+Equivalent to the `--native-tls` command-line argument. If set to `true`, uv will load TLS certificates from the platform's native certificate store instead of the bundled Mozilla root certificates. (Deprecated: use `UV_SYSTEM_CERTS` instead.)
 
 ### [`UV_NO_BINARY`](#uv_no_binary)
 

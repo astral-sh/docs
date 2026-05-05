@@ -22,7 +22,7 @@ The project includes a `pyproject.toml`, a sample file (`main.py`), a readme, an
 
 ```
 $ tree example-app
-example-app
+example-app/
 ├── .python-version
 ├── README.md
 ├── main.py
@@ -82,7 +82,7 @@ The source code is moved into a `src` directory with a module directory and an `
 
 ```
 $ tree example-pkg
-example-pkg
+example-pkg/
 ├── .python-version
 ├── README.md
 ├── pyproject.toml
@@ -108,7 +108,7 @@ dependencies = []
 example-pkg = "example_pkg:main"
 
 [build-system]
-requires = ["uv_build>=0.11.8,<0.12"]
+requires = ["uv_build>=0.11.9,<0.12"]
 build-backend = "uv_build"
 ```
 
@@ -133,7 +133,7 @@ dependencies = []
 example-pkg = "example_pkg:main"
 
 [build-system]
-requires = ["uv_build>=0.11.8,<0.12"]
+requires = ["uv_build>=0.11.9,<0.12"]
 build-backend = "uv_build"
 ```
 
@@ -163,7 +163,7 @@ As with a [packaged application](#packaged-applications), a `src` layout is used
 
 ```
 $ tree example-lib
-example-lib
+example-lib/
 ├── .python-version
 ├── README.md
 ├── pyproject.toml
@@ -191,7 +191,7 @@ requires-python = ">=3.11"
 dependencies = []
 
 [build-system]
-requires = ["uv_build>=0.11.8,<0.12"]
+requires = ["uv_build>=0.11.9,<0.12"]
 build-backend = "uv_build"
 ```
 
@@ -239,7 +239,7 @@ The project contains a `Cargo.toml` and a `lib.rs` file in addition to the typic
 
 ```
 $ tree example-ext
-example-ext
+example-ext/
 ├── .python-version
 ├── Cargo.toml
 ├── README.md
