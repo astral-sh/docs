@@ -11521,6 +11521,8 @@ May also be set with the `UV_NO_CONFIG` environment variable.
 
 [`--no-deps`](#uv-pip-install--no-deps) : Ignore package dependencies, instead only installing those packages explicitly listed on the command line or in the requirements files
 
+[`--no-editable`](#uv-pip-install--no-editable) : Install any editable dependencies as non-editable [env: UV_NO_EDITABLE=]
+
 [`--no-index`](#uv-pip-install--no-index) : Ignore the registry index (e.g., PyPI), instead relying on direct URL dependencies and those provided via `--find-links`
 
 [`--no-managed-python`](#uv-pip-install--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
