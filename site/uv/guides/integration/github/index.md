@@ -42,7 +42,7 @@ jobs:
         uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
         with:
           # Install a specific version of uv.
-          version: "0.11.11"
+          version: "0.11.12"
 ```
 
 ## [Setting up Python](#setting-up-python)
@@ -342,10 +342,10 @@ In the example workflow, we use a script to test that the source distribution an
 
 First, add a release workflow to your project:
 
-.github/workflows/publish.yml
+.github/workflows/release.yml
 
 ```
-name: "Publish"
+name: "Publish release to PyPI"
 
 on:
   push:
