@@ -2,6 +2,18 @@
 
 uv defines and respects the following environment variables:
 
+### [`UV_ASTRAL_MIRROR_URL`](#uv_astral_mirror_url)
+
+added in `0.11.14`
+
+Replaces the `https://releases.astral.sh` base URL for all Astral-mirrored metadata and artifact downloads.
+
+When set, uv uses only the configured mirror URL and does not fall back to GitHub or raw GitHub. Path components in the URL are preserved: only trailing slashes are trimmed before appending the normal path suffix (e.g., `/github/versions/main/v1/uv.ndjson`).
+
+This is useful for proxy repositories (e.g., Artifactory, Nexus) that mirror `releases.astral.sh`.
+
+More-specific sources take precedence: [`UV_PYTHON_INSTALL_MIRROR`](Self::UV_PYTHON_INSTALL_MIRROR) and `python-install-mirror` override this variable for CPython downloads, while [`UV_INSTALLER_GITHUB_BASE_URL`](Self::UV_INSTALLER_GITHUB_BASE_URL) and [`UV_INSTALLER_GHE_BASE_URL`](Self::UV_INSTALLER_GHE_BASE_URL) override this variable for `uv self update`.
+
 ### [`UV_BREAK_SYSTEM_PACKAGES`](#uv_break_system_packages)
 
 added in `0.1.32`
@@ -250,11 +262,15 @@ added in `0.5.0`
 
 The URL from which to download uv using the standalone installer and `self update` feature, in lieu of the default GitHub Enterprise URL.
 
+This more-specific installer source takes precedence over [`UV_ASTRAL_MIRROR_URL`](Self::UV_ASTRAL_MIRROR_URL) for `uv self update`.
+
 ### [`UV_INSTALLER_GITHUB_BASE_URL`](#uv_installer_github_base_url)
 
 added in `0.5.0`
 
 The URL from which to download uv using the standalone installer and `self update` feature, in lieu of the default GitHub URL.
+
+This more-specific installer source takes precedence over [`UV_ASTRAL_MIRROR_URL`](Self::UV_ASTRAL_MIRROR_URL) for `uv self update`.
 
 ### [`UV_INSTALL_DIR`](#uv_install_dir)
 
@@ -627,6 +643,8 @@ added in `0.2.35`
 Managed Python installations are downloaded from the Astral [`python-build-standalone`](https://github.com/astral-sh/python-build-standalone) project.
 
 This variable can be set to a mirror URL to use a different source for Python installations. The provided URL will replace `https://github.com/astral-sh/python-build-standalone/releases/download` in, e.g., `https://github.com/astral-sh/python-build-standalone/releases/download/20240713/cpython-3.12.4%2B20240713-aarch64-apple-darwin-install_only.tar.gz`. Distributions can be read from a local directory by using the `file://` URL scheme.
+
+This more-specific mirror takes precedence over [`UV_ASTRAL_MIRROR_URL`](Self::UV_ASTRAL_MIRROR_URL) for CPython downloads.
 
 ### [`UV_PYTHON_INSTALL_REGISTRY`](#uv_python_install_registry)
 

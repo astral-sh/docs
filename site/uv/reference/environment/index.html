@@ -2762,6 +2762,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#uv_astral_mirror_url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_ASTRAL_MIRROR_URL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#uv_break_system_packages" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5492,6 +5503,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#uv_astral_mirror_url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UV_ASTRAL_MIRROR_URL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#uv_break_system_packages" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -7679,6 +7701,22 @@
 
 <h1 id="environment-variables"><a class="toclink" href="#environment-variables">Environment variables</a></h1>
 <p>uv defines and respects the following environment variables:</p>
+<h3 id="uv_astral_mirror_url"><a class="toclink" href="#uv_astral_mirror_url"><code>UV_ASTRAL_MIRROR_URL</code></a></h3>
+<p><small class="added-in">added in <code>0.11.14</code></small></p>
+<p>Replaces the <code>https://releases.astral.sh</code> base URL for all Astral-mirrored
+metadata and artifact downloads.</p>
+<p>When set, uv uses only the configured mirror URL and does not fall back to
+GitHub or raw GitHub. Path components in the URL are preserved: only
+trailing slashes are trimmed before appending the normal path suffix
+(e.g., <code>/github/versions/main/v1/uv.ndjson</code>).</p>
+<p>This is useful for proxy repositories (e.g., Artifactory, Nexus) that
+mirror <code>releases.astral.sh</code>.</p>
+<p>More-specific sources take precedence:
+<a href="Self::UV_PYTHON_INSTALL_MIRROR"><code>UV_PYTHON_INSTALL_MIRROR</code></a> and
+<code>python-install-mirror</code> override this variable for CPython downloads, while
+<a href="Self::UV_INSTALLER_GITHUB_BASE_URL"><code>UV_INSTALLER_GITHUB_BASE_URL</code></a> and
+<a href="Self::UV_INSTALLER_GHE_BASE_URL"><code>UV_INSTALLER_GHE_BASE_URL</code></a> override this
+variable for <code>uv self update</code>.</p>
 <h3 id="uv_break_system_packages"><a class="toclink" href="#uv_break_system_packages"><code>UV_BREAK_SYSTEM_PACKAGES</code></a></h3>
 <p><small class="added-in">added in <code>0.1.32</code></small></p>
 <p>Equivalent to the <code>--break-system-packages</code> command-line argument. If set to <code>true</code>,
@@ -7843,10 +7881,14 @@ filing an issue with the package maintainer.</p>
 <p><small class="added-in">added in <code>0.5.0</code></small></p>
 <p>The URL from which to download uv using the standalone installer and <code>self update</code> feature,
 in lieu of the default GitHub Enterprise URL.</p>
+<p>This more-specific installer source takes precedence over
+<a href="Self::UV_ASTRAL_MIRROR_URL"><code>UV_ASTRAL_MIRROR_URL</code></a> for <code>uv self update</code>.</p>
 <h3 id="uv_installer_github_base_url"><a class="toclink" href="#uv_installer_github_base_url"><code>UV_INSTALLER_GITHUB_BASE_URL</code></a></h3>
 <p><small class="added-in">added in <code>0.5.0</code></small></p>
 <p>The URL from which to download uv using the standalone installer and <code>self update</code> feature,
 in lieu of the default GitHub URL.</p>
+<p>This more-specific installer source takes precedence over
+<a href="Self::UV_ASTRAL_MIRROR_URL"><code>UV_ASTRAL_MIRROR_URL</code></a> for <code>uv self update</code>.</p>
 <h3 id="uv_install_dir"><a class="toclink" href="#uv_install_dir"><code>UV_INSTALL_DIR</code></a></h3>
 <p><small class="added-in">added in <code>0.5.0</code></small></p>
 <p>The directory in which to install uv using the standalone installer and <code>self update</code> feature.
@@ -8087,6 +8129,8 @@ of Python than the ones hardcoded into this build of <code>uv</code>.</p>
 The provided URL will replace <code>https://github.com/astral-sh/python-build-standalone/releases/download</code> in, e.g.,
 <code>https://github.com/astral-sh/python-build-standalone/releases/download/20240713/cpython-3.12.4%2B20240713-aarch64-apple-darwin-install_only.tar.gz</code>.
 Distributions can be read from a local directory by using the <code>file://</code> URL scheme.</p>
+<p>This more-specific mirror takes precedence over
+<a href="Self::UV_ASTRAL_MIRROR_URL"><code>UV_ASTRAL_MIRROR_URL</code></a> for CPython downloads.</p>
 <h3 id="uv_python_install_registry"><a class="toclink" href="#uv_python_install_registry"><code>UV_PYTHON_INSTALL_REGISTRY</code></a></h3>
 <p><small class="added-in">added in <code>0.8.0</code></small></p>
 <p>Whether to install the Python executable into the Windows registry.</p>

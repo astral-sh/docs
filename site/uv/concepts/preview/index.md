@@ -58,6 +58,7 @@ The following preview features are available:
 - `format`: Allows using `uv format`.
 - `index-exclude-newer`: Allows setting `exclude-newer` on configured package indexes.
 - `native-auth`: Enables storage of credentials in a [system-native location](../authentication/http/#the-uv-credentials-store).
+- `auth-helper`: Allows using `uv auth helper` as a credential helper for external tools.
 - `workspace-metadata`: Allows using `uv workspace metadata`.
 - `workspace-dir`: Allows using `uv workspace dir`.
 - `workspace-list`: Allows using `uv workspace list`.
