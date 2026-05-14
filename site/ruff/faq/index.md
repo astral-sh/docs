@@ -85,7 +85,7 @@ Beyond the rule set, Ruff's primary limitation vis-à-vis Flake8 is that it does
 
 ## [How does Ruff's linter compare to Pylint?](#how-does-ruffs-linter-compare-to-pylint)
 
-At time of writing, Pylint implements ~409 total rules, while Ruff implements over 800, of which at least 209 overlap with the Pylint rule set (see: [#970](https://github.com/astral-sh/ruff/issues/970)).
+At time of writing, Pylint implements ~409 total rules, while Ruff implements over 900, of which at least 209 overlap with the Pylint rule set (see: [#970](https://github.com/astral-sh/ruff/issues/970)).
 
 Pylint implements many rules that Ruff does not, and vice versa. For example, Pylint does more type inference than Ruff (e.g., Pylint can validate the number of arguments in a function call). As such, Ruff is not a "pure" drop-in replacement for Pylint (and vice versa), as they enforce different sets of rules.
 

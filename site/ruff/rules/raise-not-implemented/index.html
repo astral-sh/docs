@@ -871,10 +871,10 @@ Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.18">v0.0.1
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for <code>raise</code> statements that raise <code>NotImplemented</code>.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
-<p><code>NotImplemented</code> is an exception used by binary special methods to indicate
+<p><code>NotImplemented</code> is a special value returned by binary special methods to indicate
 that an operation is not implemented with respect to a particular type.</p>
-<p><code>NotImplemented</code> should not be raised directly. Instead, raise
-<code>NotImplementedError</code>, which is used to indicate that the method is
+<p>Because <code>NotImplemented</code> is not an exception, it cannot be raised.
+Raise <code>NotImplementedError</code> instead, which is used to indicate that a method is
 abstract or not implemented in the derived class.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Foo</span><span class="p">:</span>
