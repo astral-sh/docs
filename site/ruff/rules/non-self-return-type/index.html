@@ -864,7 +864,7 @@
 <p><small>
 Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.271">v0.0.271</a> ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27non-self-return-type%27%20OR%20PYI034)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_pyi%2Frules%2Fnon_self_return_type.rs#L115" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_pyi%2Frules%2Fnon_self_return_type.rs#L116" target="_blank">View source</a>
 </small></p>
 <p>Derived from the <strong><a href="../#flake8-pyi-pyi">flake8-pyi</a></strong> linter.</p>
 <p>Fix is sometimes available.</p>
@@ -895,7 +895,8 @@ able to infer the correct return type.</p>
 <p>Specifically, this check enforces that the return type of the following
 methods is <code>Self</code>:</p>
 <ol>
-<li>In-place binary-operation dunder methods, like <code>__iadd__</code>, <code>__imul__</code>, etc.</li>
+<li>In-place binary-operation dunder methods, like <code>__iadd__</code>, <code>__imul__</code>, etc.,
+    if those methods return the class name.</li>
 <li><code>__new__</code>, <code>__enter__</code>, and <code>__aenter__</code>, if those methods return the
     class name.</li>
 <li><code>__iter__</code> methods that return <code>Iterator</code>, despite the class inheriting

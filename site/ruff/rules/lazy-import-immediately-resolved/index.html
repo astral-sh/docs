@@ -6,35 +6,33 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="An extremely fast Python linter and code formatter, written in Rust.">
+        <meta name="description" content="Checks for lazy imports that are resolved immediately at module load time.">
       
       
         <meta name="author" content="charliermarsh">
       
       
-        <link rel="canonical" href="https://docs.astral.sh/ruff/">
+        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/lazy-import-immediately-resolved/">
       
       
-      
-        <link rel="next" href="tutorial/">
       
       
         
       
       
-      <link rel="icon" href="assets/favicon.ico">
+      <link rel="icon" href="../../assets/favicon.ico">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
 
-<title>Ruff</title>
+<title>lazy-import-immediately-resolved (TID255) | Ruff</title>
 
 
     
-      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -53,9 +51,9 @@
       
     
     
-      <link rel="stylesheet" href="stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -104,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#ruff" class="md-skip">
+        <a href="#lazy-import-immediately-resolved-tid255" class="md-skip">
           Skip to content
         </a>
       
@@ -120,9 +118,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="Ruff" class="md-header__button md-logo" aria-label="Ruff" data-md-component="logo">
+    <a href="../.." title="Ruff" class="md-header__button md-logo" aria-label="Ruff" data-md-component="logo">
       
-  <img src="assets/bolt.svg" alt="logo">
+  <img src="../../assets/bolt.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -139,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Overview
+              lazy-import-immediately-resolved (TID255)
             
           </span>
         </div>
@@ -267,9 +265,9 @@
 
 <nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="Ruff" class="md-nav__button md-logo" aria-label="Ruff" data-md-component="logo">
+    <a href="../.." title="Ruff" class="md-nav__button md-logo" aria-label="Ruff" data-md-component="logo">
       
-  <img src="assets/bolt.svg" alt="logo">
+  <img src="../../assets/bolt.svg" alt="logo">
 
     </a>
     Ruff
@@ -293,37 +291,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Overview
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -339,37 +310,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#testimonials" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Testimonials
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -381,7 +321,7 @@
   
   
     <li class="md-nav__item">
-      <a href="tutorial/" class="md-nav__link">
+      <a href="../../tutorial/" class="md-nav__link">
         
   
   
@@ -408,7 +348,7 @@
   
   
     <li class="md-nav__item">
-      <a href="installation/" class="md-nav__link">
+      <a href="../../installation/" class="md-nav__link">
         
   
   
@@ -435,7 +375,7 @@
   
   
     <li class="md-nav__item">
-      <a href="linter/" class="md-nav__link">
+      <a href="../../linter/" class="md-nav__link">
         
   
   
@@ -462,7 +402,7 @@
   
   
     <li class="md-nav__item">
-      <a href="formatter/" class="md-nav__link">
+      <a href="../../formatter/" class="md-nav__link">
         
   
   
@@ -536,7 +476,7 @@
   
   
     <li class="md-nav__item">
-      <a href="editors/" class="md-nav__link">
+      <a href="../../editors/" class="md-nav__link">
         
   
   
@@ -564,7 +504,7 @@
   
   
     <li class="md-nav__item">
-      <a href="editors/setup/" class="md-nav__link">
+      <a href="../../editors/setup/" class="md-nav__link">
         
   
   
@@ -592,7 +532,7 @@
   
   
     <li class="md-nav__item">
-      <a href="editors/features/" class="md-nav__link">
+      <a href="../../editors/features/" class="md-nav__link">
         
   
   
@@ -620,7 +560,7 @@
   
   
     <li class="md-nav__item">
-      <a href="editors/settings/" class="md-nav__link">
+      <a href="../../editors/settings/" class="md-nav__link">
         
   
   
@@ -648,7 +588,7 @@
   
   
     <li class="md-nav__item">
-      <a href="editors/migration/" class="md-nav__link">
+      <a href="../../editors/migration/" class="md-nav__link">
         
   
   
@@ -683,7 +623,7 @@
   
   
     <li class="md-nav__item">
-      <a href="configuration/" class="md-nav__link">
+      <a href="../../configuration/" class="md-nav__link">
         
   
   
@@ -710,7 +650,7 @@
   
   
     <li class="md-nav__item">
-      <a href="preview/" class="md-nav__link">
+      <a href="../../preview/" class="md-nav__link">
         
   
   
@@ -737,7 +677,7 @@
   
   
     <li class="md-nav__item">
-      <a href="rules/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -764,7 +704,7 @@
   
   
     <li class="md-nav__item">
-      <a href="settings/" class="md-nav__link">
+      <a href="../../settings/" class="md-nav__link">
         
   
   
@@ -791,7 +731,7 @@
   
   
     <li class="md-nav__item">
-      <a href="versioning/" class="md-nav__link">
+      <a href="../../versioning/" class="md-nav__link">
         
   
   
@@ -818,7 +758,7 @@
   
   
     <li class="md-nav__item">
-      <a href="integrations/" class="md-nav__link">
+      <a href="../../integrations/" class="md-nav__link">
         
   
   
@@ -845,7 +785,7 @@
   
   
     <li class="md-nav__item">
-      <a href="faq/" class="md-nav__link">
+      <a href="../../faq/" class="md-nav__link">
         
   
   
@@ -872,7 +812,7 @@
   
   
     <li class="md-nav__item">
-      <a href="contributing/" class="md-nav__link">
+      <a href="../../contributing/" class="md-nav__link">
         
   
   
@@ -920,101 +860,52 @@
   
 
 
-<h1 id="ruff"><a class="toclink" href="#ruff">Ruff</a></h1>
-<p><a href="https://github.com/astral-sh/ruff"><img alt="Ruff" src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json" /></a>
-<a href="https://pypi.python.org/pypi/ruff"><img alt="image" src="https://img.shields.io/pypi/v/ruff.svg" /></a>
-<a href="https://github.com/astral-sh/ruff/blob/main/LICENSE"><img alt="image" src="https://img.shields.io/pypi/l/ruff.svg" /></a>
-<a href="https://pypi.python.org/pypi/ruff"><img alt="image" src="https://img.shields.io/pypi/pyversions/ruff.svg" /></a>
-<a href="https://github.com/astral-sh/ruff/actions"><img alt="Actions status" src="https://github.com/astral-sh/ruff/workflows/CI/badge.svg" /></a>
-<a href="https://discord.com/invite/astral-sh"><img alt="Discord" src="https://img.shields.io/badge/Discord-%235865F2.svg?logo=discord&amp;logoColor=white" /></a></p>
-<p><a href="./"><strong>Docs</strong></a> | <a href="https://play.ruff.rs/"><strong>Playground</strong></a></p>
-<p>An extremely fast Python linter and code formatter, written in Rust.</p>
-<p align="center">
-  <img alt="Shows a bar chart with benchmark results." src="https://user-images.githubusercontent.com/1309177/232603516-4fb4892d-585c-4b20-b810-3db9161831e4.svg#only-light">
-</p>
-
-<p align="center">
-  <img alt="Shows a bar chart with benchmark results." src="https://user-images.githubusercontent.com/1309177/232603514-c95e9b0f-6b31-43de-9a80-9e844173fd6a.svg#only-dark">
-</p>
-
-<p align="center">
-  <i>Linting the CPython codebase from scratch.</i>
-</p>
-
-<ul>
-<li>⚡️ 10-100x faster than existing linters (like Flake8) and formatters (like Black)</li>
-<li>🐍 Installable via <code>pip</code></li>
-<li>🛠️ <code>pyproject.toml</code> support</li>
-<li>🤝 Python 3.14 compatibility</li>
-<li>⚖️ Drop-in parity with <a href="faq/#how-does-ruffs-linter-compare-to-flake8">Flake8</a>, isort, and <a href="faq/#how-does-ruffs-formatter-compare-to-black">Black</a></li>
-<li>📦 Built-in caching, to avoid re-analyzing unchanged files</li>
-<li>🔧 Fix support, for automatic error correction (e.g., automatically remove unused imports)</li>
-<li>📏 Over <a href="rules/">900 built-in rules</a>, with native re-implementations
-    of popular Flake8 plugins, like flake8-bugbear</li>
-<li>⌨️ First-party <a href="editors/">editor integrations</a> for <a href="https://github.com/astral-sh/ruff-vscode">VS Code</a> and <a href="editors/setup/">more</a></li>
-<li>🌎 Monorepo-friendly, with <a href="configuration/#config-file-discovery">hierarchical and cascading configuration</a></li>
-</ul>
-<p>Ruff aims to be orders of magnitude faster than alternative tools while integrating more
-functionality behind a single, common interface.</p>
-<p>Ruff can be used to replace <a href="https://pypi.org/project/flake8/">Flake8</a> (plus dozens of plugins),
-<a href="https://github.com/psf/black">Black</a>, <a href="https://pypi.org/project/isort/">isort</a>,
-<a href="https://pypi.org/project/pydocstyle/">pydocstyle</a>, <a href="https://pypi.org/project/pyupgrade/">pyupgrade</a>,
-<a href="https://pypi.org/project/autoflake/">autoflake</a>, and more, all while executing tens or hundreds of
-times faster than any individual tool.</p>
-<p>Ruff is extremely actively developed and used in major open-source projects like:</p>
-<ul>
-<li><a href="https://github.com/apache/airflow">Apache Airflow</a></li>
-<li><a href="https://github.com/apache/superset">Apache Superset</a></li>
-<li><a href="https://github.com/tiangolo/fastapi">FastAPI</a></li>
-<li><a href="https://github.com/huggingface/transformers">Hugging Face</a></li>
-<li><a href="https://github.com/pandas-dev/pandas">Pandas</a></li>
-<li><a href="https://github.com/scipy/scipy">SciPy</a></li>
-</ul>
-<p>...and <a href="https://github.com/astral-sh/ruff#whos-using-ruff">many more</a>.</p>
-<p>Ruff is backed by <a href="https://astral.sh">Astral</a>, the creators of
-<a href="https://github.com/astral-sh/uv">uv</a> and <a href="https://github.com/astral-sh/ty">ty</a>.</p>
-<p>Read the <a href="https://astral.sh/blog/announcing-astral-the-company-behind-ruff">launch
-post</a>, or the
-original <a href="https://notes.crmarsh.com/python-tooling-could-be-much-much-faster">project
-announcement</a>.</p>
-<h2 id="testimonials"><a class="toclink" href="#testimonials">Testimonials</a></h2>
-<p><a href="https://twitter.com/tiangolo/status/1591912354882764802"><strong>Sebastián Ramírez</strong></a>, creator
-of <a href="https://github.com/tiangolo/fastapi">FastAPI</a>:</p>
-<blockquote>
-<p>Ruff is so fast that sometimes I add an intentional bug in the code just to confirm it's actually
-running and checking the code.</p>
-</blockquote>
-<p><a href="https://twitter.com/schrockn/status/1612615862904827904"><strong>Nick Schrock</strong></a>, founder of <a href="https://www.elementl.com/">Elementl</a>,
-co-creator of <a href="https://graphql.org/">GraphQL</a>:</p>
-<blockquote>
-<p>Why is Ruff a gamechanger? Primarily because it is nearly 1000x faster. Literally. Not a typo. On
-our largest module (dagster itself, 250k LOC) pylint takes about 2.5 minutes, parallelized across 4
-cores on my M1. Running ruff against our <em>entire</em> codebase takes .4 seconds.</p>
-</blockquote>
-<p><a href="https://github.com/bokeh/bokeh/pull/12605"><strong>Bryan Van de Ven</strong></a>, co-creator
-of <a href="https://github.com/bokeh/bokeh/">Bokeh</a>, original author
-of <a href="https://docs.conda.io/en/latest/">Conda</a>:</p>
-<blockquote>
-<p>Ruff is ~150-200x faster than flake8 on my machine, scanning the whole repo takes ~0.2s instead of
-~20s. This is an enormous quality of life improvement for local dev. It's fast enough that I added
-it as an actual commit hook, which is terrific.</p>
-</blockquote>
-<p><a href="https://twitter.com/timothycrosley/status/1606420868514877440"><strong>Timothy Crosley</strong></a>,
-creator of <a href="https://github.com/PyCQA/isort">isort</a>:</p>
-<blockquote>
-<p>Just switched my first project to Ruff. Only one downside so far: it's so fast I couldn't believe
-it was working till I intentionally introduced some errors.</p>
-</blockquote>
-<p><a href="https://github.com/zulip/zulip/pull/23431#issuecomment-1302557034"><strong>Tim Abbott</strong></a>, lead developer of <a href="https://github.com/zulip/zulip">Zulip</a> (also <a href="https://github.com/astral-sh/ruff/issues/465#issuecomment-1317400028">here</a>):</p>
-<blockquote>
-<p>This is just ridiculously fast... <code>ruff</code> is amazing.</p>
-</blockquote>
+<h1 id="lazy-import-immediately-resolved-tid255"><a class="toclink" href="#lazy-import-immediately-resolved-tid255">lazy-import-immediately-resolved (TID255)</a></h1>
+<p><small>
+Preview (since <a href="https://github.com/astral-sh/ruff/releases/tag/0.15.13">0.15.13</a>) ·
+<a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27lazy-import-immediately-resolved%27%20OR%20TID255)" target="_blank">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_tidy_imports%2Frules%2Flazy_import_immediately_resolved.rs#L48" target="_blank">View source</a>
+</small></p>
+<p>Derived from the <strong><a href="../#flake8-tidy-imports-tid">flake8-tidy-imports</a></strong> linter.</p>
+<p>Fix is sometimes available.</p>
+<p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
+<p>Checks for lazy imports that are resolved immediately at module load time.</p>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
+<p>Python 3.15 adds support for <code>lazy import</code> and <code>lazy from ... import ...</code>,
+which defer the actual import work until the imported name is first used.</p>
+<p>When a lazily imported name is used immediately at module load time, the
+import is resolved eagerly, defeating the purpose of marking the import as
+lazy. This is commonly caused by using a lazily imported module in a module
+global or in a top-level class definition.</p>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">lazy</span> <span class="kn">import</span><span class="w"> </span><span class="nn">foo</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">class</span><span class="w"> </span><span class="nc">Bar</span><span class="p">(</span><span class="n">foo</span><span class="o">.</span><span class="n">Foo</span><span class="p">):</span> <span class="o">...</span>
+</code></pre></div>
+<p>Use instead:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">foo</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">class</span><span class="w"> </span><span class="nc">Bar</span><span class="p">(</span><span class="n">foo</span><span class="o">.</span><span class="n">Foo</span><span class="p">):</span> <span class="o">...</span>
+</code></pre></div>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
+<p>This rule's fix is marked as unsafe because converting a lazy import to an
+eager import changes when the imported module is executed, which can change
+runtime behavior if the module has import-time side effects.</p>
+<p>The fix is only available when the lazy import statement imports a single
+member, since removing <code>lazy</code> from a multi-member import would make every
+imported member eager, including names that may not be resolved immediately.</p>
 
 
 
 
 
 
+
+  
+  
 
 
 
@@ -1117,12 +1008,12 @@ it was working till I intentionally introduced some errors.</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.tracking", "content.code.annotate", "toc.integrate", "toc.follow", "navigation.path", "navigation.top", "content.code.copy", "content.tabs.link"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.tracking", "content.code.annotate", "toc.integrate", "toc.follow", "navigation.path", "navigation.top", "content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="js/extra.js"></script>
+        <script src="../../js/extra.js"></script>
       
     
   </body>

@@ -180,7 +180,7 @@ extend-select = ["E501"]
 
 ### [Rule Selection](#rule-selection)
 
-Ruff supports [over 800 lint rules](../rules/) split across over 50 built-in plugins, but determining the right set of rules will depend on your project's needs: some rules may be too strict, some are framework-specific, and so on.
+Ruff supports [over 900 lint rules](../rules/) split across over 50 built-in plugins, but determining the right set of rules will depend on your project's needs: some rules may be too strict, some are framework-specific, and so on.
 
 By default, Ruff enables Flake8's `F` rules, along with a subset of the `E` rules, omitting any stylistic rules that overlap with the use of a formatter, like `ruff format` or [Black](https://github.com/psf/black).
 
@@ -328,7 +328,7 @@ This tutorial has focused on Ruff's command-line interface, but Ruff can also be
 ```
 - repo: https://github.com/astral-sh/ruff-pre-commit
   # Ruff version.
-  rev: v0.15.12
+  rev: v0.15.13
   hooks:
     # Run the linter.
     - id: ruff-check

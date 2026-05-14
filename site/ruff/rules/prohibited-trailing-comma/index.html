@@ -864,7 +864,7 @@
 <p><small>
 Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.223">v0.0.223</a> ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27prohibited-trailing-comma%27%20OR%20COM819)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_commas%2Frules%2Ftrailing_commas.rs#L234" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_commas%2Frules%2Ftrailing_commas.rs#L237" target="_blank">View source</a>
 </small></p>
 <p>Derived from the <strong><a href="../#flake8-commas-com">flake8-commas</a></strong> linter.</p>
 <p>Fix is always available.</p>
@@ -880,8 +880,11 @@ as unnecessary.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">foo</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="formatter-compatibility"><a class="toclink" href="#formatter-compatibility">Formatter compatibility</a></h2>
-<p>We recommend against using this rule alongside the <a href="https://docs.astral.sh/ruff/formatter/">formatter</a>. The
-formatter enforces consistent use of trailing commas, making the rule redundant.</p>
+<p>We recommend against using this rule alongside the <a href="https://docs.astral.sh/ruff/formatter/">formatter</a>. With the
+default <code>format.skip-magic-trailing-comma = false</code>, trailing commas can be
+intentional: the formatter treats them as a signal to preserve multiline
+formatting. When set to <code>true</code>, the formatter removes those trailing commas
+where possible, making this rule redundant.</p>
 
 
 
