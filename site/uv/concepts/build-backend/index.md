@@ -22,7 +22,7 @@ pyproject.toml
 
 ```
 [build-system]
-requires = ["uv_build>=0.11.14,<0.12"]
+requires = ["uv_build>=0.11.15,<0.12"]
 build-backend = "uv_build"
 ```
 
@@ -182,7 +182,7 @@ By default, uv excludes `__pycache__`, `*.pyc`, and `*.pyo`.
 
 When building a source distribution, the following files and directories are included:
 
-- The `pyproject.toml`
+- The `pyproject.toml`. If uv detects TOML 1.1-only syntax, it issues a warning and automatically enables the `toml-backwards-compatibility` preview feature: the `pyproject.toml` is reformatted for backwards compatibility, and the original file is preserved as `pyproject.toml.orig`. Pass `--preview-feature toml-backwards-compatibility` to enable the feature explicitly and suppress the warning.
 - The [module](#modules) under [`tool.uv.build-backend.module-root`](../../reference/settings/#build-backend_module-root).
 - The files referenced by `project.license-files` and `project.readme`.
 - All directories under [`tool.uv.build-backend.data`](../../reference/settings/#build-backend_data).

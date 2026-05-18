@@ -5893,6 +5893,17 @@ The project and its dependencies will be omitted.
 May be provided multiple times. Implies `--no-default-groups`.
 ```
 
+[`--output-format`](#uv-audit--output-format) *output-format* : Select the output format
+
+```
+[default: text]
+
+Possible values:
+
+- `text`: Display the result in a human-readable format
+- `json`: Display the result in JSON format
+```
+
 [`--prerelease`](#uv-audit--prerelease) *prerelease* : The strategy to use when considering pre-release versions.
 
 ```

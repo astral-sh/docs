@@ -14,6 +14,12 @@ This is useful for proxy repositories (e.g., Artifactory, Nexus) that mirror `re
 
 More-specific sources take precedence: [`UV_PYTHON_INSTALL_MIRROR`](Self::UV_PYTHON_INSTALL_MIRROR) and `python-install-mirror` override this variable for CPython downloads, while [`UV_INSTALLER_GITHUB_BASE_URL`](Self::UV_INSTALLER_GITHUB_BASE_URL) and [`UV_INSTALLER_GHE_BASE_URL`](Self::UV_INSTALLER_GHE_BASE_URL) override this variable for `uv self update`.
 
+### [`UV_AZURE_ENDPOINT_URL`](#uv_azure_endpoint_url)
+
+added in `0.11.14`
+
+The URL to treat as an Azure Blob Storage endpoint. Requests to this endpoint will be signed using Azure credentials from the default credential chain, including Azure CLI credentials and workload identity.
+
 ### [`UV_BREAK_SYSTEM_PACKAGES`](#uv_break_system_packages)
 
 added in `0.1.32`
