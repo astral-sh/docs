@@ -131,6 +131,10 @@ By default, Ruff will write logs to stderr which will be available in Neovim's L
 To view the trace logs between Neovim and Ruff, set the log level for Neovim's LSP client to `debug`:
 
 ```
+vim.lsp.log.set_level('debug')
+```
+
+```
 vim.lsp.set_log_level('debug')
 ```
 
