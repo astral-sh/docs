@@ -1042,11 +1042,7 @@ The given packages will be built and installed from source. The resolver will st
 May also be set with the `UV_NO_BINARY` environment variable.
 ```
 
-[`--no-binary-package`](#uv-run--no-binary-package) *no-binary-package* : Don't install pre-built wheels for a specific package
-
-```
-May also be set with the `UV_NO_BINARY_PACKAGE` environment variable.
-```
+[`--no-binary-package`](#uv-run--no-binary-package) *no-binary-package* : Don't install pre-built wheels for a specific package \[env: `UV_NO_BINARY_PACKAGE`=\]
 
 [`--no-build`](#uv-run--no-build) : Don't build source distributions.
 
@@ -1070,11 +1066,7 @@ May also be set with the `UV_NO_BUILD_ISOLATION` environment variable.
 Assumes that the packages' build dependencies specified by PEP 518 are already installed.
 ```
 
-[`--no-build-package`](#uv-run--no-build-package) *no-build-package* : Don't build source distributions for a specific package
-
-```
-May also be set with the `UV_NO_BUILD_PACKAGE` environment variable.
-```
+[`--no-build-package`](#uv-run--no-build-package) *no-build-package* : Don't build source distributions for a specific package \[env: `UV_NO_BUILD_PACKAGE`=\]
 
 [`--no-cache`](#uv-run--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
@@ -1116,14 +1108,12 @@ This option is only available when running in a project.
 May be provided multiple times.
 ```
 
-[`--no-group`](#uv-run--no-group) *no-group* : Disable the specified dependency group.
+[`--no-group`](#uv-run--no-group) *no-group* : Disable the specified dependency group \[env: `UV_NO_GROUP`=\]
 
 ```
 This option always takes precedence over default groups, `--all-groups`, and `--group`.
 
 May be provided multiple times.
-
-May also be set with the `UV_NO_GROUP` environment variable.
 ```
 
 [`--no-index`](#uv-run--no-index) : Ignore the registry index (e.g., PyPI), instead relying on direct URL dependencies and those provided via `--find-links`
@@ -1158,11 +1148,7 @@ May also be set with the `UV_NO_PROJECT` environment variable.
 May also be set with the `UV_NO_SOURCES` environment variable.
 ```
 
-[`--no-sources-package`](#uv-run--no-sources-package) *no-sources-package* : Don't use sources from the `tool.uv.sources` table for the specified packages
-
-```
-May also be set with the `UV_NO_SOURCES_PACKAGE` environment variable.
-```
+[`--no-sources-package`](#uv-run--no-sources-package) *no-sources-package* : Don't use sources from the `tool.uv.sources` table for the specified packages \[env: `UV_NO_SOURCES_PACKAGE`=\]
 
 [`--no-sync`](#uv-run--no-sync) : Avoid syncing the virtual environment [env: UV_NO_SYNC=]
 
@@ -1977,11 +1963,7 @@ The given packages will be built and installed from source. The resolver will st
 May also be set with the `UV_NO_BINARY` environment variable.
 ```
 
-[`--no-binary-package`](#uv-add--no-binary-package) *no-binary-package* : Don't install pre-built wheels for a specific package
-
-```
-May also be set with the `UV_NO_BINARY_PACKAGE` environment variable.
-```
+[`--no-binary-package`](#uv-add--no-binary-package) *no-binary-package* : Don't install pre-built wheels for a specific package \[env: `UV_NO_BINARY_PACKAGE`=\]
 
 [`--no-build`](#uv-add--no-build) : Don't build source distributions.
 
@@ -2005,11 +1987,7 @@ May also be set with the `UV_NO_BUILD_ISOLATION` environment variable.
 Assumes that the packages' build dependencies specified by PEP 518 are already installed.
 ```
 
-[`--no-build-package`](#uv-add--no-build-package) *no-build-package* : Don't build source distributions for a specific package
-
-```
-May also be set with the `UV_NO_BUILD_PACKAGE` environment variable.
-```
+[`--no-build-package`](#uv-add--no-build-package) *no-build-package* : Don't build source distributions for a specific package \[env: `UV_NO_BUILD_PACKAGE`=\]
 
 [`--no-cache`](#uv-add--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
@@ -2079,11 +2057,7 @@ For example, spinners or progress bars.
 May also be set with the `UV_NO_SOURCES` environment variable.
 ```
 
-[`--no-sources-package`](#uv-add--no-sources-package) *no-sources-package* : Don't use sources from the `tool.uv.sources` table for the specified packages
-
-```
-May also be set with the `UV_NO_SOURCES_PACKAGE` environment variable.
-```
+[`--no-sources-package`](#uv-add--no-sources-package) *no-sources-package* : Don't use sources from the `tool.uv.sources` table for the specified packages \[env: `UV_NO_SOURCES_PACKAGE`=\]
 
 [`--no-sync`](#uv-add--no-sync) : Avoid syncing the virtual environment [env: UV_NO_SYNC=]
 
@@ -2496,11 +2470,7 @@ The given packages will be built and installed from source. The resolver will st
 May also be set with the `UV_NO_BINARY` environment variable.
 ```
 
-[`--no-binary-package`](#uv-remove--no-binary-package) *no-binary-package* : Don't install pre-built wheels for a specific package
-
-```
-May also be set with the `UV_NO_BINARY_PACKAGE` environment variable.
-```
+[`--no-binary-package`](#uv-remove--no-binary-package) *no-binary-package* : Don't install pre-built wheels for a specific package \[env: `UV_NO_BINARY_PACKAGE`=\]
 
 [`--no-build`](#uv-remove--no-build) : Don't build source distributions.
 
@@ -2524,11 +2494,7 @@ May also be set with the `UV_NO_BUILD_ISOLATION` environment variable.
 Assumes that the packages' build dependencies specified by PEP 518 are already installed.
 ```
 
-[`--no-build-package`](#uv-remove--no-build-package) *no-build-package* : Don't build source distributions for a specific package
-
-```
-May also be set with the `UV_NO_BUILD_PACKAGE` environment variable.
-```
+[`--no-build-package`](#uv-remove--no-build-package) *no-build-package* : Don't build source distributions for a specific package \[env: `UV_NO_BUILD_PACKAGE`=\]
 
 [`--no-cache`](#uv-remove--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
@@ -2566,11 +2532,7 @@ For example, spinners or progress bars.
 May also be set with the `UV_NO_SOURCES` environment variable.
 ```
 
-[`--no-sources-package`](#uv-remove--no-sources-package) *no-sources-package* : Don't use sources from the `tool.uv.sources` table for the specified packages
-
-```
-May also be set with the `UV_NO_SOURCES_PACKAGE` environment variable.
-```
+[`--no-sources-package`](#uv-remove--no-sources-package) *no-sources-package* : Don't use sources from the `tool.uv.sources` table for the specified packages \[env: `UV_NO_SOURCES_PACKAGE`=\]
 
 [`--no-sync`](#uv-remove--no-sync) : Avoid syncing the virtual environment after re-locking the project [env: UV_NO_SYNC=]
 
@@ -2955,11 +2917,7 @@ The given packages will be built and installed from source. The resolver will st
 May also be set with the `UV_NO_BINARY` environment variable.
 ```
 
-[`--no-binary-package`](#uv-version--no-binary-package) *no-binary-package* : Don't install pre-built wheels for a specific package
-
-```
-May also be set with the `UV_NO_BINARY_PACKAGE` environment variable.
-```
+[`--no-binary-package`](#uv-version--no-binary-package) *no-binary-package* : Don't install pre-built wheels for a specific package \[env: `UV_NO_BINARY_PACKAGE`=\]
 
 [`--no-build`](#uv-version--no-build) : Don't build source distributions.
 
@@ -2983,11 +2941,7 @@ May also be set with the `UV_NO_BUILD_ISOLATION` environment variable.
 Assumes that the packages' build dependencies specified by PEP 518 are already installed.
 ```
 
-[`--no-build-package`](#uv-version--no-build-package) *no-build-package* : Don't build source distributions for a specific package
-
-```
-May also be set with the `UV_NO_BUILD_PACKAGE` environment variable.
-```
+[`--no-build-package`](#uv-version--no-build-package) *no-build-package* : Don't build source distributions for a specific package \[env: `UV_NO_BUILD_PACKAGE`=\]
 
 [`--no-cache`](#uv-version--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
@@ -3025,11 +2979,7 @@ For example, spinners or progress bars.
 May also be set with the `UV_NO_SOURCES` environment variable.
 ```
 
-[`--no-sources-package`](#uv-version--no-sources-package) *no-sources-package* : Don't use sources from the `tool.uv.sources` table for the specified packages
-
-```
-May also be set with the `UV_NO_SOURCES_PACKAGE` environment variable.
-```
+[`--no-sources-package`](#uv-version--no-sources-package) *no-sources-package* : Don't use sources from the `tool.uv.sources` table for the specified packages \[env: `UV_NO_SOURCES_PACKAGE`=\]
 
 [`--no-sync`](#uv-version--no-sync) : Avoid syncing the virtual environment after re-locking the project [env: UV_NO_SYNC=]
 
@@ -3461,11 +3411,7 @@ The given packages will be built and installed from source. The resolver will st
 May also be set with the `UV_NO_BINARY` environment variable.
 ```
 
-[`--no-binary-package`](#uv-sync--no-binary-package) *no-binary-package* : Don't install pre-built wheels for a specific package
-
-```
-May also be set with the `UV_NO_BINARY_PACKAGE` environment variable.
-```
+[`--no-binary-package`](#uv-sync--no-binary-package) *no-binary-package* : Don't install pre-built wheels for a specific package \[env: `UV_NO_BINARY_PACKAGE`=\]
 
 [`--no-build`](#uv-sync--no-build) : Don't build source distributions.
 
@@ -3489,11 +3435,7 @@ May also be set with the `UV_NO_BUILD_ISOLATION` environment variable.
 Assumes that the packages' build dependencies specified by PEP 518 are already installed.
 ```
 
-[`--no-build-package`](#uv-sync--no-build-package) *no-build-package* : Don't build source distributions for a specific package
-
-```
-May also be set with the `UV_NO_BUILD_PACKAGE` environment variable.
-```
+[`--no-build-package`](#uv-sync--no-build-package) *no-build-package* : Don't build source distributions for a specific package \[env: `UV_NO_BUILD_PACKAGE`=\]
 
 [`--no-cache`](#uv-sync--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
@@ -3531,14 +3473,12 @@ This option is an alias of `--no-group dev`. See `--no-default-groups` to disabl
 May be provided multiple times.
 ```
 
-[`--no-group`](#uv-sync--no-group) *no-group* : Disable the specified dependency group.
+[`--no-group`](#uv-sync--no-group) *no-group* : Disable the specified dependency group \[env: `UV_NO_GROUP`=\]
 
 ```
 This option always takes precedence over default groups, `--all-groups`, and `--group`.
 
 May be provided multiple times.
-
-May also be set with the `UV_NO_GROUP` environment variable.
 ```
 
 [`--no-index`](#uv-sync--no-index) : Ignore the registry index (e.g., PyPI), instead relying on direct URL dependencies and those provided via `--find-links`
@@ -3595,11 +3535,7 @@ For example, spinners or progress bars.
 May also be set with the `UV_NO_SOURCES` environment variable.
 ```
 
-[`--no-sources-package`](#uv-sync--no-sources-package) *no-sources-package* : Don't use sources from the `tool.uv.sources` table for the specified packages
-
-```
-May also be set with the `UV_NO_SOURCES_PACKAGE` environment variable.
-```
+[`--no-sources-package`](#uv-sync--no-sources-package) *no-sources-package* : Don't use sources from the `tool.uv.sources` table for the specified packages \[env: `UV_NO_SOURCES_PACKAGE`=\]
 
 [`--offline`](#uv-sync--offline) : Disable network access [env: UV_OFFLINE=]
 
@@ -4048,11 +3984,7 @@ The given packages will be built and installed from source. The resolver will st
 May also be set with the `UV_NO_BINARY` environment variable.
 ```
 
-[`--no-binary-package`](#uv-lock--no-binary-package) *no-binary-package* : Don't install pre-built wheels for a specific package
-
-```
-May also be set with the `UV_NO_BINARY_PACKAGE` environment variable.
-```
+[`--no-binary-package`](#uv-lock--no-binary-package) *no-binary-package* : Don't install pre-built wheels for a specific package \[env: `UV_NO_BINARY_PACKAGE`=\]
 
 [`--no-build`](#uv-lock--no-build) : Don't build source distributions.
 
@@ -4076,11 +4008,7 @@ May also be set with the `UV_NO_BUILD_ISOLATION` environment variable.
 Assumes that the packages' build dependencies specified by PEP 518 are already installed.
 ```
 
-[`--no-build-package`](#uv-lock--no-build-package) *no-build-package* : Don't build source distributions for a specific package
-
-```
-May also be set with the `UV_NO_BUILD_PACKAGE` environment variable.
-```
+[`--no-build-package`](#uv-lock--no-build-package) *no-build-package* : Don't build source distributions for a specific package \[env: `UV_NO_BUILD_PACKAGE`=\]
 
 [`--no-cache`](#uv-lock--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
@@ -4118,11 +4046,7 @@ For example, spinners or progress bars.
 May also be set with the `UV_NO_SOURCES` environment variable.
 ```
 
-[`--no-sources-package`](#uv-lock--no-sources-package) *no-sources-package* : Don't use sources from the `tool.uv.sources` table for the specified packages
-
-```
-May also be set with the `UV_NO_SOURCES_PACKAGE` environment variable.
-```
+[`--no-sources-package`](#uv-lock--no-sources-package) *no-sources-package* : Don't use sources from the `tool.uv.sources` table for the specified packages \[env: `UV_NO_SOURCES_PACKAGE`=\]
 
 [`--offline`](#uv-lock--offline) : Disable network access [env: UV_OFFLINE=]
 
@@ -4509,11 +4433,7 @@ The given packages will be built and installed from source. The resolver will st
 May also be set with the `UV_NO_BINARY` environment variable.
 ```
 
-[`--no-binary-package`](#uv-export--no-binary-package) *no-binary-package* : Don't install pre-built wheels for a specific package
-
-```
-May also be set with the `UV_NO_BINARY_PACKAGE` environment variable.
-```
+[`--no-binary-package`](#uv-export--no-binary-package) *no-binary-package* : Don't install pre-built wheels for a specific package \[env: `UV_NO_BINARY_PACKAGE`=\]
 
 [`--no-build`](#uv-export--no-build) : Don't build source distributions.
 
@@ -4537,11 +4457,7 @@ May also be set with the `UV_NO_BUILD_ISOLATION` environment variable.
 Assumes that the packages' build dependencies specified by PEP 518 are already installed.
 ```
 
-[`--no-build-package`](#uv-export--no-build-package) *no-build-package* : Don't build source distributions for a specific package
-
-```
-May also be set with the `UV_NO_BUILD_PACKAGE` environment variable.
-```
+[`--no-build-package`](#uv-export--no-build-package) *no-build-package* : Don't build source distributions for a specific package \[env: `UV_NO_BUILD_PACKAGE`=\]
 
 [`--no-cache`](#uv-export--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
@@ -4611,14 +4527,12 @@ The inverse `--only-emit-workspace` can be used to emit *only* workspace members
 May be provided multiple times.
 ```
 
-[`--no-group`](#uv-export--no-group) *no-group* : Disable the specified dependency group.
+[`--no-group`](#uv-export--no-group) *no-group* : Disable the specified dependency group \[env: `UV_NO_GROUP`=\]
 
 ```
 This option always takes precedence over default groups, `--all-groups`, and `--group`.
 
 May be provided multiple times.
-
-May also be set with the `UV_NO_GROUP` environment variable.
 ```
 
 [`--no-hashes`](#uv-export--no-hashes) : Omit hashes in the generated output
@@ -4647,11 +4561,7 @@ For example, spinners or progress bars.
 May also be set with the `UV_NO_SOURCES` environment variable.
 ```
 
-[`--no-sources-package`](#uv-export--no-sources-package) *no-sources-package* : Don't use sources from the `tool.uv.sources` table for the specified packages
-
-```
-May also be set with the `UV_NO_SOURCES_PACKAGE` environment variable.
-```
+[`--no-sources-package`](#uv-export--no-sources-package) *no-sources-package* : Don't use sources from the `tool.uv.sources` table for the specified packages \[env: `UV_NO_SOURCES_PACKAGE`=\]
 
 [`--offline`](#uv-export--offline) : Disable network access [env: UV_OFFLINE=]
 
@@ -5036,11 +4946,7 @@ The given packages will be built and installed from source. The resolver will st
 May also be set with the `UV_NO_BINARY` environment variable.
 ```
 
-[`--no-binary-package`](#uv-tree--no-binary-package) *no-binary-package* : Don't install pre-built wheels for a specific package
-
-```
-May also be set with the `UV_NO_BINARY_PACKAGE` environment variable.
-```
+[`--no-binary-package`](#uv-tree--no-binary-package) *no-binary-package* : Don't install pre-built wheels for a specific package \[env: `UV_NO_BINARY_PACKAGE`=\]
 
 [`--no-build`](#uv-tree--no-build) : Don't build source distributions.
 
@@ -5064,11 +4970,7 @@ May also be set with the `UV_NO_BUILD_ISOLATION` environment variable.
 Assumes that the packages' build dependencies specified by PEP 518 are already installed.
 ```
 
-[`--no-build-package`](#uv-tree--no-build-package) *no-build-package* : Don't build source distributions for a specific package
-
-```
-May also be set with the `UV_NO_BUILD_PACKAGE` environment variable.
-```
+[`--no-build-package`](#uv-tree--no-build-package) *no-build-package* : Don't build source distributions for a specific package \[env: `UV_NO_BUILD_PACKAGE`=\]
 
 [`--no-cache`](#uv-tree--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
@@ -5100,14 +5002,12 @@ May also be set with the `UV_NO_DEFAULT_GROUPS` environment variable.
 This option is an alias of `--no-group dev`. See `--no-default-groups` to disable all default groups instead.
 ```
 
-[`--no-group`](#uv-tree--no-group) *no-group* : Disable the specified dependency group.
+[`--no-group`](#uv-tree--no-group) *no-group* : Disable the specified dependency group \[env: `UV_NO_GROUP`=\]
 
 ```
 This option always takes precedence over default groups, `--all-groups`, and `--group`.
 
 May be provided multiple times.
-
-May also be set with the `UV_NO_GROUP` environment variable.
 ```
 
 [`--no-index`](#uv-tree--no-index) : Ignore the registry index (e.g., PyPI), instead relying on direct URL dependencies and those provided via `--find-links`
@@ -5132,11 +5032,7 @@ For example, spinners or progress bars.
 May also be set with the `UV_NO_SOURCES` environment variable.
 ```
 
-[`--no-sources-package`](#uv-tree--no-sources-package) *no-sources-package* : Don't use sources from the `tool.uv.sources` table for the specified packages
-
-```
-May also be set with the `UV_NO_SOURCES_PACKAGE` environment variable.
-```
+[`--no-sources-package`](#uv-tree--no-sources-package) *no-sources-package* : Don't use sources from the `tool.uv.sources` table for the specified packages \[env: `UV_NO_SOURCES_PACKAGE`=\]
 
 [`--offline`](#uv-tree--offline) : Disable network access [env: UV_OFFLINE=]
 
@@ -5767,11 +5663,7 @@ The given packages will be built and installed from source. The resolver will st
 May also be set with the `UV_NO_BINARY` environment variable.
 ```
 
-[`--no-binary-package`](#uv-audit--no-binary-package) *no-binary-package* : Don't install pre-built wheels for a specific package
-
-```
-May also be set with the `UV_NO_BINARY_PACKAGE` environment variable.
-```
+[`--no-binary-package`](#uv-audit--no-binary-package) *no-binary-package* : Don't install pre-built wheels for a specific package \[env: `UV_NO_BINARY_PACKAGE`=\]
 
 [`--no-build`](#uv-audit--no-build) : Don't build source distributions.
 
@@ -5795,11 +5687,7 @@ May also be set with the `UV_NO_BUILD_ISOLATION` environment variable.
 Assumes that the packages' build dependencies specified by PEP 518 are already installed.
 ```
 
-[`--no-build-package`](#uv-audit--no-build-package) *no-build-package* : Don't build source distributions for a specific package
-
-```
-May also be set with the `UV_NO_BUILD_PACKAGE` environment variable.
-```
+[`--no-build-package`](#uv-audit--no-build-package) *no-build-package* : Don't build source distributions for a specific package \[env: `UV_NO_BUILD_PACKAGE`=\]
 
 [`--no-cache`](#uv-audit--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
@@ -5835,12 +5723,10 @@ This option is only available when running in a project.
 May be provided multiple times.
 ```
 
-[`--no-group`](#uv-audit--no-group) *no-group* : Don't audit the specified dependency group.
+[`--no-group`](#uv-audit--no-group) *no-group* : Don't audit the specified dependency group \[env: `UV_NO_GROUP`=\]
 
 ```
 May be provided multiple times.
-
-May also be set with the `UV_NO_GROUP` environment variable.
 ```
 
 [`--no-index`](#uv-audit--no-index) : Ignore the registry index (e.g., PyPI), instead relying on direct URL dependencies and those provided via `--find-links`
@@ -5865,11 +5751,7 @@ For example, spinners or progress bars.
 May also be set with the `UV_NO_SOURCES` environment variable.
 ```
 
-[`--no-sources-package`](#uv-audit--no-sources-package) *no-sources-package* : Don't use sources from the `tool.uv.sources` table for the specified packages
-
-```
-May also be set with the `UV_NO_SOURCES_PACKAGE` environment variable.
-```
+[`--no-sources-package`](#uv-audit--no-sources-package) *no-sources-package* : Don't use sources from the `tool.uv.sources` table for the specified packages \[env: `UV_NO_SOURCES_PACKAGE`=\]
 
 [`--offline`](#uv-audit--offline) : Disable network access [env: UV_OFFLINE=]
 
@@ -6371,11 +6253,7 @@ The given packages will be built and installed from source. The resolver will st
 May also be set with the `UV_NO_BINARY` environment variable.
 ```
 
-[`--no-binary-package`](#uv-tool-run--no-binary-package) *no-binary-package* : Don't install pre-built wheels for a specific package
-
-```
-May also be set with the `UV_NO_BINARY_PACKAGE` environment variable.
-```
+[`--no-binary-package`](#uv-tool-run--no-binary-package) *no-binary-package* : Don't install pre-built wheels for a specific package \[env: `UV_NO_BINARY_PACKAGE`=\]
 
 [`--no-build`](#uv-tool-run--no-build) : Don't build source distributions.
 
@@ -6399,11 +6277,7 @@ May also be set with the `UV_NO_BUILD_ISOLATION` environment variable.
 Assumes that the packages' build dependencies specified by PEP 518 are already installed.
 ```
 
-[`--no-build-package`](#uv-tool-run--no-build-package) *no-build-package* : Don't build source distributions for a specific package
-
-```
-May also be set with the `UV_NO_BUILD_PACKAGE` environment variable.
-```
+[`--no-build-package`](#uv-tool-run--no-build-package) *no-build-package* : Don't build source distributions for a specific package \[env: `UV_NO_BUILD_PACKAGE`=\]
 
 [`--no-cache`](#uv-tool-run--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
@@ -6443,11 +6317,7 @@ For example, spinners or progress bars.
 May also be set with the `UV_NO_SOURCES` environment variable.
 ```
 
-[`--no-sources-package`](#uv-tool-run--no-sources-package) *no-sources-package* : Don't use sources from the `tool.uv.sources` table for the specified packages
-
-```
-May also be set with the `UV_NO_SOURCES_PACKAGE` environment variable.
-```
+[`--no-sources-package`](#uv-tool-run--no-sources-package) *no-sources-package* : Don't use sources from the `tool.uv.sources` table for the specified packages \[env: `UV_NO_SOURCES_PACKAGE`=\]
 
 [`--offline`](#uv-tool-run--offline) : Disable network access [env: UV_OFFLINE=]
 
@@ -6966,11 +6836,7 @@ The given packages will be built and installed from source. The resolver will st
 May also be set with the `UV_NO_BINARY` environment variable.
 ```
 
-[`--no-binary-package`](#uv-tool-install--no-binary-package) *no-binary-package* : Don't install pre-built wheels for a specific package
-
-```
-May also be set with the `UV_NO_BINARY_PACKAGE` environment variable.
-```
+[`--no-binary-package`](#uv-tool-install--no-binary-package) *no-binary-package* : Don't install pre-built wheels for a specific package \[env: `UV_NO_BINARY_PACKAGE`=\]
 
 [`--no-build`](#uv-tool-install--no-build) : Don't build source distributions.
 
@@ -6994,11 +6860,7 @@ May also be set with the `UV_NO_BUILD_ISOLATION` environment variable.
 Assumes that the packages' build dependencies specified by PEP 518 are already installed.
 ```
 
-[`--no-build-package`](#uv-tool-install--no-build-package) *no-build-package* : Don't build source distributions for a specific package
-
-```
-May also be set with the `UV_NO_BUILD_PACKAGE` environment variable.
-```
+[`--no-build-package`](#uv-tool-install--no-build-package) *no-build-package* : Don't build source distributions for a specific package \[env: `UV_NO_BUILD_PACKAGE`=\]
 
 [`--no-cache`](#uv-tool-install--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
@@ -7036,11 +6898,7 @@ For example, spinners or progress bars.
 May also be set with the `UV_NO_SOURCES` environment variable.
 ```
 
-[`--no-sources-package`](#uv-tool-install--no-sources-package) *no-sources-package* : Don't use sources from the `tool.uv.sources` table for the specified packages
-
-```
-May also be set with the `UV_NO_SOURCES_PACKAGE` environment variable.
-```
+[`--no-sources-package`](#uv-tool-install--no-sources-package) *no-sources-package* : Don't use sources from the `tool.uv.sources` table for the specified packages \[env: `UV_NO_SOURCES_PACKAGE`=\]
 
 [`--offline`](#uv-tool-install--offline) : Disable network access [env: UV_OFFLINE=]
 
@@ -7523,11 +7381,7 @@ The given packages will be built and installed from source. The resolver will st
 May also be set with the `UV_NO_BINARY` environment variable.
 ```
 
-[`--no-binary-package`](#uv-tool-upgrade--no-binary-package) *no-binary-package* : Don't install pre-built wheels for a specific package
-
-```
-May also be set with the `UV_NO_BINARY_PACKAGE` environment variable.
-```
+[`--no-binary-package`](#uv-tool-upgrade--no-binary-package) *no-binary-package* : Don't install pre-built wheels for a specific package \[env: `UV_NO_BINARY_PACKAGE`=\]
 
 [`--no-build`](#uv-tool-upgrade--no-build) : Don't build source distributions.
 
@@ -7551,11 +7405,7 @@ May also be set with the `UV_NO_BUILD_ISOLATION` environment variable.
 Assumes that the packages' build dependencies specified by PEP 518 are already installed.
 ```
 
-[`--no-build-package`](#uv-tool-upgrade--no-build-package) *no-build-package* : Don't build source distributions for a specific package
-
-```
-May also be set with the `UV_NO_BUILD_PACKAGE` environment variable.
-```
+[`--no-build-package`](#uv-tool-upgrade--no-build-package) *no-build-package* : Don't build source distributions for a specific package \[env: `UV_NO_BUILD_PACKAGE`=\]
 
 [`--no-cache`](#uv-tool-upgrade--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
@@ -7593,11 +7443,7 @@ For example, spinners or progress bars.
 May also be set with the `UV_NO_SOURCES` environment variable.
 ```
 
-[`--no-sources-package`](#uv-tool-upgrade--no-sources-package) *no-sources-package* : Don't use sources from the `tool.uv.sources` table for the specified packages
-
-```
-May also be set with the `UV_NO_SOURCES_PACKAGE` environment variable.
-```
+[`--no-sources-package`](#uv-tool-upgrade--no-sources-package) *no-sources-package* : Don't use sources from the `tool.uv.sources` table for the specified packages \[env: `UV_NO_SOURCES_PACKAGE`=\]
 
 [`--offline`](#uv-tool-upgrade--offline) : Disable network access [env: UV_OFFLINE=]
 
@@ -10316,11 +10162,7 @@ For example, spinners or progress bars.
 May also be set with the `UV_NO_SOURCES` environment variable.
 ```
 
-[`--no-sources-package`](#uv-pip-compile--no-sources-package) *no-sources-package* : Don't use sources from the `tool.uv.sources` table for the specified packages
-
-```
-May also be set with the `UV_NO_SOURCES_PACKAGE` environment variable.
-```
+[`--no-sources-package`](#uv-pip-compile--no-sources-package) *no-sources-package* : Don't use sources from the `tool.uv.sources` table for the specified packages \[env: `UV_NO_SOURCES_PACKAGE`=\]
 
 [`--no-strip-extras`](#uv-pip-compile--no-strip-extras) : Include extras in the output file.
 
@@ -10935,11 +10777,7 @@ For example, spinners or progress bars.
 May also be set with the `UV_NO_SOURCES` environment variable.
 ```
 
-[`--no-sources-package`](#uv-pip-sync--no-sources-package) *no-sources-package* : Don't use sources from the `tool.uv.sources` table for the specified packages
-
-```
-May also be set with the `UV_NO_SOURCES_PACKAGE` environment variable.
-```
+[`--no-sources-package`](#uv-pip-sync--no-sources-package) *no-sources-package* : Don't use sources from the `tool.uv.sources` table for the specified packages \[env: `UV_NO_SOURCES_PACKAGE`=\]
 
 [`--no-verify-hashes`](#uv-pip-sync--no-verify-hashes) : Disable validation of hashes in the requirements file.
 
@@ -11556,11 +11394,7 @@ For example, spinners or progress bars.
 May also be set with the `UV_NO_SOURCES` environment variable.
 ```
 
-[`--no-sources-package`](#uv-pip-install--no-sources-package) *no-sources-package* : Don't use sources from the `tool.uv.sources` table for the specified packages
-
-```
-May also be set with the `UV_NO_SOURCES_PACKAGE` environment variable.
-```
+[`--no-sources-package`](#uv-pip-install--no-sources-package) *no-sources-package* : Don't use sources from the `tool.uv.sources` table for the specified packages \[env: `UV_NO_SOURCES_PACKAGE`=\]
 
 [`--no-verify-hashes`](#uv-pip-install--no-verify-hashes) : Disable validation of hashes in the requirements file.
 
@@ -13825,11 +13659,7 @@ The given packages will be built and installed from source. The resolver will st
 May also be set with the `UV_NO_BINARY` environment variable.
 ```
 
-[`--no-binary-package`](#uv-build--no-binary-package) *no-binary-package* : Don't install pre-built wheels for a specific package
-
-```
-May also be set with the `UV_NO_BINARY_PACKAGE` environment variable.
-```
+[`--no-binary-package`](#uv-build--no-binary-package) *no-binary-package* : Don't install pre-built wheels for a specific package \[env: `UV_NO_BINARY_PACKAGE`=\]
 
 [`--no-build`](#uv-build--no-build) : Don't build source distributions.
 
@@ -13855,11 +13685,7 @@ Assumes that the packages' build dependencies specified by PEP 518 are already i
 
 [`--no-build-logs`](#uv-build--no-build-logs) : Hide logs from the build backend
 
-[`--no-build-package`](#uv-build--no-build-package) *no-build-package* : Don't build source distributions for a specific package
-
-```
-May also be set with the `UV_NO_BUILD_PACKAGE` environment variable.
-```
+[`--no-build-package`](#uv-build--no-build-package) *no-build-package* : Don't build source distributions for a specific package \[env: `UV_NO_BUILD_PACKAGE`=\]
 
 [`--no-cache`](#uv-build--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
@@ -13903,11 +13729,7 @@ For example, spinners or progress bars.
 May also be set with the `UV_NO_SOURCES` environment variable.
 ```
 
-[`--no-sources-package`](#uv-build--no-sources-package) *no-sources-package* : Don't use sources from the `tool.uv.sources` table for the specified packages
-
-```
-May also be set with the `UV_NO_SOURCES_PACKAGE` environment variable.
-```
+[`--no-sources-package`](#uv-build--no-sources-package) *no-sources-package* : Don't use sources from the `tool.uv.sources` table for the specified packages \[env: `UV_NO_SOURCES_PACKAGE`=\]
 
 [`--no-verify-hashes`](#uv-build--no-verify-hashes) : Disable validation of hashes in the requirements file.
 
