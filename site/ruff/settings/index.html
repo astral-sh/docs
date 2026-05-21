@@ -3175,6 +3175,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#lint_pylint_max-statements-in-try" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        max-statements-in-try
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -8179,6 +8190,27 @@ body (see <code>PLR0911</code>)</p>
 </div>
 </div>
 <hr />
+<h4 id="lint_pylint_max-statements-in-try"><a class="toclink" href="#lint_pylint_max-statements-in-try"><a href="#lint_pylint_max-statements-in-try"><code>max-statements-in-try</code></a></a></h4>
+<p><span id="max-statements-in-try"></span></p>
+<p>Maximum number of statements allowed for a try clause body (see <code>W0717</code>).</p>
+<p><strong>Default value</strong>: <code>5</code></p>
+<p><strong>Type</strong>: <code>int</code></p>
+<p><strong>Example usage</strong>:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="176:2"><input checked="checked" id="__tabbed_176_1" name="__tabbed_176" type="radio" /><input id="__tabbed_176_2" name="__tabbed_176" type="radio" /><div class="tabbed-labels"><label for="__tabbed_176_1">pyproject.toml</label><label for="__tabbed_176_2">ruff.toml</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-381-1" name="__codelineno-381-1" href="#__codelineno-381-1"></a><span class="k">[tool.ruff.lint.pylint]</span>
+<a id="__codelineno-381-2" name="__codelineno-381-2" href="#__codelineno-381-2"></a><span class="n">max-statements-in-try</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-382-1" name="__codelineno-382-1" href="#__codelineno-382-1"></a><span class="k">[lint.pylint]</span>
+<a id="__codelineno-382-2" name="__codelineno-382-2" href="#__codelineno-382-2"></a><span class="n">max-statements-in-try</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<hr />
 <h3 id="lintpyupgrade"><a class="toclink" href="#lintpyupgrade"><code>lint.pyupgrade</code></a></h3>
 <p>Options for the <code>pyupgrade</code> plugin.</p>
 <h4 id="lint_pyupgrade_keep-runtime-typing"><a class="toclink" href="#lint_pyupgrade_keep-runtime-typing"><a href="#lint_pyupgrade_keep-runtime-typing"><code>keep-runtime-typing</code></a></a></h4>
@@ -8200,28 +8232,28 @@ version.</p>
 presence of <code>from __future__ import annotations</code>, the use of <code>str | int</code>
 prior to Python 3.10 will cause Pydantic to raise a <code>TypeError</code> at
 runtime:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-381-1" name="__codelineno-381-1" href="#__codelineno-381-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
-<a id="__codelineno-381-2" name="__codelineno-381-2" href="#__codelineno-381-2"></a>
-<a id="__codelineno-381-3" name="__codelineno-381-3" href="#__codelineno-381-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pydantic</span>
-<a id="__codelineno-381-4" name="__codelineno-381-4" href="#__codelineno-381-4"></a>
-<a id="__codelineno-381-5" name="__codelineno-381-5" href="#__codelineno-381-5"></a><span class="k">class</span><span class="w"> </span><span class="nc">Foo</span><span class="p">(</span><span class="n">pydantic</span><span class="o">.</span><span class="n">BaseModel</span><span class="p">):</span>
-<a id="__codelineno-381-6" name="__codelineno-381-6" href="#__codelineno-381-6"></a>    <span class="n">bar</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">int</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-383-1" name="__codelineno-383-1" href="#__codelineno-383-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+<a id="__codelineno-383-2" name="__codelineno-383-2" href="#__codelineno-383-2"></a>
+<a id="__codelineno-383-3" name="__codelineno-383-3" href="#__codelineno-383-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pydantic</span>
+<a id="__codelineno-383-4" name="__codelineno-383-4" href="#__codelineno-383-4"></a>
+<a id="__codelineno-383-5" name="__codelineno-383-5" href="#__codelineno-383-5"></a><span class="k">class</span><span class="w"> </span><span class="nc">Foo</span><span class="p">(</span><span class="n">pydantic</span><span class="o">.</span><span class="n">BaseModel</span><span class="p">):</span>
+<a id="__codelineno-383-6" name="__codelineno-383-6" href="#__codelineno-383-6"></a>    <span class="n">bar</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">int</span>
 </code></pre></div>
 <p><strong>Default value</strong>: <code>false</code></p>
 <p><strong>Type</strong>: <code>bool</code></p>
 <p><strong>Example usage</strong>:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="176:2"><input checked="checked" id="__tabbed_176_1" name="__tabbed_176" type="radio" /><input id="__tabbed_176_2" name="__tabbed_176" type="radio" /><div class="tabbed-labels"><label for="__tabbed_176_1">pyproject.toml</label><label for="__tabbed_176_2">ruff.toml</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="177:2"><input checked="checked" id="__tabbed_177_1" name="__tabbed_177" type="radio" /><input id="__tabbed_177_2" name="__tabbed_177" type="radio" /><div class="tabbed-labels"><label for="__tabbed_177_1">pyproject.toml</label><label for="__tabbed_177_2">ruff.toml</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-382-1" name="__codelineno-382-1" href="#__codelineno-382-1"></a><span class="k">[tool.ruff.lint.pyupgrade]</span>
-<a id="__codelineno-382-2" name="__codelineno-382-2" href="#__codelineno-382-2"></a><span class="c1"># Preserve types, even if a file imports `from __future__ import annotations`.</span>
-<a id="__codelineno-382-3" name="__codelineno-382-3" href="#__codelineno-382-3"></a><span class="n">keep-runtime-typing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-384-1" name="__codelineno-384-1" href="#__codelineno-384-1"></a><span class="k">[tool.ruff.lint.pyupgrade]</span>
+<a id="__codelineno-384-2" name="__codelineno-384-2" href="#__codelineno-384-2"></a><span class="c1"># Preserve types, even if a file imports `from __future__ import annotations`.</span>
+<a id="__codelineno-384-3" name="__codelineno-384-3" href="#__codelineno-384-3"></a><span class="n">keep-runtime-typing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-383-1" name="__codelineno-383-1" href="#__codelineno-383-1"></a><span class="k">[lint.pyupgrade]</span>
-<a id="__codelineno-383-2" name="__codelineno-383-2" href="#__codelineno-383-2"></a><span class="c1"># Preserve types, even if a file imports `from __future__ import annotations`.</span>
-<a id="__codelineno-383-3" name="__codelineno-383-3" href="#__codelineno-383-3"></a><span class="n">keep-runtime-typing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-385-1" name="__codelineno-385-1" href="#__codelineno-385-1"></a><span class="k">[lint.pyupgrade]</span>
+<a id="__codelineno-385-2" name="__codelineno-385-2" href="#__codelineno-385-2"></a><span class="c1"># Preserve types, even if a file imports `from __future__ import annotations`.</span>
+<a id="__codelineno-385-3" name="__codelineno-385-3" href="#__codelineno-385-3"></a><span class="n">keep-runtime-typing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 </code></pre></div>
 </div>
 </div>
@@ -8239,10 +8271,10 @@ runtime:</p>
 <a href="https://markupsafe.palletsprojects.com/en/stable/escaping/#markupsafe.Markup"><code>markupsafe.Markup</code></a>.</p>
 <p>Expects to receive a list of fully-qualified names (e.g., <code>bleach.clean</code>, rather than <code>clean</code>).</p>
 <p>This setting helps you avoid false positives in code like:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-384-1" name="__codelineno-384-1" href="#__codelineno-384-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">bleach</span><span class="w"> </span><span class="kn">import</span> <span class="n">clean</span>
-<a id="__codelineno-384-2" name="__codelineno-384-2" href="#__codelineno-384-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">markupsafe</span><span class="w"> </span><span class="kn">import</span> <span class="n">Markup</span>
-<a id="__codelineno-384-3" name="__codelineno-384-3" href="#__codelineno-384-3"></a>
-<a id="__codelineno-384-4" name="__codelineno-384-4" href="#__codelineno-384-4"></a><span class="n">cleaned_markup</span> <span class="o">=</span> <span class="n">Markup</span><span class="p">(</span><span class="n">clean</span><span class="p">(</span><span class="n">some_user_input</span><span class="p">))</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-386-1" name="__codelineno-386-1" href="#__codelineno-386-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">bleach</span><span class="w"> </span><span class="kn">import</span> <span class="n">clean</span>
+<a id="__codelineno-386-2" name="__codelineno-386-2" href="#__codelineno-386-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">markupsafe</span><span class="w"> </span><span class="kn">import</span> <span class="n">Markup</span>
+<a id="__codelineno-386-3" name="__codelineno-386-3" href="#__codelineno-386-3"></a>
+<a id="__codelineno-386-4" name="__codelineno-386-4" href="#__codelineno-386-4"></a><span class="n">cleaned_markup</span> <span class="o">=</span> <span class="n">Markup</span><span class="p">(</span><span class="n">clean</span><span class="p">(</span><span class="n">some_user_input</span><span class="p">))</span>
 </code></pre></div>
 <p>Where the use of <a href="https://bleach.readthedocs.io/en/latest/clean.html"><code>bleach.clean</code></a>
 usually ensures that there's no XSS vulnerability.</p>
@@ -8256,16 +8288,16 @@ already baked in or has to happen before rendering.</p>
 <p><strong>Default value</strong>: <code>[]</code></p>
 <p><strong>Type</strong>: <code>list[str]</code></p>
 <p><strong>Example usage</strong>:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="177:2"><input checked="checked" id="__tabbed_177_1" name="__tabbed_177" type="radio" /><input id="__tabbed_177_2" name="__tabbed_177" type="radio" /><div class="tabbed-labels"><label for="__tabbed_177_1">pyproject.toml</label><label for="__tabbed_177_2">ruff.toml</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="178:2"><input checked="checked" id="__tabbed_178_1" name="__tabbed_178" type="radio" /><input id="__tabbed_178_2" name="__tabbed_178" type="radio" /><div class="tabbed-labels"><label for="__tabbed_178_1">pyproject.toml</label><label for="__tabbed_178_2">ruff.toml</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-385-1" name="__codelineno-385-1" href="#__codelineno-385-1"></a><span class="k">[tool.ruff.lint.ruff]</span>
-<a id="__codelineno-385-2" name="__codelineno-385-2" href="#__codelineno-385-2"></a><span class="n">allowed-markup-calls</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;bleach.clean&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;my_package.sanitize&quot;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-387-1" name="__codelineno-387-1" href="#__codelineno-387-1"></a><span class="k">[tool.ruff.lint.ruff]</span>
+<a id="__codelineno-387-2" name="__codelineno-387-2" href="#__codelineno-387-2"></a><span class="n">allowed-markup-calls</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;bleach.clean&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;my_package.sanitize&quot;</span><span class="p">]</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-386-1" name="__codelineno-386-1" href="#__codelineno-386-1"></a><span class="k">[lint.ruff]</span>
-<a id="__codelineno-386-2" name="__codelineno-386-2" href="#__codelineno-386-2"></a><span class="n">allowed-markup-calls</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;bleach.clean&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;my_package.sanitize&quot;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-388-1" name="__codelineno-388-1" href="#__codelineno-388-1"></a><span class="k">[lint.ruff]</span>
+<a id="__codelineno-388-2" name="__codelineno-388-2" href="#__codelineno-388-2"></a><span class="n">allowed-markup-calls</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;bleach.clean&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;my_package.sanitize&quot;</span><span class="p">]</span>
 </code></pre></div>
 </div>
 </div>
@@ -8284,16 +8316,16 @@ already baked in or has to happen before rendering.</p>
 <p><strong>Default value</strong>: <code>[]</code></p>
 <p><strong>Type</strong>: <code>list[str]</code></p>
 <p><strong>Example usage</strong>:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="178:2"><input checked="checked" id="__tabbed_178_1" name="__tabbed_178" type="radio" /><input id="__tabbed_178_2" name="__tabbed_178" type="radio" /><div class="tabbed-labels"><label for="__tabbed_178_1">pyproject.toml</label><label for="__tabbed_178_2">ruff.toml</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="179:2"><input checked="checked" id="__tabbed_179_1" name="__tabbed_179" type="radio" /><input id="__tabbed_179_2" name="__tabbed_179" type="radio" /><div class="tabbed-labels"><label for="__tabbed_179_1">pyproject.toml</label><label for="__tabbed_179_2">ruff.toml</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-387-1" name="__codelineno-387-1" href="#__codelineno-387-1"></a><span class="k">[tool.ruff.lint.ruff]</span>
-<a id="__codelineno-387-2" name="__codelineno-387-2" href="#__codelineno-387-2"></a><span class="n">extend-markup-names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;webhelpers.html.literal&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;my_package.Markup&quot;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-389-1" name="__codelineno-389-1" href="#__codelineno-389-1"></a><span class="k">[tool.ruff.lint.ruff]</span>
+<a id="__codelineno-389-2" name="__codelineno-389-2" href="#__codelineno-389-2"></a><span class="n">extend-markup-names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;webhelpers.html.literal&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;my_package.Markup&quot;</span><span class="p">]</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-388-1" name="__codelineno-388-1" href="#__codelineno-388-1"></a><span class="k">[lint.ruff]</span>
-<a id="__codelineno-388-2" name="__codelineno-388-2" href="#__codelineno-388-2"></a><span class="n">extend-markup-names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;webhelpers.html.literal&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;my_package.Markup&quot;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-390-1" name="__codelineno-390-1" href="#__codelineno-390-1"></a><span class="k">[lint.ruff]</span>
+<a id="__codelineno-390-2" name="__codelineno-390-2" href="#__codelineno-390-2"></a><span class="n">extend-markup-names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;webhelpers.html.literal&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;my_package.Markup&quot;</span><span class="p">]</span>
 </code></pre></div>
 </div>
 </div>
@@ -8306,18 +8338,18 @@ parentheses around the tuple (see <code>RUF031</code>).</p>
 <p><strong>Default value</strong>: <code>false</code></p>
 <p><strong>Type</strong>: <code>bool</code></p>
 <p><strong>Example usage</strong>:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="179:2"><input checked="checked" id="__tabbed_179_1" name="__tabbed_179" type="radio" /><input id="__tabbed_179_2" name="__tabbed_179" type="radio" /><div class="tabbed-labels"><label for="__tabbed_179_1">pyproject.toml</label><label for="__tabbed_179_2">ruff.toml</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="180:2"><input checked="checked" id="__tabbed_180_1" name="__tabbed_180" type="radio" /><input id="__tabbed_180_2" name="__tabbed_180" type="radio" /><div class="tabbed-labels"><label for="__tabbed_180_1">pyproject.toml</label><label for="__tabbed_180_2">ruff.toml</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-389-1" name="__codelineno-389-1" href="#__codelineno-389-1"></a><span class="k">[tool.ruff.lint.ruff]</span>
-<a id="__codelineno-389-2" name="__codelineno-389-2" href="#__codelineno-389-2"></a><span class="c1"># Make it a violation to use a tuple in a subscript without parentheses.</span>
-<a id="__codelineno-389-3" name="__codelineno-389-3" href="#__codelineno-389-3"></a><span class="n">parenthesize-tuple-in-subscript</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-391-1" name="__codelineno-391-1" href="#__codelineno-391-1"></a><span class="k">[tool.ruff.lint.ruff]</span>
+<a id="__codelineno-391-2" name="__codelineno-391-2" href="#__codelineno-391-2"></a><span class="c1"># Make it a violation to use a tuple in a subscript without parentheses.</span>
+<a id="__codelineno-391-3" name="__codelineno-391-3" href="#__codelineno-391-3"></a><span class="n">parenthesize-tuple-in-subscript</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-390-1" name="__codelineno-390-1" href="#__codelineno-390-1"></a><span class="k">[lint.ruff]</span>
-<a id="__codelineno-390-2" name="__codelineno-390-2" href="#__codelineno-390-2"></a><span class="c1"># Make it a violation to use a tuple in a subscript without parentheses.</span>
-<a id="__codelineno-390-3" name="__codelineno-390-3" href="#__codelineno-390-3"></a><span class="n">parenthesize-tuple-in-subscript</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-392-1" name="__codelineno-392-1" href="#__codelineno-392-1"></a><span class="k">[lint.ruff]</span>
+<a id="__codelineno-392-2" name="__codelineno-392-2" href="#__codelineno-392-2"></a><span class="c1"># Make it a violation to use a tuple in a subscript without parentheses.</span>
+<a id="__codelineno-392-3" name="__codelineno-392-3" href="#__codelineno-392-3"></a><span class="n">parenthesize-tuple-in-subscript</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 </code></pre></div>
 </div>
 </div>
@@ -8330,18 +8362,18 @@ docstrings (see <code>RUF067</code>).</p>
 <p><strong>Default value</strong>: <code>false</code></p>
 <p><strong>Type</strong>: <code>bool</code></p>
 <p><strong>Example usage</strong>:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="180:2"><input checked="checked" id="__tabbed_180_1" name="__tabbed_180" type="radio" /><input id="__tabbed_180_2" name="__tabbed_180" type="radio" /><div class="tabbed-labels"><label for="__tabbed_180_1">pyproject.toml</label><label for="__tabbed_180_2">ruff.toml</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="181:2"><input checked="checked" id="__tabbed_181_1" name="__tabbed_181" type="radio" /><input id="__tabbed_181_2" name="__tabbed_181" type="radio" /><div class="tabbed-labels"><label for="__tabbed_181_1">pyproject.toml</label><label for="__tabbed_181_2">ruff.toml</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-391-1" name="__codelineno-391-1" href="#__codelineno-391-1"></a><span class="k">[tool.ruff.lint.ruff]</span>
-<a id="__codelineno-391-2" name="__codelineno-391-2" href="#__codelineno-391-2"></a><span class="c1"># Make it a violation to include any code, including imports and docstrings in `__init__.py`</span>
-<a id="__codelineno-391-3" name="__codelineno-391-3" href="#__codelineno-391-3"></a><span class="n">strictly-empty-init-modules</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-393-1" name="__codelineno-393-1" href="#__codelineno-393-1"></a><span class="k">[tool.ruff.lint.ruff]</span>
+<a id="__codelineno-393-2" name="__codelineno-393-2" href="#__codelineno-393-2"></a><span class="c1"># Make it a violation to include any code, including imports and docstrings in `__init__.py`</span>
+<a id="__codelineno-393-3" name="__codelineno-393-3" href="#__codelineno-393-3"></a><span class="n">strictly-empty-init-modules</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-392-1" name="__codelineno-392-1" href="#__codelineno-392-1"></a><span class="k">[lint.ruff]</span>
-<a id="__codelineno-392-2" name="__codelineno-392-2" href="#__codelineno-392-2"></a><span class="c1"># Make it a violation to include any code, including imports and docstrings in `__init__.py`</span>
-<a id="__codelineno-392-3" name="__codelineno-392-3" href="#__codelineno-392-3"></a><span class="n">strictly-empty-init-modules</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-394-1" name="__codelineno-394-1" href="#__codelineno-394-1"></a><span class="k">[lint.ruff]</span>
+<a id="__codelineno-394-2" name="__codelineno-394-2" href="#__codelineno-394-2"></a><span class="c1"># Make it a violation to include any code, including imports and docstrings in `__init__.py`</span>
+<a id="__codelineno-394-3" name="__codelineno-394-3" href="#__codelineno-394-3"></a><span class="n">strictly-empty-init-modules</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 </code></pre></div>
 </div>
 </div>

@@ -1577,41 +1577,72 @@ suppression comment would be framed as "allow <code>assert False</code>".</p>
 <p>When re-implementing rules from other linters, we prioritize adhering to this convention over
 preserving the original rule name.</p>
 <h4 id="rule-testing-fixtures-and-snapshots"><a class="toclink" href="#rule-testing-fixtures-and-snapshots">Rule testing: fixtures and snapshots</a></h4>
-<p>To test rules, Ruff uses snapshots of Ruff's output for a given file (fixture). Generally, there
-will be one file per rule (e.g., <code>E402.py</code>), and each file will contain all necessary examples of
-both violations and non-violations. <code>cargo insta review</code> will generate a snapshot file containing
-Ruff's output for each fixture, which you can then commit alongside your changes.</p>
-<p>Once you've completed the code for the rule itself, you can define tests with the following steps:</p>
-<ol>
-<li>
-<p>Add a Python file to <code>crates/ruff_linter/resources/test/fixtures/[linter]</code> that contains the code you
-    want to test. The file name should match the rule name (e.g., <code>E402.py</code>), and it should include
-    examples of both violations and non-violations.</p>
-</li>
-<li>
-<p>Run Ruff locally against your file and verify the output is as expected. Once you're satisfied
-    with the output (you see the violations you expect, and no others), proceed to the next step.
-    For example, if you're adding a new rule named <code>E402</code>, you would run:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>cargo<span class="w"> </span>run<span class="w"> </span>-p<span class="w"> </span>ruff<span class="w"> </span>--<span class="w"> </span>check<span class="w"> </span>crates/ruff_linter/resources/test/fixtures/pycodestyle/E402.py<span class="w"> </span>--no-cache<span class="w"> </span>--preview<span class="w"> </span>--select<span class="w"> </span>E402
+<p>To test rules, Ruff uses the mdtest framework, initially developed for ty. Mdtests are written as
+Markdown files with Python code and TOML configuration blocks alongside prose
+descriptions. Generally, there will be one directory per linter (e.g. <code>flake8-bandit</code> for the <code>S</code>
+rules) with nested files for each rule (e.g. <code>unsafe-markup-use.md</code> for <code>S704</code>). Within these
+files, you can define additional Markdown sections to group related tests and their settings
+together.</p>
+<p>You can see <a href="https://github.com/astral-sh/ruff/blob/main/crates/ty_test/README.md">the ty_test
+README</a> for a full description
+of the options supported by mdtest, but in general, you should use <code># error</code> comments to assert that
+a particular rule fires on a given line. You can instead use <code># snapshot</code> comments to also generate
+an inline snapshot of the resulting diagnostic. You can automatically accept these snapshot changes
+by setting the <code>MDTEST_UPDATE_SNAPSHOTS=1</code> environment variable when running your tests. Prefer
+using <code># error</code> for the bulk of your assertions because it helps to keep the tests short, but
+<code># snapshot</code> can be used to capture details of the diagnostic or suggested fix, when applicable.</p>
+<p>For example, a minimal mdtest for <code>module-import-not-at-top-of-file</code> (<code>E402</code>) would look something
+like this:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>&lt;!-- crates/ruff_linter/resources/mdtest/pycodestyle/module-import-not-at-top-of-file.md --&gt;
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="gh"># `module-import-not-at-top-of-file` (`E402`)</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="gu">## Basic examples</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="sb">```toml</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="n">lint</span><span class="p">.</span><span class="n">select</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;E402&quot;</span><span class="p">]</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="sb">```</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>This is an example of code flagged by the rule:
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="sb">```py</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>  <span class="c1"># snapshot: module-import-not-at-top-of-file</span>
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="sb">```</span>
+<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>
+<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="sb">```snapshot</span>
+<a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a><span class="s">error[E402]: Module level import not at top of file</span>
+<a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="s"> --&gt; src/mdtest_snippet.py:2:1</span>
+<a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a><span class="s">  |</span>
+<a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a><span class="s">2 | import os  # snapshot: module-import-not-at-top-of-file</span>
+<a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a><span class="s">  | ^^^^^^^^^</span>
+<a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a><span class="s">  |</span>
+<a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a><span class="sb">```</span>
+<a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a>
+<a id="__codelineno-6-27" name="__codelineno-6-27" href="#__codelineno-6-27"></a>Additional cases can just use <span class="sb">`# error`</span> since the diagnostics should look the same:
+<a id="__codelineno-6-28" name="__codelineno-6-28" href="#__codelineno-6-28"></a>
+<a id="__codelineno-6-29" name="__codelineno-6-29" href="#__codelineno-6-29"></a><span class="sb">```py</span>
+<a id="__codelineno-6-30" name="__codelineno-6-30" href="#__codelineno-6-30"></a><span class="n">b</span> <span class="o">=</span> <span class="mi">2</span>
+<a id="__codelineno-6-31" name="__codelineno-6-31" href="#__codelineno-6-31"></a><span class="kn">import</span><span class="w"> </span><span class="nn">something_else</span>  <span class="c1"># error: [module-import-not-at-top-of-file]</span>
+<a id="__codelineno-6-32" name="__codelineno-6-32" href="#__codelineno-6-32"></a><span class="sb">```</span>
+<a id="__codelineno-6-33" name="__codelineno-6-33" href="#__codelineno-6-33"></a>
+<a id="__codelineno-6-34" name="__codelineno-6-34" href="#__codelineno-6-34"></a><span class="gu">## More complicated configuration</span>
+<a id="__codelineno-6-35" name="__codelineno-6-35" href="#__codelineno-6-35"></a>
+<a id="__codelineno-6-36" name="__codelineno-6-36" href="#__codelineno-6-36"></a>If any of your tests require special configuration options, you can define additional TOML code
+<a id="__codelineno-6-37" name="__codelineno-6-37" href="#__codelineno-6-37"></a>blocks. These blocks accept all of the configuration options that Ruff itself does:
+<a id="__codelineno-6-38" name="__codelineno-6-38" href="#__codelineno-6-38"></a>
+<a id="__codelineno-6-39" name="__codelineno-6-39" href="#__codelineno-6-39"></a>
+<a id="__codelineno-6-40" name="__codelineno-6-40" href="#__codelineno-6-40"></a><span class="sb">```toml</span>
+<a id="__codelineno-6-41" name="__codelineno-6-41" href="#__codelineno-6-41"></a><span class="n">target-version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;py310&quot;</span>
+<a id="__codelineno-6-42" name="__codelineno-6-42" href="#__codelineno-6-42"></a>
+<a id="__codelineno-6-43" name="__codelineno-6-43" href="#__codelineno-6-43"></a><span class="k">[lint]</span>
+<a id="__codelineno-6-44" name="__codelineno-6-44" href="#__codelineno-6-44"></a><span class="n">select</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;E&quot;</span><span class="p">]</span>
+<a id="__codelineno-6-45" name="__codelineno-6-45" href="#__codelineno-6-45"></a>
+<a id="__codelineno-6-46" name="__codelineno-6-46" href="#__codelineno-6-46"></a><span class="k">[lint.pycodestyle]</span>
+<a id="__codelineno-6-47" name="__codelineno-6-47" href="#__codelineno-6-47"></a><span class="n">max-line-length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span>
+<a id="__codelineno-6-48" name="__codelineno-6-48" href="#__codelineno-6-48"></a><span class="sb">```</span>
 </code></pre></div>
-<p><strong>Note:</strong> Only a subset of rules are enabled by default. When testing a new rule, ensure that
-you activate it by adding <code>--select ${rule_code}</code> to the command.</p>
-</li>
-<li>
-<p>Add the test to the relevant <code>crates/ruff_linter/src/rules/[linter]/mod.rs</code> file. If you're contributing
-    a rule to a pre-existing set, you should be able to find a similar example to pattern-match
-    against. If you're adding a new linter, you'll need to create a new <code>mod.rs</code> file (see,
-    e.g., <code>crates/ruff_linter/src/rules/flake8_bugbear/mod.rs</code>)</p>
-</li>
-<li>
-<p>Run <code>cargo test</code>. Your test will fail, but you'll be prompted to follow-up
-    with <code>cargo insta review</code>. Run <code>cargo insta review</code>, review and accept the generated snapshot,
-    then commit the snapshot file alongside the rest of your changes.</p>
-</li>
-<li>
-<p>Run <code>cargo test</code> again to ensure that your test passes.</p>
-</li>
-</ol>
+<p>Mdtests are run as part of a normal <code>cargo test</code> invocation as part of the <code>ruff_mdtest</code> crate.</p>
 <h3 id="example-adding-an-auto-fix"><a class="toclink" href="#example-adding-an-auto-fix">Example: Adding an auto-fix</a></h3>
 <p>Sometimes a lint violation has a natural fix in the form of an edit to the
 source code. To surface this suggestion to the user, you will need to attach
