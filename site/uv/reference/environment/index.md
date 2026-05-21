@@ -330,6 +330,22 @@ Add additional context and structure to log messages.
 
 If logging is not enabled, e.g., with `RUST_LOG` or `-v`, this has no effect.
 
+### [`UV_MALWARE_CHECK`](#uv_malware_check)
+
+added in `0.11.16`
+
+Set to `1` to enable the automatic malware check that runs after `uv sync`.
+
+When enabled, uv performs a lightweight check against the OSV database for known malware advisories after every lockfile sync. Set this variable to `0` to opt out.
+
+### [`UV_MALWARE_CHECK_URL`](#uv_malware_check_url)
+
+added in `0.11.16`
+
+Override the vulnerability service URL for the automatic malware check.
+
+Defaults to the OSV API endpoint (`https://api.osv.dev/`).
+
 ### [`UV_MANAGED_PYTHON`](#uv_managed_python)
 
 added in `0.6.8`
@@ -473,6 +489,12 @@ Equivalent to the `--no-sources-package` command line argument. If set, uv will 
 added in `0.4.18`
 
 Equivalent to the `--no-sync` command-line argument. If set, uv will skip updating the environment.
+
+### [`UV_NO_SYSTEM_CONFIG`](#uv_no_system_config)
+
+added in `0.11.16`
+
+If set, uv will not read system-level configuration files.
 
 ### [`UV_NO_VERIFY_HASHES`](#uv_no_verify_hashes)
 
