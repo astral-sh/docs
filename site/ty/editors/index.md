@@ -120,11 +120,13 @@ ty can be utilized as a language server via the built-in [Eglot](https://www.gnu
 ```
 (with-eval-after-load 'eglot
   (add-to-list 'eglot-server-programs
-               '(python-base-mode . ("ty" "server"))))
+               '((python-base-mode :language-id "python") . ("ty" "server"))))
 
 (add-hook 'python-base-mode-hook 'eglot-ensure)
 
 ```
+
+If you prefer to view ty's diagnostics through [Flycheck](https://www.flycheck.org/), the [flycheck-eglot](https://github.com/flycheck/flycheck-eglot) package bridges Eglot's diagnostics to Flycheck.
 
 ## [Other editors](#other-editors)
 
