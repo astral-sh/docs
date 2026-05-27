@@ -54,7 +54,7 @@ sum_three_numbers(3, 2, "1")
 
 Note
 
-Enumerating rule names (e.g., `[rule1, rule2]`) is optional. However, we strongly recommend including suppressing specific rules to avoid accidental suppression of other errors.
+Enumerating rule names (e.g., `[rule1, rule2]`) is optional. However, we strongly recommend including specific rules to avoid accidental suppression of other errors.
 
 ## [Standard suppression comments](#standard-suppression-comments)
 
@@ -73,7 +73,7 @@ sum_three_numbers("one", 5, 2)  # type: ignore[arg-type, ty:invalid-argument-typ
 
 ```
 
-## [Multiple suppressions comments](#multiple-suppressions-comments)
+## [Multiple suppression comments](#multiple-suppression-comments)
 
 To suppress a typing error on a line that already has a suppression comment from another tool, add the `# ty: ignore` comment to the same line.
 
