@@ -864,7 +864,7 @@
 <p><small>
 Preview (since <a href="https://github.com/astral-sh/ruff/releases/tag/v0.4.2">v0.4.2</a>) ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27sorted-min-max%27%20OR%20FURB192)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Frefurb%2Frules%2Fsorted_min_max.rs#L49" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Frefurb%2Frules%2Fsorted_min_max.rs#L54" target="_blank">View source</a>
 </small></p>
 <p>Derived from the <strong><a href="../#refurb-furb">refurb</a></strong> linter.</p>
 <p>Fix is sometimes available.</p>
@@ -893,6 +893,10 @@ notably when breaking ties.</p>
 the <em>last</em> "minimum" element in the list, if there are multiple elements with
 the same key. However, <code>min(data, key=itemgetter(0))</code> will return the <em>first</em>
 "minimum" element in the list in the same scenario.</p>
+<p>The fix also changes which exception is raised for an empty sequence:
+<code>sorted([])[0]</code> raises <code>IndexError</code>, but <code>min([])</code> and <code>max([])</code> raise
+<code>ValueError</code>. Code that catches one specific exception type will need to
+be updated after the fix is applied.</p>
 <p>As such, this rule's fix is marked as unsafe.</p>
 <h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>

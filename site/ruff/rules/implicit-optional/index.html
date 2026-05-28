@@ -864,7 +864,7 @@
 <p><small>
 Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.273">v0.0.273</a> ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27implicit-optional%27%20OR%20RUF013)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fruff%2Frules%2Fimplicit_optional.rs#L86" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fruff%2Frules%2Fimplicit_optional.rs#L91" target="_blank">View source</a>
 </small></p>
 <p>Fix is sometimes available.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
@@ -901,13 +901,17 @@ use future imports:</p>
 <a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="k">pass</span>
 </code></pre></div>
 <h2 id="limitations"><a class="toclink" href="#limitations">Limitations</a></h2>
-<p>Type aliases are not supported and could result in false negatives.
-For example, the following code will not be flagged:</p>
+<p>Type aliases and other user-defined types are not supported and could
+result in false negatives. For example, the following code will not be
+flagged:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">Text</span> <span class="o">=</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">bytes</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">foo</span><span class="p">(</span><span class="n">arg</span><span class="p">:</span> <span class="n">Text</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="k">pass</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="k">class</span><span class="w"> </span><span class="nc">Custom</span><span class="p">:</span> <span class="o">...</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="k">def</span><span class="w"> </span><span class="nf">foo</span><span class="p">(</span><span class="n">text_arg</span><span class="p">:</span> <span class="n">Text</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">custom_arg</span><span class="p">:</span> <span class="n">Custom</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>    <span class="k">pass</span>
 </code></pre></div>
 <h2 id="options"><a class="toclink" href="#options">Options</a></h2>
 <ul>
