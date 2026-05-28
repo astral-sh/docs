@@ -864,7 +864,7 @@
 <p><small>
 Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.73">v0.0.73</a> ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27unnecessary-comprehension%27%20OR%20C416)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_comprehensions%2Frules%2Funnecessary_comprehension.rs#L59" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_comprehensions%2Frules%2Funnecessary_comprehension.rs#L61" target="_blank">View source</a>
 </small></p>
 <p>Derived from the <strong><a href="../#flake8-comprehensions-c4">flake8-comprehensions</a></strong> linter.</p>
 <p>Fix is always available.</p>
@@ -900,9 +900,11 @@ replacing it with a <code>dict()</code> constructor call will give a different r
 <p>When the comprehension iterates over a sequence, Ruff's suggested fix is correct. However, Ruff
 cannot consistently infer if the iterable type is a sequence or a mapping and cannot suggest
 the correct fix for mappings.</p>
+<p>Additionally, rewriting comprehensions inside an object's <code>__len__</code> method may cause a
+<code>RecursionError</code>, as collection constructors can call back into <code>__len__</code>.</p>
 <h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
-<p>Due to the known problem with dictionary comprehensions, this fix is marked as unsafe.</p>
-<p>Additionally, this fix may drop comments when rewriting the comprehension.</p>
+<p>This rule's fix is always marked as unsafe because of the known problems described above and
+because comments may be dropped when rewriting the comprehension.</p>
 
 
 
