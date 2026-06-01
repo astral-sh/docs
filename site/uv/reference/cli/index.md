@@ -34,6 +34,8 @@ uv [OPTIONS] <COMMAND>
 
 [`uv format`](#uv-format) : Format Python code in the project
 
+[`uv check`](#uv-check) : Run checks on the project
+
 [`uv audit`](#uv-audit) : Audit the project's dependencies
 
 [`uv tool`](#uv-tool) : Run and install commands provided by Python packages
@@ -5416,6 +5418,505 @@ You can configure fine-grained logging using the `RUST_LOG` environment variable
 Accepts either a version (e.g., `0.8.2`) which will be treated as an exact pin, a version specifier (e.g., `>=0.8.0`), or `latest` to use the latest available version.
 
 By default, a constrained version range of Ruff will be used (e.g., `>=0.15,<0.16`).
+```
+
+## [uv check](#uv-check)
+
+Run checks on the project.
+
+Currently, this type checks Python code using ty. By default, all Python files in the project are checked.
+
+### Usage
+
+```
+uv check [OPTIONS]
+```
+
+### Options
+
+[`--all-extras`](#uv-check--all-extras) : Include all optional dependencies.
+
+```
+When two or more extras are declared as conflicting in `tool.uv.conflicts`, using this flag will always result in an error.
+
+Note that all optional dependencies are always included in the resolution; this option only affects the selection of packages to install.
+```
+
+[`--all-groups`](#uv-check--all-groups) : Include dependencies from all dependency groups.
+
+```
+`--no-group` can be used to exclude specific groups.
+```
+
+[`--allow-insecure-host`](#uv-check--allow-insecure-host), `--trusted-host` *allow-insecure-host* : Allow insecure connections to a host.
+
+```
+Can be provided multiple times.
+
+Expects to receive either a hostname (e.g., `localhost`), a host-port pair (e.g., `localhost:8080`), or a URL (e.g., `https://localhost`).
+
+WARNING: Hosts included in this list will not be verified against the system's certificate store. Only use `--allow-insecure-host` in a secure network with verified sources, as it bypasses SSL verification and could expose you to MITM attacks.
+
+May also be set with the `UV_INSECURE_HOST` environment variable.
+```
+
+[`--cache-dir`](#uv-check--cache-dir) *cache-dir* : Path to the cache directory.
+
+```
+Defaults to `$XDG_CACHE_HOME/uv` or `$HOME/.cache/uv` on macOS and Linux, and `%LOCALAPPDATA%\uv\cache` on Windows.
+
+To view the location of the cache directory, run `uv cache dir`.
+
+May also be set with the `UV_CACHE_DIR` environment variable.
+```
+
+[`--color`](#uv-check--color) *color-choice* : Control the use of color in output.
+
+```
+By default, uv will automatically detect support for colors when writing to a terminal.
+
+Possible values:
+
+- `auto`: Enables colored output only when the output is going to a terminal or TTY with support
+- `always`: Enables colored output regardless of the detected environment
+- `never`: Disables colored output
+```
+
+[`--compile-bytecode`](#uv-check--compile-bytecode), `--compile` : Compile Python files to bytecode after installation.
+
+```
+By default, uv does not compile Python (`.py`) files to bytecode (`__pycache__/*.pyc`); instead, compilation is performed lazily the first time a module is imported. For use-cases in which start time is critical, such as CLI applications and Docker containers, this option can be enabled to trade longer installation times for faster start times.
+
+When enabled, uv will process the entire site-packages directory (including packages that are not being modified by the current operation) for consistency. Like pip, it will also ignore errors.
+
+May also be set with the `UV_COMPILE_BYTECODE` environment variable.
+```
+
+[`--config-file`](#uv-check--config-file) *config-file* : The path to a `uv.toml` file to use for configuration.
+
+```
+While uv configuration can be included in a `pyproject.toml` file, it is not allowed in this context.
+
+May also be set with the `UV_CONFIG_FILE` environment variable.
+```
+
+[`--config-setting`](#uv-check--config-setting), `--config-settings`, `-C` *config-setting* : Settings to pass to the PEP 517 build backend, specified as `KEY=VALUE` pairs
+
+[`--config-settings-package`](#uv-check--config-settings-package), `--config-settings-package` *config-settings-package* : Settings to pass to the PEP 517 build backend for a specific package, specified as `PACKAGE:KEY=VALUE` pairs
+
+[`--default-index`](#uv-check--default-index) *default-index* : The URL of the default package index (by default: <https://pypi.org/simple>).
+
+```
+Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
+
+The index given by this flag is given lower priority than all other indexes specified via the `--index` flag.
+
+May also be set with the `UV_DEFAULT_INDEX` environment variable.
+```
+
+[`--directory`](#uv-check--directory) *directory* : Change to the given directory prior to running the command.
+
+```
+Relative paths are resolved with the given directory as the base.
+
+See `--project` to only change the project root directory.
+
+May also be set with the `UV_WORKING_DIR` environment variable.
+```
+
+[`--exclude-newer`](#uv-check--exclude-newer) *exclude-newer* : Limit candidate packages to those that were uploaded prior to the given date.
+
+```
+The date is compared against the upload time of each individual distribution artifact (i.e., when each file was uploaded to the package index), not the release date of the package version.
+
+Accepts RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`), local dates in the same format (e.g., `2006-12-02`) resolved based on your system's configured time zone, a "friendly" duration (e.g., `24 hours`, `1 week`, `30 days`), or an ISO 8601 duration (e.g., `PT24H`, `P7D`, `P30D`).
+
+Durations do not respect semantics of the local time zone and are always resolved to a fixed number of seconds assuming that a day is 24 hours (e.g., DST transitions are ignored). Calendar units such as months and years are not allowed.
+
+May also be set with the `UV_EXCLUDE_NEWER` environment variable.
+```
+
+[`--exclude-newer-package`](#uv-check--exclude-newer-package) *exclude-newer-package* : Limit candidate packages for specific packages to those that were uploaded prior to the given date.
+
+```
+Accepts package-date pairs in the format `PACKAGE=DATE`, where `DATE` is an RFC 3339 timestamp (e.g., `2006-12-02T02:07:43Z`), a local date in the same format (e.g., `2006-12-02`) resolved based on your system's configured time zone, a "friendly" duration (e.g., `24 hours`, `1 week`, `30 days`), or an ISO 8601 duration (e.g., `PT24H`, `P7D`, `P30D`).
+
+Durations do not respect semantics of the local time zone and are always resolved to a fixed number of seconds assuming that a day is 24 hours (e.g., DST transitions are ignored). Calendar units such as months and years are not allowed.
+
+Can be provided multiple times for different packages.
+```
+
+[`--extra`](#uv-check--extra) *extra* : Include optional dependencies from the specified extra name.
+
+```
+May be provided more than once.
+
+When multiple extras or groups are specified that appear in `tool.uv.conflicts`, uv will report an error.
+
+Note that all optional dependencies are always included in the resolution; this option only affects the selection of packages to install.
+```
+
+[`--extra-index-url`](#uv-check--extra-index-url) *extra-index-url* : (Deprecated: use `--index` instead) Extra URLs of package indexes to use, in addition to `--index-url`.
+
+```
+Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
+
+All indexes provided via this flag take priority over the index specified by `--index-url` (which defaults to PyPI). When multiple `--extra-index-url` flags are provided, earlier values take priority.
+
+May also be set with the `UV_EXTRA_INDEX_URL` environment variable.
+```
+
+[`--find-links`](#uv-check--find-links), `-f` *find-links* : Locations to search for candidate distributions, in addition to those found in the registry indexes.
+
+```
+If a path, the target must be a directory that contains packages as wheel files (`.whl`) or source distributions (e.g., `.tar.gz` or `.zip`) at the top level.
+
+If a URL, the page must contain a flat list of links to package files adhering to the formats described above.
+
+May also be set with the `UV_FIND_LINKS` environment variable.
+```
+
+[`--fork-strategy`](#uv-check--fork-strategy) *fork-strategy* : The strategy to use when selecting multiple versions of a given package across Python versions and platforms.
+
+```
+By default, uv will optimize for selecting the latest version of each package for each supported Python version (`requires-python`), while minimizing the number of selected versions across platforms.
+
+Under `fewest`, uv will minimize the number of selected versions for each package, preferring older versions that are compatible with a wider range of supported Python versions or platforms.
+
+May also be set with the `UV_FORK_STRATEGY` environment variable.
+
+Possible values:
+
+- `fewest`: Optimize for selecting the fewest number of versions for each package. Older versions may be preferred if they are compatible with a wider range of supported Python versions or platforms
+- `requires-python`: Optimize for selecting latest supported version of each package, for each supported Python version
+```
+
+[`--frozen`](#uv-check--frozen) : Sync without updating the `uv.lock` file [env: UV_FROZEN=]
+
+```
+Instead of checking if the lockfile is up-to-date, uses the versions in the lockfile as the source of truth. If the lockfile is missing, uv will exit with an error. If the `pyproject.toml` includes changes to dependencies that have not been included in the lockfile yet, they will not be present in the environment.
+```
+
+[`--group`](#uv-check--group) *group* : Include dependencies from the specified dependency group.
+
+```
+When multiple extras or groups are specified that appear in `tool.uv.conflicts`, uv will report an error.
+
+May be provided multiple times.
+```
+
+[`--help`](#uv-check--help), `-h` : Display the concise help for this command
+
+[`--index`](#uv-check--index) *index* : The URLs to use when resolving dependencies, in addition to the default index.
+
+```
+Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
+
+All indexes provided via this flag take priority over the index specified by `--default-index` (which defaults to PyPI). When multiple `--index` flags are provided, earlier values take priority.
+
+Index names are not supported as values. Relative paths must be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
+
+May also be set with the `UV_INDEX` environment variable.
+```
+
+[`--index-strategy`](#uv-check--index-strategy) *index-strategy* : The strategy to use when resolving against multiple index URLs.
+
+```
+By default, uv will stop at the first index on which a given package is available, and limit resolutions to those present on that first index (`first-index`). This prevents "dependency confusion" attacks, whereby an attacker can upload a malicious package under the same name to an alternate index.
+
+May also be set with the `UV_INDEX_STRATEGY` environment variable.
+
+Possible values:
+
+- `first-index`: Only use results from the first index that returns a match for a given package name
+- `unsafe-first-match`: Search for every package name across all indexes, exhausting the versions from the first index before moving on to the next
+- `unsafe-best-match`: Search for every package name across all indexes, preferring the "best" version found. If a package version is in multiple indexes, only look at the entry for the first index
+```
+
+[`--index-url`](#uv-check--index-url), `-i` *index-url* : (Deprecated: use `--default-index` instead) The URL of the Python package index (by default: <https://pypi.org/simple>).
+
+```
+Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
+
+The index given by this flag is given lower priority than all other indexes specified via the `--extra-index-url` flag.
+
+May also be set with the `UV_INDEX_URL` environment variable.
+```
+
+[`--keyring-provider`](#uv-check--keyring-provider) *keyring-provider* : Attempt to use `keyring` for authentication for index URLs.
+
+```
+At present, only `--keyring-provider subprocess` is supported, which configures uv to use the `keyring` CLI to handle authentication.
+
+Defaults to `disabled`.
+
+May also be set with the `UV_KEYRING_PROVIDER` environment variable.
+
+Possible values:
+
+- `disabled`: Do not use keyring for credential lookup
+- `subprocess`: Use the `keyring` command for credential lookup
+```
+
+[`--link-mode`](#uv-check--link-mode) *link-mode* : The method to use when installing packages from the global cache.
+
+```
+Defaults to `clone` (also known as Copy-on-Write) on macOS and Linux, and `hardlink` on Windows.
+
+WARNING: The use of symlink link mode is discouraged, as they create tight coupling between the cache and the target environment. For example, clearing the cache (`uv cache clean`) will break all installed packages by way of removing the underlying source files. Use symlinks with caution.
+
+May also be set with the `UV_LINK_MODE` environment variable.
+
+Possible values:
+
+- `clone`: Clone (i.e., copy-on-write) packages from the source into the destination
+- `copy`: Copy packages from the source into the destination
+- `hardlink`: Hard link packages from the source into the destination
+- `symlink`: Symbolically link packages from the source into the destination
+```
+
+[`--locked`](#uv-check--locked) : Assert that the `uv.lock` will remain unchanged [env: UV_LOCKED=]
+
+```
+Requires that the lockfile is up-to-date. If the lockfile is missing or needs to be updated, uv will exit with an error.
+```
+
+[`--managed-python`](#uv-check--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
+
+```
+By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
+```
+
+[`--no-binary`](#uv-check--no-binary) : Don't install pre-built wheels.
+
+```
+The given packages will be built and installed from source. The resolver will still use pre-built wheels to extract package metadata, if available.
+
+May also be set with the `UV_NO_BINARY` environment variable.
+```
+
+[`--no-binary-package`](#uv-check--no-binary-package) *no-binary-package* : Don't install pre-built wheels for a specific package \[env: `UV_NO_BINARY_PACKAGE`=\]
+
+[`--no-build`](#uv-check--no-build) : Don't build source distributions.
+
+```
+When enabled, resolving will not run arbitrary Python code. The cached wheels of already-built source distributions will be reused, but operations that require building distributions will exit with an error.
+
+May also be set with the `UV_NO_BUILD` environment variable.
+```
+
+[`--no-build-isolation`](#uv-check--no-build-isolation) : Disable isolation when building source distributions.
+
+```
+Assumes that build dependencies specified by PEP 518 are already installed.
+
+May also be set with the `UV_NO_BUILD_ISOLATION` environment variable.
+```
+
+[`--no-build-isolation-package`](#uv-check--no-build-isolation-package) *no-build-isolation-package* : Disable isolation when building source distributions for a specific package.
+
+```
+Assumes that the packages' build dependencies specified by PEP 518 are already installed.
+```
+
+[`--no-build-package`](#uv-check--no-build-package) *no-build-package* : Don't build source distributions for a specific package \[env: `UV_NO_BUILD_PACKAGE`=\]
+
+[`--no-cache`](#uv-check--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
+
+```
+May also be set with the `UV_NO_CACHE` environment variable.
+```
+
+[`--no-config`](#uv-check--no-config) : Avoid discovering configuration files (`pyproject.toml`, `uv.toml`).
+
+```
+Normally, configuration files are discovered in the current directory, parent directories, or user configuration directories.
+
+May also be set with the `UV_NO_CONFIG` environment variable.
+```
+
+[`--no-default-groups`](#uv-check--no-default-groups) : Ignore the default dependency groups.
+
+```
+uv includes the groups defined in `tool.uv.default-groups` by default. This disables that option, however, specific groups can still be included with `--group`.
+
+May also be set with the `UV_NO_DEFAULT_GROUPS` environment variable.
+```
+
+[`--no-dev`](#uv-check--no-dev) : Disable the development dependency group [env: UV_NO_DEV=]
+
+```
+This option is an alias of `--no-group dev`. See `--no-default-groups` to disable all default groups instead.
+```
+
+[`--no-extra`](#uv-check--no-extra) *no-extra* : Exclude the specified optional dependencies, if `--all-extras` is supplied.
+
+```
+May be provided multiple times.
+```
+
+[`--no-group`](#uv-check--no-group) *no-group* : Disable the specified dependency group \[env: `UV_NO_GROUP`=\]
+
+```
+This option always takes precedence over default groups, `--all-groups`, and `--group`.
+
+May be provided multiple times.
+```
+
+[`--no-index`](#uv-check--no-index) : Ignore the registry index (e.g., PyPI), instead relying on direct URL dependencies and those provided via `--find-links`
+
+[`--no-managed-python`](#uv-check--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
+
+```
+Instead, uv will search for a suitable Python version on the system.
+```
+
+[`--no-progress`](#uv-check--no-progress) : Hide all progress outputs [env: UV_NO_PROGRESS=]
+
+```
+For example, spinners or progress bars.
+```
+
+[`--no-project`](#uv-check--no-project) : Avoid discovering a project or workspace.
+
+```
+Instead of running checks in the context of the current project, run them in the context of the current directory. This is useful when the current directory is not a project.
+
+May also be set with the `UV_NO_PROJECT` environment variable.
+```
+
+[`--no-python-downloads`](#uv-check--no-python-downloads) : Disable automatic downloads of Python.
+
+[`--no-sources`](#uv-check--no-sources) : Ignore the `tool.uv.sources` table when resolving dependencies. Used to lock against the standards-compliant, publishable package metadata, as opposed to using any workspace, Git, URL, or local path sources
+
+```
+May also be set with the `UV_NO_SOURCES` environment variable.
+```
+
+[`--no-sources-package`](#uv-check--no-sources-package) *no-sources-package* : Don't use sources from the `tool.uv.sources` table for the specified packages \[env: `UV_NO_SOURCES_PACKAGE`=\]
+
+[`--no-sync`](#uv-check--no-sync) : Avoid syncing the virtual environment [env: UV_NO_SYNC=]
+
+```
+Implies `--frozen`, as the project dependencies will be ignored (i.e., the lockfile will not be updated, since the environment will not be synced regardless).
+```
+
+[`--offline`](#uv-check--offline) : Disable network access [env: UV_OFFLINE=]
+
+```
+When disabled, uv will only use locally cached data and locally available files.
+```
+
+[`--only-dev`](#uv-check--only-dev) : Only include the development dependency group.
+
+```
+The project and its dependencies will be omitted.
+
+This option is an alias for `--only-group dev`. Implies `--no-default-groups`.
+```
+
+[`--only-group`](#uv-check--only-group) *only-group* : Only include dependencies from the specified dependency group.
+
+```
+The project and its dependencies will be omitted.
+
+May be provided multiple times. Implies `--no-default-groups`.
+```
+
+[`--prerelease`](#uv-check--prerelease) *prerelease* : The strategy to use when considering pre-release versions.
+
+```
+By default, uv will accept pre-releases for packages that *only* publish pre-releases, along with first-party requirements that contain an explicit pre-release marker in the declared specifiers (`if-necessary-or-explicit`).
+
+May also be set with the `UV_PRERELEASE` environment variable.
+
+Possible values:
+
+- `disallow`: Disallow all pre-release versions
+- `allow`: Allow all pre-release versions
+- `if-necessary`: Allow pre-release versions if all versions of a package are pre-release
+- `explicit`: Allow pre-release versions for first-party packages with explicit pre-release markers in their version requirements
+- `if-necessary-or-explicit`: Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements
+```
+
+[`--project`](#uv-check--project) *project* : Discover a project in the given directory.
+
+```
+All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
+
+Other command-line arguments (such as relative paths) will be resolved relative to the current working directory.
+
+See `--directory` to change the working directory entirely.
+
+This setting has no effect when used in the `uv pip` interface.
+
+May also be set with the `UV_PROJECT` environment variable.
+```
+
+[`--python`](#uv-check--python), `-p` *python* : The Python interpreter to use for the project environment.
+
+```
+By default, the first interpreter that meets the project's `requires-python` constraint is used.
+
+See `uv python` for more details on Python discovery and requests.
+
+May also be set with the `UV_PYTHON` environment variable.
+```
+
+[`--quiet`](#uv-check--quiet), `-q` : Use quiet output.
+
+```
+Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will write no output to stdout.
+```
+
+[`--refresh`](#uv-check--refresh) : Refresh all cached data
+
+[`--refresh-package`](#uv-check--refresh-package) *refresh-package* : Refresh cached data for a specific package
+
+[`--reinstall`](#uv-check--reinstall), `--force-reinstall` : Reinstall all packages, regardless of whether they're already installed. Implies `--refresh`
+
+[`--reinstall-package`](#uv-check--reinstall-package) *reinstall-package* : Reinstall a specific package, regardless of whether it's already installed. Implies `--refresh-package`
+
+[`--resolution`](#uv-check--resolution) *resolution* : The strategy to use when selecting between the different compatible versions for a given package requirement.
+
+```
+By default, uv will use the latest compatible version of each package (`highest`).
+
+May also be set with the `UV_RESOLUTION` environment variable.
+
+Possible values:
+
+- `highest`: Resolve the highest compatible version of each package
+- `lowest`: Resolve the lowest compatible version of each package
+- `lowest-direct`: Resolve the lowest compatible version of any direct dependencies, and the highest compatible version of any transitive dependencies
+```
+
+[`--system-certs`](#uv-check--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
+```
+
+[`--ty-version`](#uv-check--ty-version) *ty-version* : The version of ty to use for type checking.
+
+```
+Accepts either a version (e.g., `0.0.1`) which will be treated as an exact pin, a version specifier (e.g., `>=0.0.1`), or `latest` to use the latest available version.
+
+By default, a constrained version range of ty will be used (e.g., `>=0.0,<0.1`).
+```
+
+[`--upgrade`](#uv-check--upgrade), `-U` : Allow package upgrades, ignoring pinned versions in any existing output file. Implies `--refresh`
+
+[`--upgrade-group`](#uv-check--upgrade-group) *upgrade-group* : Allow upgrades for all packages in a dependency group, ignoring pinned versions in any existing output file
+
+[`--upgrade-package`](#uv-check--upgrade-package), `-P` *upgrade-package* : Allow upgrades for a specific package, ignoring pinned versions in any existing output file. Implies `--refresh-package`
+
+[`--verbose`](#uv-check--verbose), `-v` : Use verbose output.
+
+```
+You can configure fine-grained logging using the `RUST_LOG` environment variable. (<https://docs.rs/tracing-subscriber/latest/tracing_subscriber/filter/struct.EnvFilter.html#directives>)
 ```
 
 ## [uv audit](#uv-audit)
