@@ -478,6 +478,63 @@ require('lspconfig').ty.setup({
 
 ```
 
+### [`completeFunctionParentheses`](#completefunctionparentheses)
+
+Whether accepting a function, method, or class completion also inserts parentheses and places the cursor inside them.
+
+**Default value**: `false`
+
+**Type**: `boolean`
+
+**Example usage**:
+
+```
+{
+  "ty.completions.completeFunctionParentheses": true
+}
+
+```
+
+```
+-- Neovim >=0.11:
+vim.lsp.config('ty', {
+  settings = {
+    ty = {
+      completions = {
+        completeFunctionParentheses = true,
+      },
+    },
+  },
+})
+
+-- Neovim <0.11:
+require('lspconfig').ty.setup({
+  settings = {
+    ty = {
+      completions = {
+        completeFunctionParentheses = true,
+      },
+    },
+  },
+})
+
+```
+
+```
+{
+  "lsp": {
+    "ty": {
+      "settings": {
+        "completions": {
+          "completeFunctionParentheses": true
+        }
+      }
+    }
+  }
+}
+
+```
+
 ______________________________________________________________________
 
 ## [VS Code specific](#vs-code-specific)
