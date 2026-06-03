@@ -1287,7 +1287,8 @@ Possible values:
 - `aarch64-manylinux_2_40`: An ARM64 target for the `manylinux_2_40` platform
 - `aarch64-linux-android`: An ARM64 Android target
 - `x86_64-linux-android`: An `x86_64` Android target
-- `wasm32-pyodide2024`: A wasm32 target using the Pyodide 2024 platform. Meant for use with Python 3.12
+- `wasm32-pyodide2024`: A wasm32 target using the Pyodide 2024 platform. Meant for use with Python 3.12. See <https://pyodide.org/en/stable/development/abi/312.html>
+- `wasm32-pyodide2025`: A wasm32 target using the Pyodide 2025 platform. Meant for use with Python 3.13. See <https://pyodide.org/en/stable/development/abi/313.html>
 - `arm64-apple-ios`: An ARM64 target for iOS device
 - `arm64-apple-ios-simulator`: An ARM64 target for iOS simulator
 - `x86_64-apple-ios-simulator`: An `x86_64` target for iOS simulator
@@ -3687,7 +3688,8 @@ Possible values:
 - `aarch64-manylinux_2_40`: An ARM64 target for the `manylinux_2_40` platform
 - `aarch64-linux-android`: An ARM64 Android target
 - `x86_64-linux-android`: An `x86_64` Android target
-- `wasm32-pyodide2024`: A wasm32 target using the Pyodide 2024 platform. Meant for use with Python 3.12
+- `wasm32-pyodide2024`: A wasm32 target using the Pyodide 2024 platform. Meant for use with Python 3.12. See <https://pyodide.org/en/stable/development/abi/312.html>
+- `wasm32-pyodide2025`: A wasm32 target using the Pyodide 2025 platform. Meant for use with Python 3.13. See <https://pyodide.org/en/stable/development/abi/313.html>
 - `arm64-apple-ios`: An ARM64 target for iOS device
 - `arm64-apple-ios-simulator`: An ARM64 target for iOS simulator
 - `x86_64-apple-ios-simulator`: An `x86_64` target for iOS simulator
@@ -5164,7 +5166,8 @@ Possible values:
 - `aarch64-manylinux_2_40`: An ARM64 target for the `manylinux_2_40` platform
 - `aarch64-linux-android`: An ARM64 Android target
 - `x86_64-linux-android`: An `x86_64` Android target
-- `wasm32-pyodide2024`: A wasm32 target using the Pyodide 2024 platform. Meant for use with Python 3.12
+- `wasm32-pyodide2024`: A wasm32 target using the Pyodide 2024 platform. Meant for use with Python 3.12. See <https://pyodide.org/en/stable/development/abi/312.html>
+- `wasm32-pyodide2025`: A wasm32 target using the Pyodide 2025 platform. Meant for use with Python 3.13. See <https://pyodide.org/en/stable/development/abi/313.html>
 - `arm64-apple-ios`: An ARM64 target for iOS device
 - `arm64-apple-ios-simulator`: An ARM64 target for iOS simulator
 - `x86_64-apple-ios-simulator`: An `x86_64` target for iOS simulator
@@ -5641,6 +5644,12 @@ Accepts either a repository compliant with PEP 503 (the simple repository API), 
 The index given by this flag is given lower priority than all other indexes specified via the `--extra-index-url` flag.
 
 May also be set with the `UV_INDEX_URL` environment variable.
+```
+
+[`--isolated`](#uv-check--isolated) : Run checks without mutating project state [env: UV_ISOLATED=]
+
+```
+Uses a temporary virtual environment and leaves existing environments and the project lockfile unchanged. Declared project requirements are resolved and installed into the temporary environment.
 ```
 
 [`--keyring-provider`](#uv-check--keyring-provider) *keyring-provider* : Attempt to use `keyring` for authentication for index URLs.
@@ -6375,7 +6384,8 @@ Possible values:
 - `aarch64-manylinux_2_40`: An ARM64 target for the `manylinux_2_40` platform
 - `aarch64-linux-android`: An ARM64 Android target
 - `x86_64-linux-android`: An `x86_64` Android target
-- `wasm32-pyodide2024`: A wasm32 target using the Pyodide 2024 platform. Meant for use with Python 3.12
+- `wasm32-pyodide2024`: A wasm32 target using the Pyodide 2024 platform. Meant for use with Python 3.12. See <https://pyodide.org/en/stable/development/abi/312.html>
+- `wasm32-pyodide2025`: A wasm32 target using the Pyodide 2025 platform. Meant for use with Python 3.13. See <https://pyodide.org/en/stable/development/abi/313.html>
 - `arm64-apple-ios`: An ARM64 target for iOS device
 - `arm64-apple-ios-simulator`: An ARM64 target for iOS simulator
 - `x86_64-apple-ios-simulator`: An `x86_64` target for iOS simulator
@@ -6938,7 +6948,8 @@ Possible values:
 - `aarch64-manylinux_2_40`: An ARM64 target for the `manylinux_2_40` platform
 - `aarch64-linux-android`: An ARM64 Android target
 - `x86_64-linux-android`: An `x86_64` Android target
-- `wasm32-pyodide2024`: A wasm32 target using the Pyodide 2024 platform. Meant for use with Python 3.12
+- `wasm32-pyodide2024`: A wasm32 target using the Pyodide 2024 platform. Meant for use with Python 3.12. See <https://pyodide.org/en/stable/development/abi/312.html>
+- `wasm32-pyodide2025`: A wasm32 target using the Pyodide 2025 platform. Meant for use with Python 3.13. See <https://pyodide.org/en/stable/development/abi/313.html>
 - `arm64-apple-ios`: An ARM64 target for iOS device
 - `arm64-apple-ios-simulator`: An ARM64 target for iOS simulator
 - `x86_64-apple-ios-simulator`: An `x86_64` target for iOS simulator
@@ -7519,7 +7530,8 @@ Possible values:
 - `aarch64-manylinux_2_40`: An ARM64 target for the `manylinux_2_40` platform
 - `aarch64-linux-android`: An ARM64 Android target
 - `x86_64-linux-android`: An `x86_64` Android target
-- `wasm32-pyodide2024`: A wasm32 target using the Pyodide 2024 platform. Meant for use with Python 3.12
+- `wasm32-pyodide2024`: A wasm32 target using the Pyodide 2024 platform. Meant for use with Python 3.12. See <https://pyodide.org/en/stable/development/abi/312.html>
+- `wasm32-pyodide2025`: A wasm32 target using the Pyodide 2025 platform. Meant for use with Python 3.13. See <https://pyodide.org/en/stable/development/abi/313.html>
 - `arm64-apple-ios`: An ARM64 target for iOS device
 - `arm64-apple-ios-simulator`: An ARM64 target for iOS simulator
 - `x86_64-apple-ios-simulator`: An `x86_64` target for iOS simulator
@@ -8054,7 +8066,8 @@ Possible values:
 - `aarch64-manylinux_2_40`: An ARM64 target for the `manylinux_2_40` platform
 - `aarch64-linux-android`: An ARM64 Android target
 - `x86_64-linux-android`: An `x86_64` Android target
-- `wasm32-pyodide2024`: A wasm32 target using the Pyodide 2024 platform. Meant for use with Python 3.12
+- `wasm32-pyodide2024`: A wasm32 target using the Pyodide 2024 platform. Meant for use with Python 3.12. See <https://pyodide.org/en/stable/development/abi/312.html>
+- `wasm32-pyodide2025`: A wasm32 target using the Pyodide 2025 platform. Meant for use with Python 3.13. See <https://pyodide.org/en/stable/development/abi/313.html>
 - `arm64-apple-ios`: An ARM64 target for iOS device
 - `arm64-apple-ios-simulator`: An ARM64 target for iOS simulator
 - `x86_64-apple-ios-simulator`: An `x86_64` target for iOS simulator
@@ -10814,7 +10827,8 @@ Possible values:
 - `aarch64-manylinux_2_40`: An ARM64 target for the `manylinux_2_40` platform
 - `aarch64-linux-android`: An ARM64 Android target
 - `x86_64-linux-android`: An `x86_64` Android target
-- `wasm32-pyodide2024`: A wasm32 target using the Pyodide 2024 platform. Meant for use with Python 3.12
+- `wasm32-pyodide2024`: A wasm32 target using the Pyodide 2024 platform. Meant for use with Python 3.12. See <https://pyodide.org/en/stable/development/abi/312.html>
+- `wasm32-pyodide2025`: A wasm32 target using the Pyodide 2025 platform. Meant for use with Python 3.13. See <https://pyodide.org/en/stable/development/abi/313.html>
 - `arm64-apple-ios`: An ARM64 target for iOS device
 - `arm64-apple-ios-simulator`: An ARM64 target for iOS simulator
 - `x86_64-apple-ios-simulator`: An `x86_64` target for iOS simulator
@@ -11400,7 +11414,8 @@ Possible values:
 - `aarch64-manylinux_2_40`: An ARM64 target for the `manylinux_2_40` platform
 - `aarch64-linux-android`: An ARM64 Android target
 - `x86_64-linux-android`: An `x86_64` Android target
-- `wasm32-pyodide2024`: A wasm32 target using the Pyodide 2024 platform. Meant for use with Python 3.12
+- `wasm32-pyodide2024`: A wasm32 target using the Pyodide 2024 platform. Meant for use with Python 3.12. See <https://pyodide.org/en/stable/development/abi/312.html>
+- `wasm32-pyodide2025`: A wasm32 target using the Pyodide 2025 platform. Meant for use with Python 3.13. See <https://pyodide.org/en/stable/development/abi/313.html>
 - `arm64-apple-ios`: An ARM64 target for iOS device
 - `arm64-apple-ios-simulator`: An ARM64 target for iOS simulator
 - `x86_64-apple-ios-simulator`: An `x86_64` target for iOS simulator
@@ -12045,7 +12060,8 @@ Possible values:
 - `aarch64-manylinux_2_40`: An ARM64 target for the `manylinux_2_40` platform
 - `aarch64-linux-android`: An ARM64 Android target
 - `x86_64-linux-android`: An `x86_64` Android target
-- `wasm32-pyodide2024`: A wasm32 target using the Pyodide 2024 platform. Meant for use with Python 3.12
+- `wasm32-pyodide2024`: A wasm32 target using the Pyodide 2024 platform. Meant for use with Python 3.12. See <https://pyodide.org/en/stable/development/abi/312.html>
+- `wasm32-pyodide2025`: A wasm32 target using the Pyodide 2025 platform. Meant for use with Python 3.13. See <https://pyodide.org/en/stable/development/abi/313.html>
 - `arm64-apple-ios`: An ARM64 target for iOS device
 - `arm64-apple-ios-simulator`: An ARM64 target for iOS simulator
 - `x86_64-apple-ios-simulator`: An `x86_64` target for iOS simulator
@@ -13515,7 +13531,8 @@ Possible values:
 - `aarch64-manylinux_2_40`: An ARM64 target for the `manylinux_2_40` platform
 - `aarch64-linux-android`: An ARM64 Android target
 - `x86_64-linux-android`: An `x86_64` Android target
-- `wasm32-pyodide2024`: A wasm32 target using the Pyodide 2024 platform. Meant for use with Python 3.12
+- `wasm32-pyodide2024`: A wasm32 target using the Pyodide 2024 platform. Meant for use with Python 3.12. See <https://pyodide.org/en/stable/development/abi/312.html>
+- `wasm32-pyodide2025`: A wasm32 target using the Pyodide 2025 platform. Meant for use with Python 3.13. See <https://pyodide.org/en/stable/development/abi/313.html>
 - `arm64-apple-ios`: An ARM64 target for iOS device
 - `arm64-apple-ios-simulator`: An ARM64 target for iOS simulator
 - `x86_64-apple-ios-simulator`: An `x86_64` target for iOS simulator
