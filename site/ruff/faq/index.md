@@ -429,12 +429,6 @@ ignore = [
 convention = "google"
 ```
 
-The PEP 257 convention includes all `D` errors apart from: [`D203`](../rules/incorrect-blank-line-before-class/), [`D212`](../rules/multi-line-summary-first-line/), [`D213`](../rules/multi-line-summary-second-line/), [`D214`](../rules/overindented-section/), [`D215`](../rules/overindented-section-underline/), [`D404`](../rules/docstring-starts-with-this/), [`D405`](../rules/non-capitalized-section-name/), [`D406`](../rules/missing-new-line-after-section-name/), [`D407`](../rules/missing-dashed-underline-after-section/), [`D408`](../rules/missing-section-underline-after-name/), [`D409`](../rules/mismatched-section-underline-length/), [`D410`](../rules/no-blank-line-after-section/), [`D411`](../rules/no-blank-line-before-section/), [`D413`](../rules/missing-blank-line-after-last-section/), [`D415`](../rules/missing-terminal-punctuation/), [`D416`](../rules/missing-section-name-colon/), and [`D417`](../rules/undocumented-param/).
-
-The NumPy convention includes all `D` errors apart from: [`D107`](../rules/undocumented-public-init/), [`D203`](../rules/incorrect-blank-line-before-class/), [`D212`](../rules/multi-line-summary-first-line/), [`D213`](../rules/multi-line-summary-second-line/), [`D402`](../rules/signature-in-docstring/), [`D413`](../rules/missing-blank-line-after-last-section/), [`D415`](../rules/missing-terminal-punctuation/), [`D416`](../rules/missing-section-name-colon/), and [`D417`](../rules/undocumented-param/).
-
-The Google convention includes all `D` errors apart from: [`D203`](../rules/incorrect-blank-line-before-class/), [`D204`](../rules/incorrect-blank-line-after-class/), [`D213`](../rules/multi-line-summary-second-line/), [`D215`](../rules/overindented-section-underline/), [`D400`](../rules/missing-trailing-period/), [`D401`](../rules/non-imperative-mood/), [`D404`](../rules/docstring-starts-with-this/), [`D406`](../rules/missing-new-line-after-section-name/), [`D407`](../rules/missing-dashed-underline-after-section/), [`D408`](../rules/missing-section-underline-after-name/), [`D409`](../rules/mismatched-section-underline-length/), and [`D413`](../rules/missing-blank-line-after-last-section/).
-
 By default, no [`convention`](../settings/#lint_pydocstyle_convention) is set, and so the enabled rules are determined by the [`select`](../settings/#lint_select) setting alone.
 
 ## [What is "preview"?](#what-is-preview)
