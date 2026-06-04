@@ -6,13 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Checks for the use of `sum()` to flatten lists of lists, which has">
+        <meta name="description" content="Checks for `yield` inside a context manager in an async generator.">
       
       
         <meta name="author" content="charliermarsh">
       
       
-        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/quadratic-list-summation/">
+        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/yield-in-context-manager-in-async-generator/">
       
       
       
@@ -25,7 +25,7 @@
     
     
 
-<title>quadratic-list-summation (RUF017) | Ruff</title>
+<title>yield-in-context-manager-in-async-generator (ASYNC119) | Ruff</title>
 
 
     
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#quadratic-list-summation-ruf017" class="md-skip">
+        <a href="#yield-in-context-manager-in-async-generator-async119" class="md-skip">
           Skip to content
         </a>
       
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              quadratic-list-summation (RUF017)
+              yield-in-context-manager-in-async-generator (ASYNC119)
             
           </span>
         </div>
@@ -860,58 +860,61 @@
   
 
 
-<h1 id="quadratic-list-summation-ruf017"><a class="toclink" href="#quadratic-list-summation-ruf017">quadratic-list-summation (RUF017)</a></h1>
+<h1 id="yield-in-context-manager-in-async-generator-async119"><a class="toclink" href="#yield-in-context-manager-in-async-generator-async119">yield-in-context-manager-in-async-generator (ASYNC119)</a></h1>
 <p><small>
-Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.285">v0.0.285</a> ·
-<a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27quadratic-list-summation%27%20OR%20RUF017)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fruff%2Frules%2Fquadratic_list_summation.rs#L71" target="_blank">View source</a>
+Preview (since <a href="https://github.com/astral-sh/ruff/releases/tag/0.15.16">0.15.16</a>) ·
+<a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27yield-in-context-manager-in-async-generator%27%20OR%20ASYNC119)" target="_blank">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_async%2Frules%2Fyield_in_context_manager_in_async_generator.rs#L68" target="_blank">View source</a>
 </small></p>
-<p>Fix is always available.</p>
+<p>Derived from the <strong><a href="../#flake8-async-async">flake8-async</a></strong> linter.</p>
+<p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
-<p>Checks for the use of <code>sum()</code> to flatten lists of lists, which has
-quadratic complexity.</p>
+<p>Checks for <code>yield</code> inside a context manager in an async generator.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
-<p>The use of <code>sum()</code> to flatten lists of lists is quadratic in the number of
-lists, as <code>sum()</code> creates a new list for each element in the summation.</p>
-<p>Instead, consider using another method of flattening lists to avoid
-quadratic complexity. The following methods are all linear in the number of
-lists:</p>
-<ul>
-<li><code>[*sublist for sublist in lists]</code> (Python 3.15+)</li>
-<li><code>functools.reduce(operator.iadd, lists, [])</code></li>
-<li><code>list(itertools.chain.from_iterable(lists))</code></li>
-<li><code>[item for sublist in lists for item in sublist]</code></li>
-</ul>
-<p>When fixing relevant violations, Ruff uses the starred-list-comprehension
-form on Python 3.15 and later. On older Python versions, Ruff falls back to
-the <code>functools.reduce</code> form, which outperforms the other pre-3.15
-alternatives in <a href="https://github.com/astral-sh/ruff/issues/5073#issuecomment-1591836349">microbenchmarks</a>.</p>
+<p>Yielding inside a context manager in an async generator is unsafe because
+the cleanup of the context manager may be delayed until the generator is
+closed, at which point <code>await</code> is no longer allowed. This can lead to
+resource leaks or other bugs.</p>
+<p>For more information, see <a href="https://peps.python.org/pep-0533/">PEP 533</a>.</p>
+<p>If the function is intended to yield only once and act as a context
+manager, use <code>@asynccontextmanager</code>. If it's a true async generator
+that yields multiple values, consumers should use <code>contextlib.aclosing</code> to
+ensure timely cleanup, or the generator should be refactored to avoid
+holding context managers open across yields.</p>
+<p>The rule also suppresses diagnostics for functions decorated with
+<code>@pytest.fixture</code> or <code>@pytest_asyncio.fixture</code>, as the pytest runner
+handles generator cleanup automatically.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">lists</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]]</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">joined</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">lists</span><span class="p">,</span> <span class="p">[])</span>
+<p>The following function yields once inside a context manager, but without
+<code>@asynccontextmanager</code>, cleanup of the connection may be delayed:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">open_connection</span><span class="p">():</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="k">async</span> <span class="k">with</span> <span class="n">connect</span><span class="p">()</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>        <span class="k">yield</span> <span class="n">conn</span>
 </code></pre></div>
-<p>On Python 3.14 and earlier, use instead:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">functools</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">operator</span>
+<p>If the function is intended to yield exactly once (i.e., it's a context
+manager), add <code>@asynccontextmanager</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">contextlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">asynccontextmanager</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">lists</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]]</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">joined</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">operator</span><span class="o">.</span><span class="n">iadd</span><span class="p">,</span> <span class="n">lists</span><span class="p">,</span> <span class="p">[])</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="nd">@asynccontextmanager</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">open_connection</span><span class="p">():</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="k">async</span> <span class="k">with</span> <span class="n">connect</span><span class="p">()</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>        <span class="k">yield</span> <span class="n">conn</span>
 </code></pre></div>
-<p>On Python 3.15 and later, use instead:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">lists</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]]</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">joined</span> <span class="o">=</span> <span class="p">[</span><span class="o">*</span><span class="n">sublist</span> <span class="k">for</span> <span class="n">sublist</span> <span class="ow">in</span> <span class="n">lists</span><span class="p">]</span>
-</code></pre></div>
-<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
-<p>This fix is always marked as unsafe because the replacement may accept any
-iterable where <code>sum</code> previously required lists. On Python 3.15 and later,
-Ruff uses iterable unpacking within a list comprehension; on older Python
-versions, Ruff uses <code>operator.iadd</code>. In both cases, code that previously
-raised an error may silently succeed. Moreover, the fix could remove
-comments from the original code.</p>
+<p>For async generators that yield multiple values, <code>@asynccontextmanager</code>
+is not appropriate. Instead, refactor to avoid holding context managers
+open across yields, or ensure consumers use <code>contextlib.aclosing</code> for timely
+cleanup.</p>
+<h2 id="known-problems"><a class="toclink" href="#known-problems">Known problems</a></h2>
+<p>Using <code>contextlib.aclosing</code> around all call sites of an async generator is a
+valid way to guarantee timely cleanup, but this rule cannot verify that
+all callers use <code>aclosing</code>. As a result, it may flag generators that
+are always consumed safely.</p>
 <h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
-<li><a href="https://mathieularose.com/how-not-to-flatten-a-list-of-lists-in-python"><em>How Not to Flatten a List of Lists in Python</em></a></li>
-<li><a href="https://stackoverflow.com/questions/952914/how-do-i-make-a-flat-list-out-of-a-list-of-lists/953097#953097"><em>How do I make a flat list out of a list of lists?</em></a></li>
+<li><a href="https://peps.python.org/pep-0533/">PEP 533 – Deterministic cleanup for iterators</a></li>
+<li><a href="https://docs.python.org/3/library/contextlib.html#contextlib.aclosing"><code>contextlib.aclosing</code></a></li>
+<li><a href="https://trio.readthedocs.io/en/latest/reference-core.html#trio.as_safe_channel">trio.as_safe_channel</a></li>
 </ul>
 
 
