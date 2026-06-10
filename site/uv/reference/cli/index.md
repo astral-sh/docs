@@ -2012,7 +2012,7 @@ May also be set with the `UV_NO_CONFIG` environment variable.
 
 [`--no-index`](#uv-add--no-index) : Ignore the registry index (e.g., PyPI), instead relying on direct URL dependencies and those provided via `--find-links`
 
-[`--no-install-local`](#uv-add--no-install-local) : Do not install local path dependencies
+[`--no-install-local`](#uv-add--no-install-local) : Do not install local path dependencies [env: UV_NO_INSTALL_LOCAL=]
 
 ```
 Skips the current project, workspace members, and any other local (path or editable) packages. Only remote/indexed dependencies are installed. Useful in Docker builds to cache heavy third-party dependencies first and layer local packages separately.
@@ -2028,7 +2028,7 @@ By default, all project's dependencies are installed into the environment. The `
 The inverse `--only-install-package` can be used to install *only* the specified packages, excluding all others.
 ```
 
-[`--no-install-project`](#uv-add--no-install-project) : Do not install the current project.
+[`--no-install-project`](#uv-add--no-install-project) : Do not install the current project [env: UV_NO_INSTALL_PROJECT=]
 
 ```
 By default, the current project is installed into the environment with all of its dependencies. The `--no-install-project` option allows the project to be excluded, but all of its dependencies are still installed. This is particularly useful in situations like building Docker images where installing the project separately from its dependencies allows optimal layer caching.
@@ -2036,7 +2036,7 @@ By default, the current project is installed into the environment with all of it
 The inverse `--only-install-project` can be used to install *only* the project itself, excluding all dependencies.
 ```
 
-[`--no-install-workspace`](#uv-add--no-install-workspace) : Do not install any workspace members, including the current project.
+[`--no-install-workspace`](#uv-add--no-install-workspace) : Do not install any workspace members, including the current project [env: UV_NO_INSTALL_WORKSPACE=]
 
 ```
 By default, all workspace members and their dependencies are installed into the environment. The `--no-install-workspace` option allows exclusion of all the workspace members while retaining their dependencies. This is particularly useful in situations like building Docker images where installing the workspace separately from its dependencies allows optimal layer caching.
@@ -3492,7 +3492,7 @@ May be provided multiple times.
 
 [`--no-index`](#uv-sync--no-index) : Ignore the registry index (e.g., PyPI), instead relying on direct URL dependencies and those provided via `--find-links`
 
-[`--no-install-local`](#uv-sync--no-install-local) : Do not install local path dependencies
+[`--no-install-local`](#uv-sync--no-install-local) : Do not install local path dependencies [env: UV_NO_INSTALL_LOCAL=]
 
 ```
 Skips the current project, workspace members, and any other local (path or editable) packages. Only remote/indexed dependencies are installed. Useful in Docker builds to cache heavy third-party dependencies first and layer local packages separately.
@@ -3508,7 +3508,7 @@ By default, all of the project's dependencies are installed into the environment
 The inverse `--only-install-package` can be used to install *only* the specified packages, excluding all others.
 ```
 
-[`--no-install-project`](#uv-sync--no-install-project) : Do not install the current project.
+[`--no-install-project`](#uv-sync--no-install-project) : Do not install the current project [env: UV_NO_INSTALL_PROJECT=]
 
 ```
 By default, the current project is installed into the environment with all of its dependencies. The `--no-install-project` option allows the project to be excluded, but all of its dependencies are still installed. This is particularly useful in situations like building Docker images where installing the project separately from its dependencies allows optimal layer caching.
@@ -3516,7 +3516,7 @@ By default, the current project is installed into the environment with all of it
 The inverse `--only-install-project` can be used to install *only* the project itself, excluding all dependencies.
 ```
 
-[`--no-install-workspace`](#uv-sync--no-install-workspace) : Do not install any workspace members, including the root project.
+[`--no-install-workspace`](#uv-sync--no-install-workspace) : Do not install any workspace members, including the root project [env: UV_NO_INSTALL_WORKSPACE=]
 
 ```
 By default, all workspace members and their dependencies are installed into the environment. The `--no-install-workspace` option allows exclusion of all the workspace members while retaining their dependencies. This is particularly useful in situations like building Docker images where installing the workspace separately from its dependencies allows optimal layer caching.
@@ -4259,6 +4259,10 @@ See `--project` to only change the project root directory.
 
 May also be set with the `UV_WORKING_DIR` environment variable.
 ```
+
+[`--emit-find-links`](#uv-export--emit-find-links) : Include `--find-links` entries in the generated output file
+
+[`--emit-index-url`](#uv-export--emit-index-url) : Include `--index-url` and `--extra-index-url` entries in the generated output file
 
 [`--exclude-newer`](#uv-export--exclude-newer) *exclude-newer* : Limit candidate packages to those that were uploaded prior to the given date.
 

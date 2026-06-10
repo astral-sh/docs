@@ -175,3 +175,15 @@ Sometimes it's helpful to perform installations in multiple steps, e.g., for opt
 When these options are used, all the dependencies of the target are still installed. For example, `--no-install-project` will omit the *project* but not any of its dependencies.
 
 If used improperly, these flags can result in a broken environment since a package can be missing its dependencies.
+
+## [Malware checks](#malware-checks)
+
+Important
+
+On-sync malware checking is in [preview](../../preview/), and is subject to change until stabilized.
+
+While syncing, uv can perform a lightweight scan of your lockfile for known malware by checking it against [OSV](https://osv.dev). OSV references MAL advisories from the OpenSSF's [malicious packages database](https://github.com/ossf/malicious-packages).
+
+If a locked dependency matches a malware advisory, the sync will be terminated.
+
+To enable malware checks, set `UV_MALWARE_CHECK=1` in your environment.

@@ -10,6 +10,7 @@ The specifics of uv's caching semantics vary based on the nature of the dependen
 - **For direct URL dependencies**, uv respects HTTP caching headers, and also caches based on the URL itself.
 - **For Git dependencies**, uv caches based on the fully-resolved Git commit hash. As such, `uv pip compile` will pin Git dependencies to a specific commit hash when writing the resolved dependency set.
 - **For local dependencies**, uv caches based on the last-modified time of the source archive (i.e., the local `.whl` or `.tar.gz` file). For directories, uv caches based on the last-modified time of the `pyproject.toml`, `setup.py`, or `setup.cfg` file.
+- **For flat indexes** (i.e., `--find-links` locations), uv assumes the index contents are immutable, caching each file by name. As such, replacing a file with new contents under the same name (e.g., rebuilding a wheel into a `--find-links` directory) will not be picked up until the cache is refreshed.
 
 If you're running into caching issues, uv includes a few escape hatches:
 
