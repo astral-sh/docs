@@ -1439,6 +1439,8 @@ Possible values:
 ```
 Disables creating extra files like `README.md`, the `src/` tree, `.python-version` files, etc.
 
+A `[build-system]` table is only created with `--package` or `--build-backend`.
+
 When combined with `--script`, the script will only contain the inline metadata header.
 ```
 
@@ -1586,7 +1588,7 @@ When disabled, uv will only use locally cached data and locally available files.
 ```
 Defines a `[build-system]` for the project.
 
-This is the default behavior when using `--lib` or `--build-backend`.
+This is the default behavior when using `--lib` or `--build-backend`, or when the `packaged-init` preview feature is enabled. It will become the default unconditionally in the future.
 
 When using `--app`, this will include a `[project.scripts]` entrypoint and use a `src/` project structure.
 ```

@@ -5546,6 +5546,7 @@ used.</p>
 <li><code>none</code>:  Do not infer the author information</li>
 </ul></dd><dt id="uv-init--bare"><a href="#uv-init--bare"><code>--bare</code></a></dt><dd><p>Only create a <code>pyproject.toml</code>.</p>
 <p>Disables creating extra files like <code>README.md</code>, the <code>src/</code> tree, <code>.python-version</code> files, etc.</p>
+<p>A <code>[build-system]</code> table is only created with <code>--package</code> or <code>--build-backend</code>.</p>
 <p>When combined with <code>--script</code>, the script will only contain the inline metadata header.</p>
 </dd><dt id="uv-init--build-backend"><a href="#uv-init--build-backend"><code>--build-backend</code></a> <i>build-backend</i></dt><dd><p>Initialize a build-backend of choice for the project.</p>
 <p>Implicitly sets <code>--package</code>.</p>
@@ -5603,7 +5604,7 @@ used.</p>
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 </dd><dt id="uv-init--package"><a href="#uv-init--package"><code>--package</code></a></dt><dd><p>Set up the project to be built as a Python package.</p>
 <p>Defines a <code>[build-system]</code> for the project.</p>
-<p>This is the default behavior when using <code>--lib</code> or <code>--build-backend</code>.</p>
+<p>This is the default behavior when using <code>--lib</code> or <code>--build-backend</code>, or when the <code>packaged-init</code> preview feature is enabled. It will become the default unconditionally in the future.</p>
 <p>When using <code>--app</code>, this will include a <code>[project.scripts]</code> entrypoint and use a <code>src/</code> project structure.</p>
 </dd><dt id="uv-init--project"><a href="#uv-init--project"><code>--project</code></a> <i>project</i></dt><dd><p>Discover a project in the given directory.</p>
 <p>All <code>pyproject.toml</code>, <code>uv.toml</code>, and <code>.python-version</code> files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (<code>.venv</code>).</p>
