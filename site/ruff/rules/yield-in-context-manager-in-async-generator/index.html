@@ -882,8 +882,8 @@ that yields multiple values, consumers should use <code>contextlib.aclosing</cod
 ensure timely cleanup, or the generator should be refactored to avoid
 holding context managers open across yields.</p>
 <p>The rule also suppresses diagnostics for functions decorated with
-<code>@pytest.fixture</code> or <code>@pytest_asyncio.fixture</code>, as the pytest runner
-handles generator cleanup automatically.</p>
+<code>@pytest.fixture</code>, <code>@pytest_asyncio.fixture</code>, or <code>@trio.as_safe_channel</code>,
+as these handle async generator cleanup safely.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <p>The following function yields once inside a context manager, but without
 <code>@asynccontextmanager</code>, cleanup of the connection may be delayed:</p>
