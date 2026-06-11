@@ -6,13 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Check for type annotations that can be rewritten based on [PEP 604] syntax.">
+        <meta name="description" content="Checks for `pytest` fixtures that set the parameter `autouse=True` in the decorator constructor.">
       
       
         <meta name="author" content="charliermarsh">
       
       
-        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/non-pep604-annotation-union/">
+        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/pytest-fixture-autouse/">
       
       
       
@@ -25,7 +25,7 @@
     
     
 
-<title>non-pep604-annotation-union (UP007) | Ruff</title>
+<title>pytest-fixture-autouse (RUF076) | Ruff</title>
 
 
     
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#non-pep604-annotation-union-up007" class="md-skip">
+        <a href="#pytest-fixture-autouse-ruf076" class="md-skip">
           Skip to content
         </a>
       
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              non-pep604-annotation-union (UP007)
+              pytest-fixture-autouse (RUF076)
             
           </span>
         </div>
@@ -860,52 +860,52 @@
   
 
 
-<h1 id="non-pep604-annotation-union-up007"><a class="toclink" href="#non-pep604-annotation-union-up007">non-pep604-annotation-union (UP007)</a></h1>
+<h1 id="pytest-fixture-autouse-ruf076"><a class="toclink" href="#pytest-fixture-autouse-ruf076">pytest-fixture-autouse (RUF076)</a></h1>
 <p><small>
-Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.155">v0.0.155</a> ·
-<a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27non-pep604-annotation-union%27%20OR%20UP007)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fpyupgrade%2Frules%2Fuse_pep604_annotation.rs#L66" target="_blank">View source</a>
+Preview (since <a href="https://github.com/astral-sh/ruff/releases/tag/0.15.17">0.15.17</a>) ·
+<a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27pytest-fixture-autouse%27%20OR%20RUF076)" target="_blank">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fruff%2Frules%2Fpytest_fixture_autouse.rs#L62" target="_blank">View source</a>
 </small></p>
-<p>Derived from the <strong><a href="../#pyupgrade-up">pyupgrade</a></strong> linter.</p>
-<p>Fix is sometimes available.</p>
+<p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
-<p>Check for type annotations that can be rewritten based on <a href="https://peps.python.org/pep-0604/">PEP 604</a> syntax.</p>
+<p>Checks for <code>pytest</code> fixtures that set the parameter <code>autouse=True</code> in the decorator constructor.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
-<p><a href="https://peps.python.org/pep-0604/">PEP 604</a> introduced a new syntax for union type annotations based on the
-<code>|</code> operator. This syntax is more concise and readable than the previous
-<code>typing.Union</code> and <code>typing.Optional</code> syntaxes.</p>
-<p>This rule is enabled when targeting Python 3.10 or later (see:
-<a href="../../settings/#target-version"><code>target-version</code></a>). By default, it's <em>also</em> enabled for earlier Python
-versions if <code>from __future__ import annotations</code> is present, as
-<code>__future__</code> annotations are not evaluated at runtime. If your code relies
-on runtime type annotations (either directly or via a library like
-Pydantic), you can disable this behavior for Python versions prior to 3.10
-by setting <a href="../../settings/#lint_pyupgrade_keep-runtime-typing"><code>lint.pyupgrade.keep-runtime-typing</code></a> to <code>true</code>.</p>
+<p>Autouse fixtures are run implicitly, which can make test behavior hard to
+reason about in general, but especially when defined in <code>conftest.py</code> files.
+Autouse fixtures in <code>conftest.py</code> files are automatically run for
+all tests in the directory structure, which can introduce hidden side effects,
+make test suites slower, and make debugging difficult.</p>
+<p>Instead, prefer to explicitly request/inject fixtures in tests, test classes,
+or other fixtures that need them by declaring them in the function parameters.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Union</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">foo</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">autouse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">def</span><span class="w"> </span><span class="nf">my_fixture</span><span class="p">():</span> <span class="o">...</span>
 </code></pre></div>
 <p>Use instead:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">foo</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">=</span> <span class="mi">1</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">()</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">def</span><span class="w"> </span><span class="nf">my_fixture</span><span class="p">():</span> <span class="o">...</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="k">def</span><span class="w"> </span><span class="nf">test_foo</span><span class="p">(</span><span class="n">my_fixture</span><span class="p">):</span> <span class="o">...</span>
 </code></pre></div>
-<p>Note that this rule only checks for usages of <code>typing.Union</code>,
-while <code>UP045</code> checks for <code>typing.Optional</code>.</p>
-<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
-<p>This rule's fix is marked as unsafe on Python versions prior to 3.10 because
-using the PEP-604 syntax may lead to runtime errors in libraries that rely
-on runtime type annotations, like Pydantic, or in unusual and likely
-incorrect type annotations where the type does not support the <code>|</code>
-operator. The fix is also marked as unsafe when it would remove comments
-present within the type annotation being rewritten.</p>
-<p>In <a href="https://docs.astral.sh/ruff/preview/">preview</a>, this rule can also add its own <code>__future__</code> import on Python
-3.9 and earlier, if the <a href="../../settings/#lint_future-annotations"><code>lint.future-annotations</code></a> setting is enabled. This
-also makes the fix unsafe.</p>
-<h2 id="options"><a class="toclink" href="#options">Options</a></h2>
+<h2 id="note"><a class="toclink" href="#note">Note</a></h2>
+<p>This is a pedantic rule that restricts a valid <code>pytest</code> pattern. If you choose to
+enable it, you may want to ignore it outside of <code>conftest.py</code> files,
+as autouse fixtures are most problematic when defined globally.</p>
+<p>You can do this by configuring <a href="../../settings/#lint_per-file-ignores"><code>lint.per-file-ignores</code></a>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">[tool.ruff.lint.per-file-ignores]</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="s2">&quot;!**/conftest.py&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;RUF076&quot;</span><span class="p">]</span>
+</code></pre></div>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
-<li><a href="../../settings/#target-version"><code>target-version</code></a></li>
-<li><a href="../../settings/#lint_pyupgrade_keep-runtime-typing"><code>lint.pyupgrade.keep-runtime-typing</code></a></li>
-<li><a href="../../settings/#lint_future-annotations"><code>lint.future-annotations</code></a></li>
+<li><a href="https://docs.pytest.org/en/stable/how-to/fixtures.html#scope-sharing-fixtures-across-classes-modules-packages-or-session"><code>pytest</code> documentation: Sharing fixtures across classes, modules, packages or session</a></li>
+<li><a href="https://docs.pytest.org/en/stable/how-to/fixtures.html#fixtures-can-request-other-fixtures"><code>pytest</code> documentation: Fixtures can request other fixtures</a></li>
 </ul>
 
 
