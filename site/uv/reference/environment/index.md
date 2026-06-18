@@ -1156,6 +1156,12 @@ added in `0.8.15`
 
 Specifies the directory where uv stores pyx credentials.
 
+### [`RUFF`](#ruff)
+
+added in `0.11.22`
+
+The path to the Ruff binary used by `uv format`.
+
 ### [`RUST_BACKTRACE`](#rust_backtrace)
 
 added in `0.7.22`
@@ -1243,6 +1249,12 @@ Path to system-level configuration directory on Windows systems.
 added in `0.0.5`
 
 Use to create the tracing durations file via the `tracing-durations-export` feature.
+
+### [`TY`](#ty)
+
+added in `0.11.22`
+
+The path to the ty binary used by `uv check`.
 
 ### [`USERPROFILE`](#userprofile)
 

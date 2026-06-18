@@ -1657,23 +1657,29 @@ prerelease = "allow"
 
 ______________________________________________________________________
 
-### \[[`preview`](#preview)\](#preview)
+### \[[`preview-features`](#preview-features)\](#preview-features)
 
-Whether to enable experimental, preview features.
+Whether to enable specific or all experimental preview features.
+
+Unknown feature names are ignored with a warning.
 
 **Default value**: `false`
 
-**Type**: `bool`
+**Type**: `bool | list[str]`
 
 **Example usage**:
 
 ```
 [tool.uv]
-preview = true
+preview-features = true
+# or
+preview-features = ["python-upgrade"]
 ```
 
 ```
-preview = true
+preview-features = true
+# or
+preview-features = ["python-upgrade"]
 ```
 
 ______________________________________________________________________

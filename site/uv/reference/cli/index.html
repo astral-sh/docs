@@ -7327,7 +7327,6 @@ interpreter. Use <code>--universal</code> to display the tree for all platforms,
 </dd><dt id="uv-check--no-sources"><a href="#uv-check--no-sources"><code>--no-sources</code></a></dt><dd><p>Ignore the <code>tool.uv.sources</code> table when resolving dependencies. Used to lock against the standards-compliant, publishable package metadata, as opposed to using any workspace, Git, URL, or local path sources</p>
 <p>May also be set with the <code>UV_NO_SOURCES</code> environment variable.</p></dd><dt id="uv-check--no-sources-package"><a href="#uv-check--no-sources-package"><code>--no-sources-package</code></a> <i>no-sources-package</i></dt><dd><p>Don't use sources from the <code>tool.uv.sources</code> table for the specified packages [env: <code>UV_NO_SOURCES_PACKAGE</code>=]</p>
 </dd><dt id="uv-check--no-sync"><a href="#uv-check--no-sync"><code>--no-sync</code></a></dt><dd><p>Avoid syncing the virtual environment [env: UV_NO_SYNC=]</p>
-<p>Implies <code>--frozen</code>, as the project dependencies will be ignored (i.e., the lockfile will not be updated, since the environment will not be synced regardless).</p>
 </dd><dt id="uv-check--offline"><a href="#uv-check--offline"><code>--offline</code></a></dt><dd><p>Disable network access [env: UV_OFFLINE=]</p>
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 </dd><dt id="uv-check--only-dev"><a href="#uv-check--only-dev"><code>--only-dev</code></a></dt><dd><p>Only include the development dependency group.</p>
@@ -7366,7 +7365,9 @@ interpreter. Use <code>--universal</code> to display the tree for all platforms,
 <li><code>highest</code>:  Resolve the highest compatible version of each package</li>
 <li><code>lowest</code>:  Resolve the lowest compatible version of each package</li>
 <li><code>lowest-direct</code>:  Resolve the lowest compatible version of any direct dependencies, and the highest compatible version of any transitive dependencies</li>
-</ul></dd><dt id="uv-check--system-certs"><a href="#uv-check--system-certs"><code>--system-certs</code></a></dt><dd><p>Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]</p>
+</ul></dd><dt id="uv-check--script"><a href="#uv-check--script"><code>--script</code></a> <i>script</i></dt><dd><p>Run checks for the specified PEP 723 Python script, rather than the current project.</p>
+<p>If provided, uv will use the dependencies based on the script's inline metadata table, in adherence with PEP 723.</p>
+</dd><dt id="uv-check--system-certs"><a href="#uv-check--system-certs"><code>--system-certs</code></a></dt><dd><p>Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]</p>
 <p>By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).</p>
 <p>However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.</p>
 </dd><dt id="uv-check--ty-version"><a href="#uv-check--ty-version"><code>--ty-version</code></a> <i>ty-version</i></dt><dd><p>The version of ty to use for type checking.</p>
@@ -7520,6 +7521,7 @@ interpreter. Use <code>--universal</code> to display the tree for all platforms,
 <ul>
 <li><code>text</code>:  Display the result in a human-readable format</li>
 <li><code>json</code>:  Display the result in JSON format</li>
+<li><code>sarif</code>:  Display the result in SARIF format</li>
 </ul></dd><dt id="uv-audit--prerelease"><a href="#uv-audit--prerelease"><code>--prerelease</code></a> <i>prerelease</i></dt><dd><p>The strategy to use when considering pre-release versions.</p>
 <p>By default, uv will accept pre-releases for packages that <em>only</em> publish pre-releases, along with first-party requirements that contain an explicit pre-release marker in the declared specifiers (<code>if-necessary-or-explicit</code>).</p>
 <p>May also be set with the <code>UV_PRERELEASE</code> environment variable.</p><p>Possible values:</p>
@@ -11412,7 +11414,9 @@ metadata when there are not wheels.</p>
 <li><code>highest</code>:  Resolve the highest compatible version of each package</li>
 <li><code>lowest</code>:  Resolve the lowest compatible version of each package</li>
 <li><code>lowest-direct</code>:  Resolve the lowest compatible version of any direct dependencies, and the highest compatible version of any transitive dependencies</li>
-</ul></dd><dt id="uv-workspace-metadata--sync"><a href="#uv-workspace-metadata--sync"><code>--sync</code></a></dt><dd><p>Sync the environment to include module ownership metadata in the output.</p>
+</ul></dd><dt id="uv-workspace-metadata--script"><a href="#uv-workspace-metadata--script"><code>--script</code></a> <i>script</i></dt><dd><p>View metadata for the specified PEP 723 Python script, rather than the current workspace.</p>
+<p>If provided, uv will resolve the dependencies based on the script's inline metadata table, in adherence with PEP 723.</p>
+</dd><dt id="uv-workspace-metadata--sync"><a href="#uv-workspace-metadata--sync"><code>--sync</code></a></dt><dd><p>Sync the environment to include module ownership metadata in the output.</p>
 <p>This adds a mapping from importable module names to references to the package nodes that provide them. To do this, the venv will be synced in inexact mode.</p>
 </dd><dt id="uv-workspace-metadata--system-certs"><a href="#uv-workspace-metadata--system-certs"><code>--system-certs</code></a></dt><dd><p>Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]</p>
 <p>By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).</p>
