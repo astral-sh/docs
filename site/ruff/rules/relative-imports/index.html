@@ -864,7 +864,7 @@
 <p><small>
 Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.169">v0.0.169</a> ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27relative-imports%27%20OR%20TID252)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_tidy_imports%2Frules%2Frelative_imports.rs#L48" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_tidy_imports%2Frules%2Frelative_imports.rs#L56" target="_blank">View source</a>
 </small></p>
 <p>Derived from the <strong><a href="../#flake8-tidy-imports-tid">flake8-tidy-imports</a></strong> linter.</p>
 <p>Fix is sometimes available.</p>
@@ -895,6 +895,13 @@ unnecessarily verbose:</p>
 <ul>
 <li><a href="../../settings/#lint_flake8-tidy-imports_ban-relative-imports"><code>lint.flake8-tidy-imports.ban-relative-imports</code></a></li>
 </ul>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
+<p>When available, this rule's fix is always marked as unsafe because Ruff
+infers the absolute import path from the file's location and configured
+package roots, while Python resolves relative imports from the module's
+runtime package. If those differ, the rewritten import can fail or resolve
+to a different module. The fix may also remove comments attached to the
+import statement.</p>
 
 
 

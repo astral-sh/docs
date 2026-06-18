@@ -6,13 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Checks for the use of type comments (e.g., `x = 1  # type: int`) in stub">
+        <meta name="description" content="Checks for `@property` method docstrings that start with known verbs">
       
       
         <meta name="author" content="charliermarsh">
       
       
-        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/type-comment-in-stub/">
+        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/property-docstring-starts-with-verb/">
       
       
       
@@ -25,7 +25,7 @@
     
     
 
-<title>type-comment-in-stub (PYI033) | Ruff</title>
+<title>property-docstring-starts-with-verb (D421) | Ruff</title>
 
 
     
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#type-comment-in-stub-pyi033" class="md-skip">
+        <a href="#property-docstring-starts-with-verb-d421" class="md-skip">
           Skip to content
         </a>
       
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              type-comment-in-stub (PYI033)
+              property-docstring-starts-with-verb (D421)
             
           </span>
         </div>
@@ -860,26 +860,45 @@
   
 
 
-<h1 id="type-comment-in-stub-pyi033"><a class="toclink" href="#type-comment-in-stub-pyi033">type-comment-in-stub (PYI033)</a></h1>
+<h1 id="property-docstring-starts-with-verb-d421"><a class="toclink" href="#property-docstring-starts-with-verb-d421">property-docstring-starts-with-verb (D421)</a></h1>
 <p><small>
-Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.254">v0.0.254</a> ·
-<a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27type-comment-in-stub%27%20OR%20PYI033)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_pyi%2Frules%2Ftype_comment_in_stub.rs#L30" target="_blank">View source</a>
+Preview (since <a href="https://github.com/astral-sh/ruff/releases/tag/0.15.18">0.15.18</a>) ·
+<a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27property-docstring-starts-with-verb%27%20OR%20D421)" target="_blank">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fpydocstyle%2Frules%2Fproperty_docstring_starts_with_verb.rs#L48" target="_blank">View source</a>
 </small></p>
-<p>Derived from the <strong><a href="../#flake8-pyi-pyi">flake8-pyi</a></strong> linter.</p>
+<p>Derived from the <strong><a href="../#pydocstyle-d">pydocstyle</a></strong> linter.</p>
+<p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
-<p>Checks for the use of type comments (e.g., <code>x = 1  # type: int</code>) in stub
-files.</p>
+<p>Checks for <code>@property</code> method docstrings that start with known verbs
+(e.g., "returns", "gets", etc).</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
-<p>Stub (<code>.pyi</code>) files should use type annotations directly, rather
-than type comments, even if they're intended to support Python 2, since
-stub files are not executed at runtime. The one exception is <code># type: ignore</code>.</p>
+<p>The <a href="https://google.github.io/styleguide/pyguide.html#383-functions-and-methods">Google Python style guide</a> recommends that the docstring for a
+<code>@property</code> data descriptor use the same style as the docstring for an
+attribute or a function argument (e.g., <code>"""The Bigtable path."""</code>),
+rather than a function-style docstring (e.g.,
+<code>"""Returns the Bigtable path."""</code>).</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># type: int</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Foo</span><span class="p">:</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="nd">@property</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">bar</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the bar.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bar</span>
 </code></pre></div>
 <p>Use instead:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">x</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Foo</span><span class="p">:</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="nd">@property</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">bar</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;The bar.&quot;&quot;&quot;</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bar</span>
 </code></pre></div>
+<h2 id="options"><a class="toclink" href="#options">Options</a></h2>
+<ul>
+<li><a href="../../settings/#lint_pydocstyle_property-decorators"><code>lint.pydocstyle.property-decorators</code></a></li>
+</ul>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
+<ul>
+<li><a href="https://google.github.io/styleguide/pyguide.html#383-functions-and-methods">Google Python Style Guide – Properties</a></li>
+</ul>
 
 
 
