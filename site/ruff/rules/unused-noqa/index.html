@@ -864,7 +864,7 @@
 <p><small>
 Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.155">v0.0.155</a> ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27unused-noqa%27%20OR%20RUF100)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fruff%2Frules%2Funused_noqa.rs#L83" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fruff%2Frules%2Funused_noqa.rs#L89" target="_blank">View source</a>
 </small></p>
 <p>Fix is always available.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
@@ -901,6 +901,10 @@ or <code>mypy</code>), separate them with a second <code>#</code> character:</p>
 <a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="k">def</span><span class="w"> </span><span class="nf">visit_ImportFrom</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>  <span class="c1"># noqa: N802 # pylint: disable=invalid-name</span>
 <a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="k">pass</span>
 </code></pre></div>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
+<p>The rule's fix is marked as unsafe when a full suppression comment would be removed and there
+are other nested comments on the same line. Removing such a comment can change the behavior of
+other suppression comments before or after the removed comment.</p>
 <h2 id="see-also"><a class="toclink" href="#see-also">See also</a></h2>
 <p>This rule ignores any codes that are unknown to Ruff, as it can't determine
 if the codes are valid or used by other tools. Enable <a href="https://docs.astral.sh/ruff/rules/invalid-rule-code/"><code>invalid-rule-code</code></a>

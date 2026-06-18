@@ -864,7 +864,7 @@
 <p><small>
 Added in <a href="https://github.com/astral-sh/ruff/releases/tag/0.15.0">0.15.0</a> ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27invalid-rule-code%27%20OR%20RUF102)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fruff%2Frules%2Finvalid_rule_code.rs#L57" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fruff%2Frules%2Finvalid_rule_code.rs#L63" target="_blank">View source</a>
 </small></p>
 <p>Fix is always available.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
@@ -880,6 +880,10 @@ Added in <a href="https://github.com/astral-sh/ruff/releases/tag/0.15.0">0.15.0<
 <p>Or if there are still valid codes needed:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>  <span class="c1"># noqa: E402</span>
 </code></pre></div>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
+<p>The rule's fix is marked as unsafe when a full suppression comment would be removed and there
+are other nested comments on the same line. Removing such a comment can change the behavior of
+other suppression comments before or after the removed comment.</p>
 <h2 id="options"><a class="toclink" href="#options">Options</a></h2>
 <p>This rule will flag rule codes that are unknown to Ruff, even if they are
 valid for other tools. You can tell Ruff to ignore such codes by configuring

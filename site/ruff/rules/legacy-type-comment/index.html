@@ -6,13 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Check for multiple imports on one line.">
+        <meta name="description" content="Checks for the use of type comments (e.g., `x = 1  # type: int`).">
       
       
         <meta name="author" content="charliermarsh">
       
       
-        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/multiple-imports-on-one-line/">
+        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/legacy-type-comment/">
       
       
       
@@ -25,7 +25,7 @@
     
     
 
-<title>multiple-imports-on-one-line (E401) | Ruff</title>
+<title>legacy-type-comment (PYI033) | Ruff</title>
 
 
     
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#multiple-imports-on-one-line-e401" class="md-skip">
+        <a href="#legacy-type-comment-pyi033" class="md-skip">
           Skip to content
         </a>
       
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              multiple-imports-on-one-line (E401)
+              legacy-type-comment (PYI033)
             
           </span>
         </div>
@@ -860,24 +860,28 @@
   
 
 
-<h1 id="multiple-imports-on-one-line-e401"><a class="toclink" href="#multiple-imports-on-one-line-e401">multiple-imports-on-one-line (E401)</a></h1>
+<h1 id="legacy-type-comment-pyi033"><a class="toclink" href="#legacy-type-comment-pyi033">legacy-type-comment (PYI033)</a></h1>
 <p><small>
-Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.191">v0.0.191</a> ·
-<a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27multiple-imports-on-one-line%27%20OR%20E401)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fpycodestyle%2Frules%2Fmultiple_imports_on_one_line.rs#L33" target="_blank">View source</a>
+Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.254">v0.0.254</a> ·
+<a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27legacy-type-comment%27%20OR%20PYI033)" target="_blank">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_pyi%2Frules%2Flegacy_type_comment.rs#L37" target="_blank">View source</a>
 </small></p>
-<p>Derived from the <strong><a href="../#pycodestyle-e-w">pycodestyle</a></strong> linter.</p>
-<p>Fix is always available.</p>
+<p>Derived from the <strong><a href="../#flake8-pyi-pyi">flake8-pyi</a></strong> linter.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
-<p>Check for multiple imports on one line.</p>
+<p>Checks for the use of type comments (e.g., <code>x = 1  # type: int</code>).</p>
+<p>By default, this check only runs on stub files. If <a href="../../settings/#preview"><code>preview</code></a> mode is enabled,
+the check also runs on <code>.py</code> files.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
-<p>According to <a href="https://peps.python.org/pep-0008/#imports">PEP 8</a>, "imports should usually be on separate lines."</p>
+<p>Type comments are a soft-deprecated form of type annotation. They are unsupported
+by some modern type checkers, including ty and Pyrefly, and are only necessary when
+supporting end-of-life Python versions such as 3.5 or older. They are never necessary
+in stub files, which are not executed at runtime.</p>
+<p>This rule does not apply to <code># type: ignore</code> suppression comments.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span><span class="o">,</span><span class="w"> </span><span class="nn">os</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># type: int</span>
 </code></pre></div>
 <p>Use instead:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">x</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span>
 </code></pre></div>
 
 
