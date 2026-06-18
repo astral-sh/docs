@@ -5812,10 +5812,6 @@ May also be set with the `UV_NO_SOURCES` environment variable.
 
 [`--no-sync`](#uv-check--no-sync) : Avoid syncing the virtual environment [env: UV_NO_SYNC=]
 
-```
-Implies `--frozen`, as the project dependencies will be ignored (i.e., the lockfile will not be updated, since the environment will not be synced regardless).
-```
-
 [`--offline`](#uv-check--offline) : Disable network access [env: UV_OFFLINE=]
 
 ```
@@ -5904,6 +5900,12 @@ Possible values:
 - `highest`: Resolve the highest compatible version of each package
 - `lowest`: Resolve the lowest compatible version of each package
 - `lowest-direct`: Resolve the lowest compatible version of any direct dependencies, and the highest compatible version of any transitive dependencies
+```
+
+[`--script`](#uv-check--script) *script* : Run checks for the specified PEP 723 Python script, rather than the current project.
+
+```
+If provided, uv will use the dependencies based on the script's inline metadata table, in adherence with PEP 723.
 ```
 
 [`--system-certs`](#uv-check--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
@@ -6308,6 +6310,7 @@ Possible values:
 
 - `text`: Display the result in a human-readable format
 - `json`: Display the result in JSON format
+- `sarif`: Display the result in SARIF format
 ```
 
 [`--prerelease`](#uv-audit--prerelease) *prerelease* : The strategy to use when considering pre-release versions.
@@ -15053,6 +15056,12 @@ Possible values:
 - `highest`: Resolve the highest compatible version of each package
 - `lowest`: Resolve the lowest compatible version of each package
 - `lowest-direct`: Resolve the lowest compatible version of any direct dependencies, and the highest compatible version of any transitive dependencies
+```
+
+[`--script`](#uv-workspace-metadata--script) *script* : View metadata for the specified PEP 723 Python script, rather than the current workspace.
+
+```
+If provided, uv will resolve the dependencies based on the script's inline metadata table, in adherence with PEP 723.
 ```
 
 [`--sync`](#uv-workspace-metadata--sync) : Sync the environment to include module ownership metadata in the output.
