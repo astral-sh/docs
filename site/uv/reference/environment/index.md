@@ -130,7 +130,7 @@ Equivalent to the `--excludes` command-line argument. If set, uv will use this a
 
 added in `0.2.12`
 
-Equivalent to the `--exclude-newer` command-line argument. If set, uv will exclude distributions published after the specified date.
+Equivalent to the `--exclude-newer` command-line argument. If set, uv will exclude distributions published after the specified date. Set to `false` to disable `exclude-newer`.
 
 ### [`UV_EXTRA_INDEX_URL`](#uv_extra_index_url)
 

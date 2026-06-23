@@ -988,9 +988,11 @@ Accepts RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`), a "friendly" duratio
 
 Durations do not respect semantics of the local time zone and are always resolved to a fixed number of seconds assuming that a day is 24 hours (e.g., DST transitions are ignored). Calendar units such as months and years are not allowed.
 
+Set to `false` to disable `exclude-newer`.
+
 **Default value**: `None`
 
-**Type**: `str`
+**Type**: `str | false`
 
 **Example usage**:
 
@@ -2433,9 +2435,11 @@ Accepts RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`), a "friendly" duratio
 
 Durations do not respect semantics of the local time zone and are always resolved to a fixed number of seconds assuming that a day is 24 hours (e.g., DST transitions are ignored). Calendar units such as months and years are not allowed.
 
+Set to `false` to disable `exclude-newer`.
+
 **Default value**: `None`
 
-**Type**: `str`
+**Type**: `str | false`
 
 **Example usage**:
 
