@@ -866,6 +866,8 @@ Accepts RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`), local dates in the s
 
 Durations do not respect semantics of the local time zone and are always resolved to a fixed number of seconds assuming that a day is 24 hours (e.g., DST transitions are ignored). Calendar units such as months and years are not allowed.
 
+Use `false` to disable `exclude-newer`.
+
 May also be set with the `UV_EXCLUDE_NEWER` environment variable.
 ```
 
@@ -1810,6 +1812,8 @@ Accepts RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`), local dates in the s
 
 Durations do not respect semantics of the local time zone and are always resolved to a fixed number of seconds assuming that a day is 24 hours (e.g., DST transitions are ignored). Calendar units such as months and years are not allowed.
 
+Use `false` to disable `exclude-newer`.
+
 May also be set with the `UV_EXCLUDE_NEWER` environment variable.
 ```
 
@@ -2333,6 +2337,8 @@ Accepts RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`), local dates in the s
 
 Durations do not respect semantics of the local time zone and are always resolved to a fixed number of seconds assuming that a day is 24 hours (e.g., DST transitions are ignored). Calendar units such as months and years are not allowed.
 
+Use `false` to disable `exclude-newer`.
+
 May also be set with the `UV_EXCLUDE_NEWER` environment variable.
 ```
 
@@ -2781,6 +2787,8 @@ The date is compared against the upload time of each individual distribution art
 Accepts RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`), local dates in the same format (e.g., `2006-12-02`) resolved based on your system's configured time zone, a "friendly" duration (e.g., `24 hours`, `1 week`, `30 days`), or an ISO 8601 duration (e.g., `PT24H`, `P7D`, `P30D`).
 
 Durations do not respect semantics of the local time zone and are always resolved to a fixed number of seconds assuming that a day is 24 hours (e.g., DST transitions are ignored). Calendar units such as months and years are not allowed.
+
+Use `false` to disable `exclude-newer`.
 
 May also be set with the `UV_EXCLUDE_NEWER` environment variable.
 ```
@@ -3251,6 +3259,8 @@ The date is compared against the upload time of each individual distribution art
 Accepts RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`), local dates in the same format (e.g., `2006-12-02`) resolved based on your system's configured time zone, a "friendly" duration (e.g., `24 hours`, `1 week`, `30 days`), or an ISO 8601 duration (e.g., `PT24H`, `P7D`, `P30D`).
 
 Durations do not respect semantics of the local time zone and are always resolved to a fixed number of seconds assuming that a day is 24 hours (e.g., DST transitions are ignored). Calendar units such as months and years are not allowed.
+
+Use `false` to disable `exclude-newer`.
 
 May also be set with the `UV_EXCLUDE_NEWER` environment variable.
 ```
@@ -3862,6 +3872,8 @@ Accepts RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`), local dates in the s
 
 Durations do not respect semantics of the local time zone and are always resolved to a fixed number of seconds assuming that a day is 24 hours (e.g., DST transitions are ignored). Calendar units such as months and years are not allowed.
 
+Use `false` to disable `exclude-newer`.
+
 May also be set with the `UV_EXCLUDE_NEWER` environment variable.
 ```
 
@@ -4274,6 +4286,8 @@ The date is compared against the upload time of each individual distribution art
 Accepts RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`), local dates in the same format (e.g., `2006-12-02`) resolved based on your system's configured time zone, a "friendly" duration (e.g., `24 hours`, `1 week`, `30 days`), or an ISO 8601 duration (e.g., `PT24H`, `P7D`, `P30D`).
 
 Durations do not respect semantics of the local time zone and are always resolved to a fixed number of seconds assuming that a day is 24 hours (e.g., DST transitions are ignored). Calendar units such as months and years are not allowed.
+
+Use `false` to disable `exclude-newer`.
 
 May also be set with the `UV_EXCLUDE_NEWER` environment variable.
 ```
@@ -4810,6 +4824,8 @@ Accepts RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`), local dates in the s
 
 Durations do not respect semantics of the local time zone and are always resolved to a fixed number of seconds assuming that a day is 24 hours (e.g., DST transitions are ignored). Calendar units such as months and years are not allowed.
 
+Use `false` to disable `exclude-newer`.
+
 May also be set with the `UV_EXCLUDE_NEWER` environment variable.
 ```
 
@@ -5334,6 +5350,8 @@ May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 Accepts a superset of [RFC 3339](https://www.rfc-editor.org/rfc/rfc3339.html) (e.g., `2006-12-02T02:07:43Z`) or local date in the same format (e.g. `2006-12-02`), as well as durations relative to "now" (e.g., `-1 week`).
 
+Use `false` to disable `exclude-newer`.
+
 May also be set with the `UV_EXCLUDE_NEWER` environment variable.
 ```
 
@@ -5541,6 +5559,8 @@ The date is compared against the upload time of each individual distribution art
 Accepts RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`), local dates in the same format (e.g., `2006-12-02`) resolved based on your system's configured time zone, a "friendly" duration (e.g., `24 hours`, `1 week`, `30 days`), or an ISO 8601 duration (e.g., `PT24H`, `P7D`, `P30D`).
 
 Durations do not respect semantics of the local time zone and are always resolved to a fixed number of seconds assuming that a day is 24 hours (e.g., DST transitions are ignored). Calendar units such as months and years are not allowed.
+
+Use `false` to disable `exclude-newer`.
 
 May also be set with the `UV_EXCLUDE_NEWER` environment variable.
 ```
@@ -6026,6 +6046,8 @@ The date is compared against the upload time of each individual distribution art
 Accepts RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`), local dates in the same format (e.g., `2006-12-02`) resolved based on your system's configured time zone, a "friendly" duration (e.g., `24 hours`, `1 week`, `30 days`), or an ISO 8601 duration (e.g., `PT24H`, `P7D`, `P30D`).
 
 Durations do not respect semantics of the local time zone and are always resolved to a fixed number of seconds assuming that a day is 24 hours (e.g., DST transitions are ignored). Calendar units such as months and years are not allowed.
+
+Use `false` to disable `exclude-newer`.
 
 May also be set with the `UV_EXCLUDE_NEWER` environment variable.
 ```
@@ -6639,6 +6661,8 @@ Accepts RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`), local dates in the s
 
 Durations do not respect semantics of the local time zone and are always resolved to a fixed number of seconds assuming that a day is 24 hours (e.g., DST transitions are ignored). Calendar units such as months and years are not allowed.
 
+Use `false` to disable `exclude-newer`.
+
 May also be set with the `UV_EXCLUDE_NEWER` environment variable.
 ```
 
@@ -7217,6 +7241,8 @@ Accepts RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`), local dates in the s
 
 Durations do not respect semantics of the local time zone and are always resolved to a fixed number of seconds assuming that a day is 24 hours (e.g., DST transitions are ignored). Calendar units such as months and years are not allowed.
 
+Use `false` to disable `exclude-newer`.
+
 May also be set with the `UV_EXCLUDE_NEWER` environment variable.
 ```
 
@@ -7779,6 +7805,8 @@ Accepts RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`), local dates in the s
 
 Durations do not respect semantics of the local time zone and are always resolved to a fixed number of seconds assuming that a day is 24 hours (e.g., DST transitions are ignored). Calendar units such as months and years are not allowed.
 
+Use `false` to disable `exclude-newer`.
+
 May also be set with the `UV_EXCLUDE_NEWER` environment variable.
 ```
 
@@ -8190,6 +8218,8 @@ May also be set with the `UV_WORKING_DIR` environment variable.
 Accepts RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`), local dates in the same format (e.g., `2006-12-02`) resolved based on your system's configured time zone, a "friendly" duration (e.g., `24 hours`, `1 week`, `30 days`), or an ISO 8601 duration (e.g., `PT24H`, `P7D`, `P30D`).
 
 Durations do not respect semantics of the local time zone and are always resolved to a fixed number of seconds assuming that a day is 24 hours (e.g., DST transitions are ignored). Calendar units such as months and years are not allowed.
+
+Use `false` to disable `exclude-newer`.
 
 May also be set with the `UV_EXCLUDE_NEWER` environment variable.
 ```
@@ -10464,6 +10494,8 @@ Accepts RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`), local dates in the s
 
 Durations do not respect semantics of the local time zone and are always resolved to a fixed number of seconds assuming that a day is 24 hours (e.g., DST transitions are ignored). Calendar units such as months and years are not allowed.
 
+Use `false` to disable `exclude-newer`.
+
 May also be set with the `UV_EXCLUDE_NEWER` environment variable.
 ```
 
@@ -11130,6 +11162,8 @@ Accepts RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`), local dates in the s
 
 Durations do not respect semantics of the local time zone and are always resolved to a fixed number of seconds assuming that a day is 24 hours (e.g., DST transitions are ignored). Calendar units such as months and years are not allowed.
 
+Use `false` to disable `exclude-newer`.
+
 May also be set with the `UV_EXCLUDE_NEWER` environment variable.
 ```
 
@@ -11708,6 +11742,8 @@ The date is compared against the upload time of each individual distribution art
 Accepts RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`), local dates in the same format (e.g., `2006-12-02`) resolved based on your system's configured time zone, a "friendly" duration (e.g., `24 hours`, `1 week`, `30 days`), or an ISO 8601 duration (e.g., `PT24H`, `P7D`, `P30D`).
 
 Durations do not respect semantics of the local time zone and are always resolved to a fixed number of seconds assuming that a day is 24 hours (e.g., DST transitions are ignored). Calendar units such as months and years are not allowed.
+
+Use `false` to disable `exclude-newer`.
 
 May also be set with the `UV_EXCLUDE_NEWER` environment variable.
 ```
@@ -12705,6 +12741,8 @@ Accepts RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`), local dates in the s
 
 Durations do not respect semantics of the local time zone and are always resolved to a fixed number of seconds assuming that a day is 24 hours (e.g., DST transitions are ignored). Calendar units such as months and years are not allowed.
 
+Use `false` to disable `exclude-newer`.
+
 May also be set with the `UV_EXCLUDE_NEWER` environment variable.
 ```
 
@@ -13163,6 +13201,8 @@ The date is compared against the upload time of each individual distribution art
 Accepts RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`), local dates in the same format (e.g., `2006-12-02`) resolved based on your system's configured time zone, a "friendly" duration (e.g., `24 hours`, `1 week`, `30 days`), or an ISO 8601 duration (e.g., `PT24H`, `P7D`, `P30D`).
 
 Durations do not respect semantics of the local time zone and are always resolved to a fixed number of seconds assuming that a day is 24 hours (e.g., DST transitions are ignored). Calendar units such as months and years are not allowed.
+
+Use `false` to disable `exclude-newer`.
 
 May also be set with the `UV_EXCLUDE_NEWER` environment variable.
 ```
@@ -13698,6 +13738,8 @@ Accepts RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`), local dates in the s
 
 Durations do not respect semantics of the local time zone and are always resolved to a fixed number of seconds assuming that a day is 24 hours (e.g., DST transitions are ignored). Calendar units such as months and years are not allowed.
 
+Use `false` to disable `exclude-newer`.
+
 May also be set with the `UV_EXCLUDE_NEWER` environment variable.
 ```
 
@@ -14061,6 +14103,8 @@ The date is compared against the upload time of each individual distribution art
 Accepts RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`), local dates in the same format (e.g., `2006-12-02`) resolved based on your system's configured time zone, a "friendly" duration (e.g., `24 hours`, `1 week`, `30 days`), or an ISO 8601 duration (e.g., `PT24H`, `P7D`, `P30D`).
 
 Durations do not respect semantics of the local time zone and are always resolved to a fixed number of seconds assuming that a day is 24 hours (e.g., DST transitions are ignored). Calendar units such as months and years are not allowed.
+
+Use `false` to disable `exclude-newer`.
 
 May also be set with the `UV_EXCLUDE_NEWER` environment variable.
 ```
@@ -14777,6 +14821,8 @@ The date is compared against the upload time of each individual distribution art
 Accepts RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`), local dates in the same format (e.g., `2006-12-02`) resolved based on your system's configured time zone, a "friendly" duration (e.g., `24 hours`, `1 week`, `30 days`), or an ISO 8601 duration (e.g., `PT24H`, `P7D`, `P30D`).
 
 Durations do not respect semantics of the local time zone and are always resolved to a fixed number of seconds assuming that a day is 24 hours (e.g., DST transitions are ignored). Calendar units such as months and years are not allowed.
+
+Use `false` to disable `exclude-newer`.
 
 May also be set with the `UV_EXCLUDE_NEWER` environment variable.
 ```
