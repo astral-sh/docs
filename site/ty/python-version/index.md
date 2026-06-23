@@ -30,3 +30,5 @@ If the `requires-python` field is not available but a virtual environment *has* 
 If no virtual environment is present or inferring the Python version from the metadata fails, ty will fall back to the latest stable Python version supported by ty (currently 3.14).
 
 The Python version may also be explicitly specified using the [`python-version`](../reference/configuration/#python-version) setting or the [`--python-version`](../reference/cli/#ty-check--python-version) flag.
+
+ty officially supports type checking code that targets Python 3.10 and later, though earlier versions (Python 3.7 through 3.9) can still be selected as targets. When analyzing code under `--python-version=3.7` or similar, ty will continue to check version-dependent syntax, perform narrowing based on `sys.version_info`, and more, but may produce false positives or false negatives for standard-library APIs as its bundled stubs do not fully describe those Python versions.

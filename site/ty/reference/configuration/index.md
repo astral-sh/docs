@@ -10,7 +10,9 @@ Valid severities are:
 
 - `ignore`: Disable the rule.
 - `warn`: Enable the rule and create a warning diagnostic.
-- `error`: Enable the rule and create an error diagnostic. ty will exit with a non-zero code if any error diagnostics are emitted.
+- `error`: Enable the rule and create an error diagnostic.
+
+By default, ty exits with code 1 if it emits any warning or error diagnostics. Set `terminal.error-on-warning` to `false` to exit with code 0 if all diagnostics have `warning` severity.
 
 **Default value**: `{...}`
 
@@ -241,6 +243,8 @@ ______________________________________________________________________
 ### [`python-version`](#python-version)
 
 Specifies the version of Python that will be used to analyze the source code. The version should be specified as a string in the format `M.m` where `M` is the major version and `m` is the minor (e.g. `"3.7"` or `"3.12"`). If a version is provided, ty will generate errors if the source code makes use of language features that are not supported in that version.
+
+ty officially supports type checking code that targets Python 3.10 and later. Python 3.7 through 3.9 can still be selected, but ty may produce false positives or false negatives for standard-library APIs because its bundled stubs do not fully describe those versions.
 
 If a version is not specified, ty will try the following techniques in order of preference to determine a value:
 
@@ -745,11 +749,11 @@ ______________________________________________________________________
 
 ### [`error-on-warning`](#error-on-warning)
 
-Use exit code 1 if there are any warning-level diagnostics.
+Use exit code 1, even if all diagnostics only had `warning` severity.
 
-Defaults to `false`.
+Defaults to `true`.
 
-**Default value**: `false`
+**Default value**: `true`
 
 **Type**: `bool`
 
@@ -757,15 +761,15 @@ Defaults to `false`.
 
 ```
 [tool.ty.terminal]
-# Error if ty emits any warning-level diagnostics.
-error-on-warning = true
+# Exit with code 0 if all diagnostics had `warning` severity.
+error-on-warning = false
 
 ```
 
 ```
 [terminal]
-# Error if ty emits any warning-level diagnostics.
-error-on-warning = true
+# Exit with code 0 if all diagnostics had `warning` severity.
+error-on-warning = false
 
 ```
 

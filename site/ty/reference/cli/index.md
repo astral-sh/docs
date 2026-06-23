@@ -69,7 +69,11 @@ May also be set with the `TY_CONFIG_FILE` environment variable.
 
 [`--error`](#ty-check--error) *rule* : Treat the given rule as having severity 'error'. Can be specified multiple times. Use 'all' to apply to all rules.
 
-[`--error-on-warning`](#ty-check--error-on-warning) : Use exit code 1 if there are any warning-level diagnostics
+[`--error-on-warning`](#ty-check--error-on-warning) : Use exit code 1 if there are any warning-level diagnostics.
+
+```
+Cannot be used in combination with `--exit-zero` or `--exit-zero-on-warning`.
+```
 
 [`--exclude`](#ty-check--exclude) *exclude* : Glob patterns for files to exclude from type checking.
 
@@ -77,7 +81,17 @@ May also be set with the `TY_CONFIG_FILE` environment variable.
 Uses gitignore-style syntax to exclude files and directories from type checking. Supports patterns like `tests/`, `*.tmp`, `**/__pycache__/**`.
 ```
 
-[`--exit-zero`](#ty-check--exit-zero) : Always use exit code 0, even when there are error-level diagnostics
+[`--exit-zero`](#ty-check--exit-zero) : Always use exit code 0, even when there are error-level diagnostics.
+
+```
+Cannot be used in combination with `--error-on-warning`.
+```
+
+[`--exit-zero-on-warning`](#ty-check--exit-zero-on-warning) : Use exit code 0 if there are no error-level diagnostics.
+
+```
+Cannot be used in combination with `--error-on-warning`.
+```
 
 [`--extra-search-path`](#ty-check--extra-search-path) *path* : Additional path to use as a module-resolution source (can be passed multiple times).
 
