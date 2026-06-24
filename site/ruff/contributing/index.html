@@ -955,6 +955,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Project Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adding-a-new-crate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adding a new crate
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -1524,6 +1541,26 @@ at <code>crates/ruff_linter</code>). As a contributor, that's the crate that'll 
 <li><code>crates/ruff_wasm</code>: library crate for exposing Ruff as a WebAssembly module. Powers the
     <a href="https://play.ruff.rs/">Ruff Playground</a>.</li>
 </ul>
+<h4 id="adding-a-new-crate"><a class="toclink" href="#adding-a-new-crate">Adding a new crate</a></h4>
+<p>When adding a workspace crate under <code>crates/</code>, first decide whether it should be published to
+crates.io as part of Ruff's releases:</p>
+<ul>
+<li>Test, benchmark, development, and other non-release crates must set <code>publish = false</code> in their
+    <code>Cargo.toml</code>.</li>
+<li>Publishable crates should inherit the workspace package metadata and follow Ruff's <a href="https://docs.astral.sh/ruff/versioning/#crate-versioning">crate
+    versioning policy</a>. If the crate is
+    listed under <code>[workspace.dependencies]</code>, specify both its path and matching version.</li>
+</ul>
+<p>For a publishable crate, generate its README and verify that the workspace can still be packaged:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>uv<span class="w"> </span>run<span class="w"> </span>--script<span class="w"> </span>scripts/generate-crate-readmes.py
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>cargo<span class="w"> </span>publish<span class="w"> </span>--workspace<span class="w"> </span>--dry-run
+</code></pre></div>
+<p>Before merging a publishable crate, ask a crates.io owner to bootstrap it by running:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nv">CARGO_REGISTRY_TOKEN</span><span class="o">=</span>&lt;token&gt;<span class="w"> </span>uv<span class="w"> </span>run<span class="w"> </span>--no-config<span class="w"> </span>--script<span class="w"> </span>scripts/setup-crates-io-publish.py
+</code></pre></div>
+<p>The bootstrap script reserves the crate name, configures the release workflow as its trusted
+publisher, requires trusted publishing for future versions, and adds the crate to <code>.known-crates</code>.
+Commit the generated README and <code>.known-crates</code> update with the new crate.</p>
 <h3 id="example-adding-a-new-lint-rule"><a class="toclink" href="#example-adding-a-new-lint-rule">Example: Adding a new lint rule</a></h3>
 <p>At a high level, the steps involved in adding a new lint rule are as follows:</p>
 <ol>
@@ -1619,54 +1656,54 @@ using <code># error</code> for the bulk of your assertions because it helps to k
 <code># snapshot</code> can be used to capture details of the diagnostic or suggested fix, when applicable.</p>
 <p>For example, a minimal mdtest for <code>module-import-not-at-top-of-file</code> (<code>E402</code>) would look something
 like this:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>&lt;!-- crates/ruff_linter/resources/mdtest/pycodestyle/module-import-not-at-top-of-file.md --&gt;
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="gh"># `module-import-not-at-top-of-file` (`E402`)</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="gu">## Basic examples</span>
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
-<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="sb">```toml</span>
-<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="n">lint</span><span class="p">.</span><span class="n">select</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;E402&quot;</span><span class="p">]</span>
-<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="sb">```</span>
-<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>
-<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>This is an example of code flagged by the rule:
-<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>
-<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="sb">```py</span>
-<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
-<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>  <span class="c1"># snapshot: module-import-not-at-top-of-file</span>
-<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="sb">```</span>
-<a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>
-<a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a><span class="sb">```snapshot</span>
-<a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a><span class="s">error[E402]: Module level import not at top of file</span>
-<a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a><span class="s"> --&gt; src/mdtest_snippet.py:2:1</span>
-<a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a><span class="s">  |</span>
-<a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a><span class="s">2 | import os  # snapshot: module-import-not-at-top-of-file</span>
-<a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a><span class="s">  | ^^^^^^^^^</span>
-<a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a><span class="s">  |</span>
-<a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a><span class="sb">```</span>
-<a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a>
-<a id="__codelineno-7-27" name="__codelineno-7-27" href="#__codelineno-7-27"></a>Additional cases can just use <span class="sb">`# error`</span> since the diagnostics should look the same:
-<a id="__codelineno-7-28" name="__codelineno-7-28" href="#__codelineno-7-28"></a>
-<a id="__codelineno-7-29" name="__codelineno-7-29" href="#__codelineno-7-29"></a><span class="sb">```py</span>
-<a id="__codelineno-7-30" name="__codelineno-7-30" href="#__codelineno-7-30"></a><span class="n">b</span> <span class="o">=</span> <span class="mi">2</span>
-<a id="__codelineno-7-31" name="__codelineno-7-31" href="#__codelineno-7-31"></a><span class="kn">import</span><span class="w"> </span><span class="nn">something_else</span>  <span class="c1"># error: [module-import-not-at-top-of-file]</span>
-<a id="__codelineno-7-32" name="__codelineno-7-32" href="#__codelineno-7-32"></a><span class="sb">```</span>
-<a id="__codelineno-7-33" name="__codelineno-7-33" href="#__codelineno-7-33"></a>
-<a id="__codelineno-7-34" name="__codelineno-7-34" href="#__codelineno-7-34"></a><span class="gu">## More complicated configuration</span>
-<a id="__codelineno-7-35" name="__codelineno-7-35" href="#__codelineno-7-35"></a>
-<a id="__codelineno-7-36" name="__codelineno-7-36" href="#__codelineno-7-36"></a>If any of your tests require special configuration options, you can define additional TOML code
-<a id="__codelineno-7-37" name="__codelineno-7-37" href="#__codelineno-7-37"></a>blocks. These blocks accept all of the configuration options that Ruff itself does:
-<a id="__codelineno-7-38" name="__codelineno-7-38" href="#__codelineno-7-38"></a>
-<a id="__codelineno-7-39" name="__codelineno-7-39" href="#__codelineno-7-39"></a>
-<a id="__codelineno-7-40" name="__codelineno-7-40" href="#__codelineno-7-40"></a><span class="sb">```toml</span>
-<a id="__codelineno-7-41" name="__codelineno-7-41" href="#__codelineno-7-41"></a><span class="n">target-version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;py310&quot;</span>
-<a id="__codelineno-7-42" name="__codelineno-7-42" href="#__codelineno-7-42"></a>
-<a id="__codelineno-7-43" name="__codelineno-7-43" href="#__codelineno-7-43"></a><span class="k">[lint]</span>
-<a id="__codelineno-7-44" name="__codelineno-7-44" href="#__codelineno-7-44"></a><span class="n">select</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;E&quot;</span><span class="p">]</span>
-<a id="__codelineno-7-45" name="__codelineno-7-45" href="#__codelineno-7-45"></a>
-<a id="__codelineno-7-46" name="__codelineno-7-46" href="#__codelineno-7-46"></a><span class="k">[lint.pycodestyle]</span>
-<a id="__codelineno-7-47" name="__codelineno-7-47" href="#__codelineno-7-47"></a><span class="n">max-line-length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span>
-<a id="__codelineno-7-48" name="__codelineno-7-48" href="#__codelineno-7-48"></a><span class="sb">```</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>&lt;!-- crates/ruff_linter/resources/mdtest/pycodestyle/module-import-not-at-top-of-file.md --&gt;
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="gh"># `module-import-not-at-top-of-file` (`E402`)</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="gu">## Basic examples</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="sb">```toml</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="n">lint</span><span class="p">.</span><span class="n">select</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;E402&quot;</span><span class="p">]</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="sb">```</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>This is an example of code flagged by the rule:
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="sb">```py</span>
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>  <span class="c1"># snapshot: module-import-not-at-top-of-file</span>
+<a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="sb">```</span>
+<a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a>
+<a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a><span class="sb">```snapshot</span>
+<a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a><span class="s">error[E402]: Module level import not at top of file</span>
+<a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a><span class="s"> --&gt; src/mdtest_snippet.py:2:1</span>
+<a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a><span class="s">  |</span>
+<a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a><span class="s">2 | import os  # snapshot: module-import-not-at-top-of-file</span>
+<a id="__codelineno-9-23" name="__codelineno-9-23" href="#__codelineno-9-23"></a><span class="s">  | ^^^^^^^^^</span>
+<a id="__codelineno-9-24" name="__codelineno-9-24" href="#__codelineno-9-24"></a><span class="s">  |</span>
+<a id="__codelineno-9-25" name="__codelineno-9-25" href="#__codelineno-9-25"></a><span class="sb">```</span>
+<a id="__codelineno-9-26" name="__codelineno-9-26" href="#__codelineno-9-26"></a>
+<a id="__codelineno-9-27" name="__codelineno-9-27" href="#__codelineno-9-27"></a>Additional cases can just use <span class="sb">`# error`</span> since the diagnostics should look the same:
+<a id="__codelineno-9-28" name="__codelineno-9-28" href="#__codelineno-9-28"></a>
+<a id="__codelineno-9-29" name="__codelineno-9-29" href="#__codelineno-9-29"></a><span class="sb">```py</span>
+<a id="__codelineno-9-30" name="__codelineno-9-30" href="#__codelineno-9-30"></a><span class="n">b</span> <span class="o">=</span> <span class="mi">2</span>
+<a id="__codelineno-9-31" name="__codelineno-9-31" href="#__codelineno-9-31"></a><span class="kn">import</span><span class="w"> </span><span class="nn">something_else</span>  <span class="c1"># error: [module-import-not-at-top-of-file]</span>
+<a id="__codelineno-9-32" name="__codelineno-9-32" href="#__codelineno-9-32"></a><span class="sb">```</span>
+<a id="__codelineno-9-33" name="__codelineno-9-33" href="#__codelineno-9-33"></a>
+<a id="__codelineno-9-34" name="__codelineno-9-34" href="#__codelineno-9-34"></a><span class="gu">## More complicated configuration</span>
+<a id="__codelineno-9-35" name="__codelineno-9-35" href="#__codelineno-9-35"></a>
+<a id="__codelineno-9-36" name="__codelineno-9-36" href="#__codelineno-9-36"></a>If any of your tests require special configuration options, you can define additional TOML code
+<a id="__codelineno-9-37" name="__codelineno-9-37" href="#__codelineno-9-37"></a>blocks. These blocks accept all of the configuration options that Ruff itself does:
+<a id="__codelineno-9-38" name="__codelineno-9-38" href="#__codelineno-9-38"></a>
+<a id="__codelineno-9-39" name="__codelineno-9-39" href="#__codelineno-9-39"></a>
+<a id="__codelineno-9-40" name="__codelineno-9-40" href="#__codelineno-9-40"></a><span class="sb">```toml</span>
+<a id="__codelineno-9-41" name="__codelineno-9-41" href="#__codelineno-9-41"></a><span class="n">target-version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;py310&quot;</span>
+<a id="__codelineno-9-42" name="__codelineno-9-42" href="#__codelineno-9-42"></a>
+<a id="__codelineno-9-43" name="__codelineno-9-43" href="#__codelineno-9-43"></a><span class="k">[lint]</span>
+<a id="__codelineno-9-44" name="__codelineno-9-44" href="#__codelineno-9-44"></a><span class="n">select</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;E&quot;</span><span class="p">]</span>
+<a id="__codelineno-9-45" name="__codelineno-9-45" href="#__codelineno-9-45"></a>
+<a id="__codelineno-9-46" name="__codelineno-9-46" href="#__codelineno-9-46"></a><span class="k">[lint.pycodestyle]</span>
+<a id="__codelineno-9-47" name="__codelineno-9-47" href="#__codelineno-9-47"></a><span class="n">max-line-length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span>
+<a id="__codelineno-9-48" name="__codelineno-9-48" href="#__codelineno-9-48"></a><span class="sb">```</span>
 </code></pre></div>
 <p>Mdtests are run as part of a normal <code>cargo test</code> invocation as part of the <code>ruff_mdtest</code> crate.</p>
 <h3 id="example-adding-an-auto-fix"><a class="toclink" href="#example-adding-an-auto-fix">Example: Adding an auto-fix</a></h3>
@@ -1766,12 +1803,12 @@ you addressed them.</p>
 </li>
 <li>
 <p>Generate the MkDocs site with:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>uv<span class="w"> </span>run<span class="w"> </span>--no-project<span class="w"> </span>--isolated<span class="w"> </span>--with-requirements<span class="w"> </span>docs/requirements.txt<span class="w"> </span>scripts/generate_mkdocs.py
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>uv<span class="w"> </span>run<span class="w"> </span>--no-project<span class="w"> </span>--isolated<span class="w"> </span>--with-requirements<span class="w"> </span>docs/requirements.txt<span class="w"> </span>scripts/generate_mkdocs.py
 </code></pre></div>
 </li>
 <li>
 <p>Run the development server with:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>uvx<span class="w"> </span>--with-requirements<span class="w"> </span>docs/requirements.txt<span class="w"> </span>--<span class="w"> </span>mkdocs<span class="w"> </span>serve<span class="w"> </span>-f<span class="w"> </span>mkdocs.yml
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>uvx<span class="w"> </span>--with-requirements<span class="w"> </span>docs/requirements.txt<span class="w"> </span>--<span class="w"> </span>mkdocs<span class="w"> </span>serve<span class="w"> </span>-f<span class="w"> </span>mkdocs.yml
 </code></pre></div>
 </li>
 </ol>
@@ -1886,8 +1923,8 @@ even patch releases may contain <a href="https://semver.org/#spec-item-4">non-ba
 <h2 id="ecosystem-ci"><a class="toclink" href="#ecosystem-ci">Ecosystem CI</a></h2>
 <p>GitHub Actions will run your changes against a number of real-world projects from GitHub and
 report on any linter or formatter differences. You can also run those checks locally via:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>uvx<span class="w"> </span>--from<span class="w"> </span>./python/ruff-ecosystem<span class="w"> </span>ruff-ecosystem<span class="w"> </span>check<span class="w"> </span>ruff<span class="w"> </span><span class="s2">&quot;./target/debug/ruff&quot;</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>uvx<span class="w"> </span>--from<span class="w"> </span>./python/ruff-ecosystem<span class="w"> </span>ruff-ecosystem<span class="w"> </span>format<span class="w"> </span>ruff<span class="w"> </span><span class="s2">&quot;./target/debug/ruff&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>uvx<span class="w"> </span>--from<span class="w"> </span>./python/ruff-ecosystem<span class="w"> </span>ruff-ecosystem<span class="w"> </span>check<span class="w"> </span>ruff<span class="w"> </span><span class="s2">&quot;./target/debug/ruff&quot;</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>uvx<span class="w"> </span>--from<span class="w"> </span>./python/ruff-ecosystem<span class="w"> </span>ruff-ecosystem<span class="w"> </span>format<span class="w"> </span>ruff<span class="w"> </span><span class="s2">&quot;./target/debug/ruff&quot;</span>
 </code></pre></div>
 <p>See the <a href="https://github.com/astral-sh/ruff/tree/main/python/ruff-ecosystem">ruff-ecosystem package</a> for more details.</p>
 <h2 id="upgrading-rust"><a class="toclink" href="#upgrading-rust">Upgrading Rust</a></h2>
@@ -1915,115 +1952,115 @@ mode, if it exists, especially when benchmarking short-lived processes.</p>
 <h3 id="cpython-benchmark"><a class="toclink" href="#cpython-benchmark">CPython Benchmark</a></h3>
 <p>First, clone <a href="https://github.com/python/cpython">CPython</a>. It's a large and diverse Python codebase,
 which makes it a good target for benchmarking.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>git<span class="w"> </span>clone<span class="w"> </span>--branch<span class="w"> </span><span class="m">3</span>.10<span class="w"> </span>https://github.com/python/cpython.git<span class="w"> </span>crates/ruff_linter/resources/test/cpython
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>git<span class="w"> </span>clone<span class="w"> </span>--branch<span class="w"> </span><span class="m">3</span>.10<span class="w"> </span>https://github.com/python/cpython.git<span class="w"> </span>crates/ruff_linter/resources/test/cpython
 </code></pre></div>
 <p>Install <code>hyperfine</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>cargo<span class="w"> </span>install<span class="w"> </span>hyperfine
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>cargo<span class="w"> </span>install<span class="w"> </span>hyperfine
 </code></pre></div>
 <p>To benchmark the release build:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>cargo<span class="w"> </span>build<span class="w"> </span>--release<span class="w"> </span>--bin<span class="w"> </span>ruff<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>hyperfine<span class="w"> </span>--warmup<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">  </span><span class="s2">&quot;./target/release/ruff check ./crates/ruff_linter/resources/test/cpython/ --no-cache -e&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">  </span><span class="s2">&quot;./target/release/ruff check ./crates/ruff_linter/resources/test/cpython/ -e&quot;</span>
-<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>
-<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>Benchmark<span class="w"> </span><span class="m">1</span>:<span class="w"> </span>./target/release/ruff<span class="w"> </span>./crates/ruff_linter/resources/test/cpython/<span class="w"> </span>--no-cache
-<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w">  </span>Time<span class="w"> </span><span class="o">(</span>mean<span class="w"> </span>±<span class="w"> </span>σ<span class="o">)</span>:<span class="w">     </span><span class="m">293</span>.8<span class="w"> </span>ms<span class="w"> </span>±<span class="w">   </span><span class="m">3</span>.2<span class="w"> </span>ms<span class="w">    </span><span class="o">[</span>User:<span class="w"> </span><span class="m">2384</span>.6<span class="w"> </span>ms,<span class="w"> </span>System:<span class="w"> </span><span class="m">90</span>.3<span class="w"> </span>ms<span class="o">]</span>
-<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="w">  </span>Range<span class="w"> </span><span class="o">(</span>min<span class="w"> </span>…<span class="w"> </span>max<span class="o">)</span>:<span class="w">   </span><span class="m">289</span>.9<span class="w"> </span>ms<span class="w"> </span>…<span class="w"> </span><span class="m">301</span>.6<span class="w"> </span>ms<span class="w">    </span><span class="m">10</span><span class="w"> </span>runs
-<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>
-<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>Benchmark<span class="w"> </span><span class="m">2</span>:<span class="w"> </span>./target/release/ruff<span class="w"> </span>./crates/ruff_linter/resources/test/cpython/
-<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="w">  </span>Time<span class="w"> </span><span class="o">(</span>mean<span class="w"> </span>±<span class="w"> </span>σ<span class="o">)</span>:<span class="w">      </span><span class="m">48</span>.0<span class="w"> </span>ms<span class="w"> </span>±<span class="w">   </span><span class="m">3</span>.1<span class="w"> </span>ms<span class="w">    </span><span class="o">[</span>User:<span class="w"> </span><span class="m">65</span>.2<span class="w"> </span>ms,<span class="w"> </span>System:<span class="w"> </span><span class="m">124</span>.7<span class="w"> </span>ms<span class="o">]</span>
-<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="w">  </span>Range<span class="w"> </span><span class="o">(</span>min<span class="w"> </span>…<span class="w"> </span>max<span class="o">)</span>:<span class="w">    </span><span class="m">45</span>.0<span class="w"> </span>ms<span class="w"> </span>…<span class="w">  </span><span class="m">66</span>.7<span class="w"> </span>ms<span class="w">    </span><span class="m">62</span><span class="w"> </span>runs
-<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>
-<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>Summary
-<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a><span class="w">  </span><span class="s1">&#39;./target/release/ruff ./crates/ruff_linter/resources/test/cpython/&#39;</span><span class="w"> </span>ran
-<a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a><span class="w">    </span><span class="m">6</span>.12<span class="w"> </span>±<span class="w"> </span><span class="m">0</span>.41<span class="w"> </span><span class="nb">times</span><span class="w"> </span>faster<span class="w"> </span>than<span class="w"> </span><span class="s1">&#39;./target/release/ruff ./crates/ruff_linter/resources/test/cpython/ --no-cache&#39;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>cargo<span class="w"> </span>build<span class="w"> </span>--release<span class="w"> </span>--bin<span class="w"> </span>ruff<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>hyperfine<span class="w"> </span>--warmup<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">  </span><span class="s2">&quot;./target/release/ruff check ./crates/ruff_linter/resources/test/cpython/ --no-cache -e&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">  </span><span class="s2">&quot;./target/release/ruff check ./crates/ruff_linter/resources/test/cpython/ -e&quot;</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>Benchmark<span class="w"> </span><span class="m">1</span>:<span class="w"> </span>./target/release/ruff<span class="w"> </span>./crates/ruff_linter/resources/test/cpython/<span class="w"> </span>--no-cache
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="w">  </span>Time<span class="w"> </span><span class="o">(</span>mean<span class="w"> </span>±<span class="w"> </span>σ<span class="o">)</span>:<span class="w">     </span><span class="m">293</span>.8<span class="w"> </span>ms<span class="w"> </span>±<span class="w">   </span><span class="m">3</span>.2<span class="w"> </span>ms<span class="w">    </span><span class="o">[</span>User:<span class="w"> </span><span class="m">2384</span>.6<span class="w"> </span>ms,<span class="w"> </span>System:<span class="w"> </span><span class="m">90</span>.3<span class="w"> </span>ms<span class="o">]</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="w">  </span>Range<span class="w"> </span><span class="o">(</span>min<span class="w"> </span>…<span class="w"> </span>max<span class="o">)</span>:<span class="w">   </span><span class="m">289</span>.9<span class="w"> </span>ms<span class="w"> </span>…<span class="w"> </span><span class="m">301</span>.6<span class="w"> </span>ms<span class="w">    </span><span class="m">10</span><span class="w"> </span>runs
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>Benchmark<span class="w"> </span><span class="m">2</span>:<span class="w"> </span>./target/release/ruff<span class="w"> </span>./crates/ruff_linter/resources/test/cpython/
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="w">  </span>Time<span class="w"> </span><span class="o">(</span>mean<span class="w"> </span>±<span class="w"> </span>σ<span class="o">)</span>:<span class="w">      </span><span class="m">48</span>.0<span class="w"> </span>ms<span class="w"> </span>±<span class="w">   </span><span class="m">3</span>.1<span class="w"> </span>ms<span class="w">    </span><span class="o">[</span>User:<span class="w"> </span><span class="m">65</span>.2<span class="w"> </span>ms,<span class="w"> </span>System:<span class="w"> </span><span class="m">124</span>.7<span class="w"> </span>ms<span class="o">]</span>
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="w">  </span>Range<span class="w"> </span><span class="o">(</span>min<span class="w"> </span>…<span class="w"> </span>max<span class="o">)</span>:<span class="w">    </span><span class="m">45</span>.0<span class="w"> </span>ms<span class="w"> </span>…<span class="w">  </span><span class="m">66</span>.7<span class="w"> </span>ms<span class="w">    </span><span class="m">62</span><span class="w"> </span>runs
+<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>
+<a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a>Summary
+<a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a><span class="w">  </span><span class="s1">&#39;./target/release/ruff ./crates/ruff_linter/resources/test/cpython/&#39;</span><span class="w"> </span>ran
+<a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a><span class="w">    </span><span class="m">6</span>.12<span class="w"> </span>±<span class="w"> </span><span class="m">0</span>.41<span class="w"> </span><span class="nb">times</span><span class="w"> </span>faster<span class="w"> </span>than<span class="w"> </span><span class="s1">&#39;./target/release/ruff ./crates/ruff_linter/resources/test/cpython/ --no-cache&#39;</span>
 </code></pre></div>
 <p>To benchmark against the ecosystem's existing tools:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>hyperfine<span class="w"> </span>--ignore-failure<span class="w"> </span>--warmup<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">  </span><span class="s2">&quot;./target/release/ruff check ./crates/ruff_linter/resources/test/cpython/ --no-cache&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">  </span><span class="s2">&quot;pyflakes crates/ruff_linter/resources/test/cpython&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">  </span><span class="s2">&quot;autoflake --recursive --expand-star-imports --remove-all-unused-imports --remove-unused-variables --remove-duplicate-keys resources/test/cpython&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">  </span><span class="s2">&quot;pycodestyle crates/ruff_linter/resources/test/cpython&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="w">  </span><span class="s2">&quot;flake8 crates/ruff_linter/resources/test/cpython&quot;</span>
-<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>
-<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>Benchmark<span class="w"> </span><span class="m">1</span>:<span class="w"> </span>./target/release/ruff<span class="w"> </span>./crates/ruff_linter/resources/test/cpython/<span class="w"> </span>--no-cache
-<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="w">  </span>Time<span class="w"> </span><span class="o">(</span>mean<span class="w"> </span>±<span class="w"> </span>σ<span class="o">)</span>:<span class="w">     </span><span class="m">294</span>.3<span class="w"> </span>ms<span class="w"> </span>±<span class="w">   </span><span class="m">3</span>.3<span class="w"> </span>ms<span class="w">    </span><span class="o">[</span>User:<span class="w"> </span><span class="m">2467</span>.5<span class="w"> </span>ms,<span class="w"> </span>System:<span class="w"> </span><span class="m">89</span>.6<span class="w"> </span>ms<span class="o">]</span>
-<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="w">  </span>Range<span class="w"> </span><span class="o">(</span>min<span class="w"> </span>…<span class="w"> </span>max<span class="o">)</span>:<span class="w">   </span><span class="m">291</span>.1<span class="w"> </span>ms<span class="w"> </span>…<span class="w"> </span><span class="m">302</span>.8<span class="w"> </span>ms<span class="w">    </span><span class="m">10</span><span class="w"> </span>runs
-<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>
-<a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a><span class="w">  </span>Warning:<span class="w"> </span>Ignoring<span class="w"> </span>non-zero<span class="w"> </span><span class="nb">exit</span><span class="w"> </span>code.
-<a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>
-<a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a>Benchmark<span class="w"> </span><span class="m">2</span>:<span class="w"> </span>pyflakes<span class="w"> </span>crates/ruff_linter/resources/test/cpython
-<a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a><span class="w">  </span>Time<span class="w"> </span><span class="o">(</span>mean<span class="w"> </span>±<span class="w"> </span>σ<span class="o">)</span>:<span class="w">     </span><span class="m">15</span>.786<span class="w"> </span>s<span class="w"> </span>±<span class="w">  </span><span class="m">0</span>.143<span class="w"> </span>s<span class="w">    </span><span class="o">[</span>User:<span class="w"> </span><span class="m">15</span>.560<span class="w"> </span>s,<span class="w"> </span>System:<span class="w"> </span><span class="m">0</span>.214<span class="w"> </span>s<span class="o">]</span>
-<a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a><span class="w">  </span>Range<span class="w"> </span><span class="o">(</span>min<span class="w"> </span>…<span class="w"> </span>max<span class="o">)</span>:<span class="w">   </span><span class="m">15</span>.640<span class="w"> </span>s<span class="w"> </span>…<span class="w"> </span><span class="m">16</span>.157<span class="w"> </span>s<span class="w">    </span><span class="m">10</span><span class="w"> </span>runs
-<a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a>
-<a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a><span class="w">  </span>Warning:<span class="w"> </span>Ignoring<span class="w"> </span>non-zero<span class="w"> </span><span class="nb">exit</span><span class="w"> </span>code.
-<a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a>
-<a id="__codelineno-14-20" name="__codelineno-14-20" href="#__codelineno-14-20"></a>Benchmark<span class="w"> </span><span class="m">3</span>:<span class="w"> </span>autoflake<span class="w"> </span>--recursive<span class="w"> </span>--expand-star-imports<span class="w"> </span>--remove-all-unused-imports<span class="w"> </span>--remove-unused-variables<span class="w"> </span>--remove-duplicate-keys<span class="w"> </span>resources/test/cpython
-<a id="__codelineno-14-21" name="__codelineno-14-21" href="#__codelineno-14-21"></a><span class="w">  </span>Time<span class="w"> </span><span class="o">(</span>mean<span class="w"> </span>±<span class="w"> </span>σ<span class="o">)</span>:<span class="w">      </span><span class="m">6</span>.175<span class="w"> </span>s<span class="w"> </span>±<span class="w">  </span><span class="m">0</span>.169<span class="w"> </span>s<span class="w">    </span><span class="o">[</span>User:<span class="w"> </span><span class="m">54</span>.102<span class="w"> </span>s,<span class="w"> </span>System:<span class="w"> </span><span class="m">1</span>.057<span class="w"> </span>s<span class="o">]</span>
-<a id="__codelineno-14-22" name="__codelineno-14-22" href="#__codelineno-14-22"></a><span class="w">  </span>Range<span class="w"> </span><span class="o">(</span>min<span class="w"> </span>…<span class="w"> </span>max<span class="o">)</span>:<span class="w">    </span><span class="m">5</span>.950<span class="w"> </span>s<span class="w"> </span>…<span class="w">  </span><span class="m">6</span>.391<span class="w"> </span>s<span class="w">    </span><span class="m">10</span><span class="w"> </span>runs
-<a id="__codelineno-14-23" name="__codelineno-14-23" href="#__codelineno-14-23"></a>
-<a id="__codelineno-14-24" name="__codelineno-14-24" href="#__codelineno-14-24"></a>Benchmark<span class="w"> </span><span class="m">4</span>:<span class="w"> </span>pycodestyle<span class="w"> </span>crates/ruff_linter/resources/test/cpython
-<a id="__codelineno-14-25" name="__codelineno-14-25" href="#__codelineno-14-25"></a><span class="w">  </span>Time<span class="w"> </span><span class="o">(</span>mean<span class="w"> </span>±<span class="w"> </span>σ<span class="o">)</span>:<span class="w">     </span><span class="m">46</span>.921<span class="w"> </span>s<span class="w"> </span>±<span class="w">  </span><span class="m">0</span>.508<span class="w"> </span>s<span class="w">    </span><span class="o">[</span>User:<span class="w"> </span><span class="m">46</span>.699<span class="w"> </span>s,<span class="w"> </span>System:<span class="w"> </span><span class="m">0</span>.202<span class="w"> </span>s<span class="o">]</span>
-<a id="__codelineno-14-26" name="__codelineno-14-26" href="#__codelineno-14-26"></a><span class="w">  </span>Range<span class="w"> </span><span class="o">(</span>min<span class="w"> </span>…<span class="w"> </span>max<span class="o">)</span>:<span class="w">   </span><span class="m">46</span>.171<span class="w"> </span>s<span class="w"> </span>…<span class="w"> </span><span class="m">47</span>.863<span class="w"> </span>s<span class="w">    </span><span class="m">10</span><span class="w"> </span>runs
-<a id="__codelineno-14-27" name="__codelineno-14-27" href="#__codelineno-14-27"></a>
-<a id="__codelineno-14-28" name="__codelineno-14-28" href="#__codelineno-14-28"></a><span class="w">  </span>Warning:<span class="w"> </span>Ignoring<span class="w"> </span>non-zero<span class="w"> </span><span class="nb">exit</span><span class="w"> </span>code.
-<a id="__codelineno-14-29" name="__codelineno-14-29" href="#__codelineno-14-29"></a>
-<a id="__codelineno-14-30" name="__codelineno-14-30" href="#__codelineno-14-30"></a>Benchmark<span class="w"> </span><span class="m">5</span>:<span class="w"> </span>flake8<span class="w"> </span>crates/ruff_linter/resources/test/cpython
-<a id="__codelineno-14-31" name="__codelineno-14-31" href="#__codelineno-14-31"></a><span class="w">  </span>Time<span class="w"> </span><span class="o">(</span>mean<span class="w"> </span>±<span class="w"> </span>σ<span class="o">)</span>:<span class="w">     </span><span class="m">12</span>.260<span class="w"> </span>s<span class="w"> </span>±<span class="w">  </span><span class="m">0</span>.321<span class="w"> </span>s<span class="w">    </span><span class="o">[</span>User:<span class="w"> </span><span class="m">102</span>.934<span class="w"> </span>s,<span class="w"> </span>System:<span class="w"> </span><span class="m">1</span>.230<span class="w"> </span>s<span class="o">]</span>
-<a id="__codelineno-14-32" name="__codelineno-14-32" href="#__codelineno-14-32"></a><span class="w">  </span>Range<span class="w"> </span><span class="o">(</span>min<span class="w"> </span>…<span class="w"> </span>max<span class="o">)</span>:<span class="w">   </span><span class="m">11</span>.848<span class="w"> </span>s<span class="w"> </span>…<span class="w"> </span><span class="m">12</span>.933<span class="w"> </span>s<span class="w">    </span><span class="m">10</span><span class="w"> </span>runs
-<a id="__codelineno-14-33" name="__codelineno-14-33" href="#__codelineno-14-33"></a>
-<a id="__codelineno-14-34" name="__codelineno-14-34" href="#__codelineno-14-34"></a><span class="w">  </span>Warning:<span class="w"> </span>Ignoring<span class="w"> </span>non-zero<span class="w"> </span><span class="nb">exit</span><span class="w"> </span>code.
-<a id="__codelineno-14-35" name="__codelineno-14-35" href="#__codelineno-14-35"></a>
-<a id="__codelineno-14-36" name="__codelineno-14-36" href="#__codelineno-14-36"></a>Summary
-<a id="__codelineno-14-37" name="__codelineno-14-37" href="#__codelineno-14-37"></a><span class="w">  </span><span class="s1">&#39;./target/release/ruff ./crates/ruff_linter/resources/test/cpython/ --no-cache&#39;</span><span class="w"> </span>ran
-<a id="__codelineno-14-38" name="__codelineno-14-38" href="#__codelineno-14-38"></a><span class="w">   </span><span class="m">20</span>.98<span class="w"> </span>±<span class="w"> </span><span class="m">0</span>.62<span class="w"> </span><span class="nb">times</span><span class="w"> </span>faster<span class="w"> </span>than<span class="w"> </span><span class="s1">&#39;autoflake --recursive --expand-star-imports --remove-all-unused-imports --remove-unused-variables --remove-duplicate-keys resources/test/cpython&#39;</span>
-<a id="__codelineno-14-39" name="__codelineno-14-39" href="#__codelineno-14-39"></a><span class="w">   </span><span class="m">41</span>.66<span class="w"> </span>±<span class="w"> </span><span class="m">1</span>.18<span class="w"> </span><span class="nb">times</span><span class="w"> </span>faster<span class="w"> </span>than<span class="w"> </span><span class="s1">&#39;flake8 crates/ruff_linter/resources/test/cpython&#39;</span>
-<a id="__codelineno-14-40" name="__codelineno-14-40" href="#__codelineno-14-40"></a><span class="w">   </span><span class="m">53</span>.64<span class="w"> </span>±<span class="w"> </span><span class="m">0</span>.77<span class="w"> </span><span class="nb">times</span><span class="w"> </span>faster<span class="w"> </span>than<span class="w"> </span><span class="s1">&#39;pyflakes crates/ruff_linter/resources/test/cpython&#39;</span>
-<a id="__codelineno-14-41" name="__codelineno-14-41" href="#__codelineno-14-41"></a><span class="w">  </span><span class="m">159</span>.43<span class="w"> </span>±<span class="w"> </span><span class="m">2</span>.48<span class="w"> </span><span class="nb">times</span><span class="w"> </span>faster<span class="w"> </span>than<span class="w"> </span><span class="s1">&#39;pycodestyle crates/ruff_linter/resources/test/cpython&#39;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>hyperfine<span class="w"> </span>--ignore-failure<span class="w"> </span>--warmup<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">  </span><span class="s2">&quot;./target/release/ruff check ./crates/ruff_linter/resources/test/cpython/ --no-cache&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">  </span><span class="s2">&quot;pyflakes crates/ruff_linter/resources/test/cpython&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">  </span><span class="s2">&quot;autoflake --recursive --expand-star-imports --remove-all-unused-imports --remove-unused-variables --remove-duplicate-keys resources/test/cpython&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">  </span><span class="s2">&quot;pycodestyle crates/ruff_linter/resources/test/cpython&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="w">  </span><span class="s2">&quot;flake8 crates/ruff_linter/resources/test/cpython&quot;</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>Benchmark<span class="w"> </span><span class="m">1</span>:<span class="w"> </span>./target/release/ruff<span class="w"> </span>./crates/ruff_linter/resources/test/cpython/<span class="w"> </span>--no-cache
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="w">  </span>Time<span class="w"> </span><span class="o">(</span>mean<span class="w"> </span>±<span class="w"> </span>σ<span class="o">)</span>:<span class="w">     </span><span class="m">294</span>.3<span class="w"> </span>ms<span class="w"> </span>±<span class="w">   </span><span class="m">3</span>.3<span class="w"> </span>ms<span class="w">    </span><span class="o">[</span>User:<span class="w"> </span><span class="m">2467</span>.5<span class="w"> </span>ms,<span class="w"> </span>System:<span class="w"> </span><span class="m">89</span>.6<span class="w"> </span>ms<span class="o">]</span>
+<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="w">  </span>Range<span class="w"> </span><span class="o">(</span>min<span class="w"> </span>…<span class="w"> </span>max<span class="o">)</span>:<span class="w">   </span><span class="m">291</span>.1<span class="w"> </span>ms<span class="w"> </span>…<span class="w"> </span><span class="m">302</span>.8<span class="w"> </span>ms<span class="w">    </span><span class="m">10</span><span class="w"> </span>runs
+<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a>
+<a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a><span class="w">  </span>Warning:<span class="w"> </span>Ignoring<span class="w"> </span>non-zero<span class="w"> </span><span class="nb">exit</span><span class="w"> </span>code.
+<a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a>
+<a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a>Benchmark<span class="w"> </span><span class="m">2</span>:<span class="w"> </span>pyflakes<span class="w"> </span>crates/ruff_linter/resources/test/cpython
+<a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a><span class="w">  </span>Time<span class="w"> </span><span class="o">(</span>mean<span class="w"> </span>±<span class="w"> </span>σ<span class="o">)</span>:<span class="w">     </span><span class="m">15</span>.786<span class="w"> </span>s<span class="w"> </span>±<span class="w">  </span><span class="m">0</span>.143<span class="w"> </span>s<span class="w">    </span><span class="o">[</span>User:<span class="w"> </span><span class="m">15</span>.560<span class="w"> </span>s,<span class="w"> </span>System:<span class="w"> </span><span class="m">0</span>.214<span class="w"> </span>s<span class="o">]</span>
+<a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a><span class="w">  </span>Range<span class="w"> </span><span class="o">(</span>min<span class="w"> </span>…<span class="w"> </span>max<span class="o">)</span>:<span class="w">   </span><span class="m">15</span>.640<span class="w"> </span>s<span class="w"> </span>…<span class="w"> </span><span class="m">16</span>.157<span class="w"> </span>s<span class="w">    </span><span class="m">10</span><span class="w"> </span>runs
+<a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a>
+<a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a><span class="w">  </span>Warning:<span class="w"> </span>Ignoring<span class="w"> </span>non-zero<span class="w"> </span><span class="nb">exit</span><span class="w"> </span>code.
+<a id="__codelineno-16-19" name="__codelineno-16-19" href="#__codelineno-16-19"></a>
+<a id="__codelineno-16-20" name="__codelineno-16-20" href="#__codelineno-16-20"></a>Benchmark<span class="w"> </span><span class="m">3</span>:<span class="w"> </span>autoflake<span class="w"> </span>--recursive<span class="w"> </span>--expand-star-imports<span class="w"> </span>--remove-all-unused-imports<span class="w"> </span>--remove-unused-variables<span class="w"> </span>--remove-duplicate-keys<span class="w"> </span>resources/test/cpython
+<a id="__codelineno-16-21" name="__codelineno-16-21" href="#__codelineno-16-21"></a><span class="w">  </span>Time<span class="w"> </span><span class="o">(</span>mean<span class="w"> </span>±<span class="w"> </span>σ<span class="o">)</span>:<span class="w">      </span><span class="m">6</span>.175<span class="w"> </span>s<span class="w"> </span>±<span class="w">  </span><span class="m">0</span>.169<span class="w"> </span>s<span class="w">    </span><span class="o">[</span>User:<span class="w"> </span><span class="m">54</span>.102<span class="w"> </span>s,<span class="w"> </span>System:<span class="w"> </span><span class="m">1</span>.057<span class="w"> </span>s<span class="o">]</span>
+<a id="__codelineno-16-22" name="__codelineno-16-22" href="#__codelineno-16-22"></a><span class="w">  </span>Range<span class="w"> </span><span class="o">(</span>min<span class="w"> </span>…<span class="w"> </span>max<span class="o">)</span>:<span class="w">    </span><span class="m">5</span>.950<span class="w"> </span>s<span class="w"> </span>…<span class="w">  </span><span class="m">6</span>.391<span class="w"> </span>s<span class="w">    </span><span class="m">10</span><span class="w"> </span>runs
+<a id="__codelineno-16-23" name="__codelineno-16-23" href="#__codelineno-16-23"></a>
+<a id="__codelineno-16-24" name="__codelineno-16-24" href="#__codelineno-16-24"></a>Benchmark<span class="w"> </span><span class="m">4</span>:<span class="w"> </span>pycodestyle<span class="w"> </span>crates/ruff_linter/resources/test/cpython
+<a id="__codelineno-16-25" name="__codelineno-16-25" href="#__codelineno-16-25"></a><span class="w">  </span>Time<span class="w"> </span><span class="o">(</span>mean<span class="w"> </span>±<span class="w"> </span>σ<span class="o">)</span>:<span class="w">     </span><span class="m">46</span>.921<span class="w"> </span>s<span class="w"> </span>±<span class="w">  </span><span class="m">0</span>.508<span class="w"> </span>s<span class="w">    </span><span class="o">[</span>User:<span class="w"> </span><span class="m">46</span>.699<span class="w"> </span>s,<span class="w"> </span>System:<span class="w"> </span><span class="m">0</span>.202<span class="w"> </span>s<span class="o">]</span>
+<a id="__codelineno-16-26" name="__codelineno-16-26" href="#__codelineno-16-26"></a><span class="w">  </span>Range<span class="w"> </span><span class="o">(</span>min<span class="w"> </span>…<span class="w"> </span>max<span class="o">)</span>:<span class="w">   </span><span class="m">46</span>.171<span class="w"> </span>s<span class="w"> </span>…<span class="w"> </span><span class="m">47</span>.863<span class="w"> </span>s<span class="w">    </span><span class="m">10</span><span class="w"> </span>runs
+<a id="__codelineno-16-27" name="__codelineno-16-27" href="#__codelineno-16-27"></a>
+<a id="__codelineno-16-28" name="__codelineno-16-28" href="#__codelineno-16-28"></a><span class="w">  </span>Warning:<span class="w"> </span>Ignoring<span class="w"> </span>non-zero<span class="w"> </span><span class="nb">exit</span><span class="w"> </span>code.
+<a id="__codelineno-16-29" name="__codelineno-16-29" href="#__codelineno-16-29"></a>
+<a id="__codelineno-16-30" name="__codelineno-16-30" href="#__codelineno-16-30"></a>Benchmark<span class="w"> </span><span class="m">5</span>:<span class="w"> </span>flake8<span class="w"> </span>crates/ruff_linter/resources/test/cpython
+<a id="__codelineno-16-31" name="__codelineno-16-31" href="#__codelineno-16-31"></a><span class="w">  </span>Time<span class="w"> </span><span class="o">(</span>mean<span class="w"> </span>±<span class="w"> </span>σ<span class="o">)</span>:<span class="w">     </span><span class="m">12</span>.260<span class="w"> </span>s<span class="w"> </span>±<span class="w">  </span><span class="m">0</span>.321<span class="w"> </span>s<span class="w">    </span><span class="o">[</span>User:<span class="w"> </span><span class="m">102</span>.934<span class="w"> </span>s,<span class="w"> </span>System:<span class="w"> </span><span class="m">1</span>.230<span class="w"> </span>s<span class="o">]</span>
+<a id="__codelineno-16-32" name="__codelineno-16-32" href="#__codelineno-16-32"></a><span class="w">  </span>Range<span class="w"> </span><span class="o">(</span>min<span class="w"> </span>…<span class="w"> </span>max<span class="o">)</span>:<span class="w">   </span><span class="m">11</span>.848<span class="w"> </span>s<span class="w"> </span>…<span class="w"> </span><span class="m">12</span>.933<span class="w"> </span>s<span class="w">    </span><span class="m">10</span><span class="w"> </span>runs
+<a id="__codelineno-16-33" name="__codelineno-16-33" href="#__codelineno-16-33"></a>
+<a id="__codelineno-16-34" name="__codelineno-16-34" href="#__codelineno-16-34"></a><span class="w">  </span>Warning:<span class="w"> </span>Ignoring<span class="w"> </span>non-zero<span class="w"> </span><span class="nb">exit</span><span class="w"> </span>code.
+<a id="__codelineno-16-35" name="__codelineno-16-35" href="#__codelineno-16-35"></a>
+<a id="__codelineno-16-36" name="__codelineno-16-36" href="#__codelineno-16-36"></a>Summary
+<a id="__codelineno-16-37" name="__codelineno-16-37" href="#__codelineno-16-37"></a><span class="w">  </span><span class="s1">&#39;./target/release/ruff ./crates/ruff_linter/resources/test/cpython/ --no-cache&#39;</span><span class="w"> </span>ran
+<a id="__codelineno-16-38" name="__codelineno-16-38" href="#__codelineno-16-38"></a><span class="w">   </span><span class="m">20</span>.98<span class="w"> </span>±<span class="w"> </span><span class="m">0</span>.62<span class="w"> </span><span class="nb">times</span><span class="w"> </span>faster<span class="w"> </span>than<span class="w"> </span><span class="s1">&#39;autoflake --recursive --expand-star-imports --remove-all-unused-imports --remove-unused-variables --remove-duplicate-keys resources/test/cpython&#39;</span>
+<a id="__codelineno-16-39" name="__codelineno-16-39" href="#__codelineno-16-39"></a><span class="w">   </span><span class="m">41</span>.66<span class="w"> </span>±<span class="w"> </span><span class="m">1</span>.18<span class="w"> </span><span class="nb">times</span><span class="w"> </span>faster<span class="w"> </span>than<span class="w"> </span><span class="s1">&#39;flake8 crates/ruff_linter/resources/test/cpython&#39;</span>
+<a id="__codelineno-16-40" name="__codelineno-16-40" href="#__codelineno-16-40"></a><span class="w">   </span><span class="m">53</span>.64<span class="w"> </span>±<span class="w"> </span><span class="m">0</span>.77<span class="w"> </span><span class="nb">times</span><span class="w"> </span>faster<span class="w"> </span>than<span class="w"> </span><span class="s1">&#39;pyflakes crates/ruff_linter/resources/test/cpython&#39;</span>
+<a id="__codelineno-16-41" name="__codelineno-16-41" href="#__codelineno-16-41"></a><span class="w">  </span><span class="m">159</span>.43<span class="w"> </span>±<span class="w"> </span><span class="m">2</span>.48<span class="w"> </span><span class="nb">times</span><span class="w"> </span>faster<span class="w"> </span>than<span class="w"> </span><span class="s1">&#39;pycodestyle crates/ruff_linter/resources/test/cpython&#39;</span>
 </code></pre></div>
 <p>To benchmark a subset of rules, e.g. <code>LineTooLong</code> and <code>DocLineTooLong</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>cargo<span class="w"> </span>build<span class="w"> </span>--release<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>hyperfine<span class="w"> </span>--warmup<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">  </span><span class="s2">&quot;./target/release/ruff check ./crates/ruff_linter/resources/test/cpython/ --no-cache -e --select W505,E501&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>cargo<span class="w"> </span>build<span class="w"> </span>--release<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>hyperfine<span class="w"> </span>--warmup<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">  </span><span class="s2">&quot;./target/release/ruff check ./crates/ruff_linter/resources/test/cpython/ --no-cache -e --select W505,E501&quot;</span>
 </code></pre></div>
 <p>You can run <code>uv venv --project ./scripts/benchmarks</code>, activate the venv and then run <code>uv sync --project ./scripts/benchmarks</code> to create a working environment for the
 above. All reported benchmarks were computed using the versions specified by
 <code>./scripts/benchmarks/pyproject.toml</code> on Python 3.11.</p>
 <p>To benchmark Pylint, remove the following files from the CPython repository:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>rm<span class="w"> </span>Lib/test/bad_coding.py<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">  </span>Lib/test/bad_coding2.py<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">  </span>Lib/test/bad_getattr.py<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">  </span>Lib/test/bad_getattr2.py<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">  </span>Lib/test/bad_getattr3.py<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="w">  </span>Lib/test/badcert.pem<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="w">  </span>Lib/test/badkey.pem<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="w">  </span>Lib/test/badsyntax_3131.py<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="w">  </span>Lib/test/badsyntax_future10.py<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="w">  </span>Lib/test/badsyntax_future3.py<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="w">  </span>Lib/test/badsyntax_future4.py<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a><span class="w">  </span>Lib/test/badsyntax_future5.py<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a><span class="w">  </span>Lib/test/badsyntax_future6.py<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a><span class="w">  </span>Lib/test/badsyntax_future7.py<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a><span class="w">  </span>Lib/test/badsyntax_future8.py<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a><span class="w">  </span>Lib/test/badsyntax_future9.py<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a><span class="w">  </span>Lib/test/badsyntax_pep3120.py<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a><span class="w">  </span>Lib/test/test_asyncio/test_runners.py<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-16-19" name="__codelineno-16-19" href="#__codelineno-16-19"></a><span class="w">  </span>Lib/test/test_copy.py<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-16-20" name="__codelineno-16-20" href="#__codelineno-16-20"></a><span class="w">  </span>Lib/test/test_inspect.py<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-16-21" name="__codelineno-16-21" href="#__codelineno-16-21"></a><span class="w">  </span>Lib/test/test_typing.py
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>rm<span class="w"> </span>Lib/test/bad_coding.py<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">  </span>Lib/test/bad_coding2.py<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">  </span>Lib/test/bad_getattr.py<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="w">  </span>Lib/test/bad_getattr2.py<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="w">  </span>Lib/test/bad_getattr3.py<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="w">  </span>Lib/test/badcert.pem<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="w">  </span>Lib/test/badkey.pem<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="w">  </span>Lib/test/badsyntax_3131.py<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="w">  </span>Lib/test/badsyntax_future10.py<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a><span class="w">  </span>Lib/test/badsyntax_future3.py<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a><span class="w">  </span>Lib/test/badsyntax_future4.py<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a><span class="w">  </span>Lib/test/badsyntax_future5.py<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a><span class="w">  </span>Lib/test/badsyntax_future6.py<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a><span class="w">  </span>Lib/test/badsyntax_future7.py<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a><span class="w">  </span>Lib/test/badsyntax_future8.py<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a><span class="w">  </span>Lib/test/badsyntax_future9.py<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-18-17" name="__codelineno-18-17" href="#__codelineno-18-17"></a><span class="w">  </span>Lib/test/badsyntax_pep3120.py<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-18-18" name="__codelineno-18-18" href="#__codelineno-18-18"></a><span class="w">  </span>Lib/test/test_asyncio/test_runners.py<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-18-19" name="__codelineno-18-19" href="#__codelineno-18-19"></a><span class="w">  </span>Lib/test/test_copy.py<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-18-20" name="__codelineno-18-20" href="#__codelineno-18-20"></a><span class="w">  </span>Lib/test/test_inspect.py<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-18-21" name="__codelineno-18-21" href="#__codelineno-18-21"></a><span class="w">  </span>Lib/test/test_typing.py
 </code></pre></div>
 <p>Then, from <code>crates/ruff_linter/resources/test/cpython</code>, run: <code>time pylint -j 0 -E $(git ls-files '*.py')</code>. This
 will execute Pylint with maximum parallelism and only report errors.</p>
 <p>To benchmark Pyupgrade, run the following from <code>crates/ruff_linter/resources/test/cpython</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>hyperfine<span class="w"> </span>--ignore-failure<span class="w"> </span>--warmup<span class="w"> </span><span class="m">5</span><span class="w"> </span>--prepare<span class="w"> </span><span class="s2">&quot;git reset --hard HEAD&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">  </span><span class="s2">&quot;find . -type f -name \&quot;*.py\&quot; | xargs -P 0 pyupgrade --py311-plus&quot;</span>
-<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>
-<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>Benchmark<span class="w"> </span><span class="m">1</span>:<span class="w"> </span>find<span class="w"> </span>.<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*.py&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="w"> </span>-P<span class="w"> </span><span class="m">0</span><span class="w"> </span>pyupgrade<span class="w"> </span>--py311-plus
-<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="w">  </span>Time<span class="w"> </span><span class="o">(</span>mean<span class="w"> </span>±<span class="w"> </span>σ<span class="o">)</span>:<span class="w">     </span><span class="m">30</span>.119<span class="w"> </span>s<span class="w"> </span>±<span class="w">  </span><span class="m">0</span>.195<span class="w"> </span>s<span class="w">    </span><span class="o">[</span>User:<span class="w"> </span><span class="m">28</span>.638<span class="w"> </span>s,<span class="w"> </span>System:<span class="w"> </span><span class="m">0</span>.390<span class="w"> </span>s<span class="o">]</span>
-<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="w">  </span>Range<span class="w"> </span><span class="o">(</span>min<span class="w"> </span>…<span class="w"> </span>max<span class="o">)</span>:<span class="w">   </span><span class="m">29</span>.813<span class="w"> </span>s<span class="w"> </span>…<span class="w"> </span><span class="m">30</span>.356<span class="w"> </span>s<span class="w">    </span><span class="m">10</span><span class="w"> </span>runs
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>hyperfine<span class="w"> </span>--ignore-failure<span class="w"> </span>--warmup<span class="w"> </span><span class="m">5</span><span class="w"> </span>--prepare<span class="w"> </span><span class="s2">&quot;git reset --hard HEAD&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">  </span><span class="s2">&quot;find . -type f -name \&quot;*.py\&quot; | xargs -P 0 pyupgrade --py311-plus&quot;</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>Benchmark<span class="w"> </span><span class="m">1</span>:<span class="w"> </span>find<span class="w"> </span>.<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*.py&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="w"> </span>-P<span class="w"> </span><span class="m">0</span><span class="w"> </span>pyupgrade<span class="w"> </span>--py311-plus
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="w">  </span>Time<span class="w"> </span><span class="o">(</span>mean<span class="w"> </span>±<span class="w"> </span>σ<span class="o">)</span>:<span class="w">     </span><span class="m">30</span>.119<span class="w"> </span>s<span class="w"> </span>±<span class="w">  </span><span class="m">0</span>.195<span class="w"> </span>s<span class="w">    </span><span class="o">[</span>User:<span class="w"> </span><span class="m">28</span>.638<span class="w"> </span>s,<span class="w"> </span>System:<span class="w"> </span><span class="m">0</span>.390<span class="w"> </span>s<span class="o">]</span>
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="w">  </span>Range<span class="w"> </span><span class="o">(</span>min<span class="w"> </span>…<span class="w"> </span>max<span class="o">)</span>:<span class="w">   </span><span class="m">29</span>.813<span class="w"> </span>s<span class="w"> </span>…<span class="w"> </span><span class="m">30</span>.356<span class="w"> </span>s<span class="w">    </span><span class="m">10</span><span class="w"> </span>runs
 </code></pre></div>
 <h3 id="microbenchmarks"><a class="toclink" href="#microbenchmarks">Microbenchmarks</a></h3>
 <p>The <code>ruff_benchmark</code> crate benchmarks the linter and the formatter on individual files.</p>
 <p>You can run the benchmarks with</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>cargo<span class="w"> </span>benchmark
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>cargo<span class="w"> </span>benchmark
 </code></pre></div>
 <p><code>cargo benchmark</code> is an alias for <code>cargo bench -p ruff_benchmark --bench linter --bench formatter --</code></p>
 <h4 id="benchmark-driven-development"><a class="toclink" href="#benchmark-driven-development">Benchmark-driven Development</a></h4>
@@ -2031,25 +2068,25 @@ will execute Pylint with maximum parallelism and only report errors.</p>
 <code>--save-baseline=&lt;name&gt;</code> to store an initial baseline benchmark (e.g., on <code>main</code>) and then use
 <code>--benchmark=&lt;name&gt;</code> to compare against that benchmark. Criterion will print a message telling you
 if the benchmark improved/regressed compared to that baseline.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c1"># Run once on your &quot;baseline&quot; code</span>
-<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>cargo<span class="w"> </span>bench<span class="w"> </span>-p<span class="w"> </span>ruff_benchmark<span class="w"> </span>--<span class="w"> </span>--save-baseline<span class="o">=</span>main
-<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>
-<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="c1"># Then iterate with</span>
-<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>cargo<span class="w"> </span>bench<span class="w"> </span>-p<span class="w"> </span>ruff_benchmark<span class="w"> </span>--<span class="w"> </span>--baseline<span class="o">=</span>main
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="c1"># Run once on your &quot;baseline&quot; code</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>cargo<span class="w"> </span>bench<span class="w"> </span>-p<span class="w"> </span>ruff_benchmark<span class="w"> </span>--<span class="w"> </span>--save-baseline<span class="o">=</span>main
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="c1"># Then iterate with</span>
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>cargo<span class="w"> </span>bench<span class="w"> </span>-p<span class="w"> </span>ruff_benchmark<span class="w"> </span>--<span class="w"> </span>--baseline<span class="o">=</span>main
 </code></pre></div>
 <h4 id="pr-summary"><a class="toclink" href="#pr-summary">PR Summary</a></h4>
 <p>You can use <code>--save-baseline</code> and <code>critcmp</code> to get a pretty comparison between two recordings.
 This is useful to illustrate the improvements of a PR.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1"># On main</span>
-<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>cargo<span class="w"> </span>bench<span class="w"> </span>-p<span class="w"> </span>ruff_benchmark<span class="w"> </span>--<span class="w"> </span>--save-baseline<span class="o">=</span>main
-<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>
-<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="c1"># After applying your changes</span>
-<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>cargo<span class="w"> </span>bench<span class="w"> </span>-p<span class="w"> </span>ruff_benchmark<span class="w"> </span>--<span class="w"> </span>--save-baseline<span class="o">=</span>pr
-<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>
-<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>critcmp<span class="w"> </span>main<span class="w"> </span>pr
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="c1"># On main</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>cargo<span class="w"> </span>bench<span class="w"> </span>-p<span class="w"> </span>ruff_benchmark<span class="w"> </span>--<span class="w"> </span>--save-baseline<span class="o">=</span>main
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="c1"># After applying your changes</span>
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>cargo<span class="w"> </span>bench<span class="w"> </span>-p<span class="w"> </span>ruff_benchmark<span class="w"> </span>--<span class="w"> </span>--save-baseline<span class="o">=</span>pr
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>
+<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>critcmp<span class="w"> </span>main<span class="w"> </span>pr
 </code></pre></div>
 <p>You must install <a href="https://github.com/BurntSushi/critcmp"><code>critcmp</code></a> for the comparison.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>cargo<span class="w"> </span>install<span class="w"> </span>critcmp
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>cargo<span class="w"> </span>install<span class="w"> </span>critcmp
 </code></pre></div>
 <h4 id="tips"><a class="toclink" href="#tips">Tips</a></h4>
 <ul>
@@ -2065,28 +2102,28 @@ are a lot of profiling tools out there,
 examples.</p>
 <h4 id="linux"><a class="toclink" href="#linux">Linux</a></h4>
 <p>Install <code>perf</code> and build <code>ruff_benchmark</code> with the <code>profiling</code> profile and then run it with perf</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>cargo<span class="w"> </span>bench<span class="w"> </span>-p<span class="w"> </span>ruff_benchmark<span class="w"> </span>--no-run<span class="w"> </span>--profile<span class="o">=</span>profiling<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>perf<span class="w"> </span>record<span class="w"> </span>--call-graph<span class="w"> </span>dwarf<span class="w"> </span>-F<span class="w"> </span><span class="m">9999</span><span class="w"> </span>cargo<span class="w"> </span>bench<span class="w"> </span>-p<span class="w"> </span>ruff_benchmark<span class="w"> </span>--profile<span class="o">=</span>profiling<span class="w"> </span>--<span class="w"> </span>--profile-time<span class="o">=</span><span class="m">1</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>cargo<span class="w"> </span>bench<span class="w"> </span>-p<span class="w"> </span>ruff_benchmark<span class="w"> </span>--no-run<span class="w"> </span>--profile<span class="o">=</span>profiling<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>perf<span class="w"> </span>record<span class="w"> </span>--call-graph<span class="w"> </span>dwarf<span class="w"> </span>-F<span class="w"> </span><span class="m">9999</span><span class="w"> </span>cargo<span class="w"> </span>bench<span class="w"> </span>-p<span class="w"> </span>ruff_benchmark<span class="w"> </span>--profile<span class="o">=</span>profiling<span class="w"> </span>--<span class="w"> </span>--profile-time<span class="o">=</span><span class="m">1</span>
 </code></pre></div>
 <p>You can also use the <code>ruff_dev</code> launcher to run <code>ruff check</code> multiple times on a repository to
 gather enough samples for a good flamegraph (change the 999, the sample rate, and the 30, the number
 of checks, to your liking)</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>cargo<span class="w"> </span>build<span class="w"> </span>--bin<span class="w"> </span>ruff_dev<span class="w"> </span>--profile<span class="o">=</span>profiling
-<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>perf<span class="w"> </span>record<span class="w"> </span>-g<span class="w"> </span>-F<span class="w"> </span><span class="m">999</span><span class="w"> </span>target/profiling/ruff_dev<span class="w"> </span>repeat<span class="w"> </span>--repeat<span class="w"> </span><span class="m">30</span><span class="w"> </span>--exit-zero<span class="w"> </span>--no-cache<span class="w"> </span>path/to/cpython<span class="w"> </span>&gt;<span class="w"> </span>/dev/null
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>cargo<span class="w"> </span>build<span class="w"> </span>--bin<span class="w"> </span>ruff_dev<span class="w"> </span>--profile<span class="o">=</span>profiling
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>perf<span class="w"> </span>record<span class="w"> </span>-g<span class="w"> </span>-F<span class="w"> </span><span class="m">999</span><span class="w"> </span>target/profiling/ruff_dev<span class="w"> </span>repeat<span class="w"> </span>--repeat<span class="w"> </span><span class="m">30</span><span class="w"> </span>--exit-zero<span class="w"> </span>--no-cache<span class="w"> </span>path/to/cpython<span class="w"> </span>&gt;<span class="w"> </span>/dev/null
 </code></pre></div>
 <p>Then convert the recorded profile</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>perf<span class="w"> </span>script<span class="w"> </span>-F<span class="w"> </span>+pid<span class="w"> </span>&gt;<span class="w"> </span>/tmp/test.perf
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>perf<span class="w"> </span>script<span class="w"> </span>-F<span class="w"> </span>+pid<span class="w"> </span>&gt;<span class="w"> </span>/tmp/test.perf
 </code></pre></div>
 <p>You can now view the converted file with <a href="https://profiler.firefox.com/">firefox profiler</a>. To learn more about Firefox profiler, read the <a href="https://profiler.firefox.com/docs/#/./guide-perf-profiling">Firefox profiler profiling-guide</a>.</p>
 <p>An alternative is to convert the perf data to <code>flamegraph.svg</code> using
 <a href="https://github.com/flamegraph-rs/flamegraph">flamegraph</a> (<code>cargo install flamegraph</code>):</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>flamegraph<span class="w"> </span>--perfdata<span class="w"> </span>perf.data<span class="w"> </span>--no-inline
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>flamegraph<span class="w"> </span>--perfdata<span class="w"> </span>perf.data<span class="w"> </span>--no-inline
 </code></pre></div>
 <h4 id="mac"><a class="toclink" href="#mac">Mac</a></h4>
 <p>Install <a href="https://crates.io/crates/cargo-instruments"><code>cargo-instruments</code></a>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>cargo<span class="w"> </span>install<span class="w"> </span>cargo-instruments
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>cargo<span class="w"> </span>install<span class="w"> </span>cargo-instruments
 </code></pre></div>
 <p>Then run the profiler with</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>cargo<span class="w"> </span>instruments<span class="w"> </span>-t<span class="w"> </span><span class="nb">time</span><span class="w"> </span>--bench<span class="w"> </span>linter<span class="w"> </span>--profile<span class="w"> </span>profiling<span class="w"> </span>-p<span class="w"> </span>ruff_benchmark<span class="w"> </span>--<span class="w"> </span>--profile-time<span class="o">=</span><span class="m">1</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>cargo<span class="w"> </span>instruments<span class="w"> </span>-t<span class="w"> </span><span class="nb">time</span><span class="w"> </span>--bench<span class="w"> </span>linter<span class="w"> </span>--profile<span class="w"> </span>profiling<span class="w"> </span>-p<span class="w"> </span>ruff_benchmark<span class="w"> </span>--<span class="w"> </span>--profile-time<span class="o">=</span><span class="m">1</span>
 </code></pre></div>
 <ul>
 <li><code>-t</code>: Specifies what to profile. Useful options are <code>time</code> to profile the wall time and <code>alloc</code>
@@ -2104,109 +2141,109 @@ utils with it:</p>
     stop of each node and also how the <code>:</code> token, the comment and whitespace are not represented
     anymore:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>[
-<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>    If(
-<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>        StmtIf {
-<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>            range: 0..13,
-<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a>            test: Constant(
-<a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a>                ExprConstant {
-<a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a>                    range: 3..7,
-<a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a>                    value: Bool(
-<a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a>                        true,
-<a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a>                    ),
-<a id="__codelineno-28-11" name="__codelineno-28-11" href="#__codelineno-28-11"></a>                    kind: None,
-<a id="__codelineno-28-12" name="__codelineno-28-12" href="#__codelineno-28-12"></a>                },
-<a id="__codelineno-28-13" name="__codelineno-28-13" href="#__codelineno-28-13"></a>            ),
-<a id="__codelineno-28-14" name="__codelineno-28-14" href="#__codelineno-28-14"></a>            body: [
-<a id="__codelineno-28-15" name="__codelineno-28-15" href="#__codelineno-28-15"></a>                Pass(
-<a id="__codelineno-28-16" name="__codelineno-28-16" href="#__codelineno-28-16"></a>                    StmtPass {
-<a id="__codelineno-28-17" name="__codelineno-28-17" href="#__codelineno-28-17"></a>                        range: 9..13,
-<a id="__codelineno-28-18" name="__codelineno-28-18" href="#__codelineno-28-18"></a>                    },
-<a id="__codelineno-28-19" name="__codelineno-28-19" href="#__codelineno-28-19"></a>                ),
-<a id="__codelineno-28-20" name="__codelineno-28-20" href="#__codelineno-28-20"></a>            ],
-<a id="__codelineno-28-21" name="__codelineno-28-21" href="#__codelineno-28-21"></a>            orelse: [],
-<a id="__codelineno-28-22" name="__codelineno-28-22" href="#__codelineno-28-22"></a>        },
-<a id="__codelineno-28-23" name="__codelineno-28-23" href="#__codelineno-28-23"></a>    ),
-<a id="__codelineno-28-24" name="__codelineno-28-24" href="#__codelineno-28-24"></a>]
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>[
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>    If(
+<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a>        StmtIf {
+<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a>            range: 0..13,
+<a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a>            test: Constant(
+<a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a>                ExprConstant {
+<a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a>                    range: 3..7,
+<a id="__codelineno-30-8" name="__codelineno-30-8" href="#__codelineno-30-8"></a>                    value: Bool(
+<a id="__codelineno-30-9" name="__codelineno-30-9" href="#__codelineno-30-9"></a>                        true,
+<a id="__codelineno-30-10" name="__codelineno-30-10" href="#__codelineno-30-10"></a>                    ),
+<a id="__codelineno-30-11" name="__codelineno-30-11" href="#__codelineno-30-11"></a>                    kind: None,
+<a id="__codelineno-30-12" name="__codelineno-30-12" href="#__codelineno-30-12"></a>                },
+<a id="__codelineno-30-13" name="__codelineno-30-13" href="#__codelineno-30-13"></a>            ),
+<a id="__codelineno-30-14" name="__codelineno-30-14" href="#__codelineno-30-14"></a>            body: [
+<a id="__codelineno-30-15" name="__codelineno-30-15" href="#__codelineno-30-15"></a>                Pass(
+<a id="__codelineno-30-16" name="__codelineno-30-16" href="#__codelineno-30-16"></a>                    StmtPass {
+<a id="__codelineno-30-17" name="__codelineno-30-17" href="#__codelineno-30-17"></a>                        range: 9..13,
+<a id="__codelineno-30-18" name="__codelineno-30-18" href="#__codelineno-30-18"></a>                    },
+<a id="__codelineno-30-19" name="__codelineno-30-19" href="#__codelineno-30-19"></a>                ),
+<a id="__codelineno-30-20" name="__codelineno-30-20" href="#__codelineno-30-20"></a>            ],
+<a id="__codelineno-30-21" name="__codelineno-30-21" href="#__codelineno-30-21"></a>            orelse: [],
+<a id="__codelineno-30-22" name="__codelineno-30-22" href="#__codelineno-30-22"></a>        },
+<a id="__codelineno-30-23" name="__codelineno-30-23" href="#__codelineno-30-23"></a>    ),
+<a id="__codelineno-30-24" name="__codelineno-30-24" href="#__codelineno-30-24"></a>]
 </code></pre></div>
 <ul>
 <li><code>cargo dev print-tokens &lt;file&gt;</code>: Print the tokens that the AST is built upon. Again for
     <code>if True: pass # comment</code>:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>0 If 2
-<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>3 True 7
-<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>7 Colon 8
-<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>9 Pass 13
-<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a>14 Comment(
-<a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a>    &quot;# comment&quot;,
-<a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a>) 23
-<a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a>23 Newline 24
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>0 If 2
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>3 True 7
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>7 Colon 8
+<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a>9 Pass 13
+<a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a>14 Comment(
+<a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a>    &quot;# comment&quot;,
+<a id="__codelineno-31-7" name="__codelineno-31-7" href="#__codelineno-31-7"></a>) 23
+<a id="__codelineno-31-8" name="__codelineno-31-8" href="#__codelineno-31-8"></a>23 Newline 24
 </code></pre></div>
 <ul>
 <li><code>cargo dev print-cst &lt;file&gt;</code>: Print the CST of a Python file using
     <a href="https://github.com/Instagram/LibCST">LibCST</a>, which is used in addition to the RustPython parser
     in Ruff. For example, for <code>if True: pass # comment</code>, everything, including the whitespace, is represented:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>Module {
-<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>    body: [
-<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a>        Compound(
-<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a>            If(
-<a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a>                If {
-<a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a>                    test: Name(
-<a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a>                        Name {
-<a id="__codelineno-30-8" name="__codelineno-30-8" href="#__codelineno-30-8"></a>                            value: &quot;True&quot;,
-<a id="__codelineno-30-9" name="__codelineno-30-9" href="#__codelineno-30-9"></a>                            lpar: [],
-<a id="__codelineno-30-10" name="__codelineno-30-10" href="#__codelineno-30-10"></a>                            rpar: [],
-<a id="__codelineno-30-11" name="__codelineno-30-11" href="#__codelineno-30-11"></a>                        },
-<a id="__codelineno-30-12" name="__codelineno-30-12" href="#__codelineno-30-12"></a>                    ),
-<a id="__codelineno-30-13" name="__codelineno-30-13" href="#__codelineno-30-13"></a>                    body: SimpleStatementSuite(
-<a id="__codelineno-30-14" name="__codelineno-30-14" href="#__codelineno-30-14"></a>                        SimpleStatementSuite {
-<a id="__codelineno-30-15" name="__codelineno-30-15" href="#__codelineno-30-15"></a>                            body: [
-<a id="__codelineno-30-16" name="__codelineno-30-16" href="#__codelineno-30-16"></a>                                Pass(
-<a id="__codelineno-30-17" name="__codelineno-30-17" href="#__codelineno-30-17"></a>                                    Pass {
-<a id="__codelineno-30-18" name="__codelineno-30-18" href="#__codelineno-30-18"></a>                                        semicolon: None,
-<a id="__codelineno-30-19" name="__codelineno-30-19" href="#__codelineno-30-19"></a>                                    },
-<a id="__codelineno-30-20" name="__codelineno-30-20" href="#__codelineno-30-20"></a>                                ),
-<a id="__codelineno-30-21" name="__codelineno-30-21" href="#__codelineno-30-21"></a>                            ],
-<a id="__codelineno-30-22" name="__codelineno-30-22" href="#__codelineno-30-22"></a>                            leading_whitespace: SimpleWhitespace(
-<a id="__codelineno-30-23" name="__codelineno-30-23" href="#__codelineno-30-23"></a>                                &quot; &quot;,
-<a id="__codelineno-30-24" name="__codelineno-30-24" href="#__codelineno-30-24"></a>                            ),
-<a id="__codelineno-30-25" name="__codelineno-30-25" href="#__codelineno-30-25"></a>                            trailing_whitespace: TrailingWhitespace {
-<a id="__codelineno-30-26" name="__codelineno-30-26" href="#__codelineno-30-26"></a>                                whitespace: SimpleWhitespace(
-<a id="__codelineno-30-27" name="__codelineno-30-27" href="#__codelineno-30-27"></a>                                    &quot; &quot;,
-<a id="__codelineno-30-28" name="__codelineno-30-28" href="#__codelineno-30-28"></a>                                ),
-<a id="__codelineno-30-29" name="__codelineno-30-29" href="#__codelineno-30-29"></a>                                comment: Some(
-<a id="__codelineno-30-30" name="__codelineno-30-30" href="#__codelineno-30-30"></a>                                    Comment(
-<a id="__codelineno-30-31" name="__codelineno-30-31" href="#__codelineno-30-31"></a>                                        &quot;# comment&quot;,
-<a id="__codelineno-30-32" name="__codelineno-30-32" href="#__codelineno-30-32"></a>                                    ),
-<a id="__codelineno-30-33" name="__codelineno-30-33" href="#__codelineno-30-33"></a>                                ),
-<a id="__codelineno-30-34" name="__codelineno-30-34" href="#__codelineno-30-34"></a>                                newline: Newline(
-<a id="__codelineno-30-35" name="__codelineno-30-35" href="#__codelineno-30-35"></a>                                    None,
-<a id="__codelineno-30-36" name="__codelineno-30-36" href="#__codelineno-30-36"></a>                                    Real,
-<a id="__codelineno-30-37" name="__codelineno-30-37" href="#__codelineno-30-37"></a>                                ),
-<a id="__codelineno-30-38" name="__codelineno-30-38" href="#__codelineno-30-38"></a>                            },
-<a id="__codelineno-30-39" name="__codelineno-30-39" href="#__codelineno-30-39"></a>                        },
-<a id="__codelineno-30-40" name="__codelineno-30-40" href="#__codelineno-30-40"></a>                    ),
-<a id="__codelineno-30-41" name="__codelineno-30-41" href="#__codelineno-30-41"></a>                    orelse: None,
-<a id="__codelineno-30-42" name="__codelineno-30-42" href="#__codelineno-30-42"></a>                    leading_lines: [],
-<a id="__codelineno-30-43" name="__codelineno-30-43" href="#__codelineno-30-43"></a>                    whitespace_before_test: SimpleWhitespace(
-<a id="__codelineno-30-44" name="__codelineno-30-44" href="#__codelineno-30-44"></a>                        &quot; &quot;,
-<a id="__codelineno-30-45" name="__codelineno-30-45" href="#__codelineno-30-45"></a>                    ),
-<a id="__codelineno-30-46" name="__codelineno-30-46" href="#__codelineno-30-46"></a>                    whitespace_after_test: SimpleWhitespace(
-<a id="__codelineno-30-47" name="__codelineno-30-47" href="#__codelineno-30-47"></a>                        &quot;&quot;,
-<a id="__codelineno-30-48" name="__codelineno-30-48" href="#__codelineno-30-48"></a>                    ),
-<a id="__codelineno-30-49" name="__codelineno-30-49" href="#__codelineno-30-49"></a>                    is_elif: false,
-<a id="__codelineno-30-50" name="__codelineno-30-50" href="#__codelineno-30-50"></a>                },
-<a id="__codelineno-30-51" name="__codelineno-30-51" href="#__codelineno-30-51"></a>            ),
-<a id="__codelineno-30-52" name="__codelineno-30-52" href="#__codelineno-30-52"></a>        ),
-<a id="__codelineno-30-53" name="__codelineno-30-53" href="#__codelineno-30-53"></a>    ],
-<a id="__codelineno-30-54" name="__codelineno-30-54" href="#__codelineno-30-54"></a>    header: [],
-<a id="__codelineno-30-55" name="__codelineno-30-55" href="#__codelineno-30-55"></a>    footer: [],
-<a id="__codelineno-30-56" name="__codelineno-30-56" href="#__codelineno-30-56"></a>    default_indent: &quot;    &quot;,
-<a id="__codelineno-30-57" name="__codelineno-30-57" href="#__codelineno-30-57"></a>    default_newline: &quot;\n&quot;,
-<a id="__codelineno-30-58" name="__codelineno-30-58" href="#__codelineno-30-58"></a>    has_trailing_newline: true,
-<a id="__codelineno-30-59" name="__codelineno-30-59" href="#__codelineno-30-59"></a>    encoding: &quot;utf-8&quot;,
-<a id="__codelineno-30-60" name="__codelineno-30-60" href="#__codelineno-30-60"></a>}
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>Module {
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>    body: [
+<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>        Compound(
+<a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a>            If(
+<a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a>                If {
+<a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a>                    test: Name(
+<a id="__codelineno-32-7" name="__codelineno-32-7" href="#__codelineno-32-7"></a>                        Name {
+<a id="__codelineno-32-8" name="__codelineno-32-8" href="#__codelineno-32-8"></a>                            value: &quot;True&quot;,
+<a id="__codelineno-32-9" name="__codelineno-32-9" href="#__codelineno-32-9"></a>                            lpar: [],
+<a id="__codelineno-32-10" name="__codelineno-32-10" href="#__codelineno-32-10"></a>                            rpar: [],
+<a id="__codelineno-32-11" name="__codelineno-32-11" href="#__codelineno-32-11"></a>                        },
+<a id="__codelineno-32-12" name="__codelineno-32-12" href="#__codelineno-32-12"></a>                    ),
+<a id="__codelineno-32-13" name="__codelineno-32-13" href="#__codelineno-32-13"></a>                    body: SimpleStatementSuite(
+<a id="__codelineno-32-14" name="__codelineno-32-14" href="#__codelineno-32-14"></a>                        SimpleStatementSuite {
+<a id="__codelineno-32-15" name="__codelineno-32-15" href="#__codelineno-32-15"></a>                            body: [
+<a id="__codelineno-32-16" name="__codelineno-32-16" href="#__codelineno-32-16"></a>                                Pass(
+<a id="__codelineno-32-17" name="__codelineno-32-17" href="#__codelineno-32-17"></a>                                    Pass {
+<a id="__codelineno-32-18" name="__codelineno-32-18" href="#__codelineno-32-18"></a>                                        semicolon: None,
+<a id="__codelineno-32-19" name="__codelineno-32-19" href="#__codelineno-32-19"></a>                                    },
+<a id="__codelineno-32-20" name="__codelineno-32-20" href="#__codelineno-32-20"></a>                                ),
+<a id="__codelineno-32-21" name="__codelineno-32-21" href="#__codelineno-32-21"></a>                            ],
+<a id="__codelineno-32-22" name="__codelineno-32-22" href="#__codelineno-32-22"></a>                            leading_whitespace: SimpleWhitespace(
+<a id="__codelineno-32-23" name="__codelineno-32-23" href="#__codelineno-32-23"></a>                                &quot; &quot;,
+<a id="__codelineno-32-24" name="__codelineno-32-24" href="#__codelineno-32-24"></a>                            ),
+<a id="__codelineno-32-25" name="__codelineno-32-25" href="#__codelineno-32-25"></a>                            trailing_whitespace: TrailingWhitespace {
+<a id="__codelineno-32-26" name="__codelineno-32-26" href="#__codelineno-32-26"></a>                                whitespace: SimpleWhitespace(
+<a id="__codelineno-32-27" name="__codelineno-32-27" href="#__codelineno-32-27"></a>                                    &quot; &quot;,
+<a id="__codelineno-32-28" name="__codelineno-32-28" href="#__codelineno-32-28"></a>                                ),
+<a id="__codelineno-32-29" name="__codelineno-32-29" href="#__codelineno-32-29"></a>                                comment: Some(
+<a id="__codelineno-32-30" name="__codelineno-32-30" href="#__codelineno-32-30"></a>                                    Comment(
+<a id="__codelineno-32-31" name="__codelineno-32-31" href="#__codelineno-32-31"></a>                                        &quot;# comment&quot;,
+<a id="__codelineno-32-32" name="__codelineno-32-32" href="#__codelineno-32-32"></a>                                    ),
+<a id="__codelineno-32-33" name="__codelineno-32-33" href="#__codelineno-32-33"></a>                                ),
+<a id="__codelineno-32-34" name="__codelineno-32-34" href="#__codelineno-32-34"></a>                                newline: Newline(
+<a id="__codelineno-32-35" name="__codelineno-32-35" href="#__codelineno-32-35"></a>                                    None,
+<a id="__codelineno-32-36" name="__codelineno-32-36" href="#__codelineno-32-36"></a>                                    Real,
+<a id="__codelineno-32-37" name="__codelineno-32-37" href="#__codelineno-32-37"></a>                                ),
+<a id="__codelineno-32-38" name="__codelineno-32-38" href="#__codelineno-32-38"></a>                            },
+<a id="__codelineno-32-39" name="__codelineno-32-39" href="#__codelineno-32-39"></a>                        },
+<a id="__codelineno-32-40" name="__codelineno-32-40" href="#__codelineno-32-40"></a>                    ),
+<a id="__codelineno-32-41" name="__codelineno-32-41" href="#__codelineno-32-41"></a>                    orelse: None,
+<a id="__codelineno-32-42" name="__codelineno-32-42" href="#__codelineno-32-42"></a>                    leading_lines: [],
+<a id="__codelineno-32-43" name="__codelineno-32-43" href="#__codelineno-32-43"></a>                    whitespace_before_test: SimpleWhitespace(
+<a id="__codelineno-32-44" name="__codelineno-32-44" href="#__codelineno-32-44"></a>                        &quot; &quot;,
+<a id="__codelineno-32-45" name="__codelineno-32-45" href="#__codelineno-32-45"></a>                    ),
+<a id="__codelineno-32-46" name="__codelineno-32-46" href="#__codelineno-32-46"></a>                    whitespace_after_test: SimpleWhitespace(
+<a id="__codelineno-32-47" name="__codelineno-32-47" href="#__codelineno-32-47"></a>                        &quot;&quot;,
+<a id="__codelineno-32-48" name="__codelineno-32-48" href="#__codelineno-32-48"></a>                    ),
+<a id="__codelineno-32-49" name="__codelineno-32-49" href="#__codelineno-32-49"></a>                    is_elif: false,
+<a id="__codelineno-32-50" name="__codelineno-32-50" href="#__codelineno-32-50"></a>                },
+<a id="__codelineno-32-51" name="__codelineno-32-51" href="#__codelineno-32-51"></a>            ),
+<a id="__codelineno-32-52" name="__codelineno-32-52" href="#__codelineno-32-52"></a>        ),
+<a id="__codelineno-32-53" name="__codelineno-32-53" href="#__codelineno-32-53"></a>    ],
+<a id="__codelineno-32-54" name="__codelineno-32-54" href="#__codelineno-32-54"></a>    header: [],
+<a id="__codelineno-32-55" name="__codelineno-32-55" href="#__codelineno-32-55"></a>    footer: [],
+<a id="__codelineno-32-56" name="__codelineno-32-56" href="#__codelineno-32-56"></a>    default_indent: &quot;    &quot;,
+<a id="__codelineno-32-57" name="__codelineno-32-57" href="#__codelineno-32-57"></a>    default_newline: &quot;\n&quot;,
+<a id="__codelineno-32-58" name="__codelineno-32-58" href="#__codelineno-32-58"></a>    has_trailing_newline: true,
+<a id="__codelineno-32-59" name="__codelineno-32-59" href="#__codelineno-32-59"></a>    encoding: &quot;utf-8&quot;,
+<a id="__codelineno-32-60" name="__codelineno-32-60" href="#__codelineno-32-60"></a>}
 </code></pre></div>
 <ul>
 <li><code>cargo dev generate-all</code>: Update <code>ruff.schema.json</code>, <code>docs/configuration.md</code> and <code>docs/rules</code>.
@@ -2294,14 +2331,14 @@ diagnostics, then our current compilation pipeline proceeds as follows:</p>
     just before that, i.e., the first directory in the package.</li>
 </ul>
 <p>For example, given:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>my_project
-<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>├── pyproject.toml
-<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>└── src
-<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a>    └── foo
-<a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a>        ├── __init__.py
-<a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a>        └── bar
-<a id="__codelineno-31-7" name="__codelineno-31-7" href="#__codelineno-31-7"></a>            ├── __init__.py
-<a id="__codelineno-31-8" name="__codelineno-31-8" href="#__codelineno-31-8"></a>            └── baz.py
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>my_project
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>├── pyproject.toml
+<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>└── src
+<a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a>    └── foo
+<a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a>        ├── __init__.py
+<a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a>        └── bar
+<a id="__codelineno-33-7" name="__codelineno-33-7" href="#__codelineno-33-7"></a>            ├── __init__.py
+<a id="__codelineno-33-8" name="__codelineno-33-8" href="#__codelineno-33-8"></a>            └── baz.py
 </code></pre></div>
 <p>Then when analyzing <code>baz.py</code>, the project root would be the top-level directory (<code>./my_project</code>),
 and the package root would be <code>./my_project/src/foo</code>.</p>
@@ -2319,8 +2356,8 @@ regardless of where and how you invoke it — but that's hard to avoid in this c
 <p>Additionally, if a <code>pyproject.toml</code> file <em>extends</em> another configuration file, Ruff will still use
 the directory containing that <code>pyproject.toml</code> file as the project root. For example, if
 <code>./my_project/pyproject.toml</code> contains:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="k">[tool.ruff]</span>
-<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="n">extend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/path/to/pyproject.toml&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="k">[tool.ruff]</span>
+<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="n">extend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/path/to/pyproject.toml&quot;</span>
 </code></pre></div>
 <p>Then Ruff will use <code>./my_project</code> as the project root, even though the configuration file extends
 <code>/path/to/pyproject.toml</code>. As such, if the configuration file at <code>/path/to/pyproject.toml</code> contains
