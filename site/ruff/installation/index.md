@@ -70,7 +70,7 @@ For **Arch Linux** users, Ruff is also available as [`ruff`](https://archlinux.o
 $ pacman -S ruff
 ```
 
-For **Alpine** users, Ruff is also available as [`ruff`](https://pkgs.alpinelinux.org/package/edge/testing/x86_64/ruff) on the testing repositories:
+For **Alpine** users, Ruff is also available as [`ruff`](https://pkgs.alpinelinux.org/package/edge/community/x86_64/ruff) on the community repositories:
 
 ```
 $ apk add ruff
