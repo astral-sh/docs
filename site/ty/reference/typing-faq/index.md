@@ -40,6 +40,14 @@ msg.data = {"color": "blue"}
 
 ([Full example in the playground](https://play.ty.dev/862941a8-a3f6-4818-9ea1-d9d59b0bd2fa))
 
+## [What is the `@Todo` type and when does it appear?](#what-is-the-todo-type-and-when-does-it-appear)
+
+`@Todo` is ty's way of representing a type that cannot yet be inferred precisely because of a known missing feature or incomplete implementation in ty. Like `Any` and `Unknown`, it is a dynamic type, so ty allows any operation on it.
+
+Unlike `Any`, `@Todo` does not come from an explicit annotation. Unlike `Unknown`, it does not represent missing type information in the code being checked; instead, it indicates a limitation in ty itself. It may appear in type hints, `reveal_type()` output, or diagnostics.
+
+`@Todo` is an internal type and cannot be used in annotations. We aim to eliminate all `@Todo` types as we implement the missing functionality.
+
 ## [What is the `Divergent` type and when does it appear?](#what-is-the-divergent-type-and-when-does-it-appear)
 
 `Divergent` is ty's way of representing type-level recursion that does not converge. Type inference can be recursive; for example, the type of a variable at the end of a loop can depend on its type at the beginning. ty analyzes such cycles repeatedly, looking for a stable result. If each iteration produces a new type, ty replaces the non-convergent part with `Divergent`.
