@@ -101,8 +101,8 @@
 <script type="application/ld+json">
   {
       
-      "datePublished": "2025-10-07 17:32:02Z",
-      "dateModified": "2025-10-07 17:32:02Z",
+      "datePublished": "2026-06-26 18:51:31Z",
+      "dateModified": "2026-06-26 18:51:31Z",
       
       "@context": "https://schema.org",
       "@type": "WebSite",
@@ -1706,6 +1706,23 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="The project environment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#centralized-project-environments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Centralized project environments
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -3475,6 +3492,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="The project environment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#centralized-project-environments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Centralized project environments
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -3617,9 +3651,9 @@ details.</p>
 <p>When working on a project with uv, uv will create a virtual environment as needed. While some uv
 commands will create a temporary environment (e.g., <code>uv run --isolated</code>), uv also manages a
 persistent environment with the project and its dependencies in a <code>.venv</code> directory next to the
-<code>pyproject.toml</code>. It is stored inside the project to make it easy for editors to find — they need
-the environment to give code completions and type hints. It is not recommended to include the
-<code>.venv</code> directory in version control; it is automatically excluded from <code>git</code> with an internal
+<code>pyproject.toml</code>. By default, it is stored inside the project to make it easy for editors to find —
+they need the environment to give code completions and type hints. It is not recommended to include
+the <code>.venv</code> directory in version control; it is automatically excluded from <code>git</code> with an internal
 <code>.gitignore</code> file.</p>
 <p>To run a command in the project environment, use <code>uv run</code>. Alternatively the project environment can
 be activated as normal for a virtual environment.</p>
@@ -3638,6 +3672,15 @@ to disable automatic locking and syncing of the project. For example:</p>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">managed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
 </code></pre></div>
 </div>
+<h3 id="centralized-project-environments"><a class="toclink" href="#centralized-project-environments">Centralized project environments</a></h3>
+<p>With the <a href="../../preview/"><code>centralized-project-envs</code> preview feature</a>, uv stores the default project
+environment in its cache. uv attempts to maintain a <code>.venv</code> directory link to the cached environment
+so existing activation and editor workflows can continue to use the usual path. If link creation
+fails, uv continues using the cached environment directly, but tools relying on <code>.venv</code> may not
+discover it. Switching interpreters selects separate cached environments and can reuse them later.</p>
+<p>Explicit project environment paths, including <code>UV_PROJECT_ENVIRONMENT</code> and environments selected
+with <code>--active</code>, are not centralized. The feature has no effect when <code>--no-cache</code> is enabled.</p>
+<p>The feature also applies to pathless <code>uv venv</code> invocations from a project or workspace root.</p>
 <h2 id="the-lockfile"><a class="toclink" href="#the-lockfile">The lockfile</a></h2>
 <p>uv creates a <code>uv.lock</code> file next to the <code>pyproject.toml</code>.</p>
 <p><code>uv.lock</code> is a <em>universal</em> or <em>cross-platform</em> lockfile that captures the packages that would be
@@ -3692,7 +3735,7 @@ continue to use the <code>uv.lock</code> format within the project interface.</p
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 7, 2025 17:32:02 UTC">October 7, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 26, 2026 18:51:31 UTC">June 26, 2026</span>
   </span>
 
     

@@ -7382,7 +7382,7 @@ interpreter. Use <code>--universal</code> to display the tree for all platforms,
 <p>However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.</p>
 </dd><dt id="uv-check--ty-version"><a href="#uv-check--ty-version"><code>--ty-version</code></a> <i>ty-version</i></dt><dd><p>The version of ty to use for type checking.</p>
 <p>Accepts either a version (e.g., <code>0.0.1</code>) which will be treated as an exact pin, a version specifier (e.g., <code>&gt;=0.0.1</code>), or <code>latest</code> to use the latest available version.</p>
-<p>By default, a constrained version range of ty will be used (e.g., <code>&gt;=0.0,&lt;0.1</code>).</p>
+<p>By default, the exact version resolved in <code>uv.lock</code> will be used when <code>ty</code> is a project dependency or a dependency in the project's <code>dev</code> group. Otherwise, a constrained version range of ty will be used (e.g., <code>&gt;=0.0,&lt;0.1</code>).</p>
 </dd><dt id="uv-check--upgrade"><a href="#uv-check--upgrade"><code>--upgrade</code></a>, <code>-U</code></dt><dd><p>Allow package upgrades, ignoring pinned versions in any existing output file. Implies <code>--refresh</code></p>
 </dd><dt id="uv-check--upgrade-group"><a href="#uv-check--upgrade-group"><code>--upgrade-group</code></a> <i>upgrade-group</i></dt><dd><p>Allow upgrades for all packages in a dependency group, ignoring pinned versions in any existing output file</p>
 </dd><dt id="uv-check--upgrade-package"><a href="#uv-check--upgrade-package"><code>--upgrade-package</code></a>, <code>-P</code> <i>upgrade-package</i></dt><dd><p>Allow upgrades for a specific package, ignoring pinned versions in any existing output file. Implies <code>--refresh-package</code></p>
@@ -11557,6 +11557,7 @@ metadata when there are not wheels.</p>
 <p>This setting has no effect when used in the <code>uv pip</code> interface.</p>
 <p>May also be set with the <code>UV_PROJECT</code> environment variable.</p></dd><dt id="uv-workspace-list--quiet"><a href="#uv-workspace-list--quiet"><code>--quiet</code></a>, <code>-q</code></dt><dd><p>Use quiet output.</p>
 <p>Repeating this option, e.g., <code>-qq</code>, will enable a silent mode in which uv will write no output to stdout.</p>
+</dd><dt id="uv-workspace-list--scripts"><a href="#uv-workspace-list--scripts"><code>--scripts</code></a></dt><dd><p>List all standalone scripts with inline metadata in the workspace</p>
 </dd><dt id="uv-workspace-list--system-certs"><a href="#uv-workspace-list--system-certs"><code>--system-certs</code></a></dt><dd><p>Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]</p>
 <p>By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).</p>
 <p>However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.</p>
@@ -11573,7 +11574,7 @@ metadata when there are not wheels.</p>
 <h3 class="cli-reference">Commands</h3>
 
 <dl class="cli-reference"><dt><a href="#uv-cache-clean"><code>uv cache clean</code></a></dt><dd><p>Clear the cache, removing all entries or those linked to specific packages</p></dd>
-<dt><a href="#uv-cache-prune"><code>uv cache prune</code></a></dt><dd><p>Prune all unreachable objects from the cache</p></dd>
+<dt><a href="#uv-cache-prune"><code>uv cache prune</code></a></dt><dd><p>Prune dangling cache entries and cached environments</p></dd>
 <dt><a href="#uv-cache-dir"><code>uv cache dir</code></a></dt><dd><p>Show the cache directory</p></dd>
 <dt><a href="#uv-cache-size"><code>uv cache size</code></a></dt><dd><p>Show the cache size</p></dd>
 </dl>
@@ -11640,7 +11641,7 @@ metadata when there are not wheels.</p>
 </dd></dl>
 
 <h3 id="uv-cache-prune"><a class="toclink" href="#uv-cache-prune">uv cache prune</a></h3>
-<p>Prune all unreachable objects from the cache</p>
+<p>Prune dangling cache entries and cached environments</p>
 <h3 class="cli-reference">Usage</h3>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a>uv cache prune [OPTIONS]

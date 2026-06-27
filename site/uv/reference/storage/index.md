@@ -168,6 +168,8 @@ By default, project virtual environments are created in `.venv` in the project o
 
 Use the `UV_PROJECT_ENVIRONMENT` environment variable to override this location. For more details, see the [projects environment documentation](../../concepts/projects/config/#project-environment-path).
 
+With the [`centralized-project-envs` preview feature](../../concepts/preview/), uv stores default project environments in the [cache directory](#cache-directory). They can be removed by `uv cache clean` or `uv cache prune` and are recreated when next needed. See the [centralized project environments](../../concepts/projects/layout/#centralized-project-environments) documentation for details.
+
 ### [Script virtual environments](#script-virtual-environments)
 
 When running [scripts with inline metadata](../../guides/scripts/), uv creates a dedicated virtual environment for each script in the [cache directory](#cache-directory).
