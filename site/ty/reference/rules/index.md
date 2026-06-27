@@ -122,7 +122,7 @@ def _(x: int):
 
 ## [`call-abstract-method`](#call-abstract-method)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Preview (since [0.0.16](https://github.com/astral-sh/ty/releases/tag/0.0.16)) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22call-abstract-method%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L967)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.16](https://github.com/astral-sh/ty/releases/tag/0.0.16) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22call-abstract-method%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L967)
 
 **What it does**
 
@@ -1473,16 +1473,35 @@ Checks for invalid match patterns.
 
 **Why is this bad?**
 
-Matching on invalid patterns will lead to a runtime error.
+Invalid match patterns can cause a `TypeError` at runtime. This includes:
+
+- Using a non-type object in a class pattern.
+- Providing positional subpatterns when `__match_args__` is missing or has an invalid static type.
+- Matching against `collections.abc.Callable` with positional subpatterns.
+- Matching against a non-runtime-checkable protocol.
+- Matching against a `TypedDict`.
 
 **Examples**
+
+```
+class Point:
+    __match_args__ = ("x", "y")
+
+
+def describe(p: Point) -> None:
+    match p:
+        # TypeError at runtime: Point() accepts 2 positional sub-patterns (3 given)
+        case Point(x, y, z):  # error: [invalid-match-pattern]
+            ...
+
+```
 
 ```
 NotAClass = 42
 
 match object():
-    # TypeError at runtime: must be a class
-    case NotAClass():  # error
+    # TypeError at runtime: called match pattern must be a class
+    case NotAClass():  # error: [invalid-match-pattern]
         ...
 
 ```
@@ -2618,7 +2637,7 @@ func()  # error
 
 ## [`missing-override-decorator`](#missing-override-decorator)
 
-Default level: [`ignore`](../../rules#rule-levels "This lint has a default level of 'ignore'.") · Preview (since [0.0.41](https://github.com/astral-sh/ty/releases/tag/0.0.41)) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22missing-override-decorator%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L985)
+Default level: [`ignore`](../../rules#rule-levels "This lint has a default level of 'ignore'.") · Added in [0.0.41](https://github.com/astral-sh/ty/releases/tag/0.0.41) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22missing-override-decorator%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L985)
 
 **What it does**
 
@@ -3731,7 +3750,7 @@ A() + A()  # error
 
 ## [`unused-awaitable`](#unused-awaitable)
 
-Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Preview (since [0.0.21](https://github.com/astral-sh/ty/releases/tag/0.0.21)) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unused-awaitable%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1102)
+Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.21](https://github.com/astral-sh/ty/releases/tag/0.0.21) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unused-awaitable%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1102)
 
 **What it does**
 
