@@ -6961,6 +6961,11 @@ it will be omitted from the dependency list entirely.</p>
 <p>Including a package as an exclusion will prevent it from being installed, even if
 it's requested by transitive dependencies. This can be useful for removing optional
 dependencies or working around packages with broken dependencies.</p>
+<p>Exclusions can be limited to the dependencies declared by a specific package version by
+using a table with <code>package</code> and <code>dependencies</code>. The <code>package</code> table identifies the package
+whose dependencies will be excluded by <code>name</code> and, optionally, <code>version</code>. If <code>version</code> is
+omitted, the exclusions apply to all versions of that package. A version-specific entry
+takes precedence over an all-versions entry.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>In <code>uv lock</code>, <code>uv sync</code>, and <code>uv run</code>, uv will only read <code>exclude-dependencies</code> from
@@ -6968,11 +6973,14 @@ the <code>pyproject.toml</code> at the workspace root, and will ignore any decla
 workspace members or <code>uv.toml</code> files.</p>
 </div>
 <p><strong>Default value</strong>: <code>[]</code></p>
-<p><strong>Type</strong>: <code>list[str]</code></p>
+<p><strong>Type</strong>: <code>list[str | dict]</code></p>
 <p><strong>Example usage</strong>:</p>
 <div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">[tool.uv]</span>
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="c1"># Exclude Werkzeug from being installed, even if transitive dependencies request it.</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="n">exclude-dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;werkzeug&quot;</span><span class="p">]</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="n">exclude-dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="s2">&quot;werkzeug&quot;</span><span class="p">,</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="n">package</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;flask&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;3.0.0&quot;</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="n">dependencies</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;itsdangerous&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="p">]</span>
 </code></pre></div>
 <hr />
 <h3 id="index"><a class="toclink" href="#index"><a href="#index"><code>index</code></a></a></h3>
@@ -7026,6 +7034,14 @@ requirements of any constituent packages.</p>
 <p>Including a package as an override will <em>not</em> trigger installation of the package on its
 own; instead, the package must be requested elsewhere in the project's first-party or
 transitive dependencies.</p>
+<p>Overrides can be limited to the dependencies declared by a specific package version by
+using a table with <code>package</code> and <code>dependencies</code>. The <code>package</code> table identifies the package
+whose dependencies will be overridden by <code>name</code> and, optionally, <code>version</code>. If <code>version</code> is
+omitted, the overrides apply to all versions of that package. Requirements in <code>dependencies</code>
+replace dependencies with the same name and add dependencies that are not declared by the
+package. Dependencies not listed in <code>dependencies</code> are left unchanged.</p>
+<p>Scoped overrides currently support registry version specifiers only. Direct URL and path
+sources, including Git sources, and explicit indexes are not supported.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>In <code>uv lock</code>, <code>uv sync</code>, and <code>uv run</code>, uv will only read <code>override-dependencies</code> from
@@ -7033,12 +7049,15 @@ the <code>pyproject.toml</code> at the workspace root, and will ignore any decla
 workspace members or <code>uv.toml</code> files.</p>
 </div>
 <p><strong>Default value</strong>: <code>[]</code></p>
-<p><strong>Type</strong>: <code>list[str]</code></p>
+<p><strong>Type</strong>: <code>list[str | dict]</code></p>
 <p><strong>Example usage</strong>:</p>
 <div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">[tool.uv]</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="c1"># Always install Werkzeug 2.3.0, regardless of whether transitive dependencies request</span>
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="c1"># a different version.</span>
-<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="n">override-dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;werkzeug==2.3.0&quot;</span><span class="p">]</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">override-dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span><span class="c1"># Always install Werkzeug 2.3.0.</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">    </span><span class="s2">&quot;werkzeug==2.3.0&quot;</span><span class="p">,</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">    </span><span class="c1"># Use itsdangerous 2.1.2 when requested by Flask 3.0.0.</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="n">package</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;flask&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;3.0.0&quot;</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="n">dependencies</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;itsdangerous==2.1.2&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="p">]</span>
 </code></pre></div>
 <hr />
 <h3 id="package"><a class="toclink" href="#package"><a href="#package"><code>package</code></a></a></h3>

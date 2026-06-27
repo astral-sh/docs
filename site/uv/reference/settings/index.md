@@ -197,13 +197,15 @@ Excludes are used to prevent a package from being selected during resolution, re
 
 Including a package as an exclusion will prevent it from being installed, even if it's requested by transitive dependencies. This can be useful for removing optional dependencies or working around packages with broken dependencies.
 
+Exclusions can be limited to the dependencies declared by a specific package version by using a table with `package` and `dependencies`. The `package` table identifies the package whose dependencies will be excluded by `name` and, optionally, `version`. If `version` is omitted, the exclusions apply to all versions of that package. A version-specific entry takes precedence over an all-versions entry.
+
 Note
 
 In `uv lock`, `uv sync`, and `uv run`, uv will only read `exclude-dependencies` from the `pyproject.toml` at the workspace root, and will ignore any declarations in other workspace members or `uv.toml` files.
 
 **Default value**: `[]`
 
-**Type**: `list[str]`
+**Type**: `list[str | dict]`
 
 **Example usage**:
 
@@ -212,7 +214,10 @@ pyproject.toml
 ```
 [tool.uv]
 # Exclude Werkzeug from being installed, even if transitive dependencies request it.
-exclude-dependencies = ["werkzeug"]
+exclude-dependencies = [
+    "werkzeug",
+    { package = { name = "flask", version = "3.0.0" }, dependencies = ["itsdangerous"] },
+]
 ```
 
 ______________________________________________________________________
@@ -284,13 +289,17 @@ While constraints are *additive*, in that they're combined with the requirements
 
 Including a package as an override will *not* trigger installation of the package on its own; instead, the package must be requested elsewhere in the project's first-party or transitive dependencies.
 
+Overrides can be limited to the dependencies declared by a specific package version by using a table with `package` and `dependencies`. The `package` table identifies the package whose dependencies will be overridden by `name` and, optionally, `version`. If `version` is omitted, the overrides apply to all versions of that package. Requirements in `dependencies` replace dependencies with the same name and add dependencies that are not declared by the package. Dependencies not listed in `dependencies` are left unchanged.
+
+Scoped overrides currently support registry version specifiers only. Direct URL and path sources, including Git sources, and explicit indexes are not supported.
+
 Note
 
 In `uv lock`, `uv sync`, and `uv run`, uv will only read `override-dependencies` from the `pyproject.toml` at the workspace root, and will ignore any declarations in other workspace members or `uv.toml` files.
 
 **Default value**: `[]`
 
-**Type**: `list[str]`
+**Type**: `list[str | dict]`
 
 **Example usage**:
 
@@ -298,9 +307,12 @@ pyproject.toml
 
 ```
 [tool.uv]
-# Always install Werkzeug 2.3.0, regardless of whether transitive dependencies request
-# a different version.
-override-dependencies = ["werkzeug==2.3.0"]
+override-dependencies = [
+    # Always install Werkzeug 2.3.0.
+    "werkzeug==2.3.0",
+    # Use itsdangerous 2.1.2 when requested by Flask 3.0.0.
+    { package = { name = "flask", version = "3.0.0" }, dependencies = ["itsdangerous==2.1.2"] },
+]
 ```
 
 ______________________________________________________________________

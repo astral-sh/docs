@@ -5941,7 +5941,7 @@ However, in some cases, you may want to use the platform's native certificate st
 ```
 Accepts either a version (e.g., `0.0.1`) which will be treated as an exact pin, a version specifier (e.g., `>=0.0.1`), or `latest` to use the latest available version.
 
-By default, a constrained version range of ty will be used (e.g., `>=0.0,<0.1`).
+By default, the exact version resolved in `uv.lock` will be used when `ty` is a project dependency or a dependency in the project's `dev` group. Otherwise, a constrained version range of ty will be used (e.g., `>=0.0,<0.1`).
 ```
 
 [`--upgrade`](#uv-check--upgrade), `-U` : Allow package upgrades, ignoring pinned versions in any existing output file. Implies `--refresh`
@@ -15412,6 +15412,8 @@ May also be set with the `UV_PROJECT` environment variable.
 Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will write no output to stdout.
 ```
 
+[`--scripts`](#uv-workspace-list--scripts) : List all standalone scripts with inline metadata in the workspace
+
 [`--system-certs`](#uv-workspace-list--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
 
 ```
@@ -15440,7 +15442,7 @@ uv cache [OPTIONS] <COMMAND>
 
 [`uv cache clean`](#uv-cache-clean) : Clear the cache, removing all entries or those linked to specific packages
 
-[`uv cache prune`](#uv-cache-prune) : Prune all unreachable objects from the cache
+[`uv cache prune`](#uv-cache-prune) : Prune dangling cache entries and cached environments
 
 [`uv cache dir`](#uv-cache-dir) : Show the cache directory
 
@@ -15598,7 +15600,7 @@ You can configure fine-grained logging using the `RUST_LOG` environment variable
 
 ### [uv cache prune](#uv-cache-prune)
 
-Prune all unreachable objects from the cache
+Prune dangling cache entries and cached environments
 
 ### Usage
 
