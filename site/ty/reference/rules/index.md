@@ -1986,7 +1986,7 @@ Type annotations are permitted to be string-literal expressions, in order to ena
 **Example**
 
 ```
-def foo() -> "intstance of C":  # error
+def foo() -> "instance of C":  # error
     return 42
 
 
