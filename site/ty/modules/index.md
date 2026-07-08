@@ -55,3 +55,9 @@ When using project management tools, such as uv or Poetry, the `run` command usu
 The Python environment may be explicitly configured using the [`environment.python`](../reference/configuration/#python) setting or [`--python`](../reference/cli/#ty-check--python) flag.
 
 When setting the environment explicitly, non-virtual environments can be provided.
+
+### [`PYTHONPATH`](#pythonpath)
+
+ty also respects the [`PYTHONPATH`](../reference/environment/#pythonpath) environment variable. Each existing directory listed in `PYTHONPATH` is added to the module search path, just after any [`extra-paths`](../reference/configuration/#extra-paths) and before the environment's `site-packages`, mirroring the resolution order of the Python interpreter itself.
+
+`PYTHONPATH` uses the same format as the shell's `PATH`: one or more directory paths separated by the platform's path separator (`:` on Unix, `;` on Windows). Entries that don't exist or aren't directories are ignored.
