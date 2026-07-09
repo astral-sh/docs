@@ -864,7 +864,7 @@
 <p><small>
 Added in <a href="https://github.com/astral-sh/ruff/releases/tag/0.13.0">0.13.0</a> ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27redundant-none-literal%27%20OR%20PYI061)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_pyi%2Frules%2Fredundant_none_literal.rs#L51" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_pyi%2Frules%2Fredundant_none_literal.rs#L55" target="_blank">View source</a>
 </small></p>
 <p>Derived from the <strong><a href="../#flake8-pyi-pyi">flake8-pyi</a></strong> linter.</p>
 <p>Fix is sometimes available.</p>
@@ -886,7 +886,10 @@ Prefer <code>None</code> over <code>Literal[None]</code> for both consistency an
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">Literal</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span>
 </code></pre></div>
 <h2 id="fix-safety-and-availability"><a class="toclink" href="#fix-safety-and-availability">Fix safety and availability</a></h2>
-<p>This rule's fix is marked as safe unless the literal contains comments.</p>
+<p>In Python files, this rule's fix is marked as unsafe because replacing
+<code>Literal[...]</code> can change runtime-visible annotation objects, such as the
+result of <code>typing.get_args</code>.</p>
+<p>In stub files, the fix is marked as safe unless the literal contains comments.</p>
 <p>There is currently no fix available when applying the fix would lead to
 a <code>TypeError</code> from an expression of the form <code>None | None</code> or when we
 are unable to import the symbol <code>typing.Optional</code> and the Python version
