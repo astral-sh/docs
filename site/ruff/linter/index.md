@@ -415,11 +415,13 @@ $ ruff check /path/to/file.py --extend-select RUF100 --fix
 
 ### [Inserting necessary suppression comments](#inserting-necessary-suppression-comments)
 
-Ruff can *automatically add* `noqa` directives to all lines that contain violations, which is useful when migrating a new codebase to Ruff. To automatically add `noqa` directives to all relevant lines (with the appropriate rule codes), run Ruff with `--add-noqa`, like so:
+Ruff can *automatically add* suppression comments to all lines that contain violations, which is useful when migrating a new codebase to Ruff. To add the appropriate comments to all relevant lines, run Ruff with `--add-noqa`:
 
 ```
 $ ruff check /path/to/file.py --add-noqa
 ```
+
+The `--add-noqa` flag adds `noqa` directives with rule codes. To add `ruff:ignore` comments with human-readable rule names instead, use `--add-ignore` with preview mode enabled.
 
 ### [isort action comments](#isort-action-comments)
 

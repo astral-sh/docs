@@ -864,7 +864,7 @@
 <p><small>
 Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.229">v0.0.229</a> ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27shebang-leading-whitespace%27%20OR%20EXE004)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_executable%2Frules%2Fshebang_leading_whitespace.rs#L33" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_executable%2Frules%2Fshebang_leading_whitespace.rs#L39" target="_blank">View source</a>
 </small></p>
 <p>Derived from the <strong><a href="../#flake8-executable-exe">flake8-executable</a></strong> linter.</p>
 <p>Fix is always available.</p>
@@ -883,6 +883,10 @@ ignored, which is likely a mistake.</p>
 <p>Use instead:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="ch">#!/usr/bin/env python3</span>
 </code></pre></div>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
+<p>This rule's fix is marked as unsafe when the whitespace before the shebang
+contains a newline. Deleting the newline can activate an encoding declaration
+and change how the file is decoded.</p>
 <h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/tutorial/appendix.html#executable-python-scripts">Python documentation: Executable Python Scripts</a></li>

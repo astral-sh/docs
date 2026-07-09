@@ -1517,11 +1517,13 @@ To remove any unused suppressions, run Ruff with <code>--fix</code>, like so:</p
 <div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="gp">$ </span>ruff<span class="w"> </span>check<span class="w"> </span>/path/to/file.py<span class="w"> </span>--extend-select<span class="w"> </span>RUF100<span class="w"> </span>--fix
 </code></pre></div>
 <h3 id="inserting-necessary-suppression-comments"><a class="toclink" href="#inserting-necessary-suppression-comments">Inserting necessary suppression comments</a></h3>
-<p>Ruff can <em>automatically add</em> <code>noqa</code> directives to all lines that contain violations, which is
-useful when migrating a new codebase to Ruff. To automatically add <code>noqa</code> directives to all
-relevant lines (with the appropriate rule codes), run Ruff with <code>--add-noqa</code>, like so:</p>
+<p>Ruff can <em>automatically add</em> suppression comments to all lines that contain violations, which is
+useful when migrating a new codebase to Ruff. To add the appropriate comments to all relevant
+lines, run Ruff with <code>--add-noqa</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="gp">$ </span>ruff<span class="w"> </span>check<span class="w"> </span>/path/to/file.py<span class="w"> </span>--add-noqa
 </code></pre></div>
+<p>The <code>--add-noqa</code> flag adds <code>noqa</code> directives with rule codes. To add <code>ruff:ignore</code> comments with
+human-readable rule names instead, use <code>--add-ignore</code> with preview mode enabled.</p>
 <h3 id="isort-action-comments"><a class="toclink" href="#isort-action-comments">isort action comments</a></h3>
 <p>Ruff respects isort's <a href="https://pycqa.github.io/isort/docs/configuration/action_comments.html">action comments</a>
 (<code># isort: skip_file</code>, <code># isort: on</code>, <code># isort: off</code>, <code># isort: skip</code>, and <code># isort: split</code>), which
