@@ -120,6 +120,33 @@ def _(x: int):
 
 ```
 
+## [`blanket-ignore-comment`](#blanket-ignore-comment)
+
+Default level: [`ignore`](../../rules#rule-levels "This lint has a default level of 'ignore'.") · Added in [0.0.57](https://github.com/astral-sh/ty/releases/tag/0.0.57) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22blanket-ignore-comment%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Fsuppression.rs#L61)
+
+**What it does**
+
+Checks for `ty: ignore` comments that don't specify which rules to ignore.
+
+**Why is this bad?**
+
+A blanket `ty: ignore` comment suppresses every type-checking diagnostic on the applicable line or file. Specifying rule codes documents which diagnostics are expected and prevents the comment from silencing unrelated errors.
+
+**Examples**
+
+```
+# error
+value = unknown  # ty: ignore
+
+```
+
+Use instead:
+
+```
+value = unknown  # ty: ignore[unresolved-reference]
+
+```
+
 ## [`call-abstract-method`](#call-abstract-method)
 
 Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.16](https://github.com/astral-sh/ty/releases/tag/0.0.16) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22call-abstract-method%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L967)
