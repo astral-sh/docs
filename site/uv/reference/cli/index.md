@@ -1053,7 +1053,7 @@ May also be set with the `UV_NO_BINARY` environment variable.
 [`--no-build`](#uv-run--no-build) : Don't build source distributions.
 
 ```
-When enabled, resolving will not run arbitrary Python code. The cached wheels of already-built source distributions will be reused, but operations that require building distributions will exit with an error.
+When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.
 
 May also be set with the `UV_NO_BUILD` environment variable.
 ```
@@ -1981,7 +1981,7 @@ May also be set with the `UV_NO_BINARY` environment variable.
 [`--no-build`](#uv-add--no-build) : Don't build source distributions.
 
 ```
-When enabled, resolving will not run arbitrary Python code. The cached wheels of already-built source distributions will be reused, but operations that require building distributions will exit with an error.
+When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.
 
 May also be set with the `UV_NO_BUILD` environment variable.
 ```
@@ -2490,7 +2490,7 @@ May also be set with the `UV_NO_BINARY` environment variable.
 [`--no-build`](#uv-remove--no-build) : Don't build source distributions.
 
 ```
-When enabled, resolving will not run arbitrary Python code. The cached wheels of already-built source distributions will be reused, but operations that require building distributions will exit with an error.
+When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.
 
 May also be set with the `UV_NO_BUILD` environment variable.
 ```
@@ -2939,7 +2939,7 @@ May also be set with the `UV_NO_BINARY` environment variable.
 [`--no-build`](#uv-version--no-build) : Don't build source distributions.
 
 ```
-When enabled, resolving will not run arbitrary Python code. The cached wheels of already-built source distributions will be reused, but operations that require building distributions will exit with an error.
+When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.
 
 May also be set with the `UV_NO_BUILD` environment variable.
 ```
@@ -3435,7 +3435,7 @@ May also be set with the `UV_NO_BINARY` environment variable.
 [`--no-build`](#uv-sync--no-build) : Don't build source distributions.
 
 ```
-When enabled, resolving will not run arbitrary Python code. The cached wheels of already-built source distributions will be reused, but operations that require building distributions will exit with an error.
+When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.
 
 May also be set with the `UV_NO_BUILD` environment variable.
 ```
@@ -4013,7 +4013,7 @@ May also be set with the `UV_NO_BINARY` environment variable.
 [`--no-build`](#uv-lock--no-build) : Don't build source distributions.
 
 ```
-When enabled, resolving will not run arbitrary Python code. The cached wheels of already-built source distributions will be reused, but operations that require building distributions will exit with an error.
+When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.
 
 May also be set with the `UV_NO_BUILD` environment variable.
 ```
@@ -4468,7 +4468,7 @@ May also be set with the `UV_NO_BINARY` environment variable.
 [`--no-build`](#uv-export--no-build) : Don't build source distributions.
 
 ```
-When enabled, resolving will not run arbitrary Python code. The cached wheels of already-built source distributions will be reused, but operations that require building distributions will exit with an error.
+When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.
 
 May also be set with the `UV_NO_BUILD` environment variable.
 ```
@@ -4874,6 +4874,17 @@ Possible values:
 - `requires-python`: Optimize for selecting latest supported version of each package, for each supported Python version
 ```
 
+[`--format`](#uv-tree--format) *format* : The format in which to display the dependency graph
+
+```
+[default: text]
+
+Possible values:
+
+- `text`: Display the dependency graph as a human-readable tree
+- `json`: Display the dependency graph as JSON
+```
+
 [`--frozen`](#uv-tree--frozen) : Display the requirements without locking the project [env: UV_FROZEN=]
 
 ```
@@ -4985,7 +4996,7 @@ May also be set with the `UV_NO_BINARY` environment variable.
 [`--no-build`](#uv-tree--no-build) : Don't build source distributions.
 
 ```
-When enabled, resolving will not run arbitrary Python code. The cached wheels of already-built source distributions will be reused, but operations that require building distributions will exit with an error.
+When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.
 
 May also be set with the `UV_NO_BUILD` environment variable.
 ```
@@ -5735,7 +5746,7 @@ May also be set with the `UV_NO_BINARY` environment variable.
 [`--no-build`](#uv-check--no-build) : Don't build source distributions.
 
 ```
-When enabled, resolving will not run arbitrary Python code. The cached wheels of already-built source distributions will be reused, but operations that require building distributions will exit with an error.
+When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.
 
 May also be set with the `UV_NO_BUILD` environment variable.
 ```
@@ -6216,7 +6227,7 @@ May also be set with the `UV_NO_BINARY` environment variable.
 [`--no-build`](#uv-audit--no-build) : Don't build source distributions.
 
 ```
-When enabled, resolving will not run arbitrary Python code. The cached wheels of already-built source distributions will be reused, but operations that require building distributions will exit with an error.
+When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.
 
 May also be set with the `UV_NO_BUILD` environment variable.
 ```
@@ -6810,7 +6821,7 @@ May also be set with the `UV_NO_BINARY` environment variable.
 [`--no-build`](#uv-tool-run--no-build) : Don't build source distributions.
 
 ```
-When enabled, resolving will not run arbitrary Python code. The cached wheels of already-built source distributions will be reused, but operations that require building distributions will exit with an error.
+When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.
 
 May also be set with the `UV_NO_BUILD` environment variable.
 ```
@@ -7041,6 +7052,7 @@ Possible values:
 
 - `auto`: Select the appropriate PyTorch index based on the operating system and CUDA driver version
 - `cpu`: Use the CPU-only PyTorch index
+- `cu132`: Use the PyTorch index for CUDA 13.2
 - `cu130`: Use the PyTorch index for CUDA 13.0
 - `cu129`: Use the PyTorch index for CUDA 12.9
 - `cu128`: Use the PyTorch index for CUDA 12.8
@@ -7396,7 +7408,7 @@ May also be set with the `UV_NO_BINARY` environment variable.
 [`--no-build`](#uv-tool-install--no-build) : Don't build source distributions.
 
 ```
-When enabled, resolving will not run arbitrary Python code. The cached wheels of already-built source distributions will be reused, but operations that require building distributions will exit with an error.
+When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.
 
 May also be set with the `UV_NO_BUILD` environment variable.
 ```
@@ -7625,6 +7637,7 @@ Possible values:
 
 - `auto`: Select the appropriate PyTorch index based on the operating system and CUDA driver version
 - `cpu`: Use the CPU-only PyTorch index
+- `cu132`: Use the PyTorch index for CUDA 13.2
 - `cu130`: Use the PyTorch index for CUDA 13.0
 - `cu129`: Use the PyTorch index for CUDA 12.9
 - `cu128`: Use the PyTorch index for CUDA 12.8
@@ -7944,7 +7957,7 @@ May also be set with the `UV_NO_BINARY` environment variable.
 [`--no-build`](#uv-tool-upgrade--no-build) : Don't build source distributions.
 
 ```
-When enabled, resolving will not run arbitrary Python code. The cached wheels of already-built source distributions will be reused, but operations that require building distributions will exit with an error.
+When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.
 
 May also be set with the `UV_NO_BUILD` environment variable.
 ```
@@ -10672,7 +10685,7 @@ Multiple packages may be provided. Disable binaries for all packages with `:all:
 [`--no-build`](#uv-pip-compile--no-build) : Don't build source distributions.
 
 ```
-When enabled, resolving will not run arbitrary Python code. The cached wheels of already-built source distributions will be reused, but operations that require building distributions will exit with an error.
+When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.
 
 Alias for `--only-binary :all:`.
 ```
@@ -10748,7 +10761,7 @@ When disabled, uv will only use locally cached data and locally available files.
 [`--only-binary`](#uv-pip-compile--only-binary) *only-binary* : Only use pre-built wheels; don't build source distributions.
 
 ```
-When enabled, resolving will not run code from the given packages. The cached wheels of already-built source distributions will be reused, but operations that require building distributions will exit with an error.
+When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution for the given packages will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.
 
 Multiple packages may be provided. Disable binaries for all packages with `:all:`. Clear previously specified packages with `:none:`.
 ```
@@ -10944,6 +10957,7 @@ Possible values:
 
 - `auto`: Select the appropriate PyTorch index based on the operating system and CUDA driver version
 - `cpu`: Use the CPU-only PyTorch index
+- `cu132`: Use the PyTorch index for CUDA 13.2
 - `cu130`: Use the PyTorch index for CUDA 13.0
 - `cu129`: Use the PyTorch index for CUDA 12.9
 - `cu128`: Use the PyTorch index for CUDA 12.8
@@ -11302,7 +11316,7 @@ Multiple packages may be provided. Disable binaries for all packages with `:all:
 [`--no-build`](#uv-pip-sync--no-build) : Don't build source distributions.
 
 ```
-When enabled, resolving will not run arbitrary Python code. The cached wheels of already-built source distributions will be reused, but operations that require building distributions will exit with an error.
+When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.
 
 Alias for `--only-binary :all:`.
 ```
@@ -11362,7 +11376,7 @@ When disabled, uv will only use locally cached data and locally available files.
 [`--only-binary`](#uv-pip-sync--only-binary) *only-binary* : Only use pre-built wheels; don't build source distributions.
 
 ```
-When enabled, resolving will not run code from the given packages. The cached wheels of already-built source distributions will be reused, but operations that require building distributions will exit with an error.
+When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution for the given packages will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.
 
 Multiple packages may be provided. Disable binaries for all packages with `:all:`. Clear previously specified packages with `:none:`.
 ```
@@ -11541,6 +11555,7 @@ Possible values:
 
 - `auto`: Select the appropriate PyTorch index based on the operating system and CUDA driver version
 - `cpu`: Use the CPU-only PyTorch index
+- `cu132`: Use the PyTorch index for CUDA 13.2
 - `cu130`: Use the PyTorch index for CUDA 13.0
 - `cu129`: Use the PyTorch index for CUDA 12.9
 - `cu128`: Use the PyTorch index for CUDA 12.8
@@ -11904,7 +11919,7 @@ Multiple packages may be provided. Disable binaries for all packages with `:all:
 [`--no-build`](#uv-pip-install--no-build) : Don't build source distributions.
 
 ```
-When enabled, resolving will not run arbitrary Python code. The cached wheels of already-built source distributions will be reused, but operations that require building distributions will exit with an error.
+When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.
 
 Alias for `--only-binary :all:`.
 ```
@@ -11984,7 +11999,7 @@ When disabled, uv will only use locally cached data and locally available files.
 [`--only-binary`](#uv-pip-install--only-binary) *only-binary* : Only use pre-built wheels; don't build source distributions.
 
 ```
-When enabled, resolving will not run code from the given packages. The cached wheels of already-built source distributions will be reused, but operations that require building distributions will exit with an error.
+When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution for the given packages will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.
 
 Multiple packages may be provided. Disable binaries for all packages with `:all:`. Clear previously specified packages with `:none:`.
 ```
@@ -12213,6 +12228,7 @@ Possible values:
 
 - `auto`: Select the appropriate PyTorch index based on the operating system and CUDA driver version
 - `cpu`: Use the CPU-only PyTorch index
+- `cu132`: Use the PyTorch index for CUDA 13.2
 - `cu130`: Use the PyTorch index for CUDA 13.0
 - `cu129`: Use the PyTorch index for CUDA 12.9
 - `cu128`: Use the PyTorch index for CUDA 12.8
@@ -14251,7 +14267,7 @@ May also be set with the `UV_NO_BINARY` environment variable.
 [`--no-build`](#uv-build--no-build) : Don't build source distributions.
 
 ```
-When enabled, resolving will not run arbitrary Python code. The cached wheels of already-built source distributions will be reused, but operations that require building distributions will exit with an error.
+When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.
 
 May also be set with the `UV_NO_BUILD` environment variable.
 ```
@@ -14971,7 +14987,7 @@ May also be set with the `UV_NO_BINARY` environment variable.
 [`--no-build`](#uv-workspace-metadata--no-build) : Don't build source distributions.
 
 ```
-When enabled, resolving will not run arbitrary Python code. The cached wheels of already-built source distributions will be reused, but operations that require building distributions will exit with an error.
+When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.
 
 May also be set with the `UV_NO_BUILD` environment variable.
 ```

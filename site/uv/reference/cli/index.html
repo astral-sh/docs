@@ -5361,7 +5361,7 @@
 <p>The given packages will be built and installed from source. The resolver will still use pre-built wheels to extract package metadata, if available.</p>
 <p>May also be set with the <code>UV_NO_BINARY</code> environment variable.</p></dd><dt id="uv-run--no-binary-package"><a href="#uv-run--no-binary-package"><code>--no-binary-package</code></a> <i>no-binary-package</i></dt><dd><p>Don't install pre-built wheels for a specific package [env: <code>UV_NO_BINARY_PACKAGE</code>=]</p>
 </dd><dt id="uv-run--no-build"><a href="#uv-run--no-build"><code>--no-build</code></a></dt><dd><p>Don't build source distributions.</p>
-<p>When enabled, resolving will not run arbitrary Python code. The cached wheels of already-built source distributions will be reused, but operations that require building distributions will exit with an error.</p>
+<p>When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.</p>
 <p>May also be set with the <code>UV_NO_BUILD</code> environment variable.</p></dd><dt id="uv-run--no-build-isolation"><a href="#uv-run--no-build-isolation"><code>--no-build-isolation</code></a></dt><dd><p>Disable isolation when building source distributions.</p>
 <p>Assumes that build dependencies specified by PEP 518 are already installed.</p>
 <p>May also be set with the <code>UV_NO_BUILD_ISOLATION</code> environment variable.</p></dd><dt id="uv-run--no-build-isolation-package"><a href="#uv-run--no-build-isolation-package"><code>--no-build-isolation-package</code></a> <i>no-build-isolation-package</i></dt><dd><p>Disable isolation when building source distributions for a specific package.</p>
@@ -5767,7 +5767,7 @@ used.</p>
 <p>The given packages will be built and installed from source. The resolver will still use pre-built wheels to extract package metadata, if available.</p>
 <p>May also be set with the <code>UV_NO_BINARY</code> environment variable.</p></dd><dt id="uv-add--no-binary-package"><a href="#uv-add--no-binary-package"><code>--no-binary-package</code></a> <i>no-binary-package</i></dt><dd><p>Don't install pre-built wheels for a specific package [env: <code>UV_NO_BINARY_PACKAGE</code>=]</p>
 </dd><dt id="uv-add--no-build"><a href="#uv-add--no-build"><code>--no-build</code></a></dt><dd><p>Don't build source distributions.</p>
-<p>When enabled, resolving will not run arbitrary Python code. The cached wheels of already-built source distributions will be reused, but operations that require building distributions will exit with an error.</p>
+<p>When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.</p>
 <p>May also be set with the <code>UV_NO_BUILD</code> environment variable.</p></dd><dt id="uv-add--no-build-isolation"><a href="#uv-add--no-build-isolation"><code>--no-build-isolation</code></a></dt><dd><p>Disable isolation when building source distributions.</p>
 <p>Assumes that build dependencies specified by PEP 518 are already installed.</p>
 <p>May also be set with the <code>UV_NO_BUILD_ISOLATION</code> environment variable.</p></dd><dt id="uv-add--no-build-isolation-package"><a href="#uv-add--no-build-isolation-package"><code>--no-build-isolation-package</code></a> <i>no-build-isolation-package</i></dt><dd><p>Disable isolation when building source distributions for a specific package.</p>
@@ -5969,7 +5969,7 @@ used.</p>
 <p>The given packages will be built and installed from source. The resolver will still use pre-built wheels to extract package metadata, if available.</p>
 <p>May also be set with the <code>UV_NO_BINARY</code> environment variable.</p></dd><dt id="uv-remove--no-binary-package"><a href="#uv-remove--no-binary-package"><code>--no-binary-package</code></a> <i>no-binary-package</i></dt><dd><p>Don't install pre-built wheels for a specific package [env: <code>UV_NO_BINARY_PACKAGE</code>=]</p>
 </dd><dt id="uv-remove--no-build"><a href="#uv-remove--no-build"><code>--no-build</code></a></dt><dd><p>Don't build source distributions.</p>
-<p>When enabled, resolving will not run arbitrary Python code. The cached wheels of already-built source distributions will be reused, but operations that require building distributions will exit with an error.</p>
+<p>When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.</p>
 <p>May also be set with the <code>UV_NO_BUILD</code> environment variable.</p></dd><dt id="uv-remove--no-build-isolation"><a href="#uv-remove--no-build-isolation"><code>--no-build-isolation</code></a></dt><dd><p>Disable isolation when building source distributions.</p>
 <p>Assumes that build dependencies specified by PEP 518 are already installed.</p>
 <p>May also be set with the <code>UV_NO_BUILD_ISOLATION</code> environment variable.</p></dd><dt id="uv-remove--no-build-isolation-package"><a href="#uv-remove--no-build-isolation-package"><code>--no-build-isolation-package</code></a> <i>no-build-isolation-package</i></dt><dd><p>Disable isolation when building source distributions for a specific package.</p>
@@ -6153,7 +6153,7 @@ used.</p>
 <p>The given packages will be built and installed from source. The resolver will still use pre-built wheels to extract package metadata, if available.</p>
 <p>May also be set with the <code>UV_NO_BINARY</code> environment variable.</p></dd><dt id="uv-version--no-binary-package"><a href="#uv-version--no-binary-package"><code>--no-binary-package</code></a> <i>no-binary-package</i></dt><dd><p>Don't install pre-built wheels for a specific package [env: <code>UV_NO_BINARY_PACKAGE</code>=]</p>
 </dd><dt id="uv-version--no-build"><a href="#uv-version--no-build"><code>--no-build</code></a></dt><dd><p>Don't build source distributions.</p>
-<p>When enabled, resolving will not run arbitrary Python code. The cached wheels of already-built source distributions will be reused, but operations that require building distributions will exit with an error.</p>
+<p>When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.</p>
 <p>May also be set with the <code>UV_NO_BUILD</code> environment variable.</p></dd><dt id="uv-version--no-build-isolation"><a href="#uv-version--no-build-isolation"><code>--no-build-isolation</code></a></dt><dd><p>Disable isolation when building source distributions.</p>
 <p>Assumes that build dependencies specified by PEP 518 are already installed.</p>
 <p>May also be set with the <code>UV_NO_BUILD_ISOLATION</code> environment variable.</p></dd><dt id="uv-version--no-build-isolation-package"><a href="#uv-version--no-build-isolation-package"><code>--no-build-isolation-package</code></a> <i>no-build-isolation-package</i></dt><dd><p>Disable isolation when building source distributions for a specific package.</p>
@@ -6347,7 +6347,7 @@ used.</p>
 <p>The given packages will be built and installed from source. The resolver will still use pre-built wheels to extract package metadata, if available.</p>
 <p>May also be set with the <code>UV_NO_BINARY</code> environment variable.</p></dd><dt id="uv-sync--no-binary-package"><a href="#uv-sync--no-binary-package"><code>--no-binary-package</code></a> <i>no-binary-package</i></dt><dd><p>Don't install pre-built wheels for a specific package [env: <code>UV_NO_BINARY_PACKAGE</code>=]</p>
 </dd><dt id="uv-sync--no-build"><a href="#uv-sync--no-build"><code>--no-build</code></a></dt><dd><p>Don't build source distributions.</p>
-<p>When enabled, resolving will not run arbitrary Python code. The cached wheels of already-built source distributions will be reused, but operations that require building distributions will exit with an error.</p>
+<p>When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.</p>
 <p>May also be set with the <code>UV_NO_BUILD</code> environment variable.</p></dd><dt id="uv-sync--no-build-isolation"><a href="#uv-sync--no-build-isolation"><code>--no-build-isolation</code></a></dt><dd><p>Disable isolation when building source distributions.</p>
 <p>Assumes that build dependencies specified by PEP 518 are already installed.</p>
 <p>May also be set with the <code>UV_NO_BUILD_ISOLATION</code> environment variable.</p></dd><dt id="uv-sync--no-build-isolation-package"><a href="#uv-sync--no-build-isolation-package"><code>--no-build-isolation-package</code></a> <i>no-build-isolation-package</i></dt><dd><p>Disable isolation when building source distributions for a specific package.</p>
@@ -6604,7 +6604,7 @@ environment in the project.</p>
 <p>The given packages will be built and installed from source. The resolver will still use pre-built wheels to extract package metadata, if available.</p>
 <p>May also be set with the <code>UV_NO_BINARY</code> environment variable.</p></dd><dt id="uv-lock--no-binary-package"><a href="#uv-lock--no-binary-package"><code>--no-binary-package</code></a> <i>no-binary-package</i></dt><dd><p>Don't install pre-built wheels for a specific package [env: <code>UV_NO_BINARY_PACKAGE</code>=]</p>
 </dd><dt id="uv-lock--no-build"><a href="#uv-lock--no-build"><code>--no-build</code></a></dt><dd><p>Don't build source distributions.</p>
-<p>When enabled, resolving will not run arbitrary Python code. The cached wheels of already-built source distributions will be reused, but operations that require building distributions will exit with an error.</p>
+<p>When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.</p>
 <p>May also be set with the <code>UV_NO_BUILD</code> environment variable.</p></dd><dt id="uv-lock--no-build-isolation"><a href="#uv-lock--no-build-isolation"><code>--no-build-isolation</code></a></dt><dd><p>Disable isolation when building source distributions.</p>
 <p>Assumes that build dependencies specified by PEP 518 are already installed.</p>
 <p>May also be set with the <code>UV_NO_BUILD_ISOLATION</code> environment variable.</p></dd><dt id="uv-lock--no-build-isolation-package"><a href="#uv-lock--no-build-isolation-package"><code>--no-build-isolation-package</code></a> <i>no-build-isolation-package</i></dt><dd><p>Disable isolation when building source distributions for a specific package.</p>
@@ -6787,7 +6787,7 @@ metadata when there are not wheels.</p>
 <p>The given packages will be built and installed from source. The resolver will still use pre-built wheels to extract package metadata, if available.</p>
 <p>May also be set with the <code>UV_NO_BINARY</code> environment variable.</p></dd><dt id="uv-export--no-binary-package"><a href="#uv-export--no-binary-package"><code>--no-binary-package</code></a> <i>no-binary-package</i></dt><dd><p>Don't install pre-built wheels for a specific package [env: <code>UV_NO_BINARY_PACKAGE</code>=]</p>
 </dd><dt id="uv-export--no-build"><a href="#uv-export--no-build"><code>--no-build</code></a></dt><dd><p>Don't build source distributions.</p>
-<p>When enabled, resolving will not run arbitrary Python code. The cached wheels of already-built source distributions will be reused, but operations that require building distributions will exit with an error.</p>
+<p>When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.</p>
 <p>May also be set with the <code>UV_NO_BUILD</code> environment variable.</p></dd><dt id="uv-export--no-build-isolation"><a href="#uv-export--no-build-isolation"><code>--no-build-isolation</code></a></dt><dd><p>Disable isolation when building source distributions.</p>
 <p>Assumes that build dependencies specified by PEP 518 are already installed.</p>
 <p>May also be set with the <code>UV_NO_BUILD_ISOLATION</code> environment variable.</p></dd><dt id="uv-export--no-build-isolation-package"><a href="#uv-export--no-build-isolation-package"><code>--no-build-isolation-package</code></a> <i>no-build-isolation-package</i></dt><dd><p>Disable isolation when building source distributions for a specific package.</p>
@@ -6942,6 +6942,11 @@ metadata when there are not wheels.</p>
 <ul>
 <li><code>fewest</code>:  Optimize for selecting the fewest number of versions for each package. Older versions may be preferred if they are compatible with a wider range of supported Python versions or platforms</li>
 <li><code>requires-python</code>:  Optimize for selecting latest supported version of each package, for each supported Python version</li>
+</ul></dd><dt id="uv-tree--format"><a href="#uv-tree--format"><code>--format</code></a> <i>format</i></dt><dd><p>The format in which to display the dependency graph</p>
+<p>[default: text]</p><p>Possible values:</p>
+<ul>
+<li><code>text</code>:  Display the dependency graph as a human-readable tree</li>
+<li><code>json</code>:  Display the dependency graph as JSON</li>
 </ul></dd><dt id="uv-tree--frozen"><a href="#uv-tree--frozen"><code>--frozen</code></a></dt><dd><p>Display the requirements without locking the project [env: UV_FROZEN=]</p>
 <p>If the lockfile is missing, uv will exit with an error.</p>
 </dd><dt id="uv-tree--group"><a href="#uv-tree--group"><code>--group</code></a> <i>group</i></dt><dd><p>Include dependencies from the specified dependency group.</p>
@@ -6987,7 +6992,7 @@ metadata when there are not wheels.</p>
 <p>The given packages will be built and installed from source. The resolver will still use pre-built wheels to extract package metadata, if available.</p>
 <p>May also be set with the <code>UV_NO_BINARY</code> environment variable.</p></dd><dt id="uv-tree--no-binary-package"><a href="#uv-tree--no-binary-package"><code>--no-binary-package</code></a> <i>no-binary-package</i></dt><dd><p>Don't install pre-built wheels for a specific package [env: <code>UV_NO_BINARY_PACKAGE</code>=]</p>
 </dd><dt id="uv-tree--no-build"><a href="#uv-tree--no-build"><code>--no-build</code></a></dt><dd><p>Don't build source distributions.</p>
-<p>When enabled, resolving will not run arbitrary Python code. The cached wheels of already-built source distributions will be reused, but operations that require building distributions will exit with an error.</p>
+<p>When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.</p>
 <p>May also be set with the <code>UV_NO_BUILD</code> environment variable.</p></dd><dt id="uv-tree--no-build-isolation"><a href="#uv-tree--no-build-isolation"><code>--no-build-isolation</code></a></dt><dd><p>Disable isolation when building source distributions.</p>
 <p>Assumes that build dependencies specified by PEP 518 are already installed.</p>
 <p>May also be set with the <code>UV_NO_BUILD_ISOLATION</code> environment variable.</p></dd><dt id="uv-tree--no-build-isolation-package"><a href="#uv-tree--no-build-isolation-package"><code>--no-build-isolation-package</code></a> <i>no-build-isolation-package</i></dt><dd><p>Disable isolation when building source distributions for a specific package.</p>
@@ -7308,7 +7313,7 @@ interpreter. Use <code>--universal</code> to display the tree for all platforms,
 <p>The given packages will be built and installed from source. The resolver will still use pre-built wheels to extract package metadata, if available.</p>
 <p>May also be set with the <code>UV_NO_BINARY</code> environment variable.</p></dd><dt id="uv-check--no-binary-package"><a href="#uv-check--no-binary-package"><code>--no-binary-package</code></a> <i>no-binary-package</i></dt><dd><p>Don't install pre-built wheels for a specific package [env: <code>UV_NO_BINARY_PACKAGE</code>=]</p>
 </dd><dt id="uv-check--no-build"><a href="#uv-check--no-build"><code>--no-build</code></a></dt><dd><p>Don't build source distributions.</p>
-<p>When enabled, resolving will not run arbitrary Python code. The cached wheels of already-built source distributions will be reused, but operations that require building distributions will exit with an error.</p>
+<p>When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.</p>
 <p>May also be set with the <code>UV_NO_BUILD</code> environment variable.</p></dd><dt id="uv-check--no-build-isolation"><a href="#uv-check--no-build-isolation"><code>--no-build-isolation</code></a></dt><dd><p>Disable isolation when building source distributions.</p>
 <p>Assumes that build dependencies specified by PEP 518 are already installed.</p>
 <p>May also be set with the <code>UV_NO_BUILD_ISOLATION</code> environment variable.</p></dd><dt id="uv-check--no-build-isolation-package"><a href="#uv-check--no-build-isolation-package"><code>--no-build-isolation-package</code></a> <i>no-build-isolation-package</i></dt><dd><p>Disable isolation when building source distributions for a specific package.</p>
@@ -7494,7 +7499,7 @@ interpreter. Use <code>--universal</code> to display the tree for all platforms,
 <p>The given packages will be built and installed from source. The resolver will still use pre-built wheels to extract package metadata, if available.</p>
 <p>May also be set with the <code>UV_NO_BINARY</code> environment variable.</p></dd><dt id="uv-audit--no-binary-package"><a href="#uv-audit--no-binary-package"><code>--no-binary-package</code></a> <i>no-binary-package</i></dt><dd><p>Don't install pre-built wheels for a specific package [env: <code>UV_NO_BINARY_PACKAGE</code>=]</p>
 </dd><dt id="uv-audit--no-build"><a href="#uv-audit--no-build"><code>--no-build</code></a></dt><dd><p>Don't build source distributions.</p>
-<p>When enabled, resolving will not run arbitrary Python code. The cached wheels of already-built source distributions will be reused, but operations that require building distributions will exit with an error.</p>
+<p>When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.</p>
 <p>May also be set with the <code>UV_NO_BUILD</code> environment variable.</p></dd><dt id="uv-audit--no-build-isolation"><a href="#uv-audit--no-build-isolation"><code>--no-build-isolation</code></a></dt><dd><p>Disable isolation when building source distributions.</p>
 <p>Assumes that build dependencies specified by PEP 518 are already installed.</p>
 <p>May also be set with the <code>UV_NO_BUILD_ISOLATION</code> environment variable.</p></dd><dt id="uv-audit--no-build-isolation-package"><a href="#uv-audit--no-build-isolation-package"><code>--no-build-isolation-package</code></a> <i>no-build-isolation-package</i></dt><dd><p>Disable isolation when building source distributions for a specific package.</p>
@@ -7762,7 +7767,7 @@ interpreter. Use <code>--universal</code> to display the tree for all platforms,
 <p>The given packages will be built and installed from source. The resolver will still use pre-built wheels to extract package metadata, if available.</p>
 <p>May also be set with the <code>UV_NO_BINARY</code> environment variable.</p></dd><dt id="uv-tool-run--no-binary-package"><a href="#uv-tool-run--no-binary-package"><code>--no-binary-package</code></a> <i>no-binary-package</i></dt><dd><p>Don't install pre-built wheels for a specific package [env: <code>UV_NO_BINARY_PACKAGE</code>=]</p>
 </dd><dt id="uv-tool-run--no-build"><a href="#uv-tool-run--no-build"><code>--no-build</code></a></dt><dd><p>Don't build source distributions.</p>
-<p>When enabled, resolving will not run arbitrary Python code. The cached wheels of already-built source distributions will be reused, but operations that require building distributions will exit with an error.</p>
+<p>When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.</p>
 <p>May also be set with the <code>UV_NO_BUILD</code> environment variable.</p></dd><dt id="uv-tool-run--no-build-isolation"><a href="#uv-tool-run--no-build-isolation"><code>--no-build-isolation</code></a></dt><dd><p>Disable isolation when building source distributions.</p>
 <p>Assumes that build dependencies specified by PEP 518 are already installed.</p>
 <p>May also be set with the <code>UV_NO_BUILD_ISOLATION</code> environment variable.</p></dd><dt id="uv-tool-run--no-build-isolation-package"><a href="#uv-tool-run--no-build-isolation-package"><code>--no-build-isolation-package</code></a> <i>no-build-isolation-package</i></dt><dd><p>Disable isolation when building source distributions for a specific package.</p>
@@ -7880,6 +7885,7 @@ interpreter. Use <code>--universal</code> to display the tree for all platforms,
 <ul>
 <li><code>auto</code>:  Select the appropriate PyTorch index based on the operating system and CUDA driver version</li>
 <li><code>cpu</code>:  Use the CPU-only PyTorch index</li>
+<li><code>cu132</code>:  Use the PyTorch index for CUDA 13.2</li>
 <li><code>cu130</code>:  Use the PyTorch index for CUDA 13.0</li>
 <li><code>cu129</code>:  Use the PyTorch index for CUDA 12.9</li>
 <li><code>cu128</code>:  Use the PyTorch index for CUDA 12.8</li>
@@ -8051,7 +8057,7 @@ interpreter. Use <code>--universal</code> to display the tree for all platforms,
 <p>The given packages will be built and installed from source. The resolver will still use pre-built wheels to extract package metadata, if available.</p>
 <p>May also be set with the <code>UV_NO_BINARY</code> environment variable.</p></dd><dt id="uv-tool-install--no-binary-package"><a href="#uv-tool-install--no-binary-package"><code>--no-binary-package</code></a> <i>no-binary-package</i></dt><dd><p>Don't install pre-built wheels for a specific package [env: <code>UV_NO_BINARY_PACKAGE</code>=]</p>
 </dd><dt id="uv-tool-install--no-build"><a href="#uv-tool-install--no-build"><code>--no-build</code></a></dt><dd><p>Don't build source distributions.</p>
-<p>When enabled, resolving will not run arbitrary Python code. The cached wheels of already-built source distributions will be reused, but operations that require building distributions will exit with an error.</p>
+<p>When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.</p>
 <p>May also be set with the <code>UV_NO_BUILD</code> environment variable.</p></dd><dt id="uv-tool-install--no-build-isolation"><a href="#uv-tool-install--no-build-isolation"><code>--no-build-isolation</code></a></dt><dd><p>Disable isolation when building source distributions.</p>
 <p>Assumes that build dependencies specified by PEP 518 are already installed.</p>
 <p>May also be set with the <code>UV_NO_BUILD_ISOLATION</code> environment variable.</p></dd><dt id="uv-tool-install--no-build-isolation-package"><a href="#uv-tool-install--no-build-isolation-package"><code>--no-build-isolation-package</code></a> <i>no-build-isolation-package</i></dt><dd><p>Disable isolation when building source distributions for a specific package.</p>
@@ -8168,6 +8174,7 @@ interpreter. Use <code>--universal</code> to display the tree for all platforms,
 <ul>
 <li><code>auto</code>:  Select the appropriate PyTorch index based on the operating system and CUDA driver version</li>
 <li><code>cpu</code>:  Use the CPU-only PyTorch index</li>
+<li><code>cu132</code>:  Use the PyTorch index for CUDA 13.2</li>
 <li><code>cu130</code>:  Use the PyTorch index for CUDA 13.0</li>
 <li><code>cu129</code>:  Use the PyTorch index for CUDA 12.9</li>
 <li><code>cu128</code>:  Use the PyTorch index for CUDA 12.8</li>
@@ -8329,7 +8336,7 @@ interpreter. Use <code>--universal</code> to display the tree for all platforms,
 <p>The given packages will be built and installed from source. The resolver will still use pre-built wheels to extract package metadata, if available.</p>
 <p>May also be set with the <code>UV_NO_BINARY</code> environment variable.</p></dd><dt id="uv-tool-upgrade--no-binary-package"><a href="#uv-tool-upgrade--no-binary-package"><code>--no-binary-package</code></a> <i>no-binary-package</i></dt><dd><p>Don't install pre-built wheels for a specific package [env: <code>UV_NO_BINARY_PACKAGE</code>=]</p>
 </dd><dt id="uv-tool-upgrade--no-build"><a href="#uv-tool-upgrade--no-build"><code>--no-build</code></a></dt><dd><p>Don't build source distributions.</p>
-<p>When enabled, resolving will not run arbitrary Python code. The cached wheels of already-built source distributions will be reused, but operations that require building distributions will exit with an error.</p>
+<p>When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.</p>
 <p>May also be set with the <code>UV_NO_BUILD</code> environment variable.</p></dd><dt id="uv-tool-upgrade--no-build-isolation"><a href="#uv-tool-upgrade--no-build-isolation"><code>--no-build-isolation</code></a></dt><dd><p>Disable isolation when building source distributions.</p>
 <p>Assumes that build dependencies specified by PEP 518 are already installed.</p>
 <p>May also be set with the <code>UV_NO_BUILD_ISOLATION</code> environment variable.</p></dd><dt id="uv-tool-upgrade--no-build-isolation-package"><a href="#uv-tool-upgrade--no-build-isolation-package"><code>--no-build-isolation-package</code></a> <i>no-build-isolation-package</i></dt><dd><p>Disable isolation when building source distributions for a specific package.</p>
@@ -9487,7 +9494,7 @@ from the following environment variables, in order of preference:</p>
 <p>The given packages will be built and installed from source. The resolver will still use pre-built wheels to extract package metadata, if available.</p>
 <p>Multiple packages may be provided. Disable binaries for all packages with <code>:all:</code>. Clear previously specified packages with <code>:none:</code>.</p>
 </dd><dt id="uv-pip-compile--no-build"><a href="#uv-pip-compile--no-build"><code>--no-build</code></a></dt><dd><p>Don't build source distributions.</p>
-<p>When enabled, resolving will not run arbitrary Python code. The cached wheels of already-built source distributions will be reused, but operations that require building distributions will exit with an error.</p>
+<p>When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.</p>
 <p>Alias for <code>--only-binary :all:</code>.</p>
 </dd><dt id="uv-pip-compile--no-build-isolation"><a href="#uv-pip-compile--no-build-isolation"><code>--no-build-isolation</code></a></dt><dd><p>Disable isolation when building source distributions.</p>
 <p>Assumes that build dependencies specified by PEP 518 are already installed.</p>
@@ -9512,7 +9519,7 @@ from the following environment variables, in order of preference:</p>
 </dd><dt id="uv-pip-compile--offline"><a href="#uv-pip-compile--offline"><code>--offline</code></a></dt><dd><p>Disable network access [env: UV_OFFLINE=]</p>
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 </dd><dt id="uv-pip-compile--only-binary"><a href="#uv-pip-compile--only-binary"><code>--only-binary</code></a> <i>only-binary</i></dt><dd><p>Only use pre-built wheels; don't build source distributions.</p>
-<p>When enabled, resolving will not run code from the given packages. The cached wheels of already-built source distributions will be reused, but operations that require building distributions will exit with an error.</p>
+<p>When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution for the given packages will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.</p>
 <p>Multiple packages may be provided. Disable binaries for all packages with <code>:all:</code>. Clear previously specified packages with <code>:none:</code>.</p>
 </dd><dt id="uv-pip-compile--output-file"><a href="#uv-pip-compile--output-file"><code>--output-file</code></a>, <code>-o</code> <i>output-file</i></dt><dd><p>Write the compiled requirements to the given <code>requirements.txt</code> or <code>pylock.toml</code> file.</p>
 <p>If the file already exists, the existing versions will be preferred when resolving dependencies, unless <code>--upgrade</code> is also specified.</p>
@@ -9624,6 +9631,7 @@ by <code>--python-version</code>.</p>
 <ul>
 <li><code>auto</code>:  Select the appropriate PyTorch index based on the operating system and CUDA driver version</li>
 <li><code>cpu</code>:  Use the CPU-only PyTorch index</li>
+<li><code>cu132</code>:  Use the PyTorch index for CUDA 13.2</li>
 <li><code>cu130</code>:  Use the PyTorch index for CUDA 13.0</li>
 <li><code>cu129</code>:  Use the PyTorch index for CUDA 12.9</li>
 <li><code>cu128</code>:  Use the PyTorch index for CUDA 12.8</li>
@@ -9794,7 +9802,7 @@ by <code>--python-version</code>.</p>
 <p>The given packages will be built and installed from source. The resolver will still use pre-built wheels to extract package metadata, if available.</p>
 <p>Multiple packages may be provided. Disable binaries for all packages with <code>:all:</code>. Clear previously specified packages with <code>:none:</code>.</p>
 </dd><dt id="uv-pip-sync--no-break-system-packages"><a href="#uv-pip-sync--no-break-system-packages"><code>--no-break-system-packages</code></a></dt><dt id="uv-pip-sync--no-build"><a href="#uv-pip-sync--no-build"><code>--no-build</code></a></dt><dd><p>Don't build source distributions.</p>
-<p>When enabled, resolving will not run arbitrary Python code. The cached wheels of already-built source distributions will be reused, but operations that require building distributions will exit with an error.</p>
+<p>When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.</p>
 <p>Alias for <code>--only-binary :all:</code>.</p>
 </dd><dt id="uv-pip-sync--no-build-isolation"><a href="#uv-pip-sync--no-build-isolation"><code>--no-build-isolation</code></a></dt><dd><p>Disable isolation when building source distributions.</p>
 <p>Assumes that build dependencies specified by PEP 518 are already installed.</p>
@@ -9812,7 +9820,7 @@ by <code>--python-version</code>.</p>
 <p>May also be set with the <code>UV_NO_VERIFY_HASHES</code> environment variable.</p></dd><dt id="uv-pip-sync--offline"><a href="#uv-pip-sync--offline"><code>--offline</code></a></dt><dd><p>Disable network access [env: UV_OFFLINE=]</p>
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 </dd><dt id="uv-pip-sync--only-binary"><a href="#uv-pip-sync--only-binary"><code>--only-binary</code></a> <i>only-binary</i></dt><dd><p>Only use pre-built wheels; don't build source distributions.</p>
-<p>When enabled, resolving will not run code from the given packages. The cached wheels of already-built source distributions will be reused, but operations that require building distributions will exit with an error.</p>
+<p>When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution for the given packages will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.</p>
 <p>Multiple packages may be provided. Disable binaries for all packages with <code>:all:</code>. Clear previously specified packages with <code>:none:</code>.</p>
 </dd><dt id="uv-pip-sync--prefix"><a href="#uv-pip-sync--prefix"><code>--prefix</code></a> <i>prefix</i></dt><dd><p>Install packages into <code>lib</code>, <code>bin</code>, and other top-level folders under the specified directory, as if a virtual environment were present at that location.</p>
 <p>In general, prefer the use of <code>--python</code> to install into an alternate environment, as scripts and other artifacts installed via <code>--prefix</code> will reference the installing interpreter, rather than any interpreter added to the <code>--prefix</code> directory, rendering them non-portable.</p>
@@ -9914,6 +9922,7 @@ be used with caution, as it can modify the system Python installation.</p>
 <ul>
 <li><code>auto</code>:  Select the appropriate PyTorch index based on the operating system and CUDA driver version</li>
 <li><code>cpu</code>:  Use the CPU-only PyTorch index</li>
+<li><code>cu132</code>:  Use the PyTorch index for CUDA 13.2</li>
 <li><code>cu130</code>:  Use the PyTorch index for CUDA 13.0</li>
 <li><code>cu129</code>:  Use the PyTorch index for CUDA 12.9</li>
 <li><code>cu128</code>:  Use the PyTorch index for CUDA 12.8</li>
@@ -10085,7 +10094,7 @@ be used with caution, as it can modify the system Python installation.</p>
 <p>The given packages will be built and installed from source. The resolver will still use pre-built wheels to extract package metadata, if available.</p>
 <p>Multiple packages may be provided. Disable binaries for all packages with <code>:all:</code>. Clear previously specified packages with <code>:none:</code>.</p>
 </dd><dt id="uv-pip-install--no-break-system-packages"><a href="#uv-pip-install--no-break-system-packages"><code>--no-break-system-packages</code></a></dt><dt id="uv-pip-install--no-build"><a href="#uv-pip-install--no-build"><code>--no-build</code></a></dt><dd><p>Don't build source distributions.</p>
-<p>When enabled, resolving will not run arbitrary Python code. The cached wheels of already-built source distributions will be reused, but operations that require building distributions will exit with an error.</p>
+<p>When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.</p>
 <p>Alias for <code>--only-binary :all:</code>.</p>
 </dd><dt id="uv-pip-install--no-build-isolation"><a href="#uv-pip-install--no-build-isolation"><code>--no-build-isolation</code></a></dt><dd><p>Disable isolation when building source distributions.</p>
 <p>Assumes that build dependencies specified by PEP 518 are already installed.</p>
@@ -10110,7 +10119,7 @@ be used with caution, as it can modify the system Python installation.</p>
 <p>May also be set with the <code>UV_NO_VERIFY_HASHES</code> environment variable.</p></dd><dt id="uv-pip-install--offline"><a href="#uv-pip-install--offline"><code>--offline</code></a></dt><dd><p>Disable network access [env: UV_OFFLINE=]</p>
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 </dd><dt id="uv-pip-install--only-binary"><a href="#uv-pip-install--only-binary"><code>--only-binary</code></a> <i>only-binary</i></dt><dd><p>Only use pre-built wheels; don't build source distributions.</p>
-<p>When enabled, resolving will not run code from the given packages. The cached wheels of already-built source distributions will be reused, but operations that require building distributions will exit with an error.</p>
+<p>When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution for the given packages will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.</p>
 <p>Multiple packages may be provided. Disable binaries for all packages with <code>:all:</code>. Clear previously specified packages with <code>:none:</code>.</p>
 </dd><dt id="uv-pip-install--overrides"><a href="#uv-pip-install--overrides"><code>--overrides</code></a>, <code>--override</code> <i>overrides</i></dt><dd><p>Override versions using the given requirements files.</p>
 <p>Overrides files are <code>requirements.txt</code>-like files that force a specific version of a requirement to be installed, regardless of the requirements declared by any constituent package, and regardless of whether this would be considered an invalid resolution.</p>
@@ -10235,6 +10244,7 @@ should be used with caution, as it can modify the system Python installation.</p
 <ul>
 <li><code>auto</code>:  Select the appropriate PyTorch index based on the operating system and CUDA driver version</li>
 <li><code>cpu</code>:  Use the CPU-only PyTorch index</li>
+<li><code>cu132</code>:  Use the PyTorch index for CUDA 13.2</li>
 <li><code>cu130</code>:  Use the PyTorch index for CUDA 13.0</li>
 <li><code>cu129</code>:  Use the PyTorch index for CUDA 12.9</li>
 <li><code>cu128</code>:  Use the PyTorch index for CUDA 12.8</li>
@@ -11095,7 +11105,7 @@ environments.</p>
 <p>The given packages will be built and installed from source. The resolver will still use pre-built wheels to extract package metadata, if available.</p>
 <p>May also be set with the <code>UV_NO_BINARY</code> environment variable.</p></dd><dt id="uv-build--no-binary-package"><a href="#uv-build--no-binary-package"><code>--no-binary-package</code></a> <i>no-binary-package</i></dt><dd><p>Don't install pre-built wheels for a specific package [env: <code>UV_NO_BINARY_PACKAGE</code>=]</p>
 </dd><dt id="uv-build--no-build"><a href="#uv-build--no-build"><code>--no-build</code></a></dt><dd><p>Don't build source distributions.</p>
-<p>When enabled, resolving will not run arbitrary Python code. The cached wheels of already-built source distributions will be reused, but operations that require building distributions will exit with an error.</p>
+<p>When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.</p>
 <p>May also be set with the <code>UV_NO_BUILD</code> environment variable.</p></dd><dt id="uv-build--no-build-isolation"><a href="#uv-build--no-build-isolation"><code>--no-build-isolation</code></a></dt><dd><p>Disable isolation when building source distributions.</p>
 <p>Assumes that build dependencies specified by PEP 518 are already installed.</p>
 <p>May also be set with the <code>UV_NO_BUILD_ISOLATION</code> environment variable.</p></dd><dt id="uv-build--no-build-isolation-package"><a href="#uv-build--no-build-isolation-package"><code>--no-build-isolation-package</code></a> <i>no-build-isolation-package</i></dt><dd><p>Disable isolation when building source distributions for a specific package.</p>
@@ -11387,7 +11397,7 @@ uv publish --publish-url https://upload.pypi.org/legacy/ --check-url https://pyp
 <p>The given packages will be built and installed from source. The resolver will still use pre-built wheels to extract package metadata, if available.</p>
 <p>May also be set with the <code>UV_NO_BINARY</code> environment variable.</p></dd><dt id="uv-workspace-metadata--no-binary-package"><a href="#uv-workspace-metadata--no-binary-package"><code>--no-binary-package</code></a> <i>no-binary-package</i></dt><dd><p>Don't install pre-built wheels for a specific package [env: <code>UV_NO_BINARY_PACKAGE</code>=]</p>
 </dd><dt id="uv-workspace-metadata--no-build"><a href="#uv-workspace-metadata--no-build"><code>--no-build</code></a></dt><dd><p>Don't build source distributions.</p>
-<p>When enabled, resolving will not run arbitrary Python code. The cached wheels of already-built source distributions will be reused, but operations that require building distributions will exit with an error.</p>
+<p>When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.</p>
 <p>May also be set with the <code>UV_NO_BUILD</code> environment variable.</p></dd><dt id="uv-workspace-metadata--no-build-isolation"><a href="#uv-workspace-metadata--no-build-isolation"><code>--no-build-isolation</code></a></dt><dd><p>Disable isolation when building source distributions.</p>
 <p>Assumes that build dependencies specified by PEP 518 are already installed.</p>
 <p>May also be set with the <code>UV_NO_BUILD_ISOLATION</code> environment variable.</p></dd><dt id="uv-workspace-metadata--no-build-isolation-package"><a href="#uv-workspace-metadata--no-build-isolation-package"><code>--no-build-isolation-package</code></a> <i>no-build-isolation-package</i></dt><dd><p>Disable isolation when building source distributions for a specific package.</p>

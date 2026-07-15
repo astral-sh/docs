@@ -8009,9 +8009,9 @@ pre-built wheels to extract package metadata, if available.</p>
 <hr />
 <h3 id="no-build"><a class="toclink" href="#no-build"><a href="#no-build"><code>no-build</code></a></a></h3>
 <p>Don't build source distributions.</p>
-<p>When enabled, resolving will not run arbitrary Python code. The cached wheels of
-already-built source distributions will be reused, but operations that require building
-distributions will exit with an error.</p>
+<p>When enabled, uv will reuse cached wheels from previously built source distributions, but
+operations that require building a source distribution will exit with an error. uv may
+still build editable requirements, and their build backends may run arbitrary Python code.</p>
 <p><strong>Default value</strong>: <code>false</code></p>
 <p><strong>Type</strong>: <code>bool</code></p>
 <p><strong>Example usage</strong>:</p>
@@ -9343,9 +9343,9 @@ Clear previously specified packages with <code>:none:</code>.</p>
 <h4 id="pip_no-build"><a class="toclink" href="#pip_no-build"><a href="#pip_no-build"><code>no-build</code></a></a></h4>
 <p><span id="no-build"></span></p>
 <p>Don't build source distributions.</p>
-<p>When enabled, resolving will not run arbitrary Python code. The cached wheels of
-already-built source distributions will be reused, but operations that require building
-distributions will exit with an error.</p>
+<p>When enabled, uv will reuse cached wheels from previously built source distributions, but
+operations that require building a source distribution will exit with an error. uv may
+still build editable requirements, and their build backends may run arbitrary Python code.</p>
 <p>Alias for <code>--only-binary :all:</code>.</p>
 <p><strong>Default value</strong>: <code>false</code></p>
 <p><strong>Type</strong>: <code>bool</code></p>
@@ -9615,9 +9615,10 @@ only guaranteed to be correct for the target environment.</p>
 <h4 id="pip_only-binary"><a class="toclink" href="#pip_only-binary"><a href="#pip_only-binary"><code>only-binary</code></a></a></h4>
 <p><span id="only-binary"></span></p>
 <p>Only use pre-built wheels; don't build source distributions.</p>
-<p>When enabled, resolving will not run code from the given packages. The cached wheels of already-built
-source distributions will be reused, but operations that require building distributions will
-exit with an error.</p>
+<p>When enabled, uv will reuse cached wheels from previously built source distributions, but
+operations that require building a source distribution for the given packages will exit
+with an error. uv may still build editable requirements, and their build backends may run
+arbitrary Python code.</p>
 <p>Multiple packages may be provided. Disable binaries for all packages with <code>:all:</code>.
 Clear previously specified packages with <code>:none:</code>.</p>
 <p><strong>Default value</strong>: <code>[]</code></p>
