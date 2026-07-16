@@ -864,7 +864,7 @@
 <p><small>
 Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.28">v0.0.28</a> ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27lambda-assignment%27%20OR%20E731)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fpycodestyle%2Frules%2Flambda_assignment.rs#L38" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fpycodestyle%2Frules%2Flambda_assignment.rs#L47" target="_blank">View source</a>
 </small></p>
 <p>Derived from the <strong><a href="../#pycodestyle-e-w">pycodestyle</a></strong> linter.</p>
 <p>Fix is sometimes available.</p>
@@ -883,6 +883,13 @@ that it can be embedded inside another expression).</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span>
 </code></pre></div>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
+<p>This fix is marked as unsafe because converting a lambda assignment into a
+function definition changes observable properties of the callable.</p>
+<p>In particular, a lambda function has the name <code>"&lt;lambda&gt;"</code>, while the
+generated function uses the name of the assigned variable. Code that relies
+on function metadata, such as logging, registration, or introspection, may
+therefore behave differently after the fix.</p>
 
 
 

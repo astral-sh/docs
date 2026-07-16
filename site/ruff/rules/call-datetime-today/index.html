@@ -864,7 +864,7 @@
 <p><small>
 Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.188">v0.0.188</a> ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27call-datetime-today%27%20OR%20DTZ002)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_datetimez%2Frules%2Fcall_datetime_today.rs#L48" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_datetimez%2Frules%2Fcall_datetime_today.rs#L52" target="_blank">View source</a>
 </small></p>
 <p>Derived from the <strong><a href="../#flake8-datetimez-dtz">flake8-datetimez</a></strong> linter.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
@@ -877,6 +877,9 @@ some aspects of reality, which can lead to subtle bugs. Timezone-aware
 time, unlike "naive" objects.</p>
 <p><code>datetime.datetime.today()</code> creates a "naive" object; instead, use
 <code>datetime.datetime.now(tz=...)</code> to create a timezone-aware object.</p>
+<p>The name <code>today()</code> can be misleading, because it suggests a calendar date,
+but it actually returns the current local date and time as a <code>datetime</code>.
+That can make intent harder to infer when reading code.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>

@@ -864,7 +864,7 @@
 <p><small>
 Preview (since <a href="https://github.com/astral-sh/ruff/releases/tag/0.7.3">0.7.3</a>) ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27subclass-builtin%27%20OR%20FURB189)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Frefurb%2Frules%2Fsubclass_builtin.rs#L59" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Frefurb%2Frules%2Fsubclass_builtin.rs#L62" target="_blank">View source</a>
 </small></p>
 <p>Derived from the <strong><a href="../#refurb-furb">refurb</a></strong> linter.</p>
 <p>Fix is always available.</p>
@@ -876,6 +876,8 @@ Preview (since <a href="https://github.com/astral-sh/ruff/releases/tag/0.7.3">0.
 <code>dict.__init__</code> and <code>dict.update()</code> bypass <code>__setitem__</code>, making inheritance unreliable.</p>
 <p>Use the <code>UserDict</code>, <code>UserList</code>, and <code>UserString</code> objects from the <code>collections</code> module
 instead.</p>
+<p>This rule does not apply to stub files, which should faithfully represent the runtime
+implementation and may be out of the author's control.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">UppercaseDict</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>

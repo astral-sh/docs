@@ -3699,12 +3699,13 @@ settings.</p>
 <h4 id="include"><a class="toclink" href="#include"><a href="#include"><code>include</code></a></a></h4>
 <p>A list of file patterns to include when linting.</p>
 <p>Inclusion are based on globs, and should be single-path patterns, like
-<code>*.pyw</code>, to include any file with the <code>.pyw</code> extension. <code>pyproject.toml</code> is
-included here not for configuration but because we lint whether e.g. the
-<code>[project]</code> matches the schema.</p>
+<code>*.pyw</code>, to include any file with the <code>.pyw</code> extension.
+<code>pyproject.toml</code>, <code>ruff.toml</code>, and <code>.ruff.toml</code> are included here not for
+configuration but because we lint whether e.g. the <code>[project]</code> matches
+the schema in <code>pyproject.toml</code> or that rule names are used as selectors.</p>
 <p>Notebook files (<code>.ipynb</code> extension) are included by default on Ruff 0.6.0+.</p>
 <p>For more information on the glob syntax, refer to the <a href="https://docs.rs/globset/latest/globset/#syntax"><code>globset</code> documentation</a>.</p>
-<p><strong>Default value</strong>: <code>["*.py", "*.pyi", "*.pyw", "*.ipynb", "*.md", "**/pyproject.toml"]</code></p>
+<p><strong>Default value</strong>: <code>["*.py", "*.pyi", "*.pyw", "*.ipynb", "*.md", "**/pyproject.toml", "**/ruff.toml", "**/.ruff.toml"]</code></p>
 <p><strong>Type</strong>: <code>list[str]</code></p>
 <p><strong>Example usage</strong>:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="11:2"><input checked="checked" id="__tabbed_11_1" name="__tabbed_11" type="radio" /><input id="__tabbed_11_2" name="__tabbed_11" type="radio" /><div class="tabbed-labels"><label for="__tabbed_11_1">pyproject.toml</label><label for="__tabbed_11_2">ruff.toml</label></div>
