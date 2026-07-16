@@ -864,7 +864,7 @@
 <p><small>
 Preview (since <a href="https://github.com/astral-sh/ruff/releases/tag/v0.4.0">v0.4.0</a>) ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27unused-async%27%20OR%20RUF029)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fruff%2Frules%2Funused_async.rs#L34" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fruff%2Frules%2Funused_async.rs#L38" target="_blank">View source</a>
 </small></p>
 <p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
@@ -873,7 +873,10 @@ function to be declared <code>async</code>.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Declaring a function <code>async</code> when it's not is usually a mistake, and will artificially limit the
 contexts where that function may be called. In some cases, labeling a function <code>async</code> is
-semantically meaningful (e.g. with the trio library).</p>
+semantically meaningful. For example, an async test or callback may need to run in an async
+execution context, even if it only uses a <code>ContextVar</code>.</p>
+<p>If the async context is intentional, add an actual await expression, such as
+<code>await asyncio.sleep(0)</code>, or disable this rule for the function.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">foo</span><span class="p">():</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">bar</span><span class="p">()</span>
