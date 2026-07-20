@@ -58,6 +58,12 @@ added in `0.1.43`
 
 Sets the maximum number of source distributions that uv will build concurrently at any given time.
 
+### [`UV_CONCURRENT_CACHE_READS`](#uv_concurrent_cache_reads)
+
+added in `0.11.29`
+
+Controls the number of threads used to read cached HTTP responses.
+
 ### [`UV_CONCURRENT_DOWNLOADS`](#uv_concurrent_downloads)
 
 added in `0.1.43`
