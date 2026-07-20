@@ -14757,6 +14757,12 @@ uv workspace metadata [OPTIONS]
 
 ### Options
 
+[`--active`](#uv-workspace-metadata--active) : Sync dependencies to the active virtual environment.
+
+```
+Instead of creating or updating the virtual environment for the project or script, the active virtual environment will be preferred, if the `VIRTUAL_ENV` environment variable is set.
+```
+
 [`--allow-insecure-host`](#uv-workspace-metadata--allow-insecure-host), `--trusted-host` *allow-insecure-host* : Allow insecure connections to a host.
 
 ```
