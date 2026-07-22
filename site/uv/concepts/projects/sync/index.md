@@ -186,4 +186,6 @@ While syncing, uv can perform a lightweight scan of your lockfile for known malw
 
 If a locked dependency matches a malware advisory, the sync will be terminated.
 
-To enable malware checks, set `UV_MALWARE_CHECK=1` in your environment.
+To enable malware checks, set `audit.malware-check = true` in your uv settings or set `UV_MALWARE_CHECK=1` in your environment.
+
+To use an alternative vulnerability service, set `audit.malware-check-url` in your uv settings or set `UV_MALWARE_CHECK_URL` in your environment.

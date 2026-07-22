@@ -69,6 +69,7 @@ The following preview features are available:
 - `python-install-default`: Allows [installing `python` and `python3` executables](../python-versions/#installing-python-executables).
 - `format`: Allows using `uv format`.
 - `index-exclude-newer`: Allows setting `exclude-newer` on configured package indexes.
+- `index-hash-algorithm`: Allows requiring a hash algorithm for configured package indexes.
 - `azure-endpoint`: Allows signing requests to Azure Blob Storage endpoints with Azure credentials.
 - `native-auth`: Enables storage of credentials in a [system-native location](../authentication/http/#the-uv-credentials-store).
 - `auth-helper`: Allows using `uv auth helper` as a credential helper for external tools.
