@@ -2096,6 +2096,50 @@ ignore-until-fixed = ["PYSEC-2022-43017"]
 
 ______________________________________________________________________
 
+#### \[[`malware-check`](#audit_malware-check)\](#audit_malware-check)
+
+Whether to run the automatic malware check during sync operations.
+
+**Default value**: `false`
+
+**Type**: `bool`
+
+**Example usage**:
+
+```
+[tool.uv.audit]
+malware-check = true
+```
+
+```
+[audit]
+malware-check = true
+```
+
+______________________________________________________________________
+
+#### \[[`malware-check-url`](#audit_malware-check-url)\](#audit_malware-check-url)
+
+The vulnerability service URL to use for automatic malware checks.
+
+**Default value**: `"https://api.osv.dev/"`
+
+**Type**: `str`
+
+**Example usage**:
+
+```
+[tool.uv.audit]
+malware-check-url = "https://example.com"
+```
+
+```
+[audit]
+malware-check-url = "https://example.com"
+```
+
+______________________________________________________________________
+
 ### [`pip`](#pip)
 
 Settings that are specific to the `uv pip` command-line interface.
