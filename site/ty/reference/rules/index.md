@@ -122,7 +122,7 @@ def _(x: int):
 
 ## [`blanket-ignore-comment`](#blanket-ignore-comment)
 
-Default level: [`ignore`](../../rules#rule-levels "This lint has a default level of 'ignore'.") · Added in [0.0.57](https://github.com/astral-sh/ty/releases/tag/0.0.57) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22blanket-ignore-comment%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Fsuppression.rs#L62)
+Default level: [`ignore`](../../rules#rule-levels "This lint has a default level of 'ignore'.") · Added in [0.0.57](https://github.com/astral-sh/ty/releases/tag/0.0.57) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22blanket-ignore-comment%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Fsuppression.rs#L64)
 
 **What it does**
 
@@ -595,7 +595,7 @@ INITIALIZED_CONSTANT: Final[int] = 1
 
 ## [`ignore-comment-unknown-rule`](#ignore-comment-unknown-rule)
 
-Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22ignore-comment-unknown-rule%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Fsuppression.rs#L44)
+Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22ignore-comment-unknown-rule%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Fsuppression.rs#L46)
 
 **What it does**
 
@@ -1352,7 +1352,7 @@ x: G[int]
 
 ## [`invalid-ignore-comment`](#invalid-ignore-comment)
 
-Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-ignore-comment%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Fsuppression.rs#L53)
+Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-ignore-comment%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Fsuppression.rs#L55)
 
 **What it does**
 
@@ -3797,7 +3797,7 @@ async def main() -> None:
 
 ## [`unused-ignore-comment`](#unused-ignore-comment)
 
-Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unused-ignore-comment%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Fsuppression.rs#L26)
+Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unused-ignore-comment%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Fsuppression.rs#L28)
 
 **What it does**
 
@@ -3828,7 +3828,7 @@ Set [`analysis.respect-type-ignore-comments`](https://docs.astral.sh/ty/referenc
 
 ## [`unused-type-ignore-comment`](#unused-type-ignore-comment)
 
-Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.14](https://github.com/astral-sh/ty/releases/tag/0.0.14) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unused-type-ignore-comment%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Fsuppression.rs#L35)
+Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.14](https://github.com/astral-sh/ty/releases/tag/0.0.14) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unused-type-ignore-comment%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Fsuppression.rs#L37)
 
 **What it does**
 

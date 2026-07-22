@@ -81,8 +81,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2026-07-18 01:22:54Z",
-        "dateModified": "2026-07-18 01:22:54Z",
+        "datePublished": "2026-07-22 00:43:29Z",
+        "dateModified": "2026-07-22 00:43:29Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -1510,11 +1510,31 @@ mode of other type checkers with the following configuration:</p>
 </code></pre></div>
 <p>This configuration:</p>
 <ul>
-<li>Ensures ty exits with a non-zero status if it emits any warning-level diagnostics</li>
 <li>Enables ty's disabled-by-default <a href="https://docs.astral.sh/ty/reference/rules/#missing-type-argument"><code>missing-type-argument</code></a> and <a href="https://docs.astral.sh/ty/reference/rules/#possibly-unresolved-reference"><code>possibly-unresolved-reference</code></a> rules</li>
 <li>Extends Ruff's default rules with the <a href="https://docs.astral.sh/ruff/rules/#flake8-annotations-ann"><code>ANN</code></a> and <a href="https://docs.astral.sh/ruff/rules/#flake8-pyi-pyi"><code>PYI</code></a> rule categories, both of which are focussed on type-annotating your code more effectively</li>
 <li>Enables Ruff's preview mode so that <code>PYI033</code> also checks <code>.py</code> files</li>
 </ul>
+<p>An even stricter configuration -- that goes beyond what mypy and pyright check for in their default
+<code>--strict</code> mode in several respects -- might look like this:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">[tool.ty.rules]</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">blanket-ignore-comment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;error&quot;</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">missing-type-argument</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;error&quot;</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">possibly-unresolved-reference</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;warn&quot;</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">unsupported-dynamic-base</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;warn&quot;</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># NOTE: the following rules are known to have a significant number of false positives,</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="c1"># which is mostly unavoidable. Enable them at your own risk!</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="n">division-by-zero</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;warn&quot;</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="n">possibly-missing-attribute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;warn&quot;</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="n">possibly-missing-import</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;warn&quot;</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="k">[tool.ty.analysis]</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="n">strict-literal-narrowing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="k">[tool.ruff.lint]</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="n">extend-select</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;ANN&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;PYI&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;PGH003&quot;</span><span class="p">]</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="n">preview</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+</code></pre></div>
 <p>Note that several checks in mypy and pyright are not yet implemented in ty. See the rule mapping
 table below for more details.</p>
 <h2 id="mapping-pyrightmypy-rules-to-tyruff-rules"><a class="toclink" href="#mapping-pyrightmypy-rules-to-tyruff-rules">Mapping pyright/mypy rules to ty/Ruff rules</a></h2>
@@ -1523,10 +1543,10 @@ table below for more details.</p>
 <li><strong>ty or Ruff rule</strong>: the canonical name, as listed in <a href="../reference/rules/">Rules</a> if it is a ty
     rule. Configure ty rules under <code>[tool.ty.rules]</code>. Where Ruff provides equivalent coverage for a
     check that has no ty rule, the relevant Ruff rule or rule group is linked instead.</li>
-<li><strong>mypy error code</strong>: the value passed to <code># type: ignore[&lt;code&gt;]</code> or <code>disable_error_code</code>. Some ty
+<li><strong>Mypy error code</strong>: the value passed to <code># type: ignore[&lt;code&gt;]</code> or <code>disable_error_code</code>. Some ty
     rules surface as one of mypy's catch-all codes (<code>misc</code>, <code>assignment</code>, <code>valid-type</code>); these
     mappings are deliberately broad.</li>
-<li><strong>pyright diagnostic</strong>: the <code>report*</code> setting in <code>pyrightconfig.json</code> or <code>[tool.pyright]</code>.</li>
+<li><strong>Pyright diagnostic</strong>: the <code>report*</code> setting in <code>pyrightconfig.json</code> or <code>[tool.pyright]</code>.</li>
 </ul>
 <p>A blank cell means no direct equivalent exists in that checker (the diagnostic is either not
 emitted, or is folded into a broader category that already appears for another ty rule).</p>
@@ -1535,8 +1555,8 @@ emitted, or is folded into a broader category that already appears for another t
 <thead>
 <tr>
 <th>ty or Ruff rule</th>
-<th>mypy error code</th>
-<th>pyright diagnostic</th>
+<th>Mypy error code</th>
+<th>Pyright or basedpyright diagnostic</th>
 </tr>
 </thead>
 <tbody>
@@ -1781,6 +1801,11 @@ emitted, or is folded into a broader category that already appears for another t
 <td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportUnnecessaryTypeIgnoreComment"><code>reportUnnecessaryTypeIgnoreComment</code></a></td>
 </tr>
 <tr>
+<td><a href="../reference/rules/#blanket-ignore-comment"><code>blanket-ignore-comment</code></a>, <a href="https://docs.astral.sh/ruff/rules/blanket-type-ignore/">Ruff <code>PGH003</code></a></td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-ignore-without-code"><code>ignore-without-code</code></a></td>
+<td><a href="https://docs.basedpyright.com/latest/benefits-over-pyright/new-diagnostic-rules/#reportignorecommentwithoutrule"><code>reportIgnoreCommentWithoutRule</code></a> (basedpyright only)</td>
+</tr>
+<tr>
 <td>None yet (tracked in <a href="https://github.com/astral-sh/ruff/issues/10137">Ruff #10137</a>)</td>
 <td></td>
 <td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportConstantRedefinition"><code>reportConstantRedefinition</code></a></td>
@@ -1951,7 +1976,7 @@ emitted, or is folded into a broader category that already appears for another t
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 18, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 22, 2026</span>
   </span>
 
     
