@@ -81,8 +81,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2026-07-22 00:43:29Z",
-        "dateModified": "2026-07-22 00:43:29Z",
+        "datePublished": "2026-07-23 11:10:43Z",
+        "dateModified": "2026-07-23 11:10:43Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -1086,10 +1086,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#strict-literal-narrowing" class="md-nav__link">
+  <a href="#strict-equality-semantics" class="md-nav__link">
     <span class="md-ellipsis">
       
-        strict-literal-narrowing
+        strict-equality-semantics
       
     </span>
   </a>
@@ -1280,10 +1280,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#strict-literal-narrowing_1" class="md-nav__link">
+  <a href="#strict-equality-semantics_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        strict-literal-narrowing
+        strict-equality-semantics
       
     </span>
   </a>
@@ -1662,10 +1662,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#strict-literal-narrowing" class="md-nav__link">
+  <a href="#strict-equality-semantics" class="md-nav__link">
     <span class="md-ellipsis">
       
-        strict-literal-narrowing
+        strict-equality-semantics
       
     </span>
   </a>
@@ -1856,10 +1856,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#strict-literal-narrowing_1" class="md-nav__link">
+  <a href="#strict-equality-semantics_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        strict-literal-narrowing
+        strict-equality-semantics
       
     </span>
   </a>
@@ -2165,47 +2165,73 @@ you prefer using <code>ty: ignore</code> over <code>type: ignore</code>.</p>
 </div>
 </div>
 <hr />
-<h3 id="strict-literal-narrowing"><a class="toclink" href="#strict-literal-narrowing"><code>strict-literal-narrowing</code></a></h3>
-<p>Whether equality-based checks should preserve broad builtin types rather than narrow them to
-literal types.</p>
-<p>By default, ty narrows <code>value</code> from <code>str</code> to <code>Literal["a"]</code> in the positive branch of
-<code>value == "a"</code>. When this option is enabled, <code>value</code> remains <code>str</code>. This also applies to
-membership tests and literal match patterns, which use equality comparisons.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Literal</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>    <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="s2">&quot;a&quot;</span><span class="p">:</span>
-<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>        <span class="k">return</span> <span class="n">value</span>  <span class="c1"># Accepted by default; `value` remains `str` in strict mode.</span>
-<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>    <span class="k">return</span> <span class="kc">None</span>
+<h3 id="strict-equality-semantics"><a class="toclink" href="#strict-equality-semantics"><code>strict-equality-semantics</code></a></h3>
+<p>Configure ty's behavior regarding type inference and narrowing of equality
+checks. Defaults to <code>false</code>.</p>
+<p>By default, ty makes various assumptions about equality checks that match the
+intuitions of most Python programmers, but may not be fully sound in all situations.
+Enabling this option makes ty more conservative about these assumptions, making it
+less likely to infer <code>Literal[True]</code> or <code>Literal[False]</code> as the result of an
+equality check. This has various effects on type checking, including fewer type
+narrowing opportunities and more conservative assumptions regarding control flow.</p>
+<p>One way in which ty will by default make unsound assumptions is by narrowing an
+object <code>x</code> of type <code>str</code> to <code>Literal["a"]</code> after an <code>if x == "a"</code> check. This is
+unsound because a subclass of <code>str</code> with value <code>"a"</code> will (by default) compare equal
+to <code>"a"</code>, but will not be of type <code>Literal["a"]</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="c1"># `Literal[&quot;a&quot;]` can only be inhabited by instances of exactly `str`, not</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="gp">&gt;&gt;&gt; </span><span class="c1"># subclasses, but str subclasses compare equal by default:</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">StringSubclass</span><span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="o">...</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="gp">...</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">StringSubclass</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;a&quot;</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="go">True</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="gp">&gt;&gt;&gt;</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="gp">&gt;&gt;&gt; </span><span class="c1"># This also applies to `StrEnum`s:</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">StrEnum</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">MyEnum</span><span class="p">(</span><span class="n">StrEnum</span><span class="p">):</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="gp">... </span>    <span class="n">A</span> <span class="o">=</span> <span class="s2">&quot;a&quot;</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="gp">...</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">MyEnum</span><span class="o">.</span><span class="n">A</span> <span class="o">==</span> <span class="s2">&quot;a&quot;</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="go">True</span>
 </code></pre></div>
-<p>Broad builtin types include subclasses, but literal types distinguish values by both their
-runtime type and value. This makes the narrowing unsound even for subclasses that inherit
-builtin equality. For example:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">class</span> <span class="nc">StringSubclass</span><span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="o">...</span>
+<p>Enabling this option prevents the unsound narrowing of <code>x</code> to <code>Literal["a"]</code>,
+and instead keeps it as <code>str</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Literal</span>
 <a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="n">result</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="n">StringSubclass</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">))</span>
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1"># Statically `Literal[&quot;a&quot;] | None`, but `result` has runtime type `StringSubclass`.</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>    <span class="c1"># with `strict-equality-semantics = true`, no narrowing will occur here,</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>    <span class="c1"># and an error will be emitted on the `return` statement.</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>    <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="s2">&quot;a&quot;</span><span class="p">:</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>        <span class="k">return</span> <span class="n">value</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>    <span class="k">return</span> <span class="kc">None</span>
 </code></pre></div>
-<p>The standard library's <code>StrEnum</code> and <code>IntEnum</code> types are also subclasses of <code>str</code> and <code>int</code>,
-respectively. This means enum members can encounter the same unsoundness:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">StrEnum</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="k">class</span> <span class="nc">Choice</span><span class="p">(</span><span class="n">StrEnum</span><span class="p">):</span>
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>    <span class="n">A</span> <span class="o">=</span> <span class="s2">&quot;a&quot;</span>
-<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>
-<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="n">result</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="n">Choice</span><span class="o">.</span><span class="n">A</span><span class="p">)</span>
-<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="c1"># Statically `Literal[&quot;a&quot;] | None`, but `result` has runtime type `Choice`.</span>
+<p>Another assumption ty makes by default is that subclasses will never override <code>__eq__</code> or
+<code>__ne__</code>. This allows ty to narrow the following union based on an equality check, despite
+the fact that an instance of a subclass of <code>Foo</code> could compare equal to <code>None</code>, and it's
+perfectly valid to pass an instance of a subclass into the <code>x</code> parameter of this function:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">def</span> <span class="nf">narrow</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">Foo</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Foo</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>    <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="n">other</span><span class="p">:</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>        <span class="c1"># with this option enabled, `x` will still have type `Foo | None` here,</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>        <span class="c1"># since it is legal to subclass `Foo` and override its `__eq__` method.</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>        <span class="n">reveal_type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </code></pre></div>
-<p>A subclass can also override <code>__eq__</code> to compare equal to a literal with a different value:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">class</span> <span class="nc">MisleadingStr</span><span class="p">(</span><span class="nb">str</span><span class="p">):</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>        <span class="k">return</span> <span class="kc">True</span>
-<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>
-<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="n">result</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="n">MisleadingStr</span><span class="p">(</span><span class="s2">&quot;b&quot;</span><span class="p">))</span>
-<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="c1"># Statically `Literal[&quot;a&quot;] | None`, but `result` contains `&quot;b&quot;` at runtime.</span>
+<p>Many operations in Python implicitly call <code>__eq__</code> under the hood; enabling this option
+will also impact those operations. For example, this option will also impact narrowing from
+<code>in</code> checks, and narrowing in <code>match</code> statements that use value patterns:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">def</span> <span class="nf">narrow_in</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">Foo</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Foo</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>    <span class="k">if</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">other</span><span class="p">:</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>        <span class="c1"># with this option enabled, `x` will still have type `Foo | None` here,</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>        <span class="c1"># since the `in` operator implicitly calls `__eq__` on each element of `other`.</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>        <span class="n">reveal_type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="k">def</span> <span class="nf">narrow_match</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>    <span class="k">match</span> <span class="n">x</span><span class="p">:</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>        <span class="k">case</span> <span class="s2">&quot;a&quot;</span><span class="p">:</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>            <span class="c1"># with this option enabled, `x` will still have type `str` here,</span>
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>            <span class="c1"># since this `case` branch will be taken by any object that compares</span>
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>            <span class="c1"># equal to `&quot;a&quot;`, including subclasses of `str`.</span>
+<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>            <span class="n">reveal_type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </code></pre></div>
-<p>Enable this option to preserve the broader builtin type instead.</p>
-<p>Defaults to <code>false</code>.</p>
 <p><strong>Default value</strong>: <code>false</code></p>
 <p><strong>Type</strong>: <code>bool</code></p>
 <p><strong>Example usage</strong>:</p>
@@ -2214,13 +2240,13 @@ respectively. This means enum members can encounter the same unsoundness:</p>
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">[tool.ty.analysis]</span>
 <a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="c1"># Preserve broad builtin types instead of narrowing them to literals</span>
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="n">strict-literal-narrowing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="n">strict-equality-semantics</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">[analysis]</span>
 <a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="c1"># Preserve broad builtin types instead of narrowing them to literals</span>
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="n">strict-literal-narrowing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="n">strict-equality-semantics</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 </code></pre></div>
 </div>
 </div>
@@ -2611,47 +2637,73 @@ you prefer using <code>ty: ignore</code> over <code>type: ignore</code>.</p>
 </div>
 </div>
 <hr />
-<h4 id="strict-literal-narrowing_1"><a class="toclink" href="#strict-literal-narrowing_1"><code>strict-literal-narrowing</code></a></h4>
-<p>Whether equality-based checks should preserve broad builtin types rather than narrow them to
-literal types.</p>
-<p>By default, ty narrows <code>value</code> from <code>str</code> to <code>Literal["a"]</code> in the positive branch of
-<code>value == "a"</code>. When this option is enabled, <code>value</code> remains <code>str</code>. This also applies to
-membership tests and literal match patterns, which use equality comparisons.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Literal</span>
-<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>
-<a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a><span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a>    <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="s2">&quot;a&quot;</span><span class="p">:</span>
-<a id="__codelineno-40-5" name="__codelineno-40-5" href="#__codelineno-40-5"></a>        <span class="k">return</span> <span class="n">value</span>  <span class="c1"># Accepted by default; `value` remains `str` in strict mode.</span>
-<a id="__codelineno-40-6" name="__codelineno-40-6" href="#__codelineno-40-6"></a>    <span class="k">return</span> <span class="kc">None</span>
+<h4 id="strict-equality-semantics_1"><a class="toclink" href="#strict-equality-semantics_1"><code>strict-equality-semantics</code></a></h4>
+<p>Configure ty's behavior regarding type inference and narrowing of equality
+checks. Defaults to <code>false</code>.</p>
+<p>By default, ty makes various assumptions about equality checks that match the
+intuitions of most Python programmers, but may not be fully sound in all situations.
+Enabling this option makes ty more conservative about these assumptions, making it
+less likely to infer <code>Literal[True]</code> or <code>Literal[False]</code> as the result of an
+equality check. This has various effects on type checking, including fewer type
+narrowing opportunities and more conservative assumptions regarding control flow.</p>
+<p>One way in which ty will by default make unsound assumptions is by narrowing an
+object <code>x</code> of type <code>str</code> to <code>Literal["a"]</code> after an <code>if x == "a"</code> check. This is
+unsound because a subclass of <code>str</code> with value <code>"a"</code> will (by default) compare equal
+to <code>"a"</code>, but will not be of type <code>Literal["a"]</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="c1"># `Literal[&quot;a&quot;]` can only be inhabited by instances of exactly `str`, not</span>
+<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a><span class="gp">&gt;&gt;&gt; </span><span class="c1"># subclasses, but str subclasses compare equal by default:</span>
+<a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">StringSubclass</span><span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="o">...</span>
+<a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a><span class="gp">...</span>
+<a id="__codelineno-40-5" name="__codelineno-40-5" href="#__codelineno-40-5"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">StringSubclass</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;a&quot;</span>
+<a id="__codelineno-40-6" name="__codelineno-40-6" href="#__codelineno-40-6"></a><span class="go">True</span>
+<a id="__codelineno-40-7" name="__codelineno-40-7" href="#__codelineno-40-7"></a><span class="gp">&gt;&gt;&gt;</span>
+<a id="__codelineno-40-8" name="__codelineno-40-8" href="#__codelineno-40-8"></a><span class="gp">&gt;&gt;&gt; </span><span class="c1"># This also applies to `StrEnum`s:</span>
+<a id="__codelineno-40-9" name="__codelineno-40-9" href="#__codelineno-40-9"></a><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">StrEnum</span>
+<a id="__codelineno-40-10" name="__codelineno-40-10" href="#__codelineno-40-10"></a><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">MyEnum</span><span class="p">(</span><span class="n">StrEnum</span><span class="p">):</span>
+<a id="__codelineno-40-11" name="__codelineno-40-11" href="#__codelineno-40-11"></a><span class="gp">... </span>    <span class="n">A</span> <span class="o">=</span> <span class="s2">&quot;a&quot;</span>
+<a id="__codelineno-40-12" name="__codelineno-40-12" href="#__codelineno-40-12"></a><span class="gp">...</span>
+<a id="__codelineno-40-13" name="__codelineno-40-13" href="#__codelineno-40-13"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">MyEnum</span><span class="o">.</span><span class="n">A</span> <span class="o">==</span> <span class="s2">&quot;a&quot;</span>
+<a id="__codelineno-40-14" name="__codelineno-40-14" href="#__codelineno-40-14"></a><span class="go">True</span>
 </code></pre></div>
-<p>Broad builtin types include subclasses, but literal types distinguish values by both their
-runtime type and value. This makes the narrowing unsound even for subclasses that inherit
-builtin equality. For example:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="k">class</span> <span class="nc">StringSubclass</span><span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="o">...</span>
+<p>Enabling this option prevents the unsound narrowing of <code>x</code> to <code>Literal["a"]</code>,
+and instead keeps it as <code>str</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Literal</span>
 <a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a>
-<a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a><span class="n">result</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="n">StringSubclass</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">))</span>
-<a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a><span class="c1"># Statically `Literal[&quot;a&quot;] | None`, but `result` has runtime type `StringSubclass`.</span>
+<a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a><span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a>    <span class="c1"># with `strict-equality-semantics = true`, no narrowing will occur here,</span>
+<a id="__codelineno-41-5" name="__codelineno-41-5" href="#__codelineno-41-5"></a>    <span class="c1"># and an error will be emitted on the `return` statement.</span>
+<a id="__codelineno-41-6" name="__codelineno-41-6" href="#__codelineno-41-6"></a>    <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="s2">&quot;a&quot;</span><span class="p">:</span>
+<a id="__codelineno-41-7" name="__codelineno-41-7" href="#__codelineno-41-7"></a>        <span class="k">return</span> <span class="n">value</span>
+<a id="__codelineno-41-8" name="__codelineno-41-8" href="#__codelineno-41-8"></a>    <span class="k">return</span> <span class="kc">None</span>
 </code></pre></div>
-<p>The standard library's <code>StrEnum</code> and <code>IntEnum</code> types are also subclasses of <code>str</code> and <code>int</code>,
-respectively. This means enum members can encounter the same unsoundness:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">StrEnum</span>
-<a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a>
-<a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a><span class="k">class</span> <span class="nc">Choice</span><span class="p">(</span><span class="n">StrEnum</span><span class="p">):</span>
-<a id="__codelineno-42-4" name="__codelineno-42-4" href="#__codelineno-42-4"></a>    <span class="n">A</span> <span class="o">=</span> <span class="s2">&quot;a&quot;</span>
-<a id="__codelineno-42-5" name="__codelineno-42-5" href="#__codelineno-42-5"></a>
-<a id="__codelineno-42-6" name="__codelineno-42-6" href="#__codelineno-42-6"></a><span class="n">result</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="n">Choice</span><span class="o">.</span><span class="n">A</span><span class="p">)</span>
-<a id="__codelineno-42-7" name="__codelineno-42-7" href="#__codelineno-42-7"></a><span class="c1"># Statically `Literal[&quot;a&quot;] | None`, but `result` has runtime type `Choice`.</span>
+<p>Another assumption ty makes by default is that subclasses will never override <code>__eq__</code> or
+<code>__ne__</code>. This allows ty to narrow the following union based on an equality check, despite
+the fact that an instance of a subclass of <code>Foo</code> could compare equal to <code>None</code>, and it's
+perfectly valid to pass an instance of a subclass into the <code>x</code> parameter of this function:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="k">def</span> <span class="nf">narrow</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">Foo</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Foo</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a>    <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="n">other</span><span class="p">:</span>
+<a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a>        <span class="c1"># with this option enabled, `x` will still have type `Foo | None` here,</span>
+<a id="__codelineno-42-4" name="__codelineno-42-4" href="#__codelineno-42-4"></a>        <span class="c1"># since it is legal to subclass `Foo` and override its `__eq__` method.</span>
+<a id="__codelineno-42-5" name="__codelineno-42-5" href="#__codelineno-42-5"></a>        <span class="n">reveal_type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </code></pre></div>
-<p>A subclass can also override <code>__eq__</code> to compare equal to a literal with a different value:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="k">class</span> <span class="nc">MisleadingStr</span><span class="p">(</span><span class="nb">str</span><span class="p">):</span>
-<a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a>    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a>        <span class="k">return</span> <span class="kc">True</span>
-<a id="__codelineno-43-4" name="__codelineno-43-4" href="#__codelineno-43-4"></a>
-<a id="__codelineno-43-5" name="__codelineno-43-5" href="#__codelineno-43-5"></a><span class="n">result</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="n">MisleadingStr</span><span class="p">(</span><span class="s2">&quot;b&quot;</span><span class="p">))</span>
-<a id="__codelineno-43-6" name="__codelineno-43-6" href="#__codelineno-43-6"></a><span class="c1"># Statically `Literal[&quot;a&quot;] | None`, but `result` contains `&quot;b&quot;` at runtime.</span>
+<p>Many operations in Python implicitly call <code>__eq__</code> under the hood; enabling this option
+will also impact those operations. For example, this option will also impact narrowing from
+<code>in</code> checks, and narrowing in <code>match</code> statements that use value patterns:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="k">def</span> <span class="nf">narrow_in</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">Foo</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Foo</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a>    <span class="k">if</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">other</span><span class="p">:</span>
+<a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a>        <span class="c1"># with this option enabled, `x` will still have type `Foo | None` here,</span>
+<a id="__codelineno-43-4" name="__codelineno-43-4" href="#__codelineno-43-4"></a>        <span class="c1"># since the `in` operator implicitly calls `__eq__` on each element of `other`.</span>
+<a id="__codelineno-43-5" name="__codelineno-43-5" href="#__codelineno-43-5"></a>        <span class="n">reveal_type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<a id="__codelineno-43-6" name="__codelineno-43-6" href="#__codelineno-43-6"></a>
+<a id="__codelineno-43-7" name="__codelineno-43-7" href="#__codelineno-43-7"></a>
+<a id="__codelineno-43-8" name="__codelineno-43-8" href="#__codelineno-43-8"></a><span class="k">def</span> <span class="nf">narrow_match</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-43-9" name="__codelineno-43-9" href="#__codelineno-43-9"></a>    <span class="k">match</span> <span class="n">x</span><span class="p">:</span>
+<a id="__codelineno-43-10" name="__codelineno-43-10" href="#__codelineno-43-10"></a>        <span class="k">case</span> <span class="s2">&quot;a&quot;</span><span class="p">:</span>
+<a id="__codelineno-43-11" name="__codelineno-43-11" href="#__codelineno-43-11"></a>            <span class="c1"># with this option enabled, `x` will still have type `str` here,</span>
+<a id="__codelineno-43-12" name="__codelineno-43-12" href="#__codelineno-43-12"></a>            <span class="c1"># since this `case` branch will be taken by any object that compares</span>
+<a id="__codelineno-43-13" name="__codelineno-43-13" href="#__codelineno-43-13"></a>            <span class="c1"># equal to `&quot;a&quot;`, including subclasses of `str`.</span>
+<a id="__codelineno-43-14" name="__codelineno-43-14" href="#__codelineno-43-14"></a>            <span class="n">reveal_type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </code></pre></div>
-<p>Enable this option to preserve the broader builtin type instead.</p>
-<p>Defaults to <code>false</code>.</p>
 <p><strong>Default value</strong>: <code>false</code></p>
 <p><strong>Type</strong>: <code>bool</code></p>
 <p><strong>Example usage</strong>:</p>
@@ -2660,13 +2712,13 @@ respectively. This means enum members can encounter the same unsoundness:</p>
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="k">[tool.ty.overrides.analysis]</span>
 <a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a><span class="c1"># Preserve broad builtin types instead of narrowing them to literals</span>
-<a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a><span class="n">strict-literal-narrowing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a><span class="n">strict-equality-semantics</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="k">[overrides.analysis]</span>
 <a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a><span class="c1"># Preserve broad builtin types instead of narrowing them to literals</span>
-<a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a><span class="n">strict-literal-narrowing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a><span class="n">strict-equality-semantics</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 </code></pre></div>
 </div>
 </div>
@@ -2908,7 +2960,7 @@ if they exist and are not packages (i.e. they do not contain <code>__init__.py</
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 22, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 23, 2026</span>
   </span>
 
     
