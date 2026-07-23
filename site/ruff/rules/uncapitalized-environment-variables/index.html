@@ -704,6 +704,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../default-rules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Default Rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../settings/" class="md-nav__link">
         
   
@@ -864,7 +891,7 @@
 <p><small>
 Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.218">v0.0.218</a> ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27uncapitalized-environment-variables%27%20OR%20SIM112)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_simplify%2Frules%2Fast_expr.rs#L44" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_simplify%2Frules%2Fast_expr.rs#L48" target="_blank">View source</a>
 </small></p>
 <p>Derived from the <strong><a href="../#flake8-simplify-sim">flake8-simplify</a></strong> linter.</p>
 <p>Fix is sometimes available.</p>
@@ -872,8 +899,12 @@ Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.218">v0.0.
 <p>Check for environment variables that are not capitalized.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>By convention, environment variables should be capitalized.</p>
-<p>On Windows, environment variables are case-insensitive and are converted to
-uppercase, so using lowercase environment variables can lead to subtle bugs.</p>
+<p>Furthermore, <code>os.environ</code> behaves differently across platforms. On Windows,
+<code>os.environ</code> automatically converts environment variable names to uppercase.
+This means that if you define a lowercase environment variable (e.g., <code>foo=1</code>),
+iterating over <code>os.environ</code> will yield <code>FOO</code> on Windows, but
+<code>foo</code> on Linux and macOS. This can lead to subtle bugs in cross-platform code
+if it assumes environment variables preserve their original case.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>

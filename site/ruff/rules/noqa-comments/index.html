@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Checks for the use of `noqa` comments instead of Ruff-specific `ruff:ignore` comments.">
+        <meta name="description" content="Checks for the use of `noqa` comments instead of Ruff-specific `ruff: ignore` comments.">
       
       
         <meta name="author" content="charliermarsh">
@@ -704,6 +704,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../default-rules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Default Rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../settings/" class="md-nav__link">
         
   
@@ -869,9 +896,9 @@ Preview (since <a href="https://github.com/astral-sh/ruff/releases/tag/0.15.22">
 <p>Fix is sometimes available.</p>
 <p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
-<p>Checks for the use of <code>noqa</code> comments instead of Ruff-specific <code>ruff:ignore</code> comments.</p>
+<p>Checks for the use of <code>noqa</code> comments instead of Ruff-specific <code>ruff: ignore</code> comments.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
-<p><code>ruff:ignore</code> comments allow the use of rule names instead of codes and can be used in more
+<p><code>ruff: ignore</code> comments allow the use of rule names instead of codes and can be used in more
 places than <code>noqa</code> comments.</p>
 <p>Note that this is an opinionated, stylistic rule. <code>noqa</code> comments may be needed for backwards
 compatibility with other tools. You should also feel free to disable this rule if you simply
@@ -880,10 +907,10 @@ prefer <code>noqa</code> comments.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>  <span class="c1"># noqa: F401</span>
 </code></pre></div>
 <p>Use instead:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>  <span class="c1"># ruff:ignore[F401]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>  <span class="c1"># ruff: ignore[F401]</span>
 </code></pre></div>
 <p>Or if you prefer the own-line form:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># ruff:ignore[unused-import]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># ruff: ignore[unused-import]</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 </code></pre></div>
 <h2 id="options"><a class="toclink" href="#options">Options</a></h2>
@@ -899,7 +926,7 @@ comment.</p>
 <h2 id="see-also"><a class="toclink" href="#see-also">See also</a></h2>
 <p>This rule avoids offering a fix if any of the rule codes in a <code>noqa</code> comment are unused. See
 <code>unused-noqa</code> for a rule that will remove these and allow the remaining codes to be moved into a
-<code>ruff:ignore</code> comment.</p>
+<code>ruff: ignore</code> comment.</p>
 
 
 

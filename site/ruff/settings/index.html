@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://docs.astral.sh/ruff/settings/">
       
       
-        <link rel="prev" href="../rules/">
+        <link rel="prev" href="../default-rules/">
       
       
         <link rel="next" href="../versioning/">
@@ -689,6 +689,33 @@
     
   
     Rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../default-rules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Default Rules
   
 
     
@@ -4840,7 +4867,7 @@ to enable additional rules on top of the defaults without having to
 enumerate them.</p>
 <p>For example, to enable the defaults plus flake8-bugbear:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-106-1" name="__codelineno-106-1" href="#__codelineno-106-1"></a><span class="k">[tool.ruff.lint]</span>
-<a id="__codelineno-106-2" name="__codelineno-106-2" href="#__codelineno-106-2"></a><span class="c1"># Adds flake8-bugbear on top of the default rules (E4, E7, E9, F).</span>
+<a id="__codelineno-106-2" name="__codelineno-106-2" href="#__codelineno-106-2"></a><span class="c1"># Adds flake8-bugbear on top of the default rules.</span>
 <a id="__codelineno-106-3" name="__codelineno-106-3" href="#__codelineno-106-3"></a><span class="n">extend-select</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;B&quot;</span><span class="p">]</span>
 </code></pre></div>
 <p>Using <code>select = ["B"]</code> instead would <em>replace</em> the defaults, enabling
@@ -4852,13 +4879,13 @@ only flake8-bugbear.</p>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-107-1" name="__codelineno-107-1" href="#__codelineno-107-1"></a><span class="k">[tool.ruff.lint]</span>
-<a id="__codelineno-107-2" name="__codelineno-107-2" href="#__codelineno-107-2"></a><span class="c1"># On top of the default `select` (`E4`, E7`, `E9`, and `F`), enable flake8-bugbear (`B`) and flake8-quotes (`Q`).</span>
+<a id="__codelineno-107-2" name="__codelineno-107-2" href="#__codelineno-107-2"></a><span class="c1"># On top of the default `select`, enable flake8-bugbear (`B`) and flake8-quotes (`Q`).</span>
 <a id="__codelineno-107-3" name="__codelineno-107-3" href="#__codelineno-107-3"></a><span class="n">extend-select</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;B&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Q&quot;</span><span class="p">]</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-108-1" name="__codelineno-108-1" href="#__codelineno-108-1"></a><span class="k">[lint]</span>
-<a id="__codelineno-108-2" name="__codelineno-108-2" href="#__codelineno-108-2"></a><span class="c1"># On top of the default `select` (`E4`, E7`, `E9`, and `F`), enable flake8-bugbear (`B`) and flake8-quotes (`Q`).</span>
+<a id="__codelineno-108-2" name="__codelineno-108-2" href="#__codelineno-108-2"></a><span class="c1"># On top of the default `select`, enable flake8-bugbear (`B`) and flake8-quotes (`Q`).</span>
 <a id="__codelineno-108-3" name="__codelineno-108-3" href="#__codelineno-108-3"></a><span class="n">extend-select</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;B&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Q&quot;</span><span class="p">]</span>
 </code></pre></div>
 </div>
@@ -5124,21 +5151,21 @@ between.</p>
 <code>ignore</code>, respectively), more specific prefixes override less
 specific prefixes. <code>ignore</code> takes precedence over <code>select</code> if the
 same prefix appears in both.</p>
-<p><strong>Default value</strong>: <code>["E4", "E7", "E9", "F"]</code></p>
+<p><strong>Default value</strong>: See <a href="../default-rules/">Default Rules</a>.</p>
 <p><strong>Type</strong>: <code>list[RuleSelector]</code></p>
 <p><strong>Example usage</strong>:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="58:2"><input checked="checked" id="__tabbed_58_1" name="__tabbed_58" type="radio" /><input id="__tabbed_58_2" name="__tabbed_58" type="radio" /><div class="tabbed-labels"><label for="__tabbed_58_1">pyproject.toml</label><label for="__tabbed_58_2">ruff.toml</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-128-1" name="__codelineno-128-1" href="#__codelineno-128-1"></a><span class="k">[tool.ruff.lint]</span>
-<a id="__codelineno-128-2" name="__codelineno-128-2" href="#__codelineno-128-2"></a><span class="c1"># On top of the defaults (`E4`, E7`, `E9`, and `F`), enable flake8-bugbear (`B`) and flake8-quotes (`Q`).</span>
-<a id="__codelineno-128-3" name="__codelineno-128-3" href="#__codelineno-128-3"></a><span class="n">select</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;E4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;E7&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;E9&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;F&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;B&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Q&quot;</span><span class="p">]</span>
+<a id="__codelineno-128-2" name="__codelineno-128-2" href="#__codelineno-128-2"></a><span class="c1"># On top of the defaults, enable flake8-bugbear (`B`) and flake8-quotes (`Q`).</span>
+<a id="__codelineno-128-3" name="__codelineno-128-3" href="#__codelineno-128-3"></a><span class="n">extend-select</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;B&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Q&quot;</span><span class="p">]</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-129-1" name="__codelineno-129-1" href="#__codelineno-129-1"></a><span class="k">[lint]</span>
-<a id="__codelineno-129-2" name="__codelineno-129-2" href="#__codelineno-129-2"></a><span class="c1"># On top of the defaults (`E4`, E7`, `E9`, and `F`), enable flake8-bugbear (`B`) and flake8-quotes (`Q`).</span>
-<a id="__codelineno-129-3" name="__codelineno-129-3" href="#__codelineno-129-3"></a><span class="n">select</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;E4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;E7&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;E9&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;F&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;B&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Q&quot;</span><span class="p">]</span>
+<a id="__codelineno-129-2" name="__codelineno-129-2" href="#__codelineno-129-2"></a><span class="c1"># On top of the defaults, enable flake8-bugbear (`B`) and flake8-quotes (`Q`).</span>
+<a id="__codelineno-129-3" name="__codelineno-129-3" href="#__codelineno-129-3"></a><span class="n">extend-select</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;B&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Q&quot;</span><span class="p">]</span>
 </code></pre></div>
 </div>
 </div>
