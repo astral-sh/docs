@@ -70,6 +70,7 @@ The following preview features are available:
 - `format`: Allows using `uv format`.
 - `index-exclude-newer`: Allows setting `exclude-newer` on configured package indexes.
 - `index-hash-algorithm`: Allows requiring a hash algorithm for configured package indexes.
+- `lockfile-format-check`: Rejects non-canonical lockfile formatting when using `--locked` or `--check`.
 - `azure-endpoint`: Allows signing requests to Azure Blob Storage endpoints with Azure credentials.
 - `native-auth`: Enables storage of credentials in a [system-native location](../authentication/http/#the-uv-credentials-store).
 - `auth-helper`: Allows using `uv auth helper` as a credential helper for external tools.
