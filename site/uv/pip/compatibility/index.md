@@ -227,6 +227,7 @@ This approach is not a complete implementation of the spec, but is compatible wi
 
 ```
 from __future__ import annotations
+
 manylinux1_compatible = False
 manylinux2010_compatible = False
 manylinux2014_compatible = False

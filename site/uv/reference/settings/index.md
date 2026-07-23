@@ -1687,13 +1687,13 @@ Unknown feature names are ignored with a warning.
 [tool.uv]
 preview-features = true
 # or
-preview-features = ["python-upgrade"]
+preview-features = ["json-output"]
 ```
 
 ```
 preview-features = true
 # or
-preview-features = ["python-upgrade"]
+preview-features = ["json-output"]
 ```
 
 ______________________________________________________________________

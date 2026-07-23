@@ -5486,6 +5486,12 @@ Note that all optional dependencies are always included in the resolution; this 
 `--no-group` can be used to exclude specific groups.
 ```
 
+[`--all-packages`](#uv-check--all-packages) : Check all packages in the workspace.
+
+```
+The workspace's environment is synchronized to include all workspace members, and files in every member are checked.
+```
+
 [`--allow-insecure-host`](#uv-check--allow-insecure-host), `--trusted-host` *allow-insecure-host* : Allow insecure connections to a host.
 
 ```
@@ -5863,6 +5869,12 @@ This option is an alias for `--only-group dev`. Implies `--no-default-groups`.
 The project and its dependencies will be omitted.
 
 May be provided multiple times. Implies `--no-default-groups`.
+```
+
+[`--package`](#uv-check--package) *package* : Check specific packages in the workspace.
+
+```
+The workspace's environment is synchronized to include the selected members and their dependencies. Only files owned by the selected members are checked.
 ```
 
 [`--prerelease`](#uv-check--prerelease) *prerelease* : The strategy to use when considering pre-release versions.
@@ -9871,7 +9883,7 @@ By default, Python installations are stored in the uv data directory at `$XDG_DA
 
 The Python installation directory may be overridden with `$UV_PYTHON_INSTALL_DIR`.
 
-To view the directory where uv installs Python executables instead, use the `--bin` flag. The Python executable directory may be overridden with `$UV_PYTHON_BIN_DIR`. Note that Python executables are only installed when preview mode is enabled.
+To view the directory where uv installs Python executables instead, use the `--bin` flag. The Python executable directory may be overridden with `$UV_PYTHON_BIN_DIR`.
 
 ### Usage
 
@@ -9896,8 +9908,6 @@ May also be set with the `UV_INSECURE_HOST` environment variable.
 [`--bin`](#uv-python-dir--bin) : Show the directory into which `uv python` will install Python executables.
 
 ```
-Note that this directory is only used when installing Python with preview mode enabled.
-
 The Python executable directory is determined according to the XDG standard and is derived
 from the following environment variables, in order of preference:
 
