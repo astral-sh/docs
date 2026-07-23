@@ -168,8 +168,6 @@ def f(x):
 
 ## [Markdown code formatting](#markdown-code-formatting)
 
-*This feature is currently only available in [preview mode](../preview/#preview).*
-
 The Ruff formatter can also format Python code blocks in Markdown files. In these files, Ruff will format any CommonMark [fenced code blocks](https://spec.commonmark.org/0.30/#fenced-code-blocks) with the following info strings: `python`, `py`, `python3`, `py3`, or `pyi`. The formatter will automatically skip a code block if the code does not parse as valid Python or if the reformatted code would produce an invalid Python program.
 
 Code blocks marked as `python`, `py`, `python3`, or `py3` will be formatted with the normal Python code formatting style, while any code blocks marked with `pyi` will be formatted like Python type stub files:
@@ -252,7 +250,7 @@ support needs to be explicitly included by adding it to `types_or`:
 
 repos:
 
-- repo: https://github.com/astral-sh/ruff-pre-commit rev: v0.15.22 hooks:
+- repo: https://github.com/astral-sh/ruff-pre-commit rev: v0.16.0 hooks:
   - id: ruff-format types_or: [python, pyi, jupyter, markdown]
 
 ```

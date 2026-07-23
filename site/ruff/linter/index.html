@@ -938,6 +938,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../default-rules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Default Rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../settings/" class="md-nav__link">
         
   
@@ -1332,8 +1359,11 @@ setting, either on the command-line or in your <code>pyproject.toml</code> or <c
 <p>To omit a lint rule within specific files based on file path prefixes or patterns,
 see the <a href="../settings/#lint_per-file-ignores"><code>lint.per-file-ignores</code></a> setting.</p>
 <h3 id="comments"><a class="toclink" href="#comments">Comments</a></h3>
-<p>Ruff supports multiple forms of suppression comments, including inline and file-level <code>noqa</code>
-comments, and range suppressions.</p>
+<p>Ruff supports multiple forms of suppression comments, including inline and file-level <code>noqa</code> and
+<code>ruff: ignore</code> comments, and range suppressions.</p>
+<p>In <a href="../preview/"><code>preview</code></a> mode, rule names (e.g. <code>unused-import</code>) can be used in <code>ruff: ignore</code>,
+<code>ruff: file-ignore</code>, <code>ruff: disable</code>, and <code>ruff: enable</code> comments instead of rule codes (e.g.
+<code>F401</code>).</p>
 <h4 id="line-level"><a class="toclink" href="#line-level">Line-level</a></h4>
 <p>Ruff supports a <code>noqa</code> system similar to <a href="https://flake8.pycqa.org/en/3.1.1/user/ignoring-errors.html">Flake8</a>.
 To ignore an individual violation, add <code># noqa: {code}</code> to the end of the line, like so:</p>
@@ -1373,17 +1403,16 @@ will apply to all imports in the block, like so:</p>
   missing delimiter (e.g. <code>F401F841</code>), though a warning will be emitted in this
   case.</li>
 </ul>
-<p><em>The following is currently only available in <a href="preview.md">preview mode</a>.</em></p>
 <p>To cover an entire "logical" line (a multi-line statement or suite header),
 an "ignore" comment may be placed above the first line:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="c1"># ruff: ignore[unused-function-argument]  # Covers the entire function signature</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="c1"># ruff: ignore[ARG001]  # Covers the entire function signature</span>
 <a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">foo</span><span class="p">(</span>
 <a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>    <span class="n">arg1</span><span class="p">,</span>
 <a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>    <span class="n">arg2</span><span class="p">,</span>
 <a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="p">):</span>
 <a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>    <span class="k">pass</span>
 <a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>
-<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="c1"># ruff: ignore[line-too-long]  # Covers the entire list literal</span>
+<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="c1"># ruff: ignore[E501]  # Covers the entire list literal</span>
 <a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a><span class="n">things</span> <span class="o">=</span> <span class="p">[</span>
 <a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a>    <span class="s2">&quot;really long string literal ...&quot;</span><span class="p">,</span>
 <a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a>    <span class="s2">&quot;really long string literal ...&quot;</span><span class="p">,</span>
@@ -1394,20 +1423,20 @@ at the end of a line, will cover only a single "physical" line, leaving the rest
 of the multi-line statement or header uncovered:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">foo</span><span class="p">(</span>
 <a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>    <span class="n">arg1</span><span class="p">,</span>
-<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>    <span class="c1"># ruff: ignore[unused-function-argument]  # Only covers `arg2`</span>
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>    <span class="c1"># ruff: ignore[ARG001]  # Only covers `arg2`</span>
 <a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>    <span class="n">arg2</span><span class="p">,</span>
 <a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="p">):</span>
 <a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>    <span class="k">pass</span>
 <a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a>
 <a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a><span class="n">things</span> <span class="o">=</span> <span class="p">[</span>
-<a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a>    <span class="s2">&quot;really long string literal ...&quot;</span><span class="p">,</span>  <span class="c1"># ruff: ignore[line-too-long]  # Only covers this line</span>
+<a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a>    <span class="s2">&quot;really long string literal ...&quot;</span><span class="p">,</span>  <span class="c1"># ruff: ignore[E501]  # Only covers this line</span>
 <a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a>    <span class="s2">&quot;really long string literal ...&quot;</span><span class="p">,</span>
 <a id="__codelineno-23-11" name="__codelineno-23-11" href="#__codelineno-23-11"></a><span class="p">]</span>
 </code></pre></div>
 <p>Ignore comments can also be "stacked" with other comments or pragmas, and will
 still cover the next logical line:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="c1"># ruff: ignore[ambiguous-variable-name]</span>
-<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="c1"># ruff: ignore[unused-variable]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="c1"># ruff: ignore[E741]</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="c1"># ruff: ignore[F841]</span>
 <a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="c1"># I definitely know what I&#39;m doing.</span>
 <a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
 </code></pre></div>
@@ -1459,8 +1488,6 @@ selected by the project configuration or runtime flags. An "enable" comment can 
 be used to terminate a preceding "disable" comment with identical codes.</p>
 <p>Unlike <code>noqa</code> suppressions, range suppressions do not support "blanket" suppression
 of all violations. At least one violation code must be listed.</p>
-<p>In <a href="../preview/"><code>preview</code></a> mode, rule names (e.g. <code>unused-import</code>) can be used in these comments
-instead of rule codes (e.g. <code>F401</code>).</p>
 <p>The full range suppression comment specification is as follows:</p>
 <ul>
 <li>An own-line comment starting with case sensitive <code>#ruff:</code>, with optional whitespace
@@ -1491,10 +1518,9 @@ equivalent to <code># ruff: noqa</code>.</p>
   optional whitespace and a case-insensitive match for <code>noqa</code>. After this, the
   specification is as in the inline <code>noqa</code> suppressions above.</li>
 </ul>
-<p>In <a href="../preview/"><code>preview</code></a> mode, one or more rules can be ignored across an
-entire file with a <code>file-ignore</code> comment on its own line, at global module scope,
-and preferably near the top of the file:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="c1"># ruff: file-ignore[unused-import, unused-function-argument]</span>
+<p>One or more rules can also be ignored across an entire file with a <code>file-ignore</code> comment on its own
+line, at global module scope, and preferably near the top of the file:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="c1"># ruff: file-ignore[F401, ARG001]</span>
 </code></pre></div>
 <p>The full-level suppression comment specification is as follows:</p>
 <ul>
@@ -1518,12 +1544,14 @@ To remove any unused suppressions, run Ruff with <code>--fix</code>, like so:</p
 </code></pre></div>
 <h3 id="inserting-necessary-suppression-comments"><a class="toclink" href="#inserting-necessary-suppression-comments">Inserting necessary suppression comments</a></h3>
 <p>Ruff can <em>automatically add</em> suppression comments to all lines that contain violations, which is
-useful when migrating a new codebase to Ruff. To add the appropriate comments to all relevant
-lines, run Ruff with <code>--add-noqa</code>:</p>
+useful when migrating a new codebase to Ruff. To add the appropriate comments to all relevant lines,
+run Ruff with <code>--add-noqa</code> to add <code>noqa</code> comments or with <code>--add-ignore</code> to add <code>ruff: ignore</code>
+comments:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="gp">$ </span>ruff<span class="w"> </span>check<span class="w"> </span>/path/to/file.py<span class="w"> </span>--add-noqa
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="gp">$ </span>ruff<span class="w"> </span>check<span class="w"> </span>/path/to/file.py<span class="w"> </span>--add-ignore
 </code></pre></div>
-<p>The <code>--add-noqa</code> flag adds <code>noqa</code> directives with rule codes. To add <code>ruff:ignore</code> comments with
-human-readable rule names instead, use <code>--add-ignore</code> with preview mode enabled.</p>
+<p>Both of these flags use rule codes on stable. To add <code>ruff: ignore</code> comments with human-readable
+rule names instead, use <code>--add-ignore</code> with preview mode enabled.</p>
 <h3 id="isort-action-comments"><a class="toclink" href="#isort-action-comments">isort action comments</a></h3>
 <p>Ruff respects isort's <a href="https://pycqa.github.io/isort/docs/configuration/action_comments.html">action comments</a>
 (<code># isort: skip_file</code>, <code># isort: on</code>, <code># isort: off</code>, <code># isort: skip</code>, and <code># isort: split</code>), which
