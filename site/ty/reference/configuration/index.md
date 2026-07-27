@@ -831,6 +831,30 @@ exclude = [
 
 ______________________________________________________________________
 
+### [`exclude-scripts`](#exclude-scripts)
+
+Whether to exclude files containing PEP 723 inline script metadata unless they are explicitly passed on the command line.
+
+**Default value**: `false`
+
+**Type**: `bool`
+
+**Example usage**:
+
+```
+[tool.ty.src]
+exclude-scripts = true
+
+```
+
+```
+[src]
+exclude-scripts = true
+
+```
+
+______________________________________________________________________
+
 ### [`include`](#include_1)
 
 A list of files and directories to check. The `include` option follows a similar syntax to `.gitignore` but reversed: Including a file or directory will make it so that it (and its contents) are type checked.

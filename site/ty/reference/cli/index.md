@@ -81,6 +81,8 @@ Cannot be used in combination with `--exit-zero` or `--exit-zero-on-warning`.
 Uses gitignore-style syntax to exclude files and directories from type checking. Supports patterns like `tests/`, `*.tmp`, `**/__pycache__/**`.
 ```
 
+[`--exclude-scripts`](#ty-check--exclude-scripts) : Exclude files containing PEP 723 inline script metadata unless passed explicitly. Use `--include-scripts` to disable
+
 [`--exit-zero`](#ty-check--exit-zero) : Always use exit code 0, even when there are error-level diagnostics.
 
 ```
