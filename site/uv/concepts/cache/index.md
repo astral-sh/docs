@@ -25,7 +25,7 @@ As a special case, uv will always rebuild and reinstall any local directory depe
 
 By default, uv will *only* rebuild and reinstall local directory dependencies (e.g., editables) if the `pyproject.toml`, `setup.py`, or `setup.cfg` file in the directory root has changed, or if a `src` directory is added or removed. This is a heuristic and, in some cases, may lead to fewer re-installs than desired.
 
-To incorporate additional information into the cache key for a given package, you can add cache key entries under [`tool.uv.cache-keys`](https://docs.astral.sh/uv/reference/settings/#cache-keys), which covers both file paths and Git commit hashes. Setting [`tool.uv.cache-keys`](https://docs.astral.sh/uv/reference/settings/#cache-keys) will replace defaults, so any necessary files (like `pyproject.toml`) should still be included in the user-defined cache keys.
+To incorporate additional information into the cache key for a given package, you can add cache key entries under [`tool.uv.cache-keys`](../../reference/settings/#cache-keys), which covers both file paths and Git commit hashes. Setting [`tool.uv.cache-keys`](../../reference/settings/#cache-keys) will replace defaults, so any necessary files (like `pyproject.toml`) should still be included in the user-defined cache keys.
 
 For example, if a project specifies dependencies in `pyproject.toml` but uses [`setuptools-scm`](https://pypi.org/project/setuptools-scm/) to manage its version, and should thus be rebuilt whenever the commit hash or dependencies change, you can add the following to the project's `pyproject.toml`:
 
