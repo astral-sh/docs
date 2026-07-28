@@ -5267,7 +5267,7 @@
 <p>When used with a file ending in <code>.py</code> or an HTTP(S) URL, the file will be treated as a script and run with a Python interpreter, i.e., <code>uv run file.py</code> is equivalent to <code>uv run python file.py</code>. For URLs, the script is temporarily downloaded before execution. If the script contains inline dependency metadata, it will be installed into an isolated, ephemeral environment. When used with <code>-</code>, the input will be read from stdin, and treated as a Python script.</p>
 <p>When used in a project, the project environment will be created and updated before invoking the command.</p>
 <p>When used outside a project, if a virtual environment can be found in the current directory or a parent directory, the command will be run in that environment. Otherwise, the command will be run in the environment of the discovered interpreter.</p>
-<p>By default, the project or workspace is discovered from the current working directory. However, when using <code>--preview-features target-workspace-discovery</code>, the project or workspace is instead discovered from the target script's directory.</p>
+<p>When running a script, the project or workspace is discovered from the script's directory. Otherwise, the project or workspace is discovered from the current working directory.</p>
 <p>Arguments following the command (or script) are not interpreted as arguments to uv. All options to uv must be provided before the command, e.g., <code>uv run --verbose foo</code>. A <code>--</code> can be used to separate the command from uv options for clarity, e.g., <code>uv run --python 3.12 -- python</code>.</p>
 <h3 class="cli-reference">Usage</h3>
 
@@ -5437,14 +5437,14 @@
 </dd><dt id="uv-run--package"><a href="#uv-run--package"><code>--package</code></a> <i>package</i></dt><dd><p>Run the command in a specific package in the workspace.</p>
 <p>If the workspace member does not exist, uv will exit with an error.</p>
 </dd><dt id="uv-run--prerelease"><a href="#uv-run--prerelease"><code>--prerelease</code></a> <i>prerelease</i></dt><dd><p>The strategy to use when considering pre-release versions.</p>
-<p>By default, uv will accept pre-releases for packages that <em>only</em> publish pre-releases, along with first-party requirements that contain an explicit pre-release marker in the declared specifiers (<code>if-necessary-or-explicit</code>).</p>
+<p>By default, uv will prefer stable candidates, falling back to pre-releases only after every stable candidate that satisfies the active constraints is rejected (<code>if-necessary</code>).</p>
 <p>May also be set with the <code>UV_PRERELEASE</code> environment variable.</p><p>Possible values:</p>
 <ul>
 <li><code>disallow</code>:  Disallow all pre-release versions</li>
 <li><code>allow</code>:  Allow all pre-release versions</li>
-<li><code>if-necessary</code>:  Allow pre-release versions if all versions of a package are pre-release</li>
-<li><code>explicit</code>:  Allow pre-release versions for first-party packages with explicit pre-release markers in their version requirements</li>
-<li><code>if-necessary-or-explicit</code>:  Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements</li>
+<li><code>if-necessary</code>:  Prefer stable versions, falling back to pre-release versions when necessary</li>
+<li><code>explicit</code>:  Prefer stable versions for first-party packages with explicit pre-release specifiers, falling back to pre-release versions when necessary. Disallow pre-release versions for all other packages</li>
+<li><code>if-necessary-or-explicit</code>:  Deprecated alias for <code>if-necessary</code></li>
 </ul></dd><dt id="uv-run--project"><a href="#uv-run--project"><code>--project</code></a> <i>project</i></dt><dd><p>Discover a project in the given directory.</p>
 <p>All <code>pyproject.toml</code>, <code>uv.toml</code>, and <code>.python-version</code> files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (<code>.venv</code>).</p>
 <p>Other command-line arguments (such as relative paths) will be resolved relative to the current working directory.</p>
@@ -5565,9 +5565,8 @@ used.</p>
 <p>Expects to receive either a hostname (e.g., <code>localhost</code>), a host-port pair (e.g., <code>localhost:8080</code>), or a URL (e.g., <code>https://localhost</code>).</p>
 <p>WARNING: Hosts included in this list will not be verified against the system's certificate store. Only use <code>--allow-insecure-host</code> in a secure network with verified sources, as it bypasses SSL verification and could expose you to MITM attacks.</p>
 <p>May also be set with the <code>UV_INSECURE_HOST</code> environment variable.</p></dd><dt id="uv-init--app"><a href="#uv-init--app"><code>--app</code></a>, <code>--application</code></dt><dd><p>Create a project for an application.</p>
-<p>This is the default behavior if <code>--lib</code> is not requested.</p>
 <p>This project kind is for web servers, scripts, and command-line interfaces.</p>
-<p>By default, an application is not intended to be built and distributed as a Python package. The <code>--package</code> option can be used to create an application that is distributable, e.g., if you want to distribute a command-line interface via PyPI.</p>
+<p>Applications are packaged by default. Use <code>--no-package</code> to create an unpackaged application.</p>
 </dd><dt id="uv-init--author-from"><a href="#uv-init--author-from"><code>--author-from</code></a> <i>author-from</i></dt><dd><p>Fill in the <code>authors</code> field in the <code>pyproject.toml</code>.</p>
 <p>By default, uv will attempt to infer the author information from some sources (e.g., Git) (<code>auto</code>). Use <code>--author-from git</code> to only infer from Git configuration. Use <code>--author-from none</code> to avoid inferring the author information.</p>
 <p>Possible values:</p>
@@ -5621,8 +5620,7 @@ used.</p>
 </dd><dt id="uv-init--no-managed-python"><a href="#uv-init--no-managed-python"><code>--no-managed-python</code></a></dt><dd><p>Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]</p>
 <p>Instead, uv will search for a suitable Python version on the system.</p>
 </dd><dt id="uv-init--no-package"><a href="#uv-init--no-package"><code>--no-package</code></a></dt><dd><p>Do not set up the project to be built as a Python package.</p>
-<p>Does not include a <code>[build-system]</code> for the project.</p>
-<p>This is the default behavior when using <code>--app</code>.</p>
+<p>This option creates the project structure as a flat directory that is not importable as a module and has no <code>[build-system]</code> entry. It can be used for applications that are not expected to be distributed as a package.</p>
 </dd><dt id="uv-init--no-pin-python"><a href="#uv-init--no-pin-python"><code>--no-pin-python</code></a></dt><dd><p>Do not create a <code>.python-version</code> file for the project.</p>
 <p>By default, uv will create a <code>.python-version</code> file containing the minor version of the discovered Python interpreter, which will cause subsequent uv commands to use that version.</p>
 </dd><dt id="uv-init--no-progress"><a href="#uv-init--no-progress"><code>--no-progress</code></a></dt><dd><p>Hide all progress outputs [env: UV_NO_PROGRESS=]</p>
@@ -5635,8 +5633,7 @@ used.</p>
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 </dd><dt id="uv-init--package"><a href="#uv-init--package"><code>--package</code></a></dt><dd><p>Set up the project to be built as a Python package.</p>
 <p>Defines a <code>[build-system]</code> for the project.</p>
-<p>This is the default behavior when using <code>--lib</code> or <code>--build-backend</code>, or when the <code>packaged-init</code> preview feature is enabled. It will become the default unconditionally in the future.</p>
-<p>When using <code>--app</code>, this will include a <code>[project.scripts]</code> entrypoint and use a <code>src/</code> project structure.</p>
+<p>This is the default behavior.</p>
 </dd><dt id="uv-init--project"><a href="#uv-init--project"><code>--project</code></a> <i>project</i></dt><dd><p>Discover a project in the given directory.</p>
 <p>All <code>pyproject.toml</code>, <code>uv.toml</code>, and <code>.python-version</code> files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (<code>.venv</code>).</p>
 <p>Other command-line arguments (such as relative paths) will be resolved relative to the current working directory.</p>
@@ -5836,14 +5833,14 @@ used.</p>
 <p>To enable an optional extra for this requirement instead, see <code>--extra</code>.</p>
 </dd><dt id="uv-add--package"><a href="#uv-add--package"><code>--package</code></a> <i>package</i></dt><dd><p>Add the dependency to a specific package in the workspace</p>
 </dd><dt id="uv-add--prerelease"><a href="#uv-add--prerelease"><code>--prerelease</code></a> <i>prerelease</i></dt><dd><p>The strategy to use when considering pre-release versions.</p>
-<p>By default, uv will accept pre-releases for packages that <em>only</em> publish pre-releases, along with first-party requirements that contain an explicit pre-release marker in the declared specifiers (<code>if-necessary-or-explicit</code>).</p>
+<p>By default, uv will prefer stable candidates, falling back to pre-releases only after every stable candidate that satisfies the active constraints is rejected (<code>if-necessary</code>).</p>
 <p>May also be set with the <code>UV_PRERELEASE</code> environment variable.</p><p>Possible values:</p>
 <ul>
 <li><code>disallow</code>:  Disallow all pre-release versions</li>
 <li><code>allow</code>:  Allow all pre-release versions</li>
-<li><code>if-necessary</code>:  Allow pre-release versions if all versions of a package are pre-release</li>
-<li><code>explicit</code>:  Allow pre-release versions for first-party packages with explicit pre-release markers in their version requirements</li>
-<li><code>if-necessary-or-explicit</code>:  Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements</li>
+<li><code>if-necessary</code>:  Prefer stable versions, falling back to pre-release versions when necessary</li>
+<li><code>explicit</code>:  Prefer stable versions for first-party packages with explicit pre-release specifiers, falling back to pre-release versions when necessary. Disallow pre-release versions for all other packages</li>
+<li><code>if-necessary-or-explicit</code>:  Deprecated alias for <code>if-necessary</code></li>
 </ul></dd><dt id="uv-add--project"><a href="#uv-add--project"><code>--project</code></a> <i>project</i></dt><dd><p>Discover a project in the given directory.</p>
 <p>All <code>pyproject.toml</code>, <code>uv.toml</code>, and <code>.python-version</code> files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (<code>.venv</code>).</p>
 <p>Other command-line arguments (such as relative paths) will be resolved relative to the current working directory.</p>
@@ -6022,14 +6019,14 @@ used.</p>
 </dd><dt id="uv-remove--optional"><a href="#uv-remove--optional"><code>--optional</code></a> <i>optional</i></dt><dd><p>Remove the packages from the project's optional dependencies for the specified extra</p>
 </dd><dt id="uv-remove--package"><a href="#uv-remove--package"><code>--package</code></a> <i>package</i></dt><dd><p>Remove the dependencies from a specific package in the workspace</p>
 </dd><dt id="uv-remove--prerelease"><a href="#uv-remove--prerelease"><code>--prerelease</code></a> <i>prerelease</i></dt><dd><p>The strategy to use when considering pre-release versions.</p>
-<p>By default, uv will accept pre-releases for packages that <em>only</em> publish pre-releases, along with first-party requirements that contain an explicit pre-release marker in the declared specifiers (<code>if-necessary-or-explicit</code>).</p>
+<p>By default, uv will prefer stable candidates, falling back to pre-releases only after every stable candidate that satisfies the active constraints is rejected (<code>if-necessary</code>).</p>
 <p>May also be set with the <code>UV_PRERELEASE</code> environment variable.</p><p>Possible values:</p>
 <ul>
 <li><code>disallow</code>:  Disallow all pre-release versions</li>
 <li><code>allow</code>:  Allow all pre-release versions</li>
-<li><code>if-necessary</code>:  Allow pre-release versions if all versions of a package are pre-release</li>
-<li><code>explicit</code>:  Allow pre-release versions for first-party packages with explicit pre-release markers in their version requirements</li>
-<li><code>if-necessary-or-explicit</code>:  Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements</li>
+<li><code>if-necessary</code>:  Prefer stable versions, falling back to pre-release versions when necessary</li>
+<li><code>explicit</code>:  Prefer stable versions for first-party packages with explicit pre-release specifiers, falling back to pre-release versions when necessary. Disallow pre-release versions for all other packages</li>
+<li><code>if-necessary-or-explicit</code>:  Deprecated alias for <code>if-necessary</code></li>
 </ul></dd><dt id="uv-remove--project"><a href="#uv-remove--project"><code>--project</code></a> <i>project</i></dt><dd><p>Discover a project in the given directory.</p>
 <p>All <code>pyproject.toml</code>, <code>uv.toml</code>, and <code>.python-version</code> files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (<code>.venv</code>).</p>
 <p>Other command-line arguments (such as relative paths) will be resolved relative to the current working directory.</p>
@@ -6210,14 +6207,14 @@ used.</p>
 <li><code>json</code>:  Display the version as JSON</li>
 </ul></dd><dt id="uv-version--package"><a href="#uv-version--package"><code>--package</code></a> <i>package</i></dt><dd><p>Update the version of a specific package in the workspace</p>
 </dd><dt id="uv-version--prerelease"><a href="#uv-version--prerelease"><code>--prerelease</code></a> <i>prerelease</i></dt><dd><p>The strategy to use when considering pre-release versions.</p>
-<p>By default, uv will accept pre-releases for packages that <em>only</em> publish pre-releases, along with first-party requirements that contain an explicit pre-release marker in the declared specifiers (<code>if-necessary-or-explicit</code>).</p>
+<p>By default, uv will prefer stable candidates, falling back to pre-releases only after every stable candidate that satisfies the active constraints is rejected (<code>if-necessary</code>).</p>
 <p>May also be set with the <code>UV_PRERELEASE</code> environment variable.</p><p>Possible values:</p>
 <ul>
 <li><code>disallow</code>:  Disallow all pre-release versions</li>
 <li><code>allow</code>:  Allow all pre-release versions</li>
-<li><code>if-necessary</code>:  Allow pre-release versions if all versions of a package are pre-release</li>
-<li><code>explicit</code>:  Allow pre-release versions for first-party packages with explicit pre-release markers in their version requirements</li>
-<li><code>if-necessary-or-explicit</code>:  Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements</li>
+<li><code>if-necessary</code>:  Prefer stable versions, falling back to pre-release versions when necessary</li>
+<li><code>explicit</code>:  Prefer stable versions for first-party packages with explicit pre-release specifiers, falling back to pre-release versions when necessary. Disallow pre-release versions for all other packages</li>
+<li><code>if-necessary-or-explicit</code>:  Deprecated alias for <code>if-necessary</code></li>
 </ul></dd><dt id="uv-version--project"><a href="#uv-version--project"><code>--project</code></a> <i>project</i></dt><dd><p>Discover a project in the given directory.</p>
 <p>All <code>pyproject.toml</code>, <code>uv.toml</code>, and <code>.python-version</code> files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (<code>.venv</code>).</p>
 <p>Other command-line arguments (such as relative paths) will be resolved relative to the current working directory.</p>
@@ -6434,14 +6431,14 @@ used.</p>
 <p>The workspace's environment (<code>.venv</code>) is updated to reflect the subset of dependencies declared by the specified workspace member packages.</p>
 <p>If any workspace member does not exist, uv will exit with an error.</p>
 </dd><dt id="uv-sync--prerelease"><a href="#uv-sync--prerelease"><code>--prerelease</code></a> <i>prerelease</i></dt><dd><p>The strategy to use when considering pre-release versions.</p>
-<p>By default, uv will accept pre-releases for packages that <em>only</em> publish pre-releases, along with first-party requirements that contain an explicit pre-release marker in the declared specifiers (<code>if-necessary-or-explicit</code>).</p>
+<p>By default, uv will prefer stable candidates, falling back to pre-releases only after every stable candidate that satisfies the active constraints is rejected (<code>if-necessary</code>).</p>
 <p>May also be set with the <code>UV_PRERELEASE</code> environment variable.</p><p>Possible values:</p>
 <ul>
 <li><code>disallow</code>:  Disallow all pre-release versions</li>
 <li><code>allow</code>:  Allow all pre-release versions</li>
-<li><code>if-necessary</code>:  Allow pre-release versions if all versions of a package are pre-release</li>
-<li><code>explicit</code>:  Allow pre-release versions for first-party packages with explicit pre-release markers in their version requirements</li>
-<li><code>if-necessary-or-explicit</code>:  Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements</li>
+<li><code>if-necessary</code>:  Prefer stable versions, falling back to pre-release versions when necessary</li>
+<li><code>explicit</code>:  Prefer stable versions for first-party packages with explicit pre-release specifiers, falling back to pre-release versions when necessary. Disallow pre-release versions for all other packages</li>
+<li><code>if-necessary-or-explicit</code>:  Deprecated alias for <code>if-necessary</code></li>
 </ul></dd><dt id="uv-sync--project"><a href="#uv-sync--project"><code>--project</code></a> <i>project</i></dt><dd><p>Discover a project in the given directory.</p>
 <p>All <code>pyproject.toml</code>, <code>uv.toml</code>, and <code>.python-version</code> files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (<code>.venv</code>).</p>
 <p>Other command-line arguments (such as relative paths) will be resolved relative to the current working directory.</p>
@@ -6654,14 +6651,14 @@ environment in the project.</p>
 </dd><dt id="uv-lock--offline"><a href="#uv-lock--offline"><code>--offline</code></a></dt><dd><p>Disable network access [env: UV_OFFLINE=]</p>
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 </dd><dt id="uv-lock--prerelease"><a href="#uv-lock--prerelease"><code>--prerelease</code></a> <i>prerelease</i></dt><dd><p>The strategy to use when considering pre-release versions.</p>
-<p>By default, uv will accept pre-releases for packages that <em>only</em> publish pre-releases, along with first-party requirements that contain an explicit pre-release marker in the declared specifiers (<code>if-necessary-or-explicit</code>).</p>
+<p>By default, uv will prefer stable candidates, falling back to pre-releases only after every stable candidate that satisfies the active constraints is rejected (<code>if-necessary</code>).</p>
 <p>May also be set with the <code>UV_PRERELEASE</code> environment variable.</p><p>Possible values:</p>
 <ul>
 <li><code>disallow</code>:  Disallow all pre-release versions</li>
 <li><code>allow</code>:  Allow all pre-release versions</li>
-<li><code>if-necessary</code>:  Allow pre-release versions if all versions of a package are pre-release</li>
-<li><code>explicit</code>:  Allow pre-release versions for first-party packages with explicit pre-release markers in their version requirements</li>
-<li><code>if-necessary-or-explicit</code>:  Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements</li>
+<li><code>if-necessary</code>:  Prefer stable versions, falling back to pre-release versions when necessary</li>
+<li><code>explicit</code>:  Prefer stable versions for first-party packages with explicit pre-release specifiers, falling back to pre-release versions when necessary. Disallow pre-release versions for all other packages</li>
+<li><code>if-necessary-or-explicit</code>:  Deprecated alias for <code>if-necessary</code></li>
 </ul></dd><dt id="uv-lock--project"><a href="#uv-lock--project"><code>--project</code></a> <i>project</i></dt><dd><p>Discover a project in the given directory.</p>
 <p>All <code>pyproject.toml</code>, <code>uv.toml</code>, and <code>.python-version</code> files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (<code>.venv</code>).</p>
 <p>Other command-line arguments (such as relative paths) will be resolved relative to the current working directory.</p>
@@ -6871,14 +6868,14 @@ metadata when there are not wheels.</p>
 </dd><dt id="uv-export--package"><a href="#uv-export--package"><code>--package</code></a> <i>package</i></dt><dd><p>Export the dependencies for specific packages in the workspace.</p>
 <p>If any workspace member does not exist, uv will exit with an error.</p>
 </dd><dt id="uv-export--prerelease"><a href="#uv-export--prerelease"><code>--prerelease</code></a> <i>prerelease</i></dt><dd><p>The strategy to use when considering pre-release versions.</p>
-<p>By default, uv will accept pre-releases for packages that <em>only</em> publish pre-releases, along with first-party requirements that contain an explicit pre-release marker in the declared specifiers (<code>if-necessary-or-explicit</code>).</p>
+<p>By default, uv will prefer stable candidates, falling back to pre-releases only after every stable candidate that satisfies the active constraints is rejected (<code>if-necessary</code>).</p>
 <p>May also be set with the <code>UV_PRERELEASE</code> environment variable.</p><p>Possible values:</p>
 <ul>
 <li><code>disallow</code>:  Disallow all pre-release versions</li>
 <li><code>allow</code>:  Allow all pre-release versions</li>
-<li><code>if-necessary</code>:  Allow pre-release versions if all versions of a package are pre-release</li>
-<li><code>explicit</code>:  Allow pre-release versions for first-party packages with explicit pre-release markers in their version requirements</li>
-<li><code>if-necessary-or-explicit</code>:  Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements</li>
+<li><code>if-necessary</code>:  Prefer stable versions, falling back to pre-release versions when necessary</li>
+<li><code>explicit</code>:  Prefer stable versions for first-party packages with explicit pre-release specifiers, falling back to pre-release versions when necessary. Disallow pre-release versions for all other packages</li>
+<li><code>if-necessary-or-explicit</code>:  Deprecated alias for <code>if-necessary</code></li>
 </ul></dd><dt id="uv-export--project"><a href="#uv-export--project"><code>--project</code></a> <i>project</i></dt><dd><p>Discover a project in the given directory.</p>
 <p>All <code>pyproject.toml</code>, <code>uv.toml</code>, and <code>.python-version</code> files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (<code>.venv</code>).</p>
 <p>Other command-line arguments (such as relative paths) will be resolved relative to the current working directory.</p>
@@ -7058,14 +7055,14 @@ metadata when there are not wheels.</p>
 </dd><dt id="uv-tree--outdated"><a href="#uv-tree--outdated"><code>--outdated</code></a></dt><dd><p>Show the latest available version of each package in the tree</p>
 </dd><dt id="uv-tree--package"><a href="#uv-tree--package"><code>--package</code></a> <i>package</i></dt><dd><p>Display only the specified packages</p>
 </dd><dt id="uv-tree--prerelease"><a href="#uv-tree--prerelease"><code>--prerelease</code></a> <i>prerelease</i></dt><dd><p>The strategy to use when considering pre-release versions.</p>
-<p>By default, uv will accept pre-releases for packages that <em>only</em> publish pre-releases, along with first-party requirements that contain an explicit pre-release marker in the declared specifiers (<code>if-necessary-or-explicit</code>).</p>
+<p>By default, uv will prefer stable candidates, falling back to pre-releases only after every stable candidate that satisfies the active constraints is rejected (<code>if-necessary</code>).</p>
 <p>May also be set with the <code>UV_PRERELEASE</code> environment variable.</p><p>Possible values:</p>
 <ul>
 <li><code>disallow</code>:  Disallow all pre-release versions</li>
 <li><code>allow</code>:  Allow all pre-release versions</li>
-<li><code>if-necessary</code>:  Allow pre-release versions if all versions of a package are pre-release</li>
-<li><code>explicit</code>:  Allow pre-release versions for first-party packages with explicit pre-release markers in their version requirements</li>
-<li><code>if-necessary-or-explicit</code>:  Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements</li>
+<li><code>if-necessary</code>:  Prefer stable versions, falling back to pre-release versions when necessary</li>
+<li><code>explicit</code>:  Prefer stable versions for first-party packages with explicit pre-release specifiers, falling back to pre-release versions when necessary. Disallow pre-release versions for all other packages</li>
+<li><code>if-necessary-or-explicit</code>:  Deprecated alias for <code>if-necessary</code></li>
 </ul></dd><dt id="uv-tree--project"><a href="#uv-tree--project"><code>--project</code></a> <i>project</i></dt><dd><p>Discover a project in the given directory.</p>
 <p>All <code>pyproject.toml</code>, <code>uv.toml</code>, and <code>.python-version</code> files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (<code>.venv</code>).</p>
 <p>Other command-line arguments (such as relative paths) will be resolved relative to the current working directory.</p>
@@ -7385,14 +7382,14 @@ interpreter. Use <code>--universal</code> to display the tree for all platforms,
 </dd><dt id="uv-check--package"><a href="#uv-check--package"><code>--package</code></a> <i>package</i></dt><dd><p>Check specific packages in the workspace.</p>
 <p>The workspace's environment is synchronized to include the selected members and their dependencies. Only files owned by the selected members are checked.</p>
 </dd><dt id="uv-check--prerelease"><a href="#uv-check--prerelease"><code>--prerelease</code></a> <i>prerelease</i></dt><dd><p>The strategy to use when considering pre-release versions.</p>
-<p>By default, uv will accept pre-releases for packages that <em>only</em> publish pre-releases, along with first-party requirements that contain an explicit pre-release marker in the declared specifiers (<code>if-necessary-or-explicit</code>).</p>
+<p>By default, uv will prefer stable candidates, falling back to pre-releases only after every stable candidate that satisfies the active constraints is rejected (<code>if-necessary</code>).</p>
 <p>May also be set with the <code>UV_PRERELEASE</code> environment variable.</p><p>Possible values:</p>
 <ul>
 <li><code>disallow</code>:  Disallow all pre-release versions</li>
 <li><code>allow</code>:  Allow all pre-release versions</li>
-<li><code>if-necessary</code>:  Allow pre-release versions if all versions of a package are pre-release</li>
-<li><code>explicit</code>:  Allow pre-release versions for first-party packages with explicit pre-release markers in their version requirements</li>
-<li><code>if-necessary-or-explicit</code>:  Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements</li>
+<li><code>if-necessary</code>:  Prefer stable versions, falling back to pre-release versions when necessary</li>
+<li><code>explicit</code>:  Prefer stable versions for first-party packages with explicit pre-release specifiers, falling back to pre-release versions when necessary. Disallow pre-release versions for all other packages</li>
+<li><code>if-necessary-or-explicit</code>:  Deprecated alias for <code>if-necessary</code></li>
 </ul></dd><dt id="uv-check--project"><a href="#uv-check--project"><code>--project</code></a> <i>project</i></dt><dd><p>Discover a project in the given directory.</p>
 <p>All <code>pyproject.toml</code>, <code>uv.toml</code>, and <code>.python-version</code> files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (<code>.venv</code>).</p>
 <p>Other command-line arguments (such as relative paths) will be resolved relative to the current working directory.</p>
@@ -7573,14 +7570,14 @@ interpreter. Use <code>--universal</code> to display the tree for all platforms,
 <li><code>json</code>:  Display the result in JSON format</li>
 <li><code>sarif</code>:  Display the result in SARIF format</li>
 </ul></dd><dt id="uv-audit--prerelease"><a href="#uv-audit--prerelease"><code>--prerelease</code></a> <i>prerelease</i></dt><dd><p>The strategy to use when considering pre-release versions.</p>
-<p>By default, uv will accept pre-releases for packages that <em>only</em> publish pre-releases, along with first-party requirements that contain an explicit pre-release marker in the declared specifiers (<code>if-necessary-or-explicit</code>).</p>
+<p>By default, uv will prefer stable candidates, falling back to pre-releases only after every stable candidate that satisfies the active constraints is rejected (<code>if-necessary</code>).</p>
 <p>May also be set with the <code>UV_PRERELEASE</code> environment variable.</p><p>Possible values:</p>
 <ul>
 <li><code>disallow</code>:  Disallow all pre-release versions</li>
 <li><code>allow</code>:  Allow all pre-release versions</li>
-<li><code>if-necessary</code>:  Allow pre-release versions if all versions of a package are pre-release</li>
-<li><code>explicit</code>:  Allow pre-release versions for first-party packages with explicit pre-release markers in their version requirements</li>
-<li><code>if-necessary-or-explicit</code>:  Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements</li>
+<li><code>if-necessary</code>:  Prefer stable versions, falling back to pre-release versions when necessary</li>
+<li><code>explicit</code>:  Prefer stable versions for first-party packages with explicit pre-release specifiers, falling back to pre-release versions when necessary. Disallow pre-release versions for all other packages</li>
+<li><code>if-necessary-or-explicit</code>:  Deprecated alias for <code>if-necessary</code></li>
 </ul></dd><dt id="uv-audit--project"><a href="#uv-audit--project"><code>--project</code></a> <i>project</i></dt><dd><p>Discover a project in the given directory.</p>
 <p>All <code>pyproject.toml</code>, <code>uv.toml</code>, and <code>.python-version</code> files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (<code>.venv</code>).</p>
 <p>Other command-line arguments (such as relative paths) will be resolved relative to the current working directory.</p>
@@ -7825,14 +7822,14 @@ interpreter. Use <code>--universal</code> to display the tree for all platforms,
 <p>Overrides files are <code>requirements.txt</code>-like files that force a specific version of a requirement to be installed, regardless of the requirements declared by any constituent package, and regardless of whether this would be considered an invalid resolution.</p>
 <p>While constraints are <em>additive</em>, in that they're combined with the requirements of the constituent packages, overrides are <em>absolute</em>, in that they completely replace the requirements of the constituent packages.</p>
 <p>May also be set with the <code>UV_OVERRIDE</code> environment variable.</p></dd><dt id="uv-tool-run--prerelease"><a href="#uv-tool-run--prerelease"><code>--prerelease</code></a> <i>prerelease</i></dt><dd><p>The strategy to use when considering pre-release versions.</p>
-<p>By default, uv will accept pre-releases for packages that <em>only</em> publish pre-releases, along with first-party requirements that contain an explicit pre-release marker in the declared specifiers (<code>if-necessary-or-explicit</code>).</p>
+<p>By default, uv will prefer stable candidates, falling back to pre-releases only after every stable candidate that satisfies the active constraints is rejected (<code>if-necessary</code>).</p>
 <p>May also be set with the <code>UV_PRERELEASE</code> environment variable.</p><p>Possible values:</p>
 <ul>
 <li><code>disallow</code>:  Disallow all pre-release versions</li>
 <li><code>allow</code>:  Allow all pre-release versions</li>
-<li><code>if-necessary</code>:  Allow pre-release versions if all versions of a package are pre-release</li>
-<li><code>explicit</code>:  Allow pre-release versions for first-party packages with explicit pre-release markers in their version requirements</li>
-<li><code>if-necessary-or-explicit</code>:  Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements</li>
+<li><code>if-necessary</code>:  Prefer stable versions, falling back to pre-release versions when necessary</li>
+<li><code>explicit</code>:  Prefer stable versions for first-party packages with explicit pre-release specifiers, falling back to pre-release versions when necessary. Disallow pre-release versions for all other packages</li>
+<li><code>if-necessary-or-explicit</code>:  Deprecated alias for <code>if-necessary</code></li>
 </ul></dd><dt id="uv-tool-run--project"><a href="#uv-tool-run--project"><code>--project</code></a> <i>project</i></dt><dd><p>Discover a project in the given directory.</p>
 <p>All <code>pyproject.toml</code>, <code>uv.toml</code>, and <code>.python-version</code> files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (<code>.venv</code>).</p>
 <p>Other command-line arguments (such as relative paths) will be resolved relative to the current working directory.</p>
@@ -8114,14 +8111,14 @@ interpreter. Use <code>--universal</code> to display the tree for all platforms,
 <p>Overrides files are <code>requirements.txt</code>-like files that force a specific version of a requirement to be installed, regardless of the requirements declared by any constituent package, and regardless of whether this would be considered an invalid resolution.</p>
 <p>While constraints are <em>additive</em>, in that they're combined with the requirements of the constituent packages, overrides are <em>absolute</em>, in that they completely replace the requirements of the constituent packages.</p>
 <p>May also be set with the <code>UV_OVERRIDE</code> environment variable.</p></dd><dt id="uv-tool-install--prerelease"><a href="#uv-tool-install--prerelease"><code>--prerelease</code></a> <i>prerelease</i></dt><dd><p>The strategy to use when considering pre-release versions.</p>
-<p>By default, uv will accept pre-releases for packages that <em>only</em> publish pre-releases, along with first-party requirements that contain an explicit pre-release marker in the declared specifiers (<code>if-necessary-or-explicit</code>).</p>
+<p>By default, uv will prefer stable candidates, falling back to pre-releases only after every stable candidate that satisfies the active constraints is rejected (<code>if-necessary</code>).</p>
 <p>May also be set with the <code>UV_PRERELEASE</code> environment variable.</p><p>Possible values:</p>
 <ul>
 <li><code>disallow</code>:  Disallow all pre-release versions</li>
 <li><code>allow</code>:  Allow all pre-release versions</li>
-<li><code>if-necessary</code>:  Allow pre-release versions if all versions of a package are pre-release</li>
-<li><code>explicit</code>:  Allow pre-release versions for first-party packages with explicit pre-release markers in their version requirements</li>
-<li><code>if-necessary-or-explicit</code>:  Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements</li>
+<li><code>if-necessary</code>:  Prefer stable versions, falling back to pre-release versions when necessary</li>
+<li><code>explicit</code>:  Prefer stable versions for first-party packages with explicit pre-release specifiers, falling back to pre-release versions when necessary. Disallow pre-release versions for all other packages</li>
+<li><code>if-necessary-or-explicit</code>:  Deprecated alias for <code>if-necessary</code></li>
 </ul></dd><dt id="uv-tool-install--project"><a href="#uv-tool-install--project"><code>--project</code></a> <i>project</i></dt><dd><p>Discover a project in the given directory.</p>
 <p>All <code>pyproject.toml</code>, <code>uv.toml</code>, and <code>.python-version</code> files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (<code>.venv</code>).</p>
 <p>Other command-line arguments (such as relative paths) will be resolved relative to the current working directory.</p>
@@ -8390,14 +8387,14 @@ interpreter. Use <code>--universal</code> to display the tree for all platforms,
 </dd><dt id="uv-tool-upgrade--offline"><a href="#uv-tool-upgrade--offline"><code>--offline</code></a></dt><dd><p>Disable network access [env: UV_OFFLINE=]</p>
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 </dd><dt id="uv-tool-upgrade--prerelease"><a href="#uv-tool-upgrade--prerelease"><code>--prerelease</code></a> <i>prerelease</i></dt><dd><p>The strategy to use when considering pre-release versions.</p>
-<p>By default, uv will accept pre-releases for packages that <em>only</em> publish pre-releases, along with first-party requirements that contain an explicit pre-release marker in the declared specifiers (<code>if-necessary-or-explicit</code>).</p>
+<p>By default, uv will prefer stable candidates, falling back to pre-releases only after every stable candidate that satisfies the active constraints is rejected (<code>if-necessary</code>).</p>
 <p>May also be set with the <code>UV_PRERELEASE</code> environment variable.</p><p>Possible values:</p>
 <ul>
 <li><code>disallow</code>:  Disallow all pre-release versions</li>
 <li><code>allow</code>:  Allow all pre-release versions</li>
-<li><code>if-necessary</code>:  Allow pre-release versions if all versions of a package are pre-release</li>
-<li><code>explicit</code>:  Allow pre-release versions for first-party packages with explicit pre-release markers in their version requirements</li>
-<li><code>if-necessary-or-explicit</code>:  Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements</li>
+<li><code>if-necessary</code>:  Prefer stable versions, falling back to pre-release versions when necessary</li>
+<li><code>explicit</code>:  Prefer stable versions for first-party packages with explicit pre-release specifiers, falling back to pre-release versions when necessary. Disallow pre-release versions for all other packages</li>
+<li><code>if-necessary-or-explicit</code>:  Deprecated alias for <code>if-necessary</code></li>
 </ul></dd><dt id="uv-tool-upgrade--project"><a href="#uv-tool-upgrade--project"><code>--project</code></a> <i>project</i></dt><dd><p>Discover a project in the given directory.</p>
 <p>All <code>pyproject.toml</code>, <code>uv.toml</code>, and <code>.python-version</code> files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (<code>.venv</code>).</p>
 <p>Other command-line arguments (such as relative paths) will be resolved relative to the current working directory.</p>
@@ -8952,6 +8949,7 @@ uv will exit with an error.</p>
 </dd><dt id="uv-python-install--quiet"><a href="#uv-python-install--quiet"><code>--quiet</code></a>, <code>-q</code></dt><dd><p>Use quiet output.</p>
 <p>Repeating this option, e.g., <code>-qq</code>, will enable a silent mode in which uv will write no output to stdout.</p>
 </dd><dt id="uv-python-install--reinstall"><a href="#uv-python-install--reinstall"><code>--reinstall</code></a>, <code>-r</code></dt><dd><p>Reinstall the requested Python version, if it's already installed.</p>
+<p>If a minor version is requested, all matching installed patch versions are reinstalled.</p>
 <p>By default, uv will exit successfully if the version is already installed.</p>
 </dd><dt id="uv-python-install--system-certs"><a href="#uv-python-install--system-certs"><code>--system-certs</code></a></dt><dd><p>Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]</p>
 <p>By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).</p>
@@ -9430,7 +9428,9 @@ from the following environment variables, in order of preference:</p>
 <p>May also be set with the <code>UV_BUILD_CONSTRAINT</code> environment variable.</p></dd><dt id="uv-pip-compile--cache-dir"><a href="#uv-pip-compile--cache-dir"><code>--cache-dir</code></a> <i>cache-dir</i></dt><dd><p>Path to the cache directory.</p>
 <p>Defaults to <code>$XDG_CACHE_HOME/uv</code> or <code>$HOME/.cache/uv</code> on macOS and Linux, and <code>%LOCALAPPDATA%\uv\cache</code> on Windows.</p>
 <p>To view the location of the cache directory, run <code>uv cache dir</code>.</p>
-<p>May also be set with the <code>UV_CACHE_DIR</code> environment variable.</p></dd><dt id="uv-pip-compile--color"><a href="#uv-pip-compile--color"><code>--color</code></a> <i>color-choice</i></dt><dd><p>Control the use of color in output.</p>
+<p>May also be set with the <code>UV_CACHE_DIR</code> environment variable.</p></dd><dt id="uv-pip-compile--cert"><a href="#uv-pip-compile--cert"><code>--cert</code></a> <i>file</i></dt><dd><p>Path to a PEM-encoded CA certificate bundle.</p>
+<p>If provided, this overrides the default certificate source.</p>
+</dd><dt id="uv-pip-compile--color"><a href="#uv-pip-compile--color"><code>--color</code></a> <i>color-choice</i></dt><dd><p>Control the use of color in output.</p>
 <p>By default, uv will automatically detect support for colors when writing to a terminal.</p>
 <p>Possible values:</p>
 <ul>
@@ -9565,14 +9565,14 @@ from the following environment variables, in order of preference:</p>
 <p>Overrides files are <code>requirements.txt</code>-like files that force a specific version of a requirement to be installed, regardless of the requirements declared by any constituent package, and regardless of whether this would be considered an invalid resolution.</p>
 <p>While constraints are <em>additive</em>, in that they're combined with the requirements of the constituent packages, overrides are <em>absolute</em>, in that they completely replace the requirements of the constituent packages.</p>
 <p>May also be set with the <code>UV_OVERRIDE</code> environment variable.</p></dd><dt id="uv-pip-compile--prerelease"><a href="#uv-pip-compile--prerelease"><code>--prerelease</code></a> <i>prerelease</i></dt><dd><p>The strategy to use when considering pre-release versions.</p>
-<p>By default, uv will accept pre-releases for packages that <em>only</em> publish pre-releases, along with first-party requirements that contain an explicit pre-release marker in the declared specifiers (<code>if-necessary-or-explicit</code>).</p>
+<p>By default, uv will prefer stable candidates, falling back to pre-releases only after every stable candidate that satisfies the active constraints is rejected (<code>if-necessary</code>).</p>
 <p>May also be set with the <code>UV_PRERELEASE</code> environment variable.</p><p>Possible values:</p>
 <ul>
 <li><code>disallow</code>:  Disallow all pre-release versions</li>
 <li><code>allow</code>:  Allow all pre-release versions</li>
-<li><code>if-necessary</code>:  Allow pre-release versions if all versions of a package are pre-release</li>
-<li><code>explicit</code>:  Allow pre-release versions for first-party packages with explicit pre-release markers in their version requirements</li>
-<li><code>if-necessary-or-explicit</code>:  Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements</li>
+<li><code>if-necessary</code>:  Prefer stable versions, falling back to pre-release versions when necessary</li>
+<li><code>explicit</code>:  Prefer stable versions for first-party packages with explicit pre-release specifiers, falling back to pre-release versions when necessary. Disallow pre-release versions for all other packages</li>
+<li><code>if-necessary-or-explicit</code>:  Deprecated alias for <code>if-necessary</code></li>
 </ul></dd><dt id="uv-pip-compile--project"><a href="#uv-pip-compile--project"><code>--project</code></a> <i>project</i></dt><dd><p>Discover a project in the given directory.</p>
 <p>All <code>pyproject.toml</code>, <code>uv.toml</code>, and <code>.python-version</code> files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (<code>.venv</code>).</p>
 <p>Other command-line arguments (such as relative paths) will be resolved relative to the current working directory.</p>
@@ -9759,7 +9759,9 @@ by <code>--python-version</code>.</p>
 <p>May also be set with the <code>UV_BUILD_CONSTRAINT</code> environment variable.</p></dd><dt id="uv-pip-sync--cache-dir"><a href="#uv-pip-sync--cache-dir"><code>--cache-dir</code></a> <i>cache-dir</i></dt><dd><p>Path to the cache directory.</p>
 <p>Defaults to <code>$XDG_CACHE_HOME/uv</code> or <code>$HOME/.cache/uv</code> on macOS and Linux, and <code>%LOCALAPPDATA%\uv\cache</code> on Windows.</p>
 <p>To view the location of the cache directory, run <code>uv cache dir</code>.</p>
-<p>May also be set with the <code>UV_CACHE_DIR</code> environment variable.</p></dd><dt id="uv-pip-sync--color"><a href="#uv-pip-sync--color"><code>--color</code></a> <i>color-choice</i></dt><dd><p>Control the use of color in output.</p>
+<p>May also be set with the <code>UV_CACHE_DIR</code> environment variable.</p></dd><dt id="uv-pip-sync--cert"><a href="#uv-pip-sync--cert"><code>--cert</code></a> <i>file</i></dt><dd><p>Path to a PEM-encoded CA certificate bundle.</p>
+<p>If provided, this overrides the default certificate source.</p>
+</dd><dt id="uv-pip-sync--color"><a href="#uv-pip-sync--color"><code>--color</code></a> <i>color-choice</i></dt><dd><p>Control the use of color in output.</p>
 <p>By default, uv will automatically detect support for colors when writing to a terminal.</p>
 <p>Possible values:</p>
 <ul>
@@ -10039,7 +10041,9 @@ be used with caution, as it can modify the system Python installation.</p>
 <p>May also be set with the <code>UV_BUILD_CONSTRAINT</code> environment variable.</p></dd><dt id="uv-pip-install--cache-dir"><a href="#uv-pip-install--cache-dir"><code>--cache-dir</code></a> <i>cache-dir</i></dt><dd><p>Path to the cache directory.</p>
 <p>Defaults to <code>$XDG_CACHE_HOME/uv</code> or <code>$HOME/.cache/uv</code> on macOS and Linux, and <code>%LOCALAPPDATA%\uv\cache</code> on Windows.</p>
 <p>To view the location of the cache directory, run <code>uv cache dir</code>.</p>
-<p>May also be set with the <code>UV_CACHE_DIR</code> environment variable.</p></dd><dt id="uv-pip-install--color"><a href="#uv-pip-install--color"><code>--color</code></a> <i>color-choice</i></dt><dd><p>Control the use of color in output.</p>
+<p>May also be set with the <code>UV_CACHE_DIR</code> environment variable.</p></dd><dt id="uv-pip-install--cert"><a href="#uv-pip-install--cert"><code>--cert</code></a> <i>file</i></dt><dd><p>Path to a PEM-encoded CA certificate bundle.</p>
+<p>If provided, this overrides the default certificate source.</p>
+</dd><dt id="uv-pip-install--color"><a href="#uv-pip-install--color"><code>--color</code></a> <i>color-choice</i></dt><dd><p>Control the use of color in output.</p>
 <p>By default, uv will automatically detect support for colors when writing to a terminal.</p>
 <p>Possible values:</p>
 <ul>
@@ -10166,14 +10170,14 @@ be used with caution, as it can modify the system Python installation.</p>
 <p>In general, prefer the use of <code>--python</code> to install into an alternate environment, as scripts and other artifacts installed via <code>--prefix</code> will reference the installing interpreter, rather than any interpreter added to the <code>--prefix</code> directory, rendering them non-portable.</p>
 <p>Unlike other install operations, this command does not require discovery of an existing Python environment and only searches for a Python interpreter to use for package resolution. If a suitable Python interpreter cannot be found, uv will install one. To disable this, add <code>--no-python-downloads</code>.</p>
 </dd><dt id="uv-pip-install--prerelease"><a href="#uv-pip-install--prerelease"><code>--prerelease</code></a> <i>prerelease</i></dt><dd><p>The strategy to use when considering pre-release versions.</p>
-<p>By default, uv will accept pre-releases for packages that <em>only</em> publish pre-releases, along with first-party requirements that contain an explicit pre-release marker in the declared specifiers (<code>if-necessary-or-explicit</code>).</p>
+<p>By default, uv will prefer stable candidates, falling back to pre-releases only after every stable candidate that satisfies the active constraints is rejected (<code>if-necessary</code>).</p>
 <p>May also be set with the <code>UV_PRERELEASE</code> environment variable.</p><p>Possible values:</p>
 <ul>
 <li><code>disallow</code>:  Disallow all pre-release versions</li>
 <li><code>allow</code>:  Allow all pre-release versions</li>
-<li><code>if-necessary</code>:  Allow pre-release versions if all versions of a package are pre-release</li>
-<li><code>explicit</code>:  Allow pre-release versions for first-party packages with explicit pre-release markers in their version requirements</li>
-<li><code>if-necessary-or-explicit</code>:  Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements</li>
+<li><code>if-necessary</code>:  Prefer stable versions, falling back to pre-release versions when necessary</li>
+<li><code>explicit</code>:  Prefer stable versions for first-party packages with explicit pre-release specifiers, falling back to pre-release versions when necessary. Disallow pre-release versions for all other packages</li>
+<li><code>if-necessary-or-explicit</code>:  Deprecated alias for <code>if-necessary</code></li>
 </ul></dd><dt id="uv-pip-install--project"><a href="#uv-pip-install--project"><code>--project</code></a> <i>project</i></dt><dd><p>Discover a project in the given directory.</p>
 <p>All <code>pyproject.toml</code>, <code>uv.toml</code>, and <code>.python-version</code> files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (<code>.venv</code>).</p>
 <p>Other command-line arguments (such as relative paths) will be resolved relative to the current working directory.</p>
@@ -10359,7 +10363,9 @@ should be used with caution, as it can modify the system Python installation.</p
 <p>May also be set with the <code>UV_BREAK_SYSTEM_PACKAGES</code> environment variable.</p></dd><dt id="uv-pip-uninstall--cache-dir"><a href="#uv-pip-uninstall--cache-dir"><code>--cache-dir</code></a> <i>cache-dir</i></dt><dd><p>Path to the cache directory.</p>
 <p>Defaults to <code>$XDG_CACHE_HOME/uv</code> or <code>$HOME/.cache/uv</code> on macOS and Linux, and <code>%LOCALAPPDATA%\uv\cache</code> on Windows.</p>
 <p>To view the location of the cache directory, run <code>uv cache dir</code>.</p>
-<p>May also be set with the <code>UV_CACHE_DIR</code> environment variable.</p></dd><dt id="uv-pip-uninstall--color"><a href="#uv-pip-uninstall--color"><code>--color</code></a> <i>color-choice</i></dt><dd><p>Control the use of color in output.</p>
+<p>May also be set with the <code>UV_CACHE_DIR</code> environment variable.</p></dd><dt id="uv-pip-uninstall--cert"><a href="#uv-pip-uninstall--cert"><code>--cert</code></a> <i>file</i></dt><dd><p>Path to a PEM-encoded CA certificate bundle.</p>
+<p>If provided, this overrides the default certificate source.</p>
+</dd><dt id="uv-pip-uninstall--color"><a href="#uv-pip-uninstall--color"><code>--color</code></a> <i>color-choice</i></dt><dd><p>Control the use of color in output.</p>
 <p>By default, uv will automatically detect support for colors when writing to a terminal.</p>
 <p>Possible values:</p>
 <ul>
@@ -10433,7 +10439,9 @@ should be used with caution, as it can modify the system Python installation.</p
 <p>May also be set with the <code>UV_INSECURE_HOST</code> environment variable.</p></dd><dt id="uv-pip-freeze--cache-dir"><a href="#uv-pip-freeze--cache-dir"><code>--cache-dir</code></a> <i>cache-dir</i></dt><dd><p>Path to the cache directory.</p>
 <p>Defaults to <code>$XDG_CACHE_HOME/uv</code> or <code>$HOME/.cache/uv</code> on macOS and Linux, and <code>%LOCALAPPDATA%\uv\cache</code> on Windows.</p>
 <p>To view the location of the cache directory, run <code>uv cache dir</code>.</p>
-<p>May also be set with the <code>UV_CACHE_DIR</code> environment variable.</p></dd><dt id="uv-pip-freeze--color"><a href="#uv-pip-freeze--color"><code>--color</code></a> <i>color-choice</i></dt><dd><p>Control the use of color in output.</p>
+<p>May also be set with the <code>UV_CACHE_DIR</code> environment variable.</p></dd><dt id="uv-pip-freeze--cert"><a href="#uv-pip-freeze--cert"><code>--cert</code></a> <i>file</i></dt><dd><p>Path to a PEM-encoded CA certificate bundle.</p>
+<p>If provided, this overrides the default certificate source.</p>
+</dd><dt id="uv-pip-freeze--color"><a href="#uv-pip-freeze--color"><code>--color</code></a> <i>color-choice</i></dt><dd><p>Control the use of color in output.</p>
 <p>By default, uv will automatically detect support for colors when writing to a terminal.</p>
 <p>Possible values:</p>
 <ul>
@@ -10500,7 +10508,9 @@ Python environment if no virtual environment is found.</p>
 <p>May also be set with the <code>UV_INSECURE_HOST</code> environment variable.</p></dd><dt id="uv-pip-list--cache-dir"><a href="#uv-pip-list--cache-dir"><code>--cache-dir</code></a> <i>cache-dir</i></dt><dd><p>Path to the cache directory.</p>
 <p>Defaults to <code>$XDG_CACHE_HOME/uv</code> or <code>$HOME/.cache/uv</code> on macOS and Linux, and <code>%LOCALAPPDATA%\uv\cache</code> on Windows.</p>
 <p>To view the location of the cache directory, run <code>uv cache dir</code>.</p>
-<p>May also be set with the <code>UV_CACHE_DIR</code> environment variable.</p></dd><dt id="uv-pip-list--color"><a href="#uv-pip-list--color"><code>--color</code></a> <i>color-choice</i></dt><dd><p>Control the use of color in output.</p>
+<p>May also be set with the <code>UV_CACHE_DIR</code> environment variable.</p></dd><dt id="uv-pip-list--cert"><a href="#uv-pip-list--cert"><code>--cert</code></a> <i>file</i></dt><dd><p>Path to a PEM-encoded CA certificate bundle.</p>
+<p>If provided, this overrides the default certificate source.</p>
+</dd><dt id="uv-pip-list--color"><a href="#uv-pip-list--color"><code>--color</code></a> <i>color-choice</i></dt><dd><p>Control the use of color in output.</p>
 <p>By default, uv will automatically detect support for colors when writing to a terminal.</p>
 <p>Possible values:</p>
 <ul>
@@ -10620,7 +10630,9 @@ Python environment if no virtual environment is found.</p>
 <p>May also be set with the <code>UV_INSECURE_HOST</code> environment variable.</p></dd><dt id="uv-pip-show--cache-dir"><a href="#uv-pip-show--cache-dir"><code>--cache-dir</code></a> <i>cache-dir</i></dt><dd><p>Path to the cache directory.</p>
 <p>Defaults to <code>$XDG_CACHE_HOME/uv</code> or <code>$HOME/.cache/uv</code> on macOS and Linux, and <code>%LOCALAPPDATA%\uv\cache</code> on Windows.</p>
 <p>To view the location of the cache directory, run <code>uv cache dir</code>.</p>
-<p>May also be set with the <code>UV_CACHE_DIR</code> environment variable.</p></dd><dt id="uv-pip-show--color"><a href="#uv-pip-show--color"><code>--color</code></a> <i>color-choice</i></dt><dd><p>Control the use of color in output.</p>
+<p>May also be set with the <code>UV_CACHE_DIR</code> environment variable.</p></dd><dt id="uv-pip-show--cert"><a href="#uv-pip-show--cert"><code>--cert</code></a> <i>file</i></dt><dd><p>Path to a PEM-encoded CA certificate bundle.</p>
+<p>If provided, this overrides the default certificate source.</p>
+</dd><dt id="uv-pip-show--color"><a href="#uv-pip-show--color"><code>--color</code></a> <i>color-choice</i></dt><dd><p>Control the use of color in output.</p>
 <p>By default, uv will automatically detect support for colors when writing to a terminal.</p>
 <p>Possible values:</p>
 <ul>
@@ -10685,7 +10697,9 @@ system Python environment if no virtual environment is found.</p>
 <p>May also be set with the <code>UV_INSECURE_HOST</code> environment variable.</p></dd><dt id="uv-pip-tree--cache-dir"><a href="#uv-pip-tree--cache-dir"><code>--cache-dir</code></a> <i>cache-dir</i></dt><dd><p>Path to the cache directory.</p>
 <p>Defaults to <code>$XDG_CACHE_HOME/uv</code> or <code>$HOME/.cache/uv</code> on macOS and Linux, and <code>%LOCALAPPDATA%\uv\cache</code> on Windows.</p>
 <p>To view the location of the cache directory, run <code>uv cache dir</code>.</p>
-<p>May also be set with the <code>UV_CACHE_DIR</code> environment variable.</p></dd><dt id="uv-pip-tree--color"><a href="#uv-pip-tree--color"><code>--color</code></a> <i>color-choice</i></dt><dd><p>Control the use of color in output.</p>
+<p>May also be set with the <code>UV_CACHE_DIR</code> environment variable.</p></dd><dt id="uv-pip-tree--cert"><a href="#uv-pip-tree--cert"><code>--cert</code></a> <i>file</i></dt><dd><p>Path to a PEM-encoded CA certificate bundle.</p>
+<p>If provided, this overrides the default certificate source.</p>
+</dd><dt id="uv-pip-tree--color"><a href="#uv-pip-tree--color"><code>--color</code></a> <i>color-choice</i></dt><dd><p>Control the use of color in output.</p>
 <p>By default, uv will automatically detect support for colors when writing to a terminal.</p>
 <p>Possible values:</p>
 <ul>
@@ -10795,7 +10809,9 @@ Python environment if no virtual environment is found.</p>
 <p>May also be set with the <code>UV_INSECURE_HOST</code> environment variable.</p></dd><dt id="uv-pip-check--cache-dir"><a href="#uv-pip-check--cache-dir"><code>--cache-dir</code></a> <i>cache-dir</i></dt><dd><p>Path to the cache directory.</p>
 <p>Defaults to <code>$XDG_CACHE_HOME/uv</code> or <code>$HOME/.cache/uv</code> on macOS and Linux, and <code>%LOCALAPPDATA%\uv\cache</code> on Windows.</p>
 <p>To view the location of the cache directory, run <code>uv cache dir</code>.</p>
-<p>May also be set with the <code>UV_CACHE_DIR</code> environment variable.</p></dd><dt id="uv-pip-check--color"><a href="#uv-pip-check--color"><code>--color</code></a> <i>color-choice</i></dt><dd><p>Control the use of color in output.</p>
+<p>May also be set with the <code>UV_CACHE_DIR</code> environment variable.</p></dd><dt id="uv-pip-check--cert"><a href="#uv-pip-check--cert"><code>--cert</code></a> <i>file</i></dt><dd><p>Path to a PEM-encoded CA certificate bundle.</p>
+<p>If provided, this overrides the default certificate source.</p>
+</dd><dt id="uv-pip-check--color"><a href="#uv-pip-check--color"><code>--color</code></a> <i>color-choice</i></dt><dd><p>Control the use of color in output.</p>
 <p>By default, uv will automatically detect support for colors when writing to a terminal.</p>
 <p>Possible values:</p>
 <ul>
@@ -11181,14 +11197,14 @@ environments.</p>
 <p>The workspace will be discovered from the provided source directory, or the current directory if no source directory is provided.</p>
 <p>If the workspace member does not exist, uv will exit with an error.</p>
 </dd><dt id="uv-build--prerelease"><a href="#uv-build--prerelease"><code>--prerelease</code></a> <i>prerelease</i></dt><dd><p>The strategy to use when considering pre-release versions.</p>
-<p>By default, uv will accept pre-releases for packages that <em>only</em> publish pre-releases, along with first-party requirements that contain an explicit pre-release marker in the declared specifiers (<code>if-necessary-or-explicit</code>).</p>
+<p>By default, uv will prefer stable candidates, falling back to pre-releases only after every stable candidate that satisfies the active constraints is rejected (<code>if-necessary</code>).</p>
 <p>May also be set with the <code>UV_PRERELEASE</code> environment variable.</p><p>Possible values:</p>
 <ul>
 <li><code>disallow</code>:  Disallow all pre-release versions</li>
 <li><code>allow</code>:  Allow all pre-release versions</li>
-<li><code>if-necessary</code>:  Allow pre-release versions if all versions of a package are pre-release</li>
-<li><code>explicit</code>:  Allow pre-release versions for first-party packages with explicit pre-release markers in their version requirements</li>
-<li><code>if-necessary-or-explicit</code>:  Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements</li>
+<li><code>if-necessary</code>:  Prefer stable versions, falling back to pre-release versions when necessary</li>
+<li><code>explicit</code>:  Prefer stable versions for first-party packages with explicit pre-release specifiers, falling back to pre-release versions when necessary. Disallow pre-release versions for all other packages</li>
+<li><code>if-necessary-or-explicit</code>:  Deprecated alias for <code>if-necessary</code></li>
 </ul></dd><dt id="uv-build--project"><a href="#uv-build--project"><code>--project</code></a> <i>project</i></dt><dd><p>Discover a project in the given directory.</p>
 <p>All <code>pyproject.toml</code>, <code>uv.toml</code>, and <code>.python-version</code> files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (<code>.venv</code>).</p>
 <p>Other command-line arguments (such as relative paths) will be resolved relative to the current working directory.</p>
@@ -11465,14 +11481,14 @@ uv publish --publish-url https://upload.pypi.org/legacy/ --check-url https://pyp
 </dd><dt id="uv-workspace-metadata--offline"><a href="#uv-workspace-metadata--offline"><code>--offline</code></a></dt><dd><p>Disable network access [env: UV_OFFLINE=]</p>
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
 </dd><dt id="uv-workspace-metadata--prerelease"><a href="#uv-workspace-metadata--prerelease"><code>--prerelease</code></a> <i>prerelease</i></dt><dd><p>The strategy to use when considering pre-release versions.</p>
-<p>By default, uv will accept pre-releases for packages that <em>only</em> publish pre-releases, along with first-party requirements that contain an explicit pre-release marker in the declared specifiers (<code>if-necessary-or-explicit</code>).</p>
+<p>By default, uv will prefer stable candidates, falling back to pre-releases only after every stable candidate that satisfies the active constraints is rejected (<code>if-necessary</code>).</p>
 <p>May also be set with the <code>UV_PRERELEASE</code> environment variable.</p><p>Possible values:</p>
 <ul>
 <li><code>disallow</code>:  Disallow all pre-release versions</li>
 <li><code>allow</code>:  Allow all pre-release versions</li>
-<li><code>if-necessary</code>:  Allow pre-release versions if all versions of a package are pre-release</li>
-<li><code>explicit</code>:  Allow pre-release versions for first-party packages with explicit pre-release markers in their version requirements</li>
-<li><code>if-necessary-or-explicit</code>:  Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements</li>
+<li><code>if-necessary</code>:  Prefer stable versions, falling back to pre-release versions when necessary</li>
+<li><code>explicit</code>:  Prefer stable versions for first-party packages with explicit pre-release specifiers, falling back to pre-release versions when necessary. Disallow pre-release versions for all other packages</li>
+<li><code>if-necessary-or-explicit</code>:  Deprecated alias for <code>if-necessary</code></li>
 </ul></dd><dt id="uv-workspace-metadata--project"><a href="#uv-workspace-metadata--project"><code>--project</code></a> <i>project</i></dt><dd><p>Discover a project in the given directory.</p>
 <p>All <code>pyproject.toml</code>, <code>uv.toml</code>, and <code>.python-version</code> files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (<code>.venv</code>).</p>
 <p>Other command-line arguments (such as relative paths) will be resolved relative to the current working directory.</p>

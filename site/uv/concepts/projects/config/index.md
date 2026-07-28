@@ -99,7 +99,7 @@ A build system determines how the project should be packaged and installed. Proj
 
 uv uses the presence of a build system to determine if a project contains a package that should be installed in the project virtual environment. If a build system is not defined, uv will not attempt to build or install the project itself, just its dependencies. If a build system is defined, uv will build and install the project into the project environment.
 
-The `--build-backend` option can be provided to `uv init` to create a packaged project with an appropriate layout. The `--package` option can be provided to `uv init` to create a packaged project with the default build system.
+By default, `uv init` creates a packaged project using the [uv build backend](../../build-backend/). The `--build-backend` option can be provided to select an alternative build backend, and `--no-package` can be provided to create a flat, unpackaged project instead.
 
 Note
 

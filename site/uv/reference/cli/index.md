@@ -729,7 +729,7 @@ When used in a project, the project environment will be created and updated befo
 
 When used outside a project, if a virtual environment can be found in the current directory or a parent directory, the command will be run in that environment. Otherwise, the command will be run in the environment of the discovered interpreter.
 
-By default, the project or workspace is discovered from the current working directory. However, when using `--preview-features target-workspace-discovery`, the project or workspace is instead discovered from the target script's directory.
+When running a script, the project or workspace is discovered from the script's directory. Otherwise, the project or workspace is discovered from the current working directory.
 
 Arguments following the command (or script) are not interpreted as arguments to uv. All options to uv must be provided before the command, e.g., `uv run --verbose foo`. A `--` can be used to separate the command from uv options for clarity, e.g., `uv run --python 3.12 -- python`.
 
@@ -1195,7 +1195,7 @@ If the workspace member does not exist, uv will exit with an error.
 [`--prerelease`](#uv-run--prerelease) *prerelease* : The strategy to use when considering pre-release versions.
 
 ```
-By default, uv will accept pre-releases for packages that *only* publish pre-releases, along with first-party requirements that contain an explicit pre-release marker in the declared specifiers (`if-necessary-or-explicit`).
+By default, uv will prefer stable candidates, falling back to pre-releases only after every stable candidate that satisfies the active constraints is rejected (`if-necessary`).
 
 May also be set with the `UV_PRERELEASE` environment variable.
 
@@ -1203,9 +1203,9 @@ Possible values:
 
 - `disallow`: Disallow all pre-release versions
 - `allow`: Allow all pre-release versions
-- `if-necessary`: Allow pre-release versions if all versions of a package are pre-release
-- `explicit`: Allow pre-release versions for first-party packages with explicit pre-release markers in their version requirements
-- `if-necessary-or-explicit`: Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements
+- `if-necessary`: Prefer stable versions, falling back to pre-release versions when necessary
+- `explicit`: Prefer stable versions for first-party packages with explicit pre-release specifiers, falling back to pre-release versions when necessary. Disallow pre-release versions for all other packages
+- `if-necessary-or-explicit`: Deprecated alias for `if-necessary`
 ```
 
 [`--project`](#uv-run--project) *project* : Discover a project in the given directory.
@@ -1417,11 +1417,9 @@ May also be set with the `UV_INSECURE_HOST` environment variable.
 [`--app`](#uv-init--app), `--application` : Create a project for an application.
 
 ```
-This is the default behavior if `--lib` is not requested.
-
 This project kind is for web servers, scripts, and command-line interfaces.
 
-By default, an application is not intended to be built and distributed as a Python package. The `--package` option can be used to create an application that is distributable, e.g., if you want to distribute a command-line interface via PyPI.
+Applications are packaged by default. Use `--no-package` to create an unpackaged application.
 ```
 
 [`--author-from`](#uv-init--author-from) *author-from* : Fill in the `authors` field in the `pyproject.toml`.
@@ -1552,9 +1550,7 @@ Instead, uv will search for a suitable Python version on the system.
 [`--no-package`](#uv-init--no-package) : Do not set up the project to be built as a Python package.
 
 ```
-Does not include a `[build-system]` for the project.
-
-This is the default behavior when using `--app`.
+This option creates the project structure as a flat directory that is not importable as a module and has no `[build-system]` entry. It can be used for applications that are not expected to be distributed as a package.
 ```
 
 [`--no-pin-python`](#uv-init--no-pin-python) : Do not create a `.python-version` file for the project.
@@ -1590,9 +1586,7 @@ When disabled, uv will only use locally cached data and locally available files.
 ```
 Defines a `[build-system]` for the project.
 
-This is the default behavior when using `--lib` or `--build-backend`, or when the `packaged-init` preview feature is enabled. It will become the default unconditionally in the future.
-
-When using `--app`, this will include a `[project.scripts]` entrypoint and use a `src/` project structure.
+This is the default behavior.
 ```
 
 [`--project`](#uv-init--project) *project* : Discover a project in the given directory.
@@ -2099,7 +2093,7 @@ To enable an optional extra for this requirement instead, see `--extra`.
 [`--prerelease`](#uv-add--prerelease) *prerelease* : The strategy to use when considering pre-release versions.
 
 ```
-By default, uv will accept pre-releases for packages that *only* publish pre-releases, along with first-party requirements that contain an explicit pre-release marker in the declared specifiers (`if-necessary-or-explicit`).
+By default, uv will prefer stable candidates, falling back to pre-releases only after every stable candidate that satisfies the active constraints is rejected (`if-necessary`).
 
 May also be set with the `UV_PRERELEASE` environment variable.
 
@@ -2107,9 +2101,9 @@ Possible values:
 
 - `disallow`: Disallow all pre-release versions
 - `allow`: Allow all pre-release versions
-- `if-necessary`: Allow pre-release versions if all versions of a package are pre-release
-- `explicit`: Allow pre-release versions for first-party packages with explicit pre-release markers in their version requirements
-- `if-necessary-or-explicit`: Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements
+- `if-necessary`: Prefer stable versions, falling back to pre-release versions when necessary
+- `explicit`: Prefer stable versions for first-party packages with explicit pre-release specifiers, falling back to pre-release versions when necessary. Disallow pre-release versions for all other packages
+- `if-necessary-or-explicit`: Deprecated alias for `if-necessary`
 ```
 
 [`--project`](#uv-add--project) *project* : Discover a project in the given directory.
@@ -2564,7 +2558,7 @@ When disabled, uv will only use locally cached data and locally available files.
 [`--prerelease`](#uv-remove--prerelease) *prerelease* : The strategy to use when considering pre-release versions.
 
 ```
-By default, uv will accept pre-releases for packages that *only* publish pre-releases, along with first-party requirements that contain an explicit pre-release marker in the declared specifiers (`if-necessary-or-explicit`).
+By default, uv will prefer stable candidates, falling back to pre-releases only after every stable candidate that satisfies the active constraints is rejected (`if-necessary`).
 
 May also be set with the `UV_PRERELEASE` environment variable.
 
@@ -2572,9 +2566,9 @@ Possible values:
 
 - `disallow`: Disallow all pre-release versions
 - `allow`: Allow all pre-release versions
-- `if-necessary`: Allow pre-release versions if all versions of a package are pre-release
-- `explicit`: Allow pre-release versions for first-party packages with explicit pre-release markers in their version requirements
-- `if-necessary-or-explicit`: Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements
+- `if-necessary`: Prefer stable versions, falling back to pre-release versions when necessary
+- `explicit`: Prefer stable versions for first-party packages with explicit pre-release specifiers, falling back to pre-release versions when necessary. Disallow pre-release versions for all other packages
+- `if-necessary-or-explicit`: Deprecated alias for `if-necessary`
 ```
 
 [`--project`](#uv-remove--project) *project* : Discover a project in the given directory.
@@ -3022,7 +3016,7 @@ Possible values:
 [`--prerelease`](#uv-version--prerelease) *prerelease* : The strategy to use when considering pre-release versions.
 
 ```
-By default, uv will accept pre-releases for packages that *only* publish pre-releases, along with first-party requirements that contain an explicit pre-release marker in the declared specifiers (`if-necessary-or-explicit`).
+By default, uv will prefer stable candidates, falling back to pre-releases only after every stable candidate that satisfies the active constraints is rejected (`if-necessary`).
 
 May also be set with the `UV_PRERELEASE` environment variable.
 
@@ -3030,9 +3024,9 @@ Possible values:
 
 - `disallow`: Disallow all pre-release versions
 - `allow`: Allow all pre-release versions
-- `if-necessary`: Allow pre-release versions if all versions of a package are pre-release
-- `explicit`: Allow pre-release versions for first-party packages with explicit pre-release markers in their version requirements
-- `if-necessary-or-explicit`: Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements
+- `if-necessary`: Prefer stable versions, falling back to pre-release versions when necessary
+- `explicit`: Prefer stable versions for first-party packages with explicit pre-release specifiers, falling back to pre-release versions when necessary. Disallow pre-release versions for all other packages
+- `if-necessary-or-explicit`: Deprecated alias for `if-necessary`
 ```
 
 [`--project`](#uv-version--project) *project* : Discover a project in the given directory.
@@ -3602,7 +3596,7 @@ If any workspace member does not exist, uv will exit with an error.
 [`--prerelease`](#uv-sync--prerelease) *prerelease* : The strategy to use when considering pre-release versions.
 
 ```
-By default, uv will accept pre-releases for packages that *only* publish pre-releases, along with first-party requirements that contain an explicit pre-release marker in the declared specifiers (`if-necessary-or-explicit`).
+By default, uv will prefer stable candidates, falling back to pre-releases only after every stable candidate that satisfies the active constraints is rejected (`if-necessary`).
 
 May also be set with the `UV_PRERELEASE` environment variable.
 
@@ -3610,9 +3604,9 @@ Possible values:
 
 - `disallow`: Disallow all pre-release versions
 - `allow`: Allow all pre-release versions
-- `if-necessary`: Allow pre-release versions if all versions of a package are pre-release
-- `explicit`: Allow pre-release versions for first-party packages with explicit pre-release markers in their version requirements
-- `if-necessary-or-explicit`: Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements
+- `if-necessary`: Prefer stable versions, falling back to pre-release versions when necessary
+- `explicit`: Prefer stable versions for first-party packages with explicit pre-release specifiers, falling back to pre-release versions when necessary. Disallow pre-release versions for all other packages
+- `if-necessary-or-explicit`: Deprecated alias for `if-necessary`
 ```
 
 [`--project`](#uv-sync--project) *project* : Discover a project in the given directory.
@@ -4081,7 +4075,7 @@ When disabled, uv will only use locally cached data and locally available files.
 [`--prerelease`](#uv-lock--prerelease) *prerelease* : The strategy to use when considering pre-release versions.
 
 ```
-By default, uv will accept pre-releases for packages that *only* publish pre-releases, along with first-party requirements that contain an explicit pre-release marker in the declared specifiers (`if-necessary-or-explicit`).
+By default, uv will prefer stable candidates, falling back to pre-releases only after every stable candidate that satisfies the active constraints is rejected (`if-necessary`).
 
 May also be set with the `UV_PRERELEASE` environment variable.
 
@@ -4089,9 +4083,9 @@ Possible values:
 
 - `disallow`: Disallow all pre-release versions
 - `allow`: Allow all pre-release versions
-- `if-necessary`: Allow pre-release versions if all versions of a package are pre-release
-- `explicit`: Allow pre-release versions for first-party packages with explicit pre-release markers in their version requirements
-- `if-necessary-or-explicit`: Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements
+- `if-necessary`: Prefer stable versions, falling back to pre-release versions when necessary
+- `explicit`: Prefer stable versions for first-party packages with explicit pre-release specifiers, falling back to pre-release versions when necessary. Disallow pre-release versions for all other packages
+- `if-necessary-or-explicit`: Deprecated alias for `if-necessary`
 ```
 
 [`--project`](#uv-lock--project) *project* : Discover a project in the given directory.
@@ -4628,7 +4622,7 @@ If any workspace member does not exist, uv will exit with an error.
 [`--prerelease`](#uv-export--prerelease) *prerelease* : The strategy to use when considering pre-release versions.
 
 ```
-By default, uv will accept pre-releases for packages that *only* publish pre-releases, along with first-party requirements that contain an explicit pre-release marker in the declared specifiers (`if-necessary-or-explicit`).
+By default, uv will prefer stable candidates, falling back to pre-releases only after every stable candidate that satisfies the active constraints is rejected (`if-necessary`).
 
 May also be set with the `UV_PRERELEASE` environment variable.
 
@@ -4636,9 +4630,9 @@ Possible values:
 
 - `disallow`: Disallow all pre-release versions
 - `allow`: Allow all pre-release versions
-- `if-necessary`: Allow pre-release versions if all versions of a package are pre-release
-- `explicit`: Allow pre-release versions for first-party packages with explicit pre-release markers in their version requirements
-- `if-necessary-or-explicit`: Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements
+- `if-necessary`: Prefer stable versions, falling back to pre-release versions when necessary
+- `explicit`: Prefer stable versions for first-party packages with explicit pre-release specifiers, falling back to pre-release versions when necessary. Disallow pre-release versions for all other packages
+- `if-necessary-or-explicit`: Deprecated alias for `if-necessary`
 ```
 
 [`--project`](#uv-export--project) *project* : Discover a project in the given directory.
@@ -5108,7 +5102,7 @@ May be provided multiple times. Implies `--no-default-groups`.
 [`--prerelease`](#uv-tree--prerelease) *prerelease* : The strategy to use when considering pre-release versions.
 
 ```
-By default, uv will accept pre-releases for packages that *only* publish pre-releases, along with first-party requirements that contain an explicit pre-release marker in the declared specifiers (`if-necessary-or-explicit`).
+By default, uv will prefer stable candidates, falling back to pre-releases only after every stable candidate that satisfies the active constraints is rejected (`if-necessary`).
 
 May also be set with the `UV_PRERELEASE` environment variable.
 
@@ -5116,9 +5110,9 @@ Possible values:
 
 - `disallow`: Disallow all pre-release versions
 - `allow`: Allow all pre-release versions
-- `if-necessary`: Allow pre-release versions if all versions of a package are pre-release
-- `explicit`: Allow pre-release versions for first-party packages with explicit pre-release markers in their version requirements
-- `if-necessary-or-explicit`: Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements
+- `if-necessary`: Prefer stable versions, falling back to pre-release versions when necessary
+- `explicit`: Prefer stable versions for first-party packages with explicit pre-release specifiers, falling back to pre-release versions when necessary. Disallow pre-release versions for all other packages
+- `if-necessary-or-explicit`: Deprecated alias for `if-necessary`
 ```
 
 [`--project`](#uv-tree--project) *project* : Discover a project in the given directory.
@@ -5880,7 +5874,7 @@ The workspace's environment is synchronized to include the selected members and 
 [`--prerelease`](#uv-check--prerelease) *prerelease* : The strategy to use when considering pre-release versions.
 
 ```
-By default, uv will accept pre-releases for packages that *only* publish pre-releases, along with first-party requirements that contain an explicit pre-release marker in the declared specifiers (`if-necessary-or-explicit`).
+By default, uv will prefer stable candidates, falling back to pre-releases only after every stable candidate that satisfies the active constraints is rejected (`if-necessary`).
 
 May also be set with the `UV_PRERELEASE` environment variable.
 
@@ -5888,9 +5882,9 @@ Possible values:
 
 - `disallow`: Disallow all pre-release versions
 - `allow`: Allow all pre-release versions
-- `if-necessary`: Allow pre-release versions if all versions of a package are pre-release
-- `explicit`: Allow pre-release versions for first-party packages with explicit pre-release markers in their version requirements
-- `if-necessary-or-explicit`: Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements
+- `if-necessary`: Prefer stable versions, falling back to pre-release versions when necessary
+- `explicit`: Prefer stable versions for first-party packages with explicit pre-release specifiers, falling back to pre-release versions when necessary. Disallow pre-release versions for all other packages
+- `if-necessary-or-explicit`: Deprecated alias for `if-necessary`
 ```
 
 [`--project`](#uv-check--project) *project* : Discover a project in the given directory.
@@ -6361,7 +6355,7 @@ Possible values:
 [`--prerelease`](#uv-audit--prerelease) *prerelease* : The strategy to use when considering pre-release versions.
 
 ```
-By default, uv will accept pre-releases for packages that *only* publish pre-releases, along with first-party requirements that contain an explicit pre-release marker in the declared specifiers (`if-necessary-or-explicit`).
+By default, uv will prefer stable candidates, falling back to pre-releases only after every stable candidate that satisfies the active constraints is rejected (`if-necessary`).
 
 May also be set with the `UV_PRERELEASE` environment variable.
 
@@ -6369,9 +6363,9 @@ Possible values:
 
 - `disallow`: Disallow all pre-release versions
 - `allow`: Allow all pre-release versions
-- `if-necessary`: Allow pre-release versions if all versions of a package are pre-release
-- `explicit`: Allow pre-release versions for first-party packages with explicit pre-release markers in their version requirements
-- `if-necessary-or-explicit`: Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements
+- `if-necessary`: Prefer stable versions, falling back to pre-release versions when necessary
+- `explicit`: Prefer stable versions for first-party packages with explicit pre-release specifiers, falling back to pre-release versions when necessary. Disallow pre-release versions for all other packages
+- `if-necessary-or-explicit`: Deprecated alias for `if-necessary`
 ```
 
 [`--project`](#uv-audit--project) *project* : Discover a project in the given directory.
@@ -6913,7 +6907,7 @@ May also be set with the `UV_OVERRIDE` environment variable.
 [`--prerelease`](#uv-tool-run--prerelease) *prerelease* : The strategy to use when considering pre-release versions.
 
 ```
-By default, uv will accept pre-releases for packages that *only* publish pre-releases, along with first-party requirements that contain an explicit pre-release marker in the declared specifiers (`if-necessary-or-explicit`).
+By default, uv will prefer stable candidates, falling back to pre-releases only after every stable candidate that satisfies the active constraints is rejected (`if-necessary`).
 
 May also be set with the `UV_PRERELEASE` environment variable.
 
@@ -6921,9 +6915,9 @@ Possible values:
 
 - `disallow`: Disallow all pre-release versions
 - `allow`: Allow all pre-release versions
-- `if-necessary`: Allow pre-release versions if all versions of a package are pre-release
-- `explicit`: Allow pre-release versions for first-party packages with explicit pre-release markers in their version requirements
-- `if-necessary-or-explicit`: Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements
+- `if-necessary`: Prefer stable versions, falling back to pre-release versions when necessary
+- `explicit`: Prefer stable versions for first-party packages with explicit pre-release specifiers, falling back to pre-release versions when necessary. Disallow pre-release versions for all other packages
+- `if-necessary-or-explicit`: Deprecated alias for `if-necessary`
 ```
 
 [`--project`](#uv-tool-run--project) *project* : Discover a project in the given directory.
@@ -7498,7 +7492,7 @@ May also be set with the `UV_OVERRIDE` environment variable.
 [`--prerelease`](#uv-tool-install--prerelease) *prerelease* : The strategy to use when considering pre-release versions.
 
 ```
-By default, uv will accept pre-releases for packages that *only* publish pre-releases, along with first-party requirements that contain an explicit pre-release marker in the declared specifiers (`if-necessary-or-explicit`).
+By default, uv will prefer stable candidates, falling back to pre-releases only after every stable candidate that satisfies the active constraints is rejected (`if-necessary`).
 
 May also be set with the `UV_PRERELEASE` environment variable.
 
@@ -7506,9 +7500,9 @@ Possible values:
 
 - `disallow`: Disallow all pre-release versions
 - `allow`: Allow all pre-release versions
-- `if-necessary`: Allow pre-release versions if all versions of a package are pre-release
-- `explicit`: Allow pre-release versions for first-party packages with explicit pre-release markers in their version requirements
-- `if-necessary-or-explicit`: Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements
+- `if-necessary`: Prefer stable versions, falling back to pre-release versions when necessary
+- `explicit`: Prefer stable versions for first-party packages with explicit pre-release specifiers, falling back to pre-release versions when necessary. Disallow pre-release versions for all other packages
+- `if-necessary-or-explicit`: Deprecated alias for `if-necessary`
 ```
 
 [`--project`](#uv-tool-install--project) *project* : Discover a project in the given directory.
@@ -8037,7 +8031,7 @@ When disabled, uv will only use locally cached data and locally available files.
 [`--prerelease`](#uv-tool-upgrade--prerelease) *prerelease* : The strategy to use when considering pre-release versions.
 
 ```
-By default, uv will accept pre-releases for packages that *only* publish pre-releases, along with first-party requirements that contain an explicit pre-release marker in the declared specifiers (`if-necessary-or-explicit`).
+By default, uv will prefer stable candidates, falling back to pre-releases only after every stable candidate that satisfies the active constraints is rejected (`if-necessary`).
 
 May also be set with the `UV_PRERELEASE` environment variable.
 
@@ -8045,9 +8039,9 @@ Possible values:
 
 - `disallow`: Disallow all pre-release versions
 - `allow`: Allow all pre-release versions
-- `if-necessary`: Allow pre-release versions if all versions of a package are pre-release
-- `explicit`: Allow pre-release versions for first-party packages with explicit pre-release markers in their version requirements
-- `if-necessary-or-explicit`: Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements
+- `if-necessary`: Prefer stable versions, falling back to pre-release versions when necessary
+- `explicit`: Prefer stable versions for first-party packages with explicit pre-release specifiers, falling back to pre-release versions when necessary. Disallow pre-release versions for all other packages
+- `if-necessary-or-explicit`: Deprecated alias for `if-necessary`
 ```
 
 [`--project`](#uv-tool-upgrade--project) *project* : Discover a project in the given directory.
@@ -9288,6 +9282,8 @@ Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will w
 [`--reinstall`](#uv-python-install--reinstall), `-r` : Reinstall the requested Python version, if it's already installed.
 
 ```
+If a minor version is requested, all matching installed patch versions are reinstalled.
+
 By default, uv will exit successfully if the version is already installed.
 ```
 
@@ -10450,6 +10446,12 @@ To view the location of the cache directory, run `uv cache dir`.
 May also be set with the `UV_CACHE_DIR` environment variable.
 ```
 
+[`--cert`](#uv-pip-compile--cert) *file* : Path to a PEM-encoded CA certificate bundle.
+
+```
+If provided, this overrides the default certificate source.
+```
+
 [`--color`](#uv-pip-compile--color) *color-choice* : Control the use of color in output.
 
 ```
@@ -10807,7 +10809,7 @@ May also be set with the `UV_OVERRIDE` environment variable.
 [`--prerelease`](#uv-pip-compile--prerelease) *prerelease* : The strategy to use when considering pre-release versions.
 
 ```
-By default, uv will accept pre-releases for packages that *only* publish pre-releases, along with first-party requirements that contain an explicit pre-release marker in the declared specifiers (`if-necessary-or-explicit`).
+By default, uv will prefer stable candidates, falling back to pre-releases only after every stable candidate that satisfies the active constraints is rejected (`if-necessary`).
 
 May also be set with the `UV_PRERELEASE` environment variable.
 
@@ -10815,9 +10817,9 @@ Possible values:
 
 - `disallow`: Disallow all pre-release versions
 - `allow`: Allow all pre-release versions
-- `if-necessary`: Allow pre-release versions if all versions of a package are pre-release
-- `explicit`: Allow pre-release versions for first-party packages with explicit pre-release markers in their version requirements
-- `if-necessary-or-explicit`: Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements
+- `if-necessary`: Prefer stable versions, falling back to pre-release versions when necessary
+- `explicit`: Prefer stable versions for first-party packages with explicit pre-release specifiers, falling back to pre-release versions when necessary. Disallow pre-release versions for all other packages
+- `if-necessary-or-explicit`: Deprecated alias for `if-necessary`
 ```
 
 [`--project`](#uv-pip-compile--project) *project* : Discover a project in the given directory.
@@ -11121,6 +11123,12 @@ Defaults to `$XDG_CACHE_HOME/uv` or `$HOME/.cache/uv` on macOS and Linux, and `%
 To view the location of the cache directory, run `uv cache dir`.
 
 May also be set with the `UV_CACHE_DIR` environment variable.
+```
+
+[`--cert`](#uv-pip-sync--cert) *file* : Path to a PEM-encoded CA certificate bundle.
+
+```
+If provided, this overrides the default certificate source.
 ```
 
 [`--color`](#uv-pip-sync--color) *color-choice* : Control the use of color in output.
@@ -11697,6 +11705,12 @@ To view the location of the cache directory, run `uv cache dir`.
 May also be set with the `UV_CACHE_DIR` environment variable.
 ```
 
+[`--cert`](#uv-pip-install--cert) *file* : Path to a PEM-encoded CA certificate bundle.
+
+```
+If provided, this overrides the default certificate source.
+```
+
 [`--color`](#uv-pip-install--color) *color-choice* : Control the use of color in output.
 
 ```
@@ -12047,7 +12061,7 @@ Unlike other install operations, this command does not require discovery of an e
 [`--prerelease`](#uv-pip-install--prerelease) *prerelease* : The strategy to use when considering pre-release versions.
 
 ```
-By default, uv will accept pre-releases for packages that *only* publish pre-releases, along with first-party requirements that contain an explicit pre-release marker in the declared specifiers (`if-necessary-or-explicit`).
+By default, uv will prefer stable candidates, falling back to pre-releases only after every stable candidate that satisfies the active constraints is rejected (`if-necessary`).
 
 May also be set with the `UV_PRERELEASE` environment variable.
 
@@ -12055,9 +12069,9 @@ Possible values:
 
 - `disallow`: Disallow all pre-release versions
 - `allow`: Allow all pre-release versions
-- `if-necessary`: Allow pre-release versions if all versions of a package are pre-release
-- `explicit`: Allow pre-release versions for first-party packages with explicit pre-release markers in their version requirements
-- `if-necessary-or-explicit`: Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements
+- `if-necessary`: Prefer stable versions, falling back to pre-release versions when necessary
+- `explicit`: Prefer stable versions for first-party packages with explicit pre-release specifiers, falling back to pre-release versions when necessary. Disallow pre-release versions for all other packages
+- `if-necessary-or-explicit`: Deprecated alias for `if-necessary`
 ```
 
 [`--project`](#uv-pip-install--project) *project* : Discover a project in the given directory.
@@ -12360,6 +12374,12 @@ To view the location of the cache directory, run `uv cache dir`.
 May also be set with the `UV_CACHE_DIR` environment variable.
 ```
 
+[`--cert`](#uv-pip-uninstall--cert) *file* : Path to a PEM-encoded CA certificate bundle.
+
+```
+If provided, this overrides the default certificate source.
+```
+
 [`--color`](#uv-pip-uninstall--color) *color-choice* : Control the use of color in output.
 
 ```
@@ -12551,6 +12571,12 @@ To view the location of the cache directory, run `uv cache dir`.
 May also be set with the `UV_CACHE_DIR` environment variable.
 ```
 
+[`--cert`](#uv-pip-freeze--cert) *file* : Path to a PEM-encoded CA certificate bundle.
+
+```
+If provided, this overrides the default certificate source.
+```
+
 [`--color`](#uv-pip-freeze--color) *color-choice* : Control the use of color in output.
 
 ```
@@ -12722,6 +12748,12 @@ Defaults to `$XDG_CACHE_HOME/uv` or `$HOME/.cache/uv` on macOS and Linux, and `%
 To view the location of the cache directory, run `uv cache dir`.
 
 May also be set with the `UV_CACHE_DIR` environment variable.
+```
+
+[`--cert`](#uv-pip-list--cert) *file* : Path to a PEM-encoded CA certificate bundle.
+
+```
+If provided, this overrides the default certificate source.
 ```
 
 [`--color`](#uv-pip-list--color) *color-choice* : Control the use of color in output.
@@ -13026,6 +13058,12 @@ To view the location of the cache directory, run `uv cache dir`.
 May also be set with the `UV_CACHE_DIR` environment variable.
 ```
 
+[`--cert`](#uv-pip-show--cert) *file* : Path to a PEM-encoded CA certificate bundle.
+
+```
+If provided, this overrides the default certificate source.
+```
+
 [`--color`](#uv-pip-show--color) *color-choice* : Control the use of color in output.
 
 ```
@@ -13193,6 +13231,12 @@ Defaults to `$XDG_CACHE_HOME/uv` or `$HOME/.cache/uv` on macOS and Linux, and `%
 To view the location of the cache directory, run `uv cache dir`.
 
 May also be set with the `UV_CACHE_DIR` environment variable.
+```
+
+[`--cert`](#uv-pip-tree--cert) *file* : Path to a PEM-encoded CA certificate bundle.
+
+```
+If provided, this overrides the default certificate source.
 ```
 
 [`--color`](#uv-pip-tree--color) *color-choice* : Control the use of color in output.
@@ -13483,6 +13527,12 @@ Defaults to `$XDG_CACHE_HOME/uv` or `$HOME/.cache/uv` on macOS and Linux, and `%
 To view the location of the cache directory, run `uv cache dir`.
 
 May also be set with the `UV_CACHE_DIR` environment variable.
+```
+
+[`--cert`](#uv-pip-check--cert) *file* : Path to a PEM-encoded CA certificate bundle.
+
+```
+If provided, this overrides the default certificate source.
 ```
 
 [`--color`](#uv-pip-check--color) *color-choice* : Control the use of color in output.
@@ -14407,7 +14457,7 @@ If the workspace member does not exist, uv will exit with an error.
 [`--prerelease`](#uv-build--prerelease) *prerelease* : The strategy to use when considering pre-release versions.
 
 ```
-By default, uv will accept pre-releases for packages that *only* publish pre-releases, along with first-party requirements that contain an explicit pre-release marker in the declared specifiers (`if-necessary-or-explicit`).
+By default, uv will prefer stable candidates, falling back to pre-releases only after every stable candidate that satisfies the active constraints is rejected (`if-necessary`).
 
 May also be set with the `UV_PRERELEASE` environment variable.
 
@@ -14415,9 +14465,9 @@ Possible values:
 
 - `disallow`: Disallow all pre-release versions
 - `allow`: Allow all pre-release versions
-- `if-necessary`: Allow pre-release versions if all versions of a package are pre-release
-- `explicit`: Allow pre-release versions for first-party packages with explicit pre-release markers in their version requirements
-- `if-necessary-or-explicit`: Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements
+- `if-necessary`: Prefer stable versions, falling back to pre-release versions when necessary
+- `explicit`: Prefer stable versions for first-party packages with explicit pre-release specifiers, falling back to pre-release versions when necessary. Disallow pre-release versions for all other packages
+- `if-necessary-or-explicit`: Deprecated alias for `if-necessary`
 ```
 
 [`--project`](#uv-build--project) *project* : Discover a project in the given directory.
@@ -15103,7 +15153,7 @@ When disabled, uv will only use locally cached data and locally available files.
 [`--prerelease`](#uv-workspace-metadata--prerelease) *prerelease* : The strategy to use when considering pre-release versions.
 
 ```
-By default, uv will accept pre-releases for packages that *only* publish pre-releases, along with first-party requirements that contain an explicit pre-release marker in the declared specifiers (`if-necessary-or-explicit`).
+By default, uv will prefer stable candidates, falling back to pre-releases only after every stable candidate that satisfies the active constraints is rejected (`if-necessary`).
 
 May also be set with the `UV_PRERELEASE` environment variable.
 
@@ -15111,9 +15161,9 @@ Possible values:
 
 - `disallow`: Disallow all pre-release versions
 - `allow`: Allow all pre-release versions
-- `if-necessary`: Allow pre-release versions if all versions of a package are pre-release
-- `explicit`: Allow pre-release versions for first-party packages with explicit pre-release markers in their version requirements
-- `if-necessary-or-explicit`: Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements
+- `if-necessary`: Prefer stable versions, falling back to pre-release versions when necessary
+- `explicit`: Prefer stable versions for first-party packages with explicit pre-release specifiers, falling back to pre-release versions when necessary. Disallow pre-release versions for all other packages
+- `if-necessary-or-explicit`: Deprecated alias for `if-necessary`
 ```
 
 [`--project`](#uv-workspace-metadata--project) *project* : Discover a project in the given directory.

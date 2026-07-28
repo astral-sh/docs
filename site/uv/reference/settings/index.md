@@ -1646,17 +1646,17 @@ ______________________________________________________________________
 
 The strategy to use when considering pre-release versions.
 
-By default, uv will accept pre-releases for packages that *only* publish pre-releases, along with first-party requirements that contain an explicit pre-release marker in the declared specifiers (`if-necessary-or-explicit`).
+By default, uv will prefer stable candidates, falling back to pre-releases only after every stable candidate that satisfies the active constraints is rejected (`if-necessary`).
 
-**Default value**: `"if-necessary-or-explicit"`
+**Default value**: `"if-necessary"`
 
 **Possible values**:
 
 - `"disallow"`: Disallow all pre-release versions
 - `"allow"`: Allow all pre-release versions
-- `"if-necessary"`: Allow pre-release versions if all versions of a package are pre-release
-- `"explicit"`: Allow pre-release versions for first-party packages with explicit pre-release markers in their version requirements
-- `"if-necessary-or-explicit"`: Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements
+- `"if-necessary"`: Prefer stable versions, falling back to pre-release versions when necessary
+- `"explicit"`: Prefer stable versions for first-party packages with explicit pre-release specifiers, falling back to pre-release versions when necessary. Disallow pre-release versions for all other packages
+- `"if-necessary-or-explicit"`: Deprecated alias for `if-necessary`
 
 **Example usage**:
 
@@ -3251,17 +3251,17 @@ ______________________________________________________________________
 
 The strategy to use when considering pre-release versions.
 
-By default, uv will accept pre-releases for packages that *only* publish pre-releases, along with first-party requirements that contain an explicit pre-release marker in the declared specifiers (`if-necessary-or-explicit`).
+By default, uv will prefer stable candidates, falling back to pre-releases only after every stable candidate that satisfies the active constraints is rejected (`if-necessary`).
 
-**Default value**: `"if-necessary-or-explicit"`
+**Default value**: `"if-necessary"`
 
 **Possible values**:
 
 - `"disallow"`: Disallow all pre-release versions
 - `"allow"`: Allow all pre-release versions
-- `"if-necessary"`: Allow pre-release versions if all versions of a package are pre-release
-- `"explicit"`: Allow pre-release versions for first-party packages with explicit pre-release markers in their version requirements
-- `"if-necessary-or-explicit"`: Allow pre-release versions if all versions of a package are pre-release, or if the package has an explicit pre-release marker in its version requirements
+- `"if-necessary"`: Prefer stable versions, falling back to pre-release versions when necessary
+- `"explicit"`: Prefer stable versions for first-party packages with explicit pre-release specifiers, falling back to pre-release versions when necessary. Disallow pre-release versions for all other packages
+- `"if-necessary-or-explicit"`: Deprecated alias for `if-necessary`
 
 **Example usage**:
 

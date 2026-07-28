@@ -8,6 +8,10 @@ Before attempting to publish your project, you'll want to make sure it's ready t
 
 If your project does not include a `[build-system]` definition in the `pyproject.toml`, uv will not build it during `uv sync` operations in the project, but will fall back to the legacy setuptools build system during `uv build`.
 
+Note
+
+Projects created with `uv init` include a `[build-system]` definition by default.
+
 We strongly recommend configuring a build system. Read more about build systems in the [project configuration](../../concepts/projects/config/#build-systems) documentation.
 
 ## [Building your package](#building-your-package)

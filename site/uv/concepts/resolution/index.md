@@ -214,16 +214,11 @@ When publishing libraries, it is recommended to separately run tests with `--res
 
 ## [Pre-release handling](#pre-release-handling)
 
-By default, uv will accept pre-release versions during dependency resolution in two cases:
+By default (`if-necessary`), uv prefers stable versions over pre-releases, falling back to pre-releases only if every stable candidate that satisfies the active constraints is rejected during resolution.
 
-1. If the package is a direct dependency, and its version specifiers include a pre-release specifier (e.g., `flask>=2.0.0rc1`).
-1. If *all* published versions of a package are pre-releases.
+Use `--prerelease allow` to consider pre-releases for every package without preferring stable candidates first, or `--prerelease disallow` to exclude them entirely.
 
-If dependency resolution fails due to a transitive pre-release, uv will prompt use of `--prerelease allow` to allow pre-releases for all dependencies.
-
-Alternatively, the transitive dependency can be added as a [constraint](#dependency-constraints) or direct dependency (i.e. in `requirements.in` or `pyproject.toml`) with a pre-release version specifier (e.g., `flask>=2.0.0rc1`) to opt in to pre-release support for that specific dependency.
-
-Pre-releases are [notoriously difficult](https://pubgrub-rs-guide.netlify.app/limitations/prerelease_versions) to model, and are a frequent source of bugs in other packaging tools. uv's pre-release handling is *intentionally* limited and requires user opt-in for pre-releases to ensure correctness.
+The `explicit` mode considers pre-releases only for first-party requirements that contain a pre-release identifier (preferring stable versions and falling back to pre-releases only if necessary), while disallowing pre-releases for all other packages.
 
 For more details, see [Pre-release compatibility](../../pip/compatibility/#pre-release-compatibility).
 
@@ -279,7 +274,7 @@ In this example, `foo>1` is the global override, while `foo>2` replaces requirem
 
 Scoped overrides currently support registry version specifiers only. Direct URL and path sources, including Git sources, and explicit indexes are not supported.
 
-Pre-release and yanked-version permissions are determined before uv knows which scoped overrides will apply. As a result, an explicit pre-release or yanked-version pin in any scoped override opts that package into the corresponding candidate-selection behavior for the entire resolution, even if the scope is not selected.
+Under the `explicit` pre-release mode, an explicit pre-release specifier in any scoped override permits stable-first pre-release fallback for that package for the entire resolution. Similarly, an exact yanked-version pin in any scoped override opts that package into yanked-version candidate selection for the entire resolution, even if the scope is not selected.
 
 If multiple overrides are provided for the same package, they must be differentiated with [markers](#platform-markers). If a package has a dependency with a marker, it is replaced unconditionally when using overrides — it does not matter if the marker evaluates to true or false.
 
@@ -651,23 +646,11 @@ exclude-newer-package = { setuptools = "30 days" }
 
 ## [Source distribution](#source-distribution)
 
-[PEP 625](https://peps.python.org/pep-0625/) specifies that packages must distribute source distributions as gzip tarball (`.tar.gz`) archives. Prior to this specification, other archive formats, which need to be supported for backward compatibility, were also allowed. uv supports reading and extracting archives in the following formats:
-
-- gzip tarball (`.tar.gz`, `.tgz`)
-- bzip2 tarball (`.tar.bz2`, `.tbz`)
-- xz tarball (`.tar.xz`, `.txz`)
-- zstd tarball (`.tar.zst`)
-- lzip tarball (`.tar.lz`)
-- lzma tarball (`.tar.lzma`)
-- zip (`.zip`)
+[PEP 625](https://peps.python.org/pep-0625/) specifies that packages must distribute source distributions as gzip tarball (`.tar.gz`) archives. Prior to this specification, other archive formats, which need to be supported for backward compatibility, were also allowed.
 
 Important
 
-Using source distribution extensions other than `.tar.gz` is strongly discouraged, as these extensions are not widely or consistently supported across the Python packaging ecosystem.
-
-Deprecated
-
-Support for source distribution extensions other than `.tar.gz` is deprecated and will be removed in a future release of uv.
+As of 0.12, uv rejects source distributions that do not confirm to [PEP 625]'s extension requirements with the exception of `.zip` archives, which are still accepted for backward compatibility.
 
 ## [Lockfile versioning](#lockfile-versioning)
 

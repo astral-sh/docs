@@ -101,8 +101,8 @@
 <script type="application/ld+json">
   {
       
-      "datePublished": "2026-07-15 00:08:17Z",
-      "dateModified": "2026-07-15 00:08:17Z",
+      "datePublished": "2026-07-28 16:22:53Z",
+      "dateModified": "2026-07-28 16:22:53Z",
       
       "@context": "https://schema.org",
       "@type": "WebSite",
@@ -3640,13 +3640,20 @@ a PEM-encoded certificate bundle (e.g., <code>certs.pem</code>, <code>ca-bundle.
 <a href="../../../reference/environment/#ssl_cert_dir"><code>SSL_CERT_DIR</code></a> to one or more directories containing
 PEM-encoded certificate files. Multiple entries are supported, separated using a platform-specific
 delimiter (<code>:</code> on Unix, <code>;</code> on Windows).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For a single <code>uv pip</code> invocation, pass <a href="../../../reference/cli/#uv-pip"><code>--cert</code></a> with the path
+to a PEM-encoded certificate bundle. The bundle replaces uv's default certificate source for
+that invocation.</p>
+</div>
 <p>Certificates are usually stored with <code>.pem</code>, <code>.crt</code>, or <code>.cer</code> extensions, but uv will attempt to
 read a certificate from any regular file in the provided <code>SSL_CERT_DIR</code>.</p>
 <p>Files that cannot be parsed as PEM certificates are ignored. uv resolves symlinks and ignores
 dangling symlinks.</p>
 <p>DER-encoded files are not supported.</p>
-<p>When set, these environment variables <strong>override</strong> the default certificate source entirely — only
-the provided certificates will be trusted.</p>
+<p>When set to non-empty values, these environment variables <strong>override</strong> the default certificate
+source entirely — only the provided certificates will be trusted. If a configured file or directory
+does not exist or contains no valid certificates, no default certificates will be trusted.</p>
 <p><code>SSL_CERT_FILE</code> can point to a single certificate or a bundle containing multiple certificates.
 <code>SSL_CERT_DIR</code> can include multiple directory entries; uv will load all valid certificates from each
 directory.</p>
@@ -3687,7 +3694,7 @@ security risks due to the lack of certificate verification.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 15, 2026 00:08:17 UTC">July 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 28, 2026 16:22:53 UTC">July 28, 2026</span>
   </span>
 
     
