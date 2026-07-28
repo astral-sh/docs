@@ -8240,6 +8240,8 @@ May also be set with the `UV_WORKING_DIR` environment variable.
 [`--exclude-newer`](#uv-tool-list--exclude-newer) *exclude-newer* : Limit candidate packages to those that were uploaded prior to the given date.
 
 ```
+The date is compared against the upload time of each individual distribution artifact (i.e., when each file was uploaded to the package index), not the release date of the package version.
+
 Accepts RFC 3339 timestamps (e.g., `2006-12-02T02:07:43Z`), local dates in the same format (e.g., `2006-12-02`) resolved based on your system's configured time zone, a "friendly" duration (e.g., `24 hours`, `1 week`, `30 days`), or an ISO 8601 duration (e.g., `PT24H`, `P7D`, `P30D`).
 
 Durations do not respect semantics of the local time zone and are always resolved to a fixed number of seconds assuming that a day is 24 hours (e.g., DST transitions are ignored). Calendar units such as months and years are not allowed.
@@ -8247,6 +8249,16 @@ Durations do not respect semantics of the local time zone and are always resolve
 Use `false` to disable `exclude-newer`.
 
 May also be set with the `UV_EXCLUDE_NEWER` environment variable.
+```
+
+[`--exclude-newer-package`](#uv-tool-list--exclude-newer-package) *exclude-newer-package* : Limit candidate packages for specific packages to those that were uploaded prior to the given date.
+
+```
+Accepts package-date pairs in the format `PACKAGE=DATE`, where `DATE` is an RFC 3339 timestamp (e.g., `2006-12-02T02:07:43Z`), a local date in the same format (e.g., `2006-12-02`) resolved based on your system's configured time zone, a "friendly" duration (e.g., `24 hours`, `1 week`, `30 days`), or an ISO 8601 duration (e.g., `PT24H`, `P7D`, `P30D`).
+
+Durations do not respect semantics of the local time zone and are always resolved to a fixed number of seconds assuming that a day is 24 hours (e.g., DST transitions are ignored). Calendar units such as months and years are not allowed.
+
+Can be provided multiple times for different packages.
 ```
 
 [`--help`](#uv-tool-list--help), `-h` : Display the concise help for this command
@@ -12772,6 +12784,16 @@ Use `false` to disable `exclude-newer`.
 May also be set with the `UV_EXCLUDE_NEWER` environment variable.
 ```
 
+[`--exclude-newer-package`](#uv-pip-list--exclude-newer-package) *exclude-newer-package* : Limit candidate packages for specific packages to those that were uploaded prior to the given date.
+
+```
+Accepts package-date pairs in the format `PACKAGE=DATE`, where `DATE` is an RFC 3339 timestamp (e.g., `2006-12-02T02:07:43Z`), a local date in the same format (e.g., `2006-12-02`) resolved based on your system's configured time zone, a "friendly" duration (e.g., `24 hours`, `1 week`, `30 days`), or an ISO 8601 duration (e.g., `PT24H`, `P7D`, `P30D`).
+
+Durations do not respect semantics of the local time zone and are always resolved to a fixed number of seconds assuming that a day is 24 hours (e.g., DST transitions are ignored). Calendar units such as months and years are not allowed.
+
+Can be provided multiple times for different packages.
+```
+
 [`--extra-index-url`](#uv-pip-list--extra-index-url) *extra-index-url* : (Deprecated: use `--index` instead) Extra URLs of package indexes to use, in addition to `--index-url`.
 
 ```
@@ -13231,6 +13253,16 @@ Durations do not respect semantics of the local time zone and are always resolve
 Use `false` to disable `exclude-newer`.
 
 May also be set with the `UV_EXCLUDE_NEWER` environment variable.
+```
+
+[`--exclude-newer-package`](#uv-pip-tree--exclude-newer-package) *exclude-newer-package* : Limit candidate packages for specific packages to those that were uploaded prior to the given date.
+
+```
+Accepts package-date pairs in the format `PACKAGE=DATE`, where `DATE` is an RFC 3339 timestamp (e.g., `2006-12-02T02:07:43Z`), a local date in the same format (e.g., `2006-12-02`) resolved based on your system's configured time zone, a "friendly" duration (e.g., `24 hours`, `1 week`, `30 days`), or an ISO 8601 duration (e.g., `PT24H`, `P7D`, `P30D`).
+
+Durations do not respect semantics of the local time zone and are always resolved to a fixed number of seconds assuming that a day is 24 hours (e.g., DST transitions are ignored). Calendar units such as months and years are not allowed.
+
+Can be provided multiple times for different packages.
 ```
 
 [`--extra-index-url`](#uv-pip-tree--extra-index-url) *extra-index-url* : (Deprecated: use `--index` instead) Extra URLs of package indexes to use, in addition to `--index-url`.
@@ -13769,10 +13801,10 @@ Use `false` to disable `exclude-newer`.
 May also be set with the `UV_EXCLUDE_NEWER` environment variable.
 ```
 
-[`--exclude-newer-package`](#uv-venv--exclude-newer-package) *exclude-newer-package* : Limit candidate packages for a specific package to those that were uploaded prior to the given date.
+[`--exclude-newer-package`](#uv-venv--exclude-newer-package) *exclude-newer-package* : Limit candidate packages for specific packages to those that were uploaded prior to the given date.
 
 ```
-Accepts package-date pairs in the format `PACKAGE=DATE`, where `DATE` is an RFC 3339 timestamp (e.g., `2006-12-02T02:07:43Z`), a local date in the same format (e.g., `2006-12-02`) resolved based on your system's configured time zone, a "friendly" duration (e.g., `24 hours`, `1 week`, `30 days`), or a ISO 8601 duration (e.g., `PT24H`, `P7D`, `P30D`).
+Accepts package-date pairs in the format `PACKAGE=DATE`, where `DATE` is an RFC 3339 timestamp (e.g., `2006-12-02T02:07:43Z`), a local date in the same format (e.g., `2006-12-02`) resolved based on your system's configured time zone, a "friendly" duration (e.g., `24 hours`, `1 week`, `30 days`), or an ISO 8601 duration (e.g., `PT24H`, `P7D`, `P30D`).
 
 Durations do not respect semantics of the local time zone and are always resolved to a fixed number of seconds assuming that a day is 24 hours (e.g., DST transitions are ignored). Calendar units such as months and years are not allowed.
 

@@ -61,25 +61,46 @@ Often, preview features can be used without changing any preview settings if the
 The following preview features are available:
 
 - `add-bounds`: Allows configuring the [default bounds for `uv add`](../../reference/settings/#add-bounds) invocations.
+- `adjust-ulimit`: On Unix, raises the process's soft open-file limit at startup, up to the hard limit.
+- `audit-command`: Allows using `uv audit`.
+- `auth-helper`: Allows using `uv auth helper` as a credential helper for external tools.
+- `azure-endpoint`: Allows signing requests to Azure Blob Storage endpoints with Azure credentials.
+- `cache-size`: Allows using `uv cache size`.
 - `centralized-project-envs`: Stores [project virtual environments](../projects/layout/#centralized-project-environments) in the uv cache.
-- `no-distutils-patch`: Stops installing the `_virtualenv.py` / `_virtualenv.pth` distutils configuration monkeypatch in virtual environments for Python 3.10 and later.
-- `json-output`: Allows `--output-format json` for various uv commands.
-- `package-conflicts`: Allows defining workspace conflicts at the package level.
-- `pylock`: Allows installing from `pylock.toml` files.
-- `python-install-default`: Allows [installing `python` and `python3` executables](../python-versions/#installing-python-executables).
-- `format`: Allows using `uv format`.
+- `check-command`: Allows using `uv check`.
+- `detect-module-conflicts`: Warns when multiple packages would install conflicting Python modules into the same environment.
+- `direct-publish`: Allows publishing directly to a package index.
+- `extra-build-dependencies`: Allows specifying additional dependencies for package builds.
+- `format-command`: Allows using `uv format`.
+- `gcs-endpoint`: Allows signing requests to configured Google Cloud Storage endpoints.
 - `index-exclude-newer`: Allows setting `exclude-newer` on configured package indexes.
 - `index-hash-algorithm`: Allows requiring a hash algorithm for configured package indexes.
+- `init-project-flag`: Rejects the deprecated `--project` option in `uv init`.
+- `json-output`: Allows `--output-format json` for various uv commands.
+- `lock-without-metadata`: Omit `package.metadata` from `uv.lock`.
 - `lockfile-format-check`: Rejects non-canonical lockfile formatting when using `--locked` or `--check`.
-- `azure-endpoint`: Allows signing requests to Azure Blob Storage endpoints with Azure credentials.
+- `malware-check`: Allows `uv sync` and other commands to check for malware using [OSV](https://osv.dev) before installing packages.
+- `metadata-json`: Includes JSON metadata files in built wheels.
 - `native-auth`: Enables storage of credentials in a [system-native location](../authentication/http/#the-uv-credentials-store).
-- `auth-helper`: Allows using `uv auth helper` as a credential helper for external tools.
-- `workspace-metadata`: Allows using `uv workspace metadata`.
+- `no-distutils-patch`: Stops installing the `_virtualenv.py` / `_virtualenv.pth` distutils configuration monkeypatch in virtual environments for Python 3.10 and later.
+- `package-conflicts`: Allows defining workspace conflicts at the package level.
+- `packaged-init`: Makes `uv init` create a packaged application with a `src/` layout, build system, and script entry point by default.
+- `project-directory-must-exist`: Rejects an invalid `--project` path instead of warning and continuing. Except for `uv init`, the path must already exist as a directory or point to a `pyproject.toml` file. This feature takes effect before configuration is loaded.
+- `publish-require-normalized`: Requires normalized distribution filenames when publishing, skipping files whose names are not normalized.
+- `pylock`: Allows installing from `pylock.toml` files.
+- `python-install-default`: Allows [installing `python` and `python3` executables](../python-versions/#installing-python-executables).
+- `relocatable-envs-default`: Creates relocatable virtual environments by default.
+- `s3-endpoint`: Allows signing requests to configured S3-compatible endpoints.
+- `sbom-export`: Allows using `uv export --format=cyclonedx1.5`.
+- `special-conda-env-names`: Stops treating Conda environments named `base` or `root` as special.
+- `target-workspace-discovery`: Uses the directory containing a local `uv run` target, rather than the current working directory, as the starting point for project and workspace discovery. This feature takes effect before configuration is loaded.
+- `toml-backwards-compatibility`: Rewrites `pyproject.toml` as TOML 1.0 when building source distributions, preserving the original as `pyproject.toml.orig` to ensure compatibility with older build tools.
+- `tool-install-locks`: Stores a `uv.lock` alongside each installed tool and reuses it for reproducible installations and upgrades.
+- `venv-safe-clear`: Prevents `uv venv --clear` from clearing a directory that does not contain a `pyvenv.cfg` file unless `--force` is provided.
 - `workspace-dir`: Allows using `uv workspace dir`.
 - `workspace-list`: Allows using `uv workspace list`.
-- `target-workspace-discovery`: Uses the directory containing a local `uv run` target, rather than the current working directory, as the starting point for project and workspace discovery. This feature takes effect before configuration is loaded.
-- `project-directory-must-exist`: Rejects an invalid `--project` path instead of warning and continuing. Except for `uv init`, the path must already exist as a directory or point to a `pyproject.toml` file. This feature takes effect before configuration is loaded.
-- `malware-check`: Allows `uv sync` and other commands to check for malware using [OSV](https://osv.dev) before installing packages.
+- `workspace-list-scripts`: Allows using `uv workspace list --scripts`.
+- `workspace-metadata`: Allows using `uv workspace metadata`.
 
 ## [Disabling preview features](#disabling-preview-features)
 
