@@ -4,6 +4,12 @@ uv supports creating a project with `uv init`.
 
 When creating projects, uv supports two basic templates: [**applications**](#applications) and [**libraries**](#libraries). By default, uv will create a project for an application. The `--lib` flag can be used to create a project for a library instead.
 
+In both cases, uv prefers to define a [build system](../config/#build-systems) and place source files in a dedicated `src/<project_name>/` directory. Defining a build system allows use of various Python packaging features, such as adding command-line entry points, and avoids common points of confusion with the Python import system. Use of a build system can be disabled by using the [`--no-package`](#creating-a-project-without-a-build-system) or [`--bare`](#creating-a-minimal-project) options.
+
+Note
+
+Prior to v0.12, uv did not define a build system for applications by default.
+
 ## [Target directory](#target-directory)
 
 uv will create a project in the working directory, or, in a target directory by providing a name, e.g., `uv init foo`. The working directory can be modified with the `--directory` option, which will cause the target directory path to be interpreted relative to the specified working directory. If there's already a project in the target directory, i.e., if there's a `pyproject.toml`, uv will exit with an error.
@@ -12,28 +18,26 @@ uv will create a project in the working directory, or, in a target directory by 
 
 Application projects are suitable for web servers, scripts, and command-line interfaces.
 
-Applications are the default target for `uv init`, but can also be specified with the `--app` flag.
+Applications are the default target for `uv init`, but can also be specified with the `--app` flag:
 
 ```
 $ uv init example-app
 ```
 
-The project includes a `pyproject.toml`, a sample file (`main.py`), a readme, and a Python version pin file (`.python-version`).
+The source code lives in a `src` directory with a module directory and an `__init__.py` file:
 
 ```
 $ tree example-app
 example-app/
 ├── .python-version
 ├── README.md
-├── main.py
-└── pyproject.toml
+├── pyproject.toml
+└── src
+    └── example_app
+        └── __init__.py
 ```
 
-Note
-
-Prior to v0.6.0, uv created a file named `hello.py` instead of `main.py`.
-
-The `pyproject.toml` includes basic metadata. It does not include a build system, it is not a [package](../config/#project-packaging) and will not be installed into the environment:
+A [build system](../config/#build-systems) is defined, so the project will be installed into the environment:
 
 pyproject.toml
 
@@ -45,70 +49,12 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = []
-```
-
-The sample file defines a `main` function with some standard boilerplate:
-
-main.py
-
-```
-def main():
-    print("Hello from example-app!")
-
-
-if __name__ == "__main__":
-    main()
-```
-
-Python files can be executed with `uv run`:
-
-```
-$ cd example-app
-$ uv run main.py
-Hello from example-project!
-```
-
-## [Packaged applications](#packaged-applications)
-
-Many use-cases require a [package](../config/#project-packaging). For example, if you are creating a command-line interface that will be published to PyPI or if you want to define tests in a dedicated directory.
-
-The `--package` flag can be used to create a packaged application:
-
-```
-$ uv init --package example-pkg
-```
-
-The source code is moved into a `src` directory with a module directory and an `__init__.py` file:
-
-```
-$ tree example-pkg
-example-pkg/
-├── .python-version
-├── README.md
-├── pyproject.toml
-└── src
-    └── example_pkg
-        └── __init__.py
-```
-
-A [build system](../config/#build-systems) is defined, so the project will be installed into the environment:
-
-pyproject.toml
-
-```
-[project]
-name = "example-pkg"
-version = "0.1.0"
-description = "Add your description here"
-readme = "README.md"
-requires-python = ">=3.11"
-dependencies = []
 
 [project.scripts]
-example-pkg = "example_pkg:main"
+example-app = "example_app:main"
 
 [build-system]
-requires = ["uv_build>=0.11.33,<0.12"]
+requires = ["uv_build>=0.12.0,<0.13"]
 build-backend = "uv_build"
 ```
 
@@ -122,7 +68,7 @@ pyproject.toml
 
 ```
 [project]
-name = "example-pkg"
+name = "example-app"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
@@ -130,19 +76,19 @@ requires-python = ">=3.11"
 dependencies = []
 
 [project.scripts]
-example-pkg = "example_pkg:main"
+example-app = "example_app:main"
 
 [build-system]
-requires = ["uv_build>=0.11.33,<0.12"]
+requires = ["uv_build>=0.12.0,<0.13"]
 build-backend = "uv_build"
 ```
 
 The command can be executed with `uv run`:
 
 ```
-$ cd example-pkg
-$ uv run example-pkg
-Hello from example-pkg!
+$ cd example-app
+$ uv run example-app
+Hello from example-app!
 ```
 
 ## [Libraries](#libraries)
@@ -157,9 +103,9 @@ $ uv init --lib example-lib
 
 Note
 
-Using `--lib` implies `--package`. Libraries always require a packaged project.
+Libraries always require a packaged project.
 
-As with a [packaged application](#packaged-applications), a `src` layout is used. A `py.typed` marker is included to indicate to consumers that types can be read from the library:
+A `py.typed` marker is included to indicate to consumers that types can be read from the library:
 
 ```
 $ tree example-lib
@@ -191,7 +137,7 @@ requires-python = ">=3.11"
 dependencies = []
 
 [build-system]
-requires = ["uv_build>=0.11.33,<0.12"]
+requires = ["uv_build>=0.12.0,<0.13"]
 build-backend = "uv_build"
 ```
 
@@ -296,6 +242,62 @@ Hello from example-ext!
 Important
 
 When creating a project with maturin or scikit-build-core, uv configures [`tool.uv.cache-keys`](../../../reference/settings/#cache-keys) to include common source file types. To force a rebuild, e.g. when changing files outside `cache-keys` or when not using `cache-keys`, use `--reinstall`.
+
+## [Creating a project without a build system](#creating-a-project-without-a-build-system)
+
+While defining a build system generally provides a better experience, there are some cases in which it can be easier to omit it and define your Python modules directly in the top-level directory.
+
+Use the `--no-package` flag to disable using a build system:
+
+```
+$ uv init --no-package example-app
+```
+
+The project includes a `pyproject.toml`, a sample file (`main.py`), a readme, and a Python version pin file (`.python-version`).
+
+```
+$ tree example-app
+example-app/
+├── .python-version
+├── README.md
+├── main.py
+└── pyproject.toml
+```
+
+The `pyproject.toml` includes basic metadata. It does not include a build system, it is not a [package](../config/#project-packaging), and will not be installed into the environment:
+
+pyproject.toml
+
+```
+[project]
+name = "example-app"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
+```
+
+The sample file defines a `main` function with some standard boilerplate:
+
+main.py
+
+```
+def main():
+    print("Hello from example-app!")
+
+
+if __name__ == "__main__":
+    main()
+```
+
+Python files can be executed with `uv run`:
+
+```
+$ cd example-app
+$ uv run main.py
+Hello from example-app!
+```
 
 ## [Creating a minimal project](#creating-a-minimal-project)
 

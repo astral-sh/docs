@@ -28,10 +28,10 @@ project
 To use uv with this application, inside the `project` directory run:
 
 ```
-$ uv init --app
+$ uv init --no-package
 ```
 
-This creates a [project with an application layout](../../../concepts/projects/init/#applications) and a `pyproject.toml` file.
+This creates a `pyproject.toml` file for a [flat, unpackaged project](../../../concepts/projects/init/#unpackaged-applications).
 
 Then, add a dependency on FastAPI:
 

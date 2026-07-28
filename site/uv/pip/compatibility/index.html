@@ -101,8 +101,8 @@
 <script type="application/ld+json">
   {
       
-      "datePublished": "2026-07-23 19:51:18Z",
-      "dateModified": "2026-07-23 19:51:18Z",
+      "datePublished": "2026-07-14 13:40:11Z",
+      "dateModified": "2026-07-14 13:40:11Z",
       
       "@context": "https://schema.org",
       "@type": "WebSite",
@@ -4082,32 +4082,26 @@ drawbacks:</p>
 configuration in a <code>uv.toml</code> file or a <code>[tool.uv.pip]</code> section of <code>pyproject.toml</code>. For more
 information, see <a href="../../concepts/configuration-files/">Configuration files</a>.</p>
 <h2 id="pre-release-compatibility"><a class="toclink" href="#pre-release-compatibility">Pre-release compatibility</a></h2>
-<p>By default, uv will accept pre-release versions during dependency resolution in two cases:</p>
-<ol>
-<li>If the package is a direct dependency, and its version markers include a pre-release specifier
-   (e.g., <code>flask&gt;=2.0.0rc1</code>).</li>
-<li>If <em>all</em> published versions of a package are pre-releases.</li>
-</ol>
-<p>If dependency resolution fails due to a transitive pre-release, uv will prompt the user to re-run
-with <code>--prerelease allow</code>, to allow pre-releases for all dependencies.</p>
-<p>Alternatively, you can add the transitive dependency to your <code>requirements.in</code> file with pre-release
-specifier (e.g., <code>flask&gt;=2.0.0rc1</code>) to opt in to pre-release support for that specific dependency.</p>
-<p>In sum, uv needs to know upfront whether the resolver should accept pre-releases for a given
-package. Meanwhile <code>pip</code>, respects pre-release identifiers in transitive dependencies, and allows
-pre-releases of transitive dependencies if no stable versions match the dependency requirements.</p>
+<p>By default (<code>if-necessary</code>), uv prefers stable versions over pre-releases, falling back to
+pre-releases only if every stable candidate that satisfies the active constraints is rejected during
+resolution.</p>
+<p>For example, suppose only <code>c==1.0</code> and <code>c==2.0a1</code> are available. Together, <code>c&gt;=1</code> and
+<code>a -&gt; c&gt;=0.5a1</code> allow both versions, but uv selects <code>c==1.0</code> regardless of which requirement is
+discovered first. If another active requirement rejects <code>c==1.0</code>, uv falls back to <code>c==2.0a1</code>.</p>
+<p>Use <code>--prerelease allow</code> to consider pre-releases for every package without preferring stable
+candidates first, or <code>--prerelease disallow</code> to exclude them entirely.</p>
+<p>The <code>explicit</code> mode considers pre-releases only for first-party requirements that contain a
+pre-release identifier (preferring stable versions and falling back to pre-releases only if
+necessary), while disallowing pre-releases for all other packages.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Prior to pip 26.0, this behavior was not consistent.</p>
 </div>
 <p>Pre-releases are
-<a href="https://pubgrub-rs-guide.netlify.app/limitations/prerelease_versions">notoriously difficult</a> to
-model, and are a frequent source of bugs in packaging tools. uv's pre-release handling is
-<em>intentionally</em> limited and <em>intentionally</em> requires user opt-in for pre-releases, to ensure
-correctness.</p>
-<p>In the future, uv <em>may</em> support pre-release identifiers in transitive dependencies. However, it's
-likely contingent on evolution in the Python packaging specifications. The existing PEPs
-<a href="https://discuss.python.org/t/handling-of-pre-releases-when-backtracking/40505/17">do not cover "dependency resolution"</a>
-and are instead focused on behavior for a <em>single</em> version specifier.</p>
+<a href="https://pubgrub-rs-guide.pages.dev/limitations/prerelease_versions">notoriously difficult</a> to model
+because dependency requirements are discovered incrementally during resolution. uv keeps the
+candidate universe fixed for each package while trying stable candidates before pre-releases, so
+backtracking can reach a pre-release without invalidating PubGrub's learned incompatibilities.</p>
 <h2 id="packages-that-exist-on-multiple-indexes"><a class="toclink" href="#packages-that-exist-on-multiple-indexes">Packages that exist on multiple indexes</a></h2>
 <p>In both uv and <code>pip</code>, users can specify multiple package indexes from which to search for the
 available versions of a given package. However, uv and <code>pip</code> differ in how they handle packages that
@@ -4460,7 +4454,7 @@ preserve the verbatim package name as published on the registry.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 23, 2026 19:51:18 UTC">July 23, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 14, 2026 13:40:11 UTC">July 14, 2026</span>
   </span>
 
     

@@ -61,7 +61,7 @@ bird-feeder = { workspace = true }
 members = ["packages/*"]
 
 [build-system]
-requires = ["uv_build>=0.11.33,<0.12"]
+requires = ["uv_build>=0.12.0,<0.13"]
 build-backend = "uv_build"
 ```
 
@@ -90,7 +90,7 @@ tqdm = { git = "https://github.com/tqdm/tqdm" }
 members = ["packages/*"]
 
 [build-system]
-requires = ["uv_build>=0.11.33,<0.12"]
+requires = ["uv_build>=0.12.0,<0.13"]
 build-backend = "uv_build"
 ```
 
@@ -126,7 +126,7 @@ albatross
 ├── uv.lock
 └── src
     └── albatross
-        └── main.py
+        └── __init__.py
 ```
 
 Since `seeds` was excluded in the `pyproject.toml`, the workspace has two members total: `albatross` (the root) and `bird-feeder`.
@@ -157,7 +157,7 @@ dependencies = ["bird-feeder", "tqdm>=4,<5"]
 bird-feeder = { path = "packages/bird-feeder" }
 
 [build-system]
-requires = ["uv_build>=0.11.33,<0.12"]
+requires = ["uv_build>=0.12.0,<0.13"]
 build-backend = "uv_build"
 ```
 
