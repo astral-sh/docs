@@ -3476,6 +3476,8 @@ May also be set with the `UV_NO_DEFAULT_GROUPS` environment variable.
 
 ```
 This option is an alias of `--no-group dev`. See `--no-default-groups` to disable all default groups instead.
+
+This option is only available when running in a project.
 ```
 
 [`--no-editable`](#uv-sync--no-editable) : Install any editable dependencies, including the project and any workspace members, as non-editable [env: UV_NO_EDITABLE=]
@@ -4509,6 +4511,8 @@ May also be set with the `UV_NO_DEFAULT_GROUPS` environment variable.
 
 ```
 This option is an alias of `--no-group dev`. See `--no-default-groups` to disable all default groups instead.
+
+This option is only available when running in a project.
 ```
 
 [`--no-editable`](#uv-export--no-editable) : Export any editable dependencies, including the project and any workspace members, as non-editable [env: UV_NO_EDITABLE=]
@@ -5039,6 +5043,8 @@ May also be set with the `UV_NO_DEFAULT_GROUPS` environment variable.
 
 ```
 This option is an alias of `--no-group dev`. See `--no-default-groups` to disable all default groups instead.
+
+This option is only available when running in a project.
 ```
 
 [`--no-group`](#uv-tree--no-group) *no-group* : Disable the specified dependency group \[env: `UV_NO_GROUP`=\]
@@ -5458,6 +5464,8 @@ Run checks on the project.
 
 Currently, this type checks Python code using ty. By default, all Python files in the project are checked.
 
+To apply safe fixes to type-checking errors, use `--fix`.
+
 ### Usage
 
 ```
@@ -5615,6 +5623,8 @@ If a URL, the page must contain a flat list of links to package files adhering t
 
 May also be set with the `UV_FIND_LINKS` environment variable.
 ```
+
+[`--fix`](#uv-check--fix) : Apply safe fixes to resolve type-checking errors
 
 [`--fork-strategy`](#uv-check--fork-strategy) *fork-strategy* : The strategy to use when selecting multiple versions of a given package across Python versions and platforms.
 
@@ -5793,6 +5803,8 @@ May also be set with the `UV_NO_DEFAULT_GROUPS` environment variable.
 
 ```
 This option is an alias of `--no-group dev`. See `--no-default-groups` to disable all default groups instead.
+
+This option is only available when running in a project.
 ```
 
 [`--no-extra`](#uv-check--no-extra) *no-extra* : Exclude the specified optional dependencies, if `--all-extras` is supplied.
