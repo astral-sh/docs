@@ -6387,6 +6387,7 @@ used.</p>
 <p>uv includes the groups defined in <code>tool.uv.default-groups</code> by default. This disables that option, however, specific groups can still be included with <code>--group</code>.</p>
 <p>May also be set with the <code>UV_NO_DEFAULT_GROUPS</code> environment variable.</p></dd><dt id="uv-sync--no-dev"><a href="#uv-sync--no-dev"><code>--no-dev</code></a></dt><dd><p>Disable the development dependency group [env: UV_NO_DEV=]</p>
 <p>This option is an alias of <code>--no-group dev</code>. See <code>--no-default-groups</code> to disable all default groups instead.</p>
+<p>This option is only available when running in a project.</p>
 </dd><dt id="uv-sync--no-editable"><a href="#uv-sync--no-editable"><code>--no-editable</code></a></dt><dd><p>Install any editable dependencies, including the project and any workspace members, as non-editable [env: UV_NO_EDITABLE=]</p>
 </dd><dt id="uv-sync--no-editable-package"><a href="#uv-sync--no-editable-package"><code>--no-editable-package</code></a> <i>no-editable-package</i></dt><dd><p>Install the specified editable packages as non-editable</p>
 </dd><dt id="uv-sync--no-extra"><a href="#uv-sync--no-extra"><code>--no-extra</code></a> <i>no-extra</i></dt><dd><p>Exclude the specified optional dependencies, if <code>--all-extras</code> is supplied.</p>
@@ -6827,6 +6828,7 @@ metadata when there are not wheels.</p>
 <p>uv includes the groups defined in <code>tool.uv.default-groups</code> by default. This disables that option, however, specific groups can still be included with <code>--group</code>.</p>
 <p>May also be set with the <code>UV_NO_DEFAULT_GROUPS</code> environment variable.</p></dd><dt id="uv-export--no-dev"><a href="#uv-export--no-dev"><code>--no-dev</code></a></dt><dd><p>Disable the development dependency group [env: UV_NO_DEV=]</p>
 <p>This option is an alias of <code>--no-group dev</code>. See <code>--no-default-groups</code> to disable all default groups instead.</p>
+<p>This option is only available when running in a project.</p>
 </dd><dt id="uv-export--no-editable"><a href="#uv-export--no-editable"><code>--no-editable</code></a></dt><dd><p>Export any editable dependencies, including the project and any workspace members, as non-editable [env: UV_NO_EDITABLE=]</p>
 </dd><dt id="uv-export--no-editable-package"><a href="#uv-export--no-editable-package"><code>--no-editable-package</code></a> <i>no-editable-package</i></dt><dd><p>Export the specified editable packages as non-editable</p>
 </dd><dt id="uv-export--no-emit-local"><a href="#uv-export--no-emit-local"><code>--no-emit-local</code></a>, <code>--no-install-local</code></dt><dd><p>Do not include local path dependencies in the exported requirements.</p>
@@ -7033,6 +7035,7 @@ metadata when there are not wheels.</p>
 <p>uv includes the groups defined in <code>tool.uv.default-groups</code> by default. This disables that option, however, specific groups can still be included with <code>--group</code>.</p>
 <p>May also be set with the <code>UV_NO_DEFAULT_GROUPS</code> environment variable.</p></dd><dt id="uv-tree--no-dev"><a href="#uv-tree--no-dev"><code>--no-dev</code></a></dt><dd><p>Disable the development dependency group [env: UV_NO_DEV=]</p>
 <p>This option is an alias of <code>--no-group dev</code>. See <code>--no-default-groups</code> to disable all default groups instead.</p>
+<p>This option is only available when running in a project.</p>
 </dd><dt id="uv-tree--no-group"><a href="#uv-tree--no-group"><code>--no-group</code></a> <i>no-group</i></dt><dd><p>Disable the specified dependency group [env: <code>UV_NO_GROUP</code>=]</p>
 <p>This option always takes precedence over default groups, <code>--all-groups</code>, and <code>--group</code>.</p>
 <p>May be provided multiple times.</p>
@@ -7230,6 +7233,7 @@ interpreter. Use <code>--universal</code> to display the tree for all platforms,
 <h2 id="uv-check"><a class="toclink" href="#uv-check">uv check</a></h2>
 <p>Run checks on the project.</p>
 <p>Currently, this type checks Python code using ty. By default, all Python files in the project are checked.</p>
+<p>To apply safe fixes to type-checking errors, use <code>--fix</code>.</p>
 <h3 class="cli-reference">Usage</h3>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>uv check [OPTIONS]
@@ -7289,7 +7293,8 @@ interpreter. Use <code>--universal</code> to display the tree for all platforms,
 <p>May also be set with the <code>UV_EXTRA_INDEX_URL</code> environment variable.</p></dd><dt id="uv-check--find-links"><a href="#uv-check--find-links"><code>--find-links</code></a>, <code>-f</code> <i>find-links</i></dt><dd><p>Locations to search for candidate distributions, in addition to those found in the registry indexes.</p>
 <p>If a path, the target must be a directory that contains packages as wheel files (<code>.whl</code>) or source distributions (e.g., <code>.tar.gz</code> or <code>.zip</code>) at the top level.</p>
 <p>If a URL, the page must contain a flat list of links to package files adhering to the formats described above.</p>
-<p>May also be set with the <code>UV_FIND_LINKS</code> environment variable.</p></dd><dt id="uv-check--fork-strategy"><a href="#uv-check--fork-strategy"><code>--fork-strategy</code></a> <i>fork-strategy</i></dt><dd><p>The strategy to use when selecting multiple versions of a given package across Python versions and platforms.</p>
+<p>May also be set with the <code>UV_FIND_LINKS</code> environment variable.</p></dd><dt id="uv-check--fix"><a href="#uv-check--fix"><code>--fix</code></a></dt><dd><p>Apply safe fixes to resolve type-checking errors</p>
+</dd><dt id="uv-check--fork-strategy"><a href="#uv-check--fork-strategy"><code>--fork-strategy</code></a> <i>fork-strategy</i></dt><dd><p>The strategy to use when selecting multiple versions of a given package across Python versions and platforms.</p>
 <p>By default, uv will optimize for selecting the latest version of each package for each supported Python version (<code>requires-python</code>), while minimizing the number of selected versions across platforms.</p>
 <p>Under <code>fewest</code>, uv will minimize the number of selected versions for each package, preferring older versions that are compatible with a wider range of supported Python versions or platforms.</p>
 <p>May also be set with the <code>UV_FORK_STRATEGY</code> environment variable.</p><p>Possible values:</p>
@@ -7355,6 +7360,7 @@ interpreter. Use <code>--universal</code> to display the tree for all platforms,
 <p>uv includes the groups defined in <code>tool.uv.default-groups</code> by default. This disables that option, however, specific groups can still be included with <code>--group</code>.</p>
 <p>May also be set with the <code>UV_NO_DEFAULT_GROUPS</code> environment variable.</p></dd><dt id="uv-check--no-dev"><a href="#uv-check--no-dev"><code>--no-dev</code></a></dt><dd><p>Disable the development dependency group [env: UV_NO_DEV=]</p>
 <p>This option is an alias of <code>--no-group dev</code>. See <code>--no-default-groups</code> to disable all default groups instead.</p>
+<p>This option is only available when running in a project.</p>
 </dd><dt id="uv-check--no-extra"><a href="#uv-check--no-extra"><code>--no-extra</code></a> <i>no-extra</i></dt><dd><p>Exclude the specified optional dependencies, if <code>--all-extras</code> is supplied.</p>
 <p>May be provided multiple times.</p>
 </dd><dt id="uv-check--no-group"><a href="#uv-check--no-group"><code>--no-group</code></a> <i>no-group</i></dt><dd><p>Disable the specified dependency group [env: <code>UV_NO_GROUP</code>=]</p>

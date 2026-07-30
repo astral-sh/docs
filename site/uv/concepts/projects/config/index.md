@@ -220,6 +220,10 @@ deepspeed = [{ requirement = "torch", match-runtime = true }]
 
 This will ensure that `deepspeed` is built with the same version of `torch` that is installed in the project environment.
 
+Tip
+
+Pre-built `deepspeed` wheels are also available from the [Astral GPU indexes](../../../guides/integration/pytorch/#installing-gpu-enabled-pytorch-extensions).
+
 Similarly, to build `flash-attn` with `torch` as an additional build dependency, include the following in your `pyproject.toml`:
 
 pyproject.toml
@@ -246,6 +250,10 @@ The `FLASH_ATTENTION_SKIP_CUDA_BUILD` environment variable enables `flash-attn` 
 
 If the CUDA toolkit is available during resolution, we recommend omitting the `FLASH_ATTENTION_SKIP_CUDA_BUILD` variable, as setting `FLASH_ATTENTION_SKIP_CUDA_BUILD` to `TRUE` can lead to an incompatible install if no compatible pre-built wheel is available for the target PyTorch version, GPU version, and platform.
 
+Tip
+
+Pre-built `flash-attn` wheels are also available from the [Astral GPU indexes](../../../guides/integration/pytorch/#installing-gpu-enabled-pytorch-extensions).
+
 Similarly, [`deep_gemm`](https://github.com/deepseek-ai/DeepGEMM) follows the same pattern:
 
 pyproject.toml
@@ -265,6 +273,10 @@ deep_gemm = { git = "https://github.com/deepseek-ai/DeepGEMM" }
 [tool.uv.extra-build-dependencies]
 deep_gemm = [{ requirement = "torch", match-runtime = true }]
 ```
+
+Tip
+
+Pre-built `deep_gemm` wheels are also available from the [Astral GPU indexes](../../../guides/integration/pytorch/#installing-gpu-enabled-pytorch-extensions).
 
 The use of `extra-build-dependencies` and `extra-build-variables` are tracked in the uv cache, such that changes to these settings will trigger a reinstall and rebuild of the affected packages. For example, in the case of `flash-attn`, upgrading the version of `torch` used in your project would subsequently trigger a rebuild of `flash-attn` with the new version of `torch`.
 
