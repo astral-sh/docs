@@ -1208,6 +1208,14 @@ Possible values:
 - `if-necessary-or-explicit`: Deprecated alias for `if-necessary`
 ```
 
+[`--prerelease-package`](#uv-run--prerelease-package) *prerelease-package* : The strategy to use when considering pre-release versions for a specific package.
+
+```
+Accepts package-mode pairs in the format `PACKAGE=MODE`, where `MODE` is any value accepted by `--prerelease`.
+
+May be provided multiple times for different packages.
+```
+
 [`--project`](#uv-run--project) *project* : Discover a project in the given directory.
 
 ```
@@ -2106,6 +2114,14 @@ Possible values:
 - `if-necessary-or-explicit`: Deprecated alias for `if-necessary`
 ```
 
+[`--prerelease-package`](#uv-add--prerelease-package) *prerelease-package* : The strategy to use when considering pre-release versions for a specific package.
+
+```
+Accepts package-mode pairs in the format `PACKAGE=MODE`, where `MODE` is any value accepted by `--prerelease`.
+
+May be provided multiple times for different packages.
+```
+
 [`--project`](#uv-add--project) *project* : Discover a project in the given directory.
 
 ```
@@ -2571,6 +2587,14 @@ Possible values:
 - `if-necessary-or-explicit`: Deprecated alias for `if-necessary`
 ```
 
+[`--prerelease-package`](#uv-remove--prerelease-package) *prerelease-package* : The strategy to use when considering pre-release versions for a specific package.
+
+```
+Accepts package-mode pairs in the format `PACKAGE=MODE`, where `MODE` is any value accepted by `--prerelease`.
+
+May be provided multiple times for different packages.
+```
+
 [`--project`](#uv-remove--project) *project* : Discover a project in the given directory.
 
 ```
@@ -3027,6 +3051,14 @@ Possible values:
 - `if-necessary`: Prefer stable versions, falling back to pre-release versions when necessary
 - `explicit`: Prefer stable versions for first-party packages with explicit pre-release specifiers, falling back to pre-release versions when necessary. Disallow pre-release versions for all other packages
 - `if-necessary-or-explicit`: Deprecated alias for `if-necessary`
+```
+
+[`--prerelease-package`](#uv-version--prerelease-package) *prerelease-package* : The strategy to use when considering pre-release versions for a specific package.
+
+```
+Accepts package-mode pairs in the format `PACKAGE=MODE`, where `MODE` is any value accepted by `--prerelease`.
+
+May be provided multiple times for different packages.
 ```
 
 [`--project`](#uv-version--project) *project* : Discover a project in the given directory.
@@ -3611,6 +3643,14 @@ Possible values:
 - `if-necessary-or-explicit`: Deprecated alias for `if-necessary`
 ```
 
+[`--prerelease-package`](#uv-sync--prerelease-package) *prerelease-package* : The strategy to use when considering pre-release versions for a specific package.
+
+```
+Accepts package-mode pairs in the format `PACKAGE=MODE`, where `MODE` is any value accepted by `--prerelease`.
+
+May be provided multiple times for different packages.
+```
+
 [`--project`](#uv-sync--project) *project* : Discover a project in the given directory.
 
 ```
@@ -4088,6 +4128,14 @@ Possible values:
 - `if-necessary`: Prefer stable versions, falling back to pre-release versions when necessary
 - `explicit`: Prefer stable versions for first-party packages with explicit pre-release specifiers, falling back to pre-release versions when necessary. Disallow pre-release versions for all other packages
 - `if-necessary-or-explicit`: Deprecated alias for `if-necessary`
+```
+
+[`--prerelease-package`](#uv-lock--prerelease-package) *prerelease-package* : The strategy to use when considering pre-release versions for a specific package.
+
+```
+Accepts package-mode pairs in the format `PACKAGE=MODE`, where `MODE` is any value accepted by `--prerelease`.
+
+May be provided multiple times for different packages.
 ```
 
 [`--project`](#uv-lock--project) *project* : Discover a project in the given directory.
@@ -4639,6 +4687,14 @@ Possible values:
 - `if-necessary-or-explicit`: Deprecated alias for `if-necessary`
 ```
 
+[`--prerelease-package`](#uv-export--prerelease-package) *prerelease-package* : The strategy to use when considering pre-release versions for a specific package.
+
+```
+Accepts package-mode pairs in the format `PACKAGE=MODE`, where `MODE` is any value accepted by `--prerelease`.
+
+May be provided multiple times for different packages.
+```
+
 [`--project`](#uv-export--project) *project* : Discover a project in the given directory.
 
 ```
@@ -5119,6 +5175,14 @@ Possible values:
 - `if-necessary`: Prefer stable versions, falling back to pre-release versions when necessary
 - `explicit`: Prefer stable versions for first-party packages with explicit pre-release specifiers, falling back to pre-release versions when necessary. Disallow pre-release versions for all other packages
 - `if-necessary-or-explicit`: Deprecated alias for `if-necessary`
+```
+
+[`--prerelease-package`](#uv-tree--prerelease-package) *prerelease-package* : The strategy to use when considering pre-release versions for a specific package.
+
+```
+Accepts package-mode pairs in the format `PACKAGE=MODE`, where `MODE` is any value accepted by `--prerelease`.
+
+May be provided multiple times for different packages.
 ```
 
 [`--project`](#uv-tree--project) *project* : Discover a project in the given directory.
@@ -5899,6 +5963,14 @@ Possible values:
 - `if-necessary-or-explicit`: Deprecated alias for `if-necessary`
 ```
 
+[`--prerelease-package`](#uv-check--prerelease-package) *prerelease-package* : The strategy to use when considering pre-release versions for a specific package.
+
+```
+Accepts package-mode pairs in the format `PACKAGE=MODE`, where `MODE` is any value accepted by `--prerelease`.
+
+May be provided multiple times for different packages.
+```
+
 [`--project`](#uv-check--project) *project* : Discover a project in the given directory.
 
 ```
@@ -6378,6 +6450,14 @@ Possible values:
 - `if-necessary`: Prefer stable versions, falling back to pre-release versions when necessary
 - `explicit`: Prefer stable versions for first-party packages with explicit pre-release specifiers, falling back to pre-release versions when necessary. Disallow pre-release versions for all other packages
 - `if-necessary-or-explicit`: Deprecated alias for `if-necessary`
+```
+
+[`--prerelease-package`](#uv-audit--prerelease-package) *prerelease-package* : The strategy to use when considering pre-release versions for a specific package.
+
+```
+Accepts package-mode pairs in the format `PACKAGE=MODE`, where `MODE` is any value accepted by `--prerelease`.
+
+May be provided multiple times for different packages.
 ```
 
 [`--project`](#uv-audit--project) *project* : Discover a project in the given directory.
@@ -6930,6 +7010,14 @@ Possible values:
 - `if-necessary`: Prefer stable versions, falling back to pre-release versions when necessary
 - `explicit`: Prefer stable versions for first-party packages with explicit pre-release specifiers, falling back to pre-release versions when necessary. Disallow pre-release versions for all other packages
 - `if-necessary-or-explicit`: Deprecated alias for `if-necessary`
+```
+
+[`--prerelease-package`](#uv-tool-run--prerelease-package) *prerelease-package* : The strategy to use when considering pre-release versions for a specific package.
+
+```
+Accepts package-mode pairs in the format `PACKAGE=MODE`, where `MODE` is any value accepted by `--prerelease`.
+
+May be provided multiple times for different packages.
 ```
 
 [`--project`](#uv-tool-run--project) *project* : Discover a project in the given directory.
@@ -7517,6 +7605,14 @@ Possible values:
 - `if-necessary-or-explicit`: Deprecated alias for `if-necessary`
 ```
 
+[`--prerelease-package`](#uv-tool-install--prerelease-package) *prerelease-package* : The strategy to use when considering pre-release versions for a specific package.
+
+```
+Accepts package-mode pairs in the format `PACKAGE=MODE`, where `MODE` is any value accepted by `--prerelease`.
+
+May be provided multiple times for different packages.
+```
+
 [`--project`](#uv-tool-install--project) *project* : Discover a project in the given directory.
 
 ```
@@ -8054,6 +8150,14 @@ Possible values:
 - `if-necessary`: Prefer stable versions, falling back to pre-release versions when necessary
 - `explicit`: Prefer stable versions for first-party packages with explicit pre-release specifiers, falling back to pre-release versions when necessary. Disallow pre-release versions for all other packages
 - `if-necessary-or-explicit`: Deprecated alias for `if-necessary`
+```
+
+[`--prerelease-package`](#uv-tool-upgrade--prerelease-package) *prerelease-package* : The strategy to use when considering pre-release versions for a specific package.
+
+```
+Accepts package-mode pairs in the format `PACKAGE=MODE`, where `MODE` is any value accepted by `--prerelease`.
+
+May be provided multiple times for different packages.
 ```
 
 [`--project`](#uv-tool-upgrade--project) *project* : Discover a project in the given directory.
@@ -10834,6 +10938,14 @@ Possible values:
 - `if-necessary-or-explicit`: Deprecated alias for `if-necessary`
 ```
 
+[`--prerelease-package`](#uv-pip-compile--prerelease-package) *prerelease-package* : The strategy to use when considering pre-release versions for a specific package.
+
+```
+Accepts package-mode pairs in the format `PACKAGE=MODE`, where `MODE` is any value accepted by `--prerelease`.
+
+May be provided multiple times for different packages.
+```
+
 [`--project`](#uv-pip-compile--project) *project* : Discover a project in the given directory.
 
 ```
@@ -12084,6 +12196,14 @@ Possible values:
 - `if-necessary`: Prefer stable versions, falling back to pre-release versions when necessary
 - `explicit`: Prefer stable versions for first-party packages with explicit pre-release specifiers, falling back to pre-release versions when necessary. Disallow pre-release versions for all other packages
 - `if-necessary-or-explicit`: Deprecated alias for `if-necessary`
+```
+
+[`--prerelease-package`](#uv-pip-install--prerelease-package) *prerelease-package* : The strategy to use when considering pre-release versions for a specific package.
+
+```
+Accepts package-mode pairs in the format `PACKAGE=MODE`, where `MODE` is any value accepted by `--prerelease`.
+
+May be provided multiple times for different packages.
 ```
 
 [`--project`](#uv-pip-install--project) *project* : Discover a project in the given directory.
@@ -14482,6 +14602,14 @@ Possible values:
 - `if-necessary-or-explicit`: Deprecated alias for `if-necessary`
 ```
 
+[`--prerelease-package`](#uv-build--prerelease-package) *prerelease-package* : The strategy to use when considering pre-release versions for a specific package.
+
+```
+Accepts package-mode pairs in the format `PACKAGE=MODE`, where `MODE` is any value accepted by `--prerelease`.
+
+May be provided multiple times for different packages.
+```
+
 [`--project`](#uv-build--project) *project* : Discover a project in the given directory.
 
 ```
@@ -15176,6 +15304,14 @@ Possible values:
 - `if-necessary`: Prefer stable versions, falling back to pre-release versions when necessary
 - `explicit`: Prefer stable versions for first-party packages with explicit pre-release specifiers, falling back to pre-release versions when necessary. Disallow pre-release versions for all other packages
 - `if-necessary-or-explicit`: Deprecated alias for `if-necessary`
+```
+
+[`--prerelease-package`](#uv-workspace-metadata--prerelease-package) *prerelease-package* : The strategy to use when considering pre-release versions for a specific package.
+
+```
+Accepts package-mode pairs in the format `PACKAGE=MODE`, where `MODE` is any value accepted by `--prerelease`.
+
+May be provided multiple times for different packages.
 ```
 
 [`--project`](#uv-workspace-metadata--project) *project* : Discover a project in the given directory.
