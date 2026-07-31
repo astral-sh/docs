@@ -1671,6 +1671,29 @@ prerelease = "allow"
 
 ______________________________________________________________________
 
+### \[[`prerelease-package`](#prerelease-package)\](#prerelease-package)
+
+The strategy to use when considering pre-release versions for specific packages.
+
+Package-specific modes take precedence over the global [`prerelease`](#prerelease) mode. Accepts a dictionary mapping package names to any supported pre-release mode.
+
+**Default value**: `{}`
+
+**Type**: `dict`
+
+**Example usage**:
+
+```
+[tool.uv]
+prerelease-package = { numpy = "allow", scipy = "disallow" }
+```
+
+```
+prerelease-package = { numpy = "allow", scipy = "disallow" }
+```
+
+______________________________________________________________________
+
 ### \[[`preview-features`](#preview-features)\](#preview-features)
 
 Whether to enable specific or all experimental preview features.
