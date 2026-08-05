@@ -2998,6 +2998,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#uv-tool-audit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        uv tool audit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#uv-tool-uninstall" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4411,6 +4422,17 @@
     <span class="md-ellipsis">
       
         uv tool list
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uv-tool-audit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        uv tool audit
       
     </span>
   </a>
@@ -7717,6 +7739,7 @@ interpreter. Use <code>--universal</code> to display the tree for all platforms,
 <dt><a href="#uv-tool-install"><code>uv tool install</code></a></dt><dd><p>Install commands provided by a Python package</p></dd>
 <dt><a href="#uv-tool-upgrade"><code>uv tool upgrade</code></a></dt><dd><p>Upgrade installed tools</p></dd>
 <dt><a href="#uv-tool-list"><code>uv tool list</code></a></dt><dd><p>List installed tools</p></dd>
+<dt><a href="#uv-tool-audit"><code>uv tool audit</code></a></dt><dd><p>Audit installed tools and their dependencies</p></dd>
 <dt><a href="#uv-tool-uninstall"><code>uv tool uninstall</code></a></dt><dd><p>Uninstall a tool</p></dd>
 <dt><a href="#uv-tool-update-shell"><code>uv tool update-shell</code></a></dt><dd><p>Ensure that the tool executable directory is on the <code>PATH</code></p></dd>
 <dt><a href="#uv-tool-dir"><code>uv tool dir</code></a></dt><dd><p>Show the path to the uv tools directory</p></dd>
@@ -8589,11 +8612,94 @@ Use with <code>--all</code> to apply to all tools.</p>
 <p>You can configure fine-grained logging using the <code>RUST_LOG</code> environment variable. (<a href="https://docs.rs/tracing-subscriber/latest/tracing_subscriber/filter/struct.EnvFilter.html#directives">https://docs.rs/tracing-subscriber/latest/tracing_subscriber/filter/struct.EnvFilter.html#directives</a>)</p>
 </dd></dl>
 
+<h3 id="uv-tool-audit"><a class="toclink" href="#uv-tool-audit">uv tool audit</a></h3>
+<p>Audit installed tools and their dependencies</p>
+<h3 class="cli-reference">Usage</h3>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>uv tool audit [OPTIONS] &lt;NAME&gt;...
+</code></pre></div>
+<h3 class="cli-reference">Arguments</h3>
+
+<dl class="cli-reference"><dt id="uv-tool-audit--name"><a href="#uv-tool-audit--name"><code>NAME</code></a></dt><dd><p>The names of the installed tools to audit</p>
+</dd></dl>
+
+<h3 class="cli-reference">Options</h3>
+
+<dl class="cli-reference"><dt id="uv-tool-audit--all"><a href="#uv-tool-audit--all"><code>--all</code></a></dt><dd><p>Audit all installed tools</p>
+</dd><dt id="uv-tool-audit--allow-insecure-host"><a href="#uv-tool-audit--allow-insecure-host"><code>--allow-insecure-host</code></a>, <code>--trusted-host</code> <i>allow-insecure-host</i></dt><dd><p>Allow insecure connections to a host.</p>
+<p>Can be provided multiple times.</p>
+<p>Expects to receive either a hostname (e.g., <code>localhost</code>), a host-port pair (e.g., <code>localhost:8080</code>), or a URL (e.g., <code>https://localhost</code>).</p>
+<p>WARNING: Hosts included in this list will not be verified against the system's certificate store. Only use <code>--allow-insecure-host</code> in a secure network with verified sources, as it bypasses SSL verification and could expose you to MITM attacks.</p>
+<p>May also be set with the <code>UV_INSECURE_HOST</code> environment variable.</p></dd><dt id="uv-tool-audit--cache-dir"><a href="#uv-tool-audit--cache-dir"><code>--cache-dir</code></a> <i>cache-dir</i></dt><dd><p>Path to the cache directory.</p>
+<p>Defaults to <code>$XDG_CACHE_HOME/uv</code> or <code>$HOME/.cache/uv</code> on macOS and Linux, and <code>%LOCALAPPDATA%\uv\cache</code> on Windows.</p>
+<p>To view the location of the cache directory, run <code>uv cache dir</code>.</p>
+<p>May also be set with the <code>UV_CACHE_DIR</code> environment variable.</p></dd><dt id="uv-tool-audit--color"><a href="#uv-tool-audit--color"><code>--color</code></a> <i>color-choice</i></dt><dd><p>Control the use of color in output.</p>
+<p>By default, uv will automatically detect support for colors when writing to a terminal.</p>
+<p>Possible values:</p>
+<ul>
+<li><code>auto</code>:  Enables colored output only when the output is going to a terminal or TTY with support</li>
+<li><code>always</code>:  Enables colored output regardless of the detected environment</li>
+<li><code>never</code>:  Disables colored output</li>
+</ul></dd><dt id="uv-tool-audit--config-file"><a href="#uv-tool-audit--config-file"><code>--config-file</code></a> <i>config-file</i></dt><dd><p>The path to a <code>uv.toml</code> file to use for configuration.</p>
+<p>While uv configuration can be included in a <code>pyproject.toml</code> file, it is not allowed in this context.</p>
+<p>May also be set with the <code>UV_CONFIG_FILE</code> environment variable.</p></dd><dt id="uv-tool-audit--directory"><a href="#uv-tool-audit--directory"><code>--directory</code></a> <i>directory</i></dt><dd><p>Change to the given directory prior to running the command.</p>
+<p>Relative paths are resolved with the given directory as the base.</p>
+<p>See <code>--project</code> to only change the project root directory.</p>
+<p>May also be set with the <code>UV_WORKING_DIR</code> environment variable.</p></dd><dt id="uv-tool-audit--help"><a href="#uv-tool-audit--help"><code>--help</code></a>, <code>-h</code></dt><dd><p>Display the concise help for this command</p>
+</dd><dt id="uv-tool-audit--ignore"><a href="#uv-tool-audit--ignore"><code>--ignore</code></a> <i>ignore</i></dt><dd><p>Ignore a vulnerability by ID.</p>
+<p>Vulnerabilities matching any of the provided IDs (including aliases) will be excluded from the audit results.</p>
+<p>May be provided multiple times.</p>
+</dd><dt id="uv-tool-audit--ignore-until-fixed"><a href="#uv-tool-audit--ignore-until-fixed"><code>--ignore-until-fixed</code></a> <i>ignore-until-fixed</i></dt><dd><p>Ignore a vulnerability by ID, but only while no fix is available.</p>
+<p>Vulnerabilities matching any of the provided IDs (including aliases) will be excluded from the audit results as long as they have no known fix versions. Once a fix version becomes available, the vulnerability will be reported again.</p>
+<p>May be provided multiple times.</p>
+</dd><dt id="uv-tool-audit--managed-python"><a href="#uv-tool-audit--managed-python"><code>--managed-python</code></a></dt><dd><p>Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]</p>
+<p>By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.</p>
+</dd><dt id="uv-tool-audit--no-cache"><a href="#uv-tool-audit--no-cache"><code>--no-cache</code></a>, <code>--no-cache-dir</code>, <code>-n</code></dt><dd><p>Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation</p>
+<p>May also be set with the <code>UV_NO_CACHE</code> environment variable.</p></dd><dt id="uv-tool-audit--no-config"><a href="#uv-tool-audit--no-config"><code>--no-config</code></a></dt><dd><p>Avoid discovering configuration files (<code>pyproject.toml</code>, <code>uv.toml</code>).</p>
+<p>Normally, configuration files are discovered in the current directory, parent directories, or user configuration directories.</p>
+<p>May also be set with the <code>UV_NO_CONFIG</code> environment variable.</p></dd><dt id="uv-tool-audit--no-managed-python"><a href="#uv-tool-audit--no-managed-python"><code>--no-managed-python</code></a></dt><dd><p>Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]</p>
+<p>Instead, uv will search for a suitable Python version on the system.</p>
+</dd><dt id="uv-tool-audit--no-progress"><a href="#uv-tool-audit--no-progress"><code>--no-progress</code></a></dt><dd><p>Hide all progress outputs [env: UV_NO_PROGRESS=]</p>
+<p>For example, spinners or progress bars.</p>
+</dd><dt id="uv-tool-audit--no-python-downloads"><a href="#uv-tool-audit--no-python-downloads"><code>--no-python-downloads</code></a></dt><dd><p>Disable automatic downloads of Python.</p>
+</dd><dt id="uv-tool-audit--offline"><a href="#uv-tool-audit--offline"><code>--offline</code></a></dt><dd><p>Disable network access [env: UV_OFFLINE=]</p>
+<p>When disabled, uv will only use locally cached data and locally available files.</p>
+</dd><dt id="uv-tool-audit--output-format"><a href="#uv-tool-audit--output-format"><code>--output-format</code></a> <i>output-format</i></dt><dd><p>Select the output format</p>
+<p>[default: text]</p><p>Possible values:</p>
+<ul>
+<li><code>text</code>:  Display the result in a human-readable format</li>
+<li><code>json</code>:  Display the result in JSON format</li>
+<li><code>sarif</code>:  Display the result in SARIF format</li>
+</ul></dd><dt id="uv-tool-audit--project"><a href="#uv-tool-audit--project"><code>--project</code></a> <i>project</i></dt><dd><p>Discover a project in the given directory.</p>
+<p>All <code>pyproject.toml</code>, <code>uv.toml</code>, and <code>.python-version</code> files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (<code>.venv</code>).</p>
+<p>Other command-line arguments (such as relative paths) will be resolved relative to the current working directory.</p>
+<p>See <code>--directory</code> to change the working directory entirely.</p>
+<p>This setting has no effect when used in the <code>uv pip</code> interface.</p>
+<p>May also be set with the <code>UV_PROJECT</code> environment variable.</p></dd><dt id="uv-tool-audit--quiet"><a href="#uv-tool-audit--quiet"><code>--quiet</code></a>, <code>-q</code></dt><dd><p>Use quiet output.</p>
+<p>Repeating this option, e.g., <code>-qq</code>, will enable a silent mode in which uv will write no output to stdout.</p>
+</dd><dt id="uv-tool-audit--service-format"><a href="#uv-tool-audit--service-format"><code>--service-format</code></a> <i>service-format</i></dt><dd><p>The service format to use for vulnerability lookups.</p>
+<p>Each service format has a default URL, which can be changed with <code>--service-url</code>. The defaults are:</p>
+<ul>
+<li>OSV: <a href="https://api.osv.dev/">https://api.osv.dev/</a></li>
+</ul>
+<p>[default: osv]</p><p>Possible values:</p>
+<ul>
+<li><code>osv</code></li>
+</ul></dd><dt id="uv-tool-audit--service-url"><a href="#uv-tool-audit--service-url"><code>--service-url</code></a> <i>service-url</i></dt><dd><p>The URL to vulnerability service API endpoint.</p>
+<p>If not provided, the default URL for the selected service will be used.</p>
+<p>The service needs to use the OSV protocol, unless a different format was requested by <code>--service-format</code>.</p>
+</dd><dt id="uv-tool-audit--system-certs"><a href="#uv-tool-audit--system-certs"><code>--system-certs</code></a></dt><dd><p>Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]</p>
+<p>By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).</p>
+<p>However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.</p>
+</dd><dt id="uv-tool-audit--verbose"><a href="#uv-tool-audit--verbose"><code>--verbose</code></a>, <code>-v</code></dt><dd><p>Use verbose output.</p>
+<p>You can configure fine-grained logging using the <code>RUST_LOG</code> environment variable. (<a href="https://docs.rs/tracing-subscriber/latest/tracing_subscriber/filter/struct.EnvFilter.html#directives">https://docs.rs/tracing-subscriber/latest/tracing_subscriber/filter/struct.EnvFilter.html#directives</a>)</p>
+</dd></dl>
+
 <h3 id="uv-tool-uninstall"><a class="toclink" href="#uv-tool-uninstall">uv tool uninstall</a></h3>
 <p>Uninstall a tool</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>uv tool uninstall [OPTIONS] &lt;NAME&gt;...
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>uv tool uninstall [OPTIONS] &lt;NAME&gt;...
 </code></pre></div>
 <h3 class="cli-reference">Arguments</h3>
 
@@ -8656,7 +8762,7 @@ Use with <code>--all</code> to apply to all tools.</p>
 <p>The tool executable directory is determined according to the XDG standard and can be retrieved with <code>uv tool dir --bin</code>.</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>uv tool update-shell [OPTIONS]
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>uv tool update-shell [OPTIONS]
 </code></pre></div>
 <h3 class="cli-reference">Options</h3>
 
@@ -8714,7 +8820,7 @@ Use with <code>--all</code> to apply to all tools.</p>
 <p>To instead view the directory uv installs executables into, use the <code>--bin</code> flag.</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>uv tool dir [OPTIONS]
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>uv tool dir [OPTIONS]
 </code></pre></div>
 <h3 class="cli-reference">Options</h3>
 
@@ -8813,7 +8919,7 @@ will be skipped during discovery. If an unsupported interpreter implementation i
 uv will exit with an error.</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>uv python [OPTIONS] &lt;COMMAND&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>uv python [OPTIONS] &lt;COMMAND&gt;
 </code></pre></div>
 <h3 class="cli-reference">Commands</h3>
 
@@ -8836,7 +8942,7 @@ uv will exit with an error.</p>
 <p>Use <code>--only-installed</code> to omit available downloads.</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>uv python list [OPTIONS] [REQUEST]
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>uv python list [OPTIONS] [REQUEST]
 </code></pre></div>
 <h3 class="cli-reference">Arguments</h3>
 
@@ -8919,7 +9025,7 @@ uv will exit with an error.</p>
 <p>See <code>uv help python</code> to view supported request formats.</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>uv python install [OPTIONS] [TARGETS]...
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>uv python install [OPTIONS] [TARGETS]...
 </code></pre></div>
 <h3 class="cli-reference">Arguments</h3>
 
@@ -9017,7 +9123,7 @@ uv will exit with an error.</p>
 <p>Upgrades are not yet supported for alternative implementations, like PyPy.</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>uv python upgrade [OPTIONS] [TARGETS]...
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>uv python upgrade [OPTIONS] [TARGETS]...
 </code></pre></div>
 <h3 class="cli-reference">Arguments</h3>
 
@@ -9094,7 +9200,7 @@ uv will exit with an error.</p>
 <p>See <code>uv help python</code> to view supported request formats and details on discovery behavior.</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>uv python find [OPTIONS] [REQUEST]
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>uv python find [OPTIONS] [REQUEST]
 </code></pre></div>
 <h3 class="cli-reference">Arguments</h3>
 
@@ -9167,7 +9273,7 @@ uv will exit with an error.</p>
 <p>See <code>uv help python</code> to view supported request formats.</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>uv python pin [OPTIONS] [REQUEST]
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>uv python pin [OPTIONS] [REQUEST]
 </code></pre></div>
 <h3 class="cli-reference">Arguments</h3>
 
@@ -9242,7 +9348,7 @@ uv will exit with an error.</p>
 <p>To view the directory where uv installs Python executables instead, use the <code>--bin</code> flag. The Python executable directory may be overridden with <code>$UV_PYTHON_BIN_DIR</code>.</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>uv python dir [OPTIONS]
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>uv python dir [OPTIONS]
 </code></pre></div>
 <h3 class="cli-reference">Options</h3>
 
@@ -9305,7 +9411,7 @@ from the following environment variables, in order of preference:</p>
 <p>Uninstall Python versions</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>uv python uninstall [OPTIONS] &lt;TARGETS&gt;...
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>uv python uninstall [OPTIONS] &lt;TARGETS&gt;...
 </code></pre></div>
 <h3 class="cli-reference">Arguments</h3>
 
@@ -9370,7 +9476,7 @@ from the following environment variables, in order of preference:</p>
 <p>The Python executable directory is determined according to the XDG standard and can be retrieved with <code>uv python dir --bin</code>.</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>uv python update-shell [OPTIONS]
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>uv python update-shell [OPTIONS]
 </code></pre></div>
 <h3 class="cli-reference">Options</h3>
 
@@ -9424,7 +9530,7 @@ from the following environment variables, in order of preference:</p>
 <p>Manage Python packages with a pip-compatible interface</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>uv pip [OPTIONS] &lt;COMMAND&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>uv pip [OPTIONS] &lt;COMMAND&gt;
 </code></pre></div>
 <h3 class="cli-reference">Commands</h3>
 
@@ -9443,7 +9549,7 @@ from the following environment variables, in order of preference:</p>
 <p>Compile a <code>requirements.in</code> file to a <code>requirements.txt</code> or <code>pylock.toml</code> file</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>uv pip compile [OPTIONS] &lt;SRC_FILE|--group &lt;GROUP&gt;&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>uv pip compile [OPTIONS] &lt;SRC_FILE|--group &lt;GROUP&gt;&gt;
 </code></pre></div>
 <h3 class="cli-reference">Arguments</h3>
 
@@ -9781,7 +9887,7 @@ by <code>--python-version</code>.</p>
 <p>The input file is presumed to be the output of a <code>pip compile</code> or <code>uv export</code> operation, in which it will include all transitive dependencies. If transitive dependencies are not present in the file, they will not be installed. Use <code>--strict</code> to warn if any transitive dependencies are missing.</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>uv pip sync [OPTIONS] &lt;SRC_FILE&gt;...
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>uv pip sync [OPTIONS] &lt;SRC_FILE&gt;...
 </code></pre></div>
 <h3 class="cli-reference">Arguments</h3>
 
@@ -10066,7 +10172,7 @@ be used with caution, as it can modify the system Python installation.</p>
 <p>Install packages into an environment</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>uv pip install [OPTIONS] &lt;PACKAGE|--requirements &lt;REQUIREMENTS&gt;|--editable &lt;EDITABLE&gt;|--group &lt;GROUP&gt;&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>uv pip install [OPTIONS] &lt;PACKAGE|--requirements &lt;REQUIREMENTS&gt;|--editable &lt;EDITABLE&gt;|--group &lt;GROUP&gt;&gt;
 </code></pre></div>
 <h3 class="cli-reference">Arguments</h3>
 
@@ -10396,7 +10502,7 @@ should be used with caution, as it can modify the system Python installation.</p
 <p>Uninstall packages from an environment</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>uv pip uninstall [OPTIONS] &lt;PACKAGE|--requirements &lt;REQUIREMENTS&gt;&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>uv pip uninstall [OPTIONS] &lt;PACKAGE|--requirements &lt;REQUIREMENTS&gt;&gt;
 </code></pre></div>
 <h3 class="cli-reference">Arguments</h3>
 
@@ -10479,7 +10585,7 @@ should be used with caution, as it can modify the system Python installation.</p
 <p>List, in requirements format, packages installed in an environment</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>uv pip freeze [OPTIONS]
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>uv pip freeze [OPTIONS]
 </code></pre></div>
 <h3 class="cli-reference">Options</h3>
 
@@ -10548,7 +10654,7 @@ Python environment if no virtual environment is found.</p>
 <p>List, in tabular format, packages installed in an environment</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>uv pip list [OPTIONS]
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>uv pip list [OPTIONS]
 </code></pre></div>
 <h3 class="cli-reference">Options</h3>
 
@@ -10665,7 +10771,7 @@ Python environment if no virtual environment is found.</p>
 <p>Show information about one or more installed packages</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>uv pip show [OPTIONS] [PACKAGE]...
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a>uv pip show [OPTIONS] [PACKAGE]...
 </code></pre></div>
 <h3 class="cli-reference">Arguments</h3>
 
@@ -10737,7 +10843,7 @@ system Python environment if no virtual environment is found.</p>
 <p>Display the dependency tree for an environment</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a>uv pip tree [OPTIONS]
+<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a>uv pip tree [OPTIONS]
 </code></pre></div>
 <h3 class="cli-reference">Options</h3>
 
@@ -10849,7 +10955,7 @@ Python environment if no virtual environment is found.</p>
 <p>Verify installed packages have compatible dependencies</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a>uv pip check [OPTIONS]
+<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a>uv pip check [OPTIONS]
 </code></pre></div>
 <h3 class="cli-reference">Options</h3>
 
@@ -10972,7 +11078,7 @@ Python environment if no virtual environment is found.</p>
 <p>When using uv, the virtual environment does not need to be activated. uv will find a virtual environment (named <code>.venv</code>) in the working directory or any parent directories.</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a>uv venv [OPTIONS] [PATH]
+<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a>uv venv [OPTIONS] [PATH]
 </code></pre></div>
 <h3 class="cli-reference">Arguments</h3>
 
@@ -11116,7 +11222,7 @@ environments.</p>
 <p>If passed a source distribution, <code>uv build --wheel</code> will build a wheel from the source distribution.</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a>uv build [OPTIONS] [SRC]
+<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a>uv build [OPTIONS] [SRC]
 </code></pre></div>
 <h3 class="cli-reference">Arguments</h3>
 
@@ -11303,7 +11409,7 @@ the platform.</p>
 <p>Upload distributions to an index</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a>uv publish [OPTIONS] [FILES]...
+<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a>uv publish [OPTIONS] [FILES]...
 </code></pre></div>
 <h3 class="cli-reference">Arguments</h3>
 
@@ -11406,7 +11512,7 @@ uv publish --publish-url https://upload.pypi.org/legacy/ --check-url https://pyp
 <p>Inspect uv workspaces</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a>uv workspace [OPTIONS] &lt;COMMAND&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a>uv workspace [OPTIONS] &lt;COMMAND&gt;
 </code></pre></div>
 <h3 class="cli-reference">Commands</h3>
 
@@ -11420,7 +11526,7 @@ uv publish --publish-url https://upload.pypi.org/legacy/ --check-url https://pyp
 <p>The output of this command is not yet stable.</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a>uv workspace metadata [OPTIONS]
+<div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a>uv workspace metadata [OPTIONS]
 </code></pre></div>
 <h3 class="cli-reference">Options</h3>
 
@@ -11588,7 +11694,7 @@ metadata when there are not wheels.</p>
 <p>If used outside of a workspace, i.e., if a <code>pyproject.toml</code> cannot be found, uv will exit with an error.</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a>uv workspace dir [OPTIONS]
+<div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a>uv workspace dir [OPTIONS]
 </code></pre></div>
 <h3 class="cli-reference">Options</h3>
 
@@ -11644,7 +11750,7 @@ metadata when there are not wheels.</p>
 <p>Displays newline separated names of workspace members.</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a>uv workspace list [OPTIONS]
+<div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a>uv workspace list [OPTIONS]
 </code></pre></div>
 <h3 class="cli-reference">Options</h3>
 
@@ -11700,7 +11806,7 @@ metadata when there are not wheels.</p>
 <p>Manage uv's cache</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a>uv cache [OPTIONS] &lt;COMMAND&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a>uv cache [OPTIONS] &lt;COMMAND&gt;
 </code></pre></div>
 <h3 class="cli-reference">Commands</h3>
 
@@ -11714,7 +11820,7 @@ metadata when there are not wheels.</p>
 <p>Clear the cache, removing all entries or those linked to specific packages</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a>uv cache clean [OPTIONS] [PACKAGE]...
+<div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a>uv cache clean [OPTIONS] [PACKAGE]...
 </code></pre></div>
 <h3 class="cli-reference">Arguments</h3>
 
@@ -11775,7 +11881,7 @@ metadata when there are not wheels.</p>
 <p>Prune dangling cache entries and cached environments</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a>uv cache prune [OPTIONS]
+<div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a>uv cache prune [OPTIONS]
 </code></pre></div>
 <h3 class="cli-reference">Options</h3>
 
@@ -11838,7 +11944,7 @@ metadata when there are not wheels.</p>
 <p>Note that it is important for performance for the cache directory to be located on the same file system as the Python environment uv is operating on.</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a>uv cache dir [OPTIONS]
+<div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a>uv cache dir [OPTIONS]
 </code></pre></div>
 <h3 class="cli-reference">Options</h3>
 
@@ -11893,7 +11999,7 @@ metadata when there are not wheels.</p>
 <p>Displays the total size of the cache directory. This includes all downloaded and built wheels, source distributions, and other cached data. By default, outputs the size in raw bytes; use <code>--human</code> for human-readable output.</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a>uv cache size [OPTIONS]
+<div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a>uv cache size [OPTIONS]
 </code></pre></div>
 <h3 class="cli-reference">Options</h3>
 
@@ -11948,7 +12054,7 @@ metadata when there are not wheels.</p>
 <p>Manage the uv executable</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a>uv self [OPTIONS] &lt;COMMAND&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a>uv self [OPTIONS] &lt;COMMAND&gt;
 </code></pre></div>
 <h3 class="cli-reference">Commands</h3>
 
@@ -11960,7 +12066,7 @@ metadata when there are not wheels.</p>
 <p>Update uv</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a>uv self update [OPTIONS] [TARGET_VERSION]
+<div class="highlight"><pre><span></span><code><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a>uv self update [OPTIONS] [TARGET_VERSION]
 </code></pre></div>
 <h3 class="cli-reference">Arguments</h3>
 
@@ -12021,7 +12127,7 @@ metadata when there are not wheels.</p>
 <p>Display uv's version</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a>uv self version [OPTIONS]
+<div class="highlight"><pre><span></span><code><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a>uv self version [OPTIONS]
 </code></pre></div>
 <h3 class="cli-reference">Options</h3>
 
@@ -12076,7 +12182,7 @@ metadata when there are not wheels.</p>
 <p>Generate shell completion</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a>uv generate-shell-completion [OPTIONS] &lt;SHELL&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a>uv generate-shell-completion [OPTIONS] &lt;SHELL&gt;
 </code></pre></div>
 <h3 class="cli-reference">Arguments</h3>
 
@@ -12110,7 +12216,7 @@ metadata when there are not wheels.</p>
 <p>Display documentation for a command</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a>uv help [OPTIONS] [COMMAND]...
+<div class="highlight"><pre><span></span><code><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a>uv help [OPTIONS] [COMMAND]...
 </code></pre></div>
 <h3 class="cli-reference">Arguments</h3>
 

@@ -62,9 +62,10 @@ The following preview features are available:
 
 - `add-bounds`: Allows configuring the [default bounds for `uv add`](../../reference/settings/#add-bounds) invocations.
 - `adjust-ulimit`: On Unix, raises the process's soft open-file limit at startup, up to the hard limit.
-- `audit-command`: Allows using `uv audit`.
+- `audit-command`: Allows using `uv audit` and `uv tool audit`.
 - `auth-helper`: Allows using `uv auth helper` as a credential helper for external tools.
 - `azure-endpoint`: Allows signing requests to Azure Blob Storage endpoints with Azure credentials.
+- `cache-physical-space`: Reports the physical disk space reclaimed by cache cleanup, accounting for hardlinks and copy-on-write clones.
 - `cache-size`: Allows using `uv cache size`.
 - `centralized-project-envs`: Stores [project virtual environments](../projects/layout/#centralized-project-environments) in the uv cache.
 - `check-command`: Allows using `uv check`.
@@ -95,7 +96,7 @@ The following preview features are available:
 - `special-conda-env-names`: Stops treating Conda environments named `base` or `root` as special.
 - `target-workspace-discovery`: Uses the directory containing a local `uv run` target, rather than the current working directory, as the starting point for project and workspace discovery. This feature takes effect before configuration is loaded.
 - `toml-backwards-compatibility`: Rewrites `pyproject.toml` as TOML 1.0 when building source distributions, preserving the original as `pyproject.toml.orig` to ensure compatibility with older build tools.
-- `tool-install-locks`: Stores a `uv.lock` alongside each installed tool and reuses it for reproducible installations and upgrades.
+- `tool-install-locks`: Stores a `uv.lock` alongside each installed tool and reuses it for reproducible installations, upgrades, and audits.
 - `venv-safe-clear`: Prevents `uv venv --clear` from clearing a directory that does not contain a `pyvenv.cfg` file unless `--force` is provided.
 - `workspace-dir`: Allows using `uv workspace dir`.
 - `workspace-list`: Allows using `uv workspace list`.

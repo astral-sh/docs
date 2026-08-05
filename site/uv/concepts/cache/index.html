@@ -101,8 +101,8 @@
 <script type="application/ld+json">
   {
       
-      "datePublished": "2026-07-24 15:32:09Z",
-      "dateModified": "2026-07-24 15:32:09Z",
+      "datePublished": "2026-08-05 15:14:18Z",
+      "dateModified": "2026-08-05 15:14:18Z",
       
       "@context": "https://schema.org",
       "@type": "WebSite",
@@ -3767,6 +3767,14 @@ avoid concurrent modifications across processes.</p>
   longer necessary and can be safely removed. Centralized project environments are recreated as
   needed. <code>uv cache prune</code> is safe to run periodically, to keep the cache directory clean.</li>
 </ul>
+<p>By default, cache cleanup reports the logical size of removed entries. Enable the
+<code>cache-physical-space</code> <a href="../preview/">preview feature</a> to instead report the physical disk space
+reclaimed, accounting for hardlinks and copy-on-write clones:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="gp">$ </span>uv<span class="w"> </span>cache<span class="w"> </span>clean<span class="w"> </span>--preview-features<span class="w"> </span>cache-physical-space
+</code></pre></div>
+<p>If an entry's allocated size cannot be measured, such as a compressed extent on Btrfs, uv reports a
+lower bound for the space reclaimed from the remaining entries. The preview feature is currently
+supported on macOS and Linux; other platforms continue reporting the logical removed size.</p>
 <p>uv blocks cache-modifying operations while other uv commands are running. By default, those
 <code>uv cache</code> commands have a 5 min timeout waiting for other uv processes to terminate to avoid
 deadlocks. This timeout can be changed with
@@ -3840,7 +3848,7 @@ itself may contain duplicate entries in the core metadata bucket due to the chan
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 24, 2026 15:32:09 UTC">July 24, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 5, 2026 15:14:18 UTC">August 5, 2026</span>
   </span>
 
     
