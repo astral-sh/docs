@@ -921,40 +921,6 @@ respect-ignore-files = false
 
 ______________________________________________________________________
 
-### [`root`](#root_1)
-
-Deprecated
-
-This option has been deprecated. Use `environment.root` instead.
-
-The root of the project, used for finding first-party modules.
-
-If left unspecified, ty will try to detect common project layouts and initialize `src.root` accordingly. The project root (`.`) is always included. Additionally, the following directories are included if they exist and are not packages (i.e. they do not contain `__init__.py` or `__init__.pyi` files):
-
-- `./src`
-- `./<project-name>` (if a `./<project-name>/<project-name>` directory exists)
-- `./python`
-
-**Default value**: `null`
-
-**Type**: `str`
-
-**Example usage**:
-
-```
-[tool.ty.src]
-root = "./app"
-
-```
-
-```
-[src]
-root = "./app"
-
-```
-
-______________________________________________________________________
-
 ## [`terminal`](#terminal)
 
 ### [`error-on-warning`](#error-on-warning)
