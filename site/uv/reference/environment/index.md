@@ -760,6 +760,14 @@ added in `0.1.27`
 
 Equivalent to the `--resolution` command-line argument. For example, if set to `lowest-direct`, uv will install the lowest compatible versions of all direct dependencies.
 
+### [`UV_RUN_RLIMIT_NOFILE`](#uv_run_rlimit_nofile)
+
+added in `next release`
+
+Sets the soft open-file descriptor limit for commands executed by `uv run`.
+
+The limit is applied after uv prepares the environment and immediately before the command is spawned. The hard open-file descriptor limit remains unchanged. If the limit cannot be applied, uv exits with an error without running the command. Only supported on Unix.
+
 ### [`UV_S3_ENDPOINT_URL`](#uv_s3_endpoint_url)
 
 added in `0.8.21`

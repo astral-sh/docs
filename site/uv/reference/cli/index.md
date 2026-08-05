@@ -6627,6 +6627,8 @@ uv tool [OPTIONS] <COMMAND>
 
 [`uv tool list`](#uv-tool-list) : List installed tools
 
+[`uv tool audit`](#uv-tool-audit) : Audit installed tools and their dependencies
+
 [`uv tool uninstall`](#uv-tool-uninstall) : Uninstall a tool
 
 [`uv tool update-shell`](#uv-tool-update-shell) : Ensure that the tool executable directory is on the `PATH`
@@ -8456,6 +8458,202 @@ However, in some cases, you may want to use the platform's native certificate st
 ```
 
 [`--verbose`](#uv-tool-list--verbose), `-v` : Use verbose output.
+
+```
+You can configure fine-grained logging using the `RUST_LOG` environment variable. (<https://docs.rs/tracing-subscriber/latest/tracing_subscriber/filter/struct.EnvFilter.html#directives>)
+```
+
+### [uv tool audit](#uv-tool-audit)
+
+Audit installed tools and their dependencies
+
+### Usage
+
+```
+uv tool audit [OPTIONS] <NAME>...
+```
+
+### Arguments
+
+[`NAME`](#uv-tool-audit--name) : The names of the installed tools to audit
+
+### Options
+
+[`--all`](#uv-tool-audit--all) : Audit all installed tools
+
+[`--allow-insecure-host`](#uv-tool-audit--allow-insecure-host), `--trusted-host` *allow-insecure-host* : Allow insecure connections to a host.
+
+```
+Can be provided multiple times.
+
+Expects to receive either a hostname (e.g., `localhost`), a host-port pair (e.g., `localhost:8080`), or a URL (e.g., `https://localhost`).
+
+WARNING: Hosts included in this list will not be verified against the system's certificate store. Only use `--allow-insecure-host` in a secure network with verified sources, as it bypasses SSL verification and could expose you to MITM attacks.
+
+May also be set with the `UV_INSECURE_HOST` environment variable.
+```
+
+[`--cache-dir`](#uv-tool-audit--cache-dir) *cache-dir* : Path to the cache directory.
+
+```
+Defaults to `$XDG_CACHE_HOME/uv` or `$HOME/.cache/uv` on macOS and Linux, and `%LOCALAPPDATA%\uv\cache` on Windows.
+
+To view the location of the cache directory, run `uv cache dir`.
+
+May also be set with the `UV_CACHE_DIR` environment variable.
+```
+
+[`--color`](#uv-tool-audit--color) *color-choice* : Control the use of color in output.
+
+```
+By default, uv will automatically detect support for colors when writing to a terminal.
+
+Possible values:
+
+- `auto`: Enables colored output only when the output is going to a terminal or TTY with support
+- `always`: Enables colored output regardless of the detected environment
+- `never`: Disables colored output
+```
+
+[`--config-file`](#uv-tool-audit--config-file) *config-file* : The path to a `uv.toml` file to use for configuration.
+
+```
+While uv configuration can be included in a `pyproject.toml` file, it is not allowed in this context.
+
+May also be set with the `UV_CONFIG_FILE` environment variable.
+```
+
+[`--directory`](#uv-tool-audit--directory) *directory* : Change to the given directory prior to running the command.
+
+```
+Relative paths are resolved with the given directory as the base.
+
+See `--project` to only change the project root directory.
+
+May also be set with the `UV_WORKING_DIR` environment variable.
+```
+
+[`--help`](#uv-tool-audit--help), `-h` : Display the concise help for this command
+
+[`--ignore`](#uv-tool-audit--ignore) *ignore* : Ignore a vulnerability by ID.
+
+```
+Vulnerabilities matching any of the provided IDs (including aliases) will be excluded from the audit results.
+
+May be provided multiple times.
+```
+
+[`--ignore-until-fixed`](#uv-tool-audit--ignore-until-fixed) *ignore-until-fixed* : Ignore a vulnerability by ID, but only while no fix is available.
+
+```
+Vulnerabilities matching any of the provided IDs (including aliases) will be excluded from the audit results as long as they have no known fix versions. Once a fix version becomes available, the vulnerability will be reported again.
+
+May be provided multiple times.
+```
+
+[`--managed-python`](#uv-tool-audit--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
+
+```
+By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.
+```
+
+[`--no-cache`](#uv-tool-audit--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
+
+```
+May also be set with the `UV_NO_CACHE` environment variable.
+```
+
+[`--no-config`](#uv-tool-audit--no-config) : Avoid discovering configuration files (`pyproject.toml`, `uv.toml`).
+
+```
+Normally, configuration files are discovered in the current directory, parent directories, or user configuration directories.
+
+May also be set with the `UV_NO_CONFIG` environment variable.
+```
+
+[`--no-managed-python`](#uv-tool-audit--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
+
+```
+Instead, uv will search for a suitable Python version on the system.
+```
+
+[`--no-progress`](#uv-tool-audit--no-progress) : Hide all progress outputs [env: UV_NO_PROGRESS=]
+
+```
+For example, spinners or progress bars.
+```
+
+[`--no-python-downloads`](#uv-tool-audit--no-python-downloads) : Disable automatic downloads of Python.
+
+[`--offline`](#uv-tool-audit--offline) : Disable network access [env: UV_OFFLINE=]
+
+```
+When disabled, uv will only use locally cached data and locally available files.
+```
+
+[`--output-format`](#uv-tool-audit--output-format) *output-format* : Select the output format
+
+```
+[default: text]
+
+Possible values:
+
+- `text`: Display the result in a human-readable format
+- `json`: Display the result in JSON format
+- `sarif`: Display the result in SARIF format
+```
+
+[`--project`](#uv-tool-audit--project) *project* : Discover a project in the given directory.
+
+```
+All `pyproject.toml`, `uv.toml`, and `.python-version` files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (`.venv`).
+
+Other command-line arguments (such as relative paths) will be resolved relative to the current working directory.
+
+See `--directory` to change the working directory entirely.
+
+This setting has no effect when used in the `uv pip` interface.
+
+May also be set with the `UV_PROJECT` environment variable.
+```
+
+[`--quiet`](#uv-tool-audit--quiet), `-q` : Use quiet output.
+
+```
+Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will write no output to stdout.
+```
+
+[`--service-format`](#uv-tool-audit--service-format) *service-format* : The service format to use for vulnerability lookups.
+
+```
+Each service format has a default URL, which can be changed with `--service-url`. The defaults are:
+
+- OSV: <https://api.osv.dev/>
+
+[default: osv]
+
+Possible values:
+
+- `osv`
+```
+
+[`--service-url`](#uv-tool-audit--service-url) *service-url* : The URL to vulnerability service API endpoint.
+
+```
+If not provided, the default URL for the selected service will be used.
+
+The service needs to use the OSV protocol, unless a different format was requested by `--service-format`.
+```
+
+[`--system-certs`](#uv-tool-audit--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
+
+```
+By default, uv uses bundled Mozilla root certificates, which improves portability and performance (especially on macOS).
+
+However, in some cases, you may want to use the platform's native certificate store, especially if you're relying on a corporate trust root (e.g., for a mandatory proxy) that's included in your system's certificate store.
+```
+
+[`--verbose`](#uv-tool-audit--verbose), `-v` : Use verbose output.
 
 ```
 You can configure fine-grained logging using the `RUST_LOG` environment variable. (<https://docs.rs/tracing-subscriber/latest/tracing_subscriber/filter/struct.EnvFilter.html#directives>)
