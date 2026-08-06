@@ -81,8 +81,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2026-08-06 00:46:59Z",
-        "dateModified": "2026-08-06 00:46:59Z",
+        "datePublished": "2026-08-06 09:24:41Z",
+        "dateModified": "2026-08-06 09:24:41Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -1096,6 +1096,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#strict-generic-narrowing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        strict-generic-narrowing
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1284,6 +1295,17 @@
     <span class="md-ellipsis">
       
         strict-equality-semantics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strict-generic-narrowing_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        strict-generic-narrowing
       
     </span>
   </a>
@@ -1672,6 +1694,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#strict-generic-narrowing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        strict-generic-narrowing
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1860,6 +1893,17 @@
     <span class="md-ellipsis">
       
         strict-equality-semantics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strict-generic-narrowing_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        strict-generic-narrowing
       
     </span>
   </a>
@@ -2252,6 +2296,40 @@ will also impact those operations. For example, this option will also impact nar
 </div>
 </div>
 <hr />
+<h3 id="strict-generic-narrowing"><a class="toclink" href="#strict-generic-narrowing"><code>strict-generic-narrowing</code></a></h3>
+<p>Whether ty should use strict narrowing for unspecialized generic classes in
+<code>isinstance()</code> and <code>issubclass()</code> checks, as well as <code>match</code> class patterns.</p>
+<p>When enabled, ty narrows to the top materialization of the class. For example,
+<code>isinstance(value, list)</code> narrows a value of type <code>object</code> to <code>Top[list[Unknown]]</code>,
+representing the (infinite) union of all possible <code>list</code> specializations. Iterating
+over the list would yield values of type <code>object</code>.</p>
+<p>When disabled, ty uses gradual generic narrowing, preserving compatible type
+arguments from the original type where possible. For example,
+<code>isinstance(value, list)</code> narrows a value of type <code>Sequence[int]</code> to <code>list[int]</code>.
+If no specialization is available, the same check narrows a value of type <code>object</code>
+to <code>list[Unknown]</code>; items of any type can then be appended to the list. Class
+patterns such as <code>case list():</code> follow the same behavior.</p>
+<p>Defaults to <code>false</code>.</p>
+<p><strong>Default value</strong>: <code>false</code></p>
+<p><strong>Type</strong>: <code>bool</code></p>
+<p><strong>Example usage</strong>:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">pyproject.toml</label><label for="__tabbed_6_2">ty.toml</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">[tool.ty.analysis]</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="c1"># Use the top materialization when narrowing to an unspecialized generic class</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="n">strict-generic-narrowing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">[analysis]</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="c1"># Use the top materialization when narrowing to an unspecialized generic class</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="n">strict-generic-narrowing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<hr />
 <h2 id="environment"><a class="toclink" href="#environment"><code>environment</code></a></h2>
 <h3 id="extra-paths"><a class="toclink" href="#extra-paths"><code>extra-paths</code></a></h3>
 <p>User-provided paths that should take first priority in module resolution.</p>
@@ -2263,16 +2341,16 @@ configuration setting.</p>
 <p><strong>Default value</strong>: <code>[]</code></p>
 <p><strong>Type</strong>: <code>list[str]</code></p>
 <p><strong>Example usage</strong>:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">pyproject.toml</label><label for="__tabbed_6_2">ty.toml</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">pyproject.toml</label><label for="__tabbed_7_2">ty.toml</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">[tool.ty.environment]</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="n">extra-paths</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;./shared/my-search-path&quot;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">[tool.ty.environment]</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="n">extra-paths</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;./shared/my-search-path&quot;</span><span class="p">]</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">[environment]</span>
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="n">extra-paths</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;./shared/my-search-path&quot;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">[environment]</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="n">extra-paths</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;./shared/my-search-path&quot;</span><span class="p">]</span>
 </code></pre></div>
 </div>
 </div>
@@ -2297,16 +2375,16 @@ or <code>python</code> binary available in <code>PATH</code>.</p>
 <p><strong>Default value</strong>: <code>null</code></p>
 <p><strong>Type</strong>: <code>str</code></p>
 <p><strong>Example usage</strong>:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">pyproject.toml</label><label for="__tabbed_7_2">ty.toml</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">pyproject.toml</label><label for="__tabbed_8_2">ty.toml</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">[tool.ty.environment]</span>
-<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="n">python</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;./custom-venv-location/.venv&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">[tool.ty.environment]</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="n">python</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;./custom-venv-location/.venv&quot;</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">[environment]</span>
-<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="n">python</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;./custom-venv-location/.venv&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">[environment]</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="n">python</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;./custom-venv-location/.venv&quot;</span>
 </code></pre></div>
 </div>
 </div>
@@ -2326,18 +2404,18 @@ If <code>all</code> is specified, ty will assume that the source code can run on
 <p><strong>Default value</strong>: <code>&lt;current-platform&gt;</code></p>
 <p><strong>Type</strong>: <code>"win32" | "darwin" | "android" | "ios" | "linux" | "all" | str</code></p>
 <p><strong>Example usage</strong>:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">pyproject.toml</label><label for="__tabbed_8_2">ty.toml</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="9:2"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><input id="__tabbed_9_2" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="__tabbed_9_1">pyproject.toml</label><label for="__tabbed_9_2">ty.toml</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">[tool.ty.environment]</span>
-<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="c1"># Tailor type stubs and conditionalized type definitions to windows.</span>
-<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="n">python-platform</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;win32&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">[tool.ty.environment]</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="c1"># Tailor type stubs and conditionalized type definitions to windows.</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="n">python-platform</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;win32&quot;</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">[environment]</span>
-<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="c1"># Tailor type stubs and conditionalized type definitions to windows.</span>
-<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="n">python-platform</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;win32&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="k">[environment]</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="c1"># Tailor type stubs and conditionalized type definitions to windows.</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="n">python-platform</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;win32&quot;</span>
 </code></pre></div>
 </div>
 </div>
@@ -2365,16 +2443,16 @@ to reflect the differing contents of the standard library across Python versions
 <p><strong>Default value</strong>: <code>"3.14"</code></p>
 <p><strong>Type</strong>: <code>"3.7" | "3.8" | "3.9" | "3.10" | "3.11" | "3.12" | "3.13" | "3.14" | "3.15"</code></p>
 <p><strong>Example usage</strong>:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="9:2"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><input id="__tabbed_9_2" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="__tabbed_9_1">pyproject.toml</label><label for="__tabbed_9_2">ty.toml</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="10:2"><input checked="checked" id="__tabbed_10_1" name="__tabbed_10" type="radio" /><input id="__tabbed_10_2" name="__tabbed_10" type="radio" /><div class="tabbed-labels"><label for="__tabbed_10_1">pyproject.toml</label><label for="__tabbed_10_2">ty.toml</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">[tool.ty.environment]</span>
-<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="n">python-version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;3.12&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="k">[tool.ty.environment]</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="n">python-version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;3.12&quot;</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="k">[environment]</span>
-<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="n">python-version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;3.12&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="k">[environment]</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="n">python-version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;3.12&quot;</span>
 </code></pre></div>
 </div>
 </div>
@@ -2394,18 +2472,18 @@ if they exist and are not packages (i.e. they do not contain <code>__init__.py</
 <p><strong>Default value</strong>: <code>null</code></p>
 <p><strong>Type</strong>: <code>list[str]</code></p>
 <p><strong>Example usage</strong>:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="10:2"><input checked="checked" id="__tabbed_10_1" name="__tabbed_10" type="radio" /><input id="__tabbed_10_2" name="__tabbed_10" type="radio" /><div class="tabbed-labels"><label for="__tabbed_10_1">pyproject.toml</label><label for="__tabbed_10_2">ty.toml</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="11:2"><input checked="checked" id="__tabbed_11_1" name="__tabbed_11" type="radio" /><input id="__tabbed_11_2" name="__tabbed_11" type="radio" /><div class="tabbed-labels"><label for="__tabbed_11_1">pyproject.toml</label><label for="__tabbed_11_2">ty.toml</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="k">[tool.ty.environment]</span>
-<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="c1"># Multiple directories (priority order)</span>
-<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;./src&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;./lib&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;./vendor&quot;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="k">[tool.ty.environment]</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="c1"># Multiple directories (priority order)</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;./src&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;./lib&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;./vendor&quot;</span><span class="p">]</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="k">[environment]</span>
-<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="c1"># Multiple directories (priority order)</span>
-<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;./src&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;./lib&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;./vendor&quot;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="k">[environment]</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="c1"># Multiple directories (priority order)</span>
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;./src&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;./lib&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;./vendor&quot;</span><span class="p">]</span>
 </code></pre></div>
 </div>
 </div>
@@ -2418,16 +2496,16 @@ bundled as a zip file in the binary</p>
 <p><strong>Default value</strong>: <code>null</code></p>
 <p><strong>Type</strong>: <code>str</code></p>
 <p><strong>Example usage</strong>:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="11:2"><input checked="checked" id="__tabbed_11_1" name="__tabbed_11" type="radio" /><input id="__tabbed_11_2" name="__tabbed_11" type="radio" /><div class="tabbed-labels"><label for="__tabbed_11_1">pyproject.toml</label><label for="__tabbed_11_2">ty.toml</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="12:2"><input checked="checked" id="__tabbed_12_1" name="__tabbed_12" type="radio" /><input id="__tabbed_12_2" name="__tabbed_12" type="radio" /><div class="tabbed-labels"><label for="__tabbed_12_1">pyproject.toml</label><label for="__tabbed_12_2">ty.toml</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="k">[tool.ty.environment]</span>
-<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="n">typeshed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/path/to/custom/typeshed&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="k">[tool.ty.environment]</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="n">typeshed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/path/to/custom/typeshed&quot;</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="k">[environment]</span>
-<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="n">typeshed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/path/to/custom/typeshed&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="k">[environment]</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="n">typeshed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/path/to/custom/typeshed&quot;</span>
 </code></pre></div>
 </div>
 </div>
@@ -2440,19 +2518,19 @@ files or directories. Multiple overrides can match the same file, with
 later overrides take precedence. Override rules take precedence over global
 rules for matching files.</p>
 <p>For example, to relax enforcement of rules in test files:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="k">[[tool.ty.overrides]]</span>
-<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="n">include</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;tests/**&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;**/test_*.py&quot;</span><span class="p">]</span>
-<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>
-<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="k">[tool.ty.overrides.rules]</span>
-<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="n">possibly-unresolved-reference</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;warn&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="k">[[tool.ty.overrides]]</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="n">include</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;tests/**&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;**/test_*.py&quot;</span><span class="p">]</span>
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="k">[tool.ty.overrides.rules]</span>
+<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="n">possibly-unresolved-reference</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;warn&quot;</span>
 </code></pre></div>
 <p>Or, to ignore a rule in generated files but retain enforcement in an important file:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="k">[[tool.ty.overrides]]</span>
-<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="n">include</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;generated/**&quot;</span><span class="p">]</span>
-<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="n">exclude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;generated/important.py&quot;</span><span class="p">]</span>
-<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>
-<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="k">[tool.ty.overrides.rules]</span>
-<a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a><span class="n">possibly-unresolved-reference</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ignore&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="k">[[tool.ty.overrides]]</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="n">include</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;generated/**&quot;</span><span class="p">]</span>
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="n">exclude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;generated/important.py&quot;</span><span class="p">]</span>
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>
+<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a><span class="k">[tool.ty.overrides.rules]</span>
+<a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a><span class="n">possibly-unresolved-reference</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ignore&quot;</span>
 </code></pre></div>
 <h3 id="exclude"><a class="toclink" href="#exclude"><code>exclude</code></a></h3>
 <p>A list of file and directory patterns to exclude from this override.</p>
@@ -2462,26 +2540,26 @@ Exclude patterns take precedence over include patterns within the same override.
 <p><strong>Default value</strong>: <code>null</code></p>
 <p><strong>Type</strong>: <code>list[str]</code></p>
 <p><strong>Example usage</strong>:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="12:2"><input checked="checked" id="__tabbed_12_1" name="__tabbed_12" type="radio" /><input id="__tabbed_12_2" name="__tabbed_12" type="radio" /><div class="tabbed-labels"><label for="__tabbed_12_1">pyproject.toml</label><label for="__tabbed_12_2">ty.toml</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="13:2"><input checked="checked" id="__tabbed_13_1" name="__tabbed_13" type="radio" /><input id="__tabbed_13_2" name="__tabbed_13" type="radio" /><div class="tabbed-labels"><label for="__tabbed_13_1">pyproject.toml</label><label for="__tabbed_13_2">ty.toml</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="k">[[tool.ty.overrides]]</span>
-<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="n">exclude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="w">    </span><span class="s2">&quot;generated&quot;</span><span class="p">,</span>
-<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="w">    </span><span class="s2">&quot;*.proto&quot;</span><span class="p">,</span>
-<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="w">    </span><span class="s2">&quot;tests/fixtures/**&quot;</span><span class="p">,</span>
-<a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a><span class="w">    </span><span class="s2">&quot;!tests/fixtures/important.py&quot;</span><span class="w">  </span><span class="c1"># Include this one file</span>
-<a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="k">[[tool.ty.overrides]]</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="n">exclude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="w">    </span><span class="s2">&quot;generated&quot;</span><span class="p">,</span>
+<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="w">    </span><span class="s2">&quot;*.proto&quot;</span><span class="p">,</span>
+<a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a><span class="w">    </span><span class="s2">&quot;tests/fixtures/**&quot;</span><span class="p">,</span>
+<a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a><span class="w">    </span><span class="s2">&quot;!tests/fixtures/important.py&quot;</span><span class="w">  </span><span class="c1"># Include this one file</span>
+<a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a><span class="p">]</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="k">[[overrides]]</span>
-<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="n">exclude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="w">    </span><span class="s2">&quot;generated&quot;</span><span class="p">,</span>
-<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="w">    </span><span class="s2">&quot;*.proto&quot;</span><span class="p">,</span>
-<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a><span class="w">    </span><span class="s2">&quot;tests/fixtures/**&quot;</span><span class="p">,</span>
-<a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a><span class="w">    </span><span class="s2">&quot;!tests/fixtures/important.py&quot;</span><span class="w">  </span><span class="c1"># Include this one file</span>
-<a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="k">[[overrides]]</span>
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="n">exclude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="w">    </span><span class="s2">&quot;generated&quot;</span><span class="p">,</span>
+<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="w">    </span><span class="s2">&quot;*.proto&quot;</span><span class="p">,</span>
+<a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a><span class="w">    </span><span class="s2">&quot;tests/fixtures/**&quot;</span><span class="p">,</span>
+<a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a><span class="w">    </span><span class="s2">&quot;!tests/fixtures/important.py&quot;</span><span class="w">  </span><span class="c1"># Include this one file</span>
+<a id="__codelineno-31-7" name="__codelineno-31-7" href="#__codelineno-31-7"></a><span class="p">]</span>
 </code></pre></div>
 </div>
 </div>
@@ -2496,22 +2574,22 @@ are affected by this override.</p>
 <p><strong>Default value</strong>: <code>null</code></p>
 <p><strong>Type</strong>: <code>list[str]</code></p>
 <p><strong>Example usage</strong>:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="13:2"><input checked="checked" id="__tabbed_13_1" name="__tabbed_13" type="radio" /><input id="__tabbed_13_2" name="__tabbed_13" type="radio" /><div class="tabbed-labels"><label for="__tabbed_13_1">pyproject.toml</label><label for="__tabbed_13_2">ty.toml</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="14:2"><input checked="checked" id="__tabbed_14_1" name="__tabbed_14" type="radio" /><input id="__tabbed_14_2" name="__tabbed_14" type="radio" /><div class="tabbed-labels"><label for="__tabbed_14_1">pyproject.toml</label><label for="__tabbed_14_2">ty.toml</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="k">[[tool.ty.overrides]]</span>
-<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="n">include</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="w">    </span><span class="s2">&quot;src&quot;</span><span class="p">,</span>
-<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="w">    </span><span class="s2">&quot;tests&quot;</span><span class="p">,</span>
-<a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="k">[[tool.ty.overrides]]</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="n">include</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="w">    </span><span class="s2">&quot;src&quot;</span><span class="p">,</span>
+<a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a><span class="w">    </span><span class="s2">&quot;tests&quot;</span><span class="p">,</span>
+<a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a><span class="p">]</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="k">[[overrides]]</span>
-<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="n">include</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="w">    </span><span class="s2">&quot;src&quot;</span><span class="p">,</span>
-<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="w">    </span><span class="s2">&quot;tests&quot;</span><span class="p">,</span>
-<a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="k">[[overrides]]</span>
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="n">include</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="w">    </span><span class="s2">&quot;src&quot;</span><span class="p">,</span>
+<a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a><span class="w">    </span><span class="s2">&quot;tests&quot;</span><span class="p">,</span>
+<a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a><span class="p">]</span>
 </code></pre></div>
 </div>
 </div>
@@ -2525,22 +2603,22 @@ severity levels or disable them entirely.</p>
 <p><strong>Default value</strong>: <code>{...}</code></p>
 <p><strong>Type</strong>: <code>dict[RuleName | "all", "ignore" | "warn" | "error"]</code></p>
 <p><strong>Example usage</strong>:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="14:2"><input checked="checked" id="__tabbed_14_1" name="__tabbed_14" type="radio" /><input id="__tabbed_14_2" name="__tabbed_14" type="radio" /><div class="tabbed-labels"><label for="__tabbed_14_1">pyproject.toml</label><label for="__tabbed_14_2">ty.toml</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="15:2"><input checked="checked" id="__tabbed_15_1" name="__tabbed_15" type="radio" /><input id="__tabbed_15_2" name="__tabbed_15" type="radio" /><div class="tabbed-labels"><label for="__tabbed_15_1">pyproject.toml</label><label for="__tabbed_15_2">ty.toml</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="k">[[tool.ty.overrides]]</span>
-<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="n">include</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;src&quot;</span><span class="p">]</span>
-<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>
-<a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a><span class="k">[tool.ty.overrides.rules]</span>
-<a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a><span class="n">possibly-unresolved-reference</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ignore&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="k">[[tool.ty.overrides]]</span>
+<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="n">include</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;src&quot;</span><span class="p">]</span>
+<a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a>
+<a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a><span class="k">[tool.ty.overrides.rules]</span>
+<a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a><span class="n">possibly-unresolved-reference</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ignore&quot;</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="k">[[overrides]]</span>
-<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="n">include</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;src&quot;</span><span class="p">]</span>
-<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>
-<a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a><span class="k">[overrides.rules]</span>
-<a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a><span class="n">possibly-unresolved-reference</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ignore&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="k">[[overrides]]</span>
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="n">include</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;src&quot;</span><span class="p">]</span>
+<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>
+<a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a><span class="k">[overrides.rules]</span>
+<a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a><span class="n">possibly-unresolved-reference</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ignore&quot;</span>
 </code></pre></div>
 </div>
 </div>
@@ -2561,18 +2639,18 @@ any module where the first component contains the substring <code>test</code>, u
 <p><strong>Default value</strong>: <code>[]</code></p>
 <p><strong>Type</strong>: <code>list[str]</code></p>
 <p><strong>Example usage</strong>:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="15:2"><input checked="checked" id="__tabbed_15_1" name="__tabbed_15" type="radio" /><input id="__tabbed_15_2" name="__tabbed_15" type="radio" /><div class="tabbed-labels"><label for="__tabbed_15_1">pyproject.toml</label><label for="__tabbed_15_2">ty.toml</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="16:2"><input checked="checked" id="__tabbed_16_1" name="__tabbed_16" type="radio" /><input id="__tabbed_16_2" name="__tabbed_16" type="radio" /><div class="tabbed-labels"><label for="__tabbed_16_1">pyproject.toml</label><label for="__tabbed_16_2">ty.toml</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="k">[tool.ty.overrides.analysis]</span>
-<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="c1"># Suppress errors for all `test` modules except `test.foo`</span>
-<a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a><span class="n">allowed-unresolved-imports</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;test.**&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;!test.foo&quot;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="k">[tool.ty.overrides.analysis]</span>
+<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a><span class="c1"># Suppress errors for all `test` modules except `test.foo`</span>
+<a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a><span class="n">allowed-unresolved-imports</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;test.**&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;!test.foo&quot;</span><span class="p">]</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="k">[overrides.analysis]</span>
-<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="c1"># Suppress errors for all `test` modules except `test.foo`</span>
-<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a><span class="n">allowed-unresolved-imports</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;test.**&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;!test.foo&quot;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="k">[overrides.analysis]</span>
+<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="c1"># Suppress errors for all `test` modules except `test.foo`</span>
+<a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a><span class="n">allowed-unresolved-imports</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;test.**&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;!test.foo&quot;</span><span class="p">]</span>
 </code></pre></div>
 </div>
 </div>
@@ -2593,18 +2671,18 @@ any module where the first component contains the substring <code>test</code>, u
 <p><strong>Default value</strong>: <code>[]</code></p>
 <p><strong>Type</strong>: <code>list[str]</code></p>
 <p><strong>Example usage</strong>:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="16:2"><input checked="checked" id="__tabbed_16_1" name="__tabbed_16" type="radio" /><input id="__tabbed_16_2" name="__tabbed_16" type="radio" /><div class="tabbed-labels"><label for="__tabbed_16_1">pyproject.toml</label><label for="__tabbed_16_2">ty.toml</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="17:2"><input checked="checked" id="__tabbed_17_1" name="__tabbed_17" type="radio" /><input id="__tabbed_17_2" name="__tabbed_17" type="radio" /><div class="tabbed-labels"><label for="__tabbed_17_1">pyproject.toml</label><label for="__tabbed_17_2">ty.toml</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="k">[tool.ty.overrides.analysis]</span>
-<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a><span class="c1"># Replace all pandas and numpy imports with Any</span>
-<a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a><span class="n">replace-imports-with-any</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;pandas.**&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;numpy.**&quot;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="k">[tool.ty.overrides.analysis]</span>
+<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="c1"># Replace all pandas and numpy imports with Any</span>
+<a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a><span class="n">replace-imports-with-any</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;pandas.**&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;numpy.**&quot;</span><span class="p">]</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="k">[overrides.analysis]</span>
-<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="c1"># Replace all pandas and numpy imports with Any</span>
-<a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a><span class="n">replace-imports-with-any</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;pandas.**&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;numpy.**&quot;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="k">[overrides.analysis]</span>
+<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a><span class="c1"># Replace all pandas and numpy imports with Any</span>
+<a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a><span class="n">replace-imports-with-any</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;pandas.**&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;numpy.**&quot;</span><span class="p">]</span>
 </code></pre></div>
 </div>
 </div>
@@ -2620,18 +2698,18 @@ you prefer using <code>ty: ignore</code> over <code>type: ignore</code>.</p>
 <p><strong>Default value</strong>: <code>true</code></p>
 <p><strong>Type</strong>: <code>bool</code></p>
 <p><strong>Example usage</strong>:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="17:2"><input checked="checked" id="__tabbed_17_1" name="__tabbed_17" type="radio" /><input id="__tabbed_17_2" name="__tabbed_17" type="radio" /><div class="tabbed-labels"><label for="__tabbed_17_1">pyproject.toml</label><label for="__tabbed_17_2">ty.toml</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="18:2"><input checked="checked" id="__tabbed_18_1" name="__tabbed_18" type="radio" /><input id="__tabbed_18_2" name="__tabbed_18" type="radio" /><div class="tabbed-labels"><label for="__tabbed_18_1">pyproject.toml</label><label for="__tabbed_18_2">ty.toml</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="k">[tool.ty.overrides.analysis]</span>
-<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="c1"># Disable support for `type: ignore` comments</span>
-<a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a><span class="n">respect-type-ignore-comments</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="k">[tool.ty.overrides.analysis]</span>
+<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a><span class="c1"># Disable support for `type: ignore` comments</span>
+<a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a><span class="n">respect-type-ignore-comments</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="k">[overrides.analysis]</span>
-<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a><span class="c1"># Disable support for `type: ignore` comments</span>
-<a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a><span class="n">respect-type-ignore-comments</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="k">[overrides.analysis]</span>
+<a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a><span class="c1"># Disable support for `type: ignore` comments</span>
+<a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a><span class="n">respect-type-ignore-comments</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
 </code></pre></div>
 </div>
 </div>
@@ -2650,75 +2728,109 @@ narrowing opportunities and more conservative assumptions regarding control flow
 object <code>x</code> of type <code>str</code> to <code>Literal["a"]</code> after an <code>if x == "a"</code> check. This is
 unsound because a subclass of <code>str</code> with value <code>"a"</code> will (by default) compare equal
 to <code>"a"</code>, but will not be of type <code>Literal["a"]</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="c1"># `Literal[&quot;a&quot;]` can only be inhabited by instances of exactly `str`, not</span>
-<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a><span class="gp">&gt;&gt;&gt; </span><span class="c1"># subclasses, but str subclasses compare equal by default:</span>
-<a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">StringSubclass</span><span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="o">...</span>
-<a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a><span class="gp">...</span>
-<a id="__codelineno-40-5" name="__codelineno-40-5" href="#__codelineno-40-5"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">StringSubclass</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;a&quot;</span>
-<a id="__codelineno-40-6" name="__codelineno-40-6" href="#__codelineno-40-6"></a><span class="go">True</span>
-<a id="__codelineno-40-7" name="__codelineno-40-7" href="#__codelineno-40-7"></a><span class="gp">&gt;&gt;&gt;</span>
-<a id="__codelineno-40-8" name="__codelineno-40-8" href="#__codelineno-40-8"></a><span class="gp">&gt;&gt;&gt; </span><span class="c1"># This also applies to `StrEnum`s:</span>
-<a id="__codelineno-40-9" name="__codelineno-40-9" href="#__codelineno-40-9"></a><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">StrEnum</span>
-<a id="__codelineno-40-10" name="__codelineno-40-10" href="#__codelineno-40-10"></a><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">MyEnum</span><span class="p">(</span><span class="n">StrEnum</span><span class="p">):</span>
-<a id="__codelineno-40-11" name="__codelineno-40-11" href="#__codelineno-40-11"></a><span class="gp">... </span>    <span class="n">A</span> <span class="o">=</span> <span class="s2">&quot;a&quot;</span>
-<a id="__codelineno-40-12" name="__codelineno-40-12" href="#__codelineno-40-12"></a><span class="gp">...</span>
-<a id="__codelineno-40-13" name="__codelineno-40-13" href="#__codelineno-40-13"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">MyEnum</span><span class="o">.</span><span class="n">A</span> <span class="o">==</span> <span class="s2">&quot;a&quot;</span>
-<a id="__codelineno-40-14" name="__codelineno-40-14" href="#__codelineno-40-14"></a><span class="go">True</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="c1"># `Literal[&quot;a&quot;]` can only be inhabited by instances of exactly `str`, not</span>
+<a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a><span class="gp">&gt;&gt;&gt; </span><span class="c1"># subclasses, but str subclasses compare equal by default:</span>
+<a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">StringSubclass</span><span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="o">...</span>
+<a id="__codelineno-42-4" name="__codelineno-42-4" href="#__codelineno-42-4"></a><span class="gp">...</span>
+<a id="__codelineno-42-5" name="__codelineno-42-5" href="#__codelineno-42-5"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">StringSubclass</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;a&quot;</span>
+<a id="__codelineno-42-6" name="__codelineno-42-6" href="#__codelineno-42-6"></a><span class="go">True</span>
+<a id="__codelineno-42-7" name="__codelineno-42-7" href="#__codelineno-42-7"></a><span class="gp">&gt;&gt;&gt;</span>
+<a id="__codelineno-42-8" name="__codelineno-42-8" href="#__codelineno-42-8"></a><span class="gp">&gt;&gt;&gt; </span><span class="c1"># This also applies to `StrEnum`s:</span>
+<a id="__codelineno-42-9" name="__codelineno-42-9" href="#__codelineno-42-9"></a><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">StrEnum</span>
+<a id="__codelineno-42-10" name="__codelineno-42-10" href="#__codelineno-42-10"></a><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">MyEnum</span><span class="p">(</span><span class="n">StrEnum</span><span class="p">):</span>
+<a id="__codelineno-42-11" name="__codelineno-42-11" href="#__codelineno-42-11"></a><span class="gp">... </span>    <span class="n">A</span> <span class="o">=</span> <span class="s2">&quot;a&quot;</span>
+<a id="__codelineno-42-12" name="__codelineno-42-12" href="#__codelineno-42-12"></a><span class="gp">...</span>
+<a id="__codelineno-42-13" name="__codelineno-42-13" href="#__codelineno-42-13"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">MyEnum</span><span class="o">.</span><span class="n">A</span> <span class="o">==</span> <span class="s2">&quot;a&quot;</span>
+<a id="__codelineno-42-14" name="__codelineno-42-14" href="#__codelineno-42-14"></a><span class="go">True</span>
 </code></pre></div>
 <p>Enabling this option prevents the unsound narrowing of <code>x</code> to <code>Literal["a"]</code>,
 and instead keeps it as <code>str</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Literal</span>
-<a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a>
-<a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a><span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a>    <span class="c1"># with `strict-equality-semantics = true`, no narrowing will occur here,</span>
-<a id="__codelineno-41-5" name="__codelineno-41-5" href="#__codelineno-41-5"></a>    <span class="c1"># and an error will be emitted on the `return` statement.</span>
-<a id="__codelineno-41-6" name="__codelineno-41-6" href="#__codelineno-41-6"></a>    <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="s2">&quot;a&quot;</span><span class="p">:</span>
-<a id="__codelineno-41-7" name="__codelineno-41-7" href="#__codelineno-41-7"></a>        <span class="k">return</span> <span class="n">value</span>
-<a id="__codelineno-41-8" name="__codelineno-41-8" href="#__codelineno-41-8"></a>    <span class="k">return</span> <span class="kc">None</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Literal</span>
+<a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a>
+<a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a><span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-43-4" name="__codelineno-43-4" href="#__codelineno-43-4"></a>    <span class="c1"># with `strict-equality-semantics = true`, no narrowing will occur here,</span>
+<a id="__codelineno-43-5" name="__codelineno-43-5" href="#__codelineno-43-5"></a>    <span class="c1"># and an error will be emitted on the `return` statement.</span>
+<a id="__codelineno-43-6" name="__codelineno-43-6" href="#__codelineno-43-6"></a>    <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="s2">&quot;a&quot;</span><span class="p">:</span>
+<a id="__codelineno-43-7" name="__codelineno-43-7" href="#__codelineno-43-7"></a>        <span class="k">return</span> <span class="n">value</span>
+<a id="__codelineno-43-8" name="__codelineno-43-8" href="#__codelineno-43-8"></a>    <span class="k">return</span> <span class="kc">None</span>
 </code></pre></div>
 <p>Another assumption ty makes by default is that subclasses will never override <code>__eq__</code> or
 <code>__ne__</code>. This allows ty to narrow the following union based on an equality check, despite
 the fact that an instance of a subclass of <code>Foo</code> could compare equal to <code>None</code>, and it's
 perfectly valid to pass an instance of a subclass into the <code>x</code> parameter of this function:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="k">def</span> <span class="nf">narrow</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">Foo</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Foo</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a>    <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="n">other</span><span class="p">:</span>
-<a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a>        <span class="c1"># with this option enabled, `x` will still have type `Foo | None` here,</span>
-<a id="__codelineno-42-4" name="__codelineno-42-4" href="#__codelineno-42-4"></a>        <span class="c1"># since it is legal to subclass `Foo` and override its `__eq__` method.</span>
-<a id="__codelineno-42-5" name="__codelineno-42-5" href="#__codelineno-42-5"></a>        <span class="n">reveal_type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="k">def</span> <span class="nf">narrow</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">Foo</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Foo</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a>    <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="n">other</span><span class="p">:</span>
+<a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a>        <span class="c1"># with this option enabled, `x` will still have type `Foo | None` here,</span>
+<a id="__codelineno-44-4" name="__codelineno-44-4" href="#__codelineno-44-4"></a>        <span class="c1"># since it is legal to subclass `Foo` and override its `__eq__` method.</span>
+<a id="__codelineno-44-5" name="__codelineno-44-5" href="#__codelineno-44-5"></a>        <span class="n">reveal_type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </code></pre></div>
 <p>Many operations in Python implicitly call <code>__eq__</code> under the hood; enabling this option
 will also impact those operations. For example, this option will also impact narrowing from
 <code>in</code> checks, and narrowing in <code>match</code> statements that use value patterns:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="k">def</span> <span class="nf">narrow_in</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">Foo</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Foo</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a>    <span class="k">if</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">other</span><span class="p">:</span>
-<a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a>        <span class="c1"># with this option enabled, `x` will still have type `Foo | None` here,</span>
-<a id="__codelineno-43-4" name="__codelineno-43-4" href="#__codelineno-43-4"></a>        <span class="c1"># since the `in` operator implicitly calls `__eq__` on each element of `other`.</span>
-<a id="__codelineno-43-5" name="__codelineno-43-5" href="#__codelineno-43-5"></a>        <span class="n">reveal_type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<a id="__codelineno-43-6" name="__codelineno-43-6" href="#__codelineno-43-6"></a>
-<a id="__codelineno-43-7" name="__codelineno-43-7" href="#__codelineno-43-7"></a>
-<a id="__codelineno-43-8" name="__codelineno-43-8" href="#__codelineno-43-8"></a><span class="k">def</span> <span class="nf">narrow_match</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-43-9" name="__codelineno-43-9" href="#__codelineno-43-9"></a>    <span class="k">match</span> <span class="n">x</span><span class="p">:</span>
-<a id="__codelineno-43-10" name="__codelineno-43-10" href="#__codelineno-43-10"></a>        <span class="k">case</span> <span class="s2">&quot;a&quot;</span><span class="p">:</span>
-<a id="__codelineno-43-11" name="__codelineno-43-11" href="#__codelineno-43-11"></a>            <span class="c1"># with this option enabled, `x` will still have type `str` here,</span>
-<a id="__codelineno-43-12" name="__codelineno-43-12" href="#__codelineno-43-12"></a>            <span class="c1"># since this `case` branch will be taken by any object that compares</span>
-<a id="__codelineno-43-13" name="__codelineno-43-13" href="#__codelineno-43-13"></a>            <span class="c1"># equal to `&quot;a&quot;`, including subclasses of `str`.</span>
-<a id="__codelineno-43-14" name="__codelineno-43-14" href="#__codelineno-43-14"></a>            <span class="n">reveal_type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="k">def</span> <span class="nf">narrow_in</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">Foo</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Foo</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a>    <span class="k">if</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">other</span><span class="p">:</span>
+<a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a>        <span class="c1"># with this option enabled, `x` will still have type `Foo | None` here,</span>
+<a id="__codelineno-45-4" name="__codelineno-45-4" href="#__codelineno-45-4"></a>        <span class="c1"># since the `in` operator implicitly calls `__eq__` on each element of `other`.</span>
+<a id="__codelineno-45-5" name="__codelineno-45-5" href="#__codelineno-45-5"></a>        <span class="n">reveal_type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<a id="__codelineno-45-6" name="__codelineno-45-6" href="#__codelineno-45-6"></a>
+<a id="__codelineno-45-7" name="__codelineno-45-7" href="#__codelineno-45-7"></a>
+<a id="__codelineno-45-8" name="__codelineno-45-8" href="#__codelineno-45-8"></a><span class="k">def</span> <span class="nf">narrow_match</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-45-9" name="__codelineno-45-9" href="#__codelineno-45-9"></a>    <span class="k">match</span> <span class="n">x</span><span class="p">:</span>
+<a id="__codelineno-45-10" name="__codelineno-45-10" href="#__codelineno-45-10"></a>        <span class="k">case</span> <span class="s2">&quot;a&quot;</span><span class="p">:</span>
+<a id="__codelineno-45-11" name="__codelineno-45-11" href="#__codelineno-45-11"></a>            <span class="c1"># with this option enabled, `x` will still have type `str` here,</span>
+<a id="__codelineno-45-12" name="__codelineno-45-12" href="#__codelineno-45-12"></a>            <span class="c1"># since this `case` branch will be taken by any object that compares</span>
+<a id="__codelineno-45-13" name="__codelineno-45-13" href="#__codelineno-45-13"></a>            <span class="c1"># equal to `&quot;a&quot;`, including subclasses of `str`.</span>
+<a id="__codelineno-45-14" name="__codelineno-45-14" href="#__codelineno-45-14"></a>            <span class="n">reveal_type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>Default value</strong>: <code>false</code></p>
 <p><strong>Type</strong>: <code>bool</code></p>
 <p><strong>Example usage</strong>:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="18:2"><input checked="checked" id="__tabbed_18_1" name="__tabbed_18" type="radio" /><input id="__tabbed_18_2" name="__tabbed_18" type="radio" /><div class="tabbed-labels"><label for="__tabbed_18_1">pyproject.toml</label><label for="__tabbed_18_2">ty.toml</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="19:2"><input checked="checked" id="__tabbed_19_1" name="__tabbed_19" type="radio" /><input id="__tabbed_19_2" name="__tabbed_19" type="radio" /><div class="tabbed-labels"><label for="__tabbed_19_1">pyproject.toml</label><label for="__tabbed_19_2">ty.toml</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="k">[tool.ty.overrides.analysis]</span>
-<a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a><span class="c1"># Preserve broad builtin types instead of narrowing them to literals</span>
-<a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a><span class="n">strict-equality-semantics</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="k">[tool.ty.overrides.analysis]</span>
+<a id="__codelineno-46-2" name="__codelineno-46-2" href="#__codelineno-46-2"></a><span class="c1"># Preserve broad builtin types instead of narrowing them to literals</span>
+<a id="__codelineno-46-3" name="__codelineno-46-3" href="#__codelineno-46-3"></a><span class="n">strict-equality-semantics</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="k">[overrides.analysis]</span>
-<a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a><span class="c1"># Preserve broad builtin types instead of narrowing them to literals</span>
-<a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a><span class="n">strict-equality-semantics</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="k">[overrides.analysis]</span>
+<a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a><span class="c1"># Preserve broad builtin types instead of narrowing them to literals</span>
+<a id="__codelineno-47-3" name="__codelineno-47-3" href="#__codelineno-47-3"></a><span class="n">strict-equality-semantics</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<hr />
+<h4 id="strict-generic-narrowing_1"><a class="toclink" href="#strict-generic-narrowing_1"><code>strict-generic-narrowing</code></a></h4>
+<p>Whether ty should use strict narrowing for unspecialized generic classes in
+<code>isinstance()</code> and <code>issubclass()</code> checks, as well as <code>match</code> class patterns.</p>
+<p>When enabled, ty narrows to the top materialization of the class. For example,
+<code>isinstance(value, list)</code> narrows a value of type <code>object</code> to <code>Top[list[Unknown]]</code>,
+representing the (infinite) union of all possible <code>list</code> specializations. Iterating
+over the list would yield values of type <code>object</code>.</p>
+<p>When disabled, ty uses gradual generic narrowing, preserving compatible type
+arguments from the original type where possible. For example,
+<code>isinstance(value, list)</code> narrows a value of type <code>Sequence[int]</code> to <code>list[int]</code>.
+If no specialization is available, the same check narrows a value of type <code>object</code>
+to <code>list[Unknown]</code>; items of any type can then be appended to the list. Class
+patterns such as <code>case list():</code> follow the same behavior.</p>
+<p>Defaults to <code>false</code>.</p>
+<p><strong>Default value</strong>: <code>false</code></p>
+<p><strong>Type</strong>: <code>bool</code></p>
+<p><strong>Example usage</strong>:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="20:2"><input checked="checked" id="__tabbed_20_1" name="__tabbed_20" type="radio" /><input id="__tabbed_20_2" name="__tabbed_20" type="radio" /><div class="tabbed-labels"><label for="__tabbed_20_1">pyproject.toml</label><label for="__tabbed_20_2">ty.toml</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="k">[tool.ty.overrides.analysis]</span>
+<a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a><span class="c1"># Use the top materialization when narrowing to an unspecialized generic class</span>
+<a id="__codelineno-48-3" name="__codelineno-48-3" href="#__codelineno-48-3"></a><span class="n">strict-generic-narrowing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="k">[overrides.analysis]</span>
+<a id="__codelineno-49-2" name="__codelineno-49-2" href="#__codelineno-49-2"></a><span class="c1"># Use the top materialization when narrowing to an unspecialized generic class</span>
+<a id="__codelineno-49-3" name="__codelineno-49-3" href="#__codelineno-49-3"></a><span class="n">strict-generic-narrowing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 </code></pre></div>
 </div>
 </div>
@@ -2772,26 +2884,26 @@ to re-include <code>dist</code> use <code>exclude = ["!dist"]</code></p>
 <p><strong>Default value</strong>: <code>null</code></p>
 <p><strong>Type</strong>: <code>list[str]</code></p>
 <p><strong>Example usage</strong>:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="19:2"><input checked="checked" id="__tabbed_19_1" name="__tabbed_19" type="radio" /><input id="__tabbed_19_2" name="__tabbed_19" type="radio" /><div class="tabbed-labels"><label for="__tabbed_19_1">pyproject.toml</label><label for="__tabbed_19_2">ty.toml</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="21:2"><input checked="checked" id="__tabbed_21_1" name="__tabbed_21" type="radio" /><input id="__tabbed_21_2" name="__tabbed_21" type="radio" /><div class="tabbed-labels"><label for="__tabbed_21_1">pyproject.toml</label><label for="__tabbed_21_2">ty.toml</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="k">[tool.ty.src]</span>
-<a id="__codelineno-46-2" name="__codelineno-46-2" href="#__codelineno-46-2"></a><span class="n">exclude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-46-3" name="__codelineno-46-3" href="#__codelineno-46-3"></a><span class="w">    </span><span class="s2">&quot;generated&quot;</span><span class="p">,</span>
-<a id="__codelineno-46-4" name="__codelineno-46-4" href="#__codelineno-46-4"></a><span class="w">    </span><span class="s2">&quot;*.proto&quot;</span><span class="p">,</span>
-<a id="__codelineno-46-5" name="__codelineno-46-5" href="#__codelineno-46-5"></a><span class="w">    </span><span class="s2">&quot;tests/fixtures/**&quot;</span><span class="p">,</span>
-<a id="__codelineno-46-6" name="__codelineno-46-6" href="#__codelineno-46-6"></a><span class="w">    </span><span class="s2">&quot;!tests/fixtures/important.py&quot;</span><span class="w">  </span><span class="c1"># Include this one file</span>
-<a id="__codelineno-46-7" name="__codelineno-46-7" href="#__codelineno-46-7"></a><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="k">[tool.ty.src]</span>
+<a id="__codelineno-50-2" name="__codelineno-50-2" href="#__codelineno-50-2"></a><span class="n">exclude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-50-3" name="__codelineno-50-3" href="#__codelineno-50-3"></a><span class="w">    </span><span class="s2">&quot;generated&quot;</span><span class="p">,</span>
+<a id="__codelineno-50-4" name="__codelineno-50-4" href="#__codelineno-50-4"></a><span class="w">    </span><span class="s2">&quot;*.proto&quot;</span><span class="p">,</span>
+<a id="__codelineno-50-5" name="__codelineno-50-5" href="#__codelineno-50-5"></a><span class="w">    </span><span class="s2">&quot;tests/fixtures/**&quot;</span><span class="p">,</span>
+<a id="__codelineno-50-6" name="__codelineno-50-6" href="#__codelineno-50-6"></a><span class="w">    </span><span class="s2">&quot;!tests/fixtures/important.py&quot;</span><span class="w">  </span><span class="c1"># Include this one file</span>
+<a id="__codelineno-50-7" name="__codelineno-50-7" href="#__codelineno-50-7"></a><span class="p">]</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="k">[src]</span>
-<a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a><span class="n">exclude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-47-3" name="__codelineno-47-3" href="#__codelineno-47-3"></a><span class="w">    </span><span class="s2">&quot;generated&quot;</span><span class="p">,</span>
-<a id="__codelineno-47-4" name="__codelineno-47-4" href="#__codelineno-47-4"></a><span class="w">    </span><span class="s2">&quot;*.proto&quot;</span><span class="p">,</span>
-<a id="__codelineno-47-5" name="__codelineno-47-5" href="#__codelineno-47-5"></a><span class="w">    </span><span class="s2">&quot;tests/fixtures/**&quot;</span><span class="p">,</span>
-<a id="__codelineno-47-6" name="__codelineno-47-6" href="#__codelineno-47-6"></a><span class="w">    </span><span class="s2">&quot;!tests/fixtures/important.py&quot;</span><span class="w">  </span><span class="c1"># Include this one file</span>
-<a id="__codelineno-47-7" name="__codelineno-47-7" href="#__codelineno-47-7"></a><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a><span class="k">[src]</span>
+<a id="__codelineno-51-2" name="__codelineno-51-2" href="#__codelineno-51-2"></a><span class="n">exclude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-51-3" name="__codelineno-51-3" href="#__codelineno-51-3"></a><span class="w">    </span><span class="s2">&quot;generated&quot;</span><span class="p">,</span>
+<a id="__codelineno-51-4" name="__codelineno-51-4" href="#__codelineno-51-4"></a><span class="w">    </span><span class="s2">&quot;*.proto&quot;</span><span class="p">,</span>
+<a id="__codelineno-51-5" name="__codelineno-51-5" href="#__codelineno-51-5"></a><span class="w">    </span><span class="s2">&quot;tests/fixtures/**&quot;</span><span class="p">,</span>
+<a id="__codelineno-51-6" name="__codelineno-51-6" href="#__codelineno-51-6"></a><span class="w">    </span><span class="s2">&quot;!tests/fixtures/important.py&quot;</span><span class="w">  </span><span class="c1"># Include this one file</span>
+<a id="__codelineno-51-7" name="__codelineno-51-7" href="#__codelineno-51-7"></a><span class="p">]</span>
 </code></pre></div>
 </div>
 </div>
@@ -2803,16 +2915,16 @@ explicitly passed on the command line.</p>
 <p><strong>Default value</strong>: <code>false</code></p>
 <p><strong>Type</strong>: <code>bool</code></p>
 <p><strong>Example usage</strong>:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="20:2"><input checked="checked" id="__tabbed_20_1" name="__tabbed_20" type="radio" /><input id="__tabbed_20_2" name="__tabbed_20" type="radio" /><div class="tabbed-labels"><label for="__tabbed_20_1">pyproject.toml</label><label for="__tabbed_20_2">ty.toml</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="22:2"><input checked="checked" id="__tabbed_22_1" name="__tabbed_22" type="radio" /><input id="__tabbed_22_2" name="__tabbed_22" type="radio" /><div class="tabbed-labels"><label for="__tabbed_22_1">pyproject.toml</label><label for="__tabbed_22_2">ty.toml</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="k">[tool.ty.src]</span>
-<a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a><span class="n">exclude-scripts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="k">[tool.ty.src]</span>
+<a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a><span class="n">exclude-scripts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="k">[src]</span>
-<a id="__codelineno-49-2" name="__codelineno-49-2" href="#__codelineno-49-2"></a><span class="n">exclude-scripts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a><span class="k">[src]</span>
+<a id="__codelineno-53-2" name="__codelineno-53-2" href="#__codelineno-53-2"></a><span class="n">exclude-scripts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 </code></pre></div>
 </div>
 </div>
@@ -2841,22 +2953,22 @@ matches <code>&lt;project_root&gt;/src</code> and not <code>&lt;project_root&gt;
 <p><strong>Default value</strong>: <code>null</code></p>
 <p><strong>Type</strong>: <code>list[str]</code></p>
 <p><strong>Example usage</strong>:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="21:2"><input checked="checked" id="__tabbed_21_1" name="__tabbed_21" type="radio" /><input id="__tabbed_21_2" name="__tabbed_21" type="radio" /><div class="tabbed-labels"><label for="__tabbed_21_1">pyproject.toml</label><label for="__tabbed_21_2">ty.toml</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="23:2"><input checked="checked" id="__tabbed_23_1" name="__tabbed_23" type="radio" /><input id="__tabbed_23_2" name="__tabbed_23" type="radio" /><div class="tabbed-labels"><label for="__tabbed_23_1">pyproject.toml</label><label for="__tabbed_23_2">ty.toml</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="k">[tool.ty.src]</span>
-<a id="__codelineno-50-2" name="__codelineno-50-2" href="#__codelineno-50-2"></a><span class="n">include</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-50-3" name="__codelineno-50-3" href="#__codelineno-50-3"></a><span class="w">    </span><span class="s2">&quot;src&quot;</span><span class="p">,</span>
-<a id="__codelineno-50-4" name="__codelineno-50-4" href="#__codelineno-50-4"></a><span class="w">    </span><span class="s2">&quot;tests&quot;</span><span class="p">,</span>
-<a id="__codelineno-50-5" name="__codelineno-50-5" href="#__codelineno-50-5"></a><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a><span class="k">[tool.ty.src]</span>
+<a id="__codelineno-54-2" name="__codelineno-54-2" href="#__codelineno-54-2"></a><span class="n">include</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-54-3" name="__codelineno-54-3" href="#__codelineno-54-3"></a><span class="w">    </span><span class="s2">&quot;src&quot;</span><span class="p">,</span>
+<a id="__codelineno-54-4" name="__codelineno-54-4" href="#__codelineno-54-4"></a><span class="w">    </span><span class="s2">&quot;tests&quot;</span><span class="p">,</span>
+<a id="__codelineno-54-5" name="__codelineno-54-5" href="#__codelineno-54-5"></a><span class="p">]</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a><span class="k">[src]</span>
-<a id="__codelineno-51-2" name="__codelineno-51-2" href="#__codelineno-51-2"></a><span class="n">include</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-51-3" name="__codelineno-51-3" href="#__codelineno-51-3"></a><span class="w">    </span><span class="s2">&quot;src&quot;</span><span class="p">,</span>
-<a id="__codelineno-51-4" name="__codelineno-51-4" href="#__codelineno-51-4"></a><span class="w">    </span><span class="s2">&quot;tests&quot;</span><span class="p">,</span>
-<a id="__codelineno-51-5" name="__codelineno-51-5" href="#__codelineno-51-5"></a><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a><span class="k">[src]</span>
+<a id="__codelineno-55-2" name="__codelineno-55-2" href="#__codelineno-55-2"></a><span class="n">include</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-55-3" name="__codelineno-55-3" href="#__codelineno-55-3"></a><span class="w">    </span><span class="s2">&quot;src&quot;</span><span class="p">,</span>
+<a id="__codelineno-55-4" name="__codelineno-55-4" href="#__codelineno-55-4"></a><span class="w">    </span><span class="s2">&quot;tests&quot;</span><span class="p">,</span>
+<a id="__codelineno-55-5" name="__codelineno-55-5" href="#__codelineno-55-5"></a><span class="p">]</span>
 </code></pre></div>
 </div>
 </div>
@@ -2869,16 +2981,16 @@ Enabled by default.</p>
 <p><strong>Default value</strong>: <code>true</code></p>
 <p><strong>Type</strong>: <code>bool</code></p>
 <p><strong>Example usage</strong>:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="22:2"><input checked="checked" id="__tabbed_22_1" name="__tabbed_22" type="radio" /><input id="__tabbed_22_2" name="__tabbed_22" type="radio" /><div class="tabbed-labels"><label for="__tabbed_22_1">pyproject.toml</label><label for="__tabbed_22_2">ty.toml</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="24:2"><input checked="checked" id="__tabbed_24_1" name="__tabbed_24" type="radio" /><input id="__tabbed_24_2" name="__tabbed_24" type="radio" /><div class="tabbed-labels"><label for="__tabbed_24_1">pyproject.toml</label><label for="__tabbed_24_2">ty.toml</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="k">[tool.ty.src]</span>
-<a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a><span class="n">respect-ignore-files</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a><span class="k">[tool.ty.src]</span>
+<a id="__codelineno-56-2" name="__codelineno-56-2" href="#__codelineno-56-2"></a><span class="n">respect-ignore-files</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a><span class="k">[src]</span>
-<a id="__codelineno-53-2" name="__codelineno-53-2" href="#__codelineno-53-2"></a><span class="n">respect-ignore-files</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a><span class="k">[src]</span>
+<a id="__codelineno-57-2" name="__codelineno-57-2" href="#__codelineno-57-2"></a><span class="n">respect-ignore-files</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
 </code></pre></div>
 </div>
 </div>
@@ -2891,18 +3003,18 @@ Enabled by default.</p>
 <p><strong>Default value</strong>: <code>true</code></p>
 <p><strong>Type</strong>: <code>bool</code></p>
 <p><strong>Example usage</strong>:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="23:2"><input checked="checked" id="__tabbed_23_1" name="__tabbed_23" type="radio" /><input id="__tabbed_23_2" name="__tabbed_23" type="radio" /><div class="tabbed-labels"><label for="__tabbed_23_1">pyproject.toml</label><label for="__tabbed_23_2">ty.toml</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="25:2"><input checked="checked" id="__tabbed_25_1" name="__tabbed_25" type="radio" /><input id="__tabbed_25_2" name="__tabbed_25" type="radio" /><div class="tabbed-labels"><label for="__tabbed_25_1">pyproject.toml</label><label for="__tabbed_25_2">ty.toml</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a><span class="k">[tool.ty.terminal]</span>
-<a id="__codelineno-54-2" name="__codelineno-54-2" href="#__codelineno-54-2"></a><span class="c1"># Exit with code 0 if all diagnostics had `warning` severity.</span>
-<a id="__codelineno-54-3" name="__codelineno-54-3" href="#__codelineno-54-3"></a><span class="n">error-on-warning</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a><span class="k">[tool.ty.terminal]</span>
+<a id="__codelineno-58-2" name="__codelineno-58-2" href="#__codelineno-58-2"></a><span class="c1"># Exit with code 0 if all diagnostics had `warning` severity.</span>
+<a id="__codelineno-58-3" name="__codelineno-58-3" href="#__codelineno-58-3"></a><span class="n">error-on-warning</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a><span class="k">[terminal]</span>
-<a id="__codelineno-55-2" name="__codelineno-55-2" href="#__codelineno-55-2"></a><span class="c1"># Exit with code 0 if all diagnostics had `warning` severity.</span>
-<a id="__codelineno-55-3" name="__codelineno-55-3" href="#__codelineno-55-3"></a><span class="n">error-on-warning</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a><span class="k">[terminal]</span>
+<a id="__codelineno-59-2" name="__codelineno-59-2" href="#__codelineno-59-2"></a><span class="c1"># Exit with code 0 if all diagnostics had `warning` severity.</span>
+<a id="__codelineno-59-3" name="__codelineno-59-3" href="#__codelineno-59-3"></a><span class="n">error-on-warning</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
 </code></pre></div>
 </div>
 </div>
@@ -2914,16 +3026,16 @@ Enabled by default.</p>
 <p><strong>Default value</strong>: <code>full</code></p>
 <p><strong>Type</strong>: <code>full | concise | github | gitlab | junit</code></p>
 <p><strong>Example usage</strong>:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="24:2"><input checked="checked" id="__tabbed_24_1" name="__tabbed_24" type="radio" /><input id="__tabbed_24_2" name="__tabbed_24" type="radio" /><div class="tabbed-labels"><label for="__tabbed_24_1">pyproject.toml</label><label for="__tabbed_24_2">ty.toml</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="26:2"><input checked="checked" id="__tabbed_26_1" name="__tabbed_26" type="radio" /><input id="__tabbed_26_2" name="__tabbed_26" type="radio" /><div class="tabbed-labels"><label for="__tabbed_26_1">pyproject.toml</label><label for="__tabbed_26_2">ty.toml</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a><span class="k">[tool.ty.terminal]</span>
-<a id="__codelineno-56-2" name="__codelineno-56-2" href="#__codelineno-56-2"></a><span class="n">output-format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;concise&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a><span class="k">[tool.ty.terminal]</span>
+<a id="__codelineno-60-2" name="__codelineno-60-2" href="#__codelineno-60-2"></a><span class="n">output-format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;concise&quot;</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a><span class="k">[terminal]</span>
-<a id="__codelineno-57-2" name="__codelineno-57-2" href="#__codelineno-57-2"></a><span class="n">output-format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;concise&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a><span class="k">[terminal]</span>
+<a id="__codelineno-61-2" name="__codelineno-61-2" href="#__codelineno-61-2"></a><span class="n">output-format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;concise&quot;</span>
 </code></pre></div>
 </div>
 </div>

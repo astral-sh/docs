@@ -81,8 +81,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2026-08-06 00:46:59Z",
-        "dateModified": "2026-08-06 00:46:59Z",
+        "datePublished": "2026-08-06 09:24:41Z",
+        "dateModified": "2026-08-06 09:24:41Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -1488,8 +1488,9 @@ only available at type-checking time:</p>
 For example, the top materialization of <code>Any</code> is <code>object</code>, and the top materialization of
 <code>Any &amp; int</code> is <code>int</code>. For invariant generic classes, the top materialization cannot be expressed in
 Python's type system, but it is a useful type that ty intersects with when <code>isinstance</code> checks
-involve generic classes. For example, when checking <code>isinstance(…, list)</code>, ty intersects with the
-top materialization of <code>list[Unknown]</code>:</p>
+involve generic classes (when <a href="../../reference/configuration/#strict-generic-narrowing"><code>analysis.strict-generic-narrowing</code></a>
+is enabled). For example, when checking <code>isinstance(…, list)</code>, ty intersects with the top materialization
+of <code>list[Unknown]</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nd">@final</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">class</span> <span class="nc">Item</span><span class="p">:</span> <span class="o">...</span>
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
@@ -1498,7 +1499,7 @@ top materialization of <code>list[Unknown]</code>:</p>
 <a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>        <span class="c1"># reveals: list[Item]</span>
 <a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>        <span class="n">reveal_type</span><span class="p">(</span><span class="n">items</span><span class="p">)</span>
 </code></pre></div>
-<p>(Full example in the <a href="https://play.ty.dev/f1306120-0b8d-4ed5-b832-1f2d379eae2b">playground</a>)</p>
+<p>(Full example in the <a href="https://play.ty.dev/d2759832-101c-410d-b721-50805729bc68">playground</a>)</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p>You might wonder why <code>Item</code> is declared <code>@final</code> here. If we remove the <code>@final</code> decorator, the
