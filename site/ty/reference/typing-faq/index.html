@@ -81,8 +81,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2026-08-06 00:46:59Z",
-        "dateModified": "2026-08-06 00:46:59Z",
+        "datePublished": "2026-08-06 09:24:41Z",
+        "dateModified": "2026-08-06 09:24:41Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -1901,7 +1901,8 @@ which demonstrates that <code>FileUpload</code> instances are no longer accepted
 <h2 id="what-is-toplistunknown-and-why-does-it-appear"><a class="toclink" href="#what-is-toplistunknown-and-why-does-it-appear">What is <code>Top[list[Unknown]]</code>, and why does it appear?</a></h2>
 <p>This type represents "all possible lists of any element type" (as opposed to <code>list[Unknown]</code>, which
 represents "a list of some unknown element type"). It usually arises from a check such as
-<code>if isinstance(x, list):</code>. If <code>x</code> was previously of type <code>Item | list[Item]</code>, you might expect this
+<code>if isinstance(x, list):</code> if you have the <a href="../configuration/#strict-generic-narrowing"><code>analysis.strict-generic-narrowing</code></a>
+option enabled. If <code>x</code> was previously of type <code>Item | list[Item]</code>, you might expect this
 check to narrow the type to <code>list[Item]</code>, but ty respects the possibility that there could be a
 common subclass of both <code>Item</code> and <code>list</code> (which may not be a list of <code>Item</code>!), and so the narrowed
 type is instead <code>(Item &amp; Top[list[Unknown]]) | list[Item]</code>. This code can be made more robust by

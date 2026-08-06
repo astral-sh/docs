@@ -96,7 +96,7 @@ def output_as_json(obj: SerializableVersioned) -> str:
 
 ## [Top and bottom materializations](#top-and-bottom-materializations)
 
-Gradual types generally have two special [materializations](https://typing.python.org/en/latest/spec/concepts.html#materialization). The top materialization represents the "largest" type that a gradual type can materialize to: the union of all possible materializations. For example, the top materialization of `Any` is `object`, and the top materialization of `Any & int` is `int`. For invariant generic classes, the top materialization cannot be expressed in Python's type system, but it is a useful type that ty intersects with when `isinstance` checks involve generic classes. For example, when checking `isinstance(…, list)`, ty intersects with the top materialization of `list[Unknown]`:
+Gradual types generally have two special [materializations](https://typing.python.org/en/latest/spec/concepts.html#materialization). The top materialization represents the "largest" type that a gradual type can materialize to: the union of all possible materializations. For example, the top materialization of `Any` is `object`, and the top materialization of `Any & int` is `int`. For invariant generic classes, the top materialization cannot be expressed in Python's type system, but it is a useful type that ty intersects with when `isinstance` checks involve generic classes (when [`analysis.strict-generic-narrowing`](../../reference/configuration/#strict-generic-narrowing) is enabled). For example, when checking `isinstance(…, list)`, ty intersects with the top materialization of `list[Unknown]`:
 
 ```
 @final
@@ -109,7 +109,7 @@ def process(items: Item | list[Item]):
 
 ```
 
-(Full example in the [playground](https://play.ty.dev/f1306120-0b8d-4ed5-b832-1f2d379eae2b))
+(Full example in the [playground](https://play.ty.dev/d2759832-101c-410d-b721-50805729bc68))
 
 Info
 
