@@ -11996,7 +11996,7 @@ metadata when there are not wheels.</p>
 
 <h3 id="uv-cache-size"><a class="toclink" href="#uv-cache-size">uv cache size</a></h3>
 <p>Show the cache size.</p>
-<p>Displays the total size of the cache directory. This includes all downloaded and built wheels, source distributions, and other cached data. By default, outputs the size in raw bytes; use <code>--human</code> for human-readable output.</p>
+<p>Displays the total size of the cache directory. This includes all downloaded and built wheels, source distributions, and other cached data. By default, displays a human-readable size when the output is a terminal and raw bytes otherwise.</p>
 <h3 class="cli-reference">Usage</h3>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a>uv cache size [OPTIONS]
@@ -12023,7 +12023,7 @@ metadata when there are not wheels.</p>
 <p>Relative paths are resolved with the given directory as the base.</p>
 <p>See <code>--project</code> to only change the project root directory.</p>
 <p>May also be set with the <code>UV_WORKING_DIR</code> environment variable.</p></dd><dt id="uv-cache-size--help"><a href="#uv-cache-size--help"><code>--help</code></a>, <code>-h</code></dt><dd><p>Display the concise help for this command</p>
-</dd><dt id="uv-cache-size--human"><a href="#uv-cache-size--human"><code>--human</code></a>, <code>--human-readable</code>, <code>-H</code></dt><dd><p>Display the cache size in human-readable format (e.g., <code>1.2 GiB</code> instead of raw bytes)</p>
+</dd><dt id="uv-cache-size--human"><a href="#uv-cache-size--human"><code>--human</code></a>, <code>--human-readable</code>, <code>-H</code></dt><dd><p>Display the cache size in human-readable format (e.g., <code>1.2GiB</code> instead of raw bytes)</p>
 </dd><dt id="uv-cache-size--managed-python"><a href="#uv-cache-size--managed-python"><code>--managed-python</code></a></dt><dd><p>Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]</p>
 <p>By default, uv prefers using Python versions it manages. However, it will use system Python versions if a uv-managed Python is not installed. This option disables use of system Python versions.</p>
 </dd><dt id="uv-cache-size--no-cache"><a href="#uv-cache-size--no-cache"><code>--no-cache</code></a>, <code>--no-cache-dir</code>, <code>-n</code></dt><dd><p>Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation</p>
@@ -12036,7 +12036,13 @@ metadata when there are not wheels.</p>
 </dd><dt id="uv-cache-size--no-python-downloads"><a href="#uv-cache-size--no-python-downloads"><code>--no-python-downloads</code></a></dt><dd><p>Disable automatic downloads of Python.</p>
 </dd><dt id="uv-cache-size--offline"><a href="#uv-cache-size--offline"><code>--offline</code></a></dt><dd><p>Disable network access [env: UV_OFFLINE=]</p>
 <p>When disabled, uv will only use locally cached data and locally available files.</p>
-</dd><dt id="uv-cache-size--project"><a href="#uv-cache-size--project"><code>--project</code></a> <i>project</i></dt><dd><p>Discover a project in the given directory.</p>
+</dd><dt id="uv-cache-size--output-format"><a href="#uv-cache-size--output-format"><code>--output-format</code></a> <i>output-format</i></dt><dd><p>Select the output format</p>
+<p>[default: auto]</p><p>Possible values:</p>
+<ul>
+<li><code>auto</code>:  Display a human-readable size in terminals and raw bytes otherwise</li>
+<li><code>human</code>:  Display the cache size in a human-readable format</li>
+<li><code>machine</code>:  Display the cache size in raw bytes</li>
+</ul></dd><dt id="uv-cache-size--project"><a href="#uv-cache-size--project"><code>--project</code></a> <i>project</i></dt><dd><p>Discover a project in the given directory.</p>
 <p>All <code>pyproject.toml</code>, <code>uv.toml</code>, and <code>.python-version</code> files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (<code>.venv</code>).</p>
 <p>Other command-line arguments (such as relative paths) will be resolved relative to the current working directory.</p>
 <p>See <code>--directory</code> to change the working directory entirely.</p>

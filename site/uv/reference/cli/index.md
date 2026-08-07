@@ -16364,7 +16364,7 @@ You can configure fine-grained logging using the `RUST_LOG` environment variable
 
 Show the cache size.
 
-Displays the total size of the cache directory. This includes all downloaded and built wheels, source distributions, and other cached data. By default, outputs the size in raw bytes; use `--human` for human-readable output.
+Displays the total size of the cache directory. This includes all downloaded and built wheels, source distributions, and other cached data. By default, displays a human-readable size when the output is a terminal and raw bytes otherwise.
 
 ### Usage
 
@@ -16428,7 +16428,7 @@ May also be set with the `UV_WORKING_DIR` environment variable.
 
 [`--help`](#uv-cache-size--help), `-h` : Display the concise help for this command
 
-[`--human`](#uv-cache-size--human), `--human-readable`, `-H` : Display the cache size in human-readable format (e.g., `1.2 GiB` instead of raw bytes)
+[`--human`](#uv-cache-size--human), `--human-readable`, `-H` : Display the cache size in human-readable format (e.g., `1.2GiB` instead of raw bytes)
 
 [`--managed-python`](#uv-cache-size--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
@@ -16468,6 +16468,18 @@ For example, spinners or progress bars.
 
 ```
 When disabled, uv will only use locally cached data and locally available files.
+```
+
+[`--output-format`](#uv-cache-size--output-format) *output-format* : Select the output format
+
+```
+[default: auto]
+
+Possible values:
+
+- `auto`: Display a human-readable size in terminals and raw bytes otherwise
+- `human`: Display the cache size in a human-readable format
+- `machine`: Display the cache size in raw bytes
 ```
 
 [`--project`](#uv-cache-size--project) *project* : Discover a project in the given directory.

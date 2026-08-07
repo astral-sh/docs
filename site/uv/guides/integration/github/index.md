@@ -42,7 +42,7 @@ jobs:
         uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
         with:
           # Install a specific version of uv.
-          version: "0.12.2"
+          version: "0.12.3"
 ```
 
 ## [Setting up Python](#setting-up-python)
@@ -354,8 +354,10 @@ name: "Publish release to PyPI"
 on:
   push:
     tags:
-      # Publish on any tag starting with a `v`, e.g., v0.1.0
-      - v*
+      # Publish on version tags, e.g. v0.1.0
+      - "v[0-9]+.[0-9]+.[0-9]+"
+      - "v[0-9]+.[0-9]+.[0-9]+rc[0-9]+"
+      - "v[0-9]+.[0-9]+.[0-9]+[ab][0-9]+"
 
 jobs:
   build:
@@ -407,6 +409,10 @@ jobs:
         with:
           name: dist
           path: dist/
+
+      - name: Generate PEP 740 attestations
+        uses: astral-sh/attest-action@f589a42a7efb6fe400b4f400de60b4bc90390027 # v0.0.6
+
       - name: Publish
         run: uv publish
 ```
