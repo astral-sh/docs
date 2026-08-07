@@ -762,7 +762,7 @@ Equivalent to the `--resolution` command-line argument. For example, if set to `
 
 ### [`UV_RUN_RLIMIT_NOFILE`](#uv_run_rlimit_nofile)
 
-added in `next release`
+added in `0.12.3`
 
 Sets the soft open-file descriptor limit for commands executed by `uv run`.
 
