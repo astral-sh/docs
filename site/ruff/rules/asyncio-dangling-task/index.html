@@ -891,7 +891,7 @@
 <p><small>
 Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.247">v0.0.247</a> ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27asyncio-dangling-task%27%20OR%20RUF006)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fruff%2Frules%2Fasyncio_dangling_task.rs#L55" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fruff%2Frules%2Fasyncio_dangling_task.rs#L69" target="_blank">View source</a>
 </small></p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for <code>asyncio.create_task</code> and <code>asyncio.ensure_future</code> calls
@@ -927,10 +927,22 @@ may not run to completion.</p>
 <a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    <span class="c1"># completion:</span>
 <a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>    <span class="n">task</span><span class="o">.</span><span class="n">add_done_callback</span><span class="p">(</span><span class="n">background_tasks</span><span class="o">.</span><span class="n">discard</span><span class="p">)</span>
 </code></pre></div>
+<p>Or, for Python 3.11 and later, use structured concurrency with
+<code>asyncio.TaskGroup</code> when the tasks should be awaited as part of the current
+operation:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="k">async</span> <span class="k">with</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">TaskGroup</span><span class="p">()</span> <span class="k">as</span> <span class="n">tg</span><span class="p">:</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>            <span class="n">tg</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">some_coro</span><span class="p">(</span><span class="n">param</span><span class="o">=</span><span class="n">i</span><span class="p">))</span>
+</code></pre></div>
 <h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://textual.textualize.io/blog/2023/02/11/the-heisenbug-lurking-in-your-async-code/"><em>The Heisenbug lurking in your async code</em></a></li>
-<li><a href="https://docs.python.org/3/library/asyncio-task.html#asyncio.create_task">The Python Standard Library</a></li>
+<li><a href="https://docs.python.org/3/library/asyncio-task.html#asyncio.create_task">Python documentation: <code>asyncio.create_task</code></a></li>
+<li><a href="https://docs.python.org/3/library/asyncio-task.html#asyncio.TaskGroup">Python documentation: <code>asyncio.TaskGroup</code></a></li>
 </ul>
 
 

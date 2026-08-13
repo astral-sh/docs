@@ -6,13 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Checks for usages of `datetime.datetime.now()` that do not specify a timezone.">
+        <meta name="description" content="Checks for `while` loops that use `1` as their condition.">
       
       
         <meta name="author" content="charliermarsh">
       
       
-        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/call-datetime-now-without-tzinfo/">
+        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/while-one/">
       
       
       
@@ -25,7 +25,7 @@
     
     
 
-<title>call-datetime-now-without-tzinfo (DTZ005) | Ruff</title>
+<title>while-one (UP048) | Ruff</title>
 
 
     
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#call-datetime-now-without-tzinfo-dtz005" class="md-skip">
+        <a href="#while-one-up048" class="md-skip">
           Skip to content
         </a>
       
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              call-datetime-now-without-tzinfo (DTZ005)
+              while-one (UP048)
             
           </span>
         </div>
@@ -887,42 +887,34 @@
   
 
 
-<h1 id="call-datetime-now-without-tzinfo-dtz005"><a class="toclink" href="#call-datetime-now-without-tzinfo-dtz005">call-datetime-now-without-tzinfo (DTZ005)</a></h1>
+<h1 id="while-one-up048"><a class="toclink" href="#while-one-up048">while-one (UP048)</a></h1>
 <p><small>
-Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.188">v0.0.188</a> ·
-<a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27call-datetime-now-without-tzinfo%27%20OR%20DTZ005)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_datetimez%2Frules%2Fcall_datetime_now_without_tzinfo.rs#L49" target="_blank">View source</a>
+Preview (since <a href="https://github.com/astral-sh/ruff/releases/tag/0.16.3">0.16.3</a>) ·
+<a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27while-one%27%20OR%20UP048)" target="_blank">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fpyupgrade%2Frules%2Fwhile_one.rs#L32" target="_blank">View source</a>
 </small></p>
-<p>Derived from the <strong><a href="../#flake8-datetimez-dtz">flake8-datetimez</a></strong> linter.</p>
+<p>Derived from the <strong><a href="../#pyupgrade-up">pyupgrade</a></strong> linter.</p>
+<p>Fix is always available.</p>
+<p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
-<p>Checks for usages of <code>datetime.datetime.now()</code> that do not specify a timezone.</p>
+<p>Checks for <code>while</code> loops that use <code>1</code> as their condition.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
-<p>Python datetime objects can be naive or timezone-aware. While an aware
-object represents a specific moment in time, a naive object does not
-contain enough information to unambiguously locate itself relative to other
-datetime objects. Since this can lead to errors, it is recommended to
-always use timezone-aware objects.</p>
-<p><code>datetime.datetime.now()</code> or <code>datetime.datetime.now(tz=None)</code> returns a naive
-datetime object. Instead, use <code>datetime.datetime.now(tz=&lt;timezone&gt;)</code> to create
-a timezone-aware object.</p>
+<p><code>while 1:</code> is a Python 2 idiom, where <code>True</code> was a global that could be
+rebound and so had to be loaded and tested on every iteration. In Python 3
+<code>True</code> is a keyword, so both spellings compile to the same bytecode and
+<code>while True:</code> is clearer about the loop being infinite.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello, world!&quot;</span><span class="p">)</span>
 </code></pre></div>
 <p>Use instead:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(</span><span class="n">tz</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">timezone</span><span class="o">.</span><span class="n">utc</span><span class="p">)</span>
-</code></pre></div>
-<p>Or, for Python 3.11 and later:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(</span><span class="n">tz</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">UTC</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello, world!&quot;</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
-<li><a href="https://docs.python.org/3/library/datetime.html#aware-and-naive-objects">Python documentation: Aware and Naive Objects</a></li>
+<li><a href="https://docs.python.org/3/reference/compound_stmts.html#the-while-statement">Python documentation: <code>while</code></a></li>
+<li><a href="https://peps.python.org/pep-0285/">PEP 285 – Adding a bool type</a></li>
 </ul>
 
 
