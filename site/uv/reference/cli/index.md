@@ -5887,6 +5887,12 @@ May be provided multiple times.
 
 [`--no-index`](#uv-check--no-index) : Ignore the registry index (e.g., PyPI), instead relying on direct URL dependencies and those provided via `--find-links`
 
+[`--no-install-project`](#uv-check--no-install-project) : Do not install the current project [env: UV_NO_INSTALL_PROJECT=]
+
+```
+By default, the current project is installed into the environment with all of its dependencies. The `--no-install-project` option excludes the project itself while still installing its dependencies, which is useful when the project can be type-checked from its source tree without building native extensions.
+```
+
 [`--no-managed-python`](#uv-check--no-managed-python) : Disable use of uv-managed Python versions [env: UV_NO_MANAGED_PYTHON=]
 
 ```

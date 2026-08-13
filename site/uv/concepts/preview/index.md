@@ -94,6 +94,7 @@ The following preview features are available:
 - `s3-endpoint`: Allows signing requests to configured S3-compatible endpoints.
 - `sbom-export`: Allows using `uv export --format=cyclonedx1.5`.
 - `special-conda-env-names`: Stops treating Conda environments named `base` or `root` as special.
+- `tar-codec`: Uses the new `tar-codec` encoding/decoding backend, instead of `astral-tokio-tar`.
 - `target-workspace-discovery`: Uses the directory containing a local `uv run` target, rather than the current working directory, as the starting point for project and workspace discovery. This feature takes effect before configuration is loaded.
 - `toml-backwards-compatibility`: Rewrites `pyproject.toml` as TOML 1.0 when building source distributions, preserving the original as `pyproject.toml.orig` to ensure compatibility with older build tools.
 - `tool-install-locks`: Stores a `uv.lock` alongside each installed tool and reuses it for reproducible installations, upgrades, and audits.
