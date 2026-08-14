@@ -106,7 +106,7 @@ Used to override uv in the output header of the `requirements.txt` files generat
 
 added in `0.4.23`
 
-Equivalent to the `--default-index` command-line argument. If set, uv will use this URL as the default index when searching for packages.
+Equivalent to the `--default-index` command-line argument. If set, uv will use this index as the default index when searching for packages.
 
 ### [`UV_DEV`](#uv_dev)
 
@@ -210,7 +210,7 @@ Timeout (in seconds) for HTTP reads. (default: 30 s)
 
 added in `0.4.23`
 
-Equivalent to the `--index` command-line argument. If set, uv will use this space-separated list of URLs as additional indexes when searching for packages.
+Equivalent to the `--index` command-line argument. If set, uv will use this space-separated list of additional indexes when searching for packages.
 
 ### [`UV_INDEX_STRATEGY`](#uv_index_strategy)
 
