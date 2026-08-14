@@ -233,6 +233,12 @@ name = "pytorch"
 url = "https://download.pytorch.org/whl/cpu"
 ```
 
+If the index is already configured, you can select it by name (this feature is in preview):
+
+```
+$ uv add --preview-features index-by-name torch --index pytorch
+```
+
 Tip
 
 The above example will only work on x86-64 Linux, due to the specifics of the PyTorch index. See the [PyTorch guide](../../../guides/integration/pytorch/) for more information about setting up PyTorch.

@@ -823,12 +823,14 @@ May also be set with the `UV_CONFIG_FILE` environment variable.
 
 [`--config-settings-package`](#uv-run--config-settings-package), `--config-settings-package` *config-settings-package* : Settings to pass to the PEP 517 build backend for a specific package, specified as `PACKAGE:KEY=VALUE` pairs
 
-[`--default-index`](#uv-run--default-index) *default-index* : The URL of the default package index (by default: <https://pypi.org/simple>).
+[`--default-index`](#uv-run--default-index) *default-index* : The default package index (by default: <https://pypi.org/simple>).
 
 ```
 Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
 
 The index given by this flag is given lower priority than all other indexes specified via the `--index` flag.
+
+Indexes configured in `uv.toml` or `pyproject.toml` may be selected by name. Enable the `index-by-name` preview feature to prefer index names over relative paths.
 
 May also be set with the `UV_DEFAULT_INDEX` environment variable.
 ```
@@ -944,14 +946,16 @@ Using `--gui-script` will attempt to parse the path as a PEP 723 script and run 
 
 [`--help`](#uv-run--help), `-h` : Display the concise help for this command
 
-[`--index`](#uv-run--index) *index* : The URLs to use when resolving dependencies, in addition to the default index.
+[`--index`](#uv-run--index) *index* : The indexes to use when resolving dependencies, in addition to the default index.
 
 ```
 Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
 
 All indexes provided via this flag take priority over the index specified by `--default-index` (which defaults to PyPI). When multiple `--index` flags are provided, earlier values take priority.
 
-Index names are not supported as values. Relative paths must be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
+Indexes configured in `uv.toml` or `pyproject.toml` may be selected by name. Enable the `index-by-name` preview feature to prefer index names over relative paths.
+
+Relative paths can be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
 
 May also be set with the `UV_INDEX` environment variable.
 ```
@@ -1777,12 +1781,14 @@ This is equivalent to pip's `--constraint` option.
 May also be set with the `UV_CONSTRAINT` environment variable.
 ```
 
-[`--default-index`](#uv-add--default-index) *default-index* : The URL of the default package index (by default: <https://pypi.org/simple>).
+[`--default-index`](#uv-add--default-index) *default-index* : The default package index (by default: <https://pypi.org/simple>).
 
 ```
 Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
 
 The index given by this flag is given lower priority than all other indexes specified via the `--index` flag.
+
+Indexes configured in `uv.toml` or `pyproject.toml` may be selected by name. Enable the `index-by-name` preview feature to prefer index names over relative paths.
 
 May also be set with the `UV_DEFAULT_INDEX` environment variable.
 ```
@@ -1886,14 +1892,16 @@ These requirements will not be included in the published metadata for the projec
 
 [`--help`](#uv-add--help), `-h` : Display the concise help for this command
 
-[`--index`](#uv-add--index) *index* : The URLs to use when resolving dependencies, in addition to the default index.
+[`--index`](#uv-add--index) *index* : The indexes to use when resolving dependencies, in addition to the default index.
 
 ```
 Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
 
 All indexes provided via this flag take priority over the index specified by `--default-index` (which defaults to PyPI). When multiple `--index` flags are provided, earlier values take priority.
 
-Index names are not supported as values. Relative paths must be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
+Indexes configured in `uv.toml` or `pyproject.toml` may be selected by name. Enable the `index-by-name` preview feature to prefer index names over relative paths.
+
+Relative paths can be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
 
 May also be set with the `UV_INDEX` environment variable.
 ```
@@ -2312,12 +2320,14 @@ May also be set with the `UV_CONFIG_FILE` environment variable.
 
 [`--config-settings-package`](#uv-remove--config-settings-package), `--config-settings-package` *config-settings-package* : Settings to pass to the PEP 517 build backend for a specific package, specified as `PACKAGE:KEY=VALUE` pairs
 
-[`--default-index`](#uv-remove--default-index) *default-index* : The URL of the default package index (by default: <https://pypi.org/simple>).
+[`--default-index`](#uv-remove--default-index) *default-index* : The default package index (by default: <https://pypi.org/simple>).
 
 ```
 Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
 
 The index given by this flag is given lower priority than all other indexes specified via the `--index` flag.
+
+Indexes configured in `uv.toml` or `pyproject.toml` may be selected by name. Enable the `index-by-name` preview feature to prefer index names over relative paths.
 
 May also be set with the `UV_DEFAULT_INDEX` environment variable.
 ```
@@ -2407,14 +2417,16 @@ The project environment will not be synced.
 
 [`--help`](#uv-remove--help), `-h` : Display the concise help for this command
 
-[`--index`](#uv-remove--index) *index* : The URLs to use when resolving dependencies, in addition to the default index.
+[`--index`](#uv-remove--index) *index* : The indexes to use when resolving dependencies, in addition to the default index.
 
 ```
 Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
 
 All indexes provided via this flag take priority over the index specified by `--default-index` (which defaults to PyPI). When multiple `--index` flags are provided, earlier values take priority.
 
-Index names are not supported as values. Relative paths must be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
+Indexes configured in `uv.toml` or `pyproject.toml` may be selected by name. Enable the `index-by-name` preview feature to prefer index names over relative paths.
+
+Relative paths can be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
 
 May also be set with the `UV_INDEX` environment variable.
 ```
@@ -2771,12 +2783,14 @@ May also be set with the `UV_CONFIG_FILE` environment variable.
 
 [`--config-settings-package`](#uv-version--config-settings-package), `--config-settings-package` *config-settings-package* : Settings to pass to the PEP 517 build backend for a specific package, specified as `PACKAGE:KEY=VALUE` pairs
 
-[`--default-index`](#uv-version--default-index) *default-index* : The URL of the default package index (by default: <https://pypi.org/simple>).
+[`--default-index`](#uv-version--default-index) *default-index* : The default package index (by default: <https://pypi.org/simple>).
 
 ```
 Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
 
 The index given by this flag is given lower priority than all other indexes specified via the `--index` flag.
+
+Indexes configured in `uv.toml` or `pyproject.toml` may be selected by name. Enable the `index-by-name` preview feature to prefer index names over relative paths.
 
 May also be set with the `UV_DEFAULT_INDEX` environment variable.
 ```
@@ -2864,14 +2878,16 @@ The project environment will not be synced.
 
 [`--help`](#uv-version--help), `-h` : Display the concise help for this command
 
-[`--index`](#uv-version--index) *index* : The URLs to use when resolving dependencies, in addition to the default index.
+[`--index`](#uv-version--index) *index* : The indexes to use when resolving dependencies, in addition to the default index.
 
 ```
 Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
 
 All indexes provided via this flag take priority over the index specified by `--default-index` (which defaults to PyPI). When multiple `--index` flags are provided, earlier values take priority.
 
-Index names are not supported as values. Relative paths must be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
+Indexes configured in `uv.toml` or `pyproject.toml` may be selected by name. Enable the `index-by-name` preview feature to prefer index names over relative paths.
+
+Relative paths can be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
 
 May also be set with the `UV_INDEX` environment variable.
 ```
@@ -3251,12 +3267,14 @@ May also be set with the `UV_CONFIG_FILE` environment variable.
 
 [`--config-settings-package`](#uv-sync--config-settings-package), `--config-settings-package` *config-settings-package* : Settings to pass to the PEP 517 build backend for a specific package, specified as `PACKAGE:KEY=VALUE` pairs
 
-[`--default-index`](#uv-sync--default-index) *default-index* : The URL of the default package index (by default: <https://pypi.org/simple>).
+[`--default-index`](#uv-sync--default-index) *default-index* : The default package index (by default: <https://pypi.org/simple>).
 
 ```
 Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
 
 The index given by this flag is given lower priority than all other indexes specified via the `--index` flag.
+
+Indexes configured in `uv.toml` or `pyproject.toml` may be selected by name. Enable the `index-by-name` preview feature to prefer index names over relative paths.
 
 May also be set with the `UV_DEFAULT_INDEX` environment variable.
 ```
@@ -3362,14 +3380,16 @@ May be provided multiple times.
 
 [`--help`](#uv-sync--help), `-h` : Display the concise help for this command
 
-[`--index`](#uv-sync--index) *index* : The URLs to use when resolving dependencies, in addition to the default index.
+[`--index`](#uv-sync--index) *index* : The indexes to use when resolving dependencies, in addition to the default index.
 
 ```
 Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
 
 All indexes provided via this flag take priority over the index specified by `--default-index` (which defaults to PyPI). When multiple `--index` flags are provided, earlier values take priority.
 
-Index names are not supported as values. Relative paths must be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
+Indexes configured in `uv.toml` or `pyproject.toml` may be selected by name. Enable the `index-by-name` preview feature to prefer index names over relative paths.
+
+Relative paths can be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
 
 May also be set with the `UV_INDEX` environment variable.
 ```
@@ -3873,12 +3893,14 @@ May also be set with the `UV_CONFIG_FILE` environment variable.
 
 [`--config-settings-package`](#uv-lock--config-settings-package), `--config-settings-package` *config-settings-package* : Settings to pass to the PEP 517 build backend for a specific package, specified as `PACKAGE:KEY=VALUE` pairs
 
-[`--default-index`](#uv-lock--default-index) *default-index* : The URL of the default package index (by default: <https://pypi.org/simple>).
+[`--default-index`](#uv-lock--default-index) *default-index* : The default package index (by default: <https://pypi.org/simple>).
 
 ```
 Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
 
 The index given by this flag is given lower priority than all other indexes specified via the `--index` flag.
+
+Indexes configured in `uv.toml` or `pyproject.toml` may be selected by name. Enable the `index-by-name` preview feature to prefer index names over relative paths.
 
 May also be set with the `UV_DEFAULT_INDEX` environment variable.
 ```
@@ -3960,14 +3982,16 @@ Possible values:
 
 [`--help`](#uv-lock--help), `-h` : Display the concise help for this command
 
-[`--index`](#uv-lock--index) *index* : The URLs to use when resolving dependencies, in addition to the default index.
+[`--index`](#uv-lock--index) *index* : The indexes to use when resolving dependencies, in addition to the default index.
 
 ```
 Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
 
 All indexes provided via this flag take priority over the index specified by `--default-index` (which defaults to PyPI). When multiple `--index` flags are provided, earlier values take priority.
 
-Index names are not supported as values. Relative paths must be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
+Indexes configured in `uv.toml` or `pyproject.toml` may be selected by name. Enable the `index-by-name` preview feature to prefer index names over relative paths.
+
+Relative paths can be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
 
 May also be set with the `UV_INDEX` environment variable.
 ```
@@ -4298,12 +4322,14 @@ May also be set with the `UV_CONFIG_FILE` environment variable.
 
 [`--config-settings-package`](#uv-export--config-settings-package), `--config-settings-package` *config-settings-package* : Settings to pass to the PEP 517 build backend for a specific package, specified as `PACKAGE:KEY=VALUE` pairs
 
-[`--default-index`](#uv-export--default-index) *default-index* : The URL of the default package index (by default: <https://pypi.org/simple>).
+[`--default-index`](#uv-export--default-index) *default-index* : The default package index (by default: <https://pypi.org/simple>).
 
 ```
 Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
 
 The index given by this flag is given lower priority than all other indexes specified via the `--index` flag.
+
+Indexes configured in `uv.toml` or `pyproject.toml` may be selected by name. Enable the `index-by-name` preview feature to prefer index names over relative paths.
 
 May also be set with the `UV_DEFAULT_INDEX` environment variable.
 ```
@@ -4415,14 +4441,16 @@ May be provided multiple times.
 
 [`--help`](#uv-export--help), `-h` : Display the concise help for this command
 
-[`--index`](#uv-export--index) *index* : The URLs to use when resolving dependencies, in addition to the default index.
+[`--index`](#uv-export--index) *index* : The indexes to use when resolving dependencies, in addition to the default index.
 
 ```
 Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
 
 All indexes provided via this flag take priority over the index specified by `--default-index` (which defaults to PyPI). When multiple `--index` flags are provided, earlier values take priority.
 
-Index names are not supported as values. Relative paths must be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
+Indexes configured in `uv.toml` or `pyproject.toml` may be selected by name. Enable the `index-by-name` preview feature to prefer index names over relative paths.
+
+Relative paths can be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
 
 May also be set with the `UV_INDEX` environment variable.
 ```
@@ -4843,12 +4871,14 @@ May also be set with the `UV_CONFIG_FILE` environment variable.
 
 [`--config-settings-package`](#uv-tree--config-settings-package), `--config-settings-package` *config-settings-package* : Settings to pass to the PEP 517 build backend for a specific package, specified as `PACKAGE:KEY=VALUE` pairs
 
-[`--default-index`](#uv-tree--default-index) *default-index* : The URL of the default package index (by default: <https://pypi.org/simple>).
+[`--default-index`](#uv-tree--default-index) *default-index* : The default package index (by default: <https://pypi.org/simple>).
 
 ```
 Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
 
 The index given by this flag is given lower priority than all other indexes specified via the `--index` flag.
+
+Indexes configured in `uv.toml` or `pyproject.toml` may be selected by name. Enable the `index-by-name` preview feature to prefer index names over relative paths.
 
 May also be set with the `UV_DEFAULT_INDEX` environment variable.
 ```
@@ -4953,14 +4983,16 @@ May be provided multiple times.
 
 [`--help`](#uv-tree--help), `-h` : Display the concise help for this command
 
-[`--index`](#uv-tree--index) *index* : The URLs to use when resolving dependencies, in addition to the default index.
+[`--index`](#uv-tree--index) *index* : The indexes to use when resolving dependencies, in addition to the default index.
 
 ```
 Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
 
 All indexes provided via this flag take priority over the index specified by `--default-index` (which defaults to PyPI). When multiple `--index` flags are provided, earlier values take priority.
 
-Index names are not supported as values. Relative paths must be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
+Indexes configured in `uv.toml` or `pyproject.toml` may be selected by name. Enable the `index-by-name` preview feature to prefer index names over relative paths.
+
+Relative paths can be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
 
 May also be set with the `UV_INDEX` environment variable.
 ```
@@ -5614,12 +5646,14 @@ May also be set with the `UV_CONFIG_FILE` environment variable.
 
 [`--config-settings-package`](#uv-check--config-settings-package), `--config-settings-package` *config-settings-package* : Settings to pass to the PEP 517 build backend for a specific package, specified as `PACKAGE:KEY=VALUE` pairs
 
-[`--default-index`](#uv-check--default-index) *default-index* : The URL of the default package index (by default: <https://pypi.org/simple>).
+[`--default-index`](#uv-check--default-index) *default-index* : The default package index (by default: <https://pypi.org/simple>).
 
 ```
 Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
 
 The index given by this flag is given lower priority than all other indexes specified via the `--index` flag.
+
+Indexes configured in `uv.toml` or `pyproject.toml` may be selected by name. Enable the `index-by-name` preview feature to prefer index names over relative paths.
 
 May also be set with the `UV_DEFAULT_INDEX` environment variable.
 ```
@@ -5721,14 +5755,16 @@ May be provided multiple times.
 
 [`--help`](#uv-check--help), `-h` : Display the concise help for this command
 
-[`--index`](#uv-check--index) *index* : The URLs to use when resolving dependencies, in addition to the default index.
+[`--index`](#uv-check--index) *index* : The indexes to use when resolving dependencies, in addition to the default index.
 
 ```
 Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
 
 All indexes provided via this flag take priority over the index specified by `--default-index` (which defaults to PyPI). When multiple `--index` flags are provided, earlier values take priority.
 
-Index names are not supported as values. Relative paths must be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
+Indexes configured in `uv.toml` or `pyproject.toml` may be selected by name. Enable the `index-by-name` preview feature to prefer index names over relative paths.
+
+Relative paths can be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
 
 May also be set with the `UV_INDEX` environment variable.
 ```
@@ -6125,12 +6161,14 @@ May also be set with the `UV_CONFIG_FILE` environment variable.
 
 [`--config-settings-package`](#uv-audit--config-settings-package), `--config-settings-package` *config-settings-package* : Settings to pass to the PEP 517 build backend for a specific package, specified as `PACKAGE:KEY=VALUE` pairs
 
-[`--default-index`](#uv-audit--default-index) *default-index* : The URL of the default package index (by default: <https://pypi.org/simple>).
+[`--default-index`](#uv-audit--default-index) *default-index* : The default package index (by default: <https://pypi.org/simple>).
 
 ```
 Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
 
 The index given by this flag is given lower priority than all other indexes specified via the `--index` flag.
+
+Indexes configured in `uv.toml` or `pyproject.toml` may be selected by name. Enable the `index-by-name` preview feature to prefer index names over relative paths.
 
 May also be set with the `UV_DEFAULT_INDEX` environment variable.
 ```
@@ -6228,14 +6266,16 @@ Vulnerabilities matching any of the provided IDs (including aliases) will be exc
 May be provided multiple times.
 ```
 
-[`--index`](#uv-audit--index) *index* : The URLs to use when resolving dependencies, in addition to the default index.
+[`--index`](#uv-audit--index) *index* : The indexes to use when resolving dependencies, in addition to the default index.
 
 ```
 Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
 
 All indexes provided via this flag take priority over the index specified by `--default-index` (which defaults to PyPI). When multiple `--index` flags are provided, earlier values take priority.
 
-Index names are not supported as values. Relative paths must be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
+Indexes configured in `uv.toml` or `pyproject.toml` may be selected by name. Enable the `index-by-name` preview feature to prefer index names over relative paths.
+
+Relative paths can be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
 
 May also be set with the `UV_INDEX` environment variable.
 ```
@@ -6741,12 +6781,14 @@ This is equivalent to pip's `--constraint` option.
 May also be set with the `UV_CONSTRAINT` environment variable.
 ```
 
-[`--default-index`](#uv-tool-run--default-index) *default-index* : The URL of the default package index (by default: <https://pypi.org/simple>).
+[`--default-index`](#uv-tool-run--default-index) *default-index* : The default package index (by default: <https://pypi.org/simple>).
 
 ```
 Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
 
 The index given by this flag is given lower priority than all other indexes specified via the `--index` flag.
+
+Indexes configured in `uv.toml` or `pyproject.toml` may be selected by name. Enable the `index-by-name` preview feature to prefer index names over relative paths.
 
 May also be set with the `UV_DEFAULT_INDEX` environment variable.
 ```
@@ -6836,14 +6878,16 @@ By default, the package name is assumed to match the command name.
 
 [`--help`](#uv-tool-run--help), `-h` : Display the concise help for this command
 
-[`--index`](#uv-tool-run--index) *index* : The URLs to use when resolving dependencies, in addition to the default index.
+[`--index`](#uv-tool-run--index) *index* : The indexes to use when resolving dependencies, in addition to the default index.
 
 ```
 Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
 
 All indexes provided via this flag take priority over the index specified by `--default-index` (which defaults to PyPI). When multiple `--index` flags are provided, earlier values take priority.
 
-Index names are not supported as values. Relative paths must be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
+Indexes configured in `uv.toml` or `pyproject.toml` may be selected by name. Enable the `index-by-name` preview feature to prefer index names over relative paths.
+
+Relative paths can be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
 
 May also be set with the `UV_INDEX` environment variable.
 ```
@@ -7336,12 +7380,14 @@ This is equivalent to pip's `--constraint` option.
 May also be set with the `UV_CONSTRAINT` environment variable.
 ```
 
-[`--default-index`](#uv-tool-install--default-index) *default-index* : The URL of the default package index (by default: <https://pypi.org/simple>).
+[`--default-index`](#uv-tool-install--default-index) *default-index* : The default package index (by default: <https://pypi.org/simple>).
 
 ```
 Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
 
 The index given by this flag is given lower priority than all other indexes specified via the `--index` flag.
+
+Indexes configured in `uv.toml` or `pyproject.toml` may be selected by name. Enable the `index-by-name` preview feature to prefer index names over relative paths.
 
 May also be set with the `UV_DEFAULT_INDEX` environment variable.
 ```
@@ -7433,14 +7479,16 @@ Possible values:
 
 [`--help`](#uv-tool-install--help), `-h` : Display the concise help for this command
 
-[`--index`](#uv-tool-install--index) *index* : The URLs to use when resolving dependencies, in addition to the default index.
+[`--index`](#uv-tool-install--index) *index* : The indexes to use when resolving dependencies, in addition to the default index.
 
 ```
 Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
 
 All indexes provided via this flag take priority over the index specified by `--default-index` (which defaults to PyPI). When multiple `--index` flags are provided, earlier values take priority.
 
-Index names are not supported as values. Relative paths must be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
+Indexes configured in `uv.toml` or `pyproject.toml` may be selected by name. Enable the `index-by-name` preview feature to prefer index names over relative paths.
+
+Relative paths can be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
 
 May also be set with the `UV_INDEX` environment variable.
 ```
@@ -7911,12 +7959,14 @@ May also be set with the `UV_CONFIG_FILE` environment variable.
 
 [`--config-setting-package`](#uv-tool-upgrade--config-setting-package), `--config-settings-package` *config-setting-package* : Settings to pass to the PEP 517 build backend for a specific package, specified as `PACKAGE:KEY=VALUE` pairs
 
-[`--default-index`](#uv-tool-upgrade--default-index) *default-index* : The URL of the default package index (by default: <https://pypi.org/simple>).
+[`--default-index`](#uv-tool-upgrade--default-index) *default-index* : The default package index (by default: <https://pypi.org/simple>).
 
 ```
 Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
 
 The index given by this flag is given lower priority than all other indexes specified via the `--index` flag.
+
+Indexes configured in `uv.toml` or `pyproject.toml` may be selected by name. Enable the `index-by-name` preview feature to prefer index names over relative paths.
 
 May also be set with the `UV_DEFAULT_INDEX` environment variable.
 ```
@@ -7992,14 +8042,16 @@ Possible values:
 
 [`--help`](#uv-tool-upgrade--help), `-h` : Display the concise help for this command
 
-[`--index`](#uv-tool-upgrade--index) *index* : The URLs to use when resolving dependencies, in addition to the default index.
+[`--index`](#uv-tool-upgrade--index) *index* : The indexes to use when resolving dependencies, in addition to the default index.
 
 ```
 Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
 
 All indexes provided via this flag take priority over the index specified by `--default-index` (which defaults to PyPI). When multiple `--index` flags are provided, earlier values take priority.
 
-Index names are not supported as values. Relative paths must be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
+Indexes configured in `uv.toml` or `pyproject.toml` may be selected by name. Enable the `index-by-name` preview feature to prefer index names over relative paths.
+
+Relative paths can be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
 
 May also be set with the `UV_INDEX` environment variable.
 ```
@@ -10814,12 +10866,14 @@ Used to reflect custom build scripts and commands that wrap `uv pip compile`.
 May also be set with the `UV_CUSTOM_COMPILE_COMMAND` environment variable.
 ```
 
-[`--default-index`](#uv-pip-compile--default-index) *default-index* : The URL of the default package index (by default: <https://pypi.org/simple>).
+[`--default-index`](#uv-pip-compile--default-index) *default-index* : The default package index (by default: <https://pypi.org/simple>).
 
 ```
 Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
 
 The index given by this flag is given lower priority than all other indexes specified via the `--index` flag.
+
+Indexes configured in `uv.toml` or `pyproject.toml` may be selected by name. Enable the `index-by-name` preview feature to prefer index names over relative paths.
 
 May also be set with the `UV_DEFAULT_INDEX` environment variable.
 ```
@@ -10940,14 +10994,16 @@ May be provided multiple times.
 
 [`--help`](#uv-pip-compile--help), `-h` : Display the concise help for this command
 
-[`--index`](#uv-pip-compile--index) *index* : The URLs to use when resolving dependencies, in addition to the default index.
+[`--index`](#uv-pip-compile--index) *index* : The indexes to use when resolving dependencies, in addition to the default index.
 
 ```
 Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
 
 All indexes provided via this flag take priority over the index specified by `--default-index` (which defaults to PyPI). When multiple `--index` flags are provided, earlier values take priority.
 
-Index names are not supported as values. Relative paths must be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
+Indexes configured in `uv.toml` or `pyproject.toml` may be selected by name. Enable the `index-by-name` preview feature to prefer index names over relative paths.
+
+Relative paths can be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
 
 May also be set with the `UV_INDEX` environment variable.
 ```
@@ -11503,12 +11559,14 @@ This is equivalent to pip's `--constraint` option.
 May also be set with the `UV_CONSTRAINT` environment variable.
 ```
 
-[`--default-index`](#uv-pip-sync--default-index) *default-index* : The URL of the default package index (by default: <https://pypi.org/simple>).
+[`--default-index`](#uv-pip-sync--default-index) *default-index* : The default package index (by default: <https://pypi.org/simple>).
 
 ```
 Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
 
 The index given by this flag is given lower priority than all other indexes specified via the `--index` flag.
+
+Indexes configured in `uv.toml` or `pyproject.toml` may be selected by name. Enable the `index-by-name` preview feature to prefer index names over relative paths.
 
 May also be set with the `UV_DEFAULT_INDEX` environment variable.
 ```
@@ -11585,14 +11643,16 @@ May be provided multiple times.
 
 [`--help`](#uv-pip-sync--help), `-h` : Display the concise help for this command
 
-[`--index`](#uv-pip-sync--index) *index* : The URLs to use when resolving dependencies, in addition to the default index.
+[`--index`](#uv-pip-sync--index) *index* : The indexes to use when resolving dependencies, in addition to the default index.
 
 ```
 Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
 
 All indexes provided via this flag take priority over the index specified by `--default-index` (which defaults to PyPI). When multiple `--index` flags are provided, earlier values take priority.
 
-Index names are not supported as values. Relative paths must be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
+Indexes configured in `uv.toml` or `pyproject.toml` may be selected by name. Enable the `index-by-name` preview feature to prefer index names over relative paths.
+
+Relative paths can be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
 
 May also be set with the `UV_INDEX` environment variable.
 ```
@@ -12083,12 +12143,14 @@ This is equivalent to pip's `--constraint` option.
 May also be set with the `UV_CONSTRAINT` environment variable.
 ```
 
-[`--default-index`](#uv-pip-install--default-index) *default-index* : The URL of the default package index (by default: <https://pypi.org/simple>).
+[`--default-index`](#uv-pip-install--default-index) *default-index* : The default package index (by default: <https://pypi.org/simple>).
 
 ```
 Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
 
 The index given by this flag is given lower priority than all other indexes specified via the `--index` flag.
+
+Indexes configured in `uv.toml` or `pyproject.toml` may be selected by name. Enable the `index-by-name` preview feature to prefer index names over relative paths.
 
 May also be set with the `UV_DEFAULT_INDEX` environment variable.
 ```
@@ -12196,14 +12258,16 @@ May be provided multiple times.
 
 [`--help`](#uv-pip-install--help), `-h` : Display the concise help for this command
 
-[`--index`](#uv-pip-install--index) *index* : The URLs to use when resolving dependencies, in addition to the default index.
+[`--index`](#uv-pip-install--index) *index* : The indexes to use when resolving dependencies, in addition to the default index.
 
 ```
 Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
 
 All indexes provided via this flag take priority over the index specified by `--default-index` (which defaults to PyPI). When multiple `--index` flags are provided, earlier values take priority.
 
-Index names are not supported as values. Relative paths must be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
+Indexes configured in `uv.toml` or `pyproject.toml` may be selected by name. Enable the `index-by-name` preview feature to prefer index names over relative paths.
+
+Relative paths can be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
 
 May also be set with the `UV_INDEX` environment variable.
 ```
@@ -13112,12 +13176,14 @@ While uv configuration can be included in a `pyproject.toml` file, it is not all
 May also be set with the `UV_CONFIG_FILE` environment variable.
 ```
 
-[`--default-index`](#uv-pip-list--default-index) *default-index* : The URL of the default package index (by default: <https://pypi.org/simple>).
+[`--default-index`](#uv-pip-list--default-index) *default-index* : The default package index (by default: <https://pypi.org/simple>).
 
 ```
 Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
 
 The index given by this flag is given lower priority than all other indexes specified via the `--index` flag.
+
+Indexes configured in `uv.toml` or `pyproject.toml` may be selected by name. Enable the `index-by-name` preview feature to prefer index names over relative paths.
 
 May also be set with the `UV_DEFAULT_INDEX` environment variable.
 ```
@@ -13196,14 +13262,16 @@ Possible values:
 
 [`--help`](#uv-pip-list--help), `-h` : Display the concise help for this command
 
-[`--index`](#uv-pip-list--index) *index* : The URLs to use when resolving dependencies, in addition to the default index.
+[`--index`](#uv-pip-list--index) *index* : The indexes to use when resolving dependencies, in addition to the default index.
 
 ```
 Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
 
 All indexes provided via this flag take priority over the index specified by `--default-index` (which defaults to PyPI). When multiple `--index` flags are provided, earlier values take priority.
 
-Index names are not supported as values. Relative paths must be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
+Indexes configured in `uv.toml` or `pyproject.toml` may be selected by name. Enable the `index-by-name` preview feature to prefer index names over relative paths.
+
+Relative paths can be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
 
 May also be set with the `UV_INDEX` environment variable.
 ```
@@ -13595,12 +13663,14 @@ While uv configuration can be included in a `pyproject.toml` file, it is not all
 May also be set with the `UV_CONFIG_FILE` environment variable.
 ```
 
-[`--default-index`](#uv-pip-tree--default-index) *default-index* : The URL of the default package index (by default: <https://pypi.org/simple>).
+[`--default-index`](#uv-pip-tree--default-index) *default-index* : The default package index (by default: <https://pypi.org/simple>).
 
 ```
 Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
 
 The index given by this flag is given lower priority than all other indexes specified via the `--index` flag.
+
+Indexes configured in `uv.toml` or `pyproject.toml` may be selected by name. Enable the `index-by-name` preview feature to prefer index names over relative paths.
 
 May also be set with the `UV_DEFAULT_INDEX` environment variable.
 ```
@@ -13667,14 +13737,16 @@ May also be set with the `UV_FIND_LINKS` environment variable.
 
 [`--help`](#uv-pip-tree--help), `-h` : Display the concise help for this command
 
-[`--index`](#uv-pip-tree--index) *index* : The URLs to use when resolving dependencies, in addition to the default index.
+[`--index`](#uv-pip-tree--index) *index* : The indexes to use when resolving dependencies, in addition to the default index.
 
 ```
 Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
 
 All indexes provided via this flag take priority over the index specified by `--default-index` (which defaults to PyPI). When multiple `--index` flags are provided, earlier values take priority.
 
-Index names are not supported as values. Relative paths must be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
+Indexes configured in `uv.toml` or `pyproject.toml` may be selected by name. Enable the `index-by-name` preview feature to prefer index names over relative paths.
+
+Relative paths can be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
 
 May also be set with the `UV_INDEX` environment variable.
 ```
@@ -14153,12 +14225,14 @@ While uv configuration can be included in a `pyproject.toml` file, it is not all
 May also be set with the `UV_CONFIG_FILE` environment variable.
 ```
 
-[`--default-index`](#uv-venv--default-index) *default-index* : The URL of the default package index (by default: <https://pypi.org/simple>).
+[`--default-index`](#uv-venv--default-index) *default-index* : The default package index (by default: <https://pypi.org/simple>).
 
 ```
 Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
 
 The index given by this flag is given lower priority than all other indexes specified via the `--index` flag.
+
+Indexes configured in `uv.toml` or `pyproject.toml` may be selected by name. Enable the `index-by-name` preview feature to prefer index names over relative paths.
 
 May also be set with the `UV_DEFAULT_INDEX` environment variable.
 ```
@@ -14225,14 +14299,16 @@ This will remove all files and directories at the target path.
 
 [`--help`](#uv-venv--help), `-h` : Display the concise help for this command
 
-[`--index`](#uv-venv--index) *index* : The URLs to use when resolving dependencies, in addition to the default index.
+[`--index`](#uv-venv--index) *index* : The indexes to use when resolving dependencies, in addition to the default index.
 
 ```
 Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
 
 All indexes provided via this flag take priority over the index specified by `--default-index` (which defaults to PyPI). When multiple `--index` flags are provided, earlier values take priority.
 
-Index names are not supported as values. Relative paths must be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
+Indexes configured in `uv.toml` or `pyproject.toml` may be selected by name. Enable the `index-by-name` preview feature to prefer index names over relative paths.
+
+Relative paths can be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
 
 May also be set with the `UV_INDEX` environment variable.
 ```
@@ -14519,12 +14595,14 @@ May also be set with the `UV_CONFIG_FILE` environment variable.
 
 [`--config-settings-package`](#uv-build--config-settings-package), `--config-settings-package` *config-settings-package* : Settings to pass to the PEP 517 build backend for a specific package, specified as `PACKAGE:KEY=VALUE` pairs
 
-[`--default-index`](#uv-build--default-index) *default-index* : The URL of the default package index (by default: <https://pypi.org/simple>).
+[`--default-index`](#uv-build--default-index) *default-index* : The default package index (by default: <https://pypi.org/simple>).
 
 ```
 Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
 
 The index given by this flag is given lower priority than all other indexes specified via the `--index` flag.
+
+Indexes configured in `uv.toml` or `pyproject.toml` may be selected by name. Enable the `index-by-name` preview feature to prefer index names over relative paths.
 
 May also be set with the `UV_DEFAULT_INDEX` environment variable.
 ```
@@ -14606,14 +14684,16 @@ Possible values:
 
 [`--help`](#uv-build--help), `-h` : Display the concise help for this command
 
-[`--index`](#uv-build--index) *index* : The URLs to use when resolving dependencies, in addition to the default index.
+[`--index`](#uv-build--index) *index* : The indexes to use when resolving dependencies, in addition to the default index.
 
 ```
 Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
 
 All indexes provided via this flag take priority over the index specified by `--default-index` (which defaults to PyPI). When multiple `--index` flags are provided, earlier values take priority.
 
-Index names are not supported as values. Relative paths must be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
+Indexes configured in `uv.toml` or `pyproject.toml` may be selected by name. Enable the `index-by-name` preview feature to prefer index names over relative paths.
+
+Relative paths can be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
 
 May also be set with the `UV_INDEX` environment variable.
 ```
@@ -15245,12 +15325,14 @@ May also be set with the `UV_CONFIG_FILE` environment variable.
 
 [`--config-settings-package`](#uv-workspace-metadata--config-settings-package), `--config-settings-package` *config-settings-package* : Settings to pass to the PEP 517 build backend for a specific package, specified as `PACKAGE:KEY=VALUE` pairs
 
-[`--default-index`](#uv-workspace-metadata--default-index) *default-index* : The URL of the default package index (by default: <https://pypi.org/simple>).
+[`--default-index`](#uv-workspace-metadata--default-index) *default-index* : The default package index (by default: <https://pypi.org/simple>).
 
 ```
 Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
 
 The index given by this flag is given lower priority than all other indexes specified via the `--index` flag.
+
+Indexes configured in `uv.toml` or `pyproject.toml` may be selected by name. Enable the `index-by-name` preview feature to prefer index names over relative paths.
 
 May also be set with the `UV_DEFAULT_INDEX` environment variable.
 ```
@@ -15334,14 +15416,16 @@ Possible values:
 
 [`--help`](#uv-workspace-metadata--help), `-h` : Display the concise help for this command
 
-[`--index`](#uv-workspace-metadata--index) *index* : The URLs to use when resolving dependencies, in addition to the default index.
+[`--index`](#uv-workspace-metadata--index) *index* : The indexes to use when resolving dependencies, in addition to the default index.
 
 ```
 Accepts either a repository compliant with PEP 503 (the simple repository API), or a local directory laid out in the same format.
 
 All indexes provided via this flag take priority over the index specified by `--default-index` (which defaults to PyPI). When multiple `--index` flags are provided, earlier values take priority.
 
-Index names are not supported as values. Relative paths must be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
+Indexes configured in `uv.toml` or `pyproject.toml` may be selected by name. Enable the `index-by-name` preview feature to prefer index names over relative paths.
+
+Relative paths can be disambiguated from index names with `./` or `../` on Unix or `.\\`, `..\\`, `./` or `../` on Windows.
 
 May also be set with the `UV_INDEX` environment variable.
 ```
