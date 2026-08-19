@@ -22,7 +22,6 @@ Consult [the configuration reference](../../configuration/) for a list of all su
     }
   }
 }
-
 ```
 
 ```
@@ -51,7 +50,6 @@ require('lspconfig').ty.setup({
     },
   },
 })
-
 ```
 
 ```
@@ -68,7 +66,6 @@ require('lspconfig').ty.setup({
     }
   }
 }
-
 ```
 
 ## [`configurationFile`](#configurationfile)
@@ -89,7 +86,6 @@ While ty configuration can be included in a `pyproject.toml` file, it is not all
 {
   "ty.configurationFile": "./.config/ty.toml"
 }
-
 ```
 
 ```
@@ -110,7 +106,6 @@ require('lspconfig').ty.setup({
     },
   },
 })
-
 ```
 
 ```
@@ -123,7 +118,6 @@ require('lspconfig').ty.setup({
     }
   }
 }
-
 ```
 
 ______________________________________________________________________
@@ -144,7 +138,6 @@ This is useful if you want to use ty exclusively for type checking and want to u
 {
   "ty.disableLanguageServices": true
 }
-
 ```
 
 ```
@@ -165,7 +158,6 @@ require('lspconfig').ty.setup({
     },
   },
 })
-
 ```
 
 ```
@@ -178,7 +170,6 @@ require('lspconfig').ty.setup({
     }
   }
 }
-
 ```
 
 ______________________________________________________________________
@@ -203,7 +194,6 @@ Setting this to `off` is useful if you want to use ty exclusively for the langua
 {
   "ty.diagnosticMode": "workspace"
 }
-
 ```
 
 ```
@@ -224,7 +214,6 @@ require('lspconfig').ty.setup({
     },
   },
 })
-
 ```
 
 ```
@@ -237,7 +226,6 @@ require('lspconfig').ty.setup({
     }
   }
 }
-
 ```
 
 ______________________________________________________________________
@@ -258,7 +246,6 @@ This is useful when using ty with other language servers, allowing the user to r
 {
     "ty.showSyntaxErrors": false
 }
-
 ```
 
 ```
@@ -279,7 +266,6 @@ require('lspconfig').ty.setup({
     },
   },
 })
-
 ```
 
 ```
@@ -292,7 +278,6 @@ require('lspconfig').ty.setup({
     }
   }
 }
-
 ```
 
 ______________________________________________________________________
@@ -315,7 +300,6 @@ Whether to show the types of variables as inline hints.
 {
   "ty.inlayHints.variableTypes": false
 }
-
 ```
 
 ```
@@ -340,7 +324,6 @@ require('lspconfig').ty.setup({
     },
   },
 })
-
 ```
 
 ```
@@ -355,7 +338,6 @@ require('lspconfig').ty.setup({
     }
   }
 }
-
 ```
 
 ### [`callArgumentNames`](#callargumentnames)
@@ -372,7 +354,6 @@ Whether to show argument names in call expressions as inline hints.
 {
   "ty.inlayHints.callArgumentNames": false
 }
-
 ```
 
 ```
@@ -397,7 +378,6 @@ require('lspconfig').ty.setup({
     },
   },
 })
-
 ```
 
 ```
@@ -412,7 +392,6 @@ require('lspconfig').ty.setup({
     }
   }
 }
-
 ```
 
 ______________________________________________________________________
@@ -435,7 +414,6 @@ Whether to include auto-import suggestions in code completions. That is, code co
 {
   "ty.completions.autoImport": true
 }
-
 ```
 
 ```
@@ -460,7 +438,6 @@ require('lspconfig').ty.setup({
     },
   },
 })
-
 ```
 
 ```
@@ -475,7 +452,6 @@ require('lspconfig').ty.setup({
     }
   }
 }
-
 ```
 
 ### [`completeFunctionParentheses`](#completefunctionparentheses)
@@ -492,7 +468,6 @@ Whether accepting a function, method, or class completion also inserts parenthes
 {
   "ty.completions.completeFunctionParentheses": true
 }
-
 ```
 
 ```
@@ -517,7 +492,6 @@ require('lspconfig').ty.setup({
     },
   },
 })
-
 ```
 
 ```
@@ -532,7 +506,6 @@ require('lspconfig').ty.setup({
     }
   }
 }
-
 ```
 
 ______________________________________________________________________
@@ -558,7 +531,6 @@ Strategy for loading the `ty` executable.
 {
   "ty.importStrategy": "useBundled"
 }
-
 ```
 
 ______________________________________________________________________
@@ -579,7 +551,6 @@ The interpreter path is used to find the `ty` executable when [`ty.importStrateg
 {
   "ty.interpreter": ["/home/user/.local/bin/python"]
 }
-
 ```
 
 ______________________________________________________________________
@@ -600,7 +571,6 @@ The extension uses the first executable that exists. This setting takes preceden
 {
   "ty.path": ["/home/user/.local/bin/ty"]
 }
-
 ```
 
 ______________________________________________________________________
@@ -621,7 +591,6 @@ This setting is useful for debugging issues with the language server. Refer to t
 {
   "ty.trace.server": "messages"
 }
-
 ```
 
 ______________________________________________________________________
@@ -646,7 +615,6 @@ Path to the file to which the language server writes its log messages. By defaul
 {
   "ty.logFile": "/path/to/ty.log"
 }
-
 ```
 
 ```
@@ -663,7 +631,6 @@ require('lspconfig').ty.setup({
     logFile = '/path/to/ty.log',
   },
 })
-
 ```
 
 ```
@@ -676,7 +643,6 @@ require('lspconfig').ty.setup({
     }
   }
 }
-
 ```
 
 ______________________________________________________________________
@@ -695,7 +661,6 @@ The log level to use for the language server.
 {
   "ty.logLevel": "debug"
 }
-
 ```
 
 ```
@@ -712,7 +677,6 @@ require('lspconfig').ty.setup({
     logLevel = 'debug',
   },
 })
-
 ```
 
 ```
@@ -725,5 +689,4 @@ require('lspconfig').ty.setup({
     }
   }
 }
-
 ```

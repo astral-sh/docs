@@ -8,7 +8,6 @@ An extremely fast Python type checker.
 
 ```
 ty <COMMAND>
-
 ```
 
 ### Commands
@@ -31,7 +30,6 @@ Check a project for type errors
 
 ```
 ty check [OPTIONS] [PATH]...
-
 ```
 
 ### Arguments
@@ -195,7 +193,6 @@ Start the language server
 
 ```
 ty server
-
 ```
 
 ### Options
@@ -210,7 +207,6 @@ Display ty's version
 
 ```
 ty version [OPTIONS]
-
 ```
 
 ### Options
@@ -236,7 +232,6 @@ Generate shell completion
 
 ```
 ty generate-shell-completion <SHELL>
-
 ```
 
 ### Arguments
@@ -255,7 +250,6 @@ Explain rules and other parts of ty
 
 ```
 ty explain <COMMAND>
-
 ```
 
 ### Commands
@@ -272,7 +266,6 @@ Explain a rule (or all rules)
 
 ```
 ty explain rule [OPTIONS] [RULE]
-
 ```
 
 ### Arguments
@@ -306,7 +299,6 @@ Print this message or the help of the given subcommand(s)
 
 ```
 ty explain help [COMMAND]
-
 ```
 
 ## [ty help](#ty-help)
@@ -317,5 +309,4 @@ Print this message or the help of the given subcommand(s)
 
 ```
 ty help [COMMAND]
-
 ```

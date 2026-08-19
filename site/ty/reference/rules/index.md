@@ -2,7 +2,7 @@
 
 ## [`abstract-and-final-method`](#abstract-and-final-method)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.64](https://github.com/astral-sh/ty/releases/tag/0.0.64) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22abstract-and-final-method%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L995)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.64](https://github.com/astral-sh/ty/releases/tag/0.0.64) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22abstract-and-final-method%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1006)
 
 **What it does**
 
@@ -23,12 +23,11 @@ class Base(ABC):
     @final
     @abstractmethod
     def method(self) -> None: ...  # error
-
 ```
 
 ## [`abstract-method-in-final-class`](#abstract-method-in-final-class)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.13](https://github.com/astral-sh/ty/releases/tag/0.0.13) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22abstract-method-in-final-class%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1004)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.13](https://github.com/astral-sh/ty/releases/tag/0.0.13) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22abstract-method-in-final-class%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1015)
 
 **What it does**
 
@@ -56,12 +55,11 @@ class Base(ABC):
 # `Derived` does not implement `method`
 class Derived(Base):  # error
     pass
-
 ```
 
 ## [`ambiguous-protocol-member`](#ambiguous-protocol-member)
 
-Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.1-alpha.20](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.20) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22ambiguous-protocol-member%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L341)
+Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.1-alpha.20](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.20) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22ambiguous-protocol-member%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L343)
 
 **What it does**
 
@@ -109,12 +107,11 @@ class BaseProto(Protocol):
 
 class SubProto(BaseProto, Protocol):
     a = 42  # fine (declared in superclass)
-
 ```
 
 ## [`assert-type-unspellable-subtype`](#assert-type-unspellable-subtype)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.14](https://github.com/astral-sh/ty/releases/tag/0.0.14) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22assert-type-unspellable-subtype%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1049)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.14](https://github.com/astral-sh/ty/releases/tag/0.0.14) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22assert-type-unspellable-subtype%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1060)
 
 **What it does**
 
@@ -129,7 +126,6 @@ Checks for `assert_type()` calls where the actual type is an unspellable subtype
 ```
 [environment]
 python-version = "3.11"
-
 ```
 
 ```
@@ -143,7 +139,6 @@ def _(x: int):
         # which excludes types like `Literal[0]`
         # error: [assert-type-unspellable-subtype]
         assert_type(x, int)
-
 ```
 
 ## [`blanket-ignore-comment`](#blanket-ignore-comment)
@@ -163,19 +158,17 @@ A blanket `ty: ignore` comment suppresses every type-checking diagnostic on the 
 ```
 # error
 value = unknown  # ty: ignore
-
 ```
 
 Use instead:
 
 ```
 value = unknown  # ty: ignore[unresolved-reference]
-
 ```
 
 ## [`call-abstract-method`](#call-abstract-method)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.16](https://github.com/astral-sh/ty/releases/tag/0.0.16) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22call-abstract-method%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1013)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.16](https://github.com/astral-sh/ty/releases/tag/0.0.16) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22call-abstract-method%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1024)
 
 **What it does**
 
@@ -205,12 +198,11 @@ class Foo(ABC):
 
 # cannot call abstract classmethod
 Foo.method()  # error
-
 ```
 
 ## [`call-non-callable`](#call-non-callable)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22call-non-callable%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L195)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22call-non-callable%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L197)
 
 **What it does**
 
@@ -225,12 +217,11 @@ Calling a non-callable object will raise a `TypeError` at runtime.
 ```
 # TypeError: 'int' object is not callable
 4()  # error
-
 ```
 
 ## [`call-top-callable`](#call-top-callable)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.7](https://github.com/astral-sh/ty/releases/tag/0.0.7) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22call-top-callable%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L204)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.7](https://github.com/astral-sh/ty/releases/tag/0.0.7) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22call-top-callable%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L206)
 
 **What it does**
 
@@ -247,12 +238,11 @@ def f(x: object):
     if callable(x):
         # We know `x` is callable, but not what arguments it accepts
         x()  # error
-
 ```
 
 ## [`conflicting-declarations`](#conflicting-declarations)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22conflicting-declarations%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L222)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22conflicting-declarations%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L224)
 
 **What it does**
 
@@ -271,12 +261,11 @@ else:
     a: str
 
 a = 1  # error
-
 ```
 
 ## [`conflicting-metaclass`](#conflicting-metaclass)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22conflicting-metaclass%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L231)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22conflicting-metaclass%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L233)
 
 **What it does**
 
@@ -296,12 +285,11 @@ class B(metaclass=M2): ...
 
 # TypeError: metaclass conflict
 class C(A, B): ...  # error
-
 ```
 
 ## [`cyclic-class-definition`](#cyclic-class-definition)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22cyclic-class-definition%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L240)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22cyclic-class-definition%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L242)
 
 **What it does**
 
@@ -318,12 +306,11 @@ Although forward references are natively supported in stub files, inheritance cy
 ```
 class A(B): ...  # error
 class B(A): ...  # error
-
 ```
 
 ## [`cyclic-type-alias-definition`](#cyclic-type-alias-definition)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.29](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.29) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22cyclic-type-alias-definition%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L249)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.29](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.29) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22cyclic-type-alias-definition%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L251)
 
 **What it does**
 
@@ -338,7 +325,6 @@ Although it is permitted to define a recursive type alias, it is not meaningful 
 ```
 [environment]
 python-version = "3.12"
-
 ```
 
 ```
@@ -346,12 +332,11 @@ type Itself = Itself  # error
 
 type A = B  # error
 type B = A  # error
-
 ```
 
 ## [`dataclass-field-order`](#dataclass-field-order)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.15](https://github.com/astral-sh/ty/releases/tag/0.0.15) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22dataclass-field-order%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L294)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.15](https://github.com/astral-sh/ty/releases/tag/0.0.15) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22dataclass-field-order%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L296)
 
 **What it does**
 
@@ -372,12 +357,11 @@ class Example:
     x: int = 1  # Field with default value
     # Required field after field with default
     y: str  # error
-
 ```
 
 ## [`deprecated`](#deprecated)
 
-Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.1-alpha.16](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.16) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22deprecated%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L267)
+Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.1-alpha.16](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.16) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22deprecated%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L269)
 
 **What it does**
 
@@ -392,7 +376,6 @@ Deprecated items should no longer be used.
 ```
 [environment]
 python-version = "3.13"
-
 ```
 
 ```
@@ -404,12 +387,11 @@ def old_func(): ...
 
 
 old_func()  # error: [deprecated]
-
 ```
 
 ## [`division-by-zero`](#division-by-zero)
 
-Default level: [`ignore`](../../rules#rule-levels "This lint has a default level of 'ignore'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22division-by-zero%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L258)
+Default level: [`ignore`](../../rules#rule-levels "This lint has a default level of 'ignore'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22division-by-zero%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L260)
 
 **What it does**
 
@@ -427,12 +409,11 @@ This rule is currently disabled by default because of the number of false positi
 
 ```
 5 / 0  # error
-
 ```
 
 ## [`duplicate-base`](#duplicate-base)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22duplicate-base%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L276)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22duplicate-base%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L278)
 
 **What it does**
 
@@ -450,12 +431,11 @@ class A: ...
 
 # TypeError: duplicate base class
 class B(A, A): ...  # error
-
 ```
 
 ## [`duplicate-kw-only`](#duplicate-kw-only)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.12](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.12) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22duplicate-kw-only%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L285)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.12](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.12) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22duplicate-kw-only%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L287)
 
 **What it does**
 
@@ -481,12 +461,94 @@ class A:  # error
     c: str
     _2: KW_ONLY
     d: bytes
+```
+
+## [`dynamic-function-decorator-return`](#dynamic-function-decorator-return)
+
+Default level: [`ignore`](../../rules#rule-levels "This lint has a default level of 'ignore'.") · Added in [0.0.73](https://github.com/astral-sh/ty/releases/tag/0.0.73) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22dynamic-function-decorator-return%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L434)
+
+**What it does**
+
+Detects decorator applications that replace a function with `Any` or another [dynamic type](https://typing.python.org/en/latest/spec/glossary.html#term-dynamic-type).
+
+**Why is this bad?**
+
+A decorator can replace the function it receives with any object. Type checkers therefore use the decorator's return type as the type of the decorated function. If the decorator returns `Any` or `Unknown` (explicitly or implicitly), the original type is lost, along with the type checker's ability to catch invalid calls and attribute accesses:
 
 ```
+from collections.abc import Callable
+
+
+def untyped_decorator(function: Callable[..., object]):
+    return function
+
+
+# error: "Decorator returns `Unknown`"
+@untyped_decorator
+def stringify(value: int) -> str:
+    return str(value)
+
+
+# No type error is reported, even though `stringify` expects an integer.
+stringify("not an integer")
+```
+
+This rule identifies the point where a decorator erases useful type information, before that imprecision spreads to every use of the decorated function. It can be especially useful in cases where the decorator is defined in a third-party library. Whereas linter rules such as [`ANN201`](https://docs.astral.sh/ruff/rules/missing-return-type-undocumented-public-function/) and [`ANN202`](https://docs.astral.sh/ruff/rules/missing-return-type-private-function/) can complain about missing annotations in your first-party code, they cannot identify instances where unsound types leak into your code due to missing type annotations in third-party code installed into `site-packages`.
+
+**Examples**
+
+`third_party_library.py`:
+
+```
+from collections.abc import Callable
+
+
+def untyped_decorator(function: Callable[..., object]):
+    return function
+```
+
+`first_party.py`:
+
+```
+from third_party_library import untyped_decorator
+
+
+# error: "Decorator returns `Unknown`"
+@untyped_decorator
+def greet(name: str) -> str:
+    return f"Hello, {name}!"
+```
+
+If making a PR to the third-party library to improve their annotations is not possible, fixes for this diagnostic could include writing your own decorator or introducing a type-safe wrapper:
+
+```
+from collections.abc import Callable
+from typing import TypeVar
+
+from third_party_library import untyped_decorator
+
+
+FunctionT = TypeVar("FunctionT", bound=Callable[..., object])
+
+
+def typed_wrapper(f: FunctionT) -> FunctionT:
+    decorated = untyped_decorator(f)
+    assert decorated is f
+    return decorated
+
+
+@typed_wrapper
+def greet(name: str) -> str:
+    return f"Hello, {name}!"
+```
+
+**Default level**
+
+This rule is disabled by default. It is intended for advanced users wanting additional soundness checks from their type checker, not for users who have just started to use type checkers on their Python code.
 
 ## [`empty-body`](#empty-body)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.14](https://github.com/astral-sh/ty/releases/tag/0.0.14) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22empty-body%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L460)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.14](https://github.com/astral-sh/ty/releases/tag/0.0.14) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22empty-body%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L471)
 
 **What it does**
 
@@ -515,7 +577,6 @@ def foo() -> int: ...  # error: [empty-body]
 def bar() -> str:  # error: [empty-body]
     """A function that does nothing."""
     pass
-
 ```
 
 ## [`escape-character-in-forward-annotation`](#escape-character-in-forward-annotation)
@@ -534,12 +595,11 @@ Static analysis tools like ty can't analyze type annotations that contain escape
 
 ```
 def foo() -> "intt\b": ...  # error
-
 ```
 
 ## [`experimental-syntax`](#experimental-syntax)
 
-Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.50](https://github.com/astral-sh/ty/releases/tag/0.0.50) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22experimental-syntax%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L186)
+Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.50](https://github.com/astral-sh/ty/releases/tag/0.0.50) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22experimental-syntax%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L188)
 
 **What it does**
 
@@ -554,7 +614,6 @@ Experimental syntax is specific to ty. It may be rejected by other type checkers
 ```
 [environment]
 python-version = "3.14"
-
 ```
 
 ```
@@ -566,12 +625,11 @@ class B: ...
 
 def f(value: A & B) -> None: ...  # error: [experimental-syntax]
 def g(value: ~A) -> None: ...  # error: [experimental-syntax]
-
 ```
 
 ## [`final-on-non-method`](#final-on-non-method)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.20](https://github.com/astral-sh/ty/releases/tag/0.0.20) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22final-on-non-method%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L977)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.20](https://github.com/astral-sh/ty/releases/tag/0.0.20) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22final-on-non-method%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L988)
 
 **What it does**
 
@@ -591,12 +649,11 @@ from typing import final
 @final  # error
 def my_function() -> int:
     return 0
-
 ```
 
 ## [`final-without-value`](#final-without-value)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.15](https://github.com/astral-sh/ty/releases/tag/0.0.15) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22final-without-value%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L986)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.15](https://github.com/astral-sh/ty/releases/tag/0.0.15) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22final-without-value%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L997)
 
 **What it does**
 
@@ -616,7 +673,6 @@ MY_CONSTANT: Final[int]  # error
 
 # OK: `Final` symbol with a value
 INITIALIZED_CONSTANT: Final[int] = 1
-
 ```
 
 ## [`ignore-comment-unknown-rule`](#ignore-comment-unknown-rule)
@@ -636,14 +692,12 @@ A `ty: ignore[code]` or a `type: ignore[ty:code]` directive with a `code` that d
 ```
 # error
 a = 20 / 1  # ty: ignore[division-by-zer]
-
 ```
 
 Use instead:
 
 ```
 a = 20 / 0  # ty: ignore[division-by-zero]
-
 ```
 
 ## [`implicit-concatenated-string-type-annotation`](#implicit-concatenated-string-type-annotation)
@@ -665,7 +719,6 @@ from typing import Literal
 
 def test() -> "Literal[" "5" "]":  # error
     return 5
-
 ```
 
 Use instead:
@@ -676,12 +729,11 @@ from typing import Literal
 
 def test() -> "Literal[5]":
     return 5
-
 ```
 
 ## [`inconsistent-mro`](#inconsistent-mro)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22inconsistent-mro%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L368)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22inconsistent-mro%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L370)
 
 **What it does**
 
@@ -702,12 +754,11 @@ class B(A): ...
 
 # TypeError: Cannot create a consistent method resolution order
 class C(A, B): ...  # error
-
 ```
 
 ## [`index-out-of-bounds`](#index-out-of-bounds)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22index-out-of-bounds%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L377)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22index-out-of-bounds%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L379)
 
 **What it does**
 
@@ -723,12 +774,11 @@ Using an out of bounds index will raise an `IndexError` at runtime.
 t = (0, 1, 2)
 # IndexError: tuple index out of range
 t[3]  # error
-
 ```
 
 ## [`ineffective-final`](#ineffective-final)
 
-Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.1-alpha.33](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.33) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22ineffective-final%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L968)
+Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.1-alpha.33](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.33) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22ineffective-final%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L979)
 
 **What it does**
 
@@ -750,12 +800,11 @@ MyClass = final(type("MyClass", (), {}))  # error
 # Correct: use `final` as a decorator
 @final
 class MyClass: ...
-
 ```
 
 ## [`instance-layout-conflict`](#instance-layout-conflict)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.12](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.12) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22instance-layout-conflict%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L322)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.12](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.12) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22instance-layout-conflict%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L324)
 
 **What it does**
 
@@ -782,7 +831,6 @@ class B:
 
 # TypeError: multiple bases have instance lay-out conflict
 class C(A, B): ...  # error
-
 ```
 
 An instance layout conflict can also be caused by attempting to use multiple inheritance with two builtin classes, due to the way that these classes are implemented in a CPython C extension:
@@ -790,7 +838,6 @@ An instance layout conflict can also be caused by attempting to use multiple inh
 ```
 # TypeError: multiple bases have instance lay-out conflict
 class A(int, float): ...  # error
-
 ```
 
 Note that pure-Python classes with no `__slots__`, or pure-Python classes with empty `__slots__`, are always compatible:
@@ -809,7 +856,6 @@ class C:
 
 # fine
 class D(A, B, C): ...
-
 ```
 
 **Known problems**
@@ -825,7 +871,7 @@ Additionally, this check is not exhaustive: many C extensions (including several
 
 ## [`invalid-argument-type`](#invalid-argument-type)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-argument-type%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L414)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-argument-type%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L416)
 
 **What it does**
 
@@ -842,12 +888,11 @@ def func(x: int): ...
 
 
 func("foo")  # error: [invalid-argument-type]
-
 ```
 
 ## [`invalid-assignment`](#invalid-assignment)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-assignment%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L469)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-assignment%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L480)
 
 **What it does**
 
@@ -861,12 +906,11 @@ Such assignments break the rules of the type system and weaken a type checker's 
 
 ```
 a: int = ""  # error
-
 ```
 
 ## [`invalid-attribute-access`](#invalid-attribute-access)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-attribute-access%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1188)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-attribute-access%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1199)
 
 **What it does**
 
@@ -908,12 +952,11 @@ C().class_var = 3  # error
 
 # Cannot assign to instance-only variable from class
 C.instance_only_var = 56  # error
-
 ```
 
 ## [`invalid-attribute-override`](#invalid-attribute-override)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.33](https://github.com/astral-sh/ty/releases/tag/0.0.33) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-attribute-override%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1269)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.33](https://github.com/astral-sh/ty/releases/tag/0.0.33) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-attribute-override%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1280)
 
 **What it does**
 
@@ -939,12 +982,11 @@ class Base:
 class Sub(Base):
     instance_attr: ClassVar[int]  # error: [invalid-attribute-override]
     class_attr: int  # error: [invalid-attribute-override]
-
 ```
 
 ## [`invalid-await`](#invalid-await)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.19](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.19) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-await%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L478)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.19](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.19) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-await%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L489)
 
 **What it does**
 
@@ -971,12 +1013,11 @@ async def main() -> None:
 
 
 asyncio.run(main())
-
 ```
 
 ## [`invalid-base`](#invalid-base)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-base%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L487)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-base%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L498)
 
 **What it does**
 
@@ -990,12 +1031,11 @@ Class definitions with bases like this will lead to `TypeError` being raised at 
 
 ```
 class A(42): ...  # error: [invalid-base]
-
 ```
 
 ## [`invalid-context-manager`](#invalid-context-manager)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-context-manager%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L514)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-context-manager%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L525)
 
 **What it does**
 
@@ -1011,12 +1051,11 @@ Such a statement will raise `TypeError` at runtime.
 # TypeError: 'int' object does not support the context manager protocol
 with 1:  # error
     print(2)
-
 ```
 
 ## [`invalid-dataclass`](#invalid-dataclass)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.12](https://github.com/astral-sh/ty/releases/tag/0.0.12) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-dataclass%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L312)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.12](https://github.com/astral-sh/ty/releases/tag/0.0.12) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-dataclass%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L314)
 
 **What it does**
 
@@ -1049,14 +1088,13 @@ class Ordered: ...
 @dataclass
 class Foo(NamedTuple):  # error: [invalid-dataclass]
     x: int
-
 ```
 
 See: <https://docs.python.org/3/library/dataclasses.html#dataclasses.dataclass>
 
 ## [`invalid-dataclass-override`](#invalid-dataclass-override)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.13](https://github.com/astral-sh/ty/releases/tag/0.0.13) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-dataclass-override%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L303)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.13](https://github.com/astral-sh/ty/releases/tag/0.0.13) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-dataclass-override%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L305)
 
 **What it does**
 
@@ -1077,12 +1115,11 @@ from dataclasses import dataclass
 @dataclass(frozen=True)
 class A:
     def __setattr__(self, name: str, value: object) -> None: ...  # error
-
 ```
 
 ## [`invalid-declaration`](#invalid-declaration)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-declaration%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L523)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-declaration%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L534)
 
 **What it does**
 
@@ -1097,12 +1134,11 @@ Such declarations break the rules of the type system and weaken a type checker's
 ```
 a = 1
 a: str  # error
-
 ```
 
 ## [`invalid-enum-member-annotation`](#invalid-enum-member-annotation)
 
-Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.20](https://github.com/astral-sh/ty/releases/tag/0.0.20) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-enum-member-annotation%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L541)
+Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.20](https://github.com/astral-sh/ty/releases/tag/0.0.20) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-enum-member-annotation%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L552)
 
 **What it does**
 
@@ -1124,7 +1160,6 @@ class Pet(Enum):
     CAT = 1  # OK
     # enum members should not be annotated
     DOG: int = 2  # error
-
 ```
 
 Use instead:
@@ -1136,7 +1171,6 @@ from enum import Enum
 class Pet(Enum):
     CAT = 1
     DOG = 2
-
 ```
 
 **References**
@@ -1145,7 +1179,7 @@ class Pet(Enum):
 
 ## [`invalid-exception-caught`](#invalid-exception-caught)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-exception-caught%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L532)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-exception-caught%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L543)
 
 **What it does**
 
@@ -1169,7 +1203,6 @@ try:
     might_raise()
 except 1:  # error
     ...
-
 ```
 
 Use instead:
@@ -1186,7 +1219,6 @@ try:
     might_raise()
 except ZeroDivisionError:
     ...
-
 ```
 
 **References**
@@ -1200,7 +1232,7 @@ This rule corresponds to Ruff's [`except-with-non-exception-classes` (`B030`)](h
 
 ## [`invalid-explicit-override`](#invalid-explicit-override)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.28](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.28) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-explicit-override%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1022)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.28](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.28) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-explicit-override%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1033)
 
 **What it does**
 
@@ -1215,7 +1247,6 @@ Decorating a method with `@override` declares to the type checker that the inten
 ```
 [environment]
 python-version = "3.12"
-
 ```
 
 ```
@@ -1240,12 +1271,11 @@ class C:
 class D(A):
     @override
     def foo(self): ...  # fine: overrides `A.foo`
-
 ```
 
 ## [`invalid-frozen-dataclass-subclass`](#invalid-frozen-dataclass-subclass)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.35](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.35) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-frozen-dataclass-subclass%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1288)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.35](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.35) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-frozen-dataclass-subclass%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1299)
 
 **What it does**
 
@@ -1282,12 +1312,11 @@ class FrozenBase:
 @dataclass
 class NonFrozenChild(FrozenBase):  # error
     y: int
-
 ```
 
 ## [`invalid-generic-class`](#invalid-generic-class)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-generic-class%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L559)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-generic-class%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L570)
 
 **What it does**
 
@@ -1302,7 +1331,6 @@ There are several requirements that you must follow when defining a generic clas
 ```
 [environment]
 python-version = "3.12"
-
 ```
 
 ```
@@ -1318,7 +1346,6 @@ class C[U](Generic[T]): ...  # error
 
 # type parameter with default comes before type parameter without default
 class D(Generic[U, T]): ...  # error
-
 ```
 
 **References**
@@ -1327,7 +1354,7 @@ class D(Generic[U, T]): ...  # error
 
 ## [`invalid-generic-enum`](#invalid-generic-enum)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.12](https://github.com/astral-sh/ty/releases/tag/0.0.12) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-generic-enum%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L550)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.12](https://github.com/astral-sh/ty/releases/tag/0.0.12) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-generic-enum%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L561)
 
 **What it does**
 
@@ -1342,7 +1369,6 @@ Enum classes cannot be generic. Python does not support generic enums: attemptin
 ```
 [environment]
 python-version = "3.12"
-
 ```
 
 ```
@@ -1369,7 +1395,6 @@ class G(Generic[T], Enum):  # error
 
 # ...but this raises `KeyError`:
 x: G[int]
-
 ```
 
 **References**
@@ -1393,19 +1418,17 @@ A syntactically incorrect ignore comment is probably a mistake and is useless.
 ```
 # error
 a = 20 / 1  # type: ignoree
-
 ```
 
 Use instead:
 
 ```
 a = 20 / 0  # type: ignore
-
 ```
 
 ## [`invalid-key`](#invalid-key)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.17](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.17) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-key%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L387)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.17](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.17) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-key%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L389)
 
 **What it does**
 
@@ -1438,12 +1461,11 @@ bob: Person = {"nickname": "Bob", "age": 30}  # typo!
 
 # error
 carol = Person(name="Carol", aeg=25)  # typo!
-
 ```
 
 ## [`invalid-legacy-positional-parameter`](#invalid-legacy-positional-parameter)
 
-Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.15](https://github.com/astral-sh/ty/releases/tag/0.0.15) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-legacy-positional-parameter%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1306)
+Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.15](https://github.com/astral-sh/ty/releases/tag/0.0.15) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-legacy-positional-parameter%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1317)
 
 **What it does**
 
@@ -1461,7 +1483,6 @@ In most cases, a type checker will not consider a parameter to be positional-onl
 # `__y` is not considered positional-only
 def f(x, __y):  # error
     pass
-
 ```
 
 Use instead:
@@ -1469,7 +1490,6 @@ Use instead:
 ```
 def f(__x, __y):  # If you need compatibility with Python <=3.7
     pass
-
 ```
 
 or:
@@ -1477,7 +1497,6 @@ or:
 ```
 def f(x, y, /):  # Python 3.8+ syntax
     pass
-
 ```
 
 **References**
@@ -1487,7 +1506,7 @@ def f(x, y, /):  # Python 3.8+ syntax
 
 ## [`invalid-legacy-type-variable`](#invalid-legacy-type-variable)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-legacy-type-variable%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L586)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-legacy-type-variable%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L597)
 
 **What it does**
 
@@ -1509,7 +1528,6 @@ T = TypeVar("T")  # error: "Cannot redefine `T` as a type variable"
 # TypeVar must be immediately assigned to a variable
 # error
 def f(t: TypeVar("U")): ...  # ty: ignore[invalid-type-form]
-
 ```
 
 **References**
@@ -1518,7 +1536,7 @@ def f(t: TypeVar("U")): ...  # ty: ignore[invalid-type-form]
 
 ## [`invalid-match-pattern`](#invalid-match-pattern)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.18](https://github.com/astral-sh/ty/releases/tag/0.0.18) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-match-pattern%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L703)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.18](https://github.com/astral-sh/ty/releases/tag/0.0.18) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-match-pattern%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L714)
 
 **What it does**
 
@@ -1546,7 +1564,6 @@ def describe(p: Point) -> None:
         # TypeError at runtime: Point() accepts 2 positional sub-patterns (3 given)
         case Point(x, y, z):  # error: [invalid-match-pattern]
             ...
-
 ```
 
 ```
@@ -1556,12 +1573,11 @@ match object():
     # TypeError at runtime: called match pattern must be a class
     case NotAClass():  # error: [invalid-match-pattern]
         ...
-
 ```
 
 ## [`invalid-metaclass`](#invalid-metaclass)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-metaclass%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L631)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-metaclass%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L642)
 
 **What it does**
 
@@ -1576,7 +1592,6 @@ Python allows arbitrary expressions to be used as the argument to `metaclass=`. 
 ```
 # TypeError: 'int' object is not callable
 class B(metaclass=42): ...  # error
-
 ```
 
 **References**
@@ -1585,7 +1600,7 @@ class B(metaclass=42): ...  # error
 
 ## [`invalid-method-override`](#invalid-method-override)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.20](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.20) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-method-override%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1278)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.20](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.20) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-method-override%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1289)
 
 **What it does**
 
@@ -1634,7 +1649,6 @@ class Sub2(Super):
 # TypeError at runtime: method() got an unexpected keyword argument 'x'
 # ty cannot catch this error due to the violation of the Liskov Substitution Principle.
 accepts_super(Sub2())
-
 ```
 
 **Common issues**
@@ -1653,7 +1667,6 @@ class A:
         if not isinstance(other, A):
             return False
         return self.x == other.x
-
 ```
 
 If `A.__eq__` here were annotated as only accepting `A` instances for its second argument, it would imply that you wouldn't be able to use `==` between instances of `A` and instances of unrelated classes without an exception possibly being raised. While some classes in Python do indeed behave this way, the strongly held convention is that it should be avoided wherever possible. As part of this check, therefore, ty enforces that `__eq__` and `__ne__` methods accept `object` as their second argument.
@@ -1668,7 +1681,7 @@ Correct use of `@override` is enforced by ty's [`invalid-explicit-override`](#in
 
 ## [`invalid-module-getattr-call`](#invalid-module-getattr-call)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.72](https://github.com/astral-sh/ty/releases/tag/0.0.72) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-module-getattr-call%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L568)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.72](https://github.com/astral-sh/ty/releases/tag/0.0.72) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-module-getattr-call%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L579)
 
 **What it does**
 
@@ -1685,7 +1698,6 @@ If a module defines `__getattr__`, Python calls it when a `from` import requests
 ```
 def __getattr__() -> str:
     return "fallback"
-
 ```
 
 `main.py`:
@@ -1693,12 +1705,11 @@ def __getattr__() -> str:
 ```
 # TypeError: __getattr__() takes 0 positional arguments but 1 was given
 from module import missing  # error
-
 ```
 
 ## [`invalid-named-tuple`](#invalid-named-tuple)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.19](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.19) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-named-tuple%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L350)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.19](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.19) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-named-tuple%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L352)
 
 **What it does**
 
@@ -1716,7 +1727,6 @@ A class definition cannot combine `NamedTuple` with other base classes in multip
 >>> from typing import NamedTuple
 >>> class Foo(NamedTuple, object): ...
 TypeError: can only inherit from a NamedTuple type and Generic
-
 ```
 
 Further, `NamedTuple` field names cannot start with an underscore:
@@ -1726,7 +1736,6 @@ Further, `NamedTuple` field names cannot start with an underscore:
 >>> class Foo(NamedTuple):
 ...     _bar: int
 ValueError: Field names cannot start with an underscore: '_bar'
-
 ```
 
 `NamedTuple` classes also have certain synthesized attributes (like `_asdict`, `_make`, `_replace`, etc.) that cannot be overwritten. Attempting to assign to these attributes without a type annotation will raise an `AttributeError` at runtime.
@@ -1737,7 +1746,6 @@ ValueError: Field names cannot start with an underscore: '_bar'
 ...     x: int
 ...     _asdict = 42
 AttributeError: Cannot overwrite NamedTuple attribute _asdict
-
 ```
 
 Finally, `NamedTuple` field annotations cannot use the `ClassVar` or `Final` type qualifiers. These qualifiers also cause a runtime error when annotations are evaluated eagerly:
@@ -1747,12 +1755,11 @@ Finally, `NamedTuple` field annotations cannot use the `ClassVar` or `Final` typ
 >>> class Foo(NamedTuple):
 ...     x: ClassVar[int]
 TypeError: typing.ClassVar[int] is not valid as type argument
-
 ```
 
 ## [`invalid-named-tuple-override`](#invalid-named-tuple-override)
 
-Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.31](https://github.com/astral-sh/ty/releases/tag/0.0.31) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-named-tuple-override%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L359)
+Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.31](https://github.com/astral-sh/ty/releases/tag/0.0.31) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-named-tuple-override%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L361)
 
 **What it does**
 
@@ -1783,12 +1790,11 @@ class Admin(User):
 admin = Admin("Alice")
 admin.name  # "shadowed"
 admin[0]  # "Alice"
-
 ```
 
 ## [`invalid-newtype`](#invalid-newtype)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.27](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.27) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-newtype%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L613)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.27](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.27) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-newtype%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L624)
 
 **What it does**
 
@@ -1813,12 +1819,11 @@ Foo = NewType("Foo", int)  # okay
 Bar = NewType(get_name(), int)  # error
 # invalid base for `typing.NewType`
 Baz = NewType("Baz", int | str)  # error
-
 ```
 
 ## [`invalid-overload`](#invalid-overload)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-overload%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L640)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-overload%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L651)
 
 **What it does**
 
@@ -1840,7 +1845,6 @@ from typing import overload
 def foo(x: int) -> int: ...  # error
 def foo(x: int | None) -> int | None:
     return x
-
 ```
 
 **Missing implementation**
@@ -1853,7 +1857,6 @@ from typing import overload
 def foo() -> None: ...  # error
 @overload
 def foo(x: int) -> int: ...
-
 ```
 
 **References**
@@ -1862,7 +1865,7 @@ def foo(x: int) -> int: ...
 
 ## [`invalid-parameter-default`](#invalid-parameter-default)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-parameter-default%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L658)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-parameter-default%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L669)
 
 **What it does**
 
@@ -1876,12 +1879,11 @@ This breaks the rules of the type system and weakens a type checker's ability to
 
 ```
 def f(a: int = ""): ...  # error
-
 ```
 
 ## [`invalid-paramspec`](#invalid-paramspec)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-paramspec%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L595)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-paramspec%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L606)
 
 **What it does**
 
@@ -1899,7 +1901,6 @@ from typing import ParamSpec
 P1 = ParamSpec("P1")  # okay
 # ParamSpec requires a name
 P2 = ParamSpec()  # error
-
 ```
 
 **References**
@@ -1908,7 +1909,7 @@ P2 = ParamSpec()  # error
 
 ## [`invalid-protocol`](#invalid-protocol)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-protocol%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L331)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-protocol%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L333)
 
 **What it does**
 
@@ -1929,12 +1930,11 @@ Traceback (most recent call last):
   File "<python-input-1>", line 1, in <module>
     class Foo(int, Protocol): ...
 TypeError: Protocols can only inherit from other protocols, got <class 'int'>
-
 ```
 
 ## [`invalid-raise`](#invalid-raise)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-raise%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L667)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-raise%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L678)
 
 Checks for `raise` statements that raise non-exceptions or use invalid causes for their raised exceptions.
 
@@ -1966,7 +1966,6 @@ def g():
     # error: "Cannot raise `NotImplemented`"
     # error: "Cannot use object of type `Literal[42]` as an exception cause"
     raise NotImplemented from 42
-
 ```
 
 Use instead:
@@ -1985,7 +1984,6 @@ def f():
 
 def g():
     raise NotImplementedError from None
-
 ```
 
 **References**
@@ -1995,7 +1993,7 @@ def g():
 
 ## [`invalid-return-type`](#invalid-return-type)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-return-type%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L423)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-return-type%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L425)
 
 **What it does**
 
@@ -2012,12 +2010,11 @@ Returning an object of a type incompatible with the annotated return type is uns
 ```
 def func() -> int:
     return "a"  # error: [invalid-return-type]
-
 ```
 
 ## [`invalid-super-argument`](#invalid-super-argument)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-super-argument%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L676)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-super-argument%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L687)
 
 **What it does**
 
@@ -2055,7 +2052,6 @@ super(A(), B())  # error
 super(B, A())  # error
 # `A` does not satisfy `issubclass(A, B)`
 super(B, A)  # error
-
 ```
 
 **References**
@@ -2084,7 +2080,6 @@ def foo() -> "instance of C":  # error
 
 
 class C: ...
-
 ```
 
 Use instead:
@@ -2095,7 +2090,6 @@ def foo() -> "C":
 
 
 class C: ...
-
 ```
 
 **References**
@@ -2105,7 +2099,7 @@ class C: ...
 
 ## [`invalid-total-ordering`](#invalid-total-ordering)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.10](https://github.com/astral-sh/ty/releases/tag/0.0.10) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-total-ordering%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1297)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.10](https://github.com/astral-sh/ty/releases/tag/0.0.10) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-total-ordering%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1308)
 
 **What it does**
 
@@ -2126,7 +2120,6 @@ from functools import total_ordering
 class MyClass:
     def __eq__(self, other: object) -> bool:
         return True
-
 ```
 
 Use instead:
@@ -2142,12 +2135,11 @@ class MyClass:
 
     def __lt__(self, other: "MyClass") -> bool:
         return True
-
 ```
 
 ## [`invalid-type-alias-type`](#invalid-type-alias-type)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.6](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.6) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-type-alias-type%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L604)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.6](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.6) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-type-alias-type%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L615)
 
 **What it does**
 
@@ -2162,7 +2154,6 @@ There are several requirements that you must follow when creating a `TypeAliasTy
 ```
 [environment]
 python-version = "3.12"
-
 ```
 
 ```
@@ -2181,12 +2172,11 @@ T = TypeVar("T")
 GenericAlias = TypeAliasType("GenericAlias", list[T], type_params=(T,))  # okay
 # TypeAliasType type parameters must be type variables
 InvalidAlias = TypeAliasType("InvalidAlias", list[T], type_params=(list[T],))  # error
-
 ```
 
 ## [`invalid-type-arguments`](#invalid-type-arguments)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.29](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.29) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-type-arguments%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L860)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.29](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.29) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-type-arguments%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L871)
 
 **What it does**
 
@@ -2203,7 +2193,6 @@ Using legacy type variables:
 ```
 [environment]
 python-version = "3.12"
-
 ```
 
 ```
@@ -2223,7 +2212,6 @@ class Foo2(Generic[T2]): ...
 Foo1[bytes]  # error
 # str does not satisfy T2's bound
 Foo2[str]  # error
-
 ```
 
 Using PEP 695 type variables:
@@ -2239,12 +2227,11 @@ class Bar[T, U]: ...
 Foo[int, str]  # error
 # too few arguments
 Bar[int]  # error
-
 ```
 
 ## [`invalid-type-checking-constant`](#invalid-type-checking-constant)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-type-checking-constant%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L685)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-type-checking-constant%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L696)
 
 **What it does**
 
@@ -2259,12 +2246,11 @@ The name `TYPE_CHECKING` is reserved for a flag that can be used to provide cond
 ```
 TYPE_CHECKING: str  # error
 TYPE_CHECKING = ""  # error
-
 ```
 
 ## [`invalid-type-form`](#invalid-type-form)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-type-form%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L694)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-type-form%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L705)
 
 **What it does**
 
@@ -2283,12 +2269,11 @@ from typing import Annotated
 a: list[1]  # error
 # `Annotated` expects at least two arguments
 b: Annotated[int]  # error
-
 ```
 
 ## [`invalid-type-guard-definition`](#invalid-type-guard-definition)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.11](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.11) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-type-guard-definition%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L712)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.11](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.11) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-type-guard-definition%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L723)
 
 **What it does**
 
@@ -2305,7 +2290,6 @@ Extra parameters/arguments are allowed but do not affect narrowing.
 ```
 [environment]
 python-version = "3.13"
-
 ```
 
 ```
@@ -2331,12 +2315,11 @@ class C:
     # only positional argument is `self`
     def f(self) -> TypeIs[int]:  # error
         return True
-
 ```
 
 ## [`invalid-type-variable-bound`](#invalid-type-variable-bound)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.15](https://github.com/astral-sh/ty/releases/tag/0.0.15) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-type-variable-bound%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L742)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.15](https://github.com/astral-sh/ty/releases/tag/0.0.15) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-type-variable-bound%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L753)
 
 **What it does**
 
@@ -2351,7 +2334,6 @@ The bound of a type variable must be a concrete type.
 ```
 [environment]
 python-version = "3.12"
-
 ```
 
 ```
@@ -2366,12 +2348,11 @@ BoundT = TypeVar("BoundT", bound=U)
 
 def f[T: list[T]](): ...  # error: [invalid-type-variable-bound]
 def g[U, T: U](): ...  # error: [invalid-type-variable-bound]
-
 ```
 
 ## [`invalid-type-variable-constraints`](#invalid-type-variable-constraints)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-type-variable-constraints%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L733)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-type-variable-constraints%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L744)
 
 **What it does**
 
@@ -2386,7 +2367,6 @@ A constrained type variable must have at least two constraints.
 ```
 [environment]
 python-version = "3.12"
-
 ```
 
 ```
@@ -2399,7 +2379,6 @@ S = TypeVar("S", list[I], int)  # error
 
 # a constrained type variable needs at least two constraints
 def f[T: (int,)](): ...  # error
-
 ```
 
 Use instead:
@@ -2414,12 +2393,11 @@ U = TypeVar("U", str, int)  # valid constrained TypeVar
 T = TypeVar("T", bound=str)  # valid bound TypeVar
 
 V = TypeVar("V", list[int], int)  # valid constrained Type
-
 ```
 
 ## [`invalid-type-variable-default`](#invalid-type-variable-default)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.16](https://github.com/astral-sh/ty/releases/tag/0.0.16) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-type-variable-default%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L751)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.16](https://github.com/astral-sh/ty/releases/tag/0.0.16) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-type-variable-default%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L762)
 
 **What it does**
 
@@ -2434,7 +2412,6 @@ If a type variable has a bound, the default must be assignable to that bound (se
 ```
 [environment]
 python-version = "3.13"
-
 ```
 
 ```
@@ -2442,12 +2419,11 @@ from typing import TypeVar
 
 T = TypeVar("T", bound=str, default=int)  # error: [invalid-type-variable-default]
 U = TypeVar("U", int, str, default=bytes)  # error: [invalid-type-variable-default]
-
 ```
 
 ## [`invalid-typed-dict-field`](#invalid-typed-dict-field)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.28](https://github.com/astral-sh/ty/releases/tag/0.0.28) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-typed-dict-field%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1251)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.28](https://github.com/astral-sh/ty/releases/tag/0.0.28) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-typed-dict-field%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1262)
 
 **What it does**
 
@@ -2469,12 +2445,11 @@ class Base(TypedDict):
 
 class Child(Base):
     x: str  # error: [invalid-typed-dict-field]
-
 ```
 
 ## [`invalid-typed-dict-header`](#invalid-typed-dict-header)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.14](https://github.com/astral-sh/ty/releases/tag/0.0.14) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-typed-dict-header%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1260)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.14](https://github.com/astral-sh/ty/releases/tag/0.0.14) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-typed-dict-header%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1271)
 
 **What it does**
 
@@ -2500,12 +2475,11 @@ class Foo(TypedDict, metaclass=Meta):  # error: [invalid-typed-dict-header]
 def f(options: dict[str, object]):
     class Bar(TypedDict, **options):  # error: [invalid-typed-dict-header]
         ...
-
 ```
 
 ## [`invalid-typed-dict-statement`](#invalid-typed-dict-statement)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.9](https://github.com/astral-sh/ty/releases/tag/0.0.9) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-typed-dict-statement%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1242)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.9](https://github.com/astral-sh/ty/releases/tag/0.0.9) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-typed-dict-statement%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1253)
 
 **What it does**
 
@@ -2524,12 +2498,11 @@ from typing import TypedDict
 class Foo(TypedDict):
     def bar(self):  # error: [invalid-typed-dict-statement]
         pass
-
 ```
 
 ## [`invalid-yield`](#invalid-yield)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.25](https://github.com/astral-sh/ty/releases/tag/0.0.25) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-yield%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L442)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.25](https://github.com/astral-sh/ty/releases/tag/0.0.25) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-yield%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L453)
 
 **What it does**
 
@@ -2547,12 +2520,11 @@ from typing import Iterator
 
 def gen() -> Iterator[int]:
     yield "not an int"  # error: [invalid-yield]
-
 ```
 
 ## [`isinstance-against-protocol`](#isinstance-against-protocol)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.14](https://github.com/astral-sh/ty/releases/tag/0.0.14) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22isinstance-against-protocol%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L396)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.14](https://github.com/astral-sh/ty/releases/tag/0.0.14) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22isinstance-against-protocol%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L398)
 
 **What it does**
 
@@ -2597,7 +2569,6 @@ def h(arg2: type):
     # `HasY` is runtime-checkable, but has non-method members,
     # so it still can't be used in `issubclass` checks)
     issubclass(arg2, HasY)  # error: [isinstance-against-protocol]
-
 ```
 
 **References**
@@ -2606,7 +2577,7 @@ def h(arg2: type):
 
 ## [`isinstance-against-typed-dict`](#isinstance-against-typed-dict)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.15](https://github.com/astral-sh/ty/releases/tag/0.0.15) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22isinstance-against-typed-dict%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L405)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.15](https://github.com/astral-sh/ty/releases/tag/0.0.15) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22isinstance-against-typed-dict%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L407)
 
 **What it does**
 
@@ -2636,7 +2607,6 @@ def g(arg: object):
     match arg:
         case Movie():  # error: [isinstance-against-typed-dict]
             pass
-
 ```
 
 **References**
@@ -2645,7 +2615,7 @@ def g(arg: object):
 
 ## [`mismatched-type-name`](#mismatched-type-name)
 
-Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.30](https://github.com/astral-sh/ty/releases/tag/0.0.30) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22mismatched-type-name%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L622)
+Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.30](https://github.com/astral-sh/ty/releases/tag/0.0.30) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22mismatched-type-name%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L633)
 
 **What it does**
 
@@ -2669,12 +2639,11 @@ T = TypeVar("U")  # error: [mismatched-type-name]
 P = ParamSpec("Q")  # error: [mismatched-type-name]
 UserId = NewType("Id", int)  # error: [mismatched-type-name]
 Movie = TypedDict("Film", {"title": str})  # error: [mismatched-type-name]
-
 ```
 
 ## [`missing-argument`](#missing-argument)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22missing-argument%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L769)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22missing-argument%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L780)
 
 **What it does**
 
@@ -2692,12 +2661,11 @@ def func(x: int): ...
 
 # TypeError: func() missing 1 required positional argument: 'x'
 func()  # error
-
 ```
 
 ## [`missing-override-decorator`](#missing-override-decorator)
 
-Default level: [`ignore`](../../rules#rule-levels "This lint has a default level of 'ignore'.") · Added in [0.0.41](https://github.com/astral-sh/ty/releases/tag/0.0.41) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22missing-override-decorator%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1031)
+Default level: [`ignore`](../../rules#rule-levels "This lint has a default level of 'ignore'.") · Added in [0.0.41](https://github.com/astral-sh/ty/releases/tag/0.0.41) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22missing-override-decorator%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1042)
 
 **What it does**
 
@@ -2718,7 +2686,6 @@ Without an `@override` annotation, refactors can silently change whether a metho
 ```
 [environment]
 python-version = "3.12"
-
 ```
 
 ```
@@ -2740,12 +2707,11 @@ class ExplicitChild(Parent):
     @override
     def method(self) -> int:  # fine
         return 2
-
 ```
 
 ## [`missing-type-argument`](#missing-type-argument)
 
-Default level: [`ignore`](../../rules#rule-levels "This lint has a default level of 'ignore'.") · Added in [0.0.45](https://github.com/astral-sh/ty/releases/tag/0.0.45) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22missing-type-argument%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L778)
+Default level: [`ignore`](../../rules#rule-levels "This lint has a default level of 'ignore'.") · Added in [0.0.45](https://github.com/astral-sh/ty/releases/tag/0.0.45) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22missing-type-argument%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L789)
 
 **What it does**
 
@@ -2768,12 +2734,11 @@ def handle(m: re.Match) -> str:  # error: [missing-type-argument]
 # Use explicit type parameters instead:
 def handle(m: re.Match[str]) -> str:
     return m.string
-
 ```
 
 ## [`missing-typed-dict-key`](#missing-typed-dict-key)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.20](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.20) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22missing-typed-dict-key%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1233)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.20](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.20) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22missing-typed-dict-key%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1244)
 
 **What it does**
 
@@ -2798,12 +2763,11 @@ class Person(TypedDict):
 alice: Person = {"name": "Alice"}  # error
 
 alice["age"]  # KeyError
-
 ```
 
 ## [`no-matching-overload`](#no-matching-overload)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22no-matching-overload%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L842)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22no-matching-overload%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L853)
 
 **What it does**
 
@@ -2827,12 +2791,11 @@ def func(x: int | bool): ...
 
 
 func("string")  # error: [no-matching-overload]
-
 ```
 
 ## [`non-callable-init-subclass`](#non-callable-init-subclass)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.30](https://github.com/astral-sh/ty/releases/tag/0.0.30) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22non-callable-init-subclass%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L577)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.30](https://github.com/astral-sh/ty/releases/tag/0.0.30) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22non-callable-init-subclass%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L588)
 
 **What it does**
 
@@ -2850,7 +2813,6 @@ class Super:
 
 
 class Sub(Super): ...  # error: [non-callable-init-subclass]
-
 ```
 
 **References**
@@ -2859,7 +2821,7 @@ class Sub(Super): ...  # error: [non-callable-init-subclass]
 
 ## [`not-iterable`](#not-iterable)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22not-iterable%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L869)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22not-iterable%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L880)
 
 **What it does**
 
@@ -2875,12 +2837,11 @@ Iterating over an object that is not iterable will raise a `TypeError` at runtim
 # TypeError: 'int' object is not iterable
 for i in 34:  # error
     pass
-
 ```
 
 ## [`not-subscriptable`](#not-subscriptable)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22not-subscriptable%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L851)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22not-subscriptable%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L862)
 
 **What it does**
 
@@ -2895,12 +2856,11 @@ Subscripting an object that does not support it will raise a `TypeError` at runt
 ```
 # TypeError: 'int' object is not subscriptable
 4[1]  # error
-
 ```
 
 ## [`override-of-final-method`](#override-of-final-method)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.29](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.29) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22override-of-final-method%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L950)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.29](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.29) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22override-of-final-method%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L961)
 
 **What it does**
 
@@ -2923,12 +2883,11 @@ class A:
 
 class B(A):
     def foo(self): ...  # error
-
 ```
 
 ## [`override-of-final-variable`](#override-of-final-variable)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.16](https://github.com/astral-sh/ty/releases/tag/0.0.16) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22override-of-final-variable%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L959)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.16](https://github.com/astral-sh/ty/releases/tag/0.0.16) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22override-of-final-variable%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L970)
 
 **What it does**
 
@@ -2950,12 +2909,11 @@ class A:
 
 class B(A):
     X = 2  # error
-
 ```
 
 ## [`parameter-already-assigned`](#parameter-already-assigned)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22parameter-already-assigned%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L887)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22parameter-already-assigned%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L898)
 
 **What it does**
 
@@ -2973,12 +2931,11 @@ def f(x: int) -> int:
 
 
 f(1, x=2)  # error
-
 ```
 
 ## [`positional-only-parameter-as-kwarg`](#positional-only-parameter-as-kwarg)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.22](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.22) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22positional-only-parameter-as-kwarg%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1116)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.22](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.22) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22positional-only-parameter-as-kwarg%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1127)
 
 **What it does**
 
@@ -2996,12 +2953,11 @@ def f(x: int, /) -> int:
 
 
 f(x=1)  # error
-
 ```
 
 ## [`possibly-missing-attribute`](#possibly-missing-attribute)
 
-Default level: [`ignore`](../../rules#rule-levels "This lint has a default level of 'ignore'.") · Added in [0.0.1-alpha.22](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.22) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22possibly-missing-attribute%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L896)
+Default level: [`ignore`](../../rules#rule-levels "This lint has a default level of 'ignore'.") · Added in [0.0.1-alpha.22](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.22) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22possibly-missing-attribute%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L907)
 
 **What it does**
 
@@ -3025,12 +2981,11 @@ class A:
 
 # AttributeError: type object 'A' has no attribute 'c'
 A.c  # error
-
 ```
 
 ## [`possibly-missing-implicit-call`](#possibly-missing-implicit-call)
 
-Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.1-alpha.22](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.22) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22possibly-missing-implicit-call%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L213)
+Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.1-alpha.22](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.22) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22possibly-missing-implicit-call%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L215)
 
 **What it does**
 
@@ -3054,12 +3009,11 @@ class A:
 
 # TypeError: 'A' object is not subscriptable
 A()[0]  # error
-
 ```
 
 ## [`possibly-missing-import`](#possibly-missing-import)
 
-Default level: [`ignore`](../../rules#rule-levels "This lint has a default level of 'ignore'.") · Added in [0.0.1-alpha.22](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.22) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22possibly-missing-import%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L914)
+Default level: [`ignore`](../../rules#rule-levels "This lint has a default level of 'ignore'.") · Added in [0.0.1-alpha.22](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.22) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22possibly-missing-import%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L925)
 
 **What it does**
 
@@ -3082,7 +3036,6 @@ import datetime
 
 if datetime.date.today().weekday() != 6:
     a = 1
-
 ```
 
 `main.py`:
@@ -3090,12 +3043,11 @@ if datetime.date.today().weekday() != 6:
 ```
 # ImportError: cannot import name 'a' from 'module'
 from module import a  # error
-
 ```
 
 ## [`possibly-missing-submodule`](#possibly-missing-submodule)
 
-Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.23](https://github.com/astral-sh/ty/releases/tag/0.0.23) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22possibly-missing-submodule%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L905)
+Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.23](https://github.com/astral-sh/ty/releases/tag/0.0.23) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22possibly-missing-submodule%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L916)
 
 **What it does**
 
@@ -3112,12 +3064,11 @@ import html
 
 # AttributeError: module 'html' has no attribute 'parser'
 html.parser  # error
-
 ```
 
 ## [`possibly-unresolved-reference`](#possibly-unresolved-reference)
 
-Default level: [`ignore`](../../rules#rule-levels "This lint has a default level of 'ignore'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22possibly-unresolved-reference%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L923)
+Default level: [`ignore`](../../rules#rule-levels "This lint has a default level of 'ignore'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22possibly-unresolved-reference%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L934)
 
 **What it does**
 
@@ -3139,12 +3090,11 @@ for i in range(int(input())):
 
 # NameError: name 'x' is not defined
 print(x)  # error
-
 ```
 
 ## [`pydantic-discarded-extra-argument`](#pydantic-discarded-extra-argument)
 
-Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.60](https://github.com/astral-sh/ty/releases/tag/0.0.60) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22pydantic-discarded-extra-argument%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1103)
+Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.60](https://github.com/astral-sh/ty/releases/tag/0.0.60) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22pydantic-discarded-extra-argument%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1114)
 
 **What it does**
 
@@ -3156,27 +3106,23 @@ A discarded argument has no effect on the constructed model, but it may indicate
 
 **Example**
 
-```python {data-mdtest="ignore"}
+```
 from pydantic import BaseModel
 
+
 class User(BaseModel):
-name: str
-admin: bool = False
+    name: str
+    admin: bool = False
 
-user = User(name="Alice", admni=True) # error: [pydantic-discarded-extra-argument]
 
+user = User(name="Alice", admni=True)  # error: [pydantic-discarded-extra-argument]
 ```
 
 If the field name has been misspelled, fix the typo. Otherwise, consider removing the extra argument, or explicitly configure the model with `extra="allow"`.
 
-## `raw-string-type-annotation`
+## [`raw-string-type-annotation`](#raw-string-type-annotation)
 
-<small>
-Default level: <a href="../../rules#rule-levels" title="This lint has a default level of 'error'."><code>error</code></a> ·
-Added in <a href="https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1">0.0.1-alpha.1</a> ·
-<a href="https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22raw-string-type-annotation%22" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fstring_annotation.rs#L13" target="_blank">View source</a>
-</small>
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22raw-string-type-annotation%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fstring_annotation.rs#L13)
 
 **What it does**
 
@@ -3188,10 +3134,9 @@ Static analysis tools like ty can't analyze type annotations that use raw-string
 
 **Examples**
 
-```python
+```
 def test() -> r"int":  # error
     return 1
-
 ```
 
 Use instead:
@@ -3199,12 +3144,11 @@ Use instead:
 ```
 def test() -> "int":
     return 1
-
 ```
 
 ## [`redundant-cast`](#redundant-cast)
 
-Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22redundant-cast%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1197)
+Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22redundant-cast%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1208)
 
 **What it does**
 
@@ -3226,12 +3170,11 @@ def f() -> int:
 
 # Redundant
 cast(int, f())  # error
-
 ```
 
 ## [`redundant-final-classvar`](#redundant-final-classvar)
 
-Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.18](https://github.com/astral-sh/ty/releases/tag/0.0.18) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22redundant-final-classvar%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1206)
+Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.18](https://github.com/astral-sh/ty/releases/tag/0.0.18) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22redundant-final-classvar%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1217)
 
 **What it does**
 
@@ -3254,12 +3197,11 @@ class C:
     x: ClassVar[Final[int]] = 1  # error
     # redundant
     y: Final[ClassVar[int]] = 1  # error
-
 ```
 
 ## [`shadowed-type-variable`](#shadowed-type-variable)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.20](https://github.com/astral-sh/ty/releases/tag/0.0.20) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22shadowed-type-variable%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1215)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.20](https://github.com/astral-sh/ty/releases/tag/0.0.20) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22shadowed-type-variable%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1226)
 
 **What it does**
 
@@ -3274,7 +3216,6 @@ Shadowing type variables makes the code confusing and is disallowed by the typin
 ```
 [environment]
 python-version = "3.12"
-
 ```
 
 ```
@@ -3285,7 +3226,6 @@ class Outer[T]:
     # `T` is already used by `Outer`
     def method[T](self, x: T) -> T:  # error
         return x
-
 ```
 
 **References**
@@ -3294,7 +3234,7 @@ class Outer[T]:
 
 ## [`static-assert-error`](#static-assert-error)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22static-assert-error%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1179)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22static-assert-error%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1190)
 
 **What it does**
 
@@ -3314,12 +3254,11 @@ static_assert(1 + 1 == 3)  # error
 
 # does not have a statically known truthiness
 static_assert(int(2.0 * 3.0) == 6)  # error
-
 ```
 
 ## [`subclass-of-dataclass-with-order`](#subclass-of-dataclass-with-order)
 
-Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.39](https://github.com/astral-sh/ty/releases/tag/0.0.39) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22subclass-of-dataclass-with-order%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L941)
+Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.39](https://github.com/astral-sh/ty/releases/tag/0.0.39) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22subclass-of-dataclass-with-order%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L952)
 
 **What it does**
 
@@ -3348,14 +3287,13 @@ class Child(Parent):  # error
 
 # At runtime, this raises TypeError:
 # Child(1) < Parent(2)
-
 ```
 
 Consider using [`functools.total_ordering`](https://docs.python.org/3/library/functools.html#functools.total_ordering) instead, which does not have this limitation.
 
 ## [`subclass-of-final-class`](#subclass-of-final-class)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22subclass-of-final-class%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L932)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22subclass-of-final-class%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L943)
 
 **What it does**
 
@@ -3376,12 +3314,11 @@ class A: ...
 
 
 class B(A): ...  # error
-
 ```
 
 ## [`super-call-in-named-tuple-method`](#super-call-in-named-tuple-method)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.30](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.30) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22super-call-in-named-tuple-method%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1076)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.30](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.30) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22super-call-in-named-tuple-method%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1087)
 
 **What it does**
 
@@ -3403,7 +3340,6 @@ class F(NamedTuple):
     def method(self):
         # super() is not supported in methods of NamedTuple classes
         super()  # error
-
 ```
 
 **References**
@@ -3412,7 +3348,7 @@ class F(NamedTuple):
 
 ## [`too-many-positional-arguments`](#too-many-positional-arguments)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22too-many-positional-arguments%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1058)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22too-many-positional-arguments%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1069)
 
 **What it does**
 
@@ -3429,12 +3365,11 @@ def f(): ...
 
 
 f("foo")  # error
-
 ```
 
 ## [`type-assertion-failure`](#type-assertion-failure)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22type-assertion-failure%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1040)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22type-assertion-failure%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1051)
 
 **What it does**
 
@@ -3449,7 +3384,6 @@ Checks for `assert_type()` and `assert_never()` calls where the actual type is n
 ```
 [environment]
 python-version = "3.11"
-
 ```
 
 ```
@@ -3460,12 +3394,11 @@ def _(x: int):
     assert_type(x, int)  # fine
     # Actual type does not match asserted type
     assert_type(x, str)  # error
-
 ```
 
 ## [`unavailable-implicit-super-arguments`](#unavailable-implicit-super-arguments)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unavailable-implicit-super-arguments%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1067)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unavailable-implicit-super-arguments%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1078)
 
 **What it does**
 
@@ -3503,7 +3436,6 @@ class A:
         (super() for _ in range(10))  # error
 
         super()  # okay! both enclosing class and first argument are available
-
 ```
 
 **References**
@@ -3512,7 +3444,7 @@ class A:
 
 ## [`unbound-type-variable`](#unbound-type-variable)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.20](https://github.com/astral-sh/ty/releases/tag/0.0.20) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unbound-type-variable%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L760)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.20](https://github.com/astral-sh/ty/releases/tag/0.0.20) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unbound-type-variable%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L771)
 
 **What it does**
 
@@ -3537,7 +3469,6 @@ x: T  # error
 class C(Generic[T]):
     # S is not in this class's generic context
     x: list[S] = []  # error
-
 ```
 
 **References**
@@ -3546,7 +3477,7 @@ class C(Generic[T]):
 
 ## [`undefined-reveal`](#undefined-reveal)
 
-Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22undefined-reveal%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1085)
+Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22undefined-reveal%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1096)
 
 **What it does**
 
@@ -3562,12 +3493,11 @@ Using `reveal_type` without importing it will raise a `NameError` at runtime.
 # NameError: name 'reveal_type' is not defined
 # error
 reveal_type(1)  # revealed: Literal[1]
-
 ```
 
 ## [`unknown-argument`](#unknown-argument)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unknown-argument%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1094)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unknown-argument%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1105)
 
 **What it does**
 
@@ -3585,12 +3515,11 @@ def f(x: int) -> int:
 
 
 f(x=1, y=2)  # error
-
 ```
 
 ## [`unresolved-attribute`](#unresolved-attribute)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unresolved-attribute%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1125)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unresolved-attribute%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1136)
 
 **What it does**
 
@@ -3608,12 +3537,11 @@ class A: ...
 
 # AttributeError: 'A' object has no attribute 'foo'
 A().foo  # error
-
 ```
 
 ## [`unresolved-global`](#unresolved-global)
 
-Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.1-alpha.15](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.15) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unresolved-global%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1224)
+Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.1-alpha.15](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.15) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unresolved-global%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1235)
 
 **What it does**
 
@@ -3636,7 +3564,6 @@ def f():
 
 def g():
     print(x)  # unresolved reference
-
 ```
 
 **Use instead**
@@ -3654,7 +3581,6 @@ def f():
 
 def g():
     print(x)
-
 ```
 
 **Initialize the global**
@@ -3670,12 +3596,11 @@ def f():
 
 def g():
     print(x)
-
 ```
 
 ## [`unresolved-import`](#unresolved-import)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unresolved-import%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1134)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unresolved-import%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1145)
 
 **What it does**
 
@@ -3690,12 +3615,11 @@ Importing a module that cannot be resolved will raise a `ModuleNotFoundError` at
 ```
 # ModuleNotFoundError: No module named 'foo'
 import foo  # error
-
 ```
 
 ## [`unresolved-reference`](#unresolved-reference)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unresolved-reference%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1143)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unresolved-reference%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1154)
 
 **What it does**
 
@@ -3710,12 +3634,11 @@ Using an undefined variable will raise a `NameError` at runtime.
 ```
 # NameError: name 'x' is not defined
 print(x)  # error
-
 ```
 
 ## [`unsound-return-statement`](#unsound-return-statement)
 
-Default level: [`ignore`](../../rules#rule-levels "This lint has a default level of 'ignore'.") · Added in [0.0.70](https://github.com/astral-sh/ty/releases/tag/0.0.70) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unsound-return-statement%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L432)
+Default level: [`ignore`](../../rules#rule-levels "This lint has a default level of 'ignore'.") · Added in [0.0.70](https://github.com/astral-sh/ty/releases/tag/0.0.70) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unsound-return-statement%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L443)
 
 **What it does**
 
@@ -3742,7 +3665,6 @@ def returns_int() -> int:
 
 # fails at runtime, even though the type checker infers both operands as being of type `int`!
 returns_int() + 42
-
 ```
 
 This rule allows you to use ["fully static"](https://typing.python.org/en/latest/spec/glossary.html#term-fully-static-type) return types as "typed boundaries" for your code. With this rule enabled, ty would emit an error on the `return returns_any()` statement in `returns_int`, since the `returns_any()` call is inferred as having type `Any`, and `Any` is not a subtype of `int`. This helps prevent the unsoundness from spreading far from its original source (in this case, the return type of the `returns_any` function).
@@ -3767,7 +3689,6 @@ def returns_unparameterized_tuple() -> tuple:
 def returns_list_of_any() -> list[Any]:
     # no error, since the return type is explicitly `list[Any]`
     return returns_any()
-
 ```
 
 This rule works especially well when combined with ty's [`missing-type-argument`](#missing-type-argument) rule, and the Ruff rules [`ANN201`](https://docs.astral.sh/ruff/rules/missing-return-type-undocumented-public-function/), [`ANN202`](https://docs.astral.sh/ruff/rules/missing-return-type-private-function/), [`ANN204`](https://docs.astral.sh/ruff/rules/missing-return-type-special-method/), [`ANN205`](https://docs.astral.sh/ruff/rules/missing-return-type-static-method/), and [`ANN206`](https://docs.astral.sh/ruff/rules/missing-return-type-class-method/). Enabling all these rules at once effectively makes it much less likely that a `return` statement can lead to unsoundness "leaking" out of a function unless that function has been *explicitly* annotated with a dynamic type in some way (`-> Any` or `-> tuple[Any]`, for example).
@@ -3787,7 +3708,6 @@ def returns_any() -> Any:
 def returns_int() -> int:
     # error: "Unsound return statement: `Any` is not a subtype of `int`"
     return returns_any()
-
 ```
 
 Narrow the type to a subtype of `int` to fix the diagnostic:
@@ -3806,7 +3726,6 @@ def returns_int() -> int:
     assert isinstance(my_int, int)
     reveal_type(my_int)  # revealed: Any & int
     return my_int  # no error: `Any & int` is a subtype of `int`
-
 ```
 
 **Default level**
@@ -3819,7 +3738,7 @@ This rule is disabled by default. It is intended for advanced users wanting addi
 
 ## [`unsound-yield`](#unsound-yield)
 
-Default level: [`ignore`](../../rules#rule-levels "This lint has a default level of 'ignore'.") · Added in [0.0.70](https://github.com/astral-sh/ty/releases/tag/0.0.70) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unsound-yield%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L451)
+Default level: [`ignore`](../../rules#rule-levels "This lint has a default level of 'ignore'.") · Added in [0.0.70](https://github.com/astral-sh/ty/releases/tag/0.0.70) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unsound-yield%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L462)
 
 **What it does**
 
@@ -3846,7 +3765,6 @@ def integers() -> Generator[int]:
 
 # Fails at runtime, even though the type checker infers `integers` as yielding only `int`s!
 sum(integers())
-
 ```
 
 This rule treats [fully static](https://typing.python.org/en/latest/spec/glossary.html#term-fully-static-type) yield types as "typed boundaries" for your code. With this rule enabled, ty would emit an error on the `yield returns_any()` statement in `integers`, since the `returns_any()` call is inferred as having type `Any`, and `Any` is not a subtype of `int`. This helps prevent the unsoundness from spreading far from its original source (in this case, the return type of the `returns_any` function).
@@ -3868,7 +3786,6 @@ def dynamic_yield_type() -> Generator[Any]:
 def static_yield_type() -> Generator[int, Any, Any]:
     # error: "Unsound `yield`: `Any` is not a subtype of `int`"
     yield returns_any()
-
 ```
 
 This rule works especially well when combined with ty's [`missing-type-argument`](#missing-type-argument) rule, and the Ruff rules [`ANN201`](https://docs.astral.sh/ruff/rules/missing-return-type-undocumented-public-function/), [`ANN202`](https://docs.astral.sh/ruff/rules/missing-return-type-private-function/), [`ANN204`](https://docs.astral.sh/ruff/rules/missing-return-type-special-method/), [`ANN205`](https://docs.astral.sh/ruff/rules/missing-return-type-static-method/), and [`ANN206`](https://docs.astral.sh/ruff/rules/missing-return-type-class-method/). Enabling all these rules at once effectively makes it much less likely that a `yield` expression can lead to unsoundness "leaking" out of a function unless that function has been *explicitly* annotated with a dynamic type in some way (`-> Generator[Any]` or `-> Generator[tuple[Any]]`, for example).
@@ -3892,7 +3809,6 @@ def integers() -> Iterator[int]:
     yield returns_any()
     # error: "Unsound `yield from`: `Any` is not a subtype of `int`"
     yield from any_iterator()
-
 ```
 
 Narrow the value before yielding it to fix the diagnostics:
@@ -3917,7 +3833,6 @@ def integers() -> Iterator[int]:
     for value in any_iterator():
         assert isinstance(value, int)
         yield value
-
 ```
 
 **Default level**
@@ -3930,7 +3845,7 @@ This rule is disabled by default. It is intended for users who want stricter sou
 
 ## [`unsupported-base`](#unsupported-base)
 
-Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.1-alpha.7](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.7) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unsupported-base%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L496)
+Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.1-alpha.7](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.7) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unsupported-base%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L507)
 
 **What it does**
 
@@ -3959,12 +3874,11 @@ else:
 
 
 class D(C): ...  # error: [unsupported-base]
-
 ```
 
 ## [`unsupported-bool-conversion`](#unsupported-bool-conversion)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unsupported-bool-conversion%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L878)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unsupported-bool-conversion%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L889)
 
 **What it does**
 
@@ -3999,12 +3913,11 @@ not b1  # error
 # A chained comparison converts the result of `b1 < b2` to bool.
 # exception raised here
 b1 < b2 < b1  # error
-
 ```
 
 ## [`unsupported-dynamic-base`](#unsupported-dynamic-base)
 
-Default level: [`ignore`](../../rules#rule-levels "This lint has a default level of 'ignore'.") · Added in [0.0.12](https://github.com/astral-sh/ty/releases/tag/0.0.12) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unsupported-dynamic-base%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L505)
+Default level: [`ignore`](../../rules#rule-levels "This lint has a default level of 'ignore'.") · Added in [0.0.12](https://github.com/astral-sh/ty/releases/tag/0.0.12) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unsupported-dynamic-base%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L516)
 
 **What it does**
 
@@ -4029,12 +3942,11 @@ class Base: ...
 def factory(base: type[Base]) -> type:
     # `base` has type `type[Base]`, not `type[Base]` itself
     return type("Dynamic", (base,), {})  # error: [unsupported-dynamic-base]
-
 ```
 
 ## [`unsupported-operator`](#unsupported-operator)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unsupported-operator%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1152)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unsupported-operator%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1163)
 
 **What it does**
 
@@ -4052,12 +3964,11 @@ class A: ...
 
 # TypeError: unsupported operand type(s) for +: 'A' and 'A'
 A() + A()  # error
-
 ```
 
 ## [`unused-awaitable`](#unused-awaitable)
 
-Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.21](https://github.com/astral-sh/ty/releases/tag/0.0.21) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unused-awaitable%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1161)
+Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.21](https://github.com/astral-sh/ty/releases/tag/0.0.21) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22unused-awaitable%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1172)
 
 **What it does**
 
@@ -4078,7 +3989,6 @@ async def main() -> None:
     # Warning: coroutine is not awaited
     fetch_data()  # error
     await fetch_data()  # OK
-
 ```
 
 ## [`unused-ignore-comment`](#unused-ignore-comment)
@@ -4098,14 +4008,12 @@ A `ty: ignore` directive that no longer matches any diagnostic violations is lik
 ```
 # error
 a = 20 / 2  # ty: ignore[division-by-zero]
-
 ```
 
 Use instead:
 
 ```
 a = 20 / 2
-
 ```
 
 **Options**
@@ -4129,14 +4037,12 @@ A `type: ignore` directive that no longer matches any diagnostic violations is l
 ```
 # error
 a = 20 / 2  # type: ignore
-
 ```
 
 Use instead:
 
 ```
 a = 20 / 2
-
 ```
 
 **Options**
@@ -4145,7 +4051,7 @@ This rule is skipped if [`analysis.respect-type-ignore-comments`](https://docs.a
 
 ## [`useless-overload-body`](#useless-overload-body)
 
-Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.1-alpha.22](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.22) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22useless-overload-body%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L649)
+Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.1-alpha.22](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.22) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22useless-overload-body%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L660)
 
 **What it does**
 
@@ -4160,7 +4066,6 @@ Functions decorated with `@overload` are ignored at runtime; they are overridden
 ```
 [environment]
 python-version = "3.11"
-
 ```
 
 ```
@@ -4181,7 +4086,6 @@ def foo(x: str) -> str:
 
 def foo(x: int | str) -> int | str:
     raise Exception("unexpected type encountered")
-
 ```
 
 Use instead:
@@ -4205,7 +4109,6 @@ def foo(x: int | str) -> int | str:
         return "Oh no, got a string"
     else:
         assert_never(x)
-
 ```
 
 **References**
@@ -4214,7 +4117,7 @@ def foo(x: int | str) -> int | str:
 
 ## [`zero-stepsize-in-slice`](#zero-stepsize-in-slice)
 
-Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22zero-stepsize-in-slice%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1170)
+Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22zero-stepsize-in-slice%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1181)
 
 **What it does**
 
@@ -4238,5 +4141,4 @@ values[1:10:0]  # error
 tuple_values = (1, 2, 3)
 # ValueError: slice step cannot be zero
 tuple_values[1:10:0]  # error
-
 ```

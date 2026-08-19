@@ -14,7 +14,6 @@ Check the [documentation](https://docs.astral.sh/ty/reference/rules/) for the sp
 from missing_module import MissingClass  # error: unresolved-import
 
 reveal_type(MissingClass)  # Unknown
-
 ```
 
 ty also uses unions with `Unknown` to avoid false positive errors in untyped code while still providing useful type information where possible.
@@ -35,7 +34,6 @@ def receive(msg: Message):
 
 msg = Message("Favorite color")
 msg.data = {"color": "blue"}
-
 ```
 
 ([Full example in the playground](https://play.ty.dev/862941a8-a3f6-4818-9ea1-d9d59b0bd2fa))
@@ -64,7 +62,6 @@ while some_condition():
     x = [x]
 
 reveal_type(x)  # Literal[1] | list[Divergent]
-
 ```
 
 After the first analysis of the loop, `x` can be `Literal[1]` or `list[Literal[1]]`. The next analysis adds `list[list[Literal[1]]]`, and every subsequent analysis adds another level of nesting. This does not converge to a finite type. The revealed type preserves the known base case and uses `Divergent` for the infinitely expanding part.
@@ -80,7 +77,6 @@ def circle_area(radius: float) -> float:
     return 3.14 * radius * radius
 
 circle_area(2)      # OK: int is allowed where float is expected
-
 ```
 
 This rule is a special case, since `int` is not actually a subclass of `float`. A `float` annotation therefore accepts both integers and actual floating-point values, and ty displays this complete type as `float`. When ty knows that a value is an actual `float`, rather than an `int`, it displays the more precise type as `float*`:
@@ -91,7 +87,6 @@ def takes_float(value: float) -> None:
 
 
 reveal_type(1.0)  # float*
-
 ```
 
 A similar rule applies to `complex`: a `complex` annotation accepts `int`, `float`, and `complex` values, and ty displays it as `complex`. A value known to be an actual `complex`, rather than an `int` or a `float`, is displayed as `complex*`:
@@ -102,7 +97,6 @@ def takes_complex(value: complex) -> None:
 
 
 reveal_type(1j)  # complex*
-
 ```
 
 The starred spellings only appear in ty's output; they cannot be used in Python annotations.
@@ -123,7 +117,6 @@ def only_actual_floats_allowed(f: JustFloat) -> None: ...
 
 only_actual_floats_allowed(1.0)  # OK
 only_actual_floats_allowed(1)    # error: invalid-argument-type
-
 ```
 
 ([Full example in the playground](https://play.ty.dev/fb034780-3ba7-4c6a-9449-5b0f44128bab))
@@ -142,7 +135,6 @@ def modify(entries: list[Entry]):
 
 directories: list[Directory] = [Directory("Downloads"), Directory("Documents")]
 modify(directories)  # ty emits an error on this call
-
 ```
 
 1. The full example might look like this:
@@ -168,7 +160,6 @@ modify(directories)  # ty emits an error on this call
 
    directories: list[Directory] = [Directory("Downloads"), Directory("Documents")]
    modify(directories)  # ty emits an error on this call
-
    ```
 
    You can try it out in [this playground example](https://play.ty.dev/01013e73-da54-40c4-a9c5-2af269abda9d).
@@ -178,7 +169,6 @@ The `modify` call mutates the contents of the `directories` list. After this cal
 ```
 for directory in directories:
     directory.children()  # runtime: 'File' object has no attribute 'children'
-
 ```
 
 Info
@@ -196,7 +186,6 @@ media_entries = [Directory("Pictures"), Directory("Videos")]
 
 # still a type-check error, but should be fine in principle (no mutation occurs)
 size = total_size_bytes(media_entries)
-
 ```
 
 To prevent this, you can adapt the signature of `total_size_bytes` to take an argument of type [`Sequence[Entry]`](https://docs.python.org/3/library/collections.abc.html#collections-abstract-base-classes) instead. This type describes read-only sequences (that contain values of type `Entry`). `Sequence` is therefore covariant in its type parameter.
@@ -230,14 +219,12 @@ class FileUpload:
         # …
 
 retry(3, FileUpload("image.png"))
-
 ```
 
 To fix this, you could use `getattr` with a fall back to a default name when the attribute is not present (or use a `hasattr(…, "__name__")` check if you access it multiple times):
 
 ```
 name = getattr(operation, "__name__", "operation")
-
 ```
 
 Alternatively, you could use an `isinstance(…, types.FunctionType)` check to narrow the type of `operation` to something that definitely has a `__name__` attribute:
@@ -247,7 +234,6 @@ if isinstance(operation, FunctionType):
     print(f"Calling {operation.__name__}, attempt {i + 1} of {times}")
 else:
     print(f"Calling operation, attempt {i + 1} of {times}")
-
 ```
 
 You can try various approaches in [this playground example](https://play.ty.dev/f6f7f35a-47c3-423d-be8d-33d03c61d40c). See also [this discussion](https://github.com/astral-sh/ty/issues/1495) for some plans to improve the developer experience around this in the future.
@@ -270,7 +256,6 @@ else:
 
 def retry(times: int, operation: FunctionLikeCallable[[], bool]) -> bool:
     ...
-
 ```
 
 You can check out the full example [here](https://play.ty.dev/7a1ea4ab-04e1-4271-adf5-ddc3a5d2fcfd), which demonstrates that `FileUpload` instances are no longer accepted by `retry`.
@@ -311,7 +296,6 @@ Import resolution issues are often caused by a missing or incorrect environment 
    ```
    [tool.ty.environment]
    root = ["./app"]
-
    ```
 
 1. **Third-party packages**: Ensure dependencies are installed in your virtual environment. Run ty with `-v` to see the search paths being used.
@@ -329,7 +313,6 @@ For monorepos with multiple Python packages, you have a few options:
    ```
    ty check --project packages/package-a
    ty check --project packages/package-b
-
    ```
 
 1. **Configure multiple source roots**: Use [`environment.root`](../configuration/#root) to specify multiple source directories:
@@ -337,7 +320,6 @@ For monorepos with multiple Python packages, you have a few options:
    ```
    [tool.ty.environment]
    root = ["packages/package-a", "packages/package-b"]
-
    ```
 
    This has the disadvantage of treating all packages as a single project, which may lead to cases in which ty thinks something is importable when it wouldn't be at runtime.
@@ -350,7 +332,6 @@ It depends on what you want to do. If you have a single inline-metadata script, 
 
 ```
 uvx --with-requirements script.py ty check script.py
-
 ```
 
 If you have multiple scripts in your workspace, ty does not yet recognize that they have different dependencies based on their inline metadata.

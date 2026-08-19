@@ -8,14 +8,12 @@ For example, with the following configuration, ty checks all Python files in the
 [tool.ty.src]
 include = ["src", "tests"]
 exclude = ["src/generated"]
-
 ```
 
 ```
 [src]
 include = ["src", "tests"]
 exclude = ["src/generated"]
-
 ```
 
 ## [Default exclusions](#default-exclusions)
@@ -26,14 +24,12 @@ By default, ty excludes a [variety of commonly ignored directories](../reference
 [tool.ty.src]
 # Remove `build` from the excluded directories.
 exclude = ["!**/build/"]
-
 ```
 
 ```
 [src]
 # Remove `build` from the excluded directories.
 exclude = ["!**/build/"]
-
 ```
 
 By default, ty ignores files listed in an `.ignore` or `.gitignore` file. To disable this functionality, set [`respect-ignore-files`](../reference/configuration/#respect-ignore-files) to `false`.
@@ -44,7 +40,6 @@ You may explicitly pass the paths that ty should check, e.g.:
 
 ```
 ty check src scripts/benchmark.py
-
 ```
 
 Paths that are passed as positional arguments to `ty check` are included even if they would otherwise be ignored through `exclude` filters or an ignore-file.
@@ -76,7 +71,6 @@ You can resolve this by adding a `.gitignore` to the environment, e.g., for a vi
 
 ```
 echo "*" > .venv/.gitignore
-
 ```
 
 Or by adding your virtual environment to your `.gitignore` or `.ignore` file.

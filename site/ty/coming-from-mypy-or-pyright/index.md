@@ -29,7 +29,6 @@ unsound-return-statement = "error"
 [tool.ruff.lint]
 extend-select = ["ANN", "PYI"]
 preview = true
-
 ```
 
 This configuration:
@@ -62,7 +61,6 @@ strict-generic-narrowing = true
 [tool.ruff.lint]
 extend-select = ["ANN", "PYI", "PGH003"]
 preview = true
-
 ```
 
 Note that several checks in mypy and pyright are not yet implemented in ty. See the rule mapping table below for more details.

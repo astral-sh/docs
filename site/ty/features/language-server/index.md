@@ -98,7 +98,6 @@ interface Diagnostic {
         // Other ty-specific fields may also be present.
     };
 }
-
 ```
 
 For diagnostics that support this extension, `rendered` and `diagnostic_id` are either both present or both absent. Clients may use `diagnostic_id` to preserve the original identifier if they replace `Diagnostic.code` with a link to the rendered output. Clients must preserve `Diagnostic.data` when returning a diagnostic in a `textDocument/codeAction` request so that code actions continue to work.
