@@ -24,14 +24,12 @@ By default, ty exits with code 1 if it emits any warning or error diagnostics. S
 [tool.ty.rules]
 possibly-unresolved-reference = "warn"
 division-by-zero = "ignore"
-
 ```
 
 ```
 [rules]
 possibly-unresolved-reference = "warn"
 division-by-zero = "ignore"
-
 ```
 
 ______________________________________________________________________
@@ -62,14 +60,12 @@ Glob patterns can be used in combinations with each other. For example, to suppr
 [tool.ty.analysis]
 # Suppress errors for all `test` modules except `test.foo`
 allowed-unresolved-imports = ["test.**", "!test.foo"]
-
 ```
 
 ```
 [analysis]
 # Suppress errors for all `test` modules except `test.foo`
 allowed-unresolved-imports = ["test.**", "!test.foo"]
-
 ```
 
 ______________________________________________________________________
@@ -98,14 +94,12 @@ When multiple patterns match, later entries take precedence.
 [tool.ty.analysis]
 # Replace all pandas and numpy imports with Any
 replace-imports-with-any = ["pandas.**", "numpy.**"]
-
 ```
 
 ```
 [analysis]
 # Replace all pandas and numpy imports with Any
 replace-imports-with-any = ["pandas.**", "numpy.**"]
-
 ```
 
 ______________________________________________________________________
@@ -130,14 +124,12 @@ Defaults to `true`.
 [tool.ty.analysis]
 # Disable support for `type: ignore` comments
 respect-type-ignore-comments = false
-
 ```
 
 ```
 [analysis]
 # Disable support for `type: ignore` comments
 respect-type-ignore-comments = false
-
 ```
 
 ______________________________________________________________________
@@ -165,7 +157,6 @@ True
 ...
 >>> MyEnum.A == "a"
 True
-
 ```
 
 Enabling this option prevents the unsound narrowing of `x` to `Literal["a"]`, and instead keeps it as `str`:
@@ -179,7 +170,6 @@ def parse(value: str) -> Literal["a"] | None:
     if value == "a":
         return value
     return None
-
 ```
 
 Another assumption ty makes by default is that subclasses will never override `__eq__` or `__ne__`. This allows ty to narrow the following union based on an equality check, despite the fact that an instance of a subclass of `Foo` could compare equal to `None`, and it's perfectly valid to pass an instance of a subclass into the `x` parameter of this function:
@@ -190,7 +180,6 @@ def narrow(x: Foo | None, other: Foo) -> None:
         # with this option enabled, `x` will still have type `Foo | None` here,
         # since it is legal to subclass `Foo` and override its `__eq__` method.
         reveal_type(x)
-
 ```
 
 Many operations in Python implicitly call `__eq__` under the hood; enabling this option will also impact those operations. For example, this option will also impact narrowing from `in` checks, and narrowing in `match` statements that use value patterns:
@@ -210,7 +199,6 @@ def narrow_match(x: str) -> None:
             # since this `case` branch will be taken by any object that compares
             # equal to `"a"`, including subclasses of `str`.
             reveal_type(x)
-
 ```
 
 **Default value**: `false`
@@ -223,14 +211,12 @@ def narrow_match(x: str) -> None:
 [tool.ty.analysis]
 # Preserve broad builtin types instead of narrowing them to literals
 strict-equality-semantics = true
-
 ```
 
 ```
 [analysis]
 # Preserve broad builtin types instead of narrowing them to literals
 strict-equality-semantics = true
-
 ```
 
 ______________________________________________________________________
@@ -255,14 +241,12 @@ Defaults to `false`.
 [tool.ty.analysis]
 # Use the top materialization when narrowing to an unspecialized generic class
 strict-generic-narrowing = true
-
 ```
 
 ```
 [analysis]
 # Use the top materialization when narrowing to an unspecialized generic class
 strict-generic-narrowing = true
-
 ```
 
 ______________________________________________________________________
@@ -286,13 +270,11 @@ This option is similar to mypy's `MYPYPATH` environment variable and pyright's `
 ```
 [tool.ty.environment]
 extra-paths = ["./shared/my-search-path"]
-
 ```
 
 ```
 [environment]
 extra-paths = ["./shared/my-search-path"]
-
 ```
 
 ______________________________________________________________________
@@ -322,13 +304,11 @@ Scripts with inline metadata use their own Python environment. They can use an e
 ```
 [tool.ty.environment]
 python = "./custom-venv-location/.venv"
-
 ```
 
 ```
 [environment]
 python = "./custom-venv-location/.venv"
-
 ```
 
 ______________________________________________________________________
@@ -355,14 +335,12 @@ If no platform is specified, ty will use the current platform:
 [tool.ty.environment]
 # Tailor type stubs and conditionalized type definitions to windows.
 python-platform = "win32"
-
 ```
 
 ```
 [environment]
 # Tailor type stubs and conditionalized type definitions to windows.
 python-platform = "win32"
-
 ```
 
 ______________________________________________________________________
@@ -392,13 +370,11 @@ For some language features, ty can also understand conditionals based on compari
 ```
 [tool.ty.environment]
 python-version = "3.12"
-
 ```
 
 ```
 [environment]
 python-version = "3.12"
-
 ```
 
 ______________________________________________________________________
@@ -427,14 +403,12 @@ Scripts with inline metadata have no first-party roots by default because they a
 [tool.ty.environment]
 # Multiple directories (priority order)
 root = ["./src", "./lib", "./vendor"]
-
 ```
 
 ```
 [environment]
 # Multiple directories (priority order)
 root = ["./src", "./lib", "./vendor"]
-
 ```
 
 ______________________________________________________________________
@@ -452,13 +426,11 @@ Optional path to a "typeshed" directory on disk for us to use for standard-libra
 ```
 [tool.ty.environment]
 typeshed = "/path/to/custom/typeshed"
-
 ```
 
 ```
 [environment]
 typeshed = "/path/to/custom/typeshed"
-
 ```
 
 ______________________________________________________________________
@@ -477,7 +449,6 @@ include = ["tests/**", "**/test_*.py"]
 
 [tool.ty.overrides.rules]
 possibly-unresolved-reference = "warn"
-
 ```
 
 Or, to ignore a rule in generated files but retain enforcement in an important file:
@@ -489,7 +460,6 @@ exclude = ["generated/important.py"]
 
 [tool.ty.overrides.rules]
 possibly-unresolved-reference = "ignore"
-
 ```
 
 ### [`exclude`](#exclude)
@@ -514,7 +484,6 @@ exclude = [
     "tests/fixtures/**",
     "!tests/fixtures/important.py"  # Include this one file
 ]
-
 ```
 
 ```
@@ -525,7 +494,6 @@ exclude = [
     "tests/fixtures/**",
     "!tests/fixtures/important.py"  # Include this one file
 ]
-
 ```
 
 ______________________________________________________________________
@@ -550,7 +518,6 @@ include = [
     "src",
     "tests",
 ]
-
 ```
 
 ```
@@ -559,7 +526,6 @@ include = [
     "src",
     "tests",
 ]
-
 ```
 
 ______________________________________________________________________
@@ -582,7 +548,6 @@ include = ["src"]
 
 [tool.ty.overrides.rules]
 possibly-unresolved-reference = "ignore"
-
 ```
 
 ```
@@ -591,7 +556,6 @@ include = ["src"]
 
 [overrides.rules]
 possibly-unresolved-reference = "ignore"
-
 ```
 
 ______________________________________________________________________
@@ -622,14 +586,12 @@ Glob patterns can be used in combinations with each other. For example, to suppr
 [tool.ty.overrides.analysis]
 # Suppress errors for all `test` modules except `test.foo`
 allowed-unresolved-imports = ["test.**", "!test.foo"]
-
 ```
 
 ```
 [overrides.analysis]
 # Suppress errors for all `test` modules except `test.foo`
 allowed-unresolved-imports = ["test.**", "!test.foo"]
-
 ```
 
 ______________________________________________________________________
@@ -658,14 +620,12 @@ When multiple patterns match, later entries take precedence.
 [tool.ty.overrides.analysis]
 # Replace all pandas and numpy imports with Any
 replace-imports-with-any = ["pandas.**", "numpy.**"]
-
 ```
 
 ```
 [overrides.analysis]
 # Replace all pandas and numpy imports with Any
 replace-imports-with-any = ["pandas.**", "numpy.**"]
-
 ```
 
 ______________________________________________________________________
@@ -690,14 +650,12 @@ Defaults to `true`.
 [tool.ty.overrides.analysis]
 # Disable support for `type: ignore` comments
 respect-type-ignore-comments = false
-
 ```
 
 ```
 [overrides.analysis]
 # Disable support for `type: ignore` comments
 respect-type-ignore-comments = false
-
 ```
 
 ______________________________________________________________________
@@ -725,7 +683,6 @@ True
 ...
 >>> MyEnum.A == "a"
 True
-
 ```
 
 Enabling this option prevents the unsound narrowing of `x` to `Literal["a"]`, and instead keeps it as `str`:
@@ -739,7 +696,6 @@ def parse(value: str) -> Literal["a"] | None:
     if value == "a":
         return value
     return None
-
 ```
 
 Another assumption ty makes by default is that subclasses will never override `__eq__` or `__ne__`. This allows ty to narrow the following union based on an equality check, despite the fact that an instance of a subclass of `Foo` could compare equal to `None`, and it's perfectly valid to pass an instance of a subclass into the `x` parameter of this function:
@@ -750,7 +706,6 @@ def narrow(x: Foo | None, other: Foo) -> None:
         # with this option enabled, `x` will still have type `Foo | None` here,
         # since it is legal to subclass `Foo` and override its `__eq__` method.
         reveal_type(x)
-
 ```
 
 Many operations in Python implicitly call `__eq__` under the hood; enabling this option will also impact those operations. For example, this option will also impact narrowing from `in` checks, and narrowing in `match` statements that use value patterns:
@@ -770,7 +725,6 @@ def narrow_match(x: str) -> None:
             # since this `case` branch will be taken by any object that compares
             # equal to `"a"`, including subclasses of `str`.
             reveal_type(x)
-
 ```
 
 **Default value**: `false`
@@ -783,14 +737,12 @@ def narrow_match(x: str) -> None:
 [tool.ty.overrides.analysis]
 # Preserve broad builtin types instead of narrowing them to literals
 strict-equality-semantics = true
-
 ```
 
 ```
 [overrides.analysis]
 # Preserve broad builtin types instead of narrowing them to literals
 strict-equality-semantics = true
-
 ```
 
 ______________________________________________________________________
@@ -815,14 +767,12 @@ Defaults to `false`.
 [tool.ty.overrides.analysis]
 # Use the top materialization when narrowing to an unspecialized generic class
 strict-generic-narrowing = true
-
 ```
 
 ```
 [overrides.analysis]
 # Use the top materialization when narrowing to an unspecialized generic class
 strict-generic-narrowing = true
-
 ```
 
 ______________________________________________________________________
@@ -885,7 +835,6 @@ exclude = [
     "tests/fixtures/**",
     "!tests/fixtures/important.py"  # Include this one file
 ]
-
 ```
 
 ```
@@ -896,7 +845,6 @@ exclude = [
     "tests/fixtures/**",
     "!tests/fixtures/important.py"  # Include this one file
 ]
-
 ```
 
 ______________________________________________________________________
@@ -914,13 +862,11 @@ Whether to exclude files containing PEP 723 inline script metadata unless they a
 ```
 [tool.ty.src]
 exclude-scripts = true
-
 ```
 
 ```
 [src]
 exclude-scripts = true
-
 ```
 
 ______________________________________________________________________
@@ -953,7 +899,6 @@ include = [
     "src",
     "tests",
 ]
-
 ```
 
 ```
@@ -962,7 +907,6 @@ include = [
     "src",
     "tests",
 ]
-
 ```
 
 ______________________________________________________________________
@@ -980,13 +924,11 @@ Whether to automatically exclude files that are ignored by `.ignore`, `.gitignor
 ```
 [tool.ty.src]
 respect-ignore-files = false
-
 ```
 
 ```
 [src]
 respect-ignore-files = false
-
 ```
 
 ______________________________________________________________________
@@ -1009,14 +951,12 @@ Defaults to `true`.
 [tool.ty.terminal]
 # Exit with code 0 if all diagnostics had `warning` severity.
 error-on-warning = false
-
 ```
 
 ```
 [terminal]
 # Exit with code 0 if all diagnostics had `warning` severity.
 error-on-warning = false
-
 ```
 
 ______________________________________________________________________
@@ -1036,13 +976,11 @@ Defaults to `full`.
 ```
 [tool.ty.terminal]
 output-format = "concise"
-
 ```
 
 ```
 [terminal]
 output-format = "concise"
-
 ```
 
 ______________________________________________________________________

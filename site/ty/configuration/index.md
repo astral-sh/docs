@@ -13,7 +13,6 @@ pyproject.toml
 ```
 [tool.ty.rules]
 index-out-of-bounds = "ignore"
-
 ```
 
 Note
@@ -27,7 +26,6 @@ ty.toml
 ```
 [rules]
 index-out-of-bounds = "ignore"
-
 ```
 
 Important

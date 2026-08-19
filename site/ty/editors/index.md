@@ -19,7 +19,6 @@ If you prefer to use ty only for type checking and want to use another language 
   "python.languageServer": "Pylance",
   "ty.disableLanguageServices": true,
 }
-
 ```
 
 ## [Neovim](#neovim)
@@ -38,7 +37,6 @@ vim.lsp.config('ty', {
 
 -- Required: Enable the language server
 vim.lsp.enable('ty')
-
 ```
 
 For Neovim \<0.11, you would use the configuration below instead (note that [you might need to install an older version of nvim-lspconfig](https://github.com/neovim/nvim-lspconfig?tab=readme-ov-file#important-%EF%B8%8F)):
@@ -51,7 +49,6 @@ require('lspconfig').ty.setup({
     }
   }
 })
-
 ```
 
 ## [Zed](#zed)
@@ -74,7 +71,6 @@ You can enable ty and disable basedpyright by adding this to your `settings.json
     }
   }
 }
-
 ```
 
 You can override the `ty` executable Zed uses by setting `lsp.ty.binary`:
@@ -90,7 +86,6 @@ You can override the `ty` executable Zed uses by setting `lsp.ty.binary`:
     }
   }
 }
-
 ```
 
 More information in [Zed's documentation](https://zed.dev/docs/languages/python#configure-python-language-servers-in-zed).
@@ -123,7 +118,6 @@ ty can be utilized as a language server via the built-in [Eglot](https://www.gnu
                '((python-base-mode :language-id "python") . ("ty" "server"))))
 
 (add-hook 'python-base-mode-hook 'eglot-ensure)
-
 ```
 
 If you prefer to view ty's diagnostics through [Flycheck](https://www.flycheck.org/), the [flycheck-eglot](https://github.com/flycheck/flycheck-eglot) package bridges Eglot's diagnostics to Flycheck.
@@ -136,7 +130,6 @@ To start the language server, use the `server` subcommand:
 
 ```
 ty server
-
 ```
 
 Refer to your editor's documentation to learn how to connect to an LSP server.

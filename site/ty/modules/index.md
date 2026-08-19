@@ -15,7 +15,6 @@ example-pkg
 └── app
     └── example_pkg
         └── __init__.py
-
 ```
 
 then set [`environment.root`](../reference/configuration/#root) in your `pyproject.toml` to `["./app"]`:
@@ -23,13 +22,11 @@ then set [`environment.root`](../reference/configuration/#root) in your `pyproje
 ```
 [tool.ty.environment]
 root = ["./app"]
-
 ```
 
 ```
 [environment]
 root = ["./app"]
-
 ```
 
 Note that a `./python` folder is automatically added to the project `root` if it exists, and is not itself a package (i.e. does not contain an `__init__.py` file or an `__init__.pyi` file).

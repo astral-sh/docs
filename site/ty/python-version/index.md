@@ -20,7 +20,6 @@ print(sys.stdlib_module_names)
 if sys.version_info >= (3, 10):
     # ok, because the usage is guarded by a version check:
     print(sys.stdlib_module_names)
-
 ```
 
 By default, the lower bound of the project's [`requires-python`](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#python-requires) field (from the `pyproject.toml`) is used as the target Python version, ensuring that features and symbols only available in newer Python versions are not used.

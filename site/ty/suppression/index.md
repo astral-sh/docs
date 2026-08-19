@@ -12,7 +12,6 @@ To suppress a rule violation inline add a `# ty: ignore[<rule>]` comment at the 
 
 ```
 a = 10 + "test"  # ty: ignore[unsupported-operator]
-
 ```
 
 Rule violations spanning multiple lines can be suppressed by adding the comment at the end of the violation's first or last line:
@@ -33,14 +32,12 @@ sum_three_numbers(
     3,
     2
 )  # ty: ignore[missing-argument]
-
 ```
 
 To suppress multiple violations on a single line, enumerate each rule separated by a comma:
 
 ```
 sum_three_numbers("one", 5)  # ty: ignore[missing-argument, invalid-argument-type]
-
 ```
 
 To suppress specific rules for an entire file, place a `# ty: ignore[<rule>]` comment on its own line before any Python code:
@@ -49,7 +46,6 @@ To suppress specific rules for an entire file, place a `# ty: ignore[<rule>]` co
 # ty: ignore[invalid-argument-type]
 
 sum_three_numbers(3, 2, "1")
-
 ```
 
 Note
@@ -70,7 +66,6 @@ sum_three_numbers("one", 5)  # type: ignore
 
 # Ignore a mypy code and a ty rule in the same comment
 sum_three_numbers("one", 5, 2)  # type: ignore[arg-type, ty:invalid-argument-type]
-
 ```
 
 ## [Multiple suppression comments](#multiple-suppression-comments)
@@ -84,7 +79,6 @@ result = calculate()  # ty: ignore[invalid-argument-type]  # fmt: skip
 
 # or
 result = calculate()  # fmt: off  # ty: ignore[invalid-argument-type]
-
 ```
 
 ## [Unused suppression comments](#unused-suppression-comments)
@@ -106,7 +100,6 @@ def sum_three_numbers(a: int, b: int, c: int) -> int:
 @no_type_check
 def main():
     sum_three_numbers(1, 2)  # no error for the missing argument
-
 ```
 
 Decorating a class with `@no_type_check` isn't supported.

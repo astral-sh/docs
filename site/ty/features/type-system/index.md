@@ -10,7 +10,6 @@ ty allows you to reuse the same symbol with a different type. The following exam
 def split_paths(paths: str) -> list[Path]:
     paths: list[str] = paths.split(":")
     return [Path(p) for p in paths]
-
 ```
 
 (Full example in the [playground](https://play.ty.dev/80a74c95-a43e-4a3d-8c26-f88e879d7dcb))
@@ -30,7 +29,6 @@ def output_as_json(obj: Serializable) -> str:
         })
     else:
         return obj.serialize_json()
-
 ```
 
 (Full example in the [playground](https://play.ty.dev/39241435-5e78-4ce9-817f-ce65be73a6ed))
@@ -47,7 +45,6 @@ def print_content(data: bytes):
             print("*", part.description)
     else:
         print(obj.description)
-
 ```
 
 (Full example in the [playground](https://play.ty.dev/8f98820e-7306-4d69-b572-56d69a92b90f))
@@ -68,7 +65,6 @@ def greet(being: Person | Animal | None):
         print(f"Hello, {being.name}!")
     else:
         print("Hello there!")
-
 ```
 
 (Full example in the [playground](https://play.ty.dev/31f2c718-516a-4a85-80e0-2a4682b818f1))
@@ -89,7 +85,6 @@ if TYPE_CHECKING:
 
 def output_as_json(obj: SerializableVersioned) -> str:
     ...
-
 ```
 
 (Full example in the [playground](https://play.ty.dev/f003e901-0e45-4f45-9759-d6db9d5e5f66))
@@ -106,7 +101,6 @@ def process(items: Item | list[Item]):
     if isinstance(items, list):
         # reveals: list[Item]
         reveal_type(items)
-
 ```
 
 (Full example in the [playground](https://play.ty.dev/d2759832-101c-410d-b721-50805729bc68))
@@ -133,7 +127,6 @@ def to_json(person: Person):
         return person.model_dump_json()  # no error here when checking with 1.x
     else:
         return person.json()
-
 ```
 
 (Full example in the [playground](https://play.ty.dev/34a227bb-93d5-405e-86c3-72f57ec5642e))
