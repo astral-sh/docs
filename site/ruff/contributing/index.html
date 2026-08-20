@@ -1490,7 +1490,7 @@ them manually from the repository root by running these slash commands inside Cl
 <p>Ruff is written in Rust. You'll need to install the
 <a href="https://www.rust-lang.org/tools/install">Rust toolchain</a> for development.</p>
 <p>You'll also need <a href="https://insta.rs/docs/">Insta</a> to update snapshot tests:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>cargo<span class="w"> </span>install<span class="w"> </span>cargo-insta
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>cargo<span class="w"> </span>install<span class="w"> </span>--locked<span class="w"> </span>cargo-insta
 </code></pre></div>
 <p>You'll need <a href="https://docs.astral.sh/uv/getting-started/installation/">uv</a> (or <code>pipx</code> and <code>pip</code>) to
 run Python utility commands.</p>
@@ -1578,11 +1578,11 @@ crates.io as part of Ruff's releases:</p>
     listed under <code>[workspace.dependencies]</code>, specify both its path and matching version.</li>
 </ul>
 <p>For a publishable crate, generate its README and verify that the workspace can still be packaged:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>uv<span class="w"> </span>run<span class="w"> </span>--script<span class="w"> </span>scripts/generate-crate-readmes.py
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>uv<span class="w"> </span>run<span class="w"> </span>scripts/generate-crate-readmes.py
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>cargo<span class="w"> </span>publish<span class="w"> </span>--workspace<span class="w"> </span>--dry-run
 </code></pre></div>
 <p>Before merging a publishable crate, ask a crates.io owner to bootstrap it by running:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nv">CARGO_REGISTRY_TOKEN</span><span class="o">=</span>&lt;token&gt;<span class="w"> </span>uv<span class="w"> </span>run<span class="w"> </span>--no-config<span class="w"> </span>--script<span class="w"> </span>scripts/setup-crates-io-publish.py
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nv">CARGO_REGISTRY_TOKEN</span><span class="o">=</span>&lt;token&gt;<span class="w"> </span>uv<span class="w"> </span>run<span class="w"> </span>--no-config<span class="w"> </span>scripts/setup-crates-io-publish.py
 </code></pre></div>
 <p>The bootstrap script reserves the crate name, configures the release workflow as its trusted
 publisher, requires trusted publishing for future versions, and adds the crate to <code>.known-crates</code>.
@@ -1829,12 +1829,12 @@ you addressed them.</p>
 </li>
 <li>
 <p>Generate the MkDocs site with:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>uv<span class="w"> </span>run<span class="w"> </span>--no-project<span class="w"> </span>--isolated<span class="w"> </span>--with-requirements<span class="w"> </span>docs/requirements.txt<span class="w"> </span>scripts/generate_mkdocs.py
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>uv<span class="w"> </span>run<span class="w"> </span>scripts/generate_mkdocs.py
 </code></pre></div>
 </li>
 <li>
 <p>Run the development server with:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>uvx<span class="w"> </span>--with-requirements<span class="w"> </span>docs/requirements.txt<span class="w"> </span>--<span class="w"> </span>mkdocs<span class="w"> </span>serve<span class="w"> </span>-f<span class="w"> </span>mkdocs.yml
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>uv<span class="w"> </span>run<span class="w"> </span>--only-group<span class="o">=</span>docs<span class="w"> </span>mkdocs<span class="w"> </span>serve<span class="w"> </span>-f<span class="w"> </span>mkdocs.yml
 </code></pre></div>
 </li>
 </ol>
@@ -1937,7 +1937,7 @@ even patch releases may contain <a href="https://semver.org/#spec-item-4">non-ba
 <ol>
 <li>One can determine if an update is needed when
     <code>git diff old-version-tag new-version-tag -- ruff.schema.json</code> returns a non-empty diff.</li>
-<li>Run <code>uv run --only-dev --no-sync scripts/update_schemastore.py --proto &lt;https|ssh&gt;</code></li>
+<li>Run <code>uv run scripts/update_schemastore.py --proto &lt;https|ssh&gt;</code></li>
 <li>Once run successfully, you should follow the link in the output to create a PR.</li>
 </ol>
 </li>
@@ -1981,7 +1981,7 @@ which makes it a good target for benchmarking.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>git<span class="w"> </span>clone<span class="w"> </span>--branch<span class="w"> </span><span class="m">3</span>.10<span class="w"> </span>https://github.com/python/cpython.git<span class="w"> </span>crates/ruff_linter/resources/test/cpython
 </code></pre></div>
 <p>Install <code>hyperfine</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>cargo<span class="w"> </span>install<span class="w"> </span>hyperfine
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>cargo<span class="w"> </span>install<span class="w"> </span>--locked<span class="w"> </span>hyperfine
 </code></pre></div>
 <p>To benchmark the release build:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>cargo<span class="w"> </span>build<span class="w"> </span>--release<span class="w"> </span>--bin<span class="w"> </span>ruff<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>hyperfine<span class="w"> </span>--warmup<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
@@ -2112,7 +2112,7 @@ This is useful to illustrate the improvements of a PR.</p>
 <a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>critcmp<span class="w"> </span>main<span class="w"> </span>pr
 </code></pre></div>
 <p>You must install <a href="https://github.com/BurntSushi/critcmp"><code>critcmp</code></a> for the comparison.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>cargo<span class="w"> </span>install<span class="w"> </span>critcmp
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>cargo<span class="w"> </span>install<span class="w"> </span>--locked<span class="w"> </span>critcmp
 </code></pre></div>
 <h4 id="tips"><a class="toclink" href="#tips">Tips</a></h4>
 <ul>
@@ -2146,7 +2146,7 @@ of checks, to your liking)</p>
 </code></pre></div>
 <h4 id="mac"><a class="toclink" href="#mac">Mac</a></h4>
 <p>Install <a href="https://crates.io/crates/cargo-instruments"><code>cargo-instruments</code></a>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>cargo<span class="w"> </span>install<span class="w"> </span>cargo-instruments
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>cargo<span class="w"> </span>install<span class="w"> </span>--locked<span class="w"> </span>cargo-instruments
 </code></pre></div>
 <p>Then run the profiler with</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>cargo<span class="w"> </span>instruments<span class="w"> </span>-t<span class="w"> </span><span class="nb">time</span><span class="w"> </span>--bench<span class="w"> </span>linter<span class="w"> </span>--profile<span class="w"> </span>profiling<span class="w"> </span>-p<span class="w"> </span>ruff_benchmark<span class="w"> </span>--<span class="w"> </span>--profile-time<span class="o">=</span><span class="m">1</span>
