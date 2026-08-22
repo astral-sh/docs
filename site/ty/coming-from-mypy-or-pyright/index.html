@@ -81,8 +81,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2026-08-18 23:47:45Z",
-        "dateModified": "2026-08-18 23:47:45Z",
+        "datePublished": "2026-08-22 13:49:12Z",
+        "dateModified": "2026-08-22 13:49:12Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -1475,8 +1475,8 @@
 <li>mypy's <code>disable_error_code</code> and pyright's <code>reportXyz = "none"</code> both correspond to setting
     <code>&lt;rule&gt; = "ignore"</code> under <code>[tool.ty.rules]</code>. See <a href="../reference/configuration/#rules">this section</a> for
     details.</li>
-<li>Severities in ty are <code>ignore</code>, <code>warn</code>, <code>error</code>. Pyright's <code>"information"</code> and <code>"hint"</code> levels have
-    no direct ty equivalent — use <code>warn</code> for both.</li>
+<li>Severities in ty are <code>ignore</code>, <code>warn</code>, <code>error</code>. Pyright's <code>"information"</code> level and basedpyright's
+    <code>"hint"</code> level have no direct ty equivalent — use <code>warn</code> for both.</li>
 <li>If you are looking for the equivalent of <code>disallow_untyped_defs</code> / <code>no-untyped-def</code> (mypy) or <code>reportMissingParameterType</code>,
     <code>reportUnknownParameterType</code> (pyright), check out this
     <a href="../reference/typing-faq/#why-doesnt-ty-warn-about-missing-type-annotations">FAQ entry</a>.</li>
@@ -1501,17 +1501,18 @@ they are either very opinionated or have many false positives.</p>
 wouldn't recommend it. Instead, you can currently approximate something similar to the <code>--strict</code>
 mode of other type checkers with the following configuration:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">[tool.ty.rules]</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">missing-type-argument</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;error&quot;</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">possibly-unresolved-reference</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;warn&quot;</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">unsound-return-statement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;error&quot;</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="k">[tool.ruff.lint]</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">extend-select</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;ANN&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;PYI&quot;</span><span class="p">]</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">preview</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">dynamic-function-decorator-return</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;error&quot;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">missing-type-argument</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;error&quot;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">possibly-unresolved-reference</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;warn&quot;</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">unsound-return-statement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;error&quot;</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">[tool.ruff.lint]</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">extend-select</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;ANN&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;PYI&quot;</span><span class="p">]</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="n">preview</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 </code></pre></div>
 <p>This configuration:</p>
 <ul>
-<li>Enables ty's disabled-by-default <a href="https://docs.astral.sh/ty/reference/rules/#missing-type-argument"><code>missing-type-argument</code></a>, <a href="https://docs.astral.sh/ty/reference/rules/#possibly-unresolved-reference"><code>possibly-unresolved-reference</code></a>, and <a href="https://docs.astral.sh/ty/reference/rules/#unsound-return-statement"><code>unsound-return-statement</code></a> rules</li>
+<li>Enables ty's disabled-by-default <a href="https://docs.astral.sh/ty/reference/rules/#dynamic-function-decorator-return"><code>dynamic-function-decorator-return</code></a>, <a href="https://docs.astral.sh/ty/reference/rules/#missing-type-argument"><code>missing-type-argument</code></a>, <a href="https://docs.astral.sh/ty/reference/rules/#possibly-unresolved-reference"><code>possibly-unresolved-reference</code></a>, and <a href="https://docs.astral.sh/ty/reference/rules/#unsound-return-statement"><code>unsound-return-statement</code></a> rules</li>
 <li>Extends Ruff's default rules with the <a href="https://docs.astral.sh/ruff/rules/#flake8-annotations-ann"><code>ANN</code></a> and <a href="https://docs.astral.sh/ruff/rules/#flake8-pyi-pyi"><code>PYI</code></a> rule categories, both of which are focussed on type-annotating your code more effectively</li>
 <li>Enables Ruff's preview mode so that <code>PYI033</code> also checks <code>.py</code> files</li>
 </ul>
@@ -1519,25 +1520,27 @@ mode of other type checkers with the following configuration:</p>
 <code>--strict</code> mode in several respects -- might look like this:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">[tool.ty.rules]</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">blanket-ignore-comment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;error&quot;</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">missing-type-argument</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;error&quot;</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">possibly-unresolved-reference</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;warn&quot;</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">unsound-return-statement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;error&quot;</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">unsound-yield</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;error&quot;</span>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="n">unsupported-dynamic-base</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;warn&quot;</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="c1"># NOTE: the following rules are known to have a significant number of false positives,</span>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="c1"># which is mostly unavoidable. Enable them at your own risk!</span>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="n">division-by-zero</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;warn&quot;</span>
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="n">possibly-missing-attribute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;warn&quot;</span>
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="n">possibly-missing-import</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;warn&quot;</span>
-<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
-<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="k">[tool.ty.analysis]</span>
-<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="n">strict-literal-narrowing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
-<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="n">strict-generic-narrowing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
-<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>
-<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="k">[tool.ruff.lint]</span>
-<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="n">extend-select</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;ANN&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;PYI&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;PGH003&quot;</span><span class="p">]</span>
-<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="n">preview</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">dynamic-function-decorator-return</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;error&quot;</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">missing-type-argument</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;error&quot;</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">possibly-unresolved-reference</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;warn&quot;</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">unsound-assignment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;error&quot;</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="n">unsound-return-statement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;error&quot;</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">unsound-yield</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;error&quot;</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="n">unsupported-dynamic-base</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;warn&quot;</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="c1"># NOTE: the following rules are known to have a significant number of false positives,</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="c1"># which is mostly unavoidable. Enable them at your own risk!</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="n">division-by-zero</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;warn&quot;</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="n">possibly-missing-attribute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;warn&quot;</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="n">possibly-missing-import</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;warn&quot;</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="k">[tool.ty.analysis]</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="n">strict-literal-narrowing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="n">strict-generic-narrowing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="k">[tool.ruff.lint]</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="n">extend-select</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;ANN&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;PYI&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;PGH003&quot;</span><span class="p">]</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="n">preview</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 </code></pre></div>
 <p>Note that several checks in mypy and pyright are not yet implemented in ty. See the rule mapping
 table below for more details.</p>
@@ -1552,7 +1555,8 @@ table below for more details.</p>
     mappings are deliberately broad.</li>
 <li><strong>Pyright diagnostic</strong>: the <code>report*</code> setting in <code>pyrightconfig.json</code> or <code>[tool.pyright]</code>.</li>
 </ul>
-<p>A blank cell means no direct equivalent exists in that checker (the diagnostic is either not
+<p>A diagnostic may appear in multiple rows when it covers distinct cases. A blank cell means no direct
+equivalent exists in that checker (the diagnostic is either not
 emitted, or is folded into a broader category that already appears for another ty rule).</p>
 <h3 id="rules"><a class="toclink" href="#rules">Rules</a></h3>
 <table>
@@ -1565,14 +1569,24 @@ emitted, or is folded into a broader category that already appears for another t
 </thead>
 <tbody>
 <tr>
+<td><a href="../reference/rules/#abstract-and-final-method"><code>abstract-and-final-method</code></a></td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-misc"><code>misc</code></a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="../reference/rules/#abstract-method-in-final-class"><code>abstract-method-in-final-class</code></a></td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-misc"><code>misc</code></a></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportGeneralTypeIssues"><code>reportGeneralTypeIssues</code></a></td>
+</tr>
+<tr>
 <td><a href="../reference/rules/#call-abstract-method"><code>call-abstract-method</code></a></td>
 <td></td>
 <td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportAbstractUsage"><code>reportAbstractUsage</code></a></td>
 </tr>
 <tr>
 <td><a href="../reference/rules/#call-non-callable"><code>call-non-callable</code></a></td>
-<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-operator"><code>operator</code></a></td>
-<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportCallIssue"><code>reportCallIssue</code></a></td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-operator"><code>operator</code></a><br><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-misc"><code>misc</code></a></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportCallIssue"><code>reportCallIssue</code></a><br><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportOptionalCall"><code>reportOptionalCall</code></a></td>
 </tr>
 <tr>
 <td><a href="../reference/rules/#conflicting-declarations"><code>conflicting-declarations</code></a></td>
@@ -1586,6 +1600,11 @@ emitted, or is folded into a broader category that already appears for another t
 </tr>
 <tr>
 <td><a href="../reference/rules/#cyclic-class-definition"><code>cyclic-class-definition</code></a></td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-misc"><code>misc</code></a></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportGeneralTypeIssues"><code>reportGeneralTypeIssues</code></a></td>
+</tr>
+<tr>
+<td><a href="../reference/rules/#dataclass-field-order"><code>dataclass-field-order</code></a></td>
 <td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-misc"><code>misc</code></a></td>
 <td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportGeneralTypeIssues"><code>reportGeneralTypeIssues</code></a></td>
 </tr>
@@ -1605,9 +1624,29 @@ emitted, or is folded into a broader category that already appears for another t
 <td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportGeneralTypeIssues"><code>reportGeneralTypeIssues</code></a></td>
 </tr>
 <tr>
+<td><a href="../reference/rules/#duplicate-kw-only"><code>duplicate-kw-only</code></a></td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-misc"><code>misc</code></a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="../reference/rules/#dynamic-function-decorator-return"><code>dynamic-function-decorator-return</code></a></td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-untyped-decorator"><code>untyped-decorator</code></a></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportUntypedFunctionDecorator"><code>reportUntypedFunctionDecorator</code></a> (<code>Unknown</code> returns only)</td>
+</tr>
+<tr>
 <td><a href="../reference/rules/#empty-body"><code>empty-body</code></a></td>
 <td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-empty-body"><code>empty-body</code></a></td>
-<td></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportReturnType"><code>reportReturnType</code></a> (<code>...</code> bodies are exempt)</td>
+</tr>
+<tr>
+<td><a href="../reference/rules/#final-on-non-method"><code>final-on-non-method</code></a></td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-misc"><code>misc</code></a></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportGeneralTypeIssues"><code>reportGeneralTypeIssues</code></a></td>
+</tr>
+<tr>
+<td><a href="../reference/rules/#final-without-value"><code>final-without-value</code></a></td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-misc"><code>misc</code></a></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportGeneralTypeIssues"><code>reportGeneralTypeIssues</code></a></td>
 </tr>
 <tr>
 <td><a href="../reference/rules/#inconsistent-mro"><code>inconsistent-mro</code></a></td>
@@ -1626,13 +1665,33 @@ emitted, or is folded into a broader category that already appears for another t
 </tr>
 <tr>
 <td><a href="../reference/rules/#invalid-assignment"><code>invalid-assignment</code></a></td>
-<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-assignment"><code>assignment</code></a></td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-assignment"><code>assignment</code></a><br><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-list-item"><code>list-item</code></a><br><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-dict-item"><code>dict-item</code></a></td>
 <td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportAssignmentType"><code>reportAssignmentType</code></a></td>
+</tr>
+<tr>
+<td><a href="../reference/rules/#invalid-assignment"><code>invalid-assignment</code></a> (incompatible method replacements only)</td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-method-assign"><code>method-assign</code></a> (rejects all method assignments)</td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportAttributeAccessIssue"><code>reportAttributeAccessIssue</code></a> (incompatible replacements only)</td>
+</tr>
+<tr>
+<td><a href="../reference/rules/#invalid-assignment"><code>invalid-assignment</code></a> (TypedDict item values)</td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-typeddict-item"><code>typeddict-item</code></a></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportGeneralTypeIssues"><code>reportGeneralTypeIssues</code></a></td>
+</tr>
+<tr>
+<td><a href="../reference/rules/#invalid-assignment"><code>invalid-assignment</code></a> (read-only TypedDict keys)</td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-typeddict-readonly-mutated"><code>typeddict-readonly-mutated</code></a></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportTypedDictNotRequiredAccess"><code>reportTypedDictNotRequiredAccess</code></a> (read-only mutations only)</td>
 </tr>
 <tr>
 <td><a href="../reference/rules/#invalid-attribute-access"><code>invalid-attribute-access</code></a></td>
 <td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-misc"><code>misc</code></a></td>
 <td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportAttributeAccessIssue"><code>reportAttributeAccessIssue</code></a></td>
+</tr>
+<tr>
+<td><a href="../reference/rules/#invalid-attribute-override"><code>invalid-attribute-override</code></a></td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-misc"><code>misc</code></a></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportIncompatibleVariableOverride"><code>reportIncompatibleVariableOverride</code></a> (class/instance variables only)</td>
 </tr>
 <tr>
 <td><a href="../reference/rules/#invalid-await"><code>invalid-await</code></a></td>
@@ -1641,13 +1700,18 @@ emitted, or is folded into a broader category that already appears for another t
 </tr>
 <tr>
 <td><a href="../reference/rules/#invalid-base"><code>invalid-base</code></a></td>
-<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-valid-type"><code>valid-type</code></a></td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-valid-type"><code>valid-type</code></a><br><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-misc"><code>misc</code></a></td>
 <td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportGeneralTypeIssues"><code>reportGeneralTypeIssues</code></a></td>
 </tr>
 <tr>
 <td><a href="../reference/rules/#invalid-context-manager"><code>invalid-context-manager</code></a></td>
-<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-misc"><code>misc</code></a><br><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-attr-defined"><code>attr-defined</code></a></td>
-<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportGeneralTypeIssues"><code>reportGeneralTypeIssues</code></a></td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-misc"><code>misc</code></a><br><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-attr-defined"><code>attr-defined</code></a><br><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-union-attr"><code>union-attr</code></a></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportGeneralTypeIssues"><code>reportGeneralTypeIssues</code></a><br><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportOptionalContextManager"><code>reportOptionalContextManager</code></a></td>
+</tr>
+<tr>
+<td><a href="../reference/rules/#invalid-dataclass"><code>invalid-dataclass</code></a></td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-misc"><code>misc</code></a></td>
+<td></td>
 </tr>
 <tr>
 <td><a href="../reference/rules/#invalid-exception-caught"><code>invalid-exception-caught</code></a></td>
@@ -1655,9 +1719,24 @@ emitted, or is folded into a broader category that already appears for another t
 <td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportGeneralTypeIssues"><code>reportGeneralTypeIssues</code></a></td>
 </tr>
 <tr>
+<td><a href="../reference/rules/#invalid-explicit-override"><code>invalid-explicit-override</code></a></td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-misc"><code>misc</code></a></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportGeneralTypeIssues"><code>reportGeneralTypeIssues</code></a></td>
+</tr>
+<tr>
+<td><a href="../reference/rules/#invalid-frozen-dataclass-subclass"><code>invalid-frozen-dataclass-subclass</code></a></td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-misc"><code>misc</code></a></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportGeneralTypeIssues"><code>reportGeneralTypeIssues</code></a></td>
+</tr>
+<tr>
 <td><a href="../reference/rules/#invalid-key"><code>invalid-key</code></a></td>
 <td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-typeddict-item"><code>typeddict-item</code></a><br><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-typeddict-unknown-key"><code>typeddict-unknown-key</code></a></td>
-<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportAssignmentType"><code>reportAssignmentType</code></a></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportGeneralTypeIssues"><code>reportGeneralTypeIssues</code></a><br><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportAssignmentType"><code>reportAssignmentType</code></a><br><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportCallIssue"><code>reportCallIssue</code></a></td>
+</tr>
+<tr>
+<td><a href="../reference/rules/#invalid-legacy-type-variable"><code>invalid-legacy-type-variable</code></a></td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-misc"><code>misc</code></a><br><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-valid-type"><code>valid-type</code></a></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportGeneralTypeIssues"><code>reportGeneralTypeIssues</code></a><br><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportInvalidTypeForm"><code>reportInvalidTypeForm</code></a></td>
 </tr>
 <tr>
 <td><a href="../reference/rules/#invalid-metaclass"><code>invalid-metaclass</code></a></td>
@@ -1670,14 +1749,29 @@ emitted, or is folded into a broader category that already appears for another t
 <td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportIncompatibleMethodOverride"><code>reportIncompatibleMethodOverride</code></a></td>
 </tr>
 <tr>
+<td><a href="../reference/rules/#invalid-module-getattr-call"><code>invalid-module-getattr-call</code></a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="../reference/rules/#invalid-newtype"><code>invalid-newtype</code></a></td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-valid-newtype"><code>valid-newtype</code></a><br><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-misc"><code>misc</code></a></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportGeneralTypeIssues"><code>reportGeneralTypeIssues</code></a><br><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportArgumentType"><code>reportArgumentType</code></a></td>
+</tr>
+<tr>
 <td><a href="../reference/rules/#invalid-overload"><code>invalid-overload</code></a></td>
-<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-no-overload-impl"><code>no-overload-impl</code></a></td>
-<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportNoOverloadImplementation"><code>reportNoOverloadImplementation</code></a></td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-no-overload-impl"><code>no-overload-impl</code></a><br><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-misc"><code>misc</code></a></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportNoOverloadImplementation"><code>reportNoOverloadImplementation</code></a><br><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportInconsistentOverload"><code>reportInconsistentOverload</code></a></td>
 </tr>
 <tr>
 <td><a href="../reference/rules/#invalid-parameter-default"><code>invalid-parameter-default</code></a></td>
 <td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-assignment"><code>assignment</code></a></td>
 <td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportArgumentType"><code>reportArgumentType</code></a></td>
+</tr>
+<tr>
+<td><a href="../reference/rules/#invalid-protocol"><code>invalid-protocol</code></a></td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-misc"><code>misc</code></a></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportGeneralTypeIssues"><code>reportGeneralTypeIssues</code></a></td>
 </tr>
 <tr>
 <td><a href="../reference/rules/#invalid-raise"><code>invalid-raise</code></a></td>
@@ -1686,7 +1780,7 @@ emitted, or is folded into a broader category that already appears for another t
 </tr>
 <tr>
 <td><a href="../reference/rules/#invalid-return-type"><code>invalid-return-type</code></a></td>
-<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-return-value"><code>return-value</code></a></td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-return"><code>return</code></a><br><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-return-value"><code>return-value</code></a></td>
 <td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportReturnType"><code>reportReturnType</code></a></td>
 </tr>
 <tr>
@@ -1697,7 +1791,52 @@ emitted, or is folded into a broader category that already appears for another t
 <tr>
 <td><a href="../reference/rules/#invalid-type-form"><code>invalid-type-form</code></a></td>
 <td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-valid-type"><code>valid-type</code></a></td>
-<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportInvalidTypeForm"><code>reportInvalidTypeForm</code></a></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportInvalidTypeForm"><code>reportInvalidTypeForm</code></a><br><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportGeneralTypeIssues"><code>reportGeneralTypeIssues</code></a></td>
+</tr>
+<tr>
+<td><a href="../reference/rules/#invalid-type-guard-definition"><code>invalid-type-guard-definition</code></a></td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-narrowed-type-not-subtype"><code>narrowed-type-not-subtype</code></a><br><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-valid-type"><code>valid-type</code></a></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportGeneralTypeIssues"><code>reportGeneralTypeIssues</code></a></td>
+</tr>
+<tr>
+<td><a href="../reference/rules/#invalid-type-variable-bound"><code>invalid-type-variable-bound</code></a></td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-valid-type"><code>valid-type</code></a><br><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-misc"><code>misc</code></a></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportGeneralTypeIssues"><code>reportGeneralTypeIssues</code></a></td>
+</tr>
+<tr>
+<td><a href="../reference/rules/#invalid-type-variable-constraints"><code>invalid-type-variable-constraints</code></a></td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-valid-type"><code>valid-type</code></a><br><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-misc"><code>misc</code></a></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportGeneralTypeIssues"><code>reportGeneralTypeIssues</code></a></td>
+</tr>
+<tr>
+<td><a href="../reference/rules/#invalid-type-variable-default"><code>invalid-type-variable-default</code></a></td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-misc"><code>misc</code></a></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportGeneralTypeIssues"><code>reportGeneralTypeIssues</code></a></td>
+</tr>
+<tr>
+<td><a href="../reference/rules/#invalid-typed-dict-field"><code>invalid-typed-dict-field</code></a></td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-misc"><code>misc</code></a></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportIncompatibleVariableOverride"><code>reportIncompatibleVariableOverride</code></a></td>
+</tr>
+<tr>
+<td><a href="../reference/rules/#invalid-yield"><code>invalid-yield</code></a></td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-misc"><code>misc</code></a></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportReturnType"><code>reportReturnType</code></a></td>
+</tr>
+<tr>
+<td><a href="../reference/rules/#isinstance-against-protocol"><code>isinstance-against-protocol</code></a></td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-misc"><code>misc</code></a></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportArgumentType"><code>reportArgumentType</code></a><br><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportGeneralTypeIssues"><code>reportGeneralTypeIssues</code></a></td>
+</tr>
+<tr>
+<td><a href="../reference/rules/#isinstance-against-typed-dict"><code>isinstance-against-typed-dict</code></a></td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-misc"><code>misc</code></a></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportArgumentType"><code>reportArgumentType</code></a><br><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportGeneralTypeIssues"><code>reportGeneralTypeIssues</code></a></td>
+</tr>
+<tr>
+<td><a href="../reference/rules/#mismatched-type-name"><code>mismatched-type-name</code></a></td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-name-match"><code>name-match</code></a><br><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-misc"><code>misc</code></a></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportGeneralTypeIssues"><code>reportGeneralTypeIssues</code></a></td>
 </tr>
 <tr>
 <td><a href="../reference/rules/#missing-argument"><code>missing-argument</code></a></td>
@@ -1726,17 +1865,32 @@ emitted, or is folded into a broader category that already appears for another t
 </tr>
 <tr>
 <td><a href="../reference/rules/#not-iterable"><code>not-iterable</code></a></td>
-<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-misc"><code>misc</code></a><br><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-attr-defined"><code>attr-defined</code></a></td>
-<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportGeneralTypeIssues"><code>reportGeneralTypeIssues</code></a></td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-misc"><code>misc</code></a><br><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-attr-defined"><code>attr-defined</code></a><br><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-union-attr"><code>union-attr</code></a></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportGeneralTypeIssues"><code>reportGeneralTypeIssues</code></a><br><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportOptionalIterable"><code>reportOptionalIterable</code></a></td>
 </tr>
 <tr>
 <td><a href="../reference/rules/#not-subscriptable"><code>not-subscriptable</code></a></td>
 <td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-index"><code>index</code></a></td>
-<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportIndexIssue"><code>reportIndexIssue</code></a></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportIndexIssue"><code>reportIndexIssue</code></a><br><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportOptionalSubscript"><code>reportOptionalSubscript</code></a></td>
+</tr>
+<tr>
+<td><a href="../reference/rules/#override-of-final-method"><code>override-of-final-method</code></a></td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-misc"><code>misc</code></a></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportIncompatibleMethodOverride"><code>reportIncompatibleMethodOverride</code></a></td>
+</tr>
+<tr>
+<td><a href="../reference/rules/#override-of-final-variable"><code>override-of-final-variable</code></a></td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-misc"><code>misc</code></a></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportGeneralTypeIssues"><code>reportGeneralTypeIssues</code></a></td>
 </tr>
 <tr>
 <td><a href="../reference/rules/#parameter-already-assigned"><code>parameter-already-assigned</code></a></td>
 <td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-misc"><code>misc</code></a><br><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-call-arg"><code>call-arg</code></a></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportCallIssue"><code>reportCallIssue</code></a></td>
+</tr>
+<tr>
+<td><a href="../reference/rules/#positional-only-parameter-as-kwarg"><code>positional-only-parameter-as-kwarg</code></a></td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-call-arg"><code>call-arg</code></a></td>
 <td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportCallIssue"><code>reportCallIssue</code></a></td>
 </tr>
 <tr>
@@ -1755,6 +1909,11 @@ emitted, or is folded into a broader category that already appears for another t
 <td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportUnnecessaryCast"><code>reportUnnecessaryCast</code></a></td>
 </tr>
 <tr>
+<td><a href="../reference/rules/#subclass-of-final-class"><code>subclass-of-final-class</code></a></td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-misc"><code>misc</code></a></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportGeneralTypeIssues"><code>reportGeneralTypeIssues</code></a></td>
+</tr>
+<tr>
 <td><a href="../reference/rules/#too-many-positional-arguments"><code>too-many-positional-arguments</code></a></td>
 <td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-call-arg"><code>call-arg</code></a></td>
 <td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportCallIssue"><code>reportCallIssue</code></a></td>
@@ -1763,6 +1922,11 @@ emitted, or is folded into a broader category that already appears for another t
 <td><a href="../reference/rules/#type-assertion-failure"><code>type-assertion-failure</code></a></td>
 <td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-assert-type"><code>assert-type</code></a></td>
 <td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportAssertTypeFailure"><code>reportAssertTypeFailure</code></a></td>
+</tr>
+<tr>
+<td><a href="../reference/rules/#unbound-type-variable"><code>unbound-type-variable</code></a></td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-valid-type"><code>valid-type</code></a></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportGeneralTypeIssues"><code>reportGeneralTypeIssues</code></a></td>
 </tr>
 <tr>
 <td><a href="../reference/rules/#undefined-reveal"><code>undefined-reveal</code></a></td>
@@ -1777,7 +1941,7 @@ emitted, or is folded into a broader category that already appears for another t
 <tr>
 <td><a href="../reference/rules/#unresolved-attribute"><code>unresolved-attribute</code></a></td>
 <td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-attr-defined"><code>attr-defined</code></a><br><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-union-attr"><code>union-attr</code></a></td>
-<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportAttributeAccessIssue"><code>reportAttributeAccessIssue</code></a><br><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportOptionalMemberAccess"><code>reportOptionalMemberAccess</code></a></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportAttributeAccessIssue"><code>reportAttributeAccessIssue</code></a><br><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportFunctionMemberAccess"><code>reportFunctionMemberAccess</code></a><br><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportOptionalMemberAccess"><code>reportOptionalMemberAccess</code></a></td>
 </tr>
 <tr>
 <td><a href="../reference/rules/#unresolved-import"><code>unresolved-import</code></a></td>
@@ -1785,9 +1949,14 @@ emitted, or is folded into a broader category that already appears for another t
 <td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportMissingImports"><code>reportMissingImports</code></a></td>
 </tr>
 <tr>
-<td><a href="../reference/rules/#unresolved-reference"><code>unresolved-reference</code></a></td>
-<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-name-defined"><code>name-defined</code></a></td>
-<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportUndefinedVariable"><code>reportUndefinedVariable</code></a></td>
+<td><a href="../reference/rules/#unresolved-reference"><code>unresolved-reference</code></a>, <a href="https://docs.astral.sh/ruff/rules/undefined-local/">Ruff <code>F823</code></a></td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-name-defined"><code>name-defined</code></a><br><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-used-before-def"><code>used-before-def</code></a></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportUndefinedVariable"><code>reportUndefinedVariable</code></a><br><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportUnboundVariable"><code>reportUnboundVariable</code></a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/astral-sh/ruff/blob/da575120b8cd7279d77fa0c611ddbabad00552bd/crates/ty_python_semantic/resources/lint_docs/unsound-assignment.md"><code>unsound-assignment</code></a> (variables only)</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><a href="../reference/rules/#unsound-return-statement"><code>unsound-return-statement</code></a></td>
@@ -1802,10 +1971,10 @@ emitted, or is folded into a broader category that already appears for another t
 <tr>
 <td><a href="../reference/rules/#unsupported-operator"><code>unsupported-operator</code></a></td>
 <td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-operator"><code>operator</code></a></td>
-<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportOperatorIssue"><code>reportOperatorIssue</code></a></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportOperatorIssue"><code>reportOperatorIssue</code></a><br><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportOptionalOperand"><code>reportOptionalOperand</code></a></td>
 </tr>
 <tr>
-<td><a href="../reference/rules/#unused-awaitable"><code>unused-awaitable</code></a></td>
+<td><a href="../reference/rules/#unused-awaitable"><code>unused-awaitable</code></a> (native coroutines only)</td>
 <td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-unused-coroutine"><code>unused-coroutine</code></a><br><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-unused-awaitable"><code>unused-awaitable</code></a></td>
 <td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportUnusedCoroutine"><code>reportUnusedCoroutine</code></a></td>
 </tr>
@@ -1815,9 +1984,39 @@ emitted, or is folded into a broader category that already appears for another t
 <td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportUnnecessaryTypeIgnoreComment"><code>reportUnnecessaryTypeIgnoreComment</code></a></td>
 </tr>
 <tr>
+<td><a href="../reference/rules/#unused-type-ignore-comment"><code>unused-type-ignore-comment</code></a></td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-unused-ignore"><code>unused-ignore</code></a></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportUnnecessaryTypeIgnoreComment"><code>reportUnnecessaryTypeIgnoreComment</code></a></td>
+</tr>
+<tr>
 <td><a href="../reference/rules/#blanket-ignore-comment"><code>blanket-ignore-comment</code></a>, <a href="https://docs.astral.sh/ruff/rules/blanket-type-ignore/">Ruff <code>PGH003</code></a></td>
 <td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-ignore-without-code"><code>ignore-without-code</code></a></td>
 <td><a href="https://docs.basedpyright.com/latest/benefits-over-pyright/new-diagnostic-rules/#reportignorecommentwithoutrule"><code>reportIgnoreCommentWithoutRule</code></a> (basedpyright only)</td>
+</tr>
+<tr>
+<td>None yet for instantiating abstract classes</td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-abstract"><code>abstract</code></a></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportAbstractUsage"><code>reportAbstractUsage</code></a></td>
+</tr>
+<tr>
+<td>No direct equivalent planned for passing abstract classes where concrete classes are required</td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-type-abstract"><code>type-abstract</code></a></td>
+<td></td>
+</tr>
+<tr>
+<td>None yet for calling abstract methods through <code>super()</code></td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-safe-super"><code>safe-super</code></a></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportAbstractUsage"><code>reportAbstractUsage</code></a></td>
+</tr>
+<tr>
+<td><a href="https://docs.astral.sh/ruff/rules/assert-tuple/">Ruff <code>F631</code></a></td>
+<td></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportAssertAlwaysTrue"><code>reportAssertAlwaysTrue</code></a></td>
+</tr>
+<tr>
+<td><a href="https://docs.astral.sh/ruff/rules/mutable-argument-default/">Ruff <code>B006</code></a><br><a href="https://docs.astral.sh/ruff/rules/function-call-in-default-argument/">Ruff <code>B008</code></a> (partial coverage; immutable annotations and calls are excluded)</td>
+<td></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportCallInDefaultInitializer"><code>reportCallInDefaultInitializer</code></a></td>
 </tr>
 <tr>
 <td>None yet (tracked in <a href="https://github.com/astral-sh/ruff/issues/10137">Ruff #10137</a>)</td>
@@ -1825,14 +2024,24 @@ emitted, or is folded into a broader category that already appears for another t
 <td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportConstantRedefinition"><code>reportConstantRedefinition</code></a></td>
 </tr>
 <tr>
-<td><a href="https://docs.astral.sh/ruff/rules/redefined-while-unused/">Ruff <code>F811</code></a><br><a href="https://docs.astral.sh/ruff/rules/unsorted-imports/">Ruff <code>I001</code></a></td>
+<td><a href="https://docs.astral.sh/ruff/rules/redefined-while-unused/">Ruff <code>F811</code></a><br><a href="https://docs.astral.sh/ruff/rules/unsorted-imports/">Ruff <code>I001</code></a> (partial coverage; separate import blocks may be missed)</td>
 <td></td>
 <td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportDuplicateImport"><code>reportDuplicateImport</code></a></td>
+</tr>
+<tr>
+<td><a href="https://docs.astral.sh/ruff/rules/single-line-implicit-string-concatenation/">Ruff <code>ISC001</code></a><br><a href="https://docs.astral.sh/ruff/rules/multi-line-implicit-string-concatenation/">Ruff <code>ISC002</code></a></td>
+<td></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportImplicitStringConcatenation"><code>reportImplicitStringConcatenation</code></a></td>
 </tr>
 <tr>
 <td>None yet (tracked in <a href="https://github.com/astral-sh/ty/issues/3647">#3647</a>)</td>
 <td></td>
 <td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportImportCycles"><code>reportImportCycles</code></a></td>
+</tr>
+<tr>
+<td>None yet for mutable attribute types (tracked in <a href="https://github.com/astral-sh/ty/issues/2158">#2158</a>)</td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-mutable-override"><code>mutable-override</code></a></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportIncompatibleVariableOverride"><code>reportIncompatibleVariableOverride</code></a></td>
 </tr>
 <tr>
 <td>None yet</td>
@@ -1881,13 +2090,18 @@ emitted, or is folded into a broader category that already appears for another t
 </tr>
 <tr>
 <td>None yet (tracked in <a href="https://github.com/astral-sh/ty/issues/103">#103</a>)</td>
-<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-overload-overlap"><code>overload-overlap</code></a></td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-overload-cannot-match"><code>overload-cannot-match</code></a><br><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-overload-overlap"><code>overload-overlap</code></a></td>
 <td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportOverlappingOverload"><code>reportOverlappingOverload</code></a></td>
 </tr>
 <tr>
 <td>None yet (tracked in <a href="https://github.com/astral-sh/ty/issues/200">#200</a>)</td>
 <td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-attr-defined"><code>attr-defined</code></a><br>(extended by <a href="https://mypy.readthedocs.io/en/stable/_refs.html#cmdoption-mypy-no-implicit-reexport"><code>--no-implicit-reexport</code></a>)</td>
-<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportPrivateImportUsage"><code>reportPrivateImportUsage</code></a></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportPrivateImportUsage"><code>reportPrivateImportUsage</code></a><br><a href="https://docs.basedpyright.com/latest/benefits-over-pyright/new-diagnostic-rules/#reportprivatelocalimportusage"><code>reportPrivateLocalImportUsage</code></a> (basedpyright only)</td>
+</tr>
+<tr>
+<td><a href="https://docs.astral.sh/ruff/rules/private-member-access/">Ruff <code>SLF001</code></a><br><a href="https://docs.astral.sh/ruff/rules/import-private-name/">Ruff <code>PLC2701</code></a> (partial coverage; <code>PLC2701</code> requires preview)</td>
+<td></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportPrivateUsage"><code>reportPrivateUsage</code></a></td>
 </tr>
 <tr>
 <td>None yet (tracked in <a href="https://github.com/astral-sh/ty/issues/3633">#3633</a>)</td>
@@ -1900,14 +2114,19 @@ emitted, or is folded into a broader category that already appears for another t
 <td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportSelfClsParameterName"><code>reportSelfClsParameterName</code></a></td>
 </tr>
 <tr>
-<td><a href="https://docs.astral.sh/ruff/rules/type-comment-in-stub/">Ruff <code>PYI033</code></a> (preview only)</td>
+<td><a href="https://docs.astral.sh/ruff/rules/legacy-type-comment/">Ruff <code>PYI033</code></a> (<code>.py</code> files require preview)</td>
 <td></td>
 <td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportTypeCommentUsage"><code>reportTypeCommentUsage</code></a></td>
 </tr>
 <tr>
-<td>None yet (tracked in <a href="https://github.com/astral-sh/ty/issues/2810">#2810</a>)</td>
+<td>None yet for accessing non-required keys (tracked in <a href="https://github.com/astral-sh/ty/issues/2810">#2810</a>)</td>
 <td></td>
 <td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportTypedDictNotRequiredAccess"><code>reportTypedDictNotRequiredAccess</code></a></td>
+</tr>
+<tr>
+<td>None yet (tracked in <a href="https://github.com/astral-sh/ty/issues/3781">#3781</a>)</td>
+<td></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportUnhashable"><code>reportUnhashable</code></a></td>
 </tr>
 <tr>
 <td>None yet (tracked in <a href="https://github.com/astral-sh/ty/issues/2954">#2954</a>)</td>
@@ -1915,9 +2134,29 @@ emitted, or is folded into a broader category that already appears for another t
 <td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportUninitializedInstanceVariable"><code>reportUninitializedInstanceVariable</code></a></td>
 </tr>
 <tr>
+<td>None yet</td>
+<td></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportUnknownArgumentType"><code>reportUnknownArgumentType</code></a><br><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportUnknownLambdaType"><code>reportUnknownLambdaType</code></a><br><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportUnknownMemberType"><code>reportUnknownMemberType</code></a></td>
+</tr>
+<tr>
+<td>None yet</td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-var-annotated"><code>var-annotated</code></a></td>
+<td></td>
+</tr>
+<tr>
+<td>None yet</td>
+<td></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportUnknownVariableType"><code>reportUnknownVariableType</code></a></td>
+</tr>
+<tr>
 <td>None yet (tracked in <a href="https://github.com/astral-sh/ty/issues/576">#576</a>)</td>
 <td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-comparison-overlap"><code>comparison-overlap</code></a></td>
 <td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportUnnecessaryComparison"><code>reportUnnecessaryComparison</code></a><br><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportUnnecessaryContains"><code>reportUnnecessaryContains</code></a></td>
+</tr>
+<tr>
+<td>None yet</td>
+<td></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportUnnecessaryIsInstance"><code>reportUnnecessaryIsInstance</code></a></td>
 </tr>
 <tr>
 <td>None yet (tracked in <a href="https://github.com/astral-sh/ty/issues/1948">#1948</a>)</td>
@@ -1930,14 +2169,49 @@ emitted, or is folded into a broader category that already appears for another t
 <td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportUnsupportedDunderAll"><code>reportUnsupportedDunderAll</code></a></td>
 </tr>
 <tr>
+<td>None yet</td>
+<td></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportUntypedBaseClass"><code>reportUntypedBaseClass</code></a><br><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportUntypedClassDecorator"><code>reportUntypedClassDecorator</code></a></td>
+</tr>
+<tr>
 <td><a href="https://docs.astral.sh/ruff/rules/collections-named-tuple/">Ruff <code>PYI024</code></a></td>
 <td></td>
 <td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportUntypedNamedTuple"><code>reportUntypedNamedTuple</code></a></td>
 </tr>
 <tr>
-<td><a href="https://docs.astral.sh/ruff/rules/useless-expression/">Ruff <code>B018</code></a></td>
+<td>None yet</td>
+<td></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportUnusedClass"><code>reportUnusedClass</code></a><br><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportUnusedFunction"><code>reportUnusedFunction</code></a></td>
+</tr>
+<tr>
+<td>None yet</td>
+<td></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportUnusedCallResult"><code>reportUnusedCallResult</code></a></td>
+</tr>
+<tr>
+<td><a href="https://docs.astral.sh/ruff/rules/#flake8-unused-arguments-arg">Ruff <code>ARG</code> rules</a></td>
+<td></td>
+<td><a href="https://docs.basedpyright.com/latest/benefits-over-pyright/new-diagnostic-rules/#reportunusedparameter"><code>reportUnusedParameter</code></a> (basedpyright only)</td>
+</tr>
+<tr>
+<td><a href="https://docs.astral.sh/ruff/rules/duplicate-try-block-exception/">Ruff <code>B025</code></a> (duplicate exception handlers only; other cases tracked in <a href="https://github.com/astral-sh/ty/issues/3701">#3701</a>)</td>
+<td></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportUnusedExcept"><code>reportUnusedExcept</code></a></td>
+</tr>
+<tr>
+<td><a href="https://docs.astral.sh/ruff/rules/useless-comparison/">Ruff <code>B015</code></a><br><a href="https://docs.astral.sh/ruff/rules/useless-expression/">Ruff <code>B018</code></a></td>
 <td></td>
 <td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportUnusedExpression"><code>reportUnusedExpression</code></a></td>
+</tr>
+<tr>
+<td><a href="https://docs.astral.sh/ruff/rules/unused-import/">Ruff <code>F401</code></a></td>
+<td></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportUnusedImport"><code>reportUnusedImport</code></a></td>
+</tr>
+<tr>
+<td><a href="https://docs.astral.sh/ruff/rules/unused-variable/">Ruff <code>F841</code></a> (function-local variables only)</td>
+<td></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportUnusedVariable"><code>reportUnusedVariable</code></a></td>
 </tr>
 <tr>
 <td><a href="https://docs.astral.sh/ruff/rules/undefined-local-with-import-star/">Ruff <code>F403</code></a></td>
@@ -1945,19 +2219,39 @@ emitted, or is folded into a broader category that already appears for another t
 <td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportWildcardImportFromLibrary"><code>reportWildcardImportFromLibrary</code></a></td>
 </tr>
 <tr>
+<td><a href="https://docs.astral.sh/ruff/rules/any-type/">Ruff <code>ANN401</code></a> (function annotations only)</td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-explicit-any"><code>explicit-any</code></a></td>
+<td><a href="https://docs.basedpyright.com/latest/benefits-over-pyright/new-diagnostic-rules/#reportexplicitany"><code>reportExplicitAny</code></a> (basedpyright only)</td>
+</tr>
+<tr>
+<td>None yet</td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-func-returns-value"><code>func-returns-value</code></a></td>
+<td></td>
+</tr>
+<tr>
+<td>None yet</td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-no-any-unimported"><code>no-any-unimported</code></a></td>
+<td></td>
+</tr>
+<tr>
 <td>None yet</td>
 <td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-no-untyped-call"><code>no-untyped-call</code></a></td>
+<td></td>
+</tr>
+<tr>
+<td>None yet</td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-truthy-function"><code>truthy-function</code></a></td>
+<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportUnnecessaryComparison"><code>reportUnnecessaryComparison</code></a></td>
+</tr>
+<tr>
+<td>None yet</td>
+<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-truthy-iterable"><code>truthy-iterable</code></a></td>
 <td></td>
 </tr>
 <tr>
 <td><a href="https://docs.astral.sh/ruff/rules/#flake8-annotations-ann">Ruff <code>ANN</code> rules</a></td>
 <td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-no-untyped-def"><code>no-untyped-def</code></a></td>
 <td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportMissingParameterType"><code>reportMissingParameterType</code></a><br><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportUnknownParameterType"><code>reportUnknownParameterType</code></a></td>
-</tr>
-<tr>
-<td>None yet</td>
-<td><a href="https://mypy.readthedocs.io/en/stable/_refs.html#code-untyped-decorator"><code>untyped-decorator</code></a></td>
-<td><a href="https://github.com/microsoft/pyright/blob/main/docs/configuration.md#reportUntypedFunctionDecorator"><code>reportUntypedFunctionDecorator</code></a></td>
 </tr>
 </tbody>
 </table>
@@ -1985,7 +2279,7 @@ emitted, or is folded into a broader category that already appears for another t
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 18, 2026 23:47:45 UTC">August 18, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 22, 2026 13:49:12 UTC">August 22, 2026</span>
   </span>
 
     
