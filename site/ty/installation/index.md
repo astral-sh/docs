@@ -67,7 +67,7 @@ $ wget -qO- https://astral.sh/ty/install.sh | sh
 Request a specific version by including it in the URL:
 
 ```
-$ curl -LsSf https://astral.sh/ty/0.0.73/install.sh | sh
+$ curl -LsSf https://astral.sh/ty/0.0.74/install.sh | sh
 ```
 
 Use `irm` to download the script and execute it with `iex`:
@@ -81,7 +81,7 @@ Changing the [execution policy](https://learn.microsoft.com/en-us/powershell/mod
 Request a specific version by including it in the URL:
 
 ```
-PS> powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/ty/0.0.73/install.ps1 | iex"
+PS> powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/ty/0.0.74/install.ps1 | iex"
 ```
 
 Tip
@@ -153,7 +153,7 @@ COPY --from=ghcr.io/astral-sh/ty:latest /ty /bin/
 The following tags are available:
 
 - `ghcr.io/astral-sh/ty:latest`
-- `ghcr.io/astral-sh/ty:{major}.{minor}.{patch}`, e.g., `ghcr.io/astral-sh/ty:0.0.73`
+- `ghcr.io/astral-sh/ty:{major}.{minor}.{patch}`, e.g., `ghcr.io/astral-sh/ty:0.0.74`
 - `ghcr.io/astral-sh/ty:{major}.{minor}`, e.g., `ghcr.io/astral-sh/ty:0.0` (the latest patch version)
 
 ### [Using ty with Bazel](#using-ty-with-bazel)
