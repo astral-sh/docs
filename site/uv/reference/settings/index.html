@@ -8106,8 +8106,9 @@ pre-built wheels to extract package metadata, if available.</p>
 <h3 id="no-build"><a class="toclink" href="#no-build"><a href="#no-build"><code>no-build</code></a></a></h3>
 <p>Don't build source distributions.</p>
 <p>When enabled, uv will reuse cached wheels from previously built source distributions, but
-operations that require building a source distribution will exit with an error. uv may
-still build editable requirements, and their build backends may run arbitrary Python code.</p>
+operations that require building a source distribution will exit with an error. First-party
+packages, such as projects in the workspace, will still be built. uv will also still build
+editable requirements, and their build backends may run arbitrary Python code.</p>
 <p><strong>Default value</strong>: <code>false</code></p>
 <p><strong>Type</strong>: <code>bool</code></p>
 <p><strong>Example usage</strong>:</p>
@@ -8169,6 +8170,7 @@ are already installed.</p>
 <hr />
 <h3 id="no-build-package"><a class="toclink" href="#no-build-package"><a href="#no-build-package"><code>no-build-package</code></a></a></h3>
 <p>Don't build source distributions for a specific package.</p>
+<p>First-party packages, such as projects in the workspace, will still be built.</p>
 <p><strong>Default value</strong>: <code>[]</code></p>
 <p><strong>Type</strong>: <code>list[str]</code></p>
 <p><strong>Example usage</strong>:</p>

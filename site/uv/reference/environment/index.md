@@ -380,7 +380,7 @@ Equivalent to the `--no-binary-package` command line argument. If set, uv will n
 
 added in `0.1.40`
 
-Equivalent to the `--no-build` command-line argument. If set, uv will not build source distributions.
+Equivalent to the `--no-build` command-line argument. If set, uv will not build source distributions. First-party packages, such as projects in the workspace, will still be built.
 
 ### [`UV_NO_BUILD_ISOLATION`](#uv_no_build_isolation)
 
@@ -392,7 +392,7 @@ Equivalent to the `--no-build-isolation` command-line argument. If set, uv will 
 
 added in `0.6.5`
 
-Equivalent to the `--no-build-package` command line argument. If set, uv will not build source distributions for the given space-delimited list of packages.
+Equivalent to the `--no-build-package` command line argument. If set, uv will not build source distributions for the given space-delimited list of packages. First-party packages, such as projects in the workspace, will still be built.
 
 ### [`UV_NO_CACHE`](#uv_no_cache)
 
