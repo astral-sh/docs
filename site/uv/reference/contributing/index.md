@@ -123,7 +123,7 @@ cargo run -- pip install requests
 cargo fmt --all
 
 # Python
-uvx ruff format .
+uv run --only-group=check ruff format .
 
 # Markdown, YAML, and other files (requires Node.js)
 npx prettier@3.9.0 --write .
@@ -133,23 +133,29 @@ docker run --rm -v .:/src/ -w /src/ node:alpine npx prettier@3.9.0 --write .
 
 ## [Linting](#linting)
 
-Linting requires [shellcheck](https://github.com/koalaman/shellcheck) and [cargo-shear](https://github.com/Boshen/cargo-shear) to be installed separately.
+Linting requires [shellcheck](https://github.com/koalaman/shellcheck) and [cargo-shear](https://github.com/Boshen/cargo-shear) to be installed separately. Validating `pyproject.toml` against the checked-in uv schema also requires [jq](https://jqlang.org/).
 
 ```
 # Rust
 cargo clippy --workspace --all-targets --all-features --locked -- -D warnings
 
 # Python
-uvx ruff check .
+uv run --only-group=check ruff check .
 
 # Python type checking
-uvx ty check python/uv
+uv run --only-group=check ty check python/uv
+
+# Python project metadata and uv schema
+./scripts/validate-pyproject.sh
+
+# Generated files
+cargo dev generate-all --mode dry-run
 
 # Shell scripts
 shellcheck <script>
 
 # Spell checking
-uvx typos
+uv run --only-group=check typos
 
 # Unused Rust dependencies
 cargo shear
@@ -161,7 +167,7 @@ To run clippy for a Windows target from Linux or macOS, you can use [cargo-xwin]
 
 ```
 # Install cargo-xwin
-cargo install cargo-xwin --locked
+cargo install --locked cargo-xwin@0.21.4
 
 # Add the Windows target
 rustup target add x86_64-pc-windows-msvc

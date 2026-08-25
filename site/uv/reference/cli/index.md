@@ -1057,7 +1057,7 @@ May also be set with the `UV_NO_BINARY` environment variable.
 [`--no-build`](#uv-run--no-build) : Don't build source distributions.
 
 ```
-When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.
+When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. First-party packages, such as projects in the workspace, will still be built. uv will also still build editable requirements, and their build backends may run arbitrary Python code.
 
 May also be set with the `UV_NO_BUILD` environment variable.
 ```
@@ -1077,6 +1077,10 @@ Assumes that the packages' build dependencies specified by PEP 518 are already i
 ```
 
 [`--no-build-package`](#uv-run--no-build-package) *no-build-package* : Don't build source distributions for a specific package \[env: `UV_NO_BUILD_PACKAGE`=\]
+
+```
+First-party packages, such as projects in the workspace, will still be built.
+```
 
 [`--no-cache`](#uv-run--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
@@ -1991,7 +1995,7 @@ May also be set with the `UV_NO_BINARY` environment variable.
 [`--no-build`](#uv-add--no-build) : Don't build source distributions.
 
 ```
-When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.
+When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. First-party packages, such as projects in the workspace, will still be built. uv will also still build editable requirements, and their build backends may run arbitrary Python code.
 
 May also be set with the `UV_NO_BUILD` environment variable.
 ```
@@ -2011,6 +2015,10 @@ Assumes that the packages' build dependencies specified by PEP 518 are already i
 ```
 
 [`--no-build-package`](#uv-add--no-build-package) *no-build-package* : Don't build source distributions for a specific package \[env: `UV_NO_BUILD_PACKAGE`=\]
+
+```
+First-party packages, such as projects in the workspace, will still be built.
+```
 
 [`--no-cache`](#uv-add--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
@@ -2512,7 +2520,7 @@ May also be set with the `UV_NO_BINARY` environment variable.
 [`--no-build`](#uv-remove--no-build) : Don't build source distributions.
 
 ```
-When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.
+When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. First-party packages, such as projects in the workspace, will still be built. uv will also still build editable requirements, and their build backends may run arbitrary Python code.
 
 May also be set with the `UV_NO_BUILD` environment variable.
 ```
@@ -2532,6 +2540,10 @@ Assumes that the packages' build dependencies specified by PEP 518 are already i
 ```
 
 [`--no-build-package`](#uv-remove--no-build-package) *no-build-package* : Don't build source distributions for a specific package \[env: `UV_NO_BUILD_PACKAGE`=\]
+
+```
+First-party packages, such as projects in the workspace, will still be built.
+```
 
 [`--no-cache`](#uv-remove--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
@@ -2973,7 +2985,7 @@ May also be set with the `UV_NO_BINARY` environment variable.
 [`--no-build`](#uv-version--no-build) : Don't build source distributions.
 
 ```
-When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.
+When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. First-party packages, such as projects in the workspace, will still be built. uv will also still build editable requirements, and their build backends may run arbitrary Python code.
 
 May also be set with the `UV_NO_BUILD` environment variable.
 ```
@@ -2993,6 +3005,10 @@ Assumes that the packages' build dependencies specified by PEP 518 are already i
 ```
 
 [`--no-build-package`](#uv-version--no-build-package) *no-build-package* : Don't build source distributions for a specific package \[env: `UV_NO_BUILD_PACKAGE`=\]
+
+```
+First-party packages, such as projects in the workspace, will still be built.
+```
 
 [`--no-cache`](#uv-version--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
@@ -3481,7 +3497,7 @@ May also be set with the `UV_NO_BINARY` environment variable.
 [`--no-build`](#uv-sync--no-build) : Don't build source distributions.
 
 ```
-When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.
+When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. First-party packages, such as projects in the workspace, will still be built. uv will also still build editable requirements, and their build backends may run arbitrary Python code.
 
 May also be set with the `UV_NO_BUILD` environment variable.
 ```
@@ -3501,6 +3517,10 @@ Assumes that the packages' build dependencies specified by PEP 518 are already i
 ```
 
 [`--no-build-package`](#uv-sync--no-build-package) *no-build-package* : Don't build source distributions for a specific package \[env: `UV_NO_BUILD_PACKAGE`=\]
+
+```
+First-party packages, such as projects in the workspace, will still be built.
+```
 
 [`--no-cache`](#uv-sync--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
@@ -4073,7 +4093,7 @@ May also be set with the `UV_NO_BINARY` environment variable.
 [`--no-build`](#uv-lock--no-build) : Don't build source distributions.
 
 ```
-When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.
+When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. First-party packages, such as projects in the workspace, will still be built. uv will also still build editable requirements, and their build backends may run arbitrary Python code.
 
 May also be set with the `UV_NO_BUILD` environment variable.
 ```
@@ -4093,6 +4113,10 @@ Assumes that the packages' build dependencies specified by PEP 518 are already i
 ```
 
 [`--no-build-package`](#uv-lock--no-build-package) *no-build-package* : Don't build source distributions for a specific package \[env: `UV_NO_BUILD_PACKAGE`=\]
+
+```
+First-party packages, such as projects in the workspace, will still be built.
+```
 
 [`--no-cache`](#uv-lock--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
@@ -4540,7 +4564,7 @@ May also be set with the `UV_NO_BINARY` environment variable.
 [`--no-build`](#uv-export--no-build) : Don't build source distributions.
 
 ```
-When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.
+When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. First-party packages, such as projects in the workspace, will still be built. uv will also still build editable requirements, and their build backends may run arbitrary Python code.
 
 May also be set with the `UV_NO_BUILD` environment variable.
 ```
@@ -4560,6 +4584,10 @@ Assumes that the packages' build dependencies specified by PEP 518 are already i
 ```
 
 [`--no-build-package`](#uv-export--no-build-package) *no-build-package* : Don't build source distributions for a specific package \[env: `UV_NO_BUILD_PACKAGE`=\]
+
+```
+First-party packages, such as projects in the workspace, will still be built.
+```
 
 [`--no-cache`](#uv-export--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
@@ -5082,7 +5110,7 @@ May also be set with the `UV_NO_BINARY` environment variable.
 [`--no-build`](#uv-tree--no-build) : Don't build source distributions.
 
 ```
-When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.
+When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. First-party packages, such as projects in the workspace, will still be built. uv will also still build editable requirements, and their build backends may run arbitrary Python code.
 
 May also be set with the `UV_NO_BUILD` environment variable.
 ```
@@ -5102,6 +5130,10 @@ Assumes that the packages' build dependencies specified by PEP 518 are already i
 ```
 
 [`--no-build-package`](#uv-tree--no-build-package) *no-build-package* : Don't build source distributions for a specific package \[env: `UV_NO_BUILD_PACKAGE`=\]
+
+```
+First-party packages, such as projects in the workspace, will still be built.
+```
 
 [`--no-cache`](#uv-tree--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
@@ -5856,7 +5888,7 @@ May also be set with the `UV_NO_BINARY` environment variable.
 [`--no-build`](#uv-check--no-build) : Don't build source distributions.
 
 ```
-When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.
+When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. First-party packages, such as projects in the workspace, will still be built. uv will also still build editable requirements, and their build backends may run arbitrary Python code.
 
 May also be set with the `UV_NO_BUILD` environment variable.
 ```
@@ -5876,6 +5908,10 @@ Assumes that the packages' build dependencies specified by PEP 518 are already i
 ```
 
 [`--no-build-package`](#uv-check--no-build-package) *no-build-package* : Don't build source distributions for a specific package \[env: `UV_NO_BUILD_PACKAGE`=\]
+
+```
+First-party packages, such as projects in the workspace, will still be built.
+```
 
 [`--no-cache`](#uv-check--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
@@ -6363,7 +6399,7 @@ May also be set with the `UV_NO_BINARY` environment variable.
 [`--no-build`](#uv-audit--no-build) : Don't build source distributions.
 
 ```
-When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.
+When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. First-party packages, such as projects in the workspace, will still be built. uv will also still build editable requirements, and their build backends may run arbitrary Python code.
 
 May also be set with the `UV_NO_BUILD` environment variable.
 ```
@@ -6383,6 +6419,10 @@ Assumes that the packages' build dependencies specified by PEP 518 are already i
 ```
 
 [`--no-build-package`](#uv-audit--no-build-package) *no-build-package* : Don't build source distributions for a specific package \[env: `UV_NO_BUILD_PACKAGE`=\]
+
+```
+First-party packages, such as projects in the workspace, will still be built.
+```
 
 [`--no-cache`](#uv-audit--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
@@ -6971,7 +7011,7 @@ May also be set with the `UV_NO_BINARY` environment variable.
 [`--no-build`](#uv-tool-run--no-build) : Don't build source distributions.
 
 ```
-When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.
+When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. First-party packages, such as projects in the workspace, will still be built. uv will also still build editable requirements, and their build backends may run arbitrary Python code.
 
 May also be set with the `UV_NO_BUILD` environment variable.
 ```
@@ -6991,6 +7031,10 @@ Assumes that the packages' build dependencies specified by PEP 518 are already i
 ```
 
 [`--no-build-package`](#uv-tool-run--no-build-package) *no-build-package* : Don't build source distributions for a specific package \[env: `UV_NO_BUILD_PACKAGE`=\]
+
+```
+First-party packages, such as projects in the workspace, will still be built.
+```
 
 [`--no-cache`](#uv-tool-run--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
@@ -7570,7 +7614,7 @@ May also be set with the `UV_NO_BINARY` environment variable.
 [`--no-build`](#uv-tool-install--no-build) : Don't build source distributions.
 
 ```
-When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.
+When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. First-party packages, such as projects in the workspace, will still be built. uv will also still build editable requirements, and their build backends may run arbitrary Python code.
 
 May also be set with the `UV_NO_BUILD` environment variable.
 ```
@@ -7590,6 +7634,10 @@ Assumes that the packages' build dependencies specified by PEP 518 are already i
 ```
 
 [`--no-build-package`](#uv-tool-install--no-build-package) *no-build-package* : Don't build source distributions for a specific package \[env: `UV_NO_BUILD_PACKAGE`=\]
+
+```
+First-party packages, such as projects in the workspace, will still be built.
+```
 
 [`--no-cache`](#uv-tool-install--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
@@ -8131,7 +8179,7 @@ May also be set with the `UV_NO_BINARY` environment variable.
 [`--no-build`](#uv-tool-upgrade--no-build) : Don't build source distributions.
 
 ```
-When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.
+When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. First-party packages, such as projects in the workspace, will still be built. uv will also still build editable requirements, and their build backends may run arbitrary Python code.
 
 May also be set with the `UV_NO_BUILD` environment variable.
 ```
@@ -8151,6 +8199,10 @@ Assumes that the packages' build dependencies specified by PEP 518 are already i
 ```
 
 [`--no-build-package`](#uv-tool-upgrade--no-build-package) *no-build-package* : Don't build source distributions for a specific package \[env: `UV_NO_BUILD_PACKAGE`=\]
+
+```
+First-party packages, such as projects in the workspace, will still be built.
+```
 
 [`--no-cache`](#uv-tool-upgrade--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
@@ -14775,7 +14827,7 @@ May also be set with the `UV_NO_BINARY` environment variable.
 [`--no-build`](#uv-build--no-build) : Don't build source distributions.
 
 ```
-When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.
+When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. First-party packages, such as projects in the workspace, will still be built. uv will also still build editable requirements, and their build backends may run arbitrary Python code.
 
 May also be set with the `UV_NO_BUILD` environment variable.
 ```
@@ -14797,6 +14849,10 @@ Assumes that the packages' build dependencies specified by PEP 518 are already i
 [`--no-build-logs`](#uv-build--no-build-logs) : Hide logs from the build backend
 
 [`--no-build-package`](#uv-build--no-build-package) *no-build-package* : Don't build source distributions for a specific package \[env: `UV_NO_BUILD_PACKAGE`=\]
+
+```
+First-party packages, such as projects in the workspace, will still be built.
+```
 
 [`--no-cache`](#uv-build--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
@@ -15353,6 +15409,12 @@ May also be set with the `UV_WORKING_DIR` environment variable.
 In dry-run mode, uv will resolve the project's dependencies and report on the resulting changes, but will not write the lockfile to disk.
 ```
 
+[`--exact`](#uv-workspace-metadata--exact) : Perform an exact sync, removing extraneous packages.
+
+```
+By default, synchronization preserves packages that are not part of the selected resolution. When enabled, uv removes those packages from the environment.
+```
+
 [`--exclude-newer`](#uv-workspace-metadata--exclude-newer) *exclude-newer* : Limit candidate packages to those that were uploaded prior to the given date.
 
 ```
@@ -15513,7 +15575,7 @@ May also be set with the `UV_NO_BINARY` environment variable.
 [`--no-build`](#uv-workspace-metadata--no-build) : Don't build source distributions.
 
 ```
-When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.
+When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution will exit with an error. First-party packages, such as projects in the workspace, will still be built. uv will also still build editable requirements, and their build backends may run arbitrary Python code.
 
 May also be set with the `UV_NO_BUILD` environment variable.
 ```
@@ -15533,6 +15595,10 @@ Assumes that the packages' build dependencies specified by PEP 518 are already i
 ```
 
 [`--no-build-package`](#uv-workspace-metadata--no-build-package) *no-build-package* : Don't build source distributions for a specific package \[env: `UV_NO_BUILD_PACKAGE`=\]
+
+```
+First-party packages, such as projects in the workspace, will still be built.
+```
 
 [`--no-cache`](#uv-workspace-metadata--no-cache), `--no-cache-dir`, `-n` : Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation
 
@@ -15663,7 +15729,7 @@ If provided, uv will resolve the dependencies based on the script's inline metad
 [`--sync`](#uv-workspace-metadata--sync) : Sync the environment to include module ownership metadata in the output.
 
 ```
-This adds a mapping from importable module names to references to the package nodes that provide them. To do this, the venv will be synced in inexact mode.
+This adds a mapping from importable module names to references to the package nodes that provide them. By default, the environment is synced in inexact mode.
 ```
 
 [`--system-certs`](#uv-workspace-metadata--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]

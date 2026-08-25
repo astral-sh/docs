@@ -4079,7 +4079,7 @@ execute properly.</p>
 <a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>cargo<span class="w"> </span>fmt<span class="w"> </span>--all
 <a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
 <a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="c1"># Python</span>
-<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>uvx<span class="w"> </span>ruff<span class="w"> </span>format<span class="w"> </span>.
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>uv<span class="w"> </span>run<span class="w"> </span>--only-group<span class="o">=</span>check<span class="w"> </span>ruff<span class="w"> </span>format<span class="w"> </span>.
 <a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>
 <a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="c1"># Markdown, YAML, and other files (requires Node.js)</span>
 <a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>npx<span class="w"> </span>prettier@3.9.0<span class="w"> </span>--write<span class="w"> </span>.
@@ -4088,30 +4088,37 @@ execute properly.</p>
 </code></pre></div>
 <h2 id="linting"><a class="toclink" href="#linting">Linting</a></h2>
 <p>Linting requires <a href="https://github.com/koalaman/shellcheck">shellcheck</a> and
-<a href="https://github.com/Boshen/cargo-shear">cargo-shear</a> to be installed separately.</p>
+<a href="https://github.com/Boshen/cargo-shear">cargo-shear</a> to be installed separately. Validating
+<code>pyproject.toml</code> against the checked-in uv schema also requires <a href="https://jqlang.org/">jq</a>.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># Rust</span>
 <a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>cargo<span class="w"> </span>clippy<span class="w"> </span>--workspace<span class="w"> </span>--all-targets<span class="w"> </span>--all-features<span class="w"> </span>--locked<span class="w"> </span>--<span class="w"> </span>-D<span class="w"> </span>warnings
 <a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
 <a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="c1"># Python</span>
-<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>uvx<span class="w"> </span>ruff<span class="w"> </span>check<span class="w"> </span>.
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>uv<span class="w"> </span>run<span class="w"> </span>--only-group<span class="o">=</span>check<span class="w"> </span>ruff<span class="w"> </span>check<span class="w"> </span>.
 <a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>
 <a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="c1"># Python type checking</span>
-<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>uvx<span class="w"> </span>ty<span class="w"> </span>check<span class="w"> </span>python/uv
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>uv<span class="w"> </span>run<span class="w"> </span>--only-group<span class="o">=</span>check<span class="w"> </span>ty<span class="w"> </span>check<span class="w"> </span>python/uv
 <a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>
-<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="c1"># Shell scripts</span>
-<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>shellcheck<span class="w"> </span>&lt;script&gt;
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="c1"># Python project metadata and uv schema</span>
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>./scripts/validate-pyproject.sh
 <a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>
-<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a><span class="c1"># Spell checking</span>
-<a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>uvx<span class="w"> </span>typos
+<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a><span class="c1"># Generated files</span>
+<a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>cargo<span class="w"> </span>dev<span class="w"> </span>generate-all<span class="w"> </span>--mode<span class="w"> </span>dry-run
 <a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a>
-<a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a><span class="c1"># Unused Rust dependencies</span>
-<a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a>cargo<span class="w"> </span>shear
+<a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a><span class="c1"># Shell scripts</span>
+<a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a>shellcheck<span class="w"> </span>&lt;script&gt;
+<a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a>
+<a id="__codelineno-12-19" name="__codelineno-12-19" href="#__codelineno-12-19"></a><span class="c1"># Spell checking</span>
+<a id="__codelineno-12-20" name="__codelineno-12-20" href="#__codelineno-12-20"></a>uv<span class="w"> </span>run<span class="w"> </span>--only-group<span class="o">=</span>check<span class="w"> </span>typos
+<a id="__codelineno-12-21" name="__codelineno-12-21" href="#__codelineno-12-21"></a>
+<a id="__codelineno-12-22" name="__codelineno-12-22" href="#__codelineno-12-22"></a><span class="c1"># Unused Rust dependencies</span>
+<a id="__codelineno-12-23" name="__codelineno-12-23" href="#__codelineno-12-23"></a>cargo<span class="w"> </span>shear
 </code></pre></div>
 <h3 id="compiling-for-windows-from-unix"><a class="toclink" href="#compiling-for-windows-from-unix">Compiling for Windows from Unix</a></h3>
 <p>To run clippy for a Windows target from Linux or macOS, you can use
 <a href="https://github.com/rust-cross/cargo-xwin">cargo-xwin</a>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># Install cargo-xwin</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>cargo<span class="w"> </span>install<span class="w"> </span>cargo-xwin<span class="w"> </span>--locked
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>cargo<span class="w"> </span>install<span class="w"> </span>--locked<span class="w"> </span>cargo-xwin@0.21.4
 <a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>
 <a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="c1"># Add the Windows target</span>
 <a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>rustup<span class="w"> </span>target<span class="w"> </span>add<span class="w"> </span>x86_64-pc-windows-msvc
