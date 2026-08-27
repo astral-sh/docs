@@ -580,12 +580,8 @@ Credentials are only stored in this directory when the plaintext backend is used
 ### Usage
 
 ```
-uv auth dir [OPTIONS] [SERVICE]
+uv auth dir [OPTIONS]
 ```
-
-### Arguments
-
-[`SERVICE`](#uv-auth-dir--service) : The domain or URL of the service to lookup
 
 ### Options
 
@@ -15087,7 +15083,7 @@ This option allows retrying publishing that failed after only some, but not all 
 
 Before uploading, the index is checked. If the exact same file already exists in the index, the file will not be uploaded. If an error occurred during the upload, the index is checked again, to handle cases where the identical file was uploaded twice in parallel.
 
-The exact behavior will vary based on the index. When uploading to PyPI, uploading the same file succeeds even without `--check-url`, while most other indexes error. When uploading to pyx, the index URL can be inferred automatically from the publish URL.
+The exact behavior will vary based on the index. When uploading to PyPI, uploading the same file succeeds even without `--check-url`, while most other indexes error.
 
 The index must provide one of the supported hashes (SHA-256, SHA-384, or SHA-512).
 
@@ -15127,7 +15123,7 @@ May also be set with the `UV_WORKING_DIR` environment variable.
 [`--dry-run`](#uv-publish--dry-run) : Perform a dry run without uploading files.
 
 ```
-When enabled, the command will check for existing files if `--check-url` is provided, and will perform validation against the index if supported, but will not upload any files.
+The command checks the distribution metadata locally, and checks for existing files if `--check-url` or `--index` is provided, but will not upload any files.
 ```
 
 [`--help`](#uv-publish--help), `-h` : Display the concise help for this command

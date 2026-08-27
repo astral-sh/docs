@@ -5228,13 +5228,8 @@
 <p>Credentials are only stored in this directory when the plaintext backend is used, as opposed to the native backend, which uses the system keyring.</p>
 <h3 class="cli-reference">Usage</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>uv auth dir [OPTIONS] [SERVICE]
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>uv auth dir [OPTIONS]
 </code></pre></div>
-<h3 class="cli-reference">Arguments</h3>
-
-<dl class="cli-reference"><dt id="uv-auth-dir--service"><a href="#uv-auth-dir--service"><code>SERVICE</code></a></dt><dd><p>The domain or URL of the service to lookup</p>
-</dd></dl>
-
 <h3 class="cli-reference">Options</h3>
 
 <dl class="cli-reference"><dt id="uv-auth-dir--allow-insecure-host"><a href="#uv-auth-dir--allow-insecure-host"><code>--allow-insecure-host</code></a>, <code>--trusted-host</code> <i>allow-insecure-host</i></dt><dd><p>Allow insecure connections to a host.</p>
@@ -11485,7 +11480,7 @@ the platform.</p>
 <p>May also be set with the <code>UV_CACHE_DIR</code> environment variable.</p></dd><dt id="uv-publish--check-url"><a href="#uv-publish--check-url"><code>--check-url</code></a> <i>check-url</i></dt><dd><p>Check an index URL for existing files to skip duplicate uploads.</p>
 <p>This option allows retrying publishing that failed after only some, but not all files have been uploaded, and handles errors due to parallel uploads of the same file.</p>
 <p>Before uploading, the index is checked. If the exact same file already exists in the index, the file will not be uploaded. If an error occurred during the upload, the index is checked again, to handle cases where the identical file was uploaded twice in parallel.</p>
-<p>The exact behavior will vary based on the index. When uploading to PyPI, uploading the same file succeeds even without <code>--check-url</code>, while most other indexes error. When uploading to pyx, the index URL can be inferred automatically from the publish URL.</p>
+<p>The exact behavior will vary based on the index. When uploading to PyPI, uploading the same file succeeds even without <code>--check-url</code>, while most other indexes error.</p>
 <p>The index must provide one of the supported hashes (SHA-256, SHA-384, or SHA-512).</p>
 <p>May also be set with the <code>UV_PUBLISH_CHECK_URL</code> environment variable.</p></dd><dt id="uv-publish--color"><a href="#uv-publish--color"><code>--color</code></a> <i>color-choice</i></dt><dd><p>Control the use of color in output.</p>
 <p>By default, uv will automatically detect support for colors when writing to a terminal.</p>
@@ -11500,7 +11495,7 @@ the platform.</p>
 <p>Relative paths are resolved with the given directory as the base.</p>
 <p>See <code>--project</code> to only change the project root directory.</p>
 <p>May also be set with the <code>UV_WORKING_DIR</code> environment variable.</p></dd><dt id="uv-publish--dry-run"><a href="#uv-publish--dry-run"><code>--dry-run</code></a></dt><dd><p>Perform a dry run without uploading files.</p>
-<p>When enabled, the command will check for existing files if <code>--check-url</code> is provided, and will perform validation against the index if supported, but will not upload any files.</p>
+<p>The command checks the distribution metadata locally, and checks for existing files if <code>--check-url</code> or <code>--index</code> is provided, but will not upload any files.</p>
 </dd><dt id="uv-publish--help"><a href="#uv-publish--help"><code>--help</code></a>, <code>-h</code></dt><dd><p>Display the concise help for this command</p>
 </dd><dt id="uv-publish--index"><a href="#uv-publish--index"><code>--index</code></a> <i>index</i></dt><dd><p>The name of an index in the configuration to use for publishing.</p>
 <p>The index must have a <code>publish-url</code> setting, for example:</p>

@@ -1146,29 +1146,11 @@ added in `0.8.15`
 
 The pyx API key (e.g., `sk-pyx-...`).
 
-### [`PYX_API_URL`](#pyx_api_url)
-
-added in `0.8.15`
-
-The URL of the pyx Simple API server.
-
 ### [`PYX_AUTH_TOKEN`](#pyx_auth_token)
 
 added in `0.8.15`
 
 The pyx authentication token (e.g., `eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...`), as output by `uv auth token`.
-
-### [`PYX_CDN_DOMAIN`](#pyx_cdn_domain)
-
-added in `0.8.15`
-
-The domain of the pyx CDN.
-
-### [`PYX_CREDENTIALS_DIR`](#pyx_credentials_dir)
-
-added in `0.8.15`
-
-Specifies the directory where uv stores pyx credentials.
 
 ### [`RUFF`](#ruff)
 
