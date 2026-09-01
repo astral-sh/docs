@@ -3879,7 +3879,7 @@ Asserts that the `uv.lock` would remain unchanged after a resolution. If the loc
 Equivalent to `--locked`.
 ```
 
-[`--check-exists`](#uv-lock--check-exists), `--frozen` : Assert that a `uv.lock` exists without checking if it is up-to-date [env: UV_FROZEN=]
+[`--check-exists`](#uv-lock--check-exists) : Assert that a `uv.lock` exists without checking if it is up-to-date [env: UV_FROZEN=]
 
 ```
 Equivalent to `--frozen`.
