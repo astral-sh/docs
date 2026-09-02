@@ -67,7 +67,7 @@ $ wget -qO- https://astral.sh/ty/install.sh | sh
 Request a specific version by including it in the URL:
 
 ```
-$ curl -LsSf https://astral.sh/ty/0.0.77/install.sh | sh
+$ curl -LsSf https://astral.sh/ty/0.0.78/install.sh | sh
 ```
 
 Use `irm` to download the script and execute it with `iex`:
@@ -81,7 +81,7 @@ Changing the [execution policy](https://learn.microsoft.com/en-us/powershell/mod
 Request a specific version by including it in the URL:
 
 ```
-PS> powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/ty/0.0.77/install.ps1 | iex"
+PS> powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/ty/0.0.78/install.ps1 | iex"
 ```
 
 Tip
@@ -153,12 +153,12 @@ COPY --from=ghcr.io/astral-sh/ty:latest /ty /bin/
 The following tags are available:
 
 - `ghcr.io/astral-sh/ty:latest`
-- `ghcr.io/astral-sh/ty:{major}.{minor}.{patch}`, e.g., `ghcr.io/astral-sh/ty:0.0.77`
+- `ghcr.io/astral-sh/ty:{major}.{minor}.{patch}`, e.g., `ghcr.io/astral-sh/ty:0.0.78`
 - `ghcr.io/astral-sh/ty:{major}.{minor}`, e.g., `ghcr.io/astral-sh/ty:0.0` (the latest patch version)
 
 ### [Using ty with Bazel](#using-ty-with-bazel)
 
-[`aspect_rules_lint`](https://registry.bazel.build/docs/aspect_rules_lint#function-lint_ty_aspect) provides a Bazel lint aspect that runs ty. See its documentation for setup instructions.
+[`aspect_rules_lint`](https://registry.bazel.build/modules/aspect_rules_lint/latest/docs/lint/ty.bzl/lint_ty_aspect) provides a Bazel lint aspect that runs ty. See its documentation for setup instructions.
 
 ## [Adding ty to your editor](#adding-ty-to-your-editor)
 
