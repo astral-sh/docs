@@ -5163,6 +5163,7 @@ imported from other modules (e.g., <code>from logging_setup import logger</code>
 <p>A list of mappings from file pattern to rule codes or prefixes to
 exclude, when considering any matching files. An initial '!' negates
 the file pattern.</p>
+<p>For more information on the glob syntax, refer to the <a href="https://docs.rs/globset/latest/globset/#syntax"><code>globset</code> documentation</a>.</p>
 <p><strong>Default value</strong>: <code>{}</code></p>
 <p><strong>Type</strong>: <code>dict[str, list[RuleSelector]]</code></p>
 <p><strong>Example usage</strong>:</p>
@@ -5175,6 +5176,8 @@ the file pattern.</p>
 <a id="__codelineno-127-4" name="__codelineno-127-4" href="#__codelineno-127-4"></a><span class="s2">&quot;path/to/file.py&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;E402&quot;</span><span class="p">]</span>
 <a id="__codelineno-127-5" name="__codelineno-127-5" href="#__codelineno-127-5"></a><span class="c1"># Ignore `D` rules everywhere except for the `src/` directory.</span>
 <a id="__codelineno-127-6" name="__codelineno-127-6" href="#__codelineno-127-6"></a><span class="s2">&quot;!src/**.py&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;D&quot;</span><span class="p">]</span>
+<a id="__codelineno-127-7" name="__codelineno-127-7" href="#__codelineno-127-7"></a><span class="c1"># Ignore check for packages that are missing an `__init__.py` file.</span>
+<a id="__codelineno-127-8" name="__codelineno-127-8" href="#__codelineno-127-8"></a><span class="s2">&quot;{benchmark,scripts,.github/action-name/}/*.py&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;INP001&quot;</span><span class="p">]</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
@@ -5184,6 +5187,8 @@ the file pattern.</p>
 <a id="__codelineno-128-4" name="__codelineno-128-4" href="#__codelineno-128-4"></a><span class="s2">&quot;path/to/file.py&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;E402&quot;</span><span class="p">]</span>
 <a id="__codelineno-128-5" name="__codelineno-128-5" href="#__codelineno-128-5"></a><span class="c1"># Ignore `D` rules everywhere except for the `src/` directory.</span>
 <a id="__codelineno-128-6" name="__codelineno-128-6" href="#__codelineno-128-6"></a><span class="s2">&quot;!src/**.py&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;D&quot;</span><span class="p">]</span>
+<a id="__codelineno-128-7" name="__codelineno-128-7" href="#__codelineno-128-7"></a><span class="c1"># Ignore check for packages that are missing an `__init__.py` file.</span>
+<a id="__codelineno-128-8" name="__codelineno-128-8" href="#__codelineno-128-8"></a><span class="s2">&quot;{benchmark,scripts,.github/action-name/}/*.py&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;INP001&quot;</span><span class="p">]</span>
 </code></pre></div>
 </div>
 </div>
