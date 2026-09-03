@@ -119,7 +119,7 @@ In [preview](../preview/), Ruff supports rule categories in addition to the Flak
 - **Security**: These rules flag issues that could lead to security vulnerabilities, and as such, bias heavily toward false positives to avoid false negatives.
 - **Formatting**: These rules flag formatting issues and are generally redundant with a code formatter.
 - **Pedantic**: These rules are generally stylistic, like those in the `style` or similar categories, but enforce styles that are too opinionated or are too prone to false positives to fit into another category.
-- **Restriction**: These rules restrict the usage of basic language features in arbitrary ways.
+- **Restriction**: These rules restrict the usage of certain features in arbitrary ways.
 
 The first five categories compose the default rule set:
 

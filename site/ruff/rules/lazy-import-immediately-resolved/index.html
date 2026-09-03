@@ -918,7 +918,7 @@
 <p><small>
 Preview (since <a href="https://github.com/astral-sh/ruff/releases/tag/0.15.13">0.15.13</a>) ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27lazy-import-immediately-resolved%27%20OR%20TID255)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_tidy_imports%2Frules%2Flazy_import_immediately_resolved.rs#L49" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_tidy_imports%2Frules%2Flazy_import_immediately_resolved.rs#L56" target="_blank">View source</a>
 </small></p>
 <p>Derived from the <strong><a href="../#flake8-tidy-imports-tid">flake8-tidy-imports</a></strong> linter.</p>
 <p>Fix is sometimes available.</p>
@@ -951,6 +951,11 @@ runtime behavior if the module has import-time side effects.</p>
 <p>The fix is only available when the lazy import statement imports a single
 member, since removing <code>lazy</code> from a multi-member import would make every
 imported member eager, including names that may not be resolved immediately.</p>
+<h2 id="options"><a class="toclink" href="#options">Options</a></h2>
+<p>The rule ignores imports required to be lazy by the following setting:</p>
+<ul>
+<li><a href="../../settings/#lint_flake8-tidy-imports_require-lazy"><code>lint.flake8-tidy-imports.require-lazy</code></a></li>
+</ul>
 
 
 

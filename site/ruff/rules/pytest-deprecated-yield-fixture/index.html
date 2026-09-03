@@ -918,13 +918,19 @@
 <p><small>
 Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.208">v0.0.208</a> ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27pytest-deprecated-yield-fixture%27%20OR%20PT020)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_pytest_style%2Frules%2Ffixture.rs#L415" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_pytest_style%2Frules%2Ffixture.rs#L429" target="_blank">View source</a>
 </small></p>
 <p>Derived from the <strong><a href="../#flake8-pytest-style-pt">flake8-pytest-style</a></strong> linter.</p>
+<p>Fix is sometimes available.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for <code>pytest.yield_fixture</code> usage.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
-<p><code>pytest.yield_fixture</code> is deprecated. <code>pytest.fixture</code> should be used instead.</p>
+<p><code>pytest.fixture</code> has supported <code>yield</code> since pytest 3.0, which left
+<code>pytest.yield_fixture</code> as a plain alias for it. The alias has been
+deprecated since pytest 6.2, now raises a <code>PytestRemovedIn10Warning</code>, and
+will be removed in pytest 10.</p>
+<p>The two are the same function, so switching to <code>pytest.fixture</code> is a
+rename with no other consequence.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
@@ -945,9 +951,14 @@ Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.208">v0.0.
 <a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="k">yield</span> <span class="n">obj</span>
 <a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="n">obj</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
 </code></pre></div>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
+<p>This rule's fix is marked as safe, unless the decorator contains comments
+that the fix would remove. <code>pytest.yield_fixture</code> and <code>pytest.fixture</code> are
+the same function; the only behavioral difference is the deprecation
+warning that <code>pytest.yield_fixture</code> emits.</p>
 <h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
-<li><a href="https://docs.pytest.org/en/latest/yieldfixture.html"><code>pytest</code> documentation: <code>yield_fixture</code> functions</a></li>
+<li><a href="https://docs.pytest.org/en/stable/deprecations.html#the-yield-fixture-function-decorator"><code>pytest</code> documentation: the <code>yield_fixture</code> function/decorator</a></li>
 </ul>
 
 
