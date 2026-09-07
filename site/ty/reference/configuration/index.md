@@ -223,7 +223,7 @@ ______________________________________________________________________
 
 ### [`strict-generic-narrowing`](#strict-generic-narrowing)
 
-Whether ty should use strict narrowing for unspecialized generic classes in `isinstance()` and `issubclass()` checks, as well as `match` class patterns.
+Whether ty should use strict narrowing for unspecialized generic classes in `isinstance()` and `issubclass()` checks, `match` class patterns, and `TypeIs` checks.
 
 When enabled, ty narrows to the top materialization of the class. For example, `isinstance(value, list)` narrows a value of type `object` to `Top[list[Unknown]]`, representing the (infinite) union of all possible `list` specializations. Iterating over the list would yield values of type `object`.
 
@@ -749,7 +749,7 @@ ______________________________________________________________________
 
 #### [`strict-generic-narrowing`](#strict-generic-narrowing_1)
 
-Whether ty should use strict narrowing for unspecialized generic classes in `isinstance()` and `issubclass()` checks, as well as `match` class patterns.
+Whether ty should use strict narrowing for unspecialized generic classes in `isinstance()` and `issubclass()` checks, `match` class patterns, and `TypeIs` checks.
 
 When enabled, ty narrows to the top materialization of the class. For example, `isinstance(value, list)` narrows a value of type `object` to `Top[list[Unknown]]`, representing the (infinite) union of all possible `list` specializations. Iterating over the list would yield values of type `object`.
 
