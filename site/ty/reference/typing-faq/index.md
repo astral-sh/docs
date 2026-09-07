@@ -53,8 +53,7 @@ Unlike `Any`, `@Todo` does not come from an explicit annotation. Unlike `Unknown
 For example, each iteration of this loop wraps `x` in another list:
 
 ```
-def some_condition() -> bool:
-    ...
+def some_condition() -> bool: ...
 
 
 x = 1
@@ -76,7 +75,8 @@ The [Python typing specification](https://typing.python.org/en/latest/spec/speci
 def circle_area(radius: float) -> float:
     return 3.14 * radius * radius
 
-circle_area(2)      # OK: int is allowed where float is expected
+
+circle_area(2)  # OK: int is allowed where float is expected
 ```
 
 This rule is a special case, since `int` is not actually a subclass of `float`. A `float` annotation therefore accepts both integers and actual floating-point values, and ty displays this complete type as `float`. When ty knows that a value is an actual `float`, rather than an `int`, it displays the more precise type as `float*`:
@@ -113,10 +113,12 @@ if TYPE_CHECKING:
 else:
     JustFloat = float
 
+
 def only_actual_floats_allowed(f: JustFloat) -> None: ...
 
+
 only_actual_floats_allowed(1.0)  # OK
-only_actual_floats_allowed(1)    # error: invalid-argument-type
+only_actual_floats_allowed(1)  # error: invalid-argument-type
 ```
 
 ([Full example in the playground](https://play.ty.dev/fb034780-3ba7-4c6a-9449-5b0f44128bab))
@@ -130,8 +132,10 @@ Let's say you have a class hierarchy with an `Entry` base class as well as `Dire
 ```
 # Setup of `Entry`, `Directory`, and `File` classes (1)
 
+
 def modify(entries: list[Entry]):
-    entries.append(File("README.txt")) # mutation
+    entries.append(File("README.txt"))  # mutation
+
 
 directories: list[Directory] = [Directory("Downloads"), Directory("Documents")]
 modify(directories)  # ty emits an error on this call
@@ -142,21 +146,27 @@ modify(directories)  # ty emits an error on this call
    ```
    from dataclasses import dataclass
 
+
    @dataclass
    class Entry:
-        path: str
-        def size_bytes(self) -> int: ...
+       path: str
+
+       def size_bytes(self) -> int: ...
+
 
    @dataclass
    class Directory(Entry):
        def children(self) -> list[Entry]: ...
 
+
    @dataclass
    class File(Entry):
        def content(self) -> bytes: ...
 
+
    def modify(entries: list[Entry]):
-       entries.append(File("README.txt")) # mutation
+       entries.append(File("README.txt"))  # mutation
+
 
    directories: list[Directory] = [Directory("Downloads"), Directory("Documents")]
    modify(directories)  # ty emits an error on this call
@@ -180,6 +190,7 @@ You might run into problems with invariance in situations where mutability isn't
 ```
 def total_size_bytes(entries: list[Entry]) -> int:
     return sum(entry.size_bytes() for entry in entries)
+
 
 # inferred as `list[Directory]`
 media_entries = [Directory("Pictures"), Directory("Videos")]
@@ -254,8 +265,7 @@ else:
     FunctionLikeCallable = Callable
 
 
-def retry(times: int, operation: FunctionLikeCallable[[], bool]) -> bool:
-    ...
+def retry(times: int, operation: FunctionLikeCallable[[], bool]) -> bool: ...
 ```
 
 You can check out the full example [here](https://play.ty.dev/7a1ea4ab-04e1-4271-adf5-ddc3a5d2fcfd), which demonstrates that `FileUpload` instances are no longer accepted by `retry`.

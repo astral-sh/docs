@@ -94,8 +94,10 @@ ty supports the [`@no_type_check`](https://typing.python.org/en/latest/spec/dire
 ```
 from typing import no_type_check
 
+
 def sum_three_numbers(a: int, b: int, c: int) -> int:
     return a + b + c
+
 
 @no_type_check
 def main():

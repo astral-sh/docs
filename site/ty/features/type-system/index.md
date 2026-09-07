@@ -23,10 +23,7 @@ def output_as_json(obj: Serializable) -> str:
     if isinstance(obj, Versioned):
         reveal_type(obj)  # reveals: Serializable & Versioned
 
-        return str({
-            "data": obj.serialize_json(),
-            "version": obj.version
-        })
+        return str({"data": obj.serialize_json(), "version": obj.version})
     else:
         return obj.serialize_json()
 ```
@@ -55,8 +52,10 @@ Intersection types are also used in `hasattr` narrowing. Take a look at the foll
 class Person:
     name: str
 
+
 class Animal:
     species: str
+
 
 def greet(being: Person | Animal | None):
     if hasattr(being, "name"):
@@ -83,8 +82,8 @@ if TYPE_CHECKING:
 
     type SerializableVersioned = Intersection[Serializable, Versioned]
 
-def output_as_json(obj: SerializableVersioned) -> str:
-    ...
+
+def output_as_json(obj: SerializableVersioned) -> str: ...
 ```
 
 (Full example in the [playground](https://play.ty.dev/f003e901-0e45-4f45-9759-d6db9d5e5f66))
@@ -96,6 +95,7 @@ Gradual types generally have two special [materializations](https://typing.pytho
 ```
 @final
 class Item: ...
+
 
 def process(items: Item | list[Item]):
     if isinstance(items, list):
@@ -119,8 +119,10 @@ from pydantic import BaseModel
 
 PYDANTIC_V2 = pydantic.__version__.startswith("2.")
 
+
 class Person(BaseModel):
     name: str
+
 
 def to_json(person: Person):
     if PYDANTIC_V2:
