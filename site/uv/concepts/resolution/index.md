@@ -573,6 +573,8 @@ The `--exclude-newer` option is only applied to packages that are read from a re
 
 This option is also supported in the `pyproject.toml`, e.g.:
 
+pyproject.toml
+
 ```
 [tool.uv]
 exclude-newer = "2006-12-02T02:07:43Z"
@@ -584,12 +586,16 @@ When specified in persistent configuration, local date times are not allowed.
 
 Values may also be specified for specific packages, e.g., `--exclude-newer-package setuptools=2006-12-02`, or:
 
+pyproject.toml
+
 ```
 [tool.uv]
 exclude-newer-package = { setuptools = "2006-12-02T02:07:43Z" }
 ```
 
 The package option also accepts `<package>=false` to opt a package out of the restriction, e.g., `--exclude-newer-package setuptools=false`, or:
+
+pyproject.toml
 
 ```
 [tool.uv]
@@ -602,6 +608,8 @@ Package-specific values will take precedence over both global and index-specific
 
 Likewise, an individual index can override the global cutoff:
 
+pyproject.toml
+
 ```
 [tool.uv]
 exclude-newer = "2006-12-02T02:07:43Z"
@@ -613,6 +621,8 @@ exclude-newer = "7 days"
 ```
 
 Or disable it entirely for that index:
+
+pyproject.toml
 
 ```
 [[tool.uv.index]]
@@ -639,12 +649,16 @@ When a duration is used for resolution, a timestamp is calculated relative to th
 
 This option is also supported in the `pyproject.toml`, e.g.:
 
+pyproject.toml
+
 ```
 [tool.uv]
 exclude-newer = "1 week"
 ```
 
 Values may also be specified for specific packages, e.g., `--exclude-newer-package "setuptools=30 days"`, or:
+
+pyproject.toml
 
 ```
 [tool.uv]
