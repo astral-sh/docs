@@ -918,10 +918,10 @@
 <p><small>
 Preview (since <a href="https://github.com/astral-sh/ruff/releases/tag/0.15.6">0.15.6</a>) ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27lazy-import-mismatch%27%20OR%20TID254)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_tidy_imports%2Frules%2Flazy_import_mismatch.rs#L39" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_tidy_imports%2Frules%2Flazy_import_mismatch.rs#L50" target="_blank">View source</a>
 </small></p>
 <p>Derived from the <strong><a href="../#flake8-tidy-imports-tid">flake8-tidy-imports</a></strong> linter.</p>
-<p>Fix is always available.</p>
+<p>Fix is sometimes available.</p>
 <p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Enforces the configured lazy-import policy in contexts where <code>lazy import</code>
@@ -941,6 +941,12 @@ functions, classes, <code>try</code>/<code>except</code> blocks, <code>__future_
 <p>Use instead:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">lazy</span> <span class="kn">import</span><span class="w"> </span><span class="nn">typing</span>
 </code></pre></div>
+<h2 id="fix-availability"><a class="toclink" href="#fix-availability">Fix availability</a></h2>
+<p>The fix is only available for statements that import a single name, since
+changing <code>lazy</code> on a multi-member import could violate another name's policy.</p>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
+<p>This rule's fix is marked as unsafe because changing when a module is
+imported can affect runtime behavior, including import-time side effects.</p>
 <h2 id="options"><a class="toclink" href="#options">Options</a></h2>
 <ul>
 <li><a href="../../settings/#lint_flake8-tidy-imports_require-lazy"><code>lint.flake8-tidy-imports.require-lazy</code></a></li>

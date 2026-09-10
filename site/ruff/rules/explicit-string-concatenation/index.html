@@ -918,7 +918,7 @@
 <p><small>
 Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.201">v0.0.201</a> ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27explicit-string-concatenation%27%20OR%20ISC003)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_implicit_str_concat%2Frules%2Fexplicit.rs#L43" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_implicit_str_concat%2Frules%2Fexplicit.rs#L48" target="_blank">View source</a>
 </small></p>
 <p>Derived from the <strong><a href="../#flake8-implicit-str-concat-isc">flake8-implicit-str-concat</a></strong> linter.</p>
 <p>Fix is sometimes available.</p>
@@ -941,6 +941,8 @@ concatenation using the <code>+</code> operator, as the former is more readable.
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="s2">&quot;dog&quot;</span>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">)</span>
 </code></pre></div>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
+<p>The fix is marked as unsafe when it would create a docstring.</p>
 <h2 id="options"><a class="toclink" href="#options">Options</a></h2>
 <p>Setting <code>lint.flake8-implicit-str-concat.allow-multiline = false</code> will disable this rule because
 it would leave no allowed way to write a multi-line string.</p>

@@ -6,13 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Reports the following `re` and `regex` calls when">
+        <meta name="description" content="Checks for default values on receiver parameters (e.g., `self`, `cls`) in method definitions.">
       
       
         <meta name="author" content="charliermarsh">
       
       
-        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/unraw-re-pattern/">
+        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/method-receiver-default/">
       
       
       
@@ -25,7 +25,7 @@
     
     
 
-<title>unraw-re-pattern (RUF039) | Ruff</title>
+<title>method-receiver-default (RUF077) | Ruff</title>
 
 
     
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#unraw-re-pattern-ruf039" class="md-skip">
+        <a href="#method-receiver-default-ruf077" class="md-skip">
           Skip to content
         </a>
       
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              unraw-re-pattern (RUF039)
+              method-receiver-default (RUF077)
             
           </span>
         </div>
@@ -914,52 +914,49 @@
   
 
 
-<h1 id="unraw-re-pattern-ruf039"><a class="toclink" href="#unraw-re-pattern-ruf039">unraw-re-pattern (RUF039)</a></h1>
+<h1 id="method-receiver-default-ruf077"><a class="toclink" href="#method-receiver-default-ruf077">method-receiver-default (RUF077)</a></h1>
 <p><small>
-Preview (since <a href="https://github.com/astral-sh/ruff/releases/tag/0.8.0">0.8.0</a>) ·
-<a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27unraw-re-pattern%27%20OR%20RUF039)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fruff%2Frules%2Funraw_re_pattern.rs#L62" target="_blank">View source</a>
+Preview (since <a href="https://github.com/astral-sh/ruff/releases/tag/0.16.7">0.16.7</a>) ·
+<a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27method-receiver-default%27%20OR%20RUF077)" target="_blank">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fruff%2Frules%2Fmethod_receiver_default.rs#L55" target="_blank">View source</a>
 </small></p>
-<p>Fix is sometimes available.</p>
+<p>Fix is always available.</p>
 <p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
-<p>Reports the following <code>re</code> and <code>regex</code> calls when
-their first arguments are not raw strings:</p>
-<ul>
-<li>For <code>regex</code> and <code>re</code>: <code>compile</code>, <code>findall</code>, <code>finditer</code>,
-    <code>fullmatch</code>, <code>match</code>, <code>prefixmatch</code>, <code>search</code>, <code>split</code>, <code>sub</code>, <code>subn</code>.</li>
-<li><code>regex</code>-specific: <code>splititer</code>, <code>subf</code>, <code>subfn</code>, <code>template</code>.</li>
-</ul>
+<p>Checks for default values on receiver parameters (e.g., <code>self</code>, <code>cls</code>) in method definitions.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
-<p>Regular expressions should be written
-using raw strings to avoid double escaping.</p>
-<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
-<p>The fix is unsafe if the string/bytes literal contains an escape sequence because the fix alters
-the runtime value of the literal while retaining the regex semantics.</p>
-<p>For example</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Literal is `1\n2`.</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s2">&quot;1</span><span class="se">\n</span><span class="s2">2&quot;</span><span class="p">)</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># Literal is `1\\n2`, but the regex library will interpret `\\n` and will still match a newline</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># character as before.</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;1\n2&quot;</span><span class="p">)</span>
-</code></pre></div>
-<h2 id="fix-availability"><a class="toclink" href="#fix-availability">Fix availability</a></h2>
-<p>A fix is not available if either</p>
-<ul>
-<li>the argument is a string with a (no-op) <code>u</code> prefix (e.g., <code>u"foo"</code>) as the prefix is
-    incompatible with the raw prefix <code>r</code></li>
-<li>the argument is a string or bytes literal with an escape sequence that has a different
-    meaning in the context of a regular expression such as <code>\b</code>, which is word boundary or
-    backspace in a regex, depending on the context, but always a backspace in string and bytes
-    literals.</li>
-</ul>
+<p>Receiver parameters (<code>self</code>, <code>cls</code>, or any name used as the receiver) should not have default
+values. In practice, these parameters are usually bound by the method binding protocol, so a
+default value on a receiver parameter is almost
+certainly a mistake and can lead to confusing behavior or runtime errors.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s2">&quot;foo</span><span class="se">\\</span><span class="s2">bar&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">A</span><span class="p">:</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">method</span><span class="p">(</span><span class="bp">self</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span> <span class="o">...</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="nd">@classmethod</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">build</span><span class="p">(</span><span class="bp">cls</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span> <span class="o">...</span>
 </code></pre></div>
 <p>Use instead:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;foo\bar&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">A</span><span class="p">:</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="o">...</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="nd">@classmethod</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">build</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span> <span class="o">...</span>
 </code></pre></div>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
+<p>This fix is always marked as unsafe. Removing the default changes behavior for a caller that
+invokes the method directly through the class rather than through an instance (e.g.
+<code>A.method()</code> instead of <code>A().method()</code>), relying on the receiver parameter's default value.</p>
+<h2 id="known-limitations"><a class="toclink" href="#known-limitations">Known limitations</a></h2>
+<p>To avoid false positives, this rule only flags an undecorated method, an undecorated
+<code>__new__</code>, or a method whose sole decorator is the one that makes it a <code>@classmethod</code>. A
+method with any other decorator (including common ones like <code>@property</code>, <code>@x.setter</code>, or
+<code>@typing.override</code>) is not flagged, even though such decorators typically leave the receiver
+binding unchanged, because an arbitrary decorator could alter it.</p>
+<h2 id="options"><a class="toclink" href="#options">Options</a></h2>
+<ul>
+<li><a href="../../settings/#lint_pep8-naming_classmethod-decorators"><code>lint.pep8-naming.classmethod-decorators</code></a></li>
+</ul>
 
 
 

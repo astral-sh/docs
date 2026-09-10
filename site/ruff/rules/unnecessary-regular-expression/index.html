@@ -918,7 +918,7 @@
 <p><small>
 Preview (since <a href="https://github.com/astral-sh/ruff/releases/tag/0.8.1">0.8.1</a>) ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27unnecessary-regular-expression%27%20OR%20RUF055)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fruff%2Frules%2Funnecessary_regular_expression.rs#L58" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fruff%2Frules%2Funnecessary_regular_expression.rs#L59" target="_blank">View source</a>
 </small></p>
 <p>Fix is sometimes available.</p>
 <p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
@@ -939,13 +939,14 @@ a plain string literal, and no additional flags are passed:</p>
 <ul>
 <li><code>re.sub</code></li>
 <li><code>re.match</code></li>
+<li><code>re.prefixmatch</code></li>
 <li><code>re.search</code></li>
 <li><code>re.fullmatch</code></li>
 <li><code>re.split</code></li>
 </ul>
 <p>For <code>re.sub</code>, the <code>repl</code> (replacement) argument must also be a string literal,
-not a function. For <code>re.match</code>, <code>re.search</code>, and <code>re.fullmatch</code>, the return
-value must also be used only for its truth value.</p>
+not a function. For <code>re.match</code>, <code>re.prefixmatch</code>, <code>re.search</code>, and <code>re.fullmatch</code>,
+the return value must also be used only for its truth value.</p>
 <h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
 <p>This rule's fix is marked as unsafe if the affected expression contains comments. Otherwise,
 the fix can be applied safely.</p>
