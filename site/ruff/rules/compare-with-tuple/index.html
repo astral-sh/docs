@@ -918,7 +918,7 @@
 <p><small>
 Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.213">v0.0.213</a> ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27compare-with-tuple%27%20OR%20SIM109)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_simplify%2Frules%2Fast_bool_op.rs#L96" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_simplify%2Frules%2Fast_bool_op.rs#L105" target="_blank">View source</a>
 </small></p>
 <p>Derived from the <strong><a href="../#flake8-simplify-sim">flake8-simplify</a></strong> linter.</p>
 <p>Fix is always available.</p>
@@ -936,6 +936,12 @@ concise to use the <code>in</code> operator with a tuple of values.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">if</span> <span class="n">foo</span> <span class="ow">in</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="o">...</span>
 </code></pre></div>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
+<p>This fix is always unsafe. It may change the value of the expression if any of the
+comparators have side effects, and, for expressions that mix equality comparisons with
+other operands, it can change the order in which operands are evaluated. Ruff preserves
+the original order when an operand falls before or after the group of merged comparisons,
+but if an unmatched operand falls <em>between</em> two merged comparisons (e.g. <code>foo == x or bar or foo == y</code>), it's moved after the merged <code>in</code> comparison.</p>
 <h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/reference/expressions.html#membership-test-operations">Python documentation: Membership test operations</a></li>

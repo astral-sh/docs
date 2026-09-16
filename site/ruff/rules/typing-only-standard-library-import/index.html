@@ -918,13 +918,13 @@
 <p><small>
 Added in <a href="https://github.com/astral-sh/ruff/releases/tag/0.8.0">0.8.0</a> ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27typing-only-standard-library-import%27%20OR%20TC003)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_type_checking%2Frules%2Ftyping_only_runtime_import.rs#L250" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_type_checking%2Frules%2Ftyping_only_runtime_import.rs#L323" target="_blank">View source</a>
 </small></p>
 <p>Derived from the <strong><a href="../#flake8-type-checking-tc">flake8-type-checking</a></strong> linter.</p>
 <p>Fix is sometimes available.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for standard library imports that are only used for type
-annotations, but aren't defined in a type-checking block.</p>
+annotations, but aren't imported lazily or defined in a type-checking block.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Imports that are only used for type annotations add a performance overhead
 at runtime. If an import is <em>only</em> used in typing-only contexts, it can
@@ -942,6 +942,11 @@ as such.</p>
 moved into an <code>if TYPE_CHECKING:</code> block. This takes precedence over the
 <a href="../../settings/#lint_flake8-type-checking_quote-annotations"><code>lint.flake8-type-checking.quote-annotations</code></a> setting described above if
 both settings are enabled.</p>
+<p>On Python 3.15 and later, lazy imports are also exempt, including imports
+made lazy by a literal <code>__lazy_modules__</code> declaration. The fix prefers adding
+<code>lazy</code> to single-name import statements where the syntax is legal and
+<a href="../../settings/#lint_flake8-tidy-imports_ban-lazy"><code>lint.flake8-tidy-imports.ban-lazy</code></a> allows it. This defers the import while
+keeping the name available for runtime annotation inspection.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
@@ -963,8 +968,19 @@ both settings are enabled.</p>
 <a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="k">def</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 </code></pre></div>
+<p>On Python 3.15 and later, using a lazy import is also an option:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">lazy</span> <span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
+<p>This rule's fixes are unsafe because changing when a module is imported can
+affect runtime behavior, including import-time side effects.</p>
 <h2 id="options"><a class="toclink" href="#options">Options</a></h2>
 <ul>
+<li><a href="../../settings/#lint_flake8-tidy-imports_ban-lazy"><code>lint.flake8-tidy-imports.ban-lazy</code></a></li>
 <li><a href="../../settings/#lint_flake8-type-checking_quote-annotations"><code>lint.flake8-type-checking.quote-annotations</code></a></li>
 <li><a href="../../settings/#lint_flake8-type-checking_runtime-evaluated-base-classes"><code>lint.flake8-type-checking.runtime-evaluated-base-classes</code></a></li>
 <li><a href="../../settings/#lint_flake8-type-checking_runtime-evaluated-decorators"><code>lint.flake8-type-checking.runtime-evaluated-decorators</code></a></li>

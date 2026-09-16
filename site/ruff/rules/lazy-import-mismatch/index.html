@@ -918,7 +918,7 @@
 <p><small>
 Preview (since <a href="https://github.com/astral-sh/ruff/releases/tag/0.15.6">0.15.6</a>) ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27lazy-import-mismatch%27%20OR%20TID254)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_tidy_imports%2Frules%2Flazy_import_mismatch.rs#L50" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_tidy_imports%2Frules%2Flazy_import_mismatch.rs#L60" target="_blank">View source</a>
 </small></p>
 <p>Derived from the <strong><a href="../#flake8-tidy-imports-tid">flake8-tidy-imports</a></strong> linter.</p>
 <p>Fix is sometimes available.</p>
@@ -932,6 +932,12 @@ which defer the actual import work until the imported name is first used.</p>
 <p>Depending on the policy, some modules should be imported lazily to defer
 import work until the name is first used, while others should remain eager
 to preserve import-time side effects.</p>
+<p>The rule also recognizes imports made lazy by a literal <code>__lazy_modules__</code>
+declaration, including when the target version is older than Python 3.15.
+This declaration allows a module to use lazy imports on Python 3.15 and
+later while retaining eager imports on older versions. Dynamic assignments
+to <code>__lazy_modules__</code> (e.g. <code>__lazy_modules__ = non_literal()</code>) are ignored,
+as their effects cannot be determined statically.</p>
 <p>This rule ignores contexts in which <code>lazy import</code> is invalid, such as
 functions, classes, <code>try</code>/<code>except</code> blocks, <code>__future__</code> imports, and
 <code>from ... import *</code> statements.</p>
@@ -944,6 +950,8 @@ functions, classes, <code>try</code>/<code>except</code> blocks, <code>__future_
 <h2 id="fix-availability"><a class="toclink" href="#fix-availability">Fix availability</a></h2>
 <p>The fix is only available for statements that import a single name, since
 changing <code>lazy</code> on a multi-member import could violate another name's policy.</p>
+<p>The fix is also unavailable for imports marked lazy by a <code>__lazy_modules__</code>
+declaration.</p>
 <h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
 <p>This rule's fix is marked as unsafe because changing when a module is
 imported can affect runtime behavior, including import-time side effects.</p>
