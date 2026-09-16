@@ -918,7 +918,7 @@
 <p><small>
 Preview (since <a href="https://github.com/astral-sh/ruff/releases/tag/0.15.13">0.15.13</a>) ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27lazy-import-immediately-resolved%27%20OR%20TID255)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_tidy_imports%2Frules%2Flazy_import_immediately_resolved.rs#L56" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_tidy_imports%2Frules%2Flazy_import_immediately_resolved.rs#L64" target="_blank">View source</a>
 </small></p>
 <p>Derived from the <strong><a href="../#flake8-tidy-imports-tid">flake8-tidy-imports</a></strong> linter.</p>
 <p>Fix is sometimes available.</p>
@@ -932,6 +932,11 @@ which defer the actual import work until the imported name is first used.</p>
 import is resolved eagerly, defeating the purpose of marking the import as
 lazy. This is commonly caused by using a lazily imported module in a module
 global or in a top-level class definition.</p>
+<p>The rule also recognizes imports made lazy by a literal <code>__lazy_modules__</code>
+declaration, even when the target version is older than Python 3.15.
+Such imports remain eager on older Python versions. Dynamic assignments
+to <code>__lazy_modules__</code> (e.g. <code>__lazy_modules__ = non_literal()</code>) are ignored,
+as their effects cannot be determined statically.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">lazy</span> <span class="kn">import</span><span class="w"> </span><span class="nn">foo</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
@@ -944,13 +949,15 @@ global or in a top-level class definition.</p>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">class</span><span class="w"> </span><span class="nc">Bar</span><span class="p">(</span><span class="n">foo</span><span class="o">.</span><span class="n">Foo</span><span class="p">):</span> <span class="o">...</span>
 </code></pre></div>
+<h2 id="fix-availability"><a class="toclink" href="#fix-availability">Fix availability</a></h2>
+<p>The fix is only available when the lazy import statement imports a single
+member, since removing <code>lazy</code> from a multi-member import would make every
+imported member eager, including names that may not be resolved immediately.
+Fixes are unavailable for imports governed by a <code>__lazy_modules__</code> declaration.</p>
 <h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
 <p>This rule's fix is marked as unsafe because converting a lazy import to an
 eager import changes when the imported module is executed, which can change
 runtime behavior if the module has import-time side effects.</p>
-<p>The fix is only available when the lazy import statement imports a single
-member, since removing <code>lazy</code> from a multi-member import would make every
-imported member eager, including names that may not be resolved immediately.</p>
 <h2 id="options"><a class="toclink" href="#options">Options</a></h2>
 <p>The rule ignores imports required to be lazy by the following setting:</p>
 <ul>

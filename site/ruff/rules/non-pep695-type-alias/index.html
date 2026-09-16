@@ -918,7 +918,7 @@
 <p><small>
 Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.283">v0.0.283</a> ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27non-pep695-type-alias%27%20OR%20UP040)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fpyupgrade%2Frules%2Fpep695%2Fnon_pep695_type_alias.rs#L92" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fpyupgrade%2Frules%2Fpep695%2Fnon_pep695_type_alias.rs#L98" target="_blank">View source</a>
 </small></p>
 <p>Derived from the <strong><a href="../#pyupgrade-up">pyupgrade</a></strong> linter.</p>
 <p>Fix is always available.</p>
@@ -956,10 +956,14 @@ runtime.</p>
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="nb">type</span> <span class="n">PositiveInt</span> <span class="o">=</span> <span class="n">Annotated</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Gt</span><span class="p">(</span><span class="mi">0</span><span class="p">)]</span>
 </code></pre></div>
 <h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
-<p>This fix is marked unsafe for <code>TypeAlias</code> assignments outside of stub files because of the
-runtime behavior around <code>isinstance()</code> calls noted above. The fix is also unsafe for
-<code>TypeAliasType</code> assignments if there are any comments in the replacement range that would be
-deleted.</p>
+<p>This fix is always marked unsafe because it can change runtime behavior and type-checking
+semantics, as described above. It may also remove comments.</p>
+<p>The rule also cannot inspect type variables defined in another module. For <code>TypeAlias</code>
+annotations, this means the fix may fail to convert legacy type variables to type parameters,
+producing code that will be rejected by type checkers. For <code>TypeAliasType</code>, legacy type
+variables are recognized via the explicit <code>type_params</code> argument, but the type variable's
+definition cannot be resolved to preserve its bounds, constraints, defaults, or even kind,
+producing unconstrained <code>TypeVar</code>s.</p>
 <h2 id="see-also"><a class="toclink" href="#see-also">See also</a></h2>
 <p>This rule only applies to <code>TypeAlias</code>es and <code>TypeAliasType</code>s. See
 <a href="https://docs.astral.sh/ruff/rules/non-pep695-generic-class/"><code>non-pep695-generic-class</code></a> and <a href="https://docs.astral.sh/ruff/rules/non-pep695-generic-function/"><code>non-pep695-generic-function</code></a> for similar
