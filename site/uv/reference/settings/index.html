@@ -6927,8 +6927,10 @@ graph.</p>
 the <code>pyproject.toml</code> at the workspace root, and will ignore any declarations in other
 workspace members or <code>uv.toml</code> files.</p>
 </div>
+<p>Hashes can be included to verify downloaded build dependency archives. To provide hashes,
+use a table with <code>requirement</code> and <code>hashes</code>. uv records these hashes in <code>uv.lock</code>.</p>
 <p><strong>Default value</strong>: <code>[]</code></p>
-<p><strong>Type</strong>: <code>list[str]</code></p>
+<p><strong>Type</strong>: <code>list[str | dict]</code></p>
 <p><strong>Example usage</strong>:</p>
 <div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">[tool.uv]</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># Ensure that the setuptools v60.0.0 is used whenever a package has a build dependency</span>

@@ -12,9 +12,11 @@ Note
 
 In `uv lock`, `uv sync`, and `uv run`, uv will only read `build-constraint-dependencies` from the `pyproject.toml` at the workspace root, and will ignore any declarations in other workspace members or `uv.toml` files.
 
+Hashes can be included to verify downloaded build dependency archives. To provide hashes, use a table with `requirement` and `hashes`. uv records these hashes in `uv.lock`.
+
 **Default value**: `[]`
 
-**Type**: `list[str]`
+**Type**: `list[str | dict]`
 
 **Example usage**:
 

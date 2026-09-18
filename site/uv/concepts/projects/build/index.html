@@ -101,8 +101,8 @@
 <script type="application/ld+json">
   {
       
-      "datePublished": "2025-11-20 18:33:15Z",
-      "dateModified": "2025-11-20 18:33:15Z",
+      "datePublished": "2026-09-15 13:25:34Z",
+      "dateModified": "2026-09-15 13:25:34Z",
       
       "@context": "https://schema.org",
       "@type": "WebSite",
@@ -1875,6 +1875,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Build constraints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#project-build-dependency-hashes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project build dependency hashes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -3488,6 +3505,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Build constraints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#project-build-dependency-hashes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project build dependency hashes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -3629,10 +3663,25 @@ the requirement used to build the project match specific, known hashes, for repr
 that the downloaded <code>setuptools</code> distribution matches the specified hash:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="gp">$ </span>uv<span class="w"> </span>build<span class="w"> </span>--build-constraint<span class="w"> </span>constraints.txt<span class="w"> </span>--require-hashes
 </code></pre></div>
+<h3 id="project-build-dependency-hashes"><a class="toclink" href="#project-build-dependency-hashes">Project build dependency hashes</a></h3>
+<p>Projects can also specify build constraints in
+<a href="../../../reference/settings/#build-constraint-dependencies"><code>build-constraint-dependencies</code></a>. To
+verify a downloaded build dependency, provide its <code>requirement</code> and <code>hashes</code> in a table:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">[tool.uv]</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">build-constraint-dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="n">requirement</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;setuptools==68.2.2&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">hashes</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;sha256:b454a35605876da60632df1a60f736524eb73cc47bbc9f3f1ef1b644de74fd2a&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="s2">&quot;wheel&lt;1&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="p">]</span>
+</code></pre></div>
+<p>An entry without hashes can be written as a string, as shown with <code>wheel&lt;1</code> above. uv checks the
+supplied hashes when it downloads pinned build dependencies during project resolution or
+installation, including builds in <code>uv run --with</code> environments. These hashes apply to build
+dependencies. Packages installed in the project environment are verified against their own lockfile
+hashes.</p>
 <h2 id="preventing-publish-to-pypi"><a class="toclink" href="#preventing-publish-to-pypi">Preventing publish to PyPI</a></h2>
 <p>If you have internal packages that you do not want to be published, you can mark them as private:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">[project]</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">classifiers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Private :: Do Not Upload&quot;</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">[project]</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">classifiers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Private :: Do Not Upload&quot;</span><span class="p">]</span>
 </code></pre></div>
 <p>This setting makes PyPI reject your uploaded package from publishing. It does not affect security or
 privacy settings on alternative registries.</p>
@@ -3658,7 +3707,7 @@ Without a PyPI token matching the project, it can't be accidentally published.</
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 20, 2025 18:33:15 UTC">November 20, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 13:25:34 UTC">September 15, 2026</span>
   </span>
 
     

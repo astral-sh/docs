@@ -41,6 +41,20 @@ Running the following would build the project with the specified version of `set
 $ uv build --build-constraint constraints.txt --require-hashes
 ```
 
+### [Project build dependency hashes](#project-build-dependency-hashes)
+
+Projects can also specify build constraints in [`build-constraint-dependencies`](../../../reference/settings/#build-constraint-dependencies). To verify a downloaded build dependency, provide its `requirement` and `hashes` in a table:
+
+```
+[tool.uv]
+build-constraint-dependencies = [
+    { requirement = "setuptools==68.2.2", hashes = ["sha256:b454a35605876da60632df1a60f736524eb73cc47bbc9f3f1ef1b644de74fd2a"] },
+    "wheel<1",
+]
+```
+
+An entry without hashes can be written as a string, as shown with `wheel<1` above. uv checks the supplied hashes when it downloads pinned build dependencies during project resolution or installation, including builds in `uv run --with` environments. These hashes apply to build dependencies. Packages installed in the project environment are verified against their own lockfile hashes.
+
 ## [Preventing publish to PyPI](#preventing-publish-to-pypi)
 
 If you have internal packages that you do not want to be published, you can mark them as private:
