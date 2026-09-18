@@ -529,3 +529,5 @@ required-environments = [
 The `required-environments` setting is only relevant for packages that do not publish a source distribution (like PyTorch), as such packages can *only* be installed on environments covered by the set of pre-built binary distributions (wheels) published by that package.
 
 See the [resolution documentation](../../resolution/#required-environments) for more.
+
+For Linux, use [`minimum-libc-version`](../../resolution/#minimum-libc-version) alongside `required-environments` to select the libc implementations and minimum versions to support.
