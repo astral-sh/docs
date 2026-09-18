@@ -4074,62 +4074,66 @@ execute properly.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>cargo<span class="w"> </span>run<span class="w"> </span>--<span class="w"> </span>venv
 <a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>cargo<span class="w"> </span>run<span class="w"> </span>--<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>requests
 </code></pre></div>
+<p>Development builds omit Git metadata from the version string so commits do not trigger
+recompilation. To include the commit hash and date, set <code>UV_INTERNAL__BUILD_GIT_INFO=1</code> when
+building:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nv">UV_INTERNAL__BUILD_GIT_INFO</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>cargo<span class="w"> </span>run<span class="w"> </span>--<span class="w"> </span>--version
+</code></pre></div>
+<p>Release builds, including profiles that inherit from <code>release</code>, include Git metadata by default.</p>
 <h2 id="formatting"><a class="toclink" href="#formatting">Formatting</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># Rust</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>cargo<span class="w"> </span>fmt<span class="w"> </span>--all
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
-<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="c1"># Python</span>
-<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>uv<span class="w"> </span>run<span class="w"> </span>--only-group<span class="o">=</span>check<span class="w"> </span>ruff<span class="w"> </span>format<span class="w"> </span>.
-<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>
-<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="c1"># Markdown, YAML, and other files (requires Node.js)</span>
-<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>npx<span class="w"> </span>prettier@3.9.0<span class="w"> </span>--write<span class="w"> </span>.
-<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="c1"># or in Docker</span>
-<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-v<span class="w"> </span>.:/src/<span class="w"> </span>-w<span class="w"> </span>/src/<span class="w"> </span>node:alpine<span class="w"> </span>npx<span class="w"> </span>prettier@3.9.0<span class="w"> </span>--write<span class="w"> </span>.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># Rust</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>cargo<span class="w"> </span>fmt<span class="w"> </span>--all
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="c1"># Python</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>uv<span class="w"> </span>run<span class="w"> </span>--only-group<span class="o">=</span>check<span class="w"> </span>ruff<span class="w"> </span>format<span class="w"> </span>.
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="c1"># Markdown, YAML, and other files (requires Node.js)</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>npx<span class="w"> </span>prettier@3.9.0<span class="w"> </span>--write<span class="w"> </span>.
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="c1"># or in Docker</span>
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-v<span class="w"> </span>.:/src/<span class="w"> </span>-w<span class="w"> </span>/src/<span class="w"> </span>node:alpine<span class="w"> </span>npx<span class="w"> </span>prettier@3.9.0<span class="w"> </span>--write<span class="w"> </span>.
 </code></pre></div>
 <h2 id="linting"><a class="toclink" href="#linting">Linting</a></h2>
 <p>Linting requires <a href="https://github.com/koalaman/shellcheck">shellcheck</a> to be installed separately.
 Validating <code>pyproject.toml</code> against the checked-in uv schema also requires
 <a href="https://jqlang.org/">jq</a>.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># Rust</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>cargo<span class="w"> </span>clippy<span class="w"> </span>--workspace<span class="w"> </span>--all-targets<span class="w"> </span>--all-features<span class="w"> </span>--locked<span class="w"> </span>--<span class="w"> </span>-D<span class="w"> </span>warnings
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
-<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="c1"># Python</span>
-<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>uv<span class="w"> </span>run<span class="w"> </span>--only-group<span class="o">=</span>check<span class="w"> </span>ruff<span class="w"> </span>check<span class="w"> </span>.
-<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>
-<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="c1"># Python type checking</span>
-<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>uv<span class="w"> </span>run<span class="w"> </span>--only-group<span class="o">=</span>check<span class="w"> </span>ty<span class="w"> </span>check<span class="w"> </span>python/uv
-<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>
-<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="c1"># Python project metadata and uv schema</span>
-<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>./scripts/validate-pyproject.sh
-<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>
-<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a><span class="c1"># Generated files</span>
-<a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>cargo<span class="w"> </span>dev<span class="w"> </span>generate-all<span class="w"> </span>--mode<span class="w"> </span>dry-run
-<a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a>
-<a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a><span class="c1"># Shell scripts</span>
-<a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a>shellcheck<span class="w"> </span>&lt;script&gt;
-<a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a>
-<a id="__codelineno-12-19" name="__codelineno-12-19" href="#__codelineno-12-19"></a><span class="c1"># Spell checking</span>
-<a id="__codelineno-12-20" name="__codelineno-12-20" href="#__codelineno-12-20"></a>uv<span class="w"> </span>run<span class="w"> </span>--only-group<span class="o">=</span>check<span class="w"> </span>typos
-<a id="__codelineno-12-21" name="__codelineno-12-21" href="#__codelineno-12-21"></a>
-<a id="__codelineno-12-22" name="__codelineno-12-22" href="#__codelineno-12-22"></a><span class="c1"># Unused Rust dependencies</span>
-<a id="__codelineno-12-23" name="__codelineno-12-23" href="#__codelineno-12-23"></a>uv<span class="w"> </span>run<span class="w"> </span>--only-group<span class="o">=</span>check<span class="w"> </span>cargo-shear
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># Rust</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>cargo<span class="w"> </span>clippy<span class="w"> </span>--workspace<span class="w"> </span>--all-targets<span class="w"> </span>--all-features<span class="w"> </span>--locked<span class="w"> </span>--<span class="w"> </span>-D<span class="w"> </span>warnings
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="c1"># Python</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>uv<span class="w"> </span>run<span class="w"> </span>--only-group<span class="o">=</span>check<span class="w"> </span>ruff<span class="w"> </span>check<span class="w"> </span>.
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="c1"># Python type checking</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>uv<span class="w"> </span>run<span class="w"> </span>--only-group<span class="o">=</span>check<span class="w"> </span>ty<span class="w"> </span>check<span class="w"> </span>python/uv
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="c1"># Python project metadata and uv schema</span>
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>./scripts/validate-pyproject.sh
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="c1"># Generated files</span>
+<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a>cargo<span class="w"> </span>dev<span class="w"> </span>generate-all<span class="w"> </span>--mode<span class="w"> </span>dry-run
+<a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a>
+<a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a><span class="c1"># Shell scripts</span>
+<a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a>shellcheck<span class="w"> </span>&lt;script&gt;
+<a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a>
+<a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a><span class="c1"># Spell checking</span>
+<a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a>uv<span class="w"> </span>run<span class="w"> </span>--only-group<span class="o">=</span>check<span class="w"> </span>typos
+<a id="__codelineno-13-21" name="__codelineno-13-21" href="#__codelineno-13-21"></a>
+<a id="__codelineno-13-22" name="__codelineno-13-22" href="#__codelineno-13-22"></a><span class="c1"># Unused Rust dependencies</span>
+<a id="__codelineno-13-23" name="__codelineno-13-23" href="#__codelineno-13-23"></a>uv<span class="w"> </span>run<span class="w"> </span>--only-group<span class="o">=</span>check<span class="w"> </span>cargo-shear
 </code></pre></div>
 <h3 id="compiling-for-windows-from-unix"><a class="toclink" href="#compiling-for-windows-from-unix">Compiling for Windows from Unix</a></h3>
-<p>To run clippy for a Windows target from Linux or macOS, you can use
-<a href="https://github.com/rust-cross/cargo-xwin">cargo-xwin</a>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># Install cargo-xwin</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>cargo<span class="w"> </span>install<span class="w"> </span>--locked<span class="w"> </span>cargo-xwin@0.21.4
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>
-<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="c1"># Add the Windows target</span>
-<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>rustup<span class="w"> </span>target<span class="w"> </span>add<span class="w"> </span>x86_64-pc-windows-msvc
-<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>
-<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="c1"># Run clippy for Windows</span>
-<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>cargo<span class="w"> </span>xwin<span class="w"> </span>clippy<span class="w"> </span>--workspace<span class="w"> </span>--all-targets<span class="w"> </span>--all-features<span class="w"> </span>--locked<span class="w"> </span>--<span class="w"> </span>-D<span class="w"> </span>warnings
+<p>To run clippy for a Windows target from Linux or macOS, you can use <code>cargo-xwin</code>. We provide a build
+of <code>cargo-xwin</code> as part of our development toolchain, but you'll need to install one or more Windows
+targets:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># Add the Windows target</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>rustup<span class="w"> </span>target<span class="w"> </span>add<span class="w"> </span>x86_64-pc-windows-msvc
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="c1"># Run clippy for Windows</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>uv<span class="w"> </span>run<span class="w"> </span>--only-dev<span class="w"> </span>cargo<span class="w"> </span>xwin<span class="w"> </span>clippy<span class="w"> </span>--workspace<span class="w"> </span>--all-targets<span class="w"> </span>--all-features<span class="w"> </span>--locked<span class="w"> </span>--<span class="w"> </span>-D<span class="w"> </span>warnings
 </code></pre></div>
 <h2 id="crate-structure"><a class="toclink" href="#crate-structure">Crate structure</a></h2>
 <p>Rust does not allow circular dependencies between crates. To visualize the crate hierarchy, install
 <a href="https://github.com/jplatte/cargo-depgraph">cargo-depgraph</a> and graphviz, then run:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>cargo<span class="w"> </span>depgraph<span class="w"> </span>--dedup-transitive-deps<span class="w"> </span>--workspace-only<span class="w"> </span><span class="p">|</span><span class="w"> </span>dot<span class="w"> </span>-Tpng<span class="w"> </span>&gt;<span class="w"> </span>graph.png
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>cargo<span class="w"> </span>depgraph<span class="w"> </span>--dedup-transitive-deps<span class="w"> </span>--workspace-only<span class="w"> </span><span class="p">|</span><span class="w"> </span>dot<span class="w"> </span>-Tpng<span class="w"> </span>&gt;<span class="w"> </span>graph.png
 </code></pre></div>
 <h2 id="running-inside-a-docker-container"><a class="toclink" href="#running-inside-a-docker-container">Running inside a Docker container</a></h2>
 <p>Source distributions can run arbitrary code on build and can make unwanted modifications to your
@@ -4137,10 +4141,10 @@ system
 (<a href="https://moyix.blogspot.com/2022/09/someones-been-messing-with-my-subnormals.html">"Someone's Been Messing With My Subnormals!" on Blogspot</a>,
 <a href="https://pypi.org/project/nvidia-pyindex/">"nvidia-pyindex" on PyPI</a>), which can even occur when
 just resolving requirements. To prevent this, there's a Docker container you can run commands in:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="gp">$ </span>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>uv-builder<span class="w"> </span>-f<span class="w"> </span>crates/uv-dev/builder.dockerfile<span class="w"> </span>--load<span class="w"> </span>.
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="gp"># </span>Build<span class="w"> </span><span class="k">for</span><span class="w"> </span>musl<span class="w"> </span>to<span class="w"> </span>avoid<span class="w"> </span>glibc<span class="w"> </span>errors,<span class="w"> </span>might<span class="w"> </span>not<span class="w"> </span>be<span class="w"> </span>required<span class="w"> </span>with<span class="w"> </span>your<span class="w"> </span>OS<span class="w"> </span>version
-<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="go">cargo build --target x86_64-unknown-linux-musl --profile profiling</span>
-<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="go">docker run --rm -it -v $(pwd):/app uv-builder /app/target/x86_64-unknown-linux-musl/profiling/uv-dev resolve-many --cache-dir /app/cache-docker /app/scripts/popular_packages/pypi_10k_most_dependents.txt</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="gp">$ </span>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>uv-builder<span class="w"> </span>-f<span class="w"> </span>crates/uv-dev/builder.dockerfile<span class="w"> </span>--load<span class="w"> </span>.
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="gp"># </span>Build<span class="w"> </span><span class="k">for</span><span class="w"> </span>musl<span class="w"> </span>to<span class="w"> </span>avoid<span class="w"> </span>glibc<span class="w"> </span>errors,<span class="w"> </span>might<span class="w"> </span>not<span class="w"> </span>be<span class="w"> </span>required<span class="w"> </span>with<span class="w"> </span>your<span class="w"> </span>OS<span class="w"> </span>version
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="go">cargo build --target x86_64-unknown-linux-musl --profile profiling</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="go">docker run --rm -it -v $(pwd):/app uv-builder /app/target/x86_64-unknown-linux-musl/profiling/uv-dev resolve-many --cache-dir /app/cache-docker /app/scripts/popular_packages/pypi_10k_most_dependents.txt</span>
 </code></pre></div>
 <p>We recommend using this container if you don't trust the dependency tree of the package(s) you are
 trying to resolve or install.</p>
@@ -4152,24 +4156,24 @@ it applies to uv, too.</p>
 <code>test/requirements</code> and for the installer in <code>test/requirements/compiled</code>.</p>
 <p>You can use <code>scripts/benchmark</code> to benchmark predefined workloads between uv versions and with other
 tools, e.g., from the <code>scripts/benchmark</code> directory:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>uv<span class="w"> </span>run<span class="w"> </span>resolver<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">    </span>--uv-pip<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">    </span>--poetry<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">    </span>--benchmark<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">    </span>resolve-cold<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="w">    </span>../test/requirements/trio.in
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>uv<span class="w"> </span>run<span class="w"> </span>resolver<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">    </span>--uv-pip<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">    </span>--poetry<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">    </span>--benchmark<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="w">    </span>resolve-cold<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="w">    </span>../test/requirements/trio.in
 </code></pre></div>
 <h3 id="analyzing-concurrency"><a class="toclink" href="#analyzing-concurrency">Analyzing concurrency</a></h3>
 <p>You can use <a href="https://github.com/konstin/tracing-durations-export">tracing-durations-export</a> to
 visualize parallel requests and find any spots where uv is CPU-bound. Example usage, with <code>uv</code> and
 <code>uv-dev</code> respectively:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="nv">RUST_LOG</span><span class="o">=</span><span class="nv">uv</span><span class="o">=</span>info<span class="w"> </span><span class="nv">TRACING_DURATIONS_FILE</span><span class="o">=</span>target/traces/jupyter.ndjson<span class="w"> </span>cargo<span class="w"> </span>run<span class="w"> </span>--features<span class="w"> </span>tracing-durations-export<span class="w"> </span>--profile<span class="w"> </span>profiling<span class="w"> </span>--<span class="w"> </span>pip<span class="w"> </span>compile<span class="w"> </span>test/requirements/jupyter.in
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="nv">RUST_LOG</span><span class="o">=</span><span class="nv">uv</span><span class="o">=</span>info<span class="w"> </span><span class="nv">TRACING_DURATIONS_FILE</span><span class="o">=</span>target/traces/jupyter.ndjson<span class="w"> </span>cargo<span class="w"> </span>run<span class="w"> </span>--features<span class="w"> </span>tracing-durations-export<span class="w"> </span>--profile<span class="w"> </span>profiling<span class="w"> </span>--<span class="w"> </span>pip<span class="w"> </span>compile<span class="w"> </span>test/requirements/jupyter.in
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="nv">RUST_LOG</span><span class="o">=</span><span class="nv">uv</span><span class="o">=</span>info<span class="w"> </span><span class="nv">TRACING_DURATIONS_FILE</span><span class="o">=</span>target/traces/jupyter.ndjson<span class="w"> </span>cargo<span class="w"> </span>run<span class="w"> </span>--features<span class="w"> </span>tracing-durations-export<span class="w"> </span>--bin<span class="w"> </span>uv-dev<span class="w"> </span>--profile<span class="w"> </span>profiling<span class="w"> </span>--<span class="w"> </span>resolve<span class="w"> </span>jupyter
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nv">RUST_LOG</span><span class="o">=</span><span class="nv">uv</span><span class="o">=</span>info<span class="w"> </span><span class="nv">TRACING_DURATIONS_FILE</span><span class="o">=</span>target/traces/jupyter.ndjson<span class="w"> </span>cargo<span class="w"> </span>run<span class="w"> </span>--features<span class="w"> </span>tracing-durations-export<span class="w"> </span>--bin<span class="w"> </span>uv-dev<span class="w"> </span>--profile<span class="w"> </span>profiling<span class="w"> </span>--<span class="w"> </span>resolve<span class="w"> </span>jupyter
 </code></pre></div>
 <h3 id="trace-level-logging"><a class="toclink" href="#trace-level-logging">Trace-level logging</a></h3>
 <p>You can enable <code>trace</code> level logging using the <code>RUST_LOG</code> environment variable, i.e.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nv">RUST_LOG</span><span class="o">=</span>trace<span class="w"> </span>uv
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="nv">RUST_LOG</span><span class="o">=</span>trace<span class="w"> </span>uv
 </code></pre></div>
 <h2 id="documentation"><a class="toclink" href="#documentation">Documentation</a></h2>
 <p>To preview any changes to the documentation locally:</p>
@@ -4187,7 +4191,7 @@ visualize parallel requests and find any spots where uv is CPU-bound. Example us
 <p>Run the development server with:</p>
 </li>
 </ol>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>uv<span class="w"> </span>run<span class="w"> </span>--only-group<span class="w"> </span>docs<span class="w"> </span>mkdocs<span class="w"> </span>serve<span class="w"> </span>-f<span class="w"> </span>mkdocs.yml
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>uv<span class="w"> </span>run<span class="w"> </span>--only-group<span class="w"> </span>docs<span class="w"> </span>mkdocs<span class="w"> </span>serve<span class="w"> </span>-f<span class="w"> </span>mkdocs.yml
 </code></pre></div>
 <p>The documentation should then be available locally at
 <a href="http://127.0.0.1:8000/uv/">http://127.0.0.1:8000/uv/</a>.</p>
@@ -4208,30 +4212,30 @@ need to be approved on each re-compile.</p>
    <a href="https://developer.apple.com/account/resources/certificates/list">Apple Developer portal</a></li>
 <li>Download and install the certificate to your login keychain</li>
 </ol>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>security<span class="w"> </span>import<span class="w"> </span>~/Downloads/mac_development.cer<span class="w"> </span>-k<span class="w"> </span>~/Library/Keychains/login.keychain-db
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>security<span class="w"> </span>import<span class="w"> </span>~/Downloads/mac_development.cer<span class="w"> </span>-k<span class="w"> </span>~/Library/Keychains/login.keychain-db
 </code></pre></div>
 <ol>
 <li>Identify your code signing identity</li>
 </ol>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>security<span class="w"> </span>find-identity<span class="w"> </span>-v<span class="w"> </span>-p<span class="w"> </span>codesigning
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>security<span class="w"> </span>find-identity<span class="w"> </span>-v<span class="w"> </span>-p<span class="w"> </span>codesigning
 </code></pre></div>
 <ol>
 <li>If the above fails to find your identity, install the intermediate certificates</li>
 </ol>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>curl<span class="w"> </span>-sLO<span class="w"> </span><span class="s2">&quot;https://www.apple.com/certificateauthority/AppleWWDRCAG3.cer&quot;</span>
-<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>security<span class="w"> </span>import<span class="w"> </span>AppleWWDRCAG3.cer<span class="w"> </span>-k<span class="w"> </span>~/Library/Keychains/login.keychain-db
-<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>rm<span class="w"> </span>AppleWWDRCAG3.cer
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>curl<span class="w"> </span>-sLO<span class="w"> </span><span class="s2">&quot;https://www.apple.com/certificateauthority/AppleWWDRCAG3.cer&quot;</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>security<span class="w"> </span>import<span class="w"> </span>AppleWWDRCAG3.cer<span class="w"> </span>-k<span class="w"> </span>~/Library/Keychains/login.keychain-db
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>rm<span class="w"> </span>AppleWWDRCAG3.cer
 </code></pre></div>
 <ol>
 <li>Set <code>UV_TEST_CODESIGN_IDENTITY</code></li>
 </ol>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">UV_TEST_CODESIGN_IDENTITY</span><span class="o">=</span><span class="s2">&quot;Mac Developer: Your Name (TEAM_ID)&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">UV_TEST_CODESIGN_IDENTITY</span><span class="o">=</span><span class="s2">&quot;Mac Developer: Your Name (TEAM_ID)&quot;</span>
 </code></pre></div>
 <p>Note <code>UV_TEST_CODESIGN_IDENTITY</code> is only supported via <code>nextest</code>.</p>
 <h2 id="releases"><a class="toclink" href="#releases">Releases</a></h2>
 <p>Releases can only be performed by Astral team members.</p>
 <p>Changelog entries and version bumps are automated. First, run:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>./scripts/release.sh
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>./scripts/release.sh
 </code></pre></div>
 <p>If release preparation detects a new workspace crate, add it to
 <a href="https://github.com/astral-sh/crates-policies"><code>astral-sh/crates-policies</code></a>.</p>
