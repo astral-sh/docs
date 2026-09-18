@@ -85,6 +85,7 @@ The following preview features are available:
 - `lockfile-format-check`: Rejects non-canonical lockfile formatting when using `--locked` or `--check`.
 - `malware-check`: Allows `uv sync` and other commands to check for malware using [OSV](https://osv.dev) before installing packages.
 - `metadata-json`: Includes JSON metadata files in built wheels.
+- `minimum-libc-version`: Allows setting minimum libc versions for universal resolutions.
 - `missing-exclude-newer-package-lock`: Exclude `exclude-newer-package` entries from the lockfile when not included in the project's resolved dependencies.
 - `native-auth`: Enables storage of credentials in a [system-native location](../authentication/http/#the-uv-credentials-store).
 - `no-distutils-patch`: Stops installing the `_virtualenv.py` / `_virtualenv.pth` distutils configuration monkeypatch in virtual environments for Python 3.10 and later.

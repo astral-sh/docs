@@ -15399,12 +15399,6 @@ See `--project` to only change the project root directory.
 May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
-[`--dry-run`](#uv-workspace-metadata--dry-run) : Perform a dry run, without writing the lockfile.
-
-```
-In dry-run mode, uv will resolve the project's dependencies and report on the resulting changes, but will not write the lockfile to disk.
-```
-
 [`--exact`](#uv-workspace-metadata--exact) : Perform an exact sync, removing extraneous packages.
 
 ```
@@ -15726,6 +15720,8 @@ If provided, uv will resolve the dependencies based on the script's inline metad
 
 ```
 This adds a mapping from importable module names to references to the package nodes that provide them. By default, the environment is synced in inexact mode.
+
+This also allows creating or updating the lockfile, unless `--locked` or `--frozen` is provided. For scripts, the lockfile is only updated if it already exists.
 ```
 
 [`--system-certs`](#uv-workspace-metadata--system-certs) : Whether to load TLS certificates from the platform's native certificate store [env: UV_SYSTEM_CERTS=]
