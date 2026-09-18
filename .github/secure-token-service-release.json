@@ -1,0 +1,47 @@
+{
+  "version": 2,
+  "repositories": {
+    "docs": {
+      "name": "astral-sh/docs",
+      "id": 829123586,
+      "oidc_subject": "legacy"
+    },
+    "uv": {
+      "name": "astral-sh/uv",
+      "id": 699532645,
+      "oidc_subject": "legacy"
+    },
+    "python-build-standalone": {
+      "name": "astral-sh/python-build-standalone",
+      "id": 162334160,
+      "oidc_subject": "legacy"
+    }
+  },
+  "rules": [
+    {
+      "caller": "uv",
+      "environment": "release",
+      "caller_workflow": "publish-docs.yml",
+      "on": ["workflow_dispatch"],
+      "permissions": { "contents": "write", "pull_requests": "write" },
+      "target": "docs"
+    },
+    {
+      "caller": "uv",
+      "environment": "release",
+      "caller_workflow": "release.yml",
+      "reusable_workflow": "publish-docs.yml",
+      "on": ["workflow_dispatch"],
+      "permissions": { "contents": "write", "pull_requests": "write" },
+      "target": "docs"
+    },
+    {
+      "caller": "python-build-standalone",
+      "environment": "release",
+      "caller_workflow": "publish-docs.yml",
+      "on": ["workflow_dispatch"],
+      "permissions": { "contents": "write", "pull_requests": "write" },
+      "target": "docs"
+    }
+  ]
+}
