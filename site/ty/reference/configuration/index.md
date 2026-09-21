@@ -583,12 +583,18 @@ Glob patterns can be used in combinations with each other. For example, to suppr
 **Example usage**:
 
 ```
+[[tool.ty.overrides]]
+include = ["src"]
+
 [tool.ty.overrides.analysis]
 # Suppress errors for all `test` modules except `test.foo`
 allowed-unresolved-imports = ["test.**", "!test.foo"]
 ```
 
 ```
+[[overrides]]
+include = ["src"]
+
 [overrides.analysis]
 # Suppress errors for all `test` modules except `test.foo`
 allowed-unresolved-imports = ["test.**", "!test.foo"]
@@ -617,12 +623,18 @@ When multiple patterns match, later entries take precedence.
 **Example usage**:
 
 ```
+[[tool.ty.overrides]]
+include = ["src"]
+
 [tool.ty.overrides.analysis]
 # Replace all pandas and numpy imports with Any
 replace-imports-with-any = ["pandas.**", "numpy.**"]
 ```
 
 ```
+[[overrides]]
+include = ["src"]
+
 [overrides.analysis]
 # Replace all pandas and numpy imports with Any
 replace-imports-with-any = ["pandas.**", "numpy.**"]
@@ -647,12 +659,18 @@ Defaults to `true`.
 **Example usage**:
 
 ```
+[[tool.ty.overrides]]
+include = ["src"]
+
 [tool.ty.overrides.analysis]
 # Disable support for `type: ignore` comments
 respect-type-ignore-comments = false
 ```
 
 ```
+[[overrides]]
+include = ["src"]
+
 [overrides.analysis]
 # Disable support for `type: ignore` comments
 respect-type-ignore-comments = false
@@ -734,12 +752,18 @@ def narrow_match(x: str) -> None:
 **Example usage**:
 
 ```
+[[tool.ty.overrides]]
+include = ["src"]
+
 [tool.ty.overrides.analysis]
 # Preserve broad builtin types instead of narrowing them to literals
 strict-equality-semantics = true
 ```
 
 ```
+[[overrides]]
+include = ["src"]
+
 [overrides.analysis]
 # Preserve broad builtin types instead of narrowing them to literals
 strict-equality-semantics = true
@@ -764,12 +788,18 @@ Defaults to `false`.
 **Example usage**:
 
 ```
+[[tool.ty.overrides]]
+include = ["src"]
+
 [tool.ty.overrides.analysis]
 # Use the top materialization when narrowing to an unspecialized generic class
 strict-generic-narrowing = true
 ```
 
 ```
+[[overrides]]
+include = ["src"]
+
 [overrides.analysis]
 # Use the top materialization when narrowing to an unspecialized generic class
 strict-generic-narrowing = true
