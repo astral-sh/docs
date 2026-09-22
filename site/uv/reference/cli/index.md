@@ -3644,9 +3644,11 @@ The project and its dependencies will be omitted.
 May be provided multiple times. Implies `--no-default-groups`.
 ```
 
-[`--output-format`](#uv-sync--output-format) *output-format* : Select the output format
+[`--output-format`](#uv-sync--output-format) *output-format* : Select the output format.
 
 ```
+JSON output is written to stdout; diagnostic messages are written to stderr. The JSON schema is experimental and may change without warning.
+
 [default: text]
 
 Possible values:
@@ -11563,6 +11565,12 @@ May also be set with the `UV_CACHE_DIR` environment variable.
 If provided, this overrides the default certificate source.
 ```
 
+[`--check`](#uv-pip-sync--check) : Check whether the environment matches the requirements without modifying it.
+
+```
+Resolve and report any necessary changes, exiting with code 1 if changes are needed.
+```
+
 [`--color`](#uv-pip-sync--color) *color-choice* : Control the use of color in output.
 
 ```
@@ -11845,6 +11853,19 @@ When disabled, uv will only use locally cached data and locally available files.
 When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution for the given packages will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.
 
 Multiple packages may be provided. Disable binaries for all packages with `:all:`. Clear previously specified packages with `:none:`.
+```
+
+[`--output-format`](#uv-pip-sync--output-format) *output-format* : Select the output format.
+
+```
+JSON output is written to stdout; diagnostic messages are written to stderr. The JSON schema is experimental and may change without warning.
+
+[default: text]
+
+Possible values:
+
+- `text`: Display the result in a human-readable format
+- `json`: Display the result in JSON format
 ```
 
 [`--prefix`](#uv-pip-sync--prefix) *prefix* : Install packages into `lib`, `bin`, and other top-level folders under the specified directory, as if a virtual environment were present at that location.
@@ -12145,6 +12166,12 @@ May also be set with the `UV_CACHE_DIR` environment variable.
 
 ```
 If provided, this overrides the default certificate source.
+```
+
+[`--check`](#uv-pip-install--check) : Check whether the environment satisfies the requirements without modifying it.
+
+```
+Resolve and report any necessary changes, exiting with code 1 if changes are needed.
 ```
 
 [`--color`](#uv-pip-install--color) *color-choice* : Control the use of color in output.
@@ -12478,6 +12505,19 @@ When disabled, uv will only use locally cached data and locally available files.
 When enabled, uv will reuse cached wheels from previously built source distributions, but operations that require building a source distribution for the given packages will exit with an error. uv may still build editable requirements, and their build backends may run arbitrary Python code.
 
 Multiple packages may be provided. Disable binaries for all packages with `:all:`. Clear previously specified packages with `:none:`.
+```
+
+[`--output-format`](#uv-pip-install--output-format) *output-format* : Select the output format.
+
+```
+JSON output is written to stdout; diagnostic messages are written to stderr. The JSON schema is experimental and may change without warning.
+
+[default: text]
+
+Possible values:
+
+- `text`: Display the result in a human-readable format
+- `json`: Display the result in JSON format
 ```
 
 [`--overrides`](#uv-pip-install--overrides), `--override` *overrides* : Override versions using the given requirements files.
