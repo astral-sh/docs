@@ -804,12 +804,6 @@ Equivalent to the `--system` command-line argument. If set to `true`, uv will us
 
 WARNING: `UV_SYSTEM_PYTHON=true` is intended for use in continuous integration (CI) or containerized environments and should be used with caution, as modifying the system Python can lead to unexpected behavior.
 
-### [`UV_TEST_NO_HTTP_RETRY_DELAY`](#uv_test_no_http_retry_delay)
-
-added in `0.7.21`
-
-Used to disable delay for HTTP retries in tests.
-
 ### [`UV_TOOL_BIN_DIR`](#uv_tool_bin_dir)
 
 added in `0.3.0`
