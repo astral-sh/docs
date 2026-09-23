@@ -11,6 +11,16 @@
       "id": 699532645,
       "oidc_subject": "legacy"
     },
+    "ty": {
+      "name": "astral-sh/ty",
+      "id": 976731654,
+      "oidc_subject": "legacy"
+    },
+    "ruff": {
+      "name": "astral-sh/ruff",
+      "id": 523043277,
+      "oidc_subject": "legacy"
+    },
     "python-build-standalone": {
       "name": "astral-sh/python-build-standalone",
       "id": 162334160,
@@ -28,6 +38,40 @@
     },
     {
       "caller": "uv",
+      "environment": "release",
+      "caller_workflow": "release.yml",
+      "reusable_workflow": "publish-docs.yml",
+      "on": ["workflow_dispatch"],
+      "permissions": { "contents": "write", "pull_requests": "write" },
+      "target": "docs"
+    },
+    {
+      "caller": "ty",
+      "environment": "release",
+      "caller_workflow": "publish-docs.yml",
+      "on": ["workflow_dispatch"],
+      "permissions": { "contents": "write", "pull_requests": "write" },
+      "target": "docs"
+    },
+    {
+      "caller": "ty",
+      "environment": "release",
+      "caller_workflow": "release.yml",
+      "reusable_workflow": "publish-docs.yml",
+      "on": ["workflow_dispatch"],
+      "permissions": { "contents": "write", "pull_requests": "write" },
+      "target": "docs"
+    },
+    {
+      "caller": "ruff",
+      "environment": "release",
+      "caller_workflow": "publish-docs.yml",
+      "on": ["workflow_dispatch"],
+      "permissions": { "contents": "write", "pull_requests": "write" },
+      "target": "docs"
+    },
+    {
+      "caller": "ruff",
       "environment": "release",
       "caller_workflow": "release.yml",
       "reusable_workflow": "publish-docs.yml",
