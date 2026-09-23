@@ -6,6 +6,11 @@
       "id": 829123586,
       "oidc_subject": "legacy"
     },
+    "docs-index": {
+      "name": "astral-sh/docs-index",
+      "id": 862959972,
+      "oidc_subject": "legacy"
+    },
     "uv": {
       "name": "astral-sh/uv",
       "id": 699532645,
@@ -28,6 +33,14 @@
     }
   },
   "rules": [
+    {
+      "caller": "docs-index",
+      "environment": "release",
+      "caller_workflow": "publish-docs.yml",
+      "on": ["push", "workflow_dispatch"],
+      "permissions": { "contents": "write", "pull_requests": "write" },
+      "target": "docs"
+    },
     {
       "caller": "uv",
       "environment": "release",
