@@ -53,6 +53,8 @@
     
       <link rel="stylesheet" href="../../stylesheets/extra.css">
     
+      <link rel="stylesheet" href="../../stylesheets/rule-filters.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -918,7 +920,7 @@
 <p><small>
 Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.111">v0.0.111</a> ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27set-attr-with-constant%27%20OR%20B010)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_bugbear%2Frules%2Fsetattr_with_constant.rs#L55" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_bugbear%2Frules%2Fsetattr_with_constant.rs#L61" target="_blank">View source</a>
 </small></p>
 <p>Derived from the <strong><a href="../#flake8-bugbear-b">flake8-bugbear</a></strong> linter.</p>
 <p>Fix is always available.</p>
@@ -952,6 +954,11 @@ as the replacement may remove comments attached to the original <code>setattr</c
 <a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="c1"># But this would normalize to &quot;s&quot; and set a different attribute</span>
 <a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="n">obj</span><span class="o">.</span><span class="n">ſ</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># This is interpreted as obj.s = 1, not obj.ſ = 1</span>
 </code></pre></div>
+<h2 id="known-issues"><a class="toclink" href="#known-issues">Known issues</a></h2>
+<p>In some cases, a type checker may be able to analyze an assignment more
+thoroughly than a <code>setattr</code> call. Applying the fix in such cases may result
+in new type checking diagnostics, even if the runtime behavior of the code
+is unchanged.</p>
 <h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/library/functions.html#setattr">Python documentation: <code>setattr</code></a></li>
@@ -1073,6 +1080,8 @@ as the replacement may remove comments attached to the original <code>setattr</c
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="../../js/extra.js"></script>
+      
+        <script src="../../js/rule-filters.js"></script>
       
     
   </body>

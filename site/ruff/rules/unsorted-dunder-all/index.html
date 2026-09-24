@@ -53,6 +53,8 @@
     
       <link rel="stylesheet" href="../../stylesheets/extra.css">
     
+      <link rel="stylesheet" href="../../stylesheets/rule-filters.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -918,7 +920,7 @@
 <p><small>
 Added in <a href="https://github.com/astral-sh/ruff/releases/tag/0.8.0">0.8.0</a> ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27unsorted-dunder-all%27%20OR%20RUF022)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fruff%2Frules%2Fsort_dunder_all.rs#L92" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fruff%2Frules%2Fsort_dunder_all.rs#L99" target="_blank">View source</a>
 </small></p>
 <p>Fix is sometimes available.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
@@ -930,6 +932,12 @@ come first, followed by CamelCase names (conventionally used for
 classes), followed by anything else. Within each category,
 a <a href="https://en.wikipedia.org/wiki/Natural_sort_order">natural sort</a>
 is used to order the elements.</p>
+<p>Note that "isort-style" sorting here refers to how <code>isort</code> categorizes
+and orders imported symbols by casing (similar to <code>isort</code>'s
+<a href="https://isort.readthedocs.io/en/latest/configuration/options.html#order-by-type"><code>order-by-type</code></a>
+setting), rather than <code>isort</code>'s
+<a href="https://isort.readthedocs.io/en/latest/configuration/options.html#sort-re-exports"><code>sort-reexports</code></a>
+option, which sorts <code>__all__</code> strictly lexicographically.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Consistency is good. Use a common convention for <code>__all__</code> to make your
 code more readable and idiomatic.</p>
@@ -1104,6 +1112,8 @@ rule's fix could theoretically cause breakage.</p>
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="../../js/extra.js"></script>
+      
+        <script src="../../js/rule-filters.js"></script>
       
     
   </body>

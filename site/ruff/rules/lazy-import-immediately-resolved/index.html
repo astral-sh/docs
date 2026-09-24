@@ -53,6 +53,8 @@
     
       <link rel="stylesheet" href="../../stylesheets/extra.css">
     
+      <link rel="stylesheet" href="../../stylesheets/rule-filters.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -918,7 +920,7 @@
 <p><small>
 Preview (since <a href="https://github.com/astral-sh/ruff/releases/tag/0.15.13">0.15.13</a>) ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27lazy-import-immediately-resolved%27%20OR%20TID255)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_tidy_imports%2Frules%2Flazy_import_immediately_resolved.rs#L64" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_tidy_imports%2Frules%2Flazy_import_immediately_resolved.rs#L69" target="_blank">View source</a>
 </small></p>
 <p>Derived from the <strong><a href="../#flake8-tidy-imports-tid">flake8-tidy-imports</a></strong> linter.</p>
 <p>Fix is sometimes available.</p>
@@ -949,6 +951,10 @@ as their effects cannot be determined statically.</p>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">class</span><span class="w"> </span><span class="nc">Bar</span><span class="p">(</span><span class="n">foo</span><span class="o">.</span><span class="n">Foo</span><span class="p">):</span> <span class="o">...</span>
 </code></pre></div>
+<h2 id="known-problems"><a class="toclink" href="#known-problems">Known problems</a></h2>
+<p>Ruff does not detect all cases where decorators evaluate annotations. For
+example, <code>@dataclasses.dataclass</code> can immediately resolve lazy imports used in
+field annotations without triggering this rule.</p>
 <h2 id="fix-availability"><a class="toclink" href="#fix-availability">Fix availability</a></h2>
 <p>The fix is only available when the lazy import statement imports a single
 member, since removing <code>lazy</code> from a multi-member import would make every
@@ -1080,6 +1086,8 @@ runtime behavior if the module has import-time side effects.</p>
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="../../js/extra.js"></script>
+      
+        <script src="../../js/rule-filters.js"></script>
       
     
   </body>
