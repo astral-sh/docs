@@ -1719,7 +1719,7 @@ carol = Person(name="Carol", aeg=25)  # typo!
 
 ## [`invalid-legacy-positional-parameter`](#invalid-legacy-positional-parameter)
 
-Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.15](https://github.com/astral-sh/ty/releases/tag/0.0.15) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-legacy-positional-parameter%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1383)
+Default level: [`ignore`](../../rules#rule-levels "This lint has a default level of 'ignore'.") · Added in [0.0.15](https://github.com/astral-sh/ty/releases/tag/0.0.15) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22invalid-legacy-positional-parameter%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fdiagnostic.rs#L1383)
 
 **What it does**
 
@@ -1727,9 +1727,11 @@ Checks for parameters that appear to be attempting to use the legacy convention 
 
 The "legacy convention" for specifying positional-only parameters was specified in [PEP 484](https://peps.python.org/pep-0484/#positional-only-arguments). It states that parameters with names starting with `__` should be considered positional-only by type checkers. [PEP 570](https://peps.python.org/pep-0570/), introduced in Python 3.8, added dedicated syntax for specifying positional-only parameters, rendering the legacy convention obsolete. However, some codebases may still use the legacy convention for compatibility with older Python versions.
 
+This rule is disabled by default because modern code may use `__`-prefixed parameter names for other purposes. Enable it if your codebase uses the legacy convention and you want to check that it is applied consistently.
+
 **Why is this bad?**
 
-In most cases, a type checker will not consider a parameter to be positional-only if it comes after a positional-or-keyword parameter, even if its name starts with `__`. This may be unexpected to the author of the code.
+In most cases, a type checker will not consider a parameter to be positional-only if it comes after a positional-or-keyword parameter, even if its name starts with `__`. This may be unexpected if the author intended to use the legacy convention.
 
 **Example**
 
