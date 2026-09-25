@@ -3629,69 +3629,73 @@ displayed that the feature is in preview. The preview feature can be enabled to 
 <h2 id="available-preview-features"><a class="toclink" href="#available-preview-features">Available preview features</a></h2>
 <p>The following preview features are available:</p>
 <ul>
-<li><code>add-bounds</code>: Allows configuring the <a href="../../reference/settings/#add-bounds">default bounds for <code>uv add</code></a> invocations.</li>
-<li><code>adjust-ulimit</code>: On Unix, raises the process's soft open-file limit at startup, up to the hard limit.</li>
-<li><code>artifact-hash-filtering</code>: Restricts generated requirement hashes to artifacts allowed by binary and build policies.</li>
-<li><code>audit-command</code>: Allows using <code>uv audit</code> and <code>uv tool audit</code>.</li>
-<li><code>auth-helper</code>: Allows using <code>uv auth helper</code> as a credential helper for external tools.</li>
-<li><code>azure-endpoint</code>: Allows signing requests to Azure Blob Storage endpoints with Azure credentials.</li>
-<li><code>batch-export</code>: Allows using <code>uv export --batch</code>.</li>
-<li><code>build-dependency-check</code>: Checks build dependencies before nonisolated builds with <code>uv build</code>.</li>
-<li><code>cache-physical-space</code>: Reports the physical disk space reclaimed by cache cleanup, accounting for hardlinks and copy-on-write clones.</li>
-<li><code>cache-size</code>: Allows using <code>uv cache size</code>.</li>
-<li><code>centralized-project-envs</code>: Stores <a href="../projects/layout/#centralized-project-environments">project virtual environments</a>
+<li><a id="add-bounds" href="#add-bounds"><code>add-bounds</code></a>: Allows configuring the <a href="../../reference/settings/#add-bounds">default bounds for <code>uv add</code></a> invocations.</li>
+<li><a id="adjust-ulimit" href="#adjust-ulimit"><code>adjust-ulimit</code></a>: On Unix, raises the process's soft open-file limit at startup, up to the hard limit.</li>
+<li><a id="artifact-hash-filtering" href="#artifact-hash-filtering"><code>artifact-hash-filtering</code></a>: Restricts generated requirement hashes to artifacts allowed by binary and build policies.</li>
+<li><a id="audit-command" href="#audit-command"><code>audit-command</code></a>: Allows using <code>uv audit</code> and <code>uv tool audit</code>.</li>
+<li><a id="auth-helper" href="#auth-helper"><code>auth-helper</code></a>: Allows using <code>uv auth helper</code> as a credential helper for external tools.</li>
+<li><a id="azure-endpoint" href="#azure-endpoint"><code>azure-endpoint</code></a>: Allows signing requests to Azure Blob Storage endpoints with Azure credentials.</li>
+<li><a id="batch-export" href="#batch-export"><code>batch-export</code></a>: Allows using <code>uv export --batch</code>.</li>
+<li><a id="build-dependency-check" href="#build-dependency-check"><code>build-dependency-check</code></a>: Checks build dependencies before nonisolated builds with <code>uv build</code>.</li>
+<li><a id="build-lazy-imports" href="#build-lazy-imports"><code>build-lazy-imports</code></a>: Enables lazy imports in build backend invocations on CPython 3.15 and later.
+  This can affect import-time side effects in third-party build backends.</li>
+<li><a id="cache-physical-space" href="#cache-physical-space"><code>cache-physical-space</code></a>: Reports the physical disk space reclaimed by cache cleanup, accounting for hardlinks and copy-on-write clones.</li>
+<li><a id="cache-size" href="#cache-size"><code>cache-size</code></a>: Allows using <code>uv cache size</code>.</li>
+<li><a id="centralized-project-envs" href="#centralized-project-envs"><code>centralized-project-envs</code></a>: Stores <a href="../projects/layout/#centralized-project-environments">project virtual environments</a>
   in the uv cache.</li>
-<li><code>check-command</code>: Allows using <code>uv check</code>.</li>
-<li><code>content-addressed-cache</code>: Enables content-addressed wheel archives in the cache.</li>
-<li><code>detect-module-conflicts</code>: Warns when multiple packages would install conflicting Python modules into the same
+<li><a id="check-command" href="#check-command"><code>check-command</code></a>: Allows using <code>uv check</code>.</li>
+<li><a id="content-addressed-cache" href="#content-addressed-cache"><code>content-addressed-cache</code></a>: Enables content-addressed wheel archives in the cache.</li>
+<li><a id="detect-module-conflicts" href="#detect-module-conflicts"><code>detect-module-conflicts</code></a>: Warns when multiple packages would install conflicting Python modules into the same
   environment.</li>
-<li><code>extra-build-dependencies</code>: Allows specifying additional dependencies for package builds.</li>
-<li><code>format-command</code>: Allows using <code>uv format</code>.</li>
-<li><code>gcs-endpoint</code>: Allows signing requests to configured Google Cloud Storage endpoints.</li>
-<li><code>index-by-name</code>: Allows selecting configured package indexes by name with <code>--index</code> and <code>--default-index</code>.</li>
-<li><code>index-exclude-newer</code>: Allows setting <code>exclude-newer</code> on configured package indexes.</li>
-<li><code>index-hash-algorithm</code>: Allows requiring a hash algorithm for configured package indexes.</li>
-<li><code>init-project-flag</code>: Rejects the deprecated <code>--project</code> option in <code>uv init</code>.</li>
-<li><code>json-output</code>: Allows <code>--output-format json</code> for various uv commands.</li>
-<li><code>lock-without-metadata</code>: Omit <code>package.metadata</code> from <code>uv.lock</code>, except for remote URL dependencies.</li>
-<li><code>lockfile-format-check</code>: Rejects non-canonical lockfile formatting when using <code>--locked</code> or <code>--check</code>.</li>
-<li><code>malware-check</code>: Allows <code>uv sync</code> and other commands to check for malware using <a href="https://osv.dev">OSV</a> before
+<li><a id="extra-build-dependencies" href="#extra-build-dependencies"><code>extra-build-dependencies</code></a>: Allows specifying additional dependencies for package builds.</li>
+<li><a id="format-command" href="#format-command"><code>format-command</code></a>: Allows using <code>uv format</code>.</li>
+<li><a id="gcs-endpoint" href="#gcs-endpoint"><code>gcs-endpoint</code></a>: Allows signing requests to configured Google Cloud Storage endpoints.</li>
+<li><a id="index-by-name" href="#index-by-name"><code>index-by-name</code></a>: Allows selecting configured package indexes by name with <code>--index</code> and <code>--default-index</code>.</li>
+<li><a id="index-exclude-newer" href="#index-exclude-newer"><code>index-exclude-newer</code></a>: Allows setting <code>exclude-newer</code> on configured package indexes.</li>
+<li><a id="index-hash-algorithm" href="#index-hash-algorithm"><code>index-hash-algorithm</code></a>: Allows requiring a hash algorithm for configured package indexes.</li>
+<li><a id="init-project-flag" href="#init-project-flag"><code>init-project-flag</code></a>: Rejects the deprecated <code>--project</code> option in <code>uv init</code>.</li>
+<li><a id="json-output" href="#json-output"><code>json-output</code></a>: Allows <code>--output-format json</code> for various uv commands.</li>
+<li><a id="lock-without-metadata" href="#lock-without-metadata"><code>lock-without-metadata</code></a>: Omit <code>package.metadata</code> from <code>uv.lock</code>, except for remote URL dependencies.</li>
+<li><a id="lockfile-format-check" href="#lockfile-format-check"><code>lockfile-format-check</code></a>: Rejects non-canonical lockfile formatting when using <code>--locked</code> or <code>--check</code>.</li>
+<li><a id="malware-check" href="#malware-check"><code>malware-check</code></a>: Allows <code>uv sync</code> and other commands to check for malware using <a href="https://osv.dev">OSV</a> before
   installing packages.</li>
-<li><code>metadata-json</code>: Includes JSON metadata files in built wheels.</li>
-<li><code>minimum-libc-version</code>: Allows setting minimum libc versions for universal resolutions.</li>
-<li><code>missing-exclude-newer-package-lock</code>: Exclude <code>exclude-newer-package</code> entries from the lockfile when not included in the
+<li><a id="metadata-json" href="#metadata-json"><code>metadata-json</code></a>: Includes JSON metadata files in built wheels.</li>
+<li><a id="minimum-libc-version" href="#minimum-libc-version"><code>minimum-libc-version</code></a>: Allows setting minimum libc versions for universal resolutions.</li>
+<li><a id="missing-exclude-newer-package-lock" href="#missing-exclude-newer-package-lock"><code>missing-exclude-newer-package-lock</code></a>: Exclude <code>exclude-newer-package</code> entries from the lockfile when not included in the
   project's resolved dependencies.</li>
-<li><code>native-auth</code>: Enables storage of credentials in a <a href="../authentication/http/#the-uv-credentials-store">system-native location</a>.</li>
-<li><code>no-distutils-patch</code>: Stops installing the <code>_virtualenv.py</code> / <code>_virtualenv.pth</code> distutils configuration monkeypatch
+<li><a id="native-auth" href="#native-auth"><code>native-auth</code></a>: Enables storage of credentials in a <a href="../authentication/http/#the-uv-credentials-store">system-native location</a>.</li>
+<li><a id="no-distutils-patch" href="#no-distutils-patch"><code>no-distutils-patch</code></a>: Stops installing the <code>_virtualenv.py</code> / <code>_virtualenv.pth</code> distutils configuration monkeypatch
   in virtual environments for Python 3.10 and later.</li>
-<li><code>package-conflicts</code>: Allows defining workspace conflicts at the package level.</li>
-<li><code>packaged-init</code>: Makes <code>uv init</code> create a packaged application with a <code>src/</code> layout, build system, and script
+<li><a id="package-conflicts" href="#package-conflicts"><code>package-conflicts</code></a>: Allows defining workspace conflicts at the package level.</li>
+<li><a id="packaged-init" href="#packaged-init"><code>packaged-init</code></a>: Makes <code>uv init</code> create a packaged application with a <code>src/</code> layout, build system, and script
   entry point by default.</li>
-<li><code>project-directory-must-exist</code>: Rejects an invalid <code>--project</code> path instead of warning and continuing. Except for <code>uv init</code>,
+<li><a id="project-directory-must-exist" href="#project-directory-must-exist"><code>project-directory-must-exist</code></a>: Rejects an invalid <code>--project</code> path instead of warning and continuing. Except for <code>uv init</code>,
   the path must already exist as a directory or point to a <code>pyproject.toml</code> file. This feature
   takes effect before configuration is loaded.</li>
-<li><code>publish-require-normalized</code>: Requires normalized distribution filenames when publishing, skipping files whose names are
+<li><a id="publish-require-normalized" href="#publish-require-normalized"><code>publish-require-normalized</code></a>: Requires normalized distribution filenames when publishing, skipping files whose names are
   not normalized.</li>
-<li><code>pylock</code>: Allows installing from <code>pylock.toml</code> files.</li>
-<li><code>python-install-default</code>: Allows <a href="../python-versions/#installing-python-executables">installing <code>python</code> and <code>python3</code> executables</a>.</li>
-<li><code>relocatable-envs-default</code>: Creates relocatable virtual environments by default.</li>
-<li><code>s3-endpoint</code>: Allows signing requests to configured S3-compatible endpoints.</li>
-<li><code>sbom-export</code>: Allows using <code>uv export --format=cyclonedx1.5</code>.</li>
-<li><code>special-conda-env-names</code>: Stops treating Conda environments named <code>base</code> or <code>root</code> as special.</li>
-<li><code>tar-codec</code>: Uses the new <code>tar-codec</code> encoding/decoding backend, instead of <code>astral-tokio-tar</code>.</li>
-<li><code>target-workspace-discovery</code>: Uses the directory containing a local <code>uv run</code> target, rather than the current working
+<li><a id="pylock" href="#pylock"><code>pylock</code></a>: Allows installing from <code>pylock.toml</code> files.</li>
+<li><a id="python-install-default" href="#python-install-default"><code>python-install-default</code></a>: Allows <a href="../python-versions/#installing-python-executables">installing <code>python</code> and <code>python3</code> executables</a>.</li>
+<li><a id="relocatable-envs-default" href="#relocatable-envs-default"><code>relocatable-envs-default</code></a>: Creates relocatable virtual environments by default.</li>
+<li><a id="resolution-inputs" href="#resolution-inputs"><code>resolution-inputs</code></a>: Records runtime configuration consultations and omits unused constraints, overrides, exclusions,
+  dependency metadata, and package-specific upload cutoffs from the lockfile.</li>
+<li><a id="s3-endpoint" href="#s3-endpoint"><code>s3-endpoint</code></a>: Allows signing requests to configured S3-compatible endpoints.</li>
+<li><a id="sbom-export" href="#sbom-export"><code>sbom-export</code></a>: Allows using <code>uv export --format=cyclonedx1.5</code>.</li>
+<li><a id="special-conda-env-names" href="#special-conda-env-names"><code>special-conda-env-names</code></a>: Stops treating Conda environments named <code>base</code> or <code>root</code> as special.</li>
+<li><a id="tar-codec" href="#tar-codec"><code>tar-codec</code></a>: Uses the new <code>tar-codec</code> encoding/decoding backend, instead of <code>astral-tokio-tar</code>.</li>
+<li><a id="target-workspace-discovery" href="#target-workspace-discovery"><code>target-workspace-discovery</code></a>: Uses the directory containing a local <code>uv run</code> target, rather than the current working
   directory, as the starting point for project and workspace discovery. This feature takes
   effect before configuration is loaded.</li>
-<li><code>toml-backwards-compatibility</code>: Rewrites <code>pyproject.toml</code> as TOML 1.0 when building source distributions, preserving the
+<li><a id="toml-backwards-compatibility" href="#toml-backwards-compatibility"><code>toml-backwards-compatibility</code></a>: Rewrites <code>pyproject.toml</code> as TOML 1.0 when building source distributions, preserving the
   original as <code>pyproject.toml.orig</code> to ensure compatibility with older build tools.</li>
-<li><code>tool-install-locks</code>: Stores a <code>uv.lock</code> alongside each installed tool and reuses it for reproducible installations,
+<li><a id="tool-install-locks" href="#tool-install-locks"><code>tool-install-locks</code></a>: Stores a <code>uv.lock</code> alongside each installed tool and reuses it for reproducible installations,
   upgrades, and audits.</li>
-<li><code>venv-safe-clear</code>: Prevents <code>uv venv --clear</code> from clearing a directory that does not contain a <code>pyvenv.cfg</code> file
+<li><a id="venv-safe-clear" href="#venv-safe-clear"><code>venv-safe-clear</code></a>: Prevents <code>uv venv --clear</code> from clearing a directory that does not contain a <code>pyvenv.cfg</code> file
   unless <code>--force</code> is provided.</li>
-<li><code>workspace-dir</code>: Allows using <code>uv workspace dir</code>.</li>
-<li><code>workspace-list</code>: Allows using <code>uv workspace list</code>.</li>
-<li><code>workspace-list-scripts</code>: Allows using <code>uv workspace list --scripts</code>.</li>
-<li><code>workspace-metadata</code>: Allows using <code>uv workspace metadata</code>.</li>
+<li><a id="workspace-dir" href="#workspace-dir"><code>workspace-dir</code></a>: Allows using <code>uv workspace dir</code>.</li>
+<li><a id="workspace-list" href="#workspace-list"><code>workspace-list</code></a>: Allows using <code>uv workspace list</code>.</li>
+<li><a id="workspace-list-scripts" href="#workspace-list-scripts"><code>workspace-list-scripts</code></a>: Allows using <code>uv workspace list --scripts</code>.</li>
+<li><a id="workspace-metadata" href="#workspace-metadata"><code>workspace-metadata</code></a>: Allows using <code>uv workspace metadata</code>.</li>
 </ul>
 <h2 id="disabling-preview-features"><a class="toclink" href="#disabling-preview-features">Disabling preview features</a></h2>
 <p>The <code>--no-preview</code> option can be used to disable preview features.</p>
