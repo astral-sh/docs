@@ -56,6 +56,8 @@ In general, we recommend against using both a `uv.lock` and a `requirements.txt`
 $ uv export --format pylock.toml
 ```
 
+Relative local paths are written relative to the output file's directory. When writing to stdout, they are relative to the current working directory. Use `--output-file` when writing a `pylock.toml` in another directory.
+
 ## [CycloneDX SBOM format](#cyclonedx-sbom-format)
 
 uv can export your project's dependency lockfile as a Software Bill of Materials (SBOM) in CycloneDX format. SBOMs provide a comprehensive inventory of all software components in your application, which is useful for security auditing, compliance, and supply chain transparency.
