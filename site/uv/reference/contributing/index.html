@@ -4097,32 +4097,33 @@ building:</p>
 <a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-v<span class="w"> </span>.:/src/<span class="w"> </span>-w<span class="w"> </span>/src/<span class="w"> </span>node:alpine<span class="w"> </span>npx<span class="w"> </span>prettier@3.9.0<span class="w"> </span>--write<span class="w"> </span>.
 </code></pre></div>
 <h2 id="linting"><a class="toclink" href="#linting">Linting</a></h2>
-<p>Linting requires <a href="https://github.com/koalaman/shellcheck">shellcheck</a> to be installed separately.
-Validating <code>pyproject.toml</code> against the checked-in uv schema also requires
-<a href="https://jqlang.org/">jq</a>.</p>
+<p>Linting requires <a href="https://github.com/koalaman/shellcheck">shellcheck</a> and
+<a href="https://github.com/astral-sh/hawk/">hawk</a> to be installed separately. Validating <code>pyproject.toml</code>
+against the checked-in uv schema also requires <a href="https://jqlang.org/">jq</a>.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># Rust</span>
 <a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>cargo<span class="w"> </span>clippy<span class="w"> </span>--workspace<span class="w"> </span>--all-targets<span class="w"> </span>--all-features<span class="w"> </span>--locked<span class="w"> </span>--<span class="w"> </span>-D<span class="w"> </span>warnings
-<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>
-<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="c1"># Python</span>
-<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>uv<span class="w"> </span>run<span class="w"> </span>--only-group<span class="o">=</span>check<span class="w"> </span>ruff<span class="w"> </span>check<span class="w"> </span>.
-<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>
-<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="c1"># Python type checking</span>
-<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>uv<span class="w"> </span>run<span class="w"> </span>--only-group<span class="o">=</span>check<span class="w"> </span>ty<span class="w"> </span>check<span class="w"> </span>python/uv
-<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>
-<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="c1"># Python project metadata and uv schema</span>
-<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>./scripts/validate-pyproject.sh
-<a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>
-<a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a><span class="c1"># Generated files</span>
-<a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a>cargo<span class="w"> </span>dev<span class="w"> </span>generate-all<span class="w"> </span>--mode<span class="w"> </span>dry-run
-<a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>
-<a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a><span class="c1"># Shell scripts</span>
-<a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a>shellcheck<span class="w"> </span>&lt;script&gt;
-<a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a>
-<a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a><span class="c1"># Spell checking</span>
-<a id="__codelineno-14-20" name="__codelineno-14-20" href="#__codelineno-14-20"></a>uv<span class="w"> </span>run<span class="w"> </span>--only-group<span class="o">=</span>check<span class="w"> </span>typos
-<a id="__codelineno-14-21" name="__codelineno-14-21" href="#__codelineno-14-21"></a>
-<a id="__codelineno-14-22" name="__codelineno-14-22" href="#__codelineno-14-22"></a><span class="c1"># Unused Rust dependencies</span>
-<a id="__codelineno-14-23" name="__codelineno-14-23" href="#__codelineno-14-23"></a>uv<span class="w"> </span>run<span class="w"> </span>--only-group<span class="o">=</span>check<span class="w"> </span>cargo-shear
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>cargo<span class="w"> </span>+1.98.1<span class="w"> </span>hawk<span class="w"> </span>check<span class="w"> </span>--target-dir<span class="w"> </span>target/hawk<span class="w"> </span>-D<span class="w"> </span>warnings
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="c1"># Python</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>uv<span class="w"> </span>run<span class="w"> </span>--only-group<span class="o">=</span>check<span class="w"> </span>ruff<span class="w"> </span>check<span class="w"> </span>.
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="c1"># Python type checking</span>
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>uv<span class="w"> </span>run<span class="w"> </span>--only-group<span class="o">=</span>check<span class="w"> </span>ty<span class="w"> </span>check<span class="w"> </span>python/uv
+<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>
+<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="c1"># Python project metadata and uv schema</span>
+<a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>./scripts/validate-pyproject.sh
+<a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>
+<a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a><span class="c1"># Generated files</span>
+<a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>cargo<span class="w"> </span>dev<span class="w"> </span>generate-all<span class="w"> </span>--mode<span class="w"> </span>dry-run
+<a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a>
+<a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a><span class="c1"># Shell scripts</span>
+<a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a>shellcheck<span class="w"> </span>&lt;script&gt;
+<a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a>
+<a id="__codelineno-14-20" name="__codelineno-14-20" href="#__codelineno-14-20"></a><span class="c1"># Spell checking</span>
+<a id="__codelineno-14-21" name="__codelineno-14-21" href="#__codelineno-14-21"></a>uv<span class="w"> </span>run<span class="w"> </span>--only-group<span class="o">=</span>check<span class="w"> </span>typos
+<a id="__codelineno-14-22" name="__codelineno-14-22" href="#__codelineno-14-22"></a>
+<a id="__codelineno-14-23" name="__codelineno-14-23" href="#__codelineno-14-23"></a><span class="c1"># Unused Rust dependencies</span>
+<a id="__codelineno-14-24" name="__codelineno-14-24" href="#__codelineno-14-24"></a>uv<span class="w"> </span>run<span class="w"> </span>--only-group<span class="o">=</span>check<span class="w"> </span>cargo-shear
 </code></pre></div>
 <h3 id="compiling-for-windows-from-unix"><a class="toclink" href="#compiling-for-windows-from-unix">Compiling for Windows from Unix</a></h3>
 <p>To run clippy for a Windows target from Linux or macOS, you can use <code>cargo-xwin</code>. We provide a build

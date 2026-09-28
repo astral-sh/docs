@@ -85,6 +85,7 @@ The following preview features are available:
 - [`json-output`](#json-output): Allows `--output-format json` for various uv commands.
 - [`lock-without-metadata`](#lock-without-metadata): Omit `package.metadata` from `uv.lock`, except for remote URL dependencies.
 - [`lockfile-format-check`](#lockfile-format-check): Rejects non-canonical lockfile formatting when using `--locked` or `--check`.
+- [`lockfile-normalization`](#lockfile-normalization): Combines equivalent dependency declarations when writing lockfiles.
 - [`malware-check`](#malware-check): Allows `uv sync` and other commands to check for malware using [OSV](https://osv.dev) before installing packages.
 - [`metadata-json`](#metadata-json): Includes JSON metadata files in built wheels.
 - [`minimum-libc-version`](#minimum-libc-version): Allows setting minimum libc versions for universal resolutions.
