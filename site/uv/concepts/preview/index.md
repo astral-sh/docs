@@ -99,7 +99,7 @@ The following preview features are available:
 - [`pylock`](#pylock): Allows installing from `pylock.toml` files.
 - [`python-install-default`](#python-install-default): Allows [installing `python` and `python3` executables](../python-versions/#installing-python-executables).
 - [`relocatable-envs-default`](#relocatable-envs-default): Creates relocatable virtual environments by default.
-- [`resolution-inputs`](#resolution-inputs): Records runtime configuration consultations and omits unused constraints, overrides, exclusions, dependency metadata, and package-specific upload cutoffs from the lockfile.
+- [`resolution-inputs`](#resolution-inputs): Omits redundant runtime constraints and records consultations to omit unused overrides, exclusions, dependency metadata, and package-specific upload cutoffs from the lockfile.
 - [`s3-endpoint`](#s3-endpoint): Allows signing requests to configured S3-compatible endpoints.
 - [`sbom-export`](#sbom-export): Allows using `uv export --format=cyclonedx1.5`.
 - [`special-conda-env-names`](#special-conda-env-names): Stops treating Conda environments named `base` or `root` as special.
