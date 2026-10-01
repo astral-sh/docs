@@ -2275,6 +2275,9 @@ documentation</a> for more details.</p>
 </ul>
 <p>For <code>internal</code>, the formatter version will match the selected Ruff version while for <code>uv</code>, the
 formatter version may differ.</p>
+<p>Starting the server with <code>ruff server --untrusted-workspace</code> disables the uv backend. With this flag,
+the server always uses the internal formatter, regardless of this setting. This prevents workspace
+configuration from causing uv to execute untrusted code.</p>
 <p><strong>Default value</strong>: <code>"internal"</code></p>
 <p><strong>Type</strong>: <code>"internal" | "uv"</code></p>
 <p><strong>Example usage</strong>:</p>
