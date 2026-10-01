@@ -6,37 +6,33 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="An extremely fast Python linter and code formatter, written in Rust.">
+        <meta name="description" content="Checks for generator-based context managers annotated with `Iterator` or">
       
       
         <meta name="author" content="charliermarsh">
       
       
-        <link rel="canonical" href="https://docs.astral.sh/ruff/installation/">
+        <link rel="canonical" href="https://docs.astral.sh/ruff/rules/context-manager-iterator/">
       
       
-        <link rel="prev" href="../tutorial/">
-      
-      
-        <link rel="next" href="../linter/">
       
       
         
       
       
-      <link rel="icon" href="../assets/favicon.ico">
+      <link rel="icon" href="../../assets/favicon.ico">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
 
-<title>Installing Ruff | Ruff</title>
+<title>context-manager-iterator (UP052) | Ruff</title>
 
 
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -55,11 +51,11 @@
       
     
     
-      <link rel="stylesheet" href="../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-      <link rel="stylesheet" href="../stylesheets/rule-filters.css">
+      <link rel="stylesheet" href="../../stylesheets/rule-filters.css">
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -108,7 +104,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#installing-ruff" class="md-skip">
+        <a href="#context-manager-iterator-up052" class="md-skip">
           Skip to content
         </a>
       
@@ -124,9 +120,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="Ruff" class="md-header__button md-logo" aria-label="Ruff" data-md-component="logo">
+    <a href="../.." title="Ruff" class="md-header__button md-logo" aria-label="Ruff" data-md-component="logo">
       
-  <img src="../assets/bolt.svg" alt="logo">
+  <img src="../../assets/bolt.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -143,7 +139,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Installing Ruff
+              context-manager-iterator (UP052)
             
           </span>
         </div>
@@ -271,9 +267,9 @@
 
 <nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Ruff" class="md-nav__button md-logo" aria-label="Ruff" data-md-component="logo">
+    <a href="../.." title="Ruff" class="md-nav__button md-logo" aria-label="Ruff" data-md-component="logo">
       
-  <img src="../assets/bolt.svg" alt="logo">
+  <img src="../../assets/bolt.svg" alt="logo">
 
     </a>
     Ruff
@@ -300,7 +296,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -327,7 +323,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tutorial/" class="md-nav__link">
+      <a href="../../tutorial/" class="md-nav__link">
         
   
   
@@ -351,19 +347,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../installation/" class="md-nav__link">
         
   
   
@@ -379,7 +366,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -391,7 +377,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../linter/" class="md-nav__link">
+      <a href="../../linter/" class="md-nav__link">
         
   
   
@@ -418,7 +404,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../formatter/" class="md-nav__link">
+      <a href="../../formatter/" class="md-nav__link">
         
   
   
@@ -492,7 +478,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../editors/" class="md-nav__link">
+      <a href="../../editors/" class="md-nav__link">
         
   
   
@@ -520,7 +506,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../editors/setup/" class="md-nav__link">
+      <a href="../../editors/setup/" class="md-nav__link">
         
   
   
@@ -548,7 +534,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../editors/features/" class="md-nav__link">
+      <a href="../../editors/features/" class="md-nav__link">
         
   
   
@@ -576,7 +562,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../editors/settings/" class="md-nav__link">
+      <a href="../../editors/settings/" class="md-nav__link">
         
   
   
@@ -604,7 +590,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../editors/migration/" class="md-nav__link">
+      <a href="../../editors/migration/" class="md-nav__link">
         
   
   
@@ -639,7 +625,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../configuration/" class="md-nav__link">
+      <a href="../../configuration/" class="md-nav__link">
         
   
   
@@ -666,7 +652,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../preview/" class="md-nav__link">
+      <a href="../../preview/" class="md-nav__link">
         
   
   
@@ -693,7 +679,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../rules/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -720,7 +706,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../default-rules/" class="md-nav__link">
+      <a href="../../default-rules/" class="md-nav__link">
         
   
   
@@ -747,7 +733,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../settings/" class="md-nav__link">
+      <a href="../../settings/" class="md-nav__link">
         
   
   
@@ -774,7 +760,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../versioning/" class="md-nav__link">
+      <a href="../../versioning/" class="md-nav__link">
         
   
   
@@ -801,7 +787,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../integrations/" class="md-nav__link">
+      <a href="../../integrations/" class="md-nav__link">
         
   
   
@@ -828,7 +814,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../faq/" class="md-nav__link">
+      <a href="../../faq/" class="md-nav__link">
         
   
   
@@ -855,7 +841,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../contributing/" class="md-nav__link">
+      <a href="../../contributing/" class="md-nav__link">
         
   
   
@@ -882,7 +868,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../rule-proposals/" class="md-nav__link">
+      <a href="../../rule-proposals/" class="md-nav__link">
         
   
   
@@ -930,78 +916,69 @@
   
 
 
-<h1 id="installing-ruff"><a class="toclink" href="#installing-ruff">Installing Ruff</a></h1>
-<p>Ruff is available as <a href="https://pypi.org/project/ruff/"><code>ruff</code></a> on PyPI.</p>
-<p>Ruff can be invoked directly with <a href="https://docs.astral.sh/uv/"><code>uvx</code></a>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>uvx<span class="w"> </span>ruff@0.16.10<span class="w"> </span>check<span class="w">   </span><span class="c1"># Lint all files in the current directory.</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>uvx<span class="w"> </span>ruff@0.16.10<span class="w"> </span>format<span class="w">  </span><span class="c1"># Format all files in the current directory.</span>
+<h1 id="context-manager-iterator-up052"><a class="toclink" href="#context-manager-iterator-up052">context-manager-iterator (UP052)</a></h1>
+<p><small>
+Preview (since <a href="https://github.com/astral-sh/ruff/releases/tag/0.16.10">0.16.10</a>) ·
+<a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27context-manager-iterator%27%20OR%20UP052)" target="_blank">Related issues</a> ·
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fpyupgrade%2Frules%2Fcontext_manager_iterator.rs#L65" target="_blank">View source</a>
+</small></p>
+<p>Derived from the <strong><a href="../#pyupgrade-up">pyupgrade</a></strong> linter.</p>
+<p>Fix is sometimes available.</p>
+<p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
+<h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
+<p>Checks for generator-based context managers annotated with <code>Iterator</code> or
+<code>AsyncIterator</code> instead of <code>Generator</code> or <code>AsyncGenerator</code>.</p>
+<h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
+<p><code>contextlib.contextmanager</code> and <code>contextlib.asynccontextmanager</code> require
+generators, which support methods such as <code>throw</code> that are not guaranteed
+by the iterator protocols. The iterator overloads of these decorators are
+deprecated in <a href="https://github.com/python/typeshed/blob/main/stdlib/contextlib.pyi">typeshed</a>.</p>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Iterator</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">contextlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">contextmanager</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="nd">@contextmanager</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="k">def</span><span class="w"> </span><span class="nf">example</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="k">yield</span> <span class="mi">1</span>
 </code></pre></div>
-<p>Or installed with <code>uv</code> (recommended), <code>pip</code>, or <code>pipx</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="gp">$ </span><span class="c1"># Install Ruff globally.</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="gp">$ </span>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>ruff@latest
+<p>Use instead:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Generator</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">contextlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">contextmanager</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="gp">$ </span><span class="c1"># Or add Ruff to your project.</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="gp">$ </span>uv<span class="w"> </span>add<span class="w"> </span>--dev<span class="w"> </span>ruff
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="gp">$ </span><span class="c1"># With pip.</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="gp">$ </span>pip<span class="w"> </span>install<span class="w"> </span>ruff
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="gp">$ </span><span class="c1"># With pipx.</span>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="gp">$ </span>pipx<span class="w"> </span>install<span class="w"> </span>ruff
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="nd">@contextmanager</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="k">def</span><span class="w"> </span><span class="nf">example</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Generator</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="k">yield</span> <span class="mi">1</span>
 </code></pre></div>
-<p>Once installed, you can run Ruff from the command line:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="gp">$ </span>ruff<span class="w"> </span>check<span class="w">   </span><span class="c1"># Lint all files in the current directory.</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="gp">$ </span>ruff<span class="w"> </span>format<span class="w">  </span><span class="c1"># Format all files in the current directory.</span>
-</code></pre></div>
-<p>Starting with version <code>0.5.0</code>, Ruff can also be installed with our standalone installers:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="gp">$ </span><span class="c1"># On macOS and Linux.</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="gp">$ </span>curl<span class="w"> </span>-LsSf<span class="w"> </span>https://astral.sh/ruff/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="gp">$ </span><span class="c1"># On Windows.</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="gp">$ </span>powershell<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;irm https://astral.sh/ruff/install.ps1 | iex&quot;</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="gp">$ </span><span class="c1"># For a specific version.</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="gp">$ </span>curl<span class="w"> </span>-LsSf<span class="w"> </span>https://astral.sh/ruff/0.5.0/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="gp">$ </span>powershell<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;irm https://astral.sh/ruff/0.5.0/install.ps1 | iex&quot;</span>
-</code></pre></div>
-<p>For <strong>macOS Homebrew</strong> and <strong>Linuxbrew</strong> users, Ruff is also available
-as <a href="https://formulae.brew.sh/formula/ruff"><code>ruff</code></a> on Homebrew:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="gp">$ </span>brew<span class="w"> </span>install<span class="w"> </span>ruff
-</code></pre></div>
-<p>For <strong>Conda</strong> users, Ruff is also available as <a href="https://anaconda.org/conda-forge/ruff"><code>ruff</code></a> on
-<code>conda-forge</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="gp">$ </span>conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>ruff
-</code></pre></div>
-<p>For <strong>pkgx</strong> users, Ruff is also available as <a href="https://pkgx.dev/pkgs/github.com/charliermarsh/ruff/"><code>ruff</code></a>
-on the <code>pkgx</code> registry:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="gp">$ </span>pkgx<span class="w"> </span>install<span class="w"> </span>ruff
-</code></pre></div>
-<p>For <strong>Arch Linux</strong> users, Ruff is also available as <a href="https://archlinux.org/packages/extra/x86_64/ruff/"><code>ruff</code></a>
-on the official repositories:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="gp">$ </span>pacman<span class="w"> </span>-S<span class="w"> </span>ruff
-</code></pre></div>
-<p>For <strong>Alpine</strong> users, Ruff is also available as <a href="https://pkgs.alpinelinux.org/package/edge/community/x86_64/ruff"><code>ruff</code></a>
-on the community repositories:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="gp">$ </span>apk<span class="w"> </span>add<span class="w"> </span>ruff
-</code></pre></div>
-<p>For <strong>openSUSE Tumbleweed</strong> users, Ruff is also available in the distribution repository:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="gp">$ </span>sudo<span class="w"> </span>zypper<span class="w"> </span>install<span class="w"> </span>python3-ruff
-</code></pre></div>
-<p>On <strong>Docker</strong>, it is published as <code>ghcr.io/astral-sh/ruff</code>, tagged for each release and <code>latest</code> for
-the latest release.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="gp">$ </span>docker<span class="w"> </span>run<span class="w"> </span>-v<span class="w"> </span>.:/io<span class="w"> </span>--rm<span class="w"> </span>ghcr.io/astral-sh/ruff<span class="w"> </span>check
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="gp">$ </span>docker<span class="w"> </span>run<span class="w"> </span>-v<span class="w"> </span>.:/io<span class="w"> </span>--rm<span class="w"> </span>ghcr.io/astral-sh/ruff:0.3.0<span class="w"> </span>check
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="gp">$ </span><span class="c1"># Or, for Podman on SELinux.</span>
-<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="gp">$ </span>docker<span class="w"> </span>run<span class="w"> </span>-v<span class="w"> </span>.:/io:Z<span class="w"> </span>--rm<span class="w"> </span>ghcr.io/astral-sh/ruff<span class="w"> </span>check
-</code></pre></div>
-<p><a href="https://repology.org/project/ruff-python-linter/versions"><img alt="Packaging status" src="https://repology.org/badge/vertical-allrepos/ruff-python-linter.svg?exclude_unsupported=1" /></a></p>
+<p>On Python 3.13 and later, the fix omits the default type arguments and uses
+<code>Generator[int]</code> or <code>AsyncGenerator[int]</code>.</p>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
+<p>The fix is unsafe because it changes the function's runtime annotations
+and may add an import, introducing a new name in the module. For a generator
+that returns a value, the fix uses <code>object</code> as the return type to accommodate
+any return value.</p>
+<h2 id="known-limitations"><a class="toclink" href="#known-limitations">Known limitations</a></h2>
+<p>The rule checks functions whose innermost decorator is a contextlib
+context manager and whose bodies contain a <code>yield</code> or <code>yield from</code>.</p>
+<h2 id="options"><a class="toclink" href="#options">Options</a></h2>
+<ul>
+<li><a href="../../settings/#target-version"><code>target-version</code></a></li>
+</ul>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
+<ul>
+<li><a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager">Python documentation: <code>contextlib.contextmanager</code></a></li>
+<li><a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager">Python documentation: <code>contextlib.asynccontextmanager</code></a></li>
+</ul>
 
 
 
 
 
 
+
+  
+  
 
 
 
@@ -1104,14 +1081,14 @@ the latest release.</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.tracking", "content.code.annotate", "toc.integrate", "toc.follow", "navigation.path", "navigation.top", "content.code.copy", "content.tabs.link"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.tracking", "content.code.annotate", "toc.integrate", "toc.follow", "navigation.path", "navigation.top", "content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
-        <script src="../js/extra.js"></script>
+        <script src="../../js/extra.js"></script>
       
-        <script src="../js/rule-filters.js"></script>
+        <script src="../../js/rule-filters.js"></script>
       
     
   </body>

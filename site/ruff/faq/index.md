@@ -89,7 +89,7 @@ At time of writing, Pylint implements ~409 total rules, while Ruff implements ov
 
 Pylint implements many rules that Ruff does not, and vice versa. For example, Pylint does more type inference than Ruff (e.g., Pylint can validate the number of arguments in a function call). As such, Ruff is not a "pure" drop-in replacement for Pylint (and vice versa), as they enforce different sets of rules.
 
-Despite these differences, many users have successfully switched from Pylint to Ruff, especially those using Ruff alongside a [type checker](./#how-does-ruff-compare-to-mypy-or-pyright-or-pyre), which can cover some of the functionality that Pylint provides.
+Despite these differences, many users have successfully switched from Pylint to Ruff, especially those using Ruff alongside a [type checker](./#how-does-ruff-compare-to-ty-mypy-pyright-or-pyre), which can cover some of the functionality that Pylint provides.
 
 Like Flake8, Pylint supports plugins (called "checkers"), while Ruff implements all rules natively and does not support custom or third-party rules. Unlike Pylint, Ruff is capable of automatically fixing its own lint violations.
 
@@ -97,13 +97,13 @@ In some cases, Ruff's rules may yield slightly different results than their Pyli
 
 Pylint parity is being tracked in [#970](https://github.com/astral-sh/ruff/issues/970).
 
-## [How does Ruff compare to Mypy, or Pyright, or Pyre?](#how-does-ruff-compare-to-mypy-or-pyright-or-pyre)
+## [How does Ruff compare to ty, Mypy, Pyright or Pyre?](#how-does-ruff-compare-to-ty-mypy-pyright-or-pyre)
 
 Ruff is a linter, not a type checker. It can detect some of the same problems that a type checker can, but a type checker will catch certain errors that Ruff would miss. The opposite is also true: Ruff will catch certain errors that a type checker would typically ignore.
 
 For example, unlike a type checker, Ruff will notify you if an import is unused, by looking for references to that import in the source code; on the other hand, a type checker could flag that you passed an integer argument to a function that expects a string, which Ruff would miss. The tools are complementary.
 
-It's recommended that you use Ruff in conjunction with a type checker, like Mypy, Pyright, or Pyre, with Ruff providing faster feedback on lint violations and the type checker providing more detailed feedback on type errors.
+It's recommended that you use Ruff in conjunction with a type checker, like ty, Mypy, Pyright or Pyre, with Ruff providing faster feedback on lint violations and the type checker providing more detailed feedback on type errors.
 
 ## [Which tools does Ruff replace?](#which-tools-does-ruff-replace)
 
@@ -165,7 +165,7 @@ Nope! Ruff's linter and formatter can be used independently of one another -- yo
 
 ## [What versions of Python does Ruff support?](#what-versions-of-python-does-ruff-support)
 
-Ruff can lint code for any Python version from 3.7 onwards, including Python 3.13.
+Ruff can lint code for any Python version from 3.7 onwards, including Python 3.15.
 
 Ruff does not support Python 2. Ruff *may* run on pre-Python 3.7 code, although such versions are not officially supported (e.g., Ruff does *not* respect type comments).
 
