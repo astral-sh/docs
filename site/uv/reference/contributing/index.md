@@ -151,8 +151,8 @@ Linting requires [shellcheck](https://github.com/koalaman/shellcheck) and [hawk]
 
 ```
 # Rust
-cargo clippy --workspace --all-targets --all-features --locked -- -D warnings
-cargo +1.98.1 hawk check --target-dir target/hawk -D warnings
+CARGO_BUILD_WARNINGS=deny cargo clippy --workspace --all-targets --all-features --locked
+cargo +1.99.0 hawk check --target-dir target/hawk -D warnings
 
 # Python
 uv run --only-group=check ruff check .
@@ -185,7 +185,7 @@ To run clippy for a Windows target from Linux or macOS, you can use `cargo-xwin`
 rustup target add x86_64-pc-windows-msvc
 
 # Run clippy for Windows
-uv run --only-dev cargo xwin clippy --workspace --all-targets --all-features --locked -- -D warnings
+CARGO_BUILD_WARNINGS=deny uv run --only-dev cargo xwin clippy --workspace --all-targets --all-features --locked
 ```
 
 ## [Crate structure](#crate-structure)
@@ -321,4 +321,4 @@ Then, open a pull request, e.g., `Bump version to ...`.
 
 Binary builds will automatically be tested for the release.
 
-After merging the pull request, run the [release workflow](https://github.com/astral-sh/uv/actions/workflows/release.yml) with the version tag. **Do not include a leading `v`**. The release will automatically be created on GitHub after everything else publishes.
+After merging the pull request, run the [release workflow](https://github.com/astral-sh/uv/actions/workflows/release.yml). The workflow reads the version from project metadata and rejects versions that already have a GitHub release. Enable `dry-run` to build artifacts without publishing. Otherwise, the release will automatically be created on GitHub after everything else publishes.

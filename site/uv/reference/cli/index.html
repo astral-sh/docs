@@ -7509,7 +7509,8 @@ interpreter. Use <code>--universal</code> to display the tree for all platforms,
 <h2 id="uv-audit"><a class="toclink" href="#uv-audit">uv audit</a></h2>
 <p>Audit the project's dependencies.</p>
 <p>Dependencies are audited for known vulnerabilities, as well as 'adverse' statuses such as deprecation and quarantine.</p>
-<p>By default, all extras and groups within the project are audited. To exclude extras and/or groups from the audit, use the <code>--no-extra</code>, <code>--no-group</code>, and related options.</p>
+<p>By default, all extras and dependency groups within the project are audited, regardless of <code>tool.uv.default-groups</code>. To omit all dependency groups, use <code>--no-default-groups</code>. To exclude individual extras or groups, use <code>--no-extra</code> or <code>--no-group</code>.</p>
+<p>Auditing requires network access and cannot be performed in offline mode.</p>
 <h3 class="cli-reference">Usage</h3>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>uv audit [OPTIONS]
@@ -7622,9 +7623,10 @@ interpreter. Use <code>--universal</code> to display the tree for all platforms,
 </dd><dt id="uv-audit--no-cache"><a href="#uv-audit--no-cache"><code>--no-cache</code></a>, <code>--no-cache-dir</code>, <code>-n</code></dt><dd><p>Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation</p>
 <p>May also be set with the <code>UV_NO_CACHE</code> environment variable.</p></dd><dt id="uv-audit--no-config"><a href="#uv-audit--no-config"><code>--no-config</code></a></dt><dd><p>Avoid discovering configuration files (<code>pyproject.toml</code>, <code>uv.toml</code>).</p>
 <p>Normally, configuration files are discovered in the current directory, parent directories, or user configuration directories.</p>
-<p>May also be set with the <code>UV_NO_CONFIG</code> environment variable.</p></dd><dt id="uv-audit--no-default-groups"><a href="#uv-audit--no-default-groups"><code>--no-default-groups</code></a></dt><dd><p>Don't audit the default dependency groups</p>
+<p>May also be set with the <code>UV_NO_CONFIG</code> environment variable.</p></dd><dt id="uv-audit--no-default-groups"><a href="#uv-audit--no-default-groups"><code>--no-default-groups</code></a></dt><dd><p>Don't audit dependency groups unless explicitly requested.</p>
+<p>By default, <code>uv audit</code> includes all dependency groups, regardless of <code>tool.uv.default-groups</code>. Groups can still be selected with <code>--only-group</code> or <code>--only-dev</code>.</p>
 <p>May also be set with the <code>UV_NO_DEFAULT_GROUPS</code> environment variable.</p></dd><dt id="uv-audit--no-dev"><a href="#uv-audit--no-dev"><code>--no-dev</code></a></dt><dd><p>Don't audit the development dependency group [env: UV_NO_DEV=]</p>
-<p>This option is an alias of <code>--no-group dev</code>. See <code>--no-default-groups</code> to exclude all default groups instead.</p>
+<p>This option is an alias of <code>--no-group dev</code>. See <code>--no-default-groups</code> to exclude all dependency groups instead.</p>
 <p>This option is only available when running in a project.</p>
 </dd><dt id="uv-audit--no-extra"><a href="#uv-audit--no-extra"><code>--no-extra</code></a> <i>no-extra</i></dt><dd><p>Don't audit the specified optional dependencies.</p>
 <p>May be provided multiple times.</p>
@@ -7638,8 +7640,6 @@ interpreter. Use <code>--universal</code> to display the tree for all platforms,
 </dd><dt id="uv-audit--no-python-downloads"><a href="#uv-audit--no-python-downloads"><code>--no-python-downloads</code></a></dt><dd><p>Disable automatic downloads of Python.</p>
 </dd><dt id="uv-audit--no-sources"><a href="#uv-audit--no-sources"><code>--no-sources</code></a></dt><dd><p>Ignore the <code>tool.uv.sources</code> table when resolving dependencies. Used to lock against the standards-compliant, publishable package metadata, as opposed to using any workspace, Git, URL, or local path sources</p>
 <p>May also be set with the <code>UV_NO_SOURCES</code> environment variable.</p></dd><dt id="uv-audit--no-sources-package"><a href="#uv-audit--no-sources-package"><code>--no-sources-package</code></a> <i>no-sources-package</i></dt><dd><p>Don't use sources from the <code>tool.uv.sources</code> table for the specified packages [env: <code>UV_NO_SOURCES_PACKAGE</code>=]</p>
-</dd><dt id="uv-audit--offline"><a href="#uv-audit--offline"><code>--offline</code></a></dt><dd><p>Disable network access [env: UV_OFFLINE=]</p>
-<p>When disabled, uv will only use locally cached data and locally available files.</p>
 </dd><dt id="uv-audit--only-dev"><a href="#uv-audit--only-dev"><code>--only-dev</code></a></dt><dd><p>Only audit the development dependency group.</p>
 <p>The project and its dependencies will be omitted.</p>
 <p>This option is an alias for <code>--only-group dev</code>. Implies <code>--no-default-groups</code>.</p>
@@ -8650,7 +8650,8 @@ Use with <code>--all</code> to apply to all tools.</p>
 </dd></dl>
 
 <h3 id="uv-tool-audit"><a class="toclink" href="#uv-tool-audit">uv tool audit</a></h3>
-<p>Audit installed tools and their dependencies</p>
+<p>Audit installed tools and their dependencies.</p>
+<p>Auditing requires network access and cannot be performed in offline mode.</p>
 <h3 class="cli-reference">Usage</h3>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>uv tool audit [OPTIONS] &lt;NAME&gt;...
@@ -8699,8 +8700,6 @@ Use with <code>--all</code> to apply to all tools.</p>
 </dd><dt id="uv-tool-audit--no-progress"><a href="#uv-tool-audit--no-progress"><code>--no-progress</code></a></dt><dd><p>Hide all progress outputs [env: UV_NO_PROGRESS=]</p>
 <p>For example, spinners or progress bars.</p>
 </dd><dt id="uv-tool-audit--no-python-downloads"><a href="#uv-tool-audit--no-python-downloads"><code>--no-python-downloads</code></a></dt><dd><p>Disable automatic downloads of Python.</p>
-</dd><dt id="uv-tool-audit--offline"><a href="#uv-tool-audit--offline"><code>--offline</code></a></dt><dd><p>Disable network access [env: UV_OFFLINE=]</p>
-<p>When disabled, uv will only use locally cached data and locally available files.</p>
 </dd><dt id="uv-tool-audit--output-format"><a href="#uv-tool-audit--output-format"><code>--output-format</code></a> <i>output-format</i></dt><dd><p>Select the output format</p>
 <p>[default: text]</p><p>Possible values:</p>
 <ul>
@@ -11545,8 +11544,6 @@ uv publish --publish-url https://upload.pypi.org/legacy/ --check-url https://pyp
 </dd><dt id="uv-publish--no-progress"><a href="#uv-publish--no-progress"><code>--no-progress</code></a></dt><dd><p>Hide all progress outputs [env: UV_NO_PROGRESS=]</p>
 <p>For example, spinners or progress bars.</p>
 </dd><dt id="uv-publish--no-python-downloads"><a href="#uv-publish--no-python-downloads"><code>--no-python-downloads</code></a></dt><dd><p>Disable automatic downloads of Python.</p>
-</dd><dt id="uv-publish--offline"><a href="#uv-publish--offline"><code>--offline</code></a></dt><dd><p>Disable network access [env: UV_OFFLINE=]</p>
-<p>When disabled, uv will only use locally cached data and locally available files.</p>
 </dd><dt id="uv-publish--password"><a href="#uv-publish--password"><code>--password</code></a>, <code>-p</code> <i>password</i></dt><dd><p>The password for the upload</p>
 <p>May also be set with the <code>UV_PUBLISH_PASSWORD</code> environment variable.</p></dd><dt id="uv-publish--project"><a href="#uv-publish--project"><code>--project</code></a> <i>project</i></dt><dd><p>Discover a project in the given directory.</p>
 <p>All <code>pyproject.toml</code>, <code>uv.toml</code>, and <code>.python-version</code> files will be discovered by walking up the directory tree from the project root, as will the project's virtual environment (<code>.venv</code>).</p>
