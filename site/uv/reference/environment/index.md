@@ -632,6 +632,12 @@ added in `0.1.40`
 
 Equivalent to the `--python` command-line argument. If set to a path, uv will use this Python interpreter for all operations.
 
+### [`UV_PYTHON_ARCH`](#uv_python_arch)
+
+added in `0.12.22`
+
+Selects the architecture for Python requests that do not specify one, e.g., `x86_64` or `aarch64`. Requests that name an interpreter executable take precedence.
+
 ### [`UV_PYTHON_BIN_DIR`](#uv_python_bin_dir)
 
 added in `0.4.29`
