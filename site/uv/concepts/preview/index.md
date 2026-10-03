@@ -77,6 +77,7 @@ The following preview features are available:
 - [`detect-module-conflicts`](#detect-module-conflicts): Warns when multiple packages would install conflicting Python modules into the same environment.
 - [`extra-build-dependencies`](#extra-build-dependencies): Allows specifying additional dependencies for package builds.
 - [`format-command`](#format-command): Allows using `uv format`.
+- [`frozen-lockfile`](#frozen-lockfile): Allows using frozen project commands without a workspace manifest.
 - [`gcs-endpoint`](#gcs-endpoint): Allows signing requests to configured Google Cloud Storage endpoints.
 - [`index-by-name`](#index-by-name): Allows selecting configured package indexes by name with `--index` and `--default-index`.
 - [`index-exclude-newer`](#index-exclude-newer): Allows setting `exclude-newer` on configured package indexes.
