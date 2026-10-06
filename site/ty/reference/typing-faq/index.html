@@ -81,8 +81,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2026-09-24 12:56:00Z",
-        "dateModified": "2026-09-24 12:56:00Z",
+        "datePublished": "2026-10-06 17:49:42Z",
+        "dateModified": "2026-10-06 17:49:42Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -1916,7 +1916,7 @@ option enabled. If <code>x</code> was previously of type <code>Item | list[Item]
 check to narrow the type to <code>list[Item]</code>, but ty respects the possibility that there could be a
 common subclass of both <code>Item</code> and <code>list</code> (which may not be a list of <code>Item</code>!), and so the narrowed
 type is instead <code>(Item &amp; Top[list[Unknown]]) | list[Item]</code>. This code can be made more robust by
-instead checking <code>if instance(x, Item)</code>, or by declaring the <code>Item</code> type as <code>@typing.final</code>.</p>
+instead checking <code>if isinstance(x, Item)</code>, or by declaring the <code>Item</code> type as <code>@typing.final</code>.</p>
 <p>See also the <a href="https://docs.astral.sh/ty/features/type-system/#top-and-bottom-materializations">discussion
 here</a> and <a href="https://github.com/astral-sh/ty/issues/1578">in this
 issue</a>.</p>
@@ -1926,9 +1926,9 @@ there are some easy ways to enable stricter type-checking on your code. See
 <a href="../../coming-from-mypy-or-pyright/#stricter-checking-with-ty">Stricter checking with ty</a> for more
 details.</p>
 <h2 id="why-doesnt-ty-warn-about-missing-type-annotations"><a class="toclink" href="#why-doesnt-ty-warn-about-missing-type-annotations">Why doesn't ty warn about missing type annotations?</a></h2>
-<p>ty does not report an error for unannotated function parameters, return types, or variables. When
-ty encounters an unannotated symbol, it infers the type as <a href="#what-is-the-unknown-type-and-when-does-it-appear"><code>Unknown</code></a>
-while still providing useful diagnostics where possible.</p>
+<p>ty does not report an error for unannotated function parameters, return types, or variables. It infers
+types where it can and uses <a href="#what-is-the-unknown-type-and-when-does-it-appear"><code>Unknown</code></a> when it
+cannot, while still providing useful diagnostics.</p>
 <p>If you are looking for the equivalent of mypy's
 <a href="https://mypy.readthedocs.io/en/stable/config_file.html#confval-disallow_untyped_defs"><code>disallow_untyped_defs</code></a>
 (error code: <code>no-untyped-def</code>), Ruff provides this as a set of opt-in lint rules via its
@@ -2014,8 +2014,9 @@ dependencies based on their inline metadata.</p>
 <h2 id="does-ty-support-mypy-plugins"><a class="toclink" href="#does-ty-support-mypy-plugins">Does ty support (mypy) plugins?</a></h2>
 <p>No. ty does not have a plugin system and there is currently no plan to add one.</p>
 <p>We prefer extending the type system with well-specified features rather than relying on
-type-checker-specific plugins. That said, we are considering adding support for popular third-party
-libraries like pydantic, SQLAlchemy, attrs, or django directly into ty.</p>
+type-checker-specific plugins. That said, ty already has built-in support for Pydantic, and we are
+considering adding dedicated support for other popular third-party libraries, such as Django and
+attrs.</p>
 
 
 
@@ -2036,7 +2037,7 @@ libraries like pydantic, SQLAlchemy, attrs, or django directly into ty.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 24, 2026 12:56:00 UTC">September 24, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 6, 2026 17:49:42 UTC">October 6, 2026</span>
   </span>
 
     
