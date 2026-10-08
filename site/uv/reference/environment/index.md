@@ -180,6 +180,14 @@ added in `0.5.19`
 
 Enables fetching files stored in Git LFS when installing a package from a Git repository.
 
+### [`UV_GRAALPY_INSTALL_MIRROR`](#uv_graalpy_install_mirror)
+
+added in `0.12.24`
+
+Managed GraalPy installations are downloaded from [GitHub](https://github.com/oracle/graalpython/releases).
+
+This variable can be set to a mirror URL to use a different source for GraalPy installations. The provided URL will replace `https://github.com/oracle/graalpython/releases/download` in, e.g., `https://github.com/oracle/graalpython/releases/download/graal-24.2.2/graalpy-24.2.2-macos-aarch64.tar.gz`. Distributions can be read from a local directory by using the `file://` URL scheme.
+
 ### [`UV_HIDE_BUILD_OUTPUT`](#uv_hide_build_output)
 
 added in `0.9.15`
@@ -617,6 +625,14 @@ Equivalent to the `--publish-url` command-line argument. The URL of the upload e
 added in `0.4.16`
 
 Equivalent to the `--username` command-line argument in `uv publish`. If set, uv will use this username for publishing.
+
+### [`UV_PYODIDE_INSTALL_MIRROR`](#uv_pyodide_install_mirror)
+
+added in `0.12.24`
+
+Managed Pyodide installations are downloaded from [GitHub](https://github.com/pyodide/pyodide/releases).
+
+This variable can be set to a mirror URL to use a different source for Pyodide installations. The provided URL will replace `https://github.com/pyodide/pyodide/releases/download` in, e.g., `https://github.com/pyodide/pyodide/releases/download/0.29.5/xbuildenv-0.29.5.tar.gz`. Distributions can be read from a local directory by using the `file://` URL scheme.
 
 ### [`UV_PYPY_INSTALL_MIRROR`](#uv_pypy_install_mirror)
 

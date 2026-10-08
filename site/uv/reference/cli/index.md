@@ -148,19 +148,6 @@ May also be set with the `UV_WORKING_DIR` environment variable.
 
 [`--help`](#uv-auth-login--help), `-h` : Display the concise help for this command
 
-[`--keyring-provider`](#uv-auth-login--keyring-provider) *keyring-provider* : The keyring provider to use for storage of credentials.
-
-```
-Only `--keyring-provider native` is supported for `login`, which uses the system keyring via an integration built into uv.
-
-May also be set with the `UV_KEYRING_PROVIDER` environment variable.
-
-Possible values:
-
-- `disabled`: Do not use keyring for credential lookup
-- `subprocess`: Use the `keyring` command for credential lookup
-```
-
 [`--managed-python`](#uv-auth-login--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
 ```
@@ -321,19 +308,6 @@ May also be set with the `UV_WORKING_DIR` environment variable.
 
 [`--help`](#uv-auth-logout--help), `-h` : Display the concise help for this command
 
-[`--keyring-provider`](#uv-auth-logout--keyring-provider) *keyring-provider* : The keyring provider to use for storage of credentials.
-
-```
-Only `--keyring-provider native` is supported for `logout`, which uses the system keyring via an integration built into uv.
-
-May also be set with the `UV_KEYRING_PROVIDER` environment variable.
-
-Possible values:
-
-- `disabled`: Do not use keyring for credential lookup
-- `subprocess`: Use the `keyring` command for credential lookup
-```
-
 [`--managed-python`](#uv-auth-logout--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
 ```
@@ -479,17 +453,6 @@ May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
 [`--help`](#uv-auth-token--help), `-h` : Display the concise help for this command
-
-[`--keyring-provider`](#uv-auth-token--keyring-provider) *keyring-provider* : The keyring provider to use for reading credentials
-
-```
-May also be set with the `UV_KEYRING_PROVIDER` environment variable.
-
-Possible values:
-
-- `disabled`: Do not use keyring for credential lookup
-- `subprocess`: Use the `keyring` command for credential lookup
-```
 
 [`--managed-python`](#uv-auth-token--managed-python) : Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]
 
@@ -9593,6 +9556,14 @@ By default, uv will refuse to replace executables that it does not manage.
 Implies `--reinstall`.
 ```
 
+[`--graalpy-mirror`](#uv-python-install--graalpy-mirror) *graalpy-mirror* : Set the URL to use as the source for downloading GraalPy installations.
+
+```
+The provided URL will replace `https://github.com/oracle/graalpython/releases/download` in, e.g., `https://github.com/oracle/graalpython/releases/download/graal-24.2.2/graalpy-24.2.2-macos-aarch64.tar.gz`.
+
+Distributions can be read from a local directory by using the `file://` URL scheme.
+```
+
 [`--help`](#uv-python-install--help), `-h` : Display the concise help for this command
 
 [`--install-dir`](#uv-python-install--install-dir), `-i` *install-dir* : The directory to store the Python installation in.
@@ -9677,6 +9648,14 @@ See `--directory` to change the working directory entirely.
 This setting has no effect when used in the `uv pip` interface.
 
 May also be set with the `UV_PROJECT` environment variable.
+```
+
+[`--pyodide-mirror`](#uv-python-install--pyodide-mirror) *pyodide-mirror* : Set the URL to use as the source for downloading Pyodide installations.
+
+```
+The provided URL will replace `https://github.com/pyodide/pyodide/releases/download` in, e.g., `https://github.com/pyodide/pyodide/releases/download/0.29.5/xbuildenv-0.29.5.tar.gz`.
+
+Distributions can be read from a local directory by using the `file://` URL scheme.
 ```
 
 [`--pypy-mirror`](#uv-python-install--pypy-mirror) *pypy-mirror* : Set the URL to use as the source for downloading PyPy installations.
@@ -9821,6 +9800,14 @@ See `--project` to only change the project root directory.
 May also be set with the `UV_WORKING_DIR` environment variable.
 ```
 
+[`--graalpy-mirror`](#uv-python-upgrade--graalpy-mirror) *graalpy-mirror* : Set the URL to use as the source for downloading GraalPy installations.
+
+```
+The provided URL will replace `https://github.com/oracle/graalpython/releases/download` in, e.g., `https://github.com/oracle/graalpython/releases/download/graal-24.2.2/graalpy-24.2.2-macos-aarch64.tar.gz`.
+
+Distributions can be read from a local directory by using the `file://` URL scheme.
+```
+
 [`--help`](#uv-python-upgrade--help), `-h` : Display the concise help for this command
 
 [`--install-dir`](#uv-python-upgrade--install-dir), `-i` *install-dir* : The directory Python installations are stored in.
@@ -9893,6 +9880,14 @@ See `--directory` to change the working directory entirely.
 This setting has no effect when used in the `uv pip` interface.
 
 May also be set with the `UV_PROJECT` environment variable.
+```
+
+[`--pyodide-mirror`](#uv-python-upgrade--pyodide-mirror) *pyodide-mirror* : Set the URL to use as the source for downloading Pyodide installations.
+
+```
+The provided URL will replace `https://github.com/pyodide/pyodide/releases/download` in, e.g., `https://github.com/pyodide/pyodide/releases/download/0.29.5/xbuildenv-0.29.5.tar.gz`.
+
+Distributions can be read from a local directory by using the `file://` URL scheme.
 ```
 
 [`--pypy-mirror`](#uv-python-upgrade--pypy-mirror) *pypy-mirror* : Set the URL to use as the source for downloading PyPy installations.

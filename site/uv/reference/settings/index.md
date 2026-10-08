@@ -378,7 +378,7 @@ ______________________________________________________________________
 
 A list of required platforms, for packages that lack source distributions.
 
-When a package does not have a source distribution, it's availability will be limited to the platforms supported by its built distributions (wheels). For example, if a package only publishes wheels for Linux, then it won't be installable on macOS or Windows.
+When a package does not have a source distribution, its availability will be limited to the platforms supported by its built distributions (wheels). For example, if a package only publishes wheels for Linux, then it won't be installable on macOS or Windows.
 
 By default, uv requires each package to include at least one wheel that is compatible with the designated Python version. The `required-environments` setting can be used to ensure that the resulting resolution contains wheels for specific platforms, or fails if no such wheels are available.
 
@@ -1208,6 +1208,28 @@ fork-strategy = "fewest"
 
 ______________________________________________________________________
 
+### \[[`graalpy-install-mirror`](#graalpy-install-mirror)\](#graalpy-install-mirror)
+
+Mirror URL to use for downloading managed GraalPy installations.
+
+By default, managed GraalPy installations are downloaded from [GitHub](https://github.com/oracle/graalpython/releases). This variable can be set to a mirror URL to use a different source for GraalPy installations. The provided URL will replace `https://github.com/oracle/graalpython/releases/download` in, e.g., `https://github.com/oracle/graalpython/releases/download/graal-24.2.2/graalpy-24.2.2-macos-aarch64.tar.gz`.
+
+Distributions can be read from a local directory by using the `file://` URL scheme.
+
+**Default value**: `None`
+
+**Type**: `str`
+
+**Example usage**:
+
+uv.toml
+
+```
+graalpy-install-mirror = "https://github.com/oracle/graalpython/releases/download"
+```
+
+______________________________________________________________________
+
 ### \[[`http-proxy`](#http-proxy)\](#http-proxy)
 
 The URL of the HTTP proxy to use.
@@ -1774,6 +1796,28 @@ publish-url = "https://test.pypi.org/legacy/"
 
 ```
 publish-url = "https://test.pypi.org/legacy/"
+```
+
+______________________________________________________________________
+
+### \[[`pyodide-install-mirror`](#pyodide-install-mirror)\](#pyodide-install-mirror)
+
+Mirror URL to use for downloading managed Pyodide installations.
+
+By default, managed Pyodide installations are downloaded from [GitHub](https://github.com/pyodide/pyodide/releases). This variable can be set to a mirror URL to use a different source for Pyodide installations. The provided URL will replace `https://github.com/pyodide/pyodide/releases/download` in, e.g., `https://github.com/pyodide/pyodide/releases/download/0.29.5/xbuildenv-0.29.5.tar.gz`.
+
+Distributions can be read from a local directory by using the `file://` URL scheme.
+
+**Default value**: `None`
+
+**Type**: `str`
+
+**Example usage**:
+
+uv.toml
+
+```
+pyodide-install-mirror = "https://github.com/pyodide/pyodide/releases/download"
 ```
 
 ______________________________________________________________________

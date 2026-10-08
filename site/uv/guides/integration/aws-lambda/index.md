@@ -84,7 +84,7 @@ In the first stage, we'll populate a single directory with all application code 
 Dockerfile
 
 ```
-FROM ghcr.io/astral-sh/uv:0.12.23 AS uv
+FROM ghcr.io/astral-sh/uv:0.12.24 AS uv
 
 # First, bundle the dependencies into the task root.
 FROM public.ecr.aws/lambda/python:3.13 AS builder
@@ -101,12 +101,11 @@ ENV UV_LINK_MODE=copy
 # Bundle the dependencies into the Lambda task root via `uv pip install --target`.
 #
 # Omit any local packages (`--no-emit-workspace`) and development dependencies (`--no-dev`).
-# This ensures that the Docker layer cache is only invalidated when the `pyproject.toml` or `uv.lock`
-# files change, but remains robust to changes in the application code.
+# This keeps the layer cached across changes to the application code or `pyproject.toml`, as long as
+# `uv.lock` is unchanged.
 RUN --mount=from=uv,source=/uv,target=/bin/uv \
     --mount=type=cache,target=/root/.cache/uv \
     --mount=type=bind,source=uv.lock,target=uv.lock \
-    --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
     uv export --frozen --no-emit-workspace --no-dev --no-editable -o requirements.txt && \
     uv pip install -r requirements.txt --target "${LAMBDA_TASK_ROOT}"
 
@@ -321,7 +320,7 @@ Finally, we'll update the Dockerfile to include the local library in the deploym
 Dockerfile
 
 ```
-FROM ghcr.io/astral-sh/uv:0.12.23 AS uv
+FROM ghcr.io/astral-sh/uv:0.12.24 AS uv
 
 # First, bundle the dependencies into the task root.
 FROM public.ecr.aws/lambda/python:3.13 AS builder
@@ -338,12 +337,11 @@ ENV UV_LINK_MODE=copy
 # Bundle the dependencies into the Lambda task root via `uv pip install --target`.
 #
 # Omit any local packages (`--no-emit-workspace`) and development dependencies (`--no-dev`).
-# This ensures that the Docker layer cache is only invalidated when the `pyproject.toml` or `uv.lock`
-# files change, but remains robust to changes in the application code.
+# This keeps the layer cached across changes to the application code or `pyproject.toml`, as long as
+# `uv.lock` is unchanged.
 RUN --mount=from=uv,source=/uv,target=/bin/uv \
     --mount=type=cache,target=/root/.cache/uv \
     --mount=type=bind,source=uv.lock,target=uv.lock \
-    --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
     uv export --frozen --no-emit-workspace --no-dev --no-editable -o requirements.txt && \
     uv pip install -r requirements.txt --target "${LAMBDA_TASK_ROOT}"
 
@@ -355,7 +353,6 @@ RUN --mount=from=uv,source=/uv,target=/bin/uv \
 RUN --mount=from=uv,source=/uv,target=/bin/uv \
     --mount=type=cache,target=/root/.cache/uv \
     --mount=type=bind,source=uv.lock,target=uv.lock \
-    --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
     --mount=type=bind,source=library,target=library \
     uv export --frozen --no-dev --no-editable -o requirements.txt && \
     uv pip install -r requirements.txt --target "${LAMBDA_TASK_ROOT}"
