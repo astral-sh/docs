@@ -18,8 +18,8 @@ Read on to learn more about the unsupported or new settings, or jump to the [exa
 
 The following [`ruff-lsp`](https://github.com/astral-sh/ruff-lsp) settings are not supported by the native server:
 
-- [`lint.run`](../settings/#lintrun): This setting is no longer relevant for the native language server, which runs on every keystroke by default.
-- [`lint.args`](../settings/#lintargs), [`format.args`](../settings/#formatargs): These settings have been replaced by more granular settings in the native server like [`lint.select`](../settings/#select), [`format.preview`](../settings/#format_preview), etc. along with the ability to override any configuration using the [`configuration`](../settings/#configuration) setting.
+- `lint.run`: This setting is no longer relevant for the native language server, which runs on every keystroke by default.
+- `lint.args`, `format.args`: These settings have been replaced by more granular settings in the native server like [`lint.select`](../settings/#select), [`format.preview`](../settings/#format_preview), etc. along with the ability to override any configuration using the [`configuration`](../settings/#configuration) setting.
 
 The following settings are not accepted by the language server but are still used by the [VS Code extension](https://github.com/astral-sh/ruff-vscode). Refer to their respective documentation for more information on how each is used by the extension:
 
@@ -30,8 +30,8 @@ The following settings are not accepted by the language server but are still use
 
 Additionally, the following settings are not supported by the native server and should be removed:
 
-- [`ignoreStandardLibrary`](../settings/#ignorestandardlibrary)
-- [`showNotifications`](../settings/#shownotifications)
+- `ignoreStandardLibrary`
+- `showNotifications`
 
 ## [New Settings](#new-settings)
 

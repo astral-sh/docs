@@ -920,7 +920,7 @@
 <p><small>
 Preview (since <a href="https://github.com/astral-sh/ruff/releases/tag/0.14.11">0.14.11</a>) ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27non-empty-init-module%27%20OR%20RUF067)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fruff%2Frules%2Fnon_empty_init_module.rs#L76" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fruff%2Frules%2Fnon_empty_init_module.rs#L80" target="_blank">View source</a>
 </small></p>
 <p>This rule is unstable and in <a href="../../preview/">preview</a>. The <code>--preview</code> flag is required for use.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
@@ -946,20 +946,22 @@ such, it's easy to overlook them and their possible side effects when debugging.
 <p>Code in <code>__init__.py</code> files is also run at import time and can cause surprising slowdowns. To
 disallow any code in <code>__init__.py</code> files, you can enable the
 <a href="../../settings/#lint_ruff_strictly-empty-init-modules"><code>lint.ruff.strictly-empty-init-modules</code></a> setting. In this case:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">submodule</span><span class="w"> </span><span class="kn">import</span> <span class="n">MyClass</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="sd">&quot;&quot;&quot;My module docstring.&quot;&quot;&quot;</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;MyClass&quot;</span><span class="p">]</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">submodule</span><span class="w"> </span><span class="kn">import</span> <span class="n">MyClass</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;MyClass&quot;</span><span class="p">]</span>
 </code></pre></div>
-<p>the only fix is entirely emptying the file:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>
+<p>the only fix is removing everything but the docstring:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="sd">&quot;&quot;&quot;My module docstring.&quot;&quot;&quot;</span>
 </code></pre></div>
 <h2 id="details"><a class="toclink" href="#details">Details</a></h2>
-<p>In non-strict mode, this rule allows several common patterns in <code>__init__.py</code> files:</p>
+<p>In both modes, this rule allows module-level and attribute docstrings in <code>__init__.py</code> files.</p>
+<p>In non-strict mode, this rule additionally allows several common patterns:</p>
 <ul>
 <li>Imports</li>
 <li>Assignments to dunder names (identifiers starting and ending with <code>__</code>, such as <code>__all__</code> or
     <code>__submodules__</code>)</li>
-<li>Module-level and attribute docstrings</li>
 <li><code>if TYPE_CHECKING</code> blocks</li>
 <li><a href="https://peps.python.org/pep-0562/">PEP-562</a> module-level <code>__getattr__</code> and <code>__dir__</code> functions</li>
 </ul>

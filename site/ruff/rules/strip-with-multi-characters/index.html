@@ -920,7 +920,7 @@
 <p><small>
 Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.106">v0.0.106</a> ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27strip-with-multi-characters%27%20OR%20B005)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_bugbear%2Frules%2Fstrip_with_multi_characters.rs#L48" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_bugbear%2Frules%2Fstrip_with_multi_characters.rs#L57" target="_blank">View source</a>
 </small></p>
 <p>Derived from the <strong><a href="../#flake8-bugbear-b">flake8-bugbear</a></strong> linter.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
@@ -949,6 +949,10 @@ mistake.</p>
 <p>Use instead:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="s2">&quot;text.txt&quot;</span><span class="o">.</span><span class="n">removesuffix</span><span class="p">(</span><span class="s2">&quot;.txt&quot;</span><span class="p">)</span>  <span class="c1"># &quot;text&quot;</span>
 </code></pre></div>
+<h2 id="preview"><a class="toclink" href="#preview">Preview</a></h2>
+<p>In <a href="https://docs.astral.sh/ruff/preview/">preview</a>, the diagnostic message reflects the actual method name
+(<code>.strip()</code>, <code>.lstrip()</code>, or <code>.rstrip()</code>), and the diagnostic range covers
+the method call rather than the entire expression.</p>
 <h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/library/stdtypes.html#str.strip">Python documentation: <code>str.strip</code></a></li>

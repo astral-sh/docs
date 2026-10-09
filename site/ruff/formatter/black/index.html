@@ -950,6 +950,8 @@ original intent, at the cost of retaining additional vertical space.</p>
 has already been formatted by Black.</p>
 <h3 id="pragma-comments-are-ignored-when-computing-line-width"><a class="toclink" href="#pragma-comments-are-ignored-when-computing-line-width">Pragma comments are ignored when computing line width</a></h3>
 <p>Pragma comments (<code># type</code>, <code># noqa</code>, <code># pyright</code>, <code># pylint</code>, etc.) are ignored when computing the width of a line.
+For mixed comments such as <code># explanation  # noqa: F401</code>, only the pragma suffix is ignored;
+the preceding comment text still contributes to the line width.
 This prevents Ruff from moving pragma comments around, thereby modifying their meaning and behavior:</p>
 <p>See Ruff's <a href="https://github.com/astral-sh/ruff/discussions/6670">pragma comment handling proposal</a>
 for details.</p>
