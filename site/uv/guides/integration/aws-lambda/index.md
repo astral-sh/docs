@@ -84,7 +84,7 @@ In the first stage, we'll populate a single directory with all application code 
 Dockerfile
 
 ```
-FROM ghcr.io/astral-sh/uv:0.12.24 AS uv
+FROM ghcr.io/astral-sh/uv:0.13.0 AS uv
 
 # First, bundle the dependencies into the task root.
 FROM public.ecr.aws/lambda/python:3.13 AS builder
@@ -320,7 +320,7 @@ Finally, we'll update the Dockerfile to include the local library in the deploym
 Dockerfile
 
 ```
-FROM ghcr.io/astral-sh/uv:0.12.24 AS uv
+FROM ghcr.io/astral-sh/uv:0.13.0 AS uv
 
 # First, bundle the dependencies into the task root.
 FROM public.ecr.aws/lambda/python:3.13 AS builder

@@ -1977,6 +1977,33 @@ reinstall-package = ["ruff"]
 
 ______________________________________________________________________
 
+### \[[`require-build-hashes`](#require-build-hashes)\](#require-build-hashes)
+
+Require hashes for all build dependencies.
+
+uv checks hashes provided in `build-constraint-dependencies` when downloading build dependencies. Enable this setting to require a hash for every build dependency, including transitive dependencies. You can also provide hashes as URL fragments in `build-system.requires`. Hashes returned by a build backend do not count.
+
+Hashes are not required for the `uv_build` backend bundled in uv. When build isolation is disabled, build dependencies must already be installed and their hashes are not checked. Already-installed packages and previously built wheels are not checked.
+
+This setting also applies to `uv pip` commands, where it can be overridden in `[tool.uv.pip]`.
+
+**Default value**: `false`
+
+**Type**: `bool`
+
+**Example usage**:
+
+```
+[tool.uv]
+require-build-hashes = true
+```
+
+```
+require-build-hashes = true
+```
+
+______________________________________________________________________
+
 ### \[[`required-version`](#required-version)\](#required-version)
 
 Enforce a requirement on the version of uv.
@@ -3498,6 +3525,30 @@ reinstall-package = ["ruff"]
 ```
 [pip]
 reinstall-package = ["ruff"]
+```
+
+______________________________________________________________________
+
+#### \[[`require-build-hashes`](#pip_require-build-hashes)\](#pip_require-build-hashes)
+
+Require hashes for all build dependencies in `uv pip` commands.
+
+Overrides `require-build-hashes` in `[tool.uv]`. This does not require hashes for runtime dependencies; use `require-hashes` for those.
+
+**Default value**: `false`
+
+**Type**: `bool`
+
+**Example usage**:
+
+```
+[tool.uv.pip]
+require-build-hashes = true
+```
+
+```
+[pip]
+require-build-hashes = true
 ```
 
 ______________________________________________________________________

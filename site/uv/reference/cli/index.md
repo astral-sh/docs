@@ -1117,6 +1117,8 @@ May also be set with the `UV_NO_PROJECT` environment variable.
 
 [`--no-python-downloads`](#uv-run--no-python-downloads) : Disable automatic downloads of Python.
 
+[`--no-require-build-hashes`](#uv-run--no-require-build-hashes) : Do not require hashes for every build dependency
+
 [`--no-sources`](#uv-run--no-sources) : Ignore the `tool.uv.sources` table when resolving dependencies. Used to lock against the standards-compliant, publishable package metadata, as opposed to using any workspace, Git, URL, or local path sources
 
 ```
@@ -1284,6 +1286,16 @@ Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will w
 [`--reinstall`](#uv-run--reinstall), `--force-reinstall` : Reinstall all packages, regardless of whether they're already installed. Implies `--refresh`
 
 [`--reinstall-package`](#uv-run--reinstall-package) *reinstall-package* : Reinstall a specific package, regardless of whether it's already installed. Implies `--refresh-package`
+
+[`--require-build-hashes`](#uv-run--require-build-hashes) : Require hashes for all build dependencies.
+
+```
+Hashes can be provided in `tool.uv.build-constraint-dependencies` or URL fragments (e.g., `#sha256=...`) in `build-system.requires`. This does not require hashes for runtime dependencies.
+
+This is separate from `--require-hashes`: for `uv pip` installs, that option applies to runtime requirements; for `uv build`, it applies to command-line build constraints.
+
+No hash is required when uv uses its bundled `uv_build` backend, since it is part of the uv executable. When build isolation is disabled, build dependencies must already be installed and their hashes are not checked.
+```
 
 [`--resolution`](#uv-run--resolution) *resolution* : The strategy to use when selecting between the different compatible versions for a given package requirement.
 
@@ -1734,14 +1746,12 @@ May also be set with the `UV_CONFIG_FILE` environment variable.
 
 [`--config-settings-package`](#uv-add--config-settings-package), `--config-settings-package` *config-settings-package* : Settings to pass to the PEP 517 build backend for a specific package, specified as `PACKAGE:KEY=VALUE` pairs
 
-[`--constraints`](#uv-add--constraints), `--constraint`, `-c` *constraints* : Constrain versions using the given requirements files.
+[`--constraints`](#uv-add--constraints), `--constraint`, `-c` *constraints* : Constrain versions using the given requirements files \[env: `UV_CONSTRAINT`=\]
 
 ```
 Constraints files are `requirements.txt`-like files that only control the *version* of a requirement that's installed. The constraints will *not* be added to the project's `pyproject.toml` file, but *will* be respected during dependency resolution.
 
 This is equivalent to pip's `--constraint` option.
-
-May also be set with the `UV_CONSTRAINT` environment variable.
 ```
 
 [`--default-index`](#uv-add--default-index) *default-index* : The default package index (by default: <https://pypi.org/simple>).
@@ -2041,6 +2051,8 @@ For example, spinners or progress bars.
 
 [`--no-python-downloads`](#uv-add--no-python-downloads) : Disable automatic downloads of Python.
 
+[`--no-require-build-hashes`](#uv-add--no-require-build-hashes) : Do not require hashes for every build dependency
+
 [`--no-sources`](#uv-add--no-sources) : Ignore the `tool.uv.sources` table when resolving dependencies. Used to lock against the standards-compliant, publishable package metadata, as opposed to using any workspace, Git, URL, or local path sources
 
 ```
@@ -2140,6 +2152,16 @@ Additionally, by default, uv will add bounds to your dependency, e.g., `foo>=1.0
 [`--reinstall`](#uv-add--reinstall), `--force-reinstall` : Reinstall all packages, regardless of whether they're already installed. Implies `--refresh`
 
 [`--reinstall-package`](#uv-add--reinstall-package) *reinstall-package* : Reinstall a specific package, regardless of whether it's already installed. Implies `--refresh-package`
+
+[`--require-build-hashes`](#uv-add--require-build-hashes) : Require hashes for all build dependencies.
+
+```
+Hashes can be provided in `tool.uv.build-constraint-dependencies` or URL fragments (e.g., `#sha256=...`) in `build-system.requires`. This does not require hashes for runtime dependencies.
+
+This is separate from `--require-hashes`: for `uv pip` installs, that option applies to runtime requirements; for `uv build`, it applies to command-line build constraints.
+
+No hash is required when uv uses its bundled `uv_build` backend, since it is part of the uv executable. When build isolation is disabled, build dependencies must already be installed and their hashes are not checked.
+```
 
 [`--requirements`](#uv-add--requirements), `--requirement`, `-r` *requirements* : Add the packages listed in the given files.
 
@@ -2534,6 +2556,8 @@ For example, spinners or progress bars.
 
 [`--no-python-downloads`](#uv-remove--no-python-downloads) : Disable automatic downloads of Python.
 
+[`--no-require-build-hashes`](#uv-remove--no-require-build-hashes) : Do not require hashes for every build dependency
+
 [`--no-sources`](#uv-remove--no-sources) : Ignore the `tool.uv.sources` table when resolving dependencies. Used to lock against the standards-compliant, publishable package metadata, as opposed to using any workspace, Git, URL, or local path sources
 
 ```
@@ -2613,6 +2637,16 @@ Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will w
 [`--reinstall`](#uv-remove--reinstall), `--force-reinstall` : Reinstall all packages, regardless of whether they're already installed. Implies `--refresh`
 
 [`--reinstall-package`](#uv-remove--reinstall-package) *reinstall-package* : Reinstall a specific package, regardless of whether it's already installed. Implies `--refresh-package`
+
+[`--require-build-hashes`](#uv-remove--require-build-hashes) : Require hashes for all build dependencies.
+
+```
+Hashes can be provided in `tool.uv.build-constraint-dependencies` or URL fragments (e.g., `#sha256=...`) in `build-system.requires`. This does not require hashes for runtime dependencies.
+
+This is separate from `--require-hashes`: for `uv pip` installs, that option applies to runtime requirements; for `uv build`, it applies to command-line build constraints.
+
+No hash is required when uv uses its bundled `uv_build` backend, since it is part of the uv executable. When build isolation is disabled, build dependencies must already be installed and their hashes are not checked.
+```
 
 [`--resolution`](#uv-remove--resolution) *resolution* : The strategy to use when selecting between the different compatible versions for a given package requirement.
 
@@ -2999,6 +3033,8 @@ For example, spinners or progress bars.
 
 [`--no-python-downloads`](#uv-version--no-python-downloads) : Disable automatic downloads of Python.
 
+[`--no-require-build-hashes`](#uv-version--no-require-build-hashes) : Do not require hashes for every build dependency
+
 [`--no-sources`](#uv-version--no-sources) : Ignore the `tool.uv.sources` table when resolving dependencies. Used to lock against the standards-compliant, publishable package metadata, as opposed to using any workspace, Git, URL, or local path sources
 
 ```
@@ -3087,6 +3123,16 @@ Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will w
 [`--reinstall`](#uv-version--reinstall), `--force-reinstall` : Reinstall all packages, regardless of whether they're already installed. Implies `--refresh`
 
 [`--reinstall-package`](#uv-version--reinstall-package) *reinstall-package* : Reinstall a specific package, regardless of whether it's already installed. Implies `--refresh-package`
+
+[`--require-build-hashes`](#uv-version--require-build-hashes) : Require hashes for all build dependencies.
+
+```
+Hashes can be provided in `tool.uv.build-constraint-dependencies` or URL fragments (e.g., `#sha256=...`) in `build-system.requires`. This does not require hashes for runtime dependencies.
+
+This is separate from `--require-hashes`: for `uv pip` installs, that option applies to runtime requirements; for `uv build`, it applies to command-line build constraints.
+
+No hash is required when uv uses its bundled `uv_build` backend, since it is part of the uv executable. When build isolation is disabled, build dependencies must already be installed and their hashes are not checked.
+```
 
 [`--resolution`](#uv-version--resolution) *resolution* : The strategy to use when selecting between the different compatible versions for a given package requirement.
 
@@ -3577,6 +3623,8 @@ For example, spinners or progress bars.
 
 [`--no-python-downloads`](#uv-sync--no-python-downloads) : Disable automatic downloads of Python.
 
+[`--no-require-build-hashes`](#uv-sync--no-require-build-hashes) : Do not require hashes for every build dependency
+
 [`--no-sources`](#uv-sync--no-sources) : Ignore the `tool.uv.sources` table when resolving dependencies. Used to lock against the standards-compliant, publishable package metadata, as opposed to using any workspace, Git, URL, or local path sources
 
 ```
@@ -3757,6 +3805,16 @@ Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will w
 [`--reinstall`](#uv-sync--reinstall), `--force-reinstall` : Reinstall all packages, regardless of whether they're already installed. Implies `--refresh`
 
 [`--reinstall-package`](#uv-sync--reinstall-package) *reinstall-package* : Reinstall a specific package, regardless of whether it's already installed. Implies `--refresh-package`
+
+[`--require-build-hashes`](#uv-sync--require-build-hashes) : Require hashes for all build dependencies.
+
+```
+Hashes can be provided in `tool.uv.build-constraint-dependencies` or URL fragments (e.g., `#sha256=...`) in `build-system.requires`. This does not require hashes for runtime dependencies.
+
+This is separate from `--require-hashes`: for `uv pip` installs, that option applies to runtime requirements; for `uv build`, it applies to command-line build constraints.
+
+No hash is required when uv uses its bundled `uv_build` backend, since it is part of the uv executable. When build isolation is disabled, build dependencies must already be installed and their hashes are not checked.
+```
 
 [`--resolution`](#uv-sync--resolution) *resolution* : The strategy to use when selecting between the different compatible versions for a given package requirement.
 
@@ -4109,6 +4167,8 @@ For example, spinners or progress bars.
 
 [`--no-python-downloads`](#uv-lock--no-python-downloads) : Disable automatic downloads of Python.
 
+[`--no-require-build-hashes`](#uv-lock--no-require-build-hashes) : Do not require hashes for every build dependency
+
 [`--no-sources`](#uv-lock--no-sources) : Ignore the `tool.uv.sources` table when resolving dependencies. Used to lock against the standards-compliant, publishable package metadata, as opposed to using any workspace, Git, URL, or local path sources
 
 ```
@@ -4184,6 +4244,16 @@ Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will w
 [`--refresh`](#uv-lock--refresh) : Refresh all cached data
 
 [`--refresh-package`](#uv-lock--refresh-package) *refresh-package* : Refresh cached data for a specific package
+
+[`--require-build-hashes`](#uv-lock--require-build-hashes) : Require hashes for all build dependencies.
+
+```
+Hashes can be provided in `tool.uv.build-constraint-dependencies` or URL fragments (e.g., `#sha256=...`) in `build-system.requires`. This does not require hashes for runtime dependencies.
+
+This is separate from `--require-hashes`: for `uv pip` installs, that option applies to runtime requirements; for `uv build`, it applies to command-line build constraints.
+
+No hash is required when uv uses its bundled `uv_build` backend, since it is part of the uv executable. When build isolation is disabled, build dependencies must already be installed and their hashes are not checked.
+```
 
 [`--resolution`](#uv-lock--resolution) *resolution* : The strategy to use when selecting between the different compatible versions for a given package requirement.
 
@@ -4650,6 +4720,8 @@ For example, spinners or progress bars.
 
 [`--no-python-downloads`](#uv-export--no-python-downloads) : Disable automatic downloads of Python.
 
+[`--no-require-build-hashes`](#uv-export--no-require-build-hashes) : Do not require hashes for every build dependency
+
 [`--no-sources`](#uv-export--no-sources) : Ignore the `tool.uv.sources` table when resolving dependencies. Used to lock against the standards-compliant, publishable package metadata, as opposed to using any workspace, Git, URL, or local path sources
 
 ```
@@ -4755,6 +4827,16 @@ Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will w
 [`--refresh`](#uv-export--refresh) : Refresh all cached data
 
 [`--refresh-package`](#uv-export--refresh-package) *refresh-package* : Refresh cached data for a specific package
+
+[`--require-build-hashes`](#uv-export--require-build-hashes) : Require hashes for all build dependencies.
+
+```
+Hashes can be provided in `tool.uv.build-constraint-dependencies` or URL fragments (e.g., `#sha256=...`) in `build-system.requires`. This does not require hashes for runtime dependencies.
+
+This is separate from `--require-hashes`: for `uv pip` installs, that option applies to runtime requirements; for `uv build`, it applies to command-line build constraints.
+
+No hash is required when uv uses its bundled `uv_build` backend, since it is part of the uv executable. When build isolation is disabled, build dependencies must already be installed and their hashes are not checked.
+```
 
 [`--resolution`](#uv-export--resolution) *resolution* : The strategy to use when selecting between the different compatible versions for a given package requirement.
 
@@ -5152,6 +5234,8 @@ For example, spinners or progress bars.
 
 [`--no-python-downloads`](#uv-tree--no-python-downloads) : Disable automatic downloads of Python.
 
+[`--no-require-build-hashes`](#uv-tree--no-require-build-hashes) : Do not require hashes for every build dependency
+
 [`--no-sources`](#uv-tree--no-sources) : Ignore the `tool.uv.sources` table when resolving dependencies. Used to lock against the standards-compliant, publishable package metadata, as opposed to using any workspace, Git, URL, or local path sources
 
 ```
@@ -5307,6 +5391,16 @@ Defaults to the version of the discovered Python interpreter.
 
 ```
 Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will write no output to stdout.
+```
+
+[`--require-build-hashes`](#uv-tree--require-build-hashes) : Require hashes for all build dependencies.
+
+```
+Hashes can be provided in `tool.uv.build-constraint-dependencies` or URL fragments (e.g., `#sha256=...`) in `build-system.requires`. This does not require hashes for runtime dependencies.
+
+This is separate from `--require-hashes`: for `uv pip` installs, that option applies to runtime requirements; for `uv build`, it applies to command-line build constraints.
+
+No hash is required when uv uses its bundled `uv_build` backend, since it is part of the uv executable. When build isolation is disabled, build dependencies must already be installed and their hashes are not checked.
 ```
 
 [`--resolution`](#uv-tree--resolution) *resolution* : The strategy to use when selecting between the different compatible versions for a given package requirement.
@@ -5948,6 +6042,8 @@ May also be set with the `UV_NO_PROJECT` environment variable.
 
 [`--no-python-downloads`](#uv-check--no-python-downloads) : Disable automatic downloads of Python.
 
+[`--no-require-build-hashes`](#uv-check--no-require-build-hashes) : Do not require hashes for every build dependency
+
 [`--no-sources`](#uv-check--no-sources) : Ignore the `tool.uv.sources` table when resolving dependencies. Used to lock against the standards-compliant, publishable package metadata, as opposed to using any workspace, Git, URL, or local path sources
 
 ```
@@ -6047,6 +6143,16 @@ Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will w
 [`--reinstall`](#uv-check--reinstall), `--force-reinstall` : Reinstall all packages, regardless of whether they're already installed. Implies `--refresh`
 
 [`--reinstall-package`](#uv-check--reinstall-package) *reinstall-package* : Reinstall a specific package, regardless of whether it's already installed. Implies `--refresh-package`
+
+[`--require-build-hashes`](#uv-check--require-build-hashes) : Require hashes for all build dependencies.
+
+```
+Hashes can be provided in `tool.uv.build-constraint-dependencies` or URL fragments (e.g., `#sha256=...`) in `build-system.requires`. This does not require hashes for runtime dependencies.
+
+This is separate from `--require-hashes`: for `uv pip` installs, that option applies to runtime requirements; for `uv build`, it applies to command-line build constraints.
+
+No hash is required when uv uses its bundled `uv_build` backend, since it is part of the uv executable. When build isolation is disabled, build dependencies must already be installed and their hashes are not checked.
+```
 
 [`--resolution`](#uv-check--resolution) *resolution* : The strategy to use when selecting between the different compatible versions for a given package requirement.
 
@@ -6445,6 +6551,8 @@ For example, spinners or progress bars.
 
 [`--no-python-downloads`](#uv-audit--no-python-downloads) : Disable automatic downloads of Python.
 
+[`--no-require-build-hashes`](#uv-audit--no-require-build-hashes) : Do not require hashes for every build dependency
+
 [`--no-sources`](#uv-audit--no-sources) : Ignore the `tool.uv.sources` table when resolving dependencies. Used to lock against the standards-compliant, publishable package metadata, as opposed to using any workspace, Git, URL, or local path sources
 
 ```
@@ -6590,6 +6698,16 @@ Defaults to the version of the discovered Python interpreter.
 Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will write no output to stdout.
 ```
 
+[`--require-build-hashes`](#uv-audit--require-build-hashes) : Require hashes for all build dependencies.
+
+```
+Hashes can be provided in `tool.uv.build-constraint-dependencies` or URL fragments (e.g., `#sha256=...`) in `build-system.requires`. This does not require hashes for runtime dependencies.
+
+This is separate from `--require-hashes`: for `uv pip` installs, that option applies to runtime requirements; for `uv build`, it applies to command-line build constraints.
+
+No hash is required when uv uses its bundled `uv_build` backend, since it is part of the uv executable. When build isolation is disabled, build dependencies must already be installed and their hashes are not checked.
+```
+
 [`--resolution`](#uv-audit--resolution) *resolution* : The strategy to use when selecting between the different compatible versions for a given package requirement.
 
 ```
@@ -6718,12 +6836,10 @@ WARNING: Hosts included in this list will not be verified against the system's c
 May also be set with the `UV_INSECURE_HOST` environment variable.
 ```
 
-[`--build-constraints`](#uv-tool-run--build-constraints), `--build-constraint`, `-b` *build-constraints* : Constrain build dependencies using the given requirements files when building source distributions.
+[`--build-constraints`](#uv-tool-run--build-constraints), `--build-constraint`, `-b` *build-constraints* : Constrain build dependencies using the given requirements files when building source distributions \[env: `UV_BUILD_CONSTRAINT`=\]
 
 ```
 Constraints files are `requirements.txt`-like files that only control the *version* of a requirement that's installed. However, including a package in a constraints file will *not* trigger the installation of that package.
-
-May also be set with the `UV_BUILD_CONSTRAINT` environment variable.
 ```
 
 [`--cache-dir`](#uv-tool-run--cache-dir) *cache-dir* : Path to the cache directory.
@@ -6770,14 +6886,12 @@ May also be set with the `UV_CONFIG_FILE` environment variable.
 
 [`--config-settings-package`](#uv-tool-run--config-settings-package), `--config-settings-package` *config-settings-package* : Settings to pass to the PEP 517 build backend for a specific package, specified as `PACKAGE:KEY=VALUE` pairs
 
-[`--constraints`](#uv-tool-run--constraints), `--constraint`, `-c` *constraints* : Constrain versions using the given requirements files.
+[`--constraints`](#uv-tool-run--constraints), `--constraint`, `-c` *constraints* : Constrain versions using the given requirements files \[env: `UV_CONSTRAINT`=\]
 
 ```
 Constraints files are `requirements.txt`-like files that only control the *version* of a requirement that's installed. However, including a package in a constraints file will *not* trigger the installation of that package.
 
 This is equivalent to pip's `--constraint` option.
-
-May also be set with the `UV_CONSTRAINT` environment variable.
 ```
 
 [`--default-index`](#uv-tool-run--default-index) *default-index* : The default package index (by default: <https://pypi.org/simple>).
@@ -7027,6 +7141,8 @@ For example, spinners or progress bars.
 
 [`--no-python-downloads`](#uv-tool-run--no-python-downloads) : Disable automatic downloads of Python.
 
+[`--no-require-build-hashes`](#uv-tool-run--no-require-build-hashes) : Do not require hashes for every build dependency
+
 [`--no-sources`](#uv-tool-run--no-sources) : Ignore the `tool.uv.sources` table when resolving dependencies. Used to lock against the standards-compliant, publishable package metadata, as opposed to using any workspace, Git, URL, or local path sources
 
 ```
@@ -7041,14 +7157,12 @@ May also be set with the `UV_NO_SOURCES` environment variable.
 When disabled, uv will only use locally cached data and locally available files.
 ```
 
-[`--overrides`](#uv-tool-run--overrides), `--override` *overrides* : Override versions using the given requirements files.
+[`--overrides`](#uv-tool-run--overrides), `--override` *overrides* : Override versions using the given requirements files \[env: `UV_OVERRIDE`=\]
 
 ```
 Overrides files are `requirements.txt`-like files that force a specific version of a requirement to be installed, regardless of the requirements declared by any constituent package, and regardless of whether this would be considered an invalid resolution.
 
 While constraints are *additive*, in that they're combined with the requirements of the constituent packages, overrides are *absolute*, in that they completely replace the requirements of the constituent packages.
-
-May also be set with the `UV_OVERRIDE` environment variable.
 ```
 
 [`--prerelease`](#uv-tool-run--prerelease) *prerelease* : The strategy to use when considering pre-release versions.
@@ -7173,6 +7287,16 @@ Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will w
 [`--reinstall`](#uv-tool-run--reinstall), `--force-reinstall` : Reinstall all packages, regardless of whether they're already installed. Implies `--refresh`
 
 [`--reinstall-package`](#uv-tool-run--reinstall-package) *reinstall-package* : Reinstall a specific package, regardless of whether it's already installed. Implies `--refresh-package`
+
+[`--require-build-hashes`](#uv-tool-run--require-build-hashes) : Require hashes for all build dependencies.
+
+```
+Hashes can be provided in `tool.uv.build-constraint-dependencies` or URL fragments (e.g., `#sha256=...`) in `build-system.requires`. This does not require hashes for runtime dependencies.
+
+This is separate from `--require-hashes`: for `uv pip` installs, that option applies to runtime requirements; for `uv build`, it applies to command-line build constraints.
+
+No hash is required when uv uses its bundled `uv_build` backend, since it is part of the uv executable. When build isolation is disabled, build dependencies must already be installed and their hashes are not checked.
+```
 
 [`--resolution`](#uv-tool-run--resolution) *resolution* : The strategy to use when selecting between the different compatible versions for a given package requirement.
 
@@ -7321,12 +7445,10 @@ WARNING: Hosts included in this list will not be verified against the system's c
 May also be set with the `UV_INSECURE_HOST` environment variable.
 ```
 
-[`--build-constraints`](#uv-tool-install--build-constraints), `--build-constraint`, `-b` *build-constraints* : Constrain build dependencies using the given requirements files when building source distributions.
+[`--build-constraints`](#uv-tool-install--build-constraints), `--build-constraint`, `-b` *build-constraints* : Constrain build dependencies using the given requirements files when building source distributions \[env: `UV_BUILD_CONSTRAINT`=\]
 
 ```
 Constraints files are `requirements.txt`-like files that only control the *version* of a requirement that's installed. However, including a package in a constraints file will *not* trigger the installation of that package.
-
-May also be set with the `UV_BUILD_CONSTRAINT` environment variable.
 ```
 
 [`--cache-dir`](#uv-tool-install--cache-dir) *cache-dir* : Path to the cache directory.
@@ -7373,14 +7495,12 @@ May also be set with the `UV_CONFIG_FILE` environment variable.
 
 [`--config-settings-package`](#uv-tool-install--config-settings-package), `--config-settings-package` *config-settings-package* : Settings to pass to the PEP 517 build backend for a specific package, specified as `PACKAGE:KEY=VALUE` pairs
 
-[`--constraints`](#uv-tool-install--constraints), `--constraint`, `-c` *constraints* : Constrain versions using the given requirements files.
+[`--constraints`](#uv-tool-install--constraints), `--constraint`, `-c` *constraints* : Constrain versions using the given requirements files \[env: `UV_CONSTRAINT`=\]
 
 ```
 Constraints files are `requirements.txt`-like files that only control the *version* of a requirement that's installed. However, including a package in a constraints file will *not* trigger the installation of that package.
 
 This is equivalent to pip's `--constraint` option.
-
-May also be set with the `UV_CONSTRAINT` environment variable.
 ```
 
 [`--default-index`](#uv-tool-install--default-index) *default-index* : The default package index (by default: <https://pypi.org/simple>).
@@ -7431,12 +7551,10 @@ Durations do not respect semantics of the local time zone and are always resolve
 Can be provided multiple times for different packages.
 ```
 
-[`--excludes`](#uv-tool-install--excludes), `--exclude` *excludes* : Exclude packages from resolution using the given requirements files.
+[`--excludes`](#uv-tool-install--excludes), `--exclude` *excludes* : Exclude packages from resolution using the given requirements files \[env: `UV_EXCLUDE`=\]
 
 ```
 Excludes files are `requirements.txt`-like files that specify packages to exclude from the resolution. When a package is excluded, it will be omitted from the dependency list entirely and its own dependencies will be ignored during the resolution phase. Excludes are unconditional in that requirement specifiers and markers are ignored; any package listed in the provided file will be omitted from all resolved environments.
-
-May also be set with the `UV_EXCLUDE` environment variable.
 ```
 
 [`--extra-index-url`](#uv-tool-install--extra-index-url) *extra-index-url* : (Deprecated: use `--index` instead) Extra URLs of package indexes to use, in addition to `--index-url`.
@@ -7628,6 +7746,8 @@ For example, spinners or progress bars.
 
 [`--no-python-downloads`](#uv-tool-install--no-python-downloads) : Disable automatic downloads of Python.
 
+[`--no-require-build-hashes`](#uv-tool-install--no-require-build-hashes) : Do not require hashes for every build dependency
+
 [`--no-sources`](#uv-tool-install--no-sources) : Ignore the `tool.uv.sources` table when resolving dependencies. Used to lock against the standards-compliant, publishable package metadata, as opposed to using any workspace, Git, URL, or local path sources
 
 ```
@@ -7642,14 +7762,12 @@ May also be set with the `UV_NO_SOURCES` environment variable.
 When disabled, uv will only use locally cached data and locally available files.
 ```
 
-[`--overrides`](#uv-tool-install--overrides), `--override` *overrides* : Override versions using the given requirements files.
+[`--overrides`](#uv-tool-install--overrides), `--override` *overrides* : Override versions using the given requirements files \[env: `UV_OVERRIDE`=\]
 
 ```
 Overrides files are `requirements.txt`-like files that force a specific version of a requirement to be installed, regardless of the requirements declared by any constituent package, and regardless of whether this would be considered an invalid resolution.
 
 While constraints are *additive*, in that they're combined with the requirements of the constituent packages, overrides are *absolute*, in that they completely replace the requirements of the constituent packages.
-
-May also be set with the `UV_OVERRIDE` environment variable.
 ```
 
 [`--prerelease`](#uv-tool-install--prerelease) *prerelease* : The strategy to use when considering pre-release versions.
@@ -7774,6 +7892,16 @@ Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will w
 [`--reinstall`](#uv-tool-install--reinstall), `--force-reinstall` : Reinstall all packages, regardless of whether they're already installed. Implies `--refresh`
 
 [`--reinstall-package`](#uv-tool-install--reinstall-package) *reinstall-package* : Reinstall a specific package, regardless of whether it's already installed. Implies `--refresh-package`
+
+[`--require-build-hashes`](#uv-tool-install--require-build-hashes) : Require hashes for all build dependencies.
+
+```
+Hashes can be provided in `tool.uv.build-constraint-dependencies` or URL fragments (e.g., `#sha256=...`) in `build-system.requires`. This does not require hashes for runtime dependencies.
+
+This is separate from `--require-hashes`: for `uv pip` installs, that option applies to runtime requirements; for `uv build`, it applies to command-line build constraints.
+
+No hash is required when uv uses its bundled `uv_build` backend, since it is part of the uv executable. When build isolation is disabled, build dependencies must already be installed and their hashes are not checked.
+```
 
 [`--resolution`](#uv-tool-install--resolution) *resolution* : The strategy to use when selecting between the different compatible versions for a given package requirement.
 
@@ -8193,6 +8321,8 @@ For example, spinners or progress bars.
 
 [`--no-python-downloads`](#uv-tool-upgrade--no-python-downloads) : Disable automatic downloads of Python.
 
+[`--no-require-build-hashes`](#uv-tool-upgrade--no-require-build-hashes) : Do not require hashes for every build dependency
+
 [`--no-sources`](#uv-tool-upgrade--no-sources) : Ignore the `tool.uv.sources` table when resolving dependencies. Used to lock against the standards-compliant, publishable package metadata, as opposed to using any workspace, Git, URL, or local path sources
 
 ```
@@ -8325,6 +8455,16 @@ Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will w
 [`--reinstall`](#uv-tool-upgrade--reinstall), `--force-reinstall` : Reinstall all packages, regardless of whether they're already installed. Implies `--refresh`
 
 [`--reinstall-package`](#uv-tool-upgrade--reinstall-package) *reinstall-package* : Reinstall a specific package, regardless of whether it's already installed. Implies `--refresh-package`
+
+[`--require-build-hashes`](#uv-tool-upgrade--require-build-hashes) : Require hashes for all build dependencies.
+
+```
+Hashes can be provided in `tool.uv.build-constraint-dependencies` or URL fragments (e.g., `#sha256=...`) in `build-system.requires`. This does not require hashes for runtime dependencies.
+
+This is separate from `--require-hashes`: for `uv pip` installs, that option applies to runtime requirements; for `uv build`, it applies to command-line build constraints.
+
+No hash is required when uv uses its bundled `uv_build` backend, since it is part of the uv executable. When build isolation is disabled, build dependencies must already be installed and their hashes are not checked.
+```
 
 [`--resolution`](#uv-tool-upgrade--resolution) *resolution* : The strategy to use when selecting between the different compatible versions for a given package requirement.
 
@@ -10839,12 +10979,10 @@ Possible values:
 - `split`: Render each annotation on its own line
 ```
 
-[`--build-constraints`](#uv-pip-compile--build-constraints), `--build-constraint`, `-b` *build-constraints* : Constrain build dependencies using the given requirements files when building source distributions.
+[`--build-constraints`](#uv-pip-compile--build-constraints), `--build-constraint`, `-b` *build-constraints* : Constrain build dependencies using the given requirements files when building source distributions \[env: `UV_BUILD_CONSTRAINT`=\]
 
 ```
 Constraints files are `requirements.txt`-like files that only control the *version* of a requirement that's installed. However, including a package in a constraints file will *not* trigger the installation of that package.
-
-May also be set with the `UV_BUILD_CONSTRAINT` environment variable.
 ```
 
 [`--cache-dir`](#uv-pip-compile--cache-dir) *cache-dir* : Path to the cache directory.
@@ -10887,14 +11025,12 @@ May also be set with the `UV_CONFIG_FILE` environment variable.
 
 [`--config-settings-package`](#uv-pip-compile--config-settings-package), `--config-settings-package` *config-settings-package* : Settings to pass to the PEP 517 build backend for a specific package, specified as `PACKAGE:KEY=VALUE` pairs
 
-[`--constraints`](#uv-pip-compile--constraints), `--constraint`, `-c` *constraints* : Constrain versions using the given requirements files.
+[`--constraints`](#uv-pip-compile--constraints), `--constraint`, `-c` *constraints* : Constrain versions using the given requirements files \[env: `UV_CONSTRAINT`=\]
 
 ```
 Constraints files are `requirements.txt`-like files that only control the *version* of a requirement that's installed. However, including a package in a constraints file will *not* trigger the installation of that package.
 
 This is equivalent to pip's `--constraint` option.
-
-May also be set with the `UV_CONSTRAINT` environment variable.
 ```
 
 [`--custom-compile-command`](#uv-pip-compile--custom-compile-command) *custom-compile-command* : The header comment to include at the top of the output file generated by `uv pip compile`.
@@ -10959,12 +11095,10 @@ Durations do not respect semantics of the local time zone and are always resolve
 Can be provided multiple times for different packages.
 ```
 
-[`--excludes`](#uv-pip-compile--excludes), `--exclude` *excludes* : Exclude packages from resolution using the given requirements files.
+[`--excludes`](#uv-pip-compile--excludes), `--exclude` *excludes* : Exclude packages from resolution using the given requirements files \[env: `UV_EXCLUDE`=\]
 
 ```
 Excludes files are `requirements.txt`-like files that specify packages to exclude from the resolution. When a package is excluded, it will be omitted from the dependency list entirely and its own dependencies will be ignored during the resolution phase. Excludes are unconditional in that requirement specifiers and markers are ignored; any package listed in the provided file will be omitted from all resolved environments.
-
-May also be set with the `UV_EXCLUDE` environment variable.
 ```
 
 [`--extra`](#uv-pip-compile--extra) *extra* : Include optional dependencies from the specified extra name; may be provided more than once.
@@ -11211,14 +11345,12 @@ Multiple packages may be provided. Disable binaries for all packages with `:all:
 If the file already exists, the existing versions will be preferred when resolving dependencies, unless `--upgrade` is also specified.
 ```
 
-[`--overrides`](#uv-pip-compile--overrides), `--override` *overrides* : Override versions using the given requirements files.
+[`--overrides`](#uv-pip-compile--overrides), `--override` *overrides* : Override versions using the given requirements files \[env: `UV_OVERRIDE`=\]
 
 ```
 Overrides files are `requirements.txt`-like files that force a specific version of a requirement to be installed, regardless of the requirements declared by any constituent package, and regardless of whether this would be considered an invalid resolution.
 
 While constraints are *additive*, in that they're combined with the requirements of the constituent packages, overrides are *absolute*, in that they completely replace the requirements of the constituent packages.
-
-May also be set with the `UV_OVERRIDE` environment variable.
 ```
 
 [`--prerelease`](#uv-pip-compile--prerelease) *prerelease* : The strategy to use when considering pre-release versions.
@@ -11356,6 +11488,14 @@ Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will w
 [`--refresh`](#uv-pip-compile--refresh) : Refresh all cached data
 
 [`--refresh-package`](#uv-pip-compile--refresh-package) *refresh-package* : Refresh cached data for a specific package
+
+[`--require-build-hashes`](#uv-pip-compile--require-build-hashes) : Require hashes for all build dependencies.
+
+```
+Provide requirements with hashes in a file passed to `--build-constraint`. This does not require hashes for runtime dependencies.
+
+No hash is required when uv uses its bundled `uv_build` backend, since it is part of the uv executable. When build isolation is disabled, build dependencies must already be installed and their hashes are not checked.
+```
 
 [`--resolution`](#uv-pip-compile--resolution) *resolution* : The strategy to use when selecting between the different compatible versions for a given package requirement.
 
@@ -11530,12 +11670,10 @@ WARNING: `--break-system-packages` is intended for use in continuous integration
 May also be set with the `UV_BREAK_SYSTEM_PACKAGES` environment variable.
 ```
 
-[`--build-constraints`](#uv-pip-sync--build-constraints), `--build-constraint`, `-b` *build-constraints* : Constrain build dependencies using the given requirements files when building source distributions.
+[`--build-constraints`](#uv-pip-sync--build-constraints), `--build-constraint`, `-b` *build-constraints* : Constrain build dependencies using the given requirements files when building source distributions \[env: `UV_BUILD_CONSTRAINT`=\]
 
 ```
 Constraints files are `requirements.txt`-like files that only control the *version* of a requirement that's installed. However, including a package in a constraints file will *not* trigger the installation of that package.
-
-May also be set with the `UV_BUILD_CONSTRAINT` environment variable.
 ```
 
 [`--cache-dir`](#uv-pip-sync--cache-dir) *cache-dir* : Path to the cache directory.
@@ -11594,14 +11732,12 @@ May also be set with the `UV_CONFIG_FILE` environment variable.
 
 [`--config-settings-package`](#uv-pip-sync--config-settings-package), `--config-settings-package` *config-settings-package* : Settings to pass to the PEP 517 build backend for a specific package, specified as `PACKAGE:KEY=VALUE` pairs
 
-[`--constraints`](#uv-pip-sync--constraints), `--constraint`, `-c` *constraints* : Constrain versions using the given requirements files.
+[`--constraints`](#uv-pip-sync--constraints), `--constraint`, `-c` *constraints* : Constrain versions using the given requirements files \[env: `UV_CONSTRAINT`=\]
 
 ```
 Constraints files are `requirements.txt`-like files that only control the *version* of a requirement that's installed. However, including a package in a constraints file will *not* trigger the installation of that package.
 
 This is equivalent to pip's `--constraint` option.
-
-May also be set with the `UV_CONSTRAINT` environment variable.
 ```
 
 [`--default-index`](#uv-pip-sync--default-index) *default-index* : The default package index (by default: <https://pypi.org/simple>).
@@ -11974,12 +12110,22 @@ Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will w
 
 [`--reinstall-package`](#uv-pip-sync--reinstall-package) *reinstall-package* : Reinstall a specific package, regardless of whether it's already installed. Implies `--refresh-package`
 
+[`--require-build-hashes`](#uv-pip-sync--require-build-hashes) : Require hashes for all build dependencies.
+
+```
+Provide requirements with hashes in a file passed to `--build-constraint`. This does not require hashes for runtime dependencies; use `--require-hashes` for those.
+
+No hash is required when uv uses its bundled `uv_build` backend, since it is part of the uv executable. When build isolation is disabled, build dependencies must already be installed and their hashes are not checked.
+```
+
 [`--require-hashes`](#uv-pip-sync--require-hashes) : Require a matching hash for each requirement.
 
 ```
 By default, uv will verify any available hashes in the requirements file, but will not require that all requirements have an associated hash.
 
 When `--require-hashes` is enabled, *all* requirements must include a hash or set of hashes, and *all* requirements must either be pinned to exact versions (e.g., `==1.0.0`), or be specified via direct URL.
+
+To require hashes for all build dependencies, use `--require-build-hashes`.
 
 Hash-checking mode introduces a number of additional constraints:
 
@@ -12133,12 +12279,10 @@ WARNING: `--break-system-packages` is intended for use in continuous integration
 May also be set with the `UV_BREAK_SYSTEM_PACKAGES` environment variable.
 ```
 
-[`--build-constraints`](#uv-pip-install--build-constraints), `--build-constraint`, `-b` *build-constraints* : Constrain build dependencies using the given requirements files when building source distributions.
+[`--build-constraints`](#uv-pip-install--build-constraints), `--build-constraint`, `-b` *build-constraints* : Constrain build dependencies using the given requirements files when building source distributions \[env: `UV_BUILD_CONSTRAINT`=\]
 
 ```
 Constraints files are `requirements.txt`-like files that only control the *version* of a requirement that's installed. However, including a package in a constraints file will *not* trigger the installation of that package.
-
-May also be set with the `UV_BUILD_CONSTRAINT` environment variable.
 ```
 
 [`--cache-dir`](#uv-pip-install--cache-dir) *cache-dir* : Path to the cache directory.
@@ -12197,14 +12341,12 @@ May also be set with the `UV_CONFIG_FILE` environment variable.
 
 [`--config-settings-package`](#uv-pip-install--config-settings-package), `--config-settings-package` *config-settings-package* : Settings to pass to the PEP 517 build backend for a specific package, specified as `PACKAGE:KEY=VALUE` pairs
 
-[`--constraints`](#uv-pip-install--constraints), `--constraint`, `-c` *constraints* : Constrain versions using the given requirements files.
+[`--constraints`](#uv-pip-install--constraints), `--constraint`, `-c` *constraints* : Constrain versions using the given requirements files \[env: `UV_CONSTRAINT`=\]
 
 ```
 Constraints files are `requirements.txt`-like files that only control the *version* of a requirement that's installed. However, including a package in a constraints file will *not* trigger the installation of that package.
 
 This is equivalent to pip's `--constraint` option.
-
-May also be set with the `UV_CONSTRAINT` environment variable.
 ```
 
 [`--default-index`](#uv-pip-install--default-index) *default-index* : The default package index (by default: <https://pypi.org/simple>).
@@ -12263,12 +12405,10 @@ Durations do not respect semantics of the local time zone and are always resolve
 Can be provided multiple times for different packages.
 ```
 
-[`--excludes`](#uv-pip-install--excludes), `--exclude` *excludes* : Exclude packages from resolution using the given requirements files.
+[`--excludes`](#uv-pip-install--excludes), `--exclude` *excludes* : Exclude packages from resolution using the given requirements files \[env: `UV_EXCLUDE`=\]
 
 ```
 Excludes files are `requirements.txt`-like files that specify packages to exclude from the resolution. When a package is excluded, it will be omitted from the dependency list entirely and its own dependencies will be ignored during the resolution phase. Excludes are unconditional in that requirement specifiers and markers are ignored; any package listed in the provided file will be omitted from all resolved environments.
-
-May also be set with the `UV_EXCLUDE` environment variable.
 ```
 
 [`--extra`](#uv-pip-install--extra) *extra* : Include optional dependencies from the specified extra name; may be provided more than once.
@@ -12509,14 +12649,12 @@ Possible values:
 - `json`: Display the result in JSON format
 ```
 
-[`--overrides`](#uv-pip-install--overrides), `--override` *overrides* : Override versions using the given requirements files.
+[`--overrides`](#uv-pip-install--overrides), `--override` *overrides* : Override versions using the given requirements files \[env: `UV_OVERRIDE`=\]
 
 ```
 Overrides files are `requirements.txt`-like files that force a specific version of a requirement to be installed, regardless of the requirements declared by any constituent package, and regardless of whether this would be considered an invalid resolution.
 
 While constraints are *additive*, in that they're combined with the requirements of the constituent packages, overrides are *absolute*, in that they completely replace the requirements of the constituent packages.
-
-May also be set with the `UV_OVERRIDE` environment variable.
 ```
 
 [`--prefix`](#uv-pip-install--prefix) *prefix* : Install packages into `lib`, `bin`, and other top-level folders under the specified directory, as if a virtual environment were present at that location.
@@ -12660,12 +12798,22 @@ Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will w
 
 [`--reinstall-package`](#uv-pip-install--reinstall-package) *reinstall-package* : Reinstall a specific package, regardless of whether it's already installed. Implies `--refresh-package`
 
+[`--require-build-hashes`](#uv-pip-install--require-build-hashes) : Require hashes for all build dependencies.
+
+```
+Provide requirements with hashes in a file passed to `--build-constraint`. This does not require hashes for runtime dependencies; use `--require-hashes` for those.
+
+No hash is required when uv uses its bundled `uv_build` backend, since it is part of the uv executable. When build isolation is disabled, build dependencies must already be installed and their hashes are not checked.
+```
+
 [`--require-hashes`](#uv-pip-install--require-hashes) : Require a matching hash for each requirement.
 
 ```
 By default, uv will verify any available hashes in the requirements file, but will not require that all requirements have an associated hash.
 
 When `--require-hashes` is enabled, *all* requirements must include a hash or set of hashes, and *all* requirements must either be pinned to exact versions (e.g., `==1.0.0`), or be specified via direct URL.
+
+To require hashes for all build dependencies, use `--require-build-hashes`.
 
 Hash-checking mode introduces a number of additional constraints:
 
@@ -14628,12 +14776,10 @@ WARNING: Hosts included in this list will not be verified against the system's c
 May also be set with the `UV_INSECURE_HOST` environment variable.
 ```
 
-[`--build-constraints`](#uv-build--build-constraints), `--build-constraint`, `-b` *build-constraints* : Constrain build dependencies using the given requirements files when building distributions.
+[`--build-constraints`](#uv-build--build-constraints), `--build-constraint`, `-b` *build-constraints* : Constrain build dependencies using the given requirements files when building distributions \[env: `UV_BUILD_CONSTRAINT`=\]
 
 ```
 Constraints files are `requirements.txt`-like files that only control the *version* of a build dependency that's installed. However, including a package in a constraints file will *not* trigger the inclusion of that package on its own.
-
-May also be set with the `UV_BUILD_CONSTRAINT` environment variable.
 ```
 
 [`--cache-dir`](#uv-build--cache-dir) *cache-dir* : Path to the cache directory.
@@ -14915,6 +15061,8 @@ For example, spinners or progress bars.
 
 [`--no-python-downloads`](#uv-build--no-python-downloads) : Disable automatic downloads of Python.
 
+[`--no-require-build-hashes`](#uv-build--no-require-build-hashes) : Do not require hashes for every build dependency
+
 [`--no-sources`](#uv-build--no-sources) : Ignore the `tool.uv.sources` table when resolving dependencies. Used to lock against the standards-compliant, publishable package metadata, as opposed to using any workspace, Git, URL, or local path sources
 
 ```
@@ -15011,12 +15159,24 @@ Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will w
 
 [`--refresh-package`](#uv-build--refresh-package) *refresh-package* : Refresh cached data for a specific package
 
+[`--require-build-hashes`](#uv-build--require-build-hashes) : Require hashes for all build dependencies.
+
+```
+Hashes can be provided in `tool.uv.build-constraint-dependencies` or URL fragments (e.g., `#sha256=...`) in `build-system.requires`. This does not require hashes for runtime dependencies.
+
+This is separate from `--require-hashes`: for `uv pip` installs, that option applies to runtime requirements; for `uv build`, it applies to command-line build constraints.
+
+No hash is required when uv uses its bundled `uv_build` backend, since it is part of the uv executable. When build isolation is disabled, build dependencies must already be installed and their hashes are not checked.
+```
+
 [`--require-hashes`](#uv-build--require-hashes) : Require a matching hash for each requirement.
 
 ```
 By default, uv will verify any available hashes in the requirements file, but will not require that all requirements have an associated hash.
 
 When `--require-hashes` is enabled, *all* requirements must include a hash or set of hashes, and *all* requirements must either be pinned to exact versions (e.g., `==1.0.0`), or be specified via direct URL.
+
+To require hashes for all build dependencies, use `--require-build-hashes`.
 
 Hash-checking mode introduces a number of additional constraints:
 
@@ -15643,6 +15803,8 @@ For example, spinners or progress bars.
 
 [`--no-python-downloads`](#uv-workspace-metadata--no-python-downloads) : Disable automatic downloads of Python.
 
+[`--no-require-build-hashes`](#uv-workspace-metadata--no-require-build-hashes) : Do not require hashes for every build dependency
+
 [`--no-sources`](#uv-workspace-metadata--no-sources) : Ignore the `tool.uv.sources` table when resolving dependencies. Used to lock against the standards-compliant, publishable package metadata, as opposed to using any workspace, Git, URL, or local path sources
 
 ```
@@ -15718,6 +15880,16 @@ Repeating this option, e.g., `-qq`, will enable a silent mode in which uv will w
 [`--refresh`](#uv-workspace-metadata--refresh) : Refresh all cached data
 
 [`--refresh-package`](#uv-workspace-metadata--refresh-package) *refresh-package* : Refresh cached data for a specific package
+
+[`--require-build-hashes`](#uv-workspace-metadata--require-build-hashes) : Require hashes for all build dependencies.
+
+```
+Hashes can be provided in `tool.uv.build-constraint-dependencies` or URL fragments (e.g., `#sha256=...`) in `build-system.requires`. This does not require hashes for runtime dependencies.
+
+This is separate from `--require-hashes`: for `uv pip` installs, that option applies to runtime requirements; for `uv build`, it applies to command-line build constraints.
+
+No hash is required when uv uses its bundled `uv_build` backend, since it is part of the uv executable. When build isolation is disabled, build dependencies must already be installed and their hashes are not checked.
+```
 
 [`--resolution`](#uv-workspace-metadata--resolution) *resolution* : The strategy to use when selecting between the different compatible versions for a given package requirement.
 
