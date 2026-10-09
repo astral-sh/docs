@@ -41,9 +41,11 @@ Running the following would build the project with the specified version of `set
 $ uv build --build-constraint constraints.txt --require-hashes
 ```
 
+To require hashes for every build dependency, including transitive dependencies, use `--require-build-hashes` instead.
+
 ### [Project build dependency hashes](#project-build-dependency-hashes)
 
-Projects can also specify build constraints in [`build-constraint-dependencies`](../../../reference/settings/#build-constraint-dependencies). To verify a downloaded build dependency, provide its `requirement` and `hashes` in a table:
+For example, to verify build dependencies during project resolution and installation, add hashes to [`build-constraint-dependencies`](../../../reference/settings/#build-constraint-dependencies) in your workspace's `pyproject.toml`:
 
 ```
 [tool.uv]
@@ -53,7 +55,15 @@ build-constraint-dependencies = [
 ]
 ```
 
-An entry without hashes can be written as a string, as shown with `wheel<1` above. uv checks the supplied hashes when it downloads pinned build dependencies during project resolution or installation, including builds in `uv run --with` environments. These hashes apply to build dependencies. Packages installed in the project environment are verified against their own lockfile hashes.
+uv checks supplied hashes when it downloads pinned build dependencies. Constraints without hashes, such as `wheel<1`, are also allowed. To require a hash for every build dependency, including transitive dependencies, set [`require-build-hashes = true`](../../../reference/settings/#require-build-hashes) under `[tool.uv]` or pass `--require-build-hashes`.
+
+You'll need to pin each build dependency to an exact version (or use a direct URL) and provide a hash. Hashes can also come from URL fragments in `build-system.requires`, but not from requirements returned by a build backend.
+
+When build isolation is disabled, uv uses the installed build dependencies without checking their hashes. uv also does not recheck already-installed packages or previously built wheels. The bundled `uv_build` backend does not need a hash because it is part of the uv executable.
+
+Note
+
+`--require-build-hashes` is experimental. Use `--preview-features build-dependency-hashes` to suppress the warning.
 
 ## [Preventing publish to PyPI](#preventing-publish-to-pypi)
 

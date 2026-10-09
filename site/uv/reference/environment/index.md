@@ -310,6 +310,12 @@ added in `0.1.19`
 
 Equivalent to the `--keyring-provider` command-line argument. If set, uv will use this value as the keyring provider.
 
+### [`UV_LEGACY_TAR_BACKEND`](#uv_legacy_tar_backend)
+
+added in `0.13.0`
+
+Use the legacy backend to read and write tar archives. Set to a true value (e.g., `1`) to enable this compatibility fallback.
+
 ### [`UV_LIBC`](#uv_libc)
 
 added in `0.7.22`
@@ -769,6 +775,12 @@ When set, uv will search for Python interpreters in the directories specified by
 added in `0.1.6`
 
 Timeout (in seconds) for HTTP requests. Equivalent to `UV_HTTP_TIMEOUT`.
+
+### [`UV_REQUIRE_BUILD_HASHES`](#uv_require_build_hashes)
+
+added in `0.13.0`
+
+Require hashes for build dependencies across project, build, tool, and pip commands.
 
 ### [`UV_REQUIRE_HASHES`](#uv_require_hashes)
 

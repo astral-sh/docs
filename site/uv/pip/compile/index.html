@@ -101,8 +101,8 @@
 <script type="application/ld+json">
   {
       
-      "datePublished": "2026-07-23 19:51:18Z",
-      "dateModified": "2026-07-23 19:51:18Z",
+      "datePublished": "2026-10-09 15:15:59Z",
+      "dateModified": "2026-10-09 15:15:59Z",
       
       "@context": "https://schema.org",
       "@type": "WebSite",
@@ -3752,11 +3752,11 @@ append them to those specified in the constraints file.</p>
 <h2 id="adding-build-constraints"><a class="toclink" href="#adding-build-constraints">Adding build constraints</a></h2>
 <p>Similar to <code>constraints</code>, but specifically for build-time dependencies, including those required
 when building runtime dependencies.</p>
-<p>Build constraint files are <code>requirements.txt</code>-like files that only control the <em>version</em> of a
-build-time requirement. However, including a package in a build constraints file will <em>not</em> trigger
-its installation at build time; instead, constraints apply only when the package is required as a
-direct or transitive build-time dependency. Build constraints can be used to add bounds to
-dependencies that are not explicitly declared as build-time dependencies of the current project.</p>
+<p>Build constraint files are <code>requirements.txt</code>-like files that constrain build-time requirements.
+However, including a package in a build constraints file will <em>not</em> trigger its installation at
+build time; instead, constraints apply only when the package is required as a direct or transitive
+build-time dependency. Build constraints can be used to add bounds to dependencies that are not
+explicitly declared as build-time dependencies of the current project.</p>
 <p>For example, if a package defines its build dependencies as follows:</p>
 <div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">[build-system]</span>
 <a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="n">requires</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;setuptools&quot;</span><span class="p">]</span>
@@ -3768,6 +3768,15 @@ package in the workspace:</p>
 </code></pre></div>
 <p>uv will also read <code>build-constraint-dependencies</code> from the <code>pyproject.toml</code> at the workspace root,
 and append them to those specified in the build constraints file.</p>
+<p>To require hashes for build dependencies, add them to a build constraints file:</p>
+<div class="highlight"><span class="filename">build-constraints.txt</span><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">setuptools</span><span class="o">==</span><span class="mf">83.0.0</span> <span class="o">--</span><span class="nb">hash</span><span class="o">=</span><span class="n">sha256</span><span class="p">:</span><span class="mi">29</span><span class="n">b23c360f22f414dc7336bb39178cc7bcbf6021ed2733cde173f09dba19abb3</span>
+</code></pre></div>
+<p>Then pass the file with <code>--require-build-hashes</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="gp">$ </span>uv<span class="w"> </span>pip<span class="w"> </span>compile<span class="w"> </span>requirements.in<span class="w"> </span>--build-constraint<span class="w"> </span>build-constraints.txt<span class="w"> </span>--require-build-hashes
+</code></pre></div>
+<p>This option only applies to build dependencies. To check runtime dependencies with <code>uv pip install</code>
+or <code>uv pip sync</code>, use <code>--require-hashes</code>. For details and limitations, see
+<a href="../../concepts/projects/build/#project-build-dependency-hashes">project build dependency hashes</a>.</p>
 <h2 id="overriding-dependency-versions"><a class="toclink" href="#overriding-dependency-versions">Overriding dependency versions</a></h2>
 <p>Overrides files are <code>requirements.txt</code>-like files that force a specific version of a requirement to
 be installed, regardless of the requirements declared by any constituent package, and regardless of
@@ -3779,10 +3788,10 @@ constituent packages.</p>
 <code>a</code> requires <code>c&gt;=1.0,&lt;2.0</code> and <code>b</code> requires <code>c&gt;=2.0</code> and the current project requires <code>a</code> and <code>b</code>
 then the dependencies cannot be resolved.</p>
 <p>To define an override, define the new requirement for the problematic package:</p>
-<div class="highlight"><span class="filename">overrides.txt</span><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">c</span><span class="o">&gt;=</span><span class="mf">2.0</span>
+<div class="highlight"><span class="filename">overrides.txt</span><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="n">c</span><span class="o">&gt;=</span><span class="mf">2.0</span>
 </code></pre></div>
 <p>To use an overrides file:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="gp">$ </span>uv<span class="w"> </span>pip<span class="w"> </span>compile<span class="w"> </span>requirements.in<span class="w"> </span>--override<span class="w"> </span>overrides.txt
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="gp">$ </span>uv<span class="w"> </span>pip<span class="w"> </span>compile<span class="w"> </span>requirements.in<span class="w"> </span>--override<span class="w"> </span>overrides.txt
 </code></pre></div>
 <p>Now, resolution can succeed. However, note that if <code>a</code> is <em>correct</em> that it does not support
 <code>c&gt;=2.0</code> then a runtime error will likely be encountered when using the packages.</p>
@@ -3807,7 +3816,7 @@ then the dependencies cannot be resolved.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 23, 2026 19:51:18 UTC">July 23, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 9, 2026 15:15:59 UTC">October 9, 2026</span>
   </span>
 
     

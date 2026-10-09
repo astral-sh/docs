@@ -101,8 +101,8 @@
 <script type="application/ld+json">
   {
       
-      "datePublished": "2026-10-01 16:34:10Z",
-      "dateModified": "2026-10-01 16:34:10Z",
+      "datePublished": "2026-10-01 16:49:37Z",
+      "dateModified": "2026-10-01 16:49:37Z",
       
       "@context": "https://schema.org",
       "@type": "WebSite",
@@ -3752,9 +3752,11 @@ you can instruct uv to <em>always</em> rebuild and reinstall it by adding the pr
 package's <code>pyproject.toml</code>, <code>setup.py</code>, or <code>setup.cfg</code> file has changed.</p>
 <h2 id="cache-safety"><a class="toclink" href="#cache-safety">Cache safety</a></h2>
 <p>It's safe to run multiple uv commands concurrently, even against the same virtual environment. uv's
-cache is designed to be thread-safe and append-only, and thus robust to multiple concurrent readers
-and writers. uv applies a file-based lock to the target virtual environment when installing, to
-avoid concurrent modifications across processes.</p>
+cache supports multiple concurrent readers and writers. uv applies a file-based lock to the target
+virtual environment when installing, to avoid concurrent modifications across processes.</p>
+<p>Interrupted or overlapping HTTP cache refreshes can invalidate individual cache entries. uv detects
+incomplete policy updates and downloads the response again instead of using the invalid entry. With
+<code>--offline</code>, an affected entry is unavailable until it can be refreshed online.</p>
 <p>Note that it's <em>never</em> safe to modify the cache directly (e.g., by removing a file or directory).</p>
 <h2 id="clearing-the-cache"><a class="toclink" href="#clearing-the-cache">Clearing the cache</a></h2>
 <p>uv provides a few different mechanisms for removing entries from the cache:</p>
@@ -3849,7 +3851,7 @@ itself may contain duplicate entries in the core metadata bucket due to the chan
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 1, 2026 16:34:10 UTC">October 1, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 1, 2026 16:49:37 UTC">October 1, 2026</span>
   </span>
 
     

@@ -17,7 +17,7 @@ Python does not publish official distributable binaries. As such, uv uses distri
 Once Python is installed, it will be used by `uv` commands automatically. uv also adds the installed version to your `PATH`:
 
 ```
-$ python3.13
+$ python3.15
 ```
 
 uv only installs a *versioned* executable by default. To install `python` and `python3` executables, include the experimental `--default` option:
@@ -97,10 +97,6 @@ uv will use existing Python installations if present on your system. There is no
 To force uv to use the system Python, provide the `--no-managed-python` flag. See the [Python version preference](../../concepts/python-versions/#requiring-or-disabling-managed-python-versions) documentation for more details.
 
 ## [Upgrading Python versions](#upgrading-python-versions)
-
-Important
-
-Support for upgrading Python patch versions is in *preview*. This means the behavior is experimental and subject to change.
 
 To upgrade a Python version to the latest supported patch release:
 
