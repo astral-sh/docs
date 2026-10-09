@@ -81,8 +81,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2026-10-06 17:49:42Z",
-        "dateModified": "2026-10-06 17:49:42Z",
+        "datePublished": "2026-10-09 21:39:40Z",
+        "dateModified": "2026-10-09 21:39:40Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -1410,8 +1410,15 @@
 <h1 id="module-discovery"><a class="toclink" href="#module-discovery">Module discovery</a></h1>
 <h2 id="first-party-modules"><a class="toclink" href="#first-party-modules">First-party modules</a></h2>
 <p>First-party modules are Python files that are part of your project source code.</p>
-<p>By default, ty searches for first-party modules in the project's root directory or the <code>src</code>
-directory, if present.</p>
+<p>By default, ty searches for first-party modules in the project root. It also searches the following
+directories, if they exist and are not themselves packages (i.e. they contain neither an
+<code>__init__.py</code> nor an <code>__init__.pyi</code> file):</p>
+<ul>
+<li><code>./src</code></li>
+<li><code>./&lt;project-name&gt;</code>, if <code>./&lt;project-name&gt;/&lt;project-name&gt;</code> exists</li>
+<li><code>./python</code></li>
+</ul>
+<p>These directories are searched before the project root, in the order listed above.</p>
 <p>If your project uses a different layout, configure the project's
 <a href="../reference/configuration/#root"><code>environment.root</code></a> in your <code>pyproject.toml</code> or <code>ty.toml</code>. For example,
 if your project's code is in an <code>app/</code> directory:</p>
@@ -1437,9 +1444,6 @@ if your project's code is in an <code>app/</code> directory:</p>
 </div>
 </div>
 </div>
-<p>Note that a <code>./python</code> folder is automatically added to the project <code>root</code> if it exists,
-and is not itself a package (i.e. does not contain an <code>__init__.py</code> file or an
-<code>__init__.pyi</code> file).</p>
 <h2 id="third-party-modules"><a class="toclink" href="#third-party-modules">Third-party modules</a></h2>
 <p>Third-party modules are Python packages that are not part of your project or the standard library.
 These are usually declared as dependencies in a <code>pyproject.toml</code> or <code>requirements.txt</code> file
@@ -1448,10 +1452,14 @@ modules are <code>requests</code>, <code>numpy</code> and <code>django</code>.</
 <p>ty searches for third-party modules in the configured <a href="#python-environment">Python environment</a>.</p>
 <h2 id="python-environment"><a class="toclink" href="#python-environment">Python environment</a></h2>
 <p>The Python environment is used for discovery of third-party modules.</p>
-<p>By default, ty will attempt to discover a virtual environment.</p>
-<p>First, ty checks for an active virtual environment using the <code>VIRTUAL_ENV</code> environment variable. If
-not set, ty will search for a <code>.venv</code> directory in the project root or working directory. ty only
-supports discovery of virtual environments at this time.</p>
+<p>For a project with no explicitly configured environment, ty searches for one in the following order:</p>
+<ol>
+<li>An active virtual environment, using the <code>VIRTUAL_ENV</code> environment variable.</li>
+<li>An active <a href="https://docs.conda.io/projects/conda/en/stable/user-guide/getting-started.html#listing-environments">non-<code>base</code> Conda environment</a>.</li>
+<li>A <code>.venv</code> directory in the project root.</li>
+<li>An active <a href="https://docs.conda.io/projects/conda/en/stable/user-guide/getting-started.html#listing-environments"><code>base</code> Conda environment</a>.</li>
+<li>A <code>python3</code> or <code>python</code> interpreter on <code>PATH</code>.</li>
+</ol>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>When using project management tools, such as uv or Poetry, the <code>run</code> command usually automatically
@@ -1489,7 +1497,7 @@ directories are ignored.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 6, 2026 17:49:42 UTC">October 6, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 9, 2026 21:39:40 UTC">October 9, 2026</span>
   </span>
 
     
