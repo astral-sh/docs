@@ -356,7 +356,7 @@ Untitled.ipynb:cell_1:2:5: F841 Local variable `x` is assigned to but never used
 Untitled.ipynb:cell_2:1:1: E402 Module level import not at top of file
 Untitled.ipynb:cell_2:1:8: F401 `os` imported but unused
 Found 3 errors.
-1 potentially fixable with the `--fix` option.
+1 potentially fixable with `--fix`.
 ```
 
 ## [Does Ruff support NumPy- or Google-style docstrings?](#does-ruff-support-numpy-or-google-style-docstrings)
@@ -476,7 +476,7 @@ For more, see the [`etcetera`](https://crates.io/crates/etcetera) crate.
 
 ## [Ruff tried to fix something — but it broke my code. What's going on?](#ruff-tried-to-fix-something-but-it-broke-my-code-whats-going-on)
 
-Ruff labels fixes as "safe" and "unsafe". By default, Ruff will fix all violations for which safe fixes are available, while unsafe fixes can be enabled via the [`unsafe-fixes`](../settings/#unsafe-fixes) setting, or passing the [`--unsafe-fixes`](../settings/#unsafe-fixes) flag to `ruff check`. For more, see [the fix documentation](../linter/#fixes).
+Ruff labels fixes as "safe" and "unsafe". By default, Ruff will fix all violations for which safe fixes are available, while unsafe fixes can be applied via the [`unsafe-fixes`](../settings/#unsafe-fixes) setting, or passing the [`--unsafe-fixes`](../settings/#unsafe-fixes) flag to `ruff check`. For more, see [the fix documentation](../linter/#fixes).
 
 Even still, given the dynamic nature of Python, it's difficult to have *complete* certainty when making changes to code, even for seemingly trivial fixes. If a "safe" fix breaks your code, please [file an Issue](https://github.com/astral-sh/ruff/issues/new).
 

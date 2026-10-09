@@ -1504,15 +1504,16 @@ replaces this pattern with <code>next(iter(...))</code> which can result in a dr
 <a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="go">StopIteration</span>
 </code></pre></div>
 <p>Since the change in exception type could break error handling upstream, this fix is categorized as unsafe.</p>
-<p>Ruff only enables safe fixes by default. Unsafe fixes can be enabled by settings <a href="../settings/#unsafe-fixes"><code>unsafe-fixes</code></a> in your configuration file or passing the <code>--unsafe-fixes</code> flag to <code>ruff check</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="gp"># </span>Show<span class="w"> </span>unsafe<span class="w"> </span>fixes
-<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="go">ruff check --unsafe-fixes</span>
-<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>
-<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="gp"># </span>Apply<span class="w"> </span>unsafe<span class="w"> </span>fixes
-<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="go">ruff check --fix --unsafe-fixes</span>
+<p>Ruff only applies safe fixes by default. To apply unsafe fixes as well, enable <a href="../settings/#unsafe-fixes"><code>unsafe-fixes</code></a> in your configuration file or pass the <code>--unsafe-fixes</code> flag alongside <code>--fix</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="gp"># </span>Apply<span class="w"> </span>unsafe<span class="w"> </span>fixes
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="go">ruff check --fix --unsafe-fixes</span>
 </code></pre></div>
-<p>By default, Ruff will display a hint when unsafe fixes are available but not enabled. The suggestion can be silenced
-by setting the <a href="../settings/#unsafe-fixes"><code>unsafe-fixes</code></a> setting to <code>false</code> or using the <code>--no-unsafe-fixes</code> flag.</p>
+<p>The default <code>full</code> output format shows all suggested fixes, regardless of the <code>unsafe-fixes</code> setting.
+This includes fixes that require manual review and cannot be applied automatically, even with
+<code>--unsafe-fixes</code>.</p>
+<p>By default, Ruff will display a hint to use <code>--unsafe-fixes</code> when unsafe fixes are available but not
+applied. The suggestion can be silenced by setting the <a href="../settings/#unsafe-fixes"><code>unsafe-fixes</code></a>
+setting to <code>false</code> or using the <code>--no-unsafe-fixes</code> flag.</p>
 <p>The safety of fixes can be adjusted per rule using the <a href="../settings/#lint_extend-safe-fixes"><code>lint.extend-safe-fixes</code></a> and <a href="../settings/#lint_extend-unsafe-fixes"><code>lint.extend-unsafe-fixes</code></a> settings.</p>
 <p>For example, the following configuration would promote unsafe fixes for <code>F601</code> to safe fixes and demote safe fixes for <code>UP034</code> to unsafe fixes:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">pyproject.toml</label><label for="__tabbed_7_2">ruff.toml</label></div>

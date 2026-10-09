@@ -8,10 +8,6 @@ Note
 
 The setup instructions provided below are on a best-effort basis. If you encounter any issues while setting up the Ruff in an editor, please [open an issue](https://github.com/astral-sh/ruff/issues/new) for assistance and help in improving this documentation.
 
-Tip
-
-Regardless of the editor, it is recommended to disable the older language server ([`ruff-lsp`](https://github.com/astral-sh/ruff-lsp)) to prevent any conflicts.
-
 ## [VS Code](#vs-code)
 
 Install the Ruff extension from the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=charliermarsh.ruff). It is recommended to have the Ruff extension version `2024.32.0` or later to get the best experience with the Ruff Language Server.
