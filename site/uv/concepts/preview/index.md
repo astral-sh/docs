@@ -252,6 +252,10 @@ uv stores a `uv.lock` file alongside each installed tool and reuses it for subse
 
 The `uv venv --clear` option refuses to clear a directory that does not contain a `pyvenv.cfg` file. This helps avoid removing unrelated files when the target is not a virtual environment; use `--force` to explicitly allow clearing such a directory.
 
+### [`wheel-variants`](#wheel-variants)
+
+Enables experimental support for [wheel variants](https://peps.python.org/pep-0825/). Variant wheels are not yet selectable.
+
 ### [`workspace-dir`](#workspace-dir)
 
 The `uv workspace dir` command prints the path to the workspace root. Use `--package` to print the path to a specific workspace member, for example, with `--package my-package`.
