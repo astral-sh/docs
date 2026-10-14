@@ -179,7 +179,7 @@ When uv resolutions differ from `pip` in undesirable ways, it's often a sign tha
 At present, `uv pip check` will surface the following diagnostics:
 
 - A package has no `METADATA` file, or the `METADATA` file can't be parsed.
-- A package has a `Requires-Python` that doesn't match the Python version of the running interpreter.
+- A package has a `Requires-Python` lower bound that excludes the Python version of the running interpreter. Upper bounds are [ignored](#requires-python-upper-bounds), as they are during resolution.
 - A package has a dependency on a package that isn't installed.
 - A package has a dependency on a package that's installed, but at an incompatible version.
 - Multiple versions of a package are installed in the virtual environment.
