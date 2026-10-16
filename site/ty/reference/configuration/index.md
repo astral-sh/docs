@@ -134,6 +134,37 @@ respect-type-ignore-comments = false
 
 ______________________________________________________________________
 
+### [`return-type-inference`](#return-type-inference)
+
+This setting controls when ty infers return types for functions without an explicit return type annotation.
+
+- `"never"`: Do not infer return types from function bodies. Unannotated functions will have an inferred return type of `Unknown`.
+- `"always"`: Infer return types for unannotated functions and methods.
+
+Enabling return type inference will never override explicit return type annotations. Lambda functions are not affected by this setting and their return type will always be inferred.
+
+Return types for generator functions and asynchronous functions are currently not inferred, but we plan to change this soon.
+
+Functions in stubs and `if TYPE_CHECKING` blocks are never considered for return type inference.
+
+**Default value**: `"never"`
+
+**Type**: `"never" | "always"`
+
+**Example usage**:
+
+```
+[tool.ty.analysis]
+return-type-inference = "always"
+```
+
+```
+[analysis]
+return-type-inference = "always"
+```
+
+______________________________________________________________________
+
 ### [`strict-equality-semantics`](#strict-equality-semantics)
 
 Configure ty's behavior regarding type inference and narrowing of equality checks. Defaults to `false`.
@@ -674,6 +705,43 @@ include = ["src"]
 [overrides.analysis]
 # Disable support for `type: ignore` comments
 respect-type-ignore-comments = false
+```
+
+______________________________________________________________________
+
+#### [`return-type-inference`](#return-type-inference_1)
+
+This setting controls when ty infers return types for functions without an explicit return type annotation.
+
+- `"never"`: Do not infer return types from function bodies. Unannotated functions will have an inferred return type of `Unknown`.
+- `"always"`: Infer return types for unannotated functions and methods.
+
+Enabling return type inference will never override explicit return type annotations. Lambda functions are not affected by this setting and their return type will always be inferred.
+
+Return types for generator functions and asynchronous functions are currently not inferred, but we plan to change this soon.
+
+Functions in stubs and `if TYPE_CHECKING` blocks are never considered for return type inference.
+
+**Default value**: `"never"`
+
+**Type**: `"never" | "always"`
+
+**Example usage**:
+
+```
+[[tool.ty.overrides]]
+include = ["src"]
+
+[tool.ty.overrides.analysis]
+return-type-inference = "always"
+```
+
+```
+[[overrides]]
+include = ["src"]
+
+[overrides.analysis]
+return-type-inference = "always"
 ```
 
 ______________________________________________________________________
