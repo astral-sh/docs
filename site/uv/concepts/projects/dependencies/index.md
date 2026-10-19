@@ -11,7 +11,7 @@ Dependencies of the project are defined in several fields:
 
 Note
 
-The `project.dependencies` and `project.optional-dependencies` fields can be used even if project isn't going to be published. `dependency-groups` are a recently standardized feature and may not be supported by all tools yet.
+The `project.dependencies` and `project.optional-dependencies` fields can be used even if the project isn't going to be published. `dependency-groups` are a recently standardized feature and may not be supported by all tools yet.
 
 uv supports modifying the project's dependencies with `uv add` and `uv remove`, but dependency metadata can also be updated by editing the `pyproject.toml` directly.
 
@@ -64,7 +64,7 @@ dependencies = [
 httpx = { git = "https://github.com/encode/httpx" }
 ```
 
-If a dependency cannot be used, uv will display an error.:
+If a dependency cannot be used, uv will display an error:
 
 ```
 $ uv add "httpx>9999"
@@ -157,7 +157,7 @@ Dependency sources can also be [changed per-platform](#platform-specific-sources
 
 The `project.dependencies` table represents the dependencies that are used when uploading to PyPI or building a wheel. Individual dependencies are specified using [dependency specifiers](https://packaging.python.org/en/latest/specifications/dependency-specifiers/) syntax, and the table follows the [PEP 621](https://packaging.python.org/en/latest/specifications/pyproject-toml/) standard.
 
-`project.dependencies` defines the list of packages that are required for the project, along with the version constraints that should be used when installing them. Each entry includes a dependency name and version. An entry may include extras or environment markers for platform-specific packages. For example:
+`project.dependencies` defines the list of packages that are required for the project, along with any version constraints to use when installing them. Each entry includes a dependency name and may include version constraints, extras, or environment markers for platform-specific packages. For example:
 
 pyproject.toml
 
@@ -211,7 +211,7 @@ Sources are only respected by uv. If another tool is used, only the definitions 
 
 ### [Index](#index)
 
-To add Python package from a specific index, use the `--index` option:
+To add a Python package from a specific index, use the `--index` option:
 
 ```
 $ uv add torch --index pytorch=https://download.pytorch.org/whl/cpu
@@ -454,7 +454,7 @@ For multiple packages in the same repository, [*workspaces*](../workspaces/) may
 
 ### [Workspace member](#workspace-member)
 
-To declare a dependency on a workspace member, add the member name with `{ workspace = true }`. All workspace members must be explicitly stated. Workspace members are always [editable](#editable-dependencies) . See the [workspace](../workspaces/) documentation for more details on workspaces.
+To declare a dependency on a workspace member, add the member name with `{ workspace = true }`. All workspace members must be explicitly stated. Workspace members are always [editable](#editable-dependencies). See the [workspace](../workspaces/) documentation for more details on workspaces.
 
 To source a dependency from a different workspace, `workspace` can also be a path string:
 
@@ -718,7 +718,7 @@ pyproject.toml
 default-groups = ["dev", "foo"]
 ```
 
-To enable all dependencies groups by default, use `"all"` instead of listing group names:
+To enable all dependency groups by default, use `"all"` instead of listing group names:
 
 pyproject.toml
 
@@ -773,7 +773,7 @@ If a `tool.uv.dev-dependencies` field exists, `uv add --dev` will use the existi
 
 ## [Build dependencies](#build-dependencies)
 
-If a project is structured as [Python package](../config/#build-systems), it may declare dependencies that are required to build the project, but not required to run it. These dependencies are specified in the `[build-system]` table under `build-system.requires`, following [PEP 518](https://peps.python.org/pep-0518/).
+If a project is structured as a [Python package](../config/#build-systems), it may declare dependencies that are required to build the project, but not required to run it. These dependencies are specified in the `[build-system]` table under `build-system.requires`, following [PEP 518](https://peps.python.org/pep-0518/).
 
 For example, if a project uses `setuptools` as its build backend, it should declare `setuptools` as a build dependency:
 
@@ -925,7 +925,7 @@ Specifiers are padded with trailing zeros if required, so `foo ==2` matches foo 
 
 A star can be used for the last digit with equals, e.g., `foo ==2.1.*` will accept any release from the 2.1 series. Similarly, `~=` matches where the last digit is equal or higher, e.g., `foo ~=1.2` is equal to `foo >=1.2,<2`, and `foo ~=1.2.3` is equal to `foo >=1.2.3,<1.3`.
 
-Extras are comma-separated in square bracket between name and version, e.g., `pandas[excel,plot] ==2.2`. Whitespace between extra names is ignored.
+Extras are comma-separated in square brackets between the name and version, e.g., `pandas[excel,plot] ==2.2`. Whitespace between extra names is ignored.
 
 Some dependencies are only required in specific environments, e.g., a specific Python version or operating system. For example to install the `importlib-metadata` backport for the `importlib.metadata` module, use `importlib-metadata >=7.1.0,<8; python_version < '3.10'`. To install `colorama` on Windows (but omit it on other platforms), use `colorama >=0.4.6,<5; platform_system == "Windows"`.
 

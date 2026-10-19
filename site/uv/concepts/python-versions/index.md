@@ -98,7 +98,7 @@ By default `uv python install` will verify that a managed Python version is inst
 
 Important
 
-The available Python versions are frozen for each uv release. To install new Python versions, you may need upgrade uv.
+The available Python versions are frozen for each uv release. To install new Python versions, you may need to upgrade uv.
 
 See the [storage documentation](../../reference/storage/#python-versions) for details about where installed Python versions are stored.
 
@@ -273,7 +273,7 @@ For Python 3.13, free-threaded Python versions will not be selected by default. 
 
 For Python 3.14+, uv will allow use of free-threaded Python 3.14+ interpreters without explicit selection. The GIL-enabled build of Python will still be preferred, e.g., when performing an installation with `uv python install 3.14`. However, e.g., if a free-threaded interpreter comes before a GIL-enabled build on the `PATH`, it will be used.
 
-If both free-threaded and GIL-enabled Python versions are available on the system, and want to require the use of the GIL-enabled variant in a project, you can use the `+gil` variant specifier.
+If both free-threaded and GIL-enabled Python versions are available on the system, you can use the `+gil` variant specifier to require the GIL-enabled variant in a project.
 
 ## [Debug Python variants](#debug-python-variants)
 
@@ -350,11 +350,11 @@ See the [Python version request](#requesting-a-version) documentation for more d
 
 ## [Managed Python distributions](#managed-python-distributions)
 
-uv supports downloading and installing CPython, PyPy, and Pyodide distributions.
+uv supports downloading and installing CPython, PyPy, GraalPy, and Pyodide distributions.
 
 ### [CPython distributions](#cpython-distributions)
 
-As Python does not publish official distributable CPython binaries, uv instead uses pre-built distributions from the Astral [`python-build-standalone`](https://github.com/astral-sh/python-build-standalone) project. `python-build-standalone` is also is used in many other Python projects, like [Mise](https://mise.jdx.dev/lang/python.html) and [bazelbuild/rules_python](https://github.com/bazelbuild/rules_python).
+As Python does not publish official distributable CPython binaries, uv instead uses pre-built distributions from the Astral [`python-build-standalone`](https://github.com/astral-sh/python-build-standalone) project. `python-build-standalone` is also used in many other Python projects, like [Mise](https://mise.jdx.dev/lang/python.html) and [bazelbuild/rules_python](https://github.com/bazelbuild/rules_python).
 
 The uv Python distributions are self-contained, highly-portable, and performant. While Python can be built from source, as in tools like `pyenv`, doing so requires preinstalled system dependencies, and creating optimized, performant builds (e.g., with PGO and LTO enabled) is very slow.
 
@@ -364,7 +364,7 @@ These distributions have some behavior quirks, generally as a consequence of por
 
 Note
 
-PyPy versions lag behind CPython and currently only supports Python versions up to 3.11
+PyPy versions lag behind CPython and currently only support Python versions up to 3.11.
 
 PyPy distributions are provided by the [PyPy project](https://pypy.org).
 

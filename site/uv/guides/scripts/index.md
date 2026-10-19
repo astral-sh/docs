@@ -116,7 +116,7 @@ Constraints can be added to the requested dependency if specific versions are ne
 $ uv run --with 'rich>12,<13' example.py
 ```
 
-Multiple dependencies can be requested by repeating with `--with` option.
+Multiple dependencies can be requested by repeating the `--with` option.
 
 Note that if `uv run` is used in a *project*, these dependencies will be included *in addition* to the project's dependencies. To opt-out of this behavior, use the `--no-project` flag.
 
@@ -205,7 +205,7 @@ The `dependencies` field must be provided even if empty.
 
 A shebang can be added to make a script executable without using `uv run` — this makes it easy to run scripts that are on your `PATH` or in the current folder.
 
-For example, create a file called `greet` with the following contents
+For example, create a file called `greet` with the following contents:
 
 greet
 

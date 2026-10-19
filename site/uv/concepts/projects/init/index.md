@@ -12,7 +12,7 @@ Prior to v0.12, uv did not define a build system for applications by default.
 
 ## [Target directory](#target-directory)
 
-uv will create a project in the working directory, or, in a target directory by providing a name, e.g., `uv init foo`. The working directory can be modified with the `--directory` option, which will cause the target directory path to be interpreted relative to the specified working directory. If there's already a project in the target directory, i.e., if there's a `pyproject.toml`, uv will exit with an error.
+uv will create a project in the working directory. To create one in a target directory, provide a name, e.g., `uv init foo`. The working directory can be modified with the `--directory` option, which will cause the target directory path to be interpreted relative to the specified working directory. If there's already a project in the target directory, i.e., if there's a `pyproject.toml`, uv will exit with an error.
 
 ## [Applications](#applications)
 
@@ -54,7 +54,7 @@ dependencies = []
 example-app = "example_app:main"
 
 [build-system]
-requires = ["uv_build>=0.13.1,<0.14"]
+requires = ["uv_build>=0.13.2,<0.14"]
 build-backend = "uv_build"
 ```
 
@@ -79,7 +79,7 @@ dependencies = []
 example-app = "example_app:main"
 
 [build-system]
-requires = ["uv_build>=0.13.1,<0.14"]
+requires = ["uv_build>=0.13.2,<0.14"]
 build-backend = "uv_build"
 ```
 
@@ -137,7 +137,7 @@ requires-python = ">=3.11"
 dependencies = []
 
 [build-system]
-requires = ["uv_build>=0.13.1,<0.14"]
+requires = ["uv_build>=0.13.2,<0.14"]
 build-backend = "uv_build"
 ```
 
@@ -264,7 +264,7 @@ example-app/
 └── pyproject.toml
 ```
 
-The `pyproject.toml` includes basic metadata. It does not include a build system, it is not a [package](../config/#project-packaging), and will not be installed into the environment:
+The `pyproject.toml` includes basic metadata but does not define a build system. The project is not a [package](../config/#project-packaging) and will not be installed into the environment:
 
 pyproject.toml
 

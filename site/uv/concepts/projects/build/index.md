@@ -27,7 +27,7 @@ You can limit `uv build` to building a source distribution with `uv build --sdis
 
 ## [Build constraints](#build-constraints)
 
-`uv build` accepts `--build-constraint`, which can be used to constrain the versions of any build requirements during the build process. When coupled with `--require-hashes`, uv will enforce that the requirement used to build the project match specific, known hashes, for reproducibility.
+`uv build` accepts `--build-constraint`, which can be used to constrain the versions of any build requirements during the build process. When coupled with `--require-hashes`, uv will enforce that the requirements used to build the project match specific, known hashes, for reproducibility.
 
 For example, given the following `constraints.txt`:
 

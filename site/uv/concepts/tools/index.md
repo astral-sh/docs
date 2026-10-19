@@ -30,7 +30,7 @@ Tool environments are *not* intended to be mutated directly. It is strongly reco
 
 ## [Tool versions](#tool-versions)
 
-Unless a specific version is requested, `uv tool install` will install the latest available of the requested tool. `uvx` will use the latest available version of the requested tool *on the first invocation*. After that, `uvx` will use the cached version of the tool unless a different version is requested, the cache is pruned, or the cache is refreshed.
+Unless a specific version is requested, `uv tool install` will install the latest available version of the requested tool. `uvx` will use the latest available version of the requested tool *on the first invocation*. After that, `uvx` will use the cached version of the tool unless a different version is requested, the cache is pruned, or the cache is refreshed.
 
 For example, to run a specific version of Ruff:
 
@@ -97,7 +97,7 @@ $ uv tool install ruff@0.6.0
 
 Tool environments may be upgraded via `uv tool upgrade`, or re-created entirely via subsequent `uv tool install` operations.
 
-To upgrade all packages in a tool environment
+To upgrade all packages in a tool environment:
 
 ```
 $ uv tool upgrade black
@@ -125,7 +125,7 @@ Tool upgrades will reinstall the tool executables, even if they have not changed
 
 To reinstall packages during upgrade, use the `--reinstall` and `--reinstall-package` options.
 
-To reinstall all packages in a tool environment
+To reinstall all packages in a tool environment:
 
 ```
 $ uv tool upgrade black --reinstall

@@ -95,4 +95,4 @@ When running a command that mutates an environment such as `uv pip sync` or `uv 
 
 If no virtual environment is found, uv will prompt the user to create one in the current directory via `uv venv`.
 
-If the `--system` flag is included, uv will skip virtual environments search for an installed Python version. Similarly, when running a command that does not mutate the environment such as `uv pip compile`, uv does not *require* a virtual environment — however, a Python interpreter is still required. See the documentation on [Python discovery](../../concepts/python-versions/#discovery-of-python-versions) for details on the discovery of installed Python versions.
+If the `--system` flag is included, uv will skip virtual environments and search for an installed Python version. Similarly, when running a command that does not mutate the environment such as `uv pip compile`, uv does not *require* a virtual environment — however, a Python interpreter is still required. See the documentation on [Python discovery](../../concepts/python-versions/#discovery-of-python-versions) for details on the discovery of installed Python versions.

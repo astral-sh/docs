@@ -226,6 +226,10 @@ uv run resolver \
     ../test/requirements/trio.in
 ```
 
+### [CI benchmarks](#ci-benchmarks)
+
+In `astral-sh/uv-dev`, add `test:benchmarks` to a pull request to enable the simulated and walltime benchmarks on subsequent pushes. The label also applies to draft pull requests. `test:skip` takes precedence. Remove `test:benchmarks` to disable benchmarks on future pushes.
+
 ### [Analyzing concurrency](#analyzing-concurrency)
 
 You can use [tracing-durations-export](https://github.com/konstin/tracing-durations-export) to visualize parallel requests and find any spots where uv is CPU-bound. Example usage, with `uv` and `uv-dev` respectively:

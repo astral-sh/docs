@@ -89,7 +89,7 @@ These commands do not exactly implement the interfaces and behavior of the tools
 
 ## [Utility](#utility)
 
-Managing and inspecting uv's state, such as the cache, storage directories, or performing a self-update:
+Managing and inspecting uv's state, such as the cache and storage directories, or performing a self-update:
 
 - `uv cache clean`: Remove cache entries.
 - `uv cache prune`: Remove outdated cache entries and all centralized project environments.

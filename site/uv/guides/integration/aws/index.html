@@ -101,8 +101,8 @@
 <script type="application/ld+json">
   {
       
-      "datePublished": "2026-03-23 19:41:51Z",
-      "dateModified": "2026-03-23 19:41:51Z",
+      "datePublished": "2026-10-14 16:26:26Z",
+      "dateModified": "2026-10-14 16:26:26Z",
       
       "@context": "https://schema.org",
       "@type": "WebSite",
@@ -3601,8 +3601,8 @@ using an access token, or using the <a href="https://github.com/jaraco/keyring">
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://&lt;DOMAIN&gt;-&lt;ACCOUNT_ID&gt;.d.codeartifact.&lt;REGION&gt;.amazonaws.com/pypi/&lt;REPOSITORY&gt;/simple/&quot;</span>
 </code></pre></div>
 <h2 id="authenticate-with-an-aws-access-token"><a class="toclink" href="#authenticate-with-an-aws-access-token">Authenticate with an AWS access token</a></h2>
-<p>Credentials can be provided via "Basic" HTTP authentication scheme. Include access token in the
-password field of the URL. Username must be <code>aws</code>, otherwise authentication will fail.</p>
+<p>Credentials can be provided via the "Basic" HTTP authentication scheme. Include the access token in
+the password field of the URL. The username must be <code>aws</code>, otherwise authentication will fail.</p>
 <p>Generate a token with <code>awscli</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AWS_CODEARTIFACT_TOKEN</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span>aws<span class="w"> </span>codeartifact<span class="w"> </span>get-authorization-token<span class="w"> </span><span class="se">\</span>
@@ -3614,8 +3614,8 @@ password field of the URL. Username must be <code>aws</code>, otherwise authenti
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>You might need to pass extra parameters to properly generate the token (like <code>--region</code>), this
-is a basic example.</p>
+<p>This is a basic example; you might need to pass extra parameters to generate the token, such as
+<code>--region</code>.</p>
 </div>
 <p>Then set credentials for the index with:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">UV_INDEX_PRIVATE_REGISTRY_USERNAME</span><span class="o">=</span>aws
@@ -3626,10 +3626,10 @@ is a basic example.</p>
 <p><code>PRIVATE_REGISTRY</code> should match the name of the index defined in your <code>pyproject.toml</code>.</p>
 </div>
 <h2 id="authenticate-with-keyring-and-keyringscodeartifact"><a class="toclink" href="#authenticate-with-keyring-and-keyringscodeartifact">Authenticate with <code>keyring</code> and <code>keyrings.codeartifact</code></a></h2>
-<p>You can also authenticate to Artifact Registry using <a href="https://github.com/jaraco/keyring"><code>keyring</code></a>
+<p>You can also authenticate to CodeArtifact using the <a href="https://github.com/jaraco/keyring"><code>keyring</code></a>
 package with the <a href="https://github.com/jmkeyes/keyrings.codeartifact"><code>keyrings.codeartifact</code> plugin</a>.
-Because these two packages are required to authenticate to Artifact Registry, they must be
-pre-installed from a source other than Artifact Registry.</p>
+Because these two packages are required to authenticate to CodeArtifact, they must be pre-installed
+from a source other than CodeArtifact.</p>
 <p>The <code>keyrings.codeartifact</code> plugin wraps <a href="https://pypi.org/project/boto3/">boto3</a> to generate
 short-lived access tokens, securely store them in system keyring, and refresh them when they are
 expired.</p>
@@ -3694,7 +3694,7 @@ before uploading artifacts.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 23, 2026 19:41:51 UTC">March 23, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 14, 2026 16:26:26 UTC">October 14, 2026</span>
   </span>
 
     

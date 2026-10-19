@@ -101,8 +101,8 @@
 <script type="application/ld+json">
   {
       
-      "datePublished": "2026-10-13 16:08:51Z",
-      "dateModified": "2026-10-13 16:08:51Z",
+      "datePublished": "2026-10-14 16:26:26Z",
+      "dateModified": "2026-10-14 16:26:26Z",
       
       "@context": "https://schema.org",
       "@type": "WebSite",
@@ -4286,7 +4286,7 @@ does <em>not</em> enforce <code>--only-binary</code>, and will build source dist
 <code>uv pip install https://... --only-binary flask</code>, uv <em>will</em> build the source distribution at the
 given URL if it cannot infer the package name ahead of time, since uv can't determine whether the
 package is "allowed" in such cases without building its metadata.</p>
-<p>Both pip and uv allow editables requirements to be built and installed even when <code>--only-binary</code> is
+<p>Both pip and uv allow editable requirements to be built and installed even when <code>--only-binary</code> is
 provided. For example, <code>uv pip install -e . --only-binary :all:</code> is allowed.</p>
 <h2 id="-no-binary-enforcement"><a class="toclink" href="#-no-binary-enforcement"><code>--no-binary</code> enforcement</a></h2>
 <p>The <code>--no-binary</code> argument is used to restrict installation to source distributions. When
@@ -4325,7 +4325,7 @@ installs, pass the <code>--compile-bytecode</code> flag to <code>uv pip install<
 bytecode compilation in <a href="../../guides/integration/docker/">Docker builds</a> to improve startup times
 (at the cost of increased build times).</p>
 <p>As bytecode compilation suppresses various warnings issued by the Python interpreter, in rare cases
-you may seen <code>SyntaxWarning</code> or <code>DeprecationWarning</code> messages when running Python code that was
+you may see <code>SyntaxWarning</code> or <code>DeprecationWarning</code> messages when running Python code that was
 installed with uv that do not appear when using <code>pip</code>. These are valid warnings, but are typically
 hidden by the bytecode compilation process, and can either be ignored, fixed upstream, or similarly
 suppressed by enabling bytecode compilation in uv.</p>
@@ -4354,8 +4354,9 @@ issues to convey your interest.</p>
 <p>uv does not support <code>pip</code>'s <code>auto</code> or <code>import</code> options for <code>--keyring-provider</code>. At present, only
 the <code>subprocess</code> option is supported.</p>
 <p>Unlike <code>pip</code>, uv does not enable keyring authentication by default.</p>
-<p>Unlike <code>pip</code>, uv does not wait until a request returns an HTTP 401 before searching for
-authentication. uv attaches authentication to all requests for hosts with credentials available.</p>
+<p>uv can use credentials supplied with a request or cached for its URL before the server returns an
+HTTP 401. For the rules governing credential lookup, see
+<a href="../../concepts/indexes/#using-credential-providers">credential providers</a>.</p>
 <h2 id="egg-support"><a class="toclink" href="#egg-support"><code>egg</code> support</a></h2>
 <p>uv does not support features that are considered legacy or deprecated in <code>pip</code>. For example, uv does
 not support <code>.egg</code>-style distributions.</p>
@@ -4455,7 +4456,7 @@ preserve the verbatim package name as published on the registry.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 13, 2026 16:08:51 UTC">October 13, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 14, 2026 16:26:26 UTC">October 14, 2026</span>
   </span>
 
     

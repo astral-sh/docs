@@ -98,7 +98,7 @@ By default, uv will stop at the first index on which a given package is availabl
 
 For example, if an internal index is specified via `[[tool.uv.index]]`, uv's behavior is such that if a package exists on that internal index, it will *always* be installed from that internal index, and never from PyPI. The intent is to prevent "dependency confusion" attacks, in which an attacker publishes a malicious package on PyPI with the same name as an internal package, thus causing the malicious package to be installed instead of the internal package. See, for example, [the `torchtriton` attack](https://pytorch.org/blog/compromised-nightly-dependency/) from December 2022.
 
-To opt in to alternate index behaviors, use the`--index-strategy` command-line option, or the `UV_INDEX_STRATEGY` environment variable, which supports the following values:
+To opt in to alternate index behaviors, use the `--index-strategy` command-line option, or the `UV_INDEX_STRATEGY` environment variable, which supports the following values:
 
 - `first-index` (default): Search for each package across all indexes, limiting the candidate versions to those present in the first index that contains the package.
 - `unsafe-first-match`: Search for each package across all indexes, but prefer the first index with a compatible version, even if newer versions are available on other indexes.

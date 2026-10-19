@@ -50,7 +50,7 @@ $ uv version
 hello-world 1.0.0
 ```
 
-To increase the version of your package semantics, use the `--bump` option:
+To increment a component of your package version, use the `--bump` option:
 
 ```
 $ uv version --bump minor
@@ -91,7 +91,7 @@ hello-world 1.3.1b2 => 1.3.1
 
 Info
 
-By default, when `uv version` modifies the project it will perform a lock and sync. To prevent locking and syncing, use `--frozen`, or, to just prevent syncing, use `--no-sync`.
+By default, when `uv version` modifies the project it will perform a lock and sync. To prevent locking and syncing, use `--frozen`. To prevent only syncing, use `--no-sync`.
 
 ## [Publishing your package](#publishing-your-package)
 
@@ -129,7 +129,7 @@ Note
 
 When using `uv publish --index <name>`, the `pyproject.toml` must be present, i.e., you need to have a checkout step in a publish CI job.
 
-Even though `uv publish` retries failed uploads, it can happen that publishing fails in the middle, with some files uploaded and some files still missing. With PyPI, you can retry the exact same command, existing identical files will be ignored. With other registries, use `--check-url <index url>` with the index URL (not the publishing URL) the packages belong to. When using `--index`, the index URL is used as check URL. uv will skip uploading files that are identical to files in the registry, and it will also handle raced parallel uploads. Note that existing files need to match exactly with those previously uploaded to the registry, this avoids accidentally publishing source distribution and wheels with different contents for the same version.
+Even though `uv publish` retries failed uploads, it can happen that publishing fails in the middle, with some files uploaded and some files still missing. With PyPI, you can retry the exact same command; existing identical files will be ignored. With other registries, use `--check-url <index url>` with the index URL (not the publishing URL) the packages belong to. When using `--index`, the index URL is used as check URL. uv will skip uploading files that are identical to files in the registry, and it will also handle raced parallel uploads. Note that existing files need to match exactly with those previously uploaded to the registry. This avoids accidentally publishing source distribution and wheels with different contents for the same version.
 
 ### [Uploading attestations with your package](#uploading-attestations-with-your-package)
 
