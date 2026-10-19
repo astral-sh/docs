@@ -72,7 +72,7 @@ If the project does not define a build system, it will not be installed. See the
 
 ### [Handling of extraneous packages](#handling-of-extraneous-packages)
 
-`uv sync` performs "exact" syncing by default, which means it will remove any packages that are not present in the lockfile.
+`uv sync` performs "exact" syncing by default, which means it will remove any packages that are not selected for installation.
 
 To retain extraneous packages, use the `--inexact` flag:
 
@@ -110,7 +110,7 @@ The `--no-dev` flag can be used to exclude the `dev` group.
 
 The `--only-dev` flag can be used to install the `dev` group *without* the project and its dependencies.
 
-Additional groups can be included or excluded with the `--all-groups`, `--no-default-groups`, `--group <name>`, `--only-group <name>`, and `--no-group <name>` options. The semantics of `--only-group` are the same as `--only-dev`, the project will not be included. However, `--only-group` will also exclude default groups.
+Additional groups can be included or excluded with the `--all-groups`, `--no-default-groups`, `--group <name>`, `--only-group <name>`, and `--no-group <name>` options. The semantics of `--only-group` are the same as `--only-dev`: the project will not be included. However, `--only-group` will also exclude default groups.
 
 Group exclusions always take precedence over inclusions, so given the command:
 

@@ -50,7 +50,7 @@ Though `uv run --with jupyter` runs in an isolated environment, within the noteb
 
 For example, running `!uv add pydantic` from within a notebook will add `pydantic` to the project's dependencies and virtual environment, such that `import pydantic` will work immediately, without further configuration or a server restart.
 
-However, since the Jupyter server is the "active" environment, `!uv pip install` will install package's into *Jupyter's* environment, not the project environment. Such dependencies will persist for the lifetime of the Jupyter server, but may disappear on subsequent `jupyter` invocations.
+However, since the Jupyter server is the "active" environment, `!uv pip install` will install packages into *Jupyter's* environment, not the project environment. Such dependencies will persist for the lifetime of the Jupyter server, but may disappear on subsequent `jupyter` invocations.
 
 If you're working with a notebook that relies on pip (e.g., via the `%pip` magic), you can include pip in your project's virtual environment by running `uv venv --seed` prior to starting the Jupyter server. For example, given:
 

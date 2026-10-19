@@ -65,7 +65,7 @@ cache-keys = [{ file = "**/*.toml" }]
 
 Note
 
-The use of globs can be expensive, as uv may need to walk the filesystem to determine whether any files have changed. This may, in turn, requiring traversal of large or deeply nested directories.
+Globs can be expensive because uv may need to traverse large or deeply nested directories to determine whether any files have changed.
 
 Similarly, if a project relies on an environment variable, you can add the following to the project's `pyproject.toml` to invalidate the cache whenever the environment variable changes:
 
@@ -136,7 +136,7 @@ To support this caching strategy, uv provides a `uv cache prune --ci` command, w
 
 ## [Cache directory](#cache-directory)
 
-uv determines the cache directory according to, in order:
+uv determines the cache directory in the following order:
 
 1. A temporary cache directory, if `--no-cache` was requested.
 1. The specific cache directory specified via `--cache-dir`, `UV_CACHE_DIR`, or [`tool.uv.cache-dir`](../../reference/settings/#cache-dir).
@@ -148,7 +148,7 @@ uv *always* requires a cache directory. When `--no-cache` is requested, uv will 
 
 In most cases, `--refresh` should be used instead of `--no-cache` — as it will update the cache for subsequent operations but not read from the cache.
 
-It is important for performance for the cache directory to be located on the same file system as the Python environment uv is operating on. Otherwise, uv will not be able to link files from the cache into the environment and will instead need to fallback to slow copy operations.
+For best performance, locate the cache directory on the same file system as the Python environment uv is operating on. Otherwise, uv cannot link files from the cache into the environment and must fall back to slower copy operations.
 
 ## [Cache versioning](#cache-versioning)
 

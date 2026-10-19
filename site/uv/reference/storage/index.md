@@ -24,7 +24,7 @@ The temporary directory is used for ephemeral data.
 
 ### [Cache directory](#cache-directory)
 
-The cache directory is used for data that is disposable, but is useful to be long-lived.
+The cache directory is used for disposable data that is useful to keep between invocations.
 
 1. `$XDG_CACHE_HOME/uv`
 

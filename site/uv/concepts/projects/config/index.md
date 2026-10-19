@@ -91,7 +91,7 @@ for plugin in entry_points(group="example.plugins"):
 
 Note
 
-The `group` key can be an arbitrary value, it does not need to include the package name or "plugins". However, it is recommended to namespace the key by the package name to avoid collisions with other packages.
+The `group` key can be an arbitrary value; it does not need to include the package name or "plugins". However, it is recommended to namespace the key by the package name to avoid collisions with other packages.
 
 ## [Build systems](#build-systems)
 
@@ -278,7 +278,7 @@ Tip
 
 Pre-built `deep_gemm` wheels are also available from the [Astral GPU indexes](../../../guides/integration/pytorch/#installing-gpu-enabled-pytorch-extensions).
 
-The use of `extra-build-dependencies` and `extra-build-variables` are tracked in the uv cache, such that changes to these settings will trigger a reinstall and rebuild of the affected packages. For example, in the case of `flash-attn`, upgrading the version of `torch` used in your project would subsequently trigger a rebuild of `flash-attn` with the new version of `torch`.
+The use of `extra-build-dependencies` and `extra-build-variables` is tracked in the uv cache, such that changes to these settings will trigger a reinstall and rebuild of the affected packages. For example, in the case of `flash-attn`, upgrading the version of `torch` used in your project would subsequently trigger a rebuild of `flash-attn` with the new version of `torch`.
 
 #### [Dynamic metadata](#dynamic-metadata)
 
@@ -423,7 +423,7 @@ $ uv sync
 
 Some packages, like `cchardet`, only require build dependencies for the *installation* phase of `uv sync`. Others require their build dependencies to be present even just to resolve the project's dependencies during the *resolution* phase.
 
-In such cases, the build dependencies can be installed prior to running any `uv lock` or `uv sync` commands, using the lower lower-level `uv pip` API. For example, given:
+In such cases, the build dependencies can be installed prior to running any `uv lock` or `uv sync` commands, using the lower-level `uv pip` API. For example, given:
 
 pyproject.toml
 

@@ -8,7 +8,7 @@ Astral provides [Docker images](../docker/#available-images) with uv preinstalle
 
 ```
 variables:
-  UV_VERSION: "0.13.1"
+  UV_VERSION: "0.13.2"
   PYTHON_VERSION: "3.12"
   BASE_LAYER: trixie-slim
   # GitLab CI creates a separate mountpoint for the build directory,
@@ -61,7 +61,7 @@ Using `uv cache prune --ci` at the end of the job is recommended to reduce cache
 
 If using the `uv pip` interface instead of the uv project interface, uv requires a virtual environment by default. To allow installing packages into the system environment, use the `--system` flag on all uv invocations or set the `UV_SYSTEM_PYTHON` variable.
 
-The `UV_SYSTEM_PYTHON` variable can be defined in at different scopes. You can read more about how [variables and their precedence works in GitLab here](https://docs.gitlab.com/ee/ci/variables/)
+The `UV_SYSTEM_PYTHON` variable can be defined at different scopes. You can read more about how [variables and their precedence works in GitLab here](https://docs.gitlab.com/ee/ci/variables/).
 
 Opt-in for the entire workflow by defining it at the top level:
 

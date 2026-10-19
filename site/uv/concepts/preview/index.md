@@ -54,7 +54,7 @@ For backwards compatibility, enabling preview features that do not exist will wa
 
 ## [Using preview features](#using-preview-features)
 
-Often, preview features can be used without changing any preview settings if the behavior change is gated by some sort of user interaction, For example, while `pylock.toml` support is in preview, you can use `uv pip install` with a `pylock.toml` file without additional configuration because specifying the `pylock.toml` file indicates you want to use the feature. However, a warning will be displayed that the feature is in preview. The preview feature can be enabled to silence the warning.
+Often, preview features can be used without changing any preview settings if the behavior change is gated by user interaction. For example, while `pylock.toml` support is in preview, you can use `uv pip install` with a `pylock.toml` file without additional configuration because specifying the `pylock.toml` file indicates you want to use the feature. However, a warning will be displayed that the feature is in preview. The preview feature can be enabled to silence the warning.
 
 ## [Available preview features](#available-preview-features)
 

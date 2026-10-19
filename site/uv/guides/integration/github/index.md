@@ -42,7 +42,7 @@ jobs:
         uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
         with:
           # Install a specific version of uv.
-          version: "0.13.1"
+          version: "0.13.2"
 ```
 
 ## [Setting up Python](#setting-up-python)
@@ -275,7 +275,7 @@ uv cache clean
 
 If using the `uv pip` interface instead of the uv project interface, uv requires a virtual environment by default. To allow installing packages into the system environment, use the `--system` flag on all `uv` invocations or set the `UV_SYSTEM_PYTHON` variable.
 
-The `UV_SYSTEM_PYTHON` variable can be defined in at different scopes.
+The `UV_SYSTEM_PYTHON` variable can be defined at different scopes.
 
 Opt-in for the entire workflow by defining it at the top level:
 

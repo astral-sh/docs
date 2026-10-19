@@ -101,8 +101,8 @@
 <script type="application/ld+json">
   {
       
-      "datePublished": "2026-10-01 11:43:22Z",
-      "dateModified": "2026-10-01 11:43:22Z",
+      "datePublished": "2026-10-14 16:26:26Z",
+      "dateModified": "2026-10-14 16:26:26Z",
       
       "@context": "https://schema.org",
       "@type": "WebSite",
@@ -3802,7 +3802,7 @@
 package) available. Building packages can fail for many reasons, some of which may be unrelated to
 uv itself.</p>
 <h2 id="recognizing-a-build-failure"><a class="toclink" href="#recognizing-a-build-failure">Recognizing a build failure</a></h2>
-<p>An example build failure can be produced by trying to install and old version of numpy on a new,
+<p>An example build failure can be produced by trying to install an old version of numpy on a new,
 unsupported version of Python:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gp">$ </span>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-p<span class="w"> </span><span class="m">3</span>.13<span class="w"> </span><span class="s1">&#39;numpy&lt;1.20&#39;</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="go">Resolved 1 package in 62ms</span>
@@ -3876,17 +3876,16 @@ make the necessary adjustments to your system for the build to succeed.</p>
 <h2 id="why-does-uv-build-a-package"><a class="toclink" href="#why-does-uv-build-a-package">Why does uv build a package?</a></h2>
 <p>When generating the cross-platform lockfile, uv needs to determine the dependencies of all packages,
 even those only installed on other platforms. uv tries to avoid package builds during resolution. It
-uses any wheel if exist for that version, then tries to find static metadata in the source
+uses a wheel if one exists for that version, then tries to find static metadata in the source
 distribution (mainly pyproject.toml with static <code>project.version</code>, <code>project.dependencies</code> and
-<code>project.optional-dependencies</code> or METADATA v2.2+). Only if all of that fails, it builds the
-package.</p>
+<code>project.optional-dependencies</code> or METADATA v2.2+). If both approaches fail, uv builds the package.</p>
 <p>When installing, uv needs to have a wheel for the current platform for each package. If no matching
 wheel exists in the index, uv tries to build the source distribution.</p>
-<p>You can check which wheels exist for a PyPI project under “Download Files”, e.g.
-<a href="https://pypi.org/project/numpy/2.1.1.md#files">https://pypi.org/project/numpy/2.1.1.md#files</a>. Wheels with <code>...-py3-none-any.whl</code> filenames work
-everywhere, others have the operating system and platform in the filename. In the linked <code>numpy</code>
-example, you can see that there are pre-built distributions for Python 3.10 to 3.13 on macOS, Linux
-and Windows.</p>
+<p>You can check which wheels exist for a PyPI project under “Download Files”, e.g.,
+<a href="https://pypi.org/project/numpy/2.1.1/#files">NumPy 2.1.1</a>. Wheels with <code>...-py3-none-any.whl</code>
+filenames work everywhere, others have the operating system and platform in the filename. In the
+linked <code>numpy</code> example, you can see that there are pre-built distributions for Python 3.10 to 3.13
+on macOS, Linux and Windows.</p>
 <h2 id="common-build-failures"><a class="toclink" href="#common-build-failures">Common build failures</a></h2>
 <p>The following examples demonstrate common build failures and how to resolve them.</p>
 <h3 id="command-is-not-found"><a class="toclink" href="#command-is-not-found">Command is not found</a></h3>
@@ -4033,7 +4032,7 @@ uv will avoid using an old version of <code>apache-beam</code>.</p>
 dependency, you can enforce constraints specifically for build dependencies. The
 <a href="../../settings/#build-constraint-dependencies"><code>build-constraint-dependencies</code></a> setting (or an
 analogous <code>build-constraints.txt</code> file) can be used to ensure that <code>uv</code> selects an appropriate
-version of a given build requirements.</p>
+version of a given build requirement.</p>
 <p>For example, the issue described in
 <a href="https://github.com/astral-sh/uv/issues/5551#issuecomment-2256055975">#5551</a> could be addressed by
 specifying a build constraint that excludes <code>setuptools</code> version <code>72.0.0</code>:</p>
@@ -4050,8 +4049,8 @@ build dependencies.</p>
 supported platforms.</p>
 <h3 id="package-does-not-support-all-python-versions"><a class="toclink" href="#package-does-not-support-all-python-versions">Package does not support all Python versions</a></h3>
 <p>If you support a large range of Python versions, consider using markers to use older versions for
-older Python versions and newer versions for newer Python version. For example, <code>numpy</code> only
-supports four Python minor version at a time, so to support a wider range of Python versions, e.g.,
+older Python versions and newer versions for newer Python versions. For example, <code>numpy</code> only
+supports four Python minor versions at a time, so to support a wider range of Python versions, e.g.,
 Python 3.8 to 3.13, the <code>numpy</code> requirement needs to be split:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>numpy&gt;=1.23; python_version &gt;= &quot;3.10&quot;
 <a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>numpy&lt;1.23; python_version &lt; &quot;3.10&quot;
@@ -4081,7 +4080,7 @@ override.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 1, 2026 11:43:22 UTC">October 1, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 14, 2026 16:26:26 UTC">October 14, 2026</span>
   </span>
 
     

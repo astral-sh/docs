@@ -45,7 +45,7 @@ publish-url = "https://<organization>.jfrog.io/artifactory/api/pypi/<repository>
 
 Important
 
-If you use `--token "$JFROG_TOKEN"` or `UV_PUBLISH_TOKEN` with JFrog, you will receive a 401 Unauthorized error as JFrog requires an empty username but uv passes `__token__` for as the username when `--token` is used.
+If you use `--token "$JFROG_TOKEN"` or `UV_PUBLISH_TOKEN` with JFrog, you will receive a 401 Unauthorized error as JFrog requires an empty username but uv passes `__token__` as the username when `--token` is used.
 
 To authenticate, pass your token as the password and set the username to an empty string:
 
