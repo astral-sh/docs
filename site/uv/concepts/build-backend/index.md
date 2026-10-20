@@ -22,7 +22,7 @@ pyproject.toml
 
 ```
 [build-system]
-requires = ["uv_build>=0.13.3,<0.14"]
+requires = ["uv_build>=0.13.4,<0.14"]
 build-backend = "uv_build"
 ```
 
