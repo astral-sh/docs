@@ -99,6 +99,15 @@
       "on": ["workflow_dispatch"],
       "permissions": { "contents": "write", "pull_requests": "write" },
       "target": "docs"
+    },
+    {
+      "caller": "python-build-standalone",
+      "environment": "release",
+      "caller_workflow": "release.yml",
+      "reusable_workflow": "publish-docs.yml",
+      "on": ["workflow_dispatch"],
+      "permissions": { "contents": "write", "pull_requests": "write" },
+      "target": "docs"
     }
   ]
 }
