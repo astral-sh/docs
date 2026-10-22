@@ -254,7 +254,7 @@ The `uv venv --clear` option refuses to clear a directory that does not contain 
 
 ### [`wheel-variants`](#wheel-variants)
 
-Enables experimental support for [wheel variants](https://peps.python.org/pep-0825/). Variant wheels are not yet selectable.
+Enables experimental support for [wheel variants](https://peps.python.org/pep-0825/).
 
 ### [`workspace-dir`](#workspace-dir)
 
