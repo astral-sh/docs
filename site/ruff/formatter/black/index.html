@@ -1121,8 +1121,8 @@ formatting</a> section.</p>
 <a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>    <span class="p">)</span>
 </code></pre></div>
 <p>Black's unstable style applies the same formatting.</p>
-<p>There are few rare cases where Ruff can't merge the implicitly concatenated strings automatically.
-In those cases, Ruff preserves if the implicit concatenated strings are formatted over multiple lines:</p>
+<p>In a few rare cases, Ruff can't merge implicitly concatenated strings automatically. In those
+cases, Ruff keeps the strings on multiple lines if they were written that way:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Input</span>
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">a</span> <span class="o">=</span> <span class="p">(</span>
 <a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>    <span class="sa">r</span><span class="s2">&quot;aaaaaaa&quot;</span>
@@ -1200,7 +1200,7 @@ such comments in-place:</p>
 <p>Ruff will instead remove them:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">await</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
 </code></pre></div>
-<p>This is more consistent to the formatting of other awaited expressions: Ruff and Black both
+<p>This is more consistent with the formatting of other awaited expressions: Ruff and Black both
 remove parentheses around, e.g., <code>await (1)</code>, only retaining them when syntactically required,
 as in, e.g., <code>await (x := 1)</code>.</p>
 <h3 id="implicit-string-concatenations-in-attribute-accesses"><a class="toclink" href="#implicit-string-concatenations-in-attribute-accesses">Implicit string concatenations in attribute accesses</a></h3>

@@ -1376,12 +1376,10 @@
 
 
 <h1 id="settings"><a class="toclink" href="#settings">Settings</a></h1>
-<p>The Ruff Language Server provides a set of configuration options to customize its behavior
-along with the ability to use an existing <code>pyproject.toml</code> or <code>ruff.toml</code> file to configure the
-linter and formatter. This is done by providing these settings while initializing the server.
-VS Code provides a UI to configure these settings, while other editors may require manual
-configuration. The <a href="../setup/">setup</a> section provides instructions on where to place these settings
-as per the editor.</p>
+<p>The Ruff Language Server accepts settings to customize its behavior and can use an existing
+<code>pyproject.toml</code> or <code>ruff.toml</code> file to configure the linter and formatter. Provide these settings
+when initializing the server. VS Code provides a UI for them, while other editors may require manual
+configuration. The <a href="../setup/">setup</a> section explains where to place the settings for each editor.</p>
 <h2 id="top-level"><a class="toclink" href="#top-level">Top-level</a></h2>
 <h3 id="configuration"><a class="toclink" href="#configuration"><code>configuration</code></a></h3>
 <p>The <code>configuration</code> setting allows you to configure editor-specific Ruff behavior. This can be done
@@ -1401,8 +1399,8 @@ running Ruff on the command-line.</p>
 <p>The <a href="#configurationpreference"><code>configurationPreference</code></a> setting controls the precedence if both an
 editor-provided configuration (<code>configuration</code>) and a project level configuration file are present.</p>
 <h4 id="configuration_resolution_order"><a class="toclink" href="#configuration_resolution_order">Resolution order</a></h4>
-<p>In an editor, Ruff supports three sources of configuration, prioritized as follows (from highest to
-lowest):</p>
+<p>With the default <code>"editorFirst"</code> configuration preference, Ruff prioritizes the three sources of
+configuration as follows (from highest to lowest):</p>
 <ol>
 <li><strong>Specific settings:</strong> Individual settings like <a href="#linelength"><code>lineLength</code></a> or
     <a href="#select"><code>lint.select</code></a> defined in the editor</li>
@@ -1415,7 +1413,7 @@ lowest):</p>
 <p>For example, if the line length is specified in all three sources, Ruff will use the value from the
 <a href="#linelength"><code>lineLength</code></a> setting.</p>
 <p><strong>Default value</strong>: <code>null</code></p>
-<p><strong>Type</strong>: <code>string</code></p>
+<p><strong>Type</strong>: <code>string</code> (path to a configuration file) or <code>object</code> (inline configuration)</p>
 <p><strong>Example usage</strong>:</p>
 <p><em>Using configuration file path:</em></p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">VS Code</label><label for="__tabbed_1_2">Neovim</label><label for="__tabbed_1_3">Zed</label></div>
@@ -1464,7 +1462,7 @@ lowest):</p>
 <a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">            </span><span class="nt">&quot;flake8-tidy-imports&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">                </span><span class="nt">&quot;banned-api&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">                    </span><span class="nt">&quot;typing.TypedDict&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">                        </span><span class="nt">&quot;msg&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Use `typing_extensions.TypedDict` instead&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">                        </span><span class="nt">&quot;msg&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Use `typing_extensions.TypedDict` instead&quot;</span>
 <a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">                    </span><span class="p">}</span>
 <a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">                </span><span class="p">}</span>
 <a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">            </span><span class="p">}</span>
@@ -1537,7 +1535,7 @@ lowest):</p>
 configuration is prioritized over <code>ruff.toml</code> and <code>pyproject.toml</code> files.</p>
 <ul>
 <li><code>"editorFirst"</code>: Editor settings take priority over configuration files present in the workspace.</li>
-<li><code>"filesystemFirst"</code>: Configuration files present in the workspace takes priority over editor
+<li><code>"filesystemFirst"</code>: Configuration files present in the workspace take priority over editor
     settings.</li>
 <li><code>"editorOnly"</code>: Ignore configuration files entirely i.e., only use editor settings.</li>
 </ul>
@@ -1596,7 +1594,7 @@ documentation</a> for more details.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nv">vim</span><span class="p">.</span><span class="py">lsp</span><span class="p">.</span><span class="nf">config</span><span class="p">(</span><span class="s1">&#39;ruff&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">  </span><span class="nv">init_options</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="nv">settings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">      </span><span class="nv">exclude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;**/tests/**&quot;</span><span class="p">]</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">      </span><span class="nv">exclude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;**/tests/**&quot;</span><span class="w"> </span><span class="p">}</span>
 <a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">    </span><span class="p">}</span>
 <a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">  </span><span class="p">}</span>
 <a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="p">})</span>
@@ -2213,7 +2211,7 @@ documentation</a> for more details.</p>
 </div>
 </div>
 <h3 id="format_backend"><a class="toclink" href="#format_backend"><code>backend</code></a></h3>
-<p>The backend to use for formatting files. Following options are available:</p>
+<p>The backend to use for formatting files. The following options are available:</p>
 <ul>
 <li><code>"internal"</code>: Use the built-in Ruff formatter</li>
 <li><code>"uv"</code>: Use uv for formatting (requires uv &gt;= 0.8.13)</li>
@@ -2316,8 +2314,8 @@ automatically decide between the two based on the Ruff version and extension set
 <a id="__codelineno-60-3" name="__codelineno-60-3" href="#__codelineno-60-3"></a><span class="p">}</span>
 </code></pre></div>
 <h3 id="path"><a class="toclink" href="#path"><code>path</code></a></h3>
-<p>A list of path to <code>ruff</code> executables.</p>
-<p>The first executable in the list which is exists is used. This setting takes precedence over the
+<p>A list of paths to <code>ruff</code> executables.</p>
+<p>The first executable in the list that exists is used. This setting takes precedence over the
 <a href="#importstrategy"><code>ruff.importStrategy</code></a> setting.</p>
 <p><strong>Default value</strong>: <code>[]</code></p>
 <p><strong>Type</strong>: <code>string[]</code></p>

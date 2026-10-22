@@ -19,7 +19,7 @@ For the full list of supported options, run `ruff check --help`.
 
 The set of enabled rules is controlled via the [`lint.select`](../settings/#lint_select), [`lint.extend-select`](../settings/#lint_extend-select), and [`lint.ignore`](../settings/#lint_ignore) settings.
 
-Ruff's linter mirrors Flake8's rule code system, in which each rule code consists of a one-to-three letter prefix, followed by three digits (e.g., `F401`). The prefix indicates that "source" of the rule (e.g., `F` for Pyflakes, `E` for pycodestyle, `ANN` for flake8-annotations).
+Ruff's linter uses Flake8-style rule codes: an alphabetic prefix followed by digits (e.g., `F401`). The prefix indicates the source of the rule (e.g., `F` for Pyflakes, `E` for pycodestyle, `ANN` for flake8-annotations).
 
 Rule selectors like [`lint.select`](../settings/#lint_select) and [`lint.ignore`](../settings/#lint_ignore) accept either a full rule code (e.g., `F401`) or any valid prefix (e.g., `F`). For example, given the following configuration file:
 
@@ -243,7 +243,7 @@ $ python -m timeit "head = next(iter(range(99999999)))"
 5000000 loops, best of 5: 70.8 nsec per loop
 ```
 
-However, when the collection is empty, this raised exception changes from an `IndexError` to `StopIteration`:
+However, when the collection is empty, the raised exception changes from an `IndexError` to `StopIteration`:
 
 ```
 $ python -c 'list(range(0))[0]'
@@ -458,7 +458,7 @@ def foo():
 foo()
 ```
 
-It is strongly suggested to use explicit range suppressions, in order to prevent accidental suppressions of violations, especially at global module scope. For this reason, a `RUF104` diagnostic will also be produced for any implicit range. If implicit range suppressions are desired, the `RUF104` rule can be disabled, or an inline `noqa` suppression can be added to the end of the "disable" comment.
+We strongly suggest using explicit range suppressions to prevent accidental suppressions of violations, especially at global module scope. For this reason, a `RUF104` diagnostic will also be produced for any implicit range. If implicit range suppressions are desired, the `RUF104` rule can be disabled, or an inline `noqa` suppression can be added to the end of the "disable" comment.
 
 Range suppressions cannot be used to enable or select rules that aren't already selected by the project configuration or runtime flags. An "enable" comment can only be used to terminate a preceding "disable" comment with identical codes.
 
@@ -497,7 +497,7 @@ One or more rules can also be ignored across an entire file with a `file-ignore`
 # ruff: file-ignore[F401, ARG001]
 ```
 
-The full-level suppression comment specification is as follows:
+The file-level suppression comment specification is as follows:
 
 - An own-line comment starting with case sensitive `#ruff:`, with optional whitespace after the `#` symbol and `:` symbol, followed by `file-ignore[`, any rules to be suppressed, and ending with `]`.
 - Rules to be suppressed must be separated by commas, with optional whitespace before or after each rule name, and may be followed by an optional trailing comma after the last rule name.

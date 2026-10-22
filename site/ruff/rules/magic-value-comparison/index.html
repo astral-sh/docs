@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Checks for the use of unnamed numerical constants ("magic") values in">
+        <meta name="description" content="Checks for the use of unnamed hard-coded ("magic") values in comparisons.">
       
       
         <meta name="author" content="charliermarsh">
@@ -920,20 +920,20 @@
 <p><small>
 Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.221">v0.0.221</a> ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27magic-value-comparison%27%20OR%20PLR2004)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fpylint%2Frules%2Fmagic_value_comparison.rs#L53" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fpylint%2Frules%2Fmagic_value_comparison.rs#L55" target="_blank">View source</a>
 </small></p>
 <p>Derived from the <strong><a href="../#pylint-pl">Pylint</a></strong> linter.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
-<p>Checks for the use of unnamed numerical constants ("magic") values in
-comparisons.</p>
+<p>Checks for the use of unnamed hard-coded ("magic") values in comparisons.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
-<p>The use of "magic" values can make code harder to read and maintain, as
+<p>The use of magic values can make code harder to read and maintain, as
 readers will have to infer the meaning of the value from the context.
-Such values are discouraged by <a href="https://peps.python.org/pep-0008/#constants">PEP 8</a>.</p>
-<p>For convenience, this rule excludes a variety of common values from the
-"magic" value definition, such as <code>0</code>, <code>1</code>, <code>""</code>, and <code>"__main__"</code>. It
-also exempts comparisons against <code>sys.version</code>, <code>sys.version_info</code>, and
-<code>sys.implementation.version</code>.</p>
+Such values are discouraged by <a href="https://peps.python.org/pep-0008/#constants">PEP 8</a> and should be replaced with variables
+or named constants.</p>
+<p>By default, this rule excludes a variety of common values from the
+magic value definition, namely <code>0</code>, <code>1</code>, <code>-1</code>, <code>0.0</code>, <code>1.0</code>, <code>-1.0</code>, <code>""</code>, and
+<code>"__main__"</code>. It also exempts comparisons against <code>sys.version</code>,
+<code>sys.version_info</code>, and <code>sys.implementation.version</code>.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">apply_discount</span><span class="p">(</span><span class="n">price</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="k">if</span> <span class="n">price</span> <span class="o">&lt;=</span> <span class="mi">100</span><span class="p">:</span>
@@ -954,6 +954,8 @@ also exempts comparisons against <code>sys.version</code>, <code>sys.version_inf
 <h2 id="options"><a class="toclink" href="#options">Options</a></h2>
 <ul>
 <li><a href="../../settings/#lint_pylint_allow-magic-value-types"><code>lint.pylint.allow-magic-value-types</code></a></li>
+<li><a href="../../settings/#lint_pylint_allow-magic-values"><code>lint.pylint.allow-magic-values</code></a></li>
+<li><a href="../../settings/#lint_pylint_extend-allow-magic-values"><code>lint.pylint.extend-allow-magic-values</code></a></li>
 </ul>
 
 

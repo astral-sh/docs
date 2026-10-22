@@ -6,7 +6,7 @@ If you're transferring your configuration from [`ruff-lsp`](https://github.com/a
 
 Note
 
-The setup instructions provided below are on a best-effort basis. If you encounter any issues while setting up the Ruff in an editor, please [open an issue](https://github.com/astral-sh/ruff/issues/new) for assistance and help in improving this documentation.
+The setup instructions provided below are on a best-effort basis. If you encounter any issues while setting up Ruff in an editor, please [open an issue](https://github.com/astral-sh/ruff/issues/new) for assistance and help in improving this documentation.
 
 ## [VS Code](#vs-code)
 
@@ -16,9 +16,9 @@ For more documentation on the Ruff extension, refer to the [README](https://gith
 
 ## [Neovim](#neovim)
 
-The Ruff language server can be setup in Neovim using the built-in LSP client either via [`vim.lsp.config`](<https://neovim.io/doc/user/lsp.html#vim.lsp.config()>) (Neovim 0.11+) or the [`nvim-lspconfig`](https://github.com/neovim/nvim-lspconfig) plugin (Neovim 0.10 and earlier).
+The Ruff language server can be set up in Neovim using the built-in LSP client either via [`vim.lsp.config`](<https://neovim.io/doc/user/lsp.html#vim.lsp.config()>) (Neovim 0.11+) or the [`nvim-lspconfig`](https://github.com/neovim/nvim-lspconfig) plugin (Neovim 0.10 and earlier).
 
-To setup using [`vim.lsp.config`](<https://neovim.io/doc/user/lsp.html#vim.lsp.config()>), you can either use the [default configuration provided in `nvim-lspconfig`](https://github.com/neovim/nvim-lspconfig/blob/master/lsp/ruff.lua) or configure the server without any external dependencies.
+To set up using [`vim.lsp.config`](<https://neovim.io/doc/user/lsp.html#vim.lsp.config()>), you can either use the [default configuration provided in `nvim-lspconfig`](https://github.com/neovim/nvim-lspconfig/blob/master/lsp/ruff.lua) or configure the server without any external dependencies.
 
 The following configuration needs to be stored in `nvim/lsp/ruff.lua` or `nvim/after/lsp/ruff.lua`:
 
@@ -357,7 +357,7 @@ Ruff is also available as the [Ruff](https://plugins.jetbrains.com/plugin/20574-
 
 ## [Emacs](#emacs)
 
-Ruff can be utilized as a language server via [`Eglot`](https://github.com/joaotavora/eglot), which is in Emacs's core. To enable Ruff with automatic formatting on save, use the following configuration:
+Ruff can be used as a language server via [`Eglot`](https://github.com/joaotavora/eglot), which is in Emacs's core. To enable Ruff with automatic formatting on save, use the following configuration:
 
 ```
 (with-eval-after-load 'eglot
