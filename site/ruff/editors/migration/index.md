@@ -1,6 +1,6 @@
 # [Migrating from `ruff-lsp`](#migrating-from-ruff-lsp)
 
-[`ruff-lsp`](https://github.com/astral-sh/ruff-lsp) is the [Language Server Protocol](https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/) implementation for Ruff to power the editor integrations. It is written in Python and is a separate package from Ruff itself. The **native server**, however, is the [Language Server Protocol](https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/) implementation which is **written in Rust** and is available under the `ruff server` command. This guide is intended to help users migrate from [`ruff-lsp`](https://github.com/astral-sh/ruff-lsp) to the native server.
+Ruff's previous [Language Server Protocol](https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/) implementation, [`ruff-lsp`](https://github.com/astral-sh/ruff-lsp), was written in Python and distributed separately from Ruff. It is no longer supported. This guide explains how to migrate to Ruff's **native server**, which is written in Rust and available through the `ruff server` command.
 
 Note
 
@@ -62,7 +62,7 @@ If you've been providing a configuration file as shown below:
 }
 ```
 
-You can migrate to the new server by using the [`configuration`](../settings/#configuration) setting like below which will apply the configuration to both the linter and the formatter:
+To migrate to the new server, use the [`configuration`](../settings/#configuration) setting to apply the configuration to both the linter and the formatter:
 
 ```
 {

@@ -235,13 +235,13 @@ For a complete enumeration of the available configuration options, see [*Setting
 
 ## [Config file discovery](#config-file-discovery)
 
-Similar to [ESLint](https://eslint.org/docs/latest/use/configure/configuration-files#cascading-configuration-objects), Ruff supports hierarchical configuration, such that the "closest" config file in the directory hierarchy is used for every individual file, with all paths in the config file (e.g., `exclude` globs, `src` paths) being resolved relative to the directory containing that config file.
+Similar to [ESLint](https://eslint.org/docs/latest/use/configure/configuration-files#cascading-configuration-objects), Ruff supports hierarchical configuration. For each file, Ruff uses the "closest" config file in the directory hierarchy. Paths in that config file (e.g., `exclude` globs and `src` paths) are resolved relative to the directory containing it.
 
 There are a few exceptions to these rules:
 
 1. In locating the "closest" `pyproject.toml` file for a given path, Ruff ignores any `pyproject.toml` files that lack a `[tool.ruff]` section.
 1. If a configuration file is passed directly via `--config`, those settings are used for *all* analyzed files, and any relative paths in that configuration file (like `exclude` globs or `src` paths) are resolved relative to the *current* working directory.
-1. If no config file is found in the filesystem hierarchy, Ruff will fall back to using a default configuration. If a user-specific configuration file exists at `${config_dir}/ruff/pyproject.toml`, that file will be used instead of the default configuration, with `${config_dir}` being determined via [`etcetera`'s base strategy](https://docs.rs/etcetera/latest/etcetera/#native-strategy), and all relative paths being again resolved relative to the *current working directory*.
+1. If no config file is found in the filesystem hierarchy, Ruff will fall back to using a default configuration. If a user-specific configuration file exists at `${config_dir}/ruff/.ruff.toml`, `${config_dir}/ruff/ruff.toml`, or `${config_dir}/ruff/pyproject.toml` (checked in that order), the first such file will be used instead of the default configuration, with `${config_dir}` being determined via [`etcetera`'s base strategy](https://docs.rs/etcetera/latest/etcetera/#native-strategy), and all relative paths being again resolved relative to the *current working directory*.
 1. Any config-file-supported settings that are provided on the command-line (e.g., via `--select`) will override the settings in *every* resolved configuration file.
 
 Unlike [ESLint](https://eslint.org/docs/latest/use/configure/configuration-files#cascading-configuration-objects), Ruff does not merge settings across configuration files; instead, the "closest" configuration file is used, and any parent configuration files are ignored. In lieu of this implicit cascade, Ruff supports an [`extend`](../settings/#extend) field, which allows you to inherit the settings from another config file, like so:
@@ -298,7 +298,7 @@ Files that are passed to `ruff` directly are always analyzed, regardless of the 
 
 ### [Default inclusions](#default-inclusions)
 
-By default, Ruff will discover files matching `*.py`, `*.pyi`, `*.ipynb`, or `pyproject.toml`. In [preview](../preview/) mode, Ruff will also discover `*.pyw` by default.
+By default, Ruff will discover files matching `*.py`, `*.pyi`, `*.ipynb`, `*.md`, `pyproject.toml`, `ruff.toml`, or `.ruff.toml`. In [preview](../preview/) mode, Ruff will also discover `*.pyw` by default.
 
 To lint or format files with additional file extensions, use the [`extend-include`](../settings/#extend-include) setting. You can also change the default selection using the [`include`](../settings/#include) setting.
 
@@ -366,7 +366,7 @@ If you'd like to ignore certain rules specifically for Jupyter Notebook files, y
 "*.ipynb" = ["T20"]
 ```
 
-Some rules have different behavior when applied to Jupyter Notebook files. For example, when applied to `.py` files the [`module-import-not-at-top-of-file` (`E402`)](../rules/module-import-not-at-top-of-file/) rule detect imports at the top of a file, but for notebooks it detects imports at the top of a **cell**. For a given rule, the rule's documentation will always specify if it has different behavior when applied to Jupyter Notebook files.
+Some rules have different behavior when applied to Jupyter Notebook files. For example, when applied to `.py` files the [`module-import-not-at-top-of-file` (`E402`)](../rules/module-import-not-at-top-of-file/) rule detects imports that are not at the top of a file. In notebooks, it applies that check to each **cell**. For a given rule, the rule's documentation will always specify if it has different behavior when applied to Jupyter Notebook files.
 
 ## [Command-line interface](#command-line-interface)
 
@@ -412,7 +412,7 @@ Ruff supports reading command-line arguments from a file, which is especially us
 $ ruff check @path/to/args.txt
 ```
 
-The arguments in the file must all be written on their own line. For example, `args.txt` might contain:
+Each argument in the file must be written on its own line. For example, `args.txt` might contain:
 
 ```
 --select

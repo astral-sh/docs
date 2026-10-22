@@ -6,7 +6,7 @@ Yes. The Ruff linter is compatible with [Black](https://github.com/psf/black) ou
 
 Ruff is designed to be used alongside a formatter (like Ruff's own formatter, or Black) and, as such, will defer implementing stylistic rules that are obviated by automated formatting.
 
-Note that Ruff's linter and Black treat line-length enforcement a little differently. Black, like Ruff's formatter, makes a best-effort attempt to adhere to the [`line-length`](../settings/#line-length), but avoids automatic line-wrapping in some cases (e.g., within comments). Ruff, on the other hand, will flag [`line-too-long`](../rules/line-too-long/) (`E501`) for any line that exceeds the [`line-length`](../settings/#line-length) setting. As such, if [`line-too-long`](../rules/line-too-long/) (`E501`) is enabled, Ruff can still trigger line-length violations even when Black or `ruff format` is enabled.
+Note that Ruff's linter and Black treat line-length enforcement a little differently. Black, like Ruff's formatter, makes a best-effort attempt to adhere to the [`line-length`](../settings/#line-length), but avoids automatic line-wrapping in some cases (e.g., within comments). Ruff's [`line-too-long`](../rules/line-too-long/) (`E501`) rule checks lines against [`line-length`](../settings/#line-length), subject to the rule's documented exceptions. You can override this limit for the linter with [`lint.pycodestyle.max-line-length`](../settings/#lint_pycodestyle_max-line-length). As such, if [`line-too-long`](../rules/line-too-long/) (`E501`) is enabled, Ruff can still trigger line-length violations even when Black or `ruff format` is enabled.
 
 ## [How does Ruff's formatter compare to Black?](#how-does-ruffs-formatter-compare-to-black)
 
@@ -49,7 +49,7 @@ Ruff also re-implements some of the most popular Flake8 plugins and related code
 - [flake8-gettext](https://pypi.org/project/flake8-gettext/)
 - [flake8-implicit-str-concat](https://pypi.org/project/flake8-implicit-str-concat/)
 - [flake8-import-conventions](https://pypi.org/project/flake8-import-conventions/)
-- [flake8-logging](https://pypi.org/project/flake8-logging-format/)
+- [flake8-logging](https://pypi.org/project/flake8-logging/)
 - [flake8-logging-format](https://pypi.org/project/flake8-logging-format/)
 - [flake8-no-pep420](https://pypi.org/project/flake8-no-pep420)
 - [flake8-pie](https://pypi.org/project/flake8-pie/)
@@ -236,7 +236,7 @@ Like isort, Ruff's import sorting is compatible with Black.
 
 ## [How does Ruff determine which of my imports are first-party, third-party, etc.?](#how-does-ruff-determine-which-of-my-imports-are-first-party-third-party-etc)
 
-Ruff accepts a `src` option that in your `pyproject.toml`, `ruff.toml`, or `.ruff.toml` file, specifies the directories that Ruff should consider when determining whether an import is first-party.
+The `src` option in your `pyproject.toml`, `ruff.toml`, or `.ruff.toml` file specifies the directories Ruff considers when determining whether an import is first-party.
 
 For example, if you have a project with the following structure:
 
@@ -282,7 +282,7 @@ src = ["src"]
 src = ["src"]
 ```
 
-If your `pyproject.toml`, `ruff.toml`, or `.ruff.toml` extends another configuration file, Ruff will still use the directory containing your `pyproject.toml`, `ruff.toml`, or `.ruff.toml` file as the project root (as opposed to the directory of the file pointed to via the `extends` option).
+If your `pyproject.toml`, `ruff.toml`, or `.ruff.toml` extends another configuration file, Ruff will still use the directory containing your `pyproject.toml`, `ruff.toml`, or `.ruff.toml` file as the project root (as opposed to the directory of the file pointed to via the `extend` option).
 
 For example, if you add a configuration file to the `tests` directory in the above example, you'll want to explicitly set the `src` option in the extended configuration file:
 
@@ -361,7 +361,7 @@ Found 3 errors.
 
 ## [Does Ruff support NumPy- or Google-style docstrings?](#does-ruff-support-numpy-or-google-style-docstrings)
 
-Yes! To enforce a docstring convention, add a [`convention`](../settings/#lint_pydocstyle_convention) setting following to your configuration file:
+Yes! To enforce a docstring convention, add the following [`convention`](../settings/#lint_pydocstyle_convention) setting to your configuration file:
 
 ```
 [tool.ruff.lint.pydocstyle]
@@ -462,7 +462,7 @@ Ruff doesn't currently support INI files, like `setup.cfg` or `tox.ini`.
 
 ## [How can I change Ruff's default configuration?](#how-can-i-change-ruffs-default-configuration)
 
-When no configuration file is found, Ruff will look for a user-specific `ruff.toml` file as a last resort. This behavior is similar to Flake8's `~/.config/flake8`.
+When no project configuration file is found, Ruff looks for a user-specific `.ruff.toml`, `ruff.toml`, or `pyproject.toml`, in that order. The examples below use `ruff.toml`.
 
 On macOS and Linux, Ruff expects that file to be located at `~/.config/ruff/ruff.toml`, and respects the `XDG_CONFIG_HOME` specification.
 
@@ -490,6 +490,6 @@ Ruff's color output is powered by the [`colored`](https://crates.io/crates/color
 
 Ruff does not support `source.organizeImports` and `source.fixAll` code actions in Jupyter Notebooks (`notebook.codeActionsOnSave` in VS Code). It's recommended to use the `notebook` prefixed code actions for the same such as `notebook.source.organizeImports` and `notebook.source.fixAll` respectively.
 
-Ruff requires to have a full view of the notebook to provide accurate diagnostics and fixes. For example, if you have a cell that imports a module and another cell that uses that module, Ruff needs to see both cells to mark the import as used. If Ruff were to only see one cell at a time, it would incorrectly mark the import as unused.
+Ruff requires a full view of the notebook to provide accurate diagnostics and fixes. For example, if you have a cell that imports a module and another cell that uses that module, Ruff needs to see both cells to mark the import as used. If Ruff were to only see one cell at a time, it would incorrectly mark the import as unused.
 
 When using the `source.*` code actions for a Notebook, Ruff will be asked to fix any issues for each cell in parallel, which can lead to unexpected behavior. For example, if a user has configured to run `source.organizeImports` code action on save for a Notebook, Ruff will attempt to fix the imports for the entire notebook corresponding to each cell. This leads to the client making the same changes to the notebook multiple times, which can lead to unexpected behavior ([astral-sh/ruff-vscode#680](https://github.com/astral-sh/ruff-vscode/issues/680), [astral-sh/ruff-vscode#640](https://github.com/astral-sh/ruff-vscode/issues/640), [astral-sh/ruff-vscode#391](https://github.com/astral-sh/ruff-vscode/issues/391)).

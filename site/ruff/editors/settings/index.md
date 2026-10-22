@@ -1,6 +1,6 @@
 # [Settings](#settings)
 
-The Ruff Language Server provides a set of configuration options to customize its behavior along with the ability to use an existing `pyproject.toml` or `ruff.toml` file to configure the linter and formatter. This is done by providing these settings while initializing the server. VS Code provides a UI to configure these settings, while other editors may require manual configuration. The [setup](../setup/) section provides instructions on where to place these settings as per the editor.
+The Ruff Language Server accepts settings to customize its behavior and can use an existing `pyproject.toml` or `ruff.toml` file to configure the linter and formatter. Provide these settings when initializing the server. VS Code provides a UI for them, while other editors may require manual configuration. The [setup](../setup/) section explains where to place the settings for each editor.
 
 ## [Top-level](#top-level)
 
@@ -21,7 +21,7 @@ The [`configurationPreference`](#configurationpreference) setting controls the p
 
 #### [Resolution order](#configuration_resolution_order)
 
-In an editor, Ruff supports three sources of configuration, prioritized as follows (from highest to lowest):
+With the default `"editorFirst"` configuration preference, Ruff prioritizes the three sources of configuration as follows (from highest to lowest):
 
 1. **Specific settings:** Individual settings like [`lineLength`](#linelength) or [`lint.select`](#select) defined in the editor
 1. [**`ruff.configuration`**](#configuration): Settings provided via the [`configuration`](#configuration) field (either a path to a configuration file or an inline configuration object)
@@ -31,7 +31,7 @@ For example, if the line length is specified in all three sources, Ruff will use
 
 **Default value**: `null`
 
-**Type**: `string`
+**Type**: `string` (path to a configuration file) or `object` (inline configuration)
 
 **Example usage**:
 
@@ -78,7 +78,7 @@ vim.lsp.config('ruff', {
             "flake8-tidy-imports": {
                 "banned-api": {
                     "typing.TypedDict": {
-                        "msg": "Use `typing_extensions.TypedDict` instead",
+                        "msg": "Use `typing_extensions.TypedDict` instead"
                     }
                 }
             }
@@ -149,7 +149,7 @@ vim.lsp.config('ruff', {
 The strategy to use when resolving settings across VS Code and the filesystem. By default, editor configuration is prioritized over `ruff.toml` and `pyproject.toml` files.
 
 - `"editorFirst"`: Editor settings take priority over configuration files present in the workspace.
-- `"filesystemFirst"`: Configuration files present in the workspace takes priority over editor settings.
+- `"filesystemFirst"`: Configuration files present in the workspace take priority over editor settings.
 - `"editorOnly"`: Ignore configuration files entirely i.e., only use editor settings.
 
 **Default value**: `"editorFirst"`
@@ -208,7 +208,7 @@ A list of file patterns to exclude from linting and formatting. See [the documen
 vim.lsp.config('ruff', {
   init_options = {
     settings = {
-      exclude = ["**/tests/**"]
+      exclude = { "**/tests/**" }
     }
   }
 })
@@ -846,7 +846,7 @@ vim.lsp.config('ruff', {
 
 ### [`backend`](#format_backend)
 
-The backend to use for formatting files. Following options are available:
+The backend to use for formatting files. The following options are available:
 
 - `"internal"`: Use the built-in Ruff formatter
 - `"uv"`: Use uv for formatting (requires uv >= 0.8.13)
@@ -974,9 +974,9 @@ Whether to use the native language server, [`ruff-lsp`](https://github.com/astra
 
 ### [`path`](#path)
 
-A list of path to `ruff` executables.
+A list of paths to `ruff` executables.
 
-The first executable in the list which is exists is used. This setting takes precedence over the [`ruff.importStrategy`](#importstrategy) setting.
+The first executable in the list that exists is used. This setting takes precedence over the [`ruff.importStrategy`](#importstrategy) setting.
 
 **Default value**: `[]`
 

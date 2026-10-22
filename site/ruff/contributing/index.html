@@ -1866,7 +1866,7 @@ screenshots or recordings of your change in action.</p>
 <p>After opening the PR, an ecosystem report will be run as part of CI. This shows
 a diff of linter and formatter behavior before and after the changes in your PR.
 Going through these changes and reporting your findings in the PR summary or an
-additional comment help us to review your PR more efficiently. It's also a great
+additional comment helps us review your PR more efficiently. It's also a great
 way to find new test cases to incorporate into your PR if you identify any
 issues.</p>
 <h4 id="pr-status"><a class="toclink" href="#pr-status">PR status</a></h4>
@@ -1897,11 +1897,10 @@ you addressed them.</p>
 <p>The documentation should then be available locally at
 <a href="http://127.0.0.1:8000/ruff/">http://127.0.0.1:8000/ruff/</a>.</p>
 <h2 id="release-process"><a class="toclink" href="#release-process">Release Process</a></h2>
-<p>As of now, Ruff has an ad hoc release process: releases are cut with high frequency via GitHub
+<p>As of now, Ruff has an ad hoc release process: releases are cut frequently via GitHub
 Actions, which automatically generates the appropriate wheels across architectures and publishes
 them to <a href="https://pypi.org/project/ruff/">PyPI</a>.</p>
-<p>Ruff follows the <a href="https://semver.org/">semver</a> versioning standard. However, as pre-1.0 software,
-even patch releases may contain <a href="https://semver.org/#spec-item-4">non-backwards-compatible changes</a>.</p>
+<p>See Ruff's <a href="https://docs.astral.sh/ruff/versioning/">versioning policy</a>.</p>
 <h3 id="installing-tools"><a class="toclink" href="#installing-tools">Installing tools</a></h3>
 <ol>
 <li>
@@ -1933,7 +1932,7 @@ review and remaining preparation steps below. To prepare the release locally, st
 <li>
 <p>The changelog should then be editorialized for consistency</p>
 <ul>
-<li>Often labels will be missing from pull requests they will need to be manually organized into the proper section</li>
+<li>Pull requests often lack labels and will need to be manually organized into the proper section</li>
 <li>Changes should be edited to be user-facing descriptions, avoiding internal details</li>
 <li>Square brackets (eg, <code>[ruff]</code> project name) will be automatically escaped by <code>prek</code></li>
 </ul>
@@ -2501,8 +2500,8 @@ and the package root would be <code>./my_project/src/foo</code>.</p>
 <p>The project root does not have a significant impact beyond that all relative paths within the loaded
 configuration file are resolved relative to the project root.</p>
 <p>For example, to indicate that <code>bar</code> above is a namespace package (it isn't, but let's run with it),
-the <code>pyproject.toml</code> would list <code>namespace-packages = ["./src/bar"]</code>, which would resolve
-to <code>my_project/src/bar</code>.</p>
+the <code>pyproject.toml</code> would list <code>namespace-packages = ["./src/foo/bar"]</code>, which would resolve
+to <code>my_project/src/foo/bar</code>.</p>
 <p>The same logic applies when providing a configuration file via <code>--config</code>. In that case, the
 <em>current working directory</em> is used as the project root, and so all paths in that configuration file
 are resolved relative to the current working directory. (As a general rule, we want to avoid relying
@@ -2559,7 +2558,7 @@ trivial, or (as in the case of third-party) merely defined as "not first-party".
     the <code>src</code> setting and, for each directory, check for the existence of a subdirectory <code>foo</code> or a
     file <code>foo.py</code>.</li>
 </ol>
-<p>By default, <code>src</code> is set to the project root, along with <code>"src"</code> subdirectory in the project root.
+<p>By default, <code>src</code> is set to the project root, along with the <code>"src"</code> subdirectory in the project root.
 This ensures that Ruff supports both flat and "src" layouts out of the box.</p>
 
 

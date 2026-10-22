@@ -4,7 +4,7 @@ This section provides a detailed overview of the features provided by the Ruff L
 
 ## [Diagnostic Highlighting](#diagnostic-highlighting)
 
-Provide diagnostics for your Python code in real-time.
+The server provides diagnostics for your Python code in real time.
 
 ## [Dynamic Configuration](#dynamic-configuration)
 
@@ -14,7 +14,7 @@ The server relies on the file watching capabilities of the editor to detect chan
 
 ## [Formatting](#formatting)
 
-Provide code formatting for your Python code. The server can format an entire document or a specific range of lines.
+The server can format an entire Python document or a specific range of lines.
 
 The VS Code extension provides the `Ruff: Format Document` command to format an entire document. In VS Code, the range formatting can be triggered by selecting a range of lines, right-clicking, and selecting `Format Selection` from the context menu.
 
@@ -77,7 +77,7 @@ See the [Ruff fix documentation](https://docs.astral.sh/ruff/linter/#fix-safety)
 
 ## [Hover](#hover)
 
-The server can provide the rule documentation when focusing over a NoQA code in the comment. Focusing is usually hovering with a mouse, but can also be triggered with a shortcut.
+The server can provide rule documentation when you focus on a NoQA code in a comment. You can usually do this by hovering with a mouse or using a keyboard shortcut.
 
 ## [Jupyter Notebook](#jupyter-notebook)
 
