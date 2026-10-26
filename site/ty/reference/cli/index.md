@@ -125,6 +125,7 @@ Possible values:
 - `gitlab`: Print diagnostics in the JSON format expected by GitLab Code Quality reports
 - `github`: Print diagnostics in the format used by GitHub Actions workflow error annotations
 - `junit`: Print diagnostics as a JUnit-style XML report
+- `sarif`: Print diagnostics as a SARIF report
 ```
 
 [`--project`](#ty-check--project) *project* : Run the command within the given project directory.
