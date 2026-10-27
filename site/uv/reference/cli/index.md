@@ -1431,12 +1431,10 @@ A `[build-system]` table is only created with `--package` or `--build-backend`.
 When combined with `--script`, the script will only contain the inline metadata header.
 ```
 
-[`--build-backend`](#uv-init--build-backend) *build-backend* : Initialize a build-backend of choice for the project.
+[`--build-backend`](#uv-init--build-backend) *build-backend* : Initialize a build-backend of choice for the project [env: UV_INIT_BUILD_BACKEND=]
 
 ```
 Implicitly sets `--package`.
-
-May also be set with the `UV_INIT_BUILD_BACKEND` environment variable.
 
 Possible values:
 
