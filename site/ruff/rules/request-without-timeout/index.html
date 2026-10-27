@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Checks for uses of the Python `requests` or `httpx` module that omit the">
+        <meta name="description" content="Checks for uses of the Python `requests` or `httpx` module without timeouts.">
       
       
         <meta name="author" content="charliermarsh">
@@ -920,16 +920,19 @@
 <p><small>
 Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.213">v0.0.213</a> ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27request-without-timeout%27%20OR%20S113)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_bandit%2Frules%2Frequest_without_timeout.rs#L36" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_bandit%2Frules%2Frequest_without_timeout.rs#L40" target="_blank">View source</a>
 </small></p>
 <p>Derived from the <strong><a href="../#flake8-bandit-s">flake8-bandit</a></strong> linter.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
-<p>Checks for uses of the Python <code>requests</code> or <code>httpx</code> module that omit the
-<code>timeout</code> parameter.</p>
+<p>Checks for uses of the Python <code>requests</code> or <code>httpx</code> module without timeouts.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>The <code>timeout</code> parameter is used to set the maximum time to wait for a
-response from the server. By omitting the <code>timeout</code> parameter, the program
-may hang indefinitely while awaiting a response.</p>
+response from the server. By omitting the <code>timeout</code> parameter or
+explicitly disabling it, the program may hang indefinitely while awaiting a
+response.</p>
+<p><code>requests</code> has no timeout by default, so both omitting the <code>timeout</code> argument
+and setting it to <code>None</code> are flagged. <code>httpx</code> applies a default timeout, so only an explicit
+<code>timeout=None</code> is flagged.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
