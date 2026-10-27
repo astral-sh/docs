@@ -19,7 +19,7 @@ $ docker run --rm -it ghcr.io/astral-sh/uv:debian uv --help
 The following distroless images are available:
 
 - `ghcr.io/astral-sh/uv:latest`
-- `ghcr.io/astral-sh/uv:{major}.{minor}.{patch}`, e.g., `ghcr.io/astral-sh/uv:0.13.5`
+- `ghcr.io/astral-sh/uv:{major}.{minor}.{patch}`, e.g., `ghcr.io/astral-sh/uv:0.13.6`
 - `ghcr.io/astral-sh/uv:{major}.{minor}`, e.g., `ghcr.io/astral-sh/uv:0.13` (the latest patch version)
 
 And the following derived images are available:
@@ -71,7 +71,7 @@ And the following derived images are available:
   - `ghcr.io/astral-sh/uv:python3.12-trixie-slim`
   - `ghcr.io/astral-sh/uv:python3.11-trixie-slim`
 
-As with the distroless image, each derived image is published with uv version tags as `ghcr.io/astral-sh/uv:{major}.{minor}.{patch}-{base}` and `ghcr.io/astral-sh/uv:{major}.{minor}-{base}`, e.g., `ghcr.io/astral-sh/uv:0.13.5-alpine`.
+As with the distroless image, each derived image is published with uv version tags as `ghcr.io/astral-sh/uv:{major}.{minor}.{patch}-{base}` and `ghcr.io/astral-sh/uv:{major}.{minor}-{base}`, e.g., `ghcr.io/astral-sh/uv:0.13.6-alpine`.
 
 In addition, starting with `0.8` each derived image also sets `UV_TOOL_BIN_DIR` to `/usr/local/bin` to allow `uv tool install` to work as expected with the default user.
 
@@ -113,7 +113,7 @@ Note this requires `curl` to be available.
 In either case, it is best practice to pin to a specific uv version, e.g., with:
 
 ```
-COPY --from=ghcr.io/astral-sh/uv:0.13.5 /uv /uvx /bin/
+COPY --from=ghcr.io/astral-sh/uv:0.13.6 /uv /uvx /bin/
 ```
 
 Tip
@@ -121,14 +121,13 @@ Tip
 While the Dockerfile example above pins to a specific tag, it's also possible to pin a specific SHA256. Pinning a specific SHA256 is considered best practice in environments that require reproducible builds as tags can be moved across different commit SHAs.
 
 ```
-# e.g., using a hash from a previous release
-COPY --from=ghcr.io/astral-sh/uv@sha256:2381d6aa60c326b71fd40023f921a0a3b8f91b14d5db6b90402e65a635053709 /uv /uvx /bin/
+COPY --from=ghcr.io/astral-sh/uv@sha256:32a7bb39b496babbd997b0a39a4d66c126bdaf5661b302bf6f06abda8deca6ff /uv /uvx /bin/
 ```
 
 Or, with the installer:
 
 ```
-ADD https://astral.sh/uv/0.13.5/install.sh /uv-installer.sh
+ADD https://astral.sh/uv/0.13.6/install.sh /uv-installer.sh
 ```
 
 ### [Installing a project](#installing-a-project)
@@ -578,4 +577,4 @@ Verified OK
 
 Tip
 
-These examples use `latest`, but best practice is to verify the attestation for a specific version tag, e.g., `ghcr.io/astral-sh/uv:0.13.5`, or (even better) the specific image digest, such as `ghcr.io/astral-sh/uv:0.5.27@sha256:5adf09a5a526f380237408032a9308000d14d5947eafa687ad6c6a2476787b4f`.
+These examples use `latest`, but best practice is to verify the attestation for a specific version tag, e.g., `ghcr.io/astral-sh/uv:0.13.6`, or (even better) the specific image digest, such as `ghcr.io/astral-sh/uv@sha256:32a7bb39b496babbd997b0a39a4d66c126bdaf5661b302bf6f06abda8deca6ff`.
