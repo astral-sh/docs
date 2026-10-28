@@ -1,5 +1,28 @@
 # [Configuration](#configuration)
 
+## [`baseline`](#baseline)
+
+Path to the JSON file that records existing lint diagnostics for this project. Relative paths are resolved against the project root. Use `ty check --update-baseline` to create or update the file.
+
+Diagnostic baselines are in preview. The file format may change between ty releases.
+
+**Default value**: `null`
+
+**Type**: `str`
+
+**Example usage**:
+
+```
+[tool.ty]
+baseline = "ty-baseline.json"
+```
+
+```
+baseline = "ty-baseline.json"
+```
+
+______________________________________________________________________
+
 ## [`rules`](#rules)
 
 Configures the enabled rules and their severity.
