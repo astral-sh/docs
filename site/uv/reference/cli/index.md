@@ -15817,6 +15817,12 @@ May also be set with the `UV_NO_SOURCES` environment variable.
 When disabled, uv will only use locally cached data and locally available files.
 ```
 
+[`--output-version`](#uv-workspace-metadata--output-version) *version* : Request a specific version of the metadata schema.
+
+```
+If the version is omitted or unrecognized, uv uses the latest schema. The output's `schema.version` field identifies the schema used. Currently, only `preview` is supported.
+```
+
 [`--prerelease`](#uv-workspace-metadata--prerelease) *prerelease* : The strategy to use when considering pre-release versions.
 
 ```

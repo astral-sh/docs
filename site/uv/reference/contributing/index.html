@@ -4120,11 +4120,11 @@ building:</p>
 </code></pre></div>
 <h2 id="linting"><a class="toclink" href="#linting">Linting</a></h2>
 <p>Linting requires <a href="https://github.com/koalaman/shellcheck">shellcheck</a> and
-<a href="https://github.com/astral-sh/hawk/">hawk</a> to be installed separately. Validating <code>pyproject.toml</code>
-against the checked-in uv schema also requires <a href="https://jqlang.org/">jq</a>.</p>
+<a href="https://github.com/astral-sh/hawk/">hawk</a> to be installed separately. The check and dev dependency
+groups include <code>jaq</code>. Use <code>uv run --only-group=jaq &lt;script&gt;</code> to put it on <code>PATH</code> for a script.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># Rust</span>
 <a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="nv">CARGO_BUILD_WARNINGS</span><span class="o">=</span>deny<span class="w"> </span>cargo<span class="w"> </span>clippy<span class="w"> </span>--workspace<span class="w"> </span>--all-targets<span class="w"> </span>--all-features<span class="w"> </span>--locked
-<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>cargo<span class="w"> </span>+1.99.0<span class="w"> </span>hawk<span class="w"> </span>check<span class="w"> </span>--target-dir<span class="w"> </span>target/hawk<span class="w"> </span>-D<span class="w"> </span>warnings
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>cargo<span class="w"> </span>+1.99.0<span class="w"> </span>hawk<span class="w"> </span>check<span class="w"> </span>-D<span class="w"> </span>warnings
 <a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>
 <a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="c1"># Python</span>
 <a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>uv<span class="w"> </span>run<span class="w"> </span>--only-group<span class="o">=</span>check<span class="w"> </span>ruff<span class="w"> </span>check<span class="w"> </span>.
