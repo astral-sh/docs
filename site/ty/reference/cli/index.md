@@ -47,7 +47,7 @@ ty check [OPTIONS] [PATH]...
 ```
 Possible values:
 
-- `auto`: Display colors if the output goes to an interactive terminal
+- `auto`: Use color when writing to a terminal, unless overridden by the environment
 - `always`: Always display colors
 - `never`: Never display colors
 ```

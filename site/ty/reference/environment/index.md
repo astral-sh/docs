@@ -43,6 +43,16 @@ Accepts the same values as the `--output-format` command-line argument.
 
 ty also reads the following externally defined environment variables:
 
+### [`CLICOLOR`](#clicolor)
+
+Enables color in `ty check` diagnostics when stdout is a terminal, even if `TERM=dumb`.
+
+Setting this environment variable to any non-empty value (including `0`) enables this behavior. An empty value has the same effect as leaving the variable unset. All of the following have higher precedence: setting the `NO_COLOR` environment variable to any non-empty value, passing `--color=always`, or passing `--color=never`.
+
+### [`CLICOLOR_FORCE`](#clicolor_force)
+
+Alias for [`FORCE_COLOR`](#force_color).
+
 ### [`CONDA_DEFAULT_ENV`](#conda_default_env)
 
 Used to determine the name of the active Conda environment.
@@ -50,6 +60,20 @@ Used to determine the name of the active Conda environment.
 ### [`CONDA_PREFIX`](#conda_prefix)
 
 Used to detect the path of an active Conda environment. If both `VIRTUAL_ENV` and `CONDA_PREFIX` are present, `VIRTUAL_ENV` will be preferred.
+
+### [`FORCE_COLOR`](#force_color)
+
+Controls color in `ty check` diagnostics, including when piped.
+
+Setting this to any non-empty value (including `0`) forces color. An empty value has the same effect as leaving the variable unset. All of the following have higher precedence: setting the `NO_COLOR` environment variable to a non-empty value, passing `--color=always`, or passing `--color=never`.
+
+### [`NO_COLOR`](#no_color)
+
+Controls color in `ty check` diagnostics, including when piped.
+
+Setting this to any non-empty value (including `0`) disables color in diagnostics. Setting it to an empty value causes ty to defer to other environment variables and heuristics such as whether stdout is a tty.
+
+Passing `--color always` or `--color never` takes precedence over this environment variable.
 
 ### [`PYTHONPATH`](#pythonpath)
 
@@ -60,6 +84,10 @@ Adds additional directories to ty's search paths. The format is the same as the 
 Specifies an upper limit for the number of threads ty uses when performing work in parallel. Equivalent to `TY_MAX_PARALLELISM`.
 
 This is a standard Rayon environment variable.
+
+### [`TERM`](#term)
+
+In automatic mode, `ty check` uses color when stdout is a terminal unless `TERM` is exactly `dumb`. An empty or unset `TERM` allows color on a terminal. An explicit `--color=always` or `--color=never` takes precedence, as does a non-empty `NO_COLOR`, `FORCE_COLOR`, `CLICOLOR_FORCE`, or `CLICOLOR` environment variable.
 
 ### [`VIRTUAL_ENV`](#virtual_env)
 
