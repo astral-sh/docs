@@ -81,8 +81,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2026-10-29 17:09:44Z",
-        "dateModified": "2026-10-29 17:09:44Z",
+        "datePublished": "2026-11-03 02:02:13Z",
+        "dateModified": "2026-11-03 02:02:13Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -1237,6 +1237,28 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#clicolor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CLICOLOR
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clicolor_force" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CLICOLOR_FORCE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#conda_default_env" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1259,6 +1281,28 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#force_color" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FORCE_COLOR
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no_color" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NO_COLOR
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#pythonpath" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1274,6 +1318,17 @@
     <span class="md-ellipsis">
       
         RAYON_NUM_THREADS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#term" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TERM
       
     </span>
   </a>
@@ -1456,6 +1511,28 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#clicolor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CLICOLOR
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clicolor_force" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CLICOLOR_FORCE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#conda_default_env" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1478,6 +1555,28 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#force_color" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FORCE_COLOR
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no_color" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NO_COLOR
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#pythonpath" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1493,6 +1592,17 @@
     <span class="md-ellipsis">
       
         RAYON_NUM_THREADS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#term" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TERM
       
     </span>
   </a>
@@ -1637,11 +1747,31 @@ when necessary, e.g. to watch for file system changes or a dedicated UI thread.<
 <p>Accepts the same values as the <code>--output-format</code> command-line argument.</p>
 <h2 id="externally-defined-variables"><a class="toclink" href="#externally-defined-variables">Externally-defined variables</a></h2>
 <p>ty also reads the following externally defined environment variables:</p>
+<h3 id="clicolor"><a class="toclink" href="#clicolor"><code>CLICOLOR</code></a></h3>
+<p>Enables color in <code>ty check</code> diagnostics when stdout is a terminal, even if <code>TERM=dumb</code>.</p>
+<p>Setting this environment variable to any non-empty value (including <code>0</code>) enables this
+behavior. An empty value has the same effect as leaving the variable unset. All of the
+following have higher precedence: setting the <code>NO_COLOR</code> environment variable to any
+non-empty value, passing <code>--color=always</code>, or passing <code>--color=never</code>.</p>
+<h3 id="clicolor_force"><a class="toclink" href="#clicolor_force"><code>CLICOLOR_FORCE</code></a></h3>
+<p>Alias for <a href="#force_color"><code>FORCE_COLOR</code></a>.</p>
 <h3 id="conda_default_env"><a class="toclink" href="#conda_default_env"><code>CONDA_DEFAULT_ENV</code></a></h3>
 <p>Used to determine the name of the active Conda environment.</p>
 <h3 id="conda_prefix"><a class="toclink" href="#conda_prefix"><code>CONDA_PREFIX</code></a></h3>
 <p>Used to detect the path of an active Conda environment.
 If both <code>VIRTUAL_ENV</code> and <code>CONDA_PREFIX</code> are present, <code>VIRTUAL_ENV</code> will be preferred.</p>
+<h3 id="force_color"><a class="toclink" href="#force_color"><code>FORCE_COLOR</code></a></h3>
+<p>Controls color in <code>ty check</code> diagnostics, including when piped.</p>
+<p>Setting this to any non-empty value (including <code>0</code>) forces color. An empty value has the
+same effect as leaving the variable unset. All of the following have higher precedence:
+setting the <code>NO_COLOR</code> environment variable to a non-empty value, passing <code>--color=always</code>,
+or passing <code>--color=never</code>.</p>
+<h3 id="no_color"><a class="toclink" href="#no_color"><code>NO_COLOR</code></a></h3>
+<p>Controls color in <code>ty check</code> diagnostics, including when piped.</p>
+<p>Setting this to any non-empty value (including <code>0</code>) disables color in diagnostics.
+Setting it to an empty value causes ty to defer to other environment variables and heuristics
+such as whether stdout is a tty.</p>
+<p>Passing <code>--color always</code> or <code>--color never</code> takes precedence over this environment variable.</p>
 <h3 id="pythonpath"><a class="toclink" href="#pythonpath"><code>PYTHONPATH</code></a></h3>
 <p>Adds additional directories to ty's search paths.
 The format is the same as the shell’s PATH:
@@ -1651,6 +1781,11 @@ one or more directory pathnames separated by os appropriate pathsep
 <p>Specifies an upper limit for the number of threads ty uses when performing work in parallel.
 Equivalent to <code>TY_MAX_PARALLELISM</code>.</p>
 <p>This is a standard Rayon environment variable.</p>
+<h3 id="term"><a class="toclink" href="#term"><code>TERM</code></a></h3>
+<p>In automatic mode, <code>ty check</code> uses color when stdout is a terminal unless <code>TERM</code> is
+exactly <code>dumb</code>. An empty or unset <code>TERM</code> allows color on a terminal. An explicit
+<code>--color=always</code> or <code>--color=never</code> takes precedence, as does a non-empty <code>NO_COLOR</code>,
+<code>FORCE_COLOR</code>, <code>CLICOLOR_FORCE</code>, or <code>CLICOLOR</code> environment variable.</p>
 <h3 id="virtual_env"><a class="toclink" href="#virtual_env"><code>VIRTUAL_ENV</code></a></h3>
 <p>Used to detect an activated virtual environment.</p>
 <h3 id="xdg_config_home"><a class="toclink" href="#xdg_config_home"><code>XDG_CONFIG_HOME</code></a></h3>
@@ -1677,7 +1812,7 @@ Equivalent to <code>TY_MAX_PARALLELISM</code>.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 29, 2026 17:09:44 UTC">October 29, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 3, 2026 02:02:13 UTC">November 3, 2026</span>
   </span>
 
     
