@@ -9,6 +9,7 @@ This guide helps you migrate a project from [mypy](https://mypy.readthedocs.io/e
 - Severities in ty are `ignore`, `warn`, `error`. Pyright's `"information"` level and basedpyright's `"hint"` level have no direct ty equivalent — use `warn` for both.
 - If you are looking for the equivalent of `disallow_untyped_defs` / `no-untyped-def` (mypy) or `reportMissingParameterType`, `reportUnknownParameterType` (pyright), check out this [FAQ entry](../reference/typing-faq/#why-doesnt-ty-warn-about-missing-type-annotations).
 - Unlike mypy, ty checks the bodies of unannotated functions unconditionally, so there is no ty rule corresponding to mypy's `check_untyped_defs` setting. The equivalent pyright setting is `analyzeUnannotatedFunctions = true`.
+- ty does not have an equivalent to mypy plugins, but we do have [built-in support for select popular libraries](../features/third-party/).
 
 ## [Stricter checking with ty](#stricter-checking-with-ty)
 

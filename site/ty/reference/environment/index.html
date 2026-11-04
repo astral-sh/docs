@@ -81,8 +81,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2026-11-03 02:02:13Z",
-        "dateModified": "2026-11-03 02:02:13Z",
+        "datePublished": "2026-11-04 08:41:40Z",
+        "dateModified": "2026-11-04 08:41:40Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -757,6 +757,8 @@
       
         
       
+        
+      
     
     
     
@@ -881,6 +883,168 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../features/third-party/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Third-party library support
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Third-party library support
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/third-party/pydantic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pydantic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/third-party/django/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Django
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/third-party/pytest/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pytest
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1225,6 +1389,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#ty_uv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TY_UV
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#externally-defined-variables" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1499,6 +1674,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#ty_uv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TY_UV
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#externally-defined-variables" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1745,14 +1931,20 @@ when necessary, e.g. to watch for file system changes or a dedicated UI thread.<
 <p>The format to use for printing diagnostic messages.</p>
 <p>When set, ty will use this format for output instead of the default.</p>
 <p>Accepts the same values as the <code>--output-format</code> command-line argument.</p>
+<h3 id="ty_uv"><a class="toclink" href="#ty_uv"><code>TY_UV</code></a></h3>
+<p>Enable and configure uv integration.</p>
+<p>When set to <code>scripts</code>, ty uses <a href="https://docs.astral.sh/uv/">uv</a> to create and update a
+Python environment for each script with <a href="https://peps.python.org/pep-0723/">inline metadata</a>.</p>
+<p>When set to <code>1</code> or <code>true</code>, ty also uses uv to discover the workspace root and its Python
+environment.</p>
 <h2 id="externally-defined-variables"><a class="toclink" href="#externally-defined-variables">Externally-defined variables</a></h2>
 <p>ty also reads the following externally defined environment variables:</p>
 <h3 id="clicolor"><a class="toclink" href="#clicolor"><code>CLICOLOR</code></a></h3>
-<p>Enables color in <code>ty check</code> diagnostics when stdout is a terminal, even if <code>TERM=dumb</code>.</p>
-<p>Setting this environment variable to any non-empty value (including <code>0</code>) enables this
-behavior. An empty value has the same effect as leaving the variable unset. All of the
-following have higher precedence: setting the <code>NO_COLOR</code> environment variable to any
-non-empty value, passing <code>--color=always</code>, or passing <code>--color=never</code>.</p>
+<p>Controls color in <code>ty check</code> diagnostics when stdout is a terminal.</p>
+<p>Setting this to <code>0</code> disables color. Any other non-empty value enables color, even if
+<code>TERM=dumb</code>. An empty value has the same effect as leaving the variable unset.</p>
+<p>An explicit <code>--color=always</code> or <code>--color=never</code> takes precedence, as does a non-empty
+<code>NO_COLOR</code>, <code>FORCE_COLOR</code>, or <code>CLICOLOR_FORCE</code> environment variable.</p>
 <h3 id="clicolor_force"><a class="toclink" href="#clicolor_force"><code>CLICOLOR_FORCE</code></a></h3>
 <p>Alias for <a href="#force_color"><code>FORCE_COLOR</code></a>.</p>
 <h3 id="conda_default_env"><a class="toclink" href="#conda_default_env"><code>CONDA_DEFAULT_ENV</code></a></h3>
@@ -1812,7 +2004,7 @@ exactly <code>dumb</code>. An empty or unset <code>TERM</code> allows color on a
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 3, 2026 02:02:13 UTC">November 3, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 4, 2026 08:41:40 UTC">November 4, 2026</span>
   </span>
 
     

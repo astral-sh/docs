@@ -61,7 +61,7 @@ ______________________________________________________________________
 
 ### [`allowed-unresolved-imports`](#allowed-unresolved-imports)
 
-A list of module glob patterns for which `unresolved-import` diagnostics should be suppressed.
+A list of module glob patterns for which `import-not-found` diagnostics should be suppressed.
 
 Details on supported glob patterns:
 
@@ -618,7 +618,7 @@ ______________________________________________________________________
 
 #### [`allowed-unresolved-imports`](#allowed-unresolved-imports_1)
 
-A list of module glob patterns for which `unresolved-import` diagnostics should be suppressed.
+A list of module glob patterns for which `import-not-found` diagnostics should be suppressed.
 
 Details on supported glob patterns:
 
