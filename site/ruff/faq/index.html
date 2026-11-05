@@ -1720,12 +1720,21 @@ more, see <a href="../linter/#fixes">the fix documentation</a>.</p>
 making changes to code, even for seemingly trivial fixes. If a "safe" fix breaks your code, please
 <a href="https://github.com/astral-sh/ruff/issues/new">file an Issue</a>.</p>
 <h2 id="how-can-i-disableforce-ruffs-color-output"><a class="toclink" href="#how-can-i-disableforce-ruffs-color-output">How can I disable/force Ruff's color output?</a></h2>
-<p>Ruff's color output is powered by the <a href="https://crates.io/crates/colored"><code>colored</code></a> crate, which
-attempts to automatically detect whether the output stream supports color. However, you can force
-colors off by setting the <code>NO_COLOR</code> environment variable to any value (e.g., <code>NO_COLOR=1</code>), or
-force colors on by setting <code>FORCE_COLOR</code> to any non-empty value (e.g., <code>FORCE_COLOR=1</code>).</p>
-<p><a href="https://crates.io/crates/colored"><code>colored</code></a> also supports the <code>CLICOLOR</code> and <code>CLICOLOR_FORCE</code>
-environment variables (see the <a href="https://bixense.com/clicolors/">spec</a>).</p>
+<p>Use <code>--color always</code> or <code>--color never</code> to override the environment for a single command.
+With <code>--color auto</code> or no flag, Ruff applies the first matching rule to its standard output:</p>
+<ol>
+<li>A non-empty <code>NO_COLOR</code> disables color.</li>
+<li>Otherwise, a non-empty <code>FORCE_COLOR</code> or <code>CLICOLOR_FORCE</code> enables color, even when piping or
+   redirecting stdout.</li>
+<li>Otherwise, if stdout isn't a terminal or <code>CLICOLOR=0</code> is set, Ruff disables color.</li>
+<li>Otherwise, any other non-empty <code>CLICOLOR</code> enables color on the terminal, even if <code>TERM=dumb</code>.</li>
+<li>Otherwise, Ruff uses color on the terminal unless <code>TERM</code> is exactly <code>dumb</code>.</li>
+</ol>
+<p>For all four color variables, an empty string has the same effect as leaving the variable unset.
+For <code>NO_COLOR</code>, <code>FORCE_COLOR</code>, and <code>CLICOLOR_FORCE</code>, setting the variable to <code>0</code> activates it
+just as setting it to <code>1</code> does. However, <code>CLICOLOR=0</code> disables color, following the
+<a href="https://github.com/jhasse/clicolors/blob/53521cee09ac53e68dd87364b9602b50ec3f364a/index.md?plain=1#L24-L25">original <code>CLICOLOR</code> convention</a>.
+An unset or empty <code>TERM</code> allows color on a terminal.</p>
 <h2 id="source-code-actions-in-notebooks"><a class="toclink" href="#source-code-actions-in-notebooks">Ruff behaves unexpectedly when using <code>source.*</code> code actions in Notebooks. What's going on?</a></h2>
 <p>Ruff does not support <code>source.organizeImports</code> and <code>source.fixAll</code> code actions in Jupyter Notebooks
 (<code>notebook.codeActionsOnSave</code> in VS Code). It's recommended to use the <code>notebook</code> prefixed code

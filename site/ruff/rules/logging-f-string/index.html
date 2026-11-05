@@ -920,7 +920,7 @@
 <p><small>
 Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.236">v0.0.236</a> ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27logging-f-string%27%20OR%20G004)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_logging_format%2Fviolations.rs#L330" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_logging_format%2Fviolations.rs#L335" target="_blank">View source</a>
 </small></p>
 <p>Derived from the <strong><a href="../#flake8-logging-format-g">flake8-logging-format</a></strong> linter.</p>
 <p>Fix is sometimes available.</p>
@@ -978,6 +978,10 @@ Specifically, it matches against:</p>
 <a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
 <a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> - Something happened&quot;</span><span class="p">,</span> <span class="n">user</span><span class="p">)</span>
 </code></pre></div>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
+<p>This rule's fix is marked as unsafe if the message,
+or the parentheses around it, contain comments,
+since the rewrite replaces that whole range and would delete them.</p>
 <h2 id="options"><a class="toclink" href="#options">Options</a></h2>
 <ul>
 <li><a href="../../settings/#lint_logger-objects"><code>lint.logger-objects</code></a></li>
