@@ -81,8 +81,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2026-11-04 08:41:40Z",
-        "dateModified": "2026-11-04 08:41:40Z",
+        "datePublished": "2026-11-05 16:43:16Z",
+        "dateModified": "2026-11-05 16:43:16Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -2350,6 +2350,7 @@ See <a href="https://ty.dev/rules">the rules documentation</a> for a list of all
 </ul>
 <p>By default, ty exits with code 1 if it emits any warning or error diagnostics.
 Set <code>terminal.error-on-warning</code> to <code>false</code> to exit with code 0 if all diagnostics have <code>warning</code> severity.</p>
+<p>If the same table specifies both a rule's current name and an alias, the current name takes precedence.</p>
 <p><strong>Default value</strong>: <code>{...}</code></p>
 <p><strong>Type</strong>: <code>dict[RuleName | "all", "ignore" | "warn" | "error"]</code></p>
 <p><strong>Example usage</strong>:</p>
@@ -2653,10 +2654,11 @@ to resolve third-party (and, in some cases, first-party) imports in your code.</
 </ul>
 <p>If you're using a project management tool such as uv, you should not generally need to
 specify this option, as commands such as <code>uv run</code> will set the <code>VIRTUAL_ENV</code> environment
-variable to point to your project's virtual environment. ty can also infer the location of
-your environment from an activated Conda environment, and will look for a <code>.venv</code> directory
-in the project root if none of the above apply. Failing that, ty will look for a <code>python3</code>
-or <code>python</code> binary available in <code>PATH</code>.</p>
+variable to point to your project's virtual environment. Otherwise, ty looks for an
+activated child Conda or Pixi environment, a <code>.venv</code> directory in the project root, then
+an activated base Conda environment, in that order. ty skips Conda and Pixi environments
+that contain no Python interpreter. If none of these environments are found, ty looks for
+a <code>python3</code> or <code>python</code> binary in <code>PATH</code>.</p>
 <p>Scripts with inline metadata use their own Python environment. They can use an explicitly
 configured environment, an activated environment, or an environment selected by the editor.
 Unlike projects, they do not automatically use a <code>.venv</code> directory.</p>
@@ -2725,8 +2727,8 @@ to determine a value:
 2. Check for an activated or configured Python environment
    and attempt to infer the Python version of that environment
 3. Fall back to the default value (see below)</p>
-<p>Scripts with inline metadata use their <code>requires-python</code> field instead of
-<code>project.requires-python</code>. They do not inherit the Python version of the enclosing project.</p>
+<p>A script uses its inline <code>environment.python-version</code> first, then <code>requires-python</code>.
+It falls back to the project's version if it has no inline <code>[tool.ty]</code> table.</p>
 <p>For some language features, ty can also understand conditionals based on comparisons
 with <code>sys.version_info</code>. These are commonly found in typeshed, for example,
 to reflect the differing contents of the standard library across Python versions.</p>
@@ -2760,7 +2762,8 @@ if they exist and are not packages (i.e. they do not contain <code>__init__.py</
 <li><code>./python</code></li>
 </ul>
 <p>Scripts with inline metadata have no first-party roots by default because they are
-single-file programs. Set <code>root = ["."]</code> to allow importing local modules.</p>
+single-file programs. Set <code>root = ["."]</code> in the script's <code>[tool.ty.environment]</code> table
+to import sibling modules.</p>
 <p><strong>Default value</strong>: <code>null</code></p>
 <p><strong>Type</strong>: <code>list[str]</code></p>
 <p><strong>Example usage</strong>:</p>
@@ -3422,7 +3425,7 @@ Enabled by default.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 4, 2026 08:41:40 UTC">November 4, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 5, 2026 16:43:16 UTC">November 5, 2026</span>
   </span>
 
     
