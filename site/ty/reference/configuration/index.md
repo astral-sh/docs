@@ -37,6 +37,8 @@ Valid severities are:
 
 By default, ty exits with code 1 if it emits any warning or error diagnostics. Set `terminal.error-on-warning` to `false` to exit with code 0 if all diagnostics have `warning` severity.
 
+If the same table specifies both a rule's current name and an alias, the current name takes precedence.
+
 **Default value**: `{...}`
 
 **Type**: `dict[RuleName | "all", "ignore" | "warn" | "error"]`
@@ -345,7 +347,7 @@ This can be a path to:
 - A virtual environment directory, e.g. `.venv`
 - A system Python \[`sys.prefix`\] directory, e.g. `/usr`
 
-If you're using a project management tool such as uv, you should not generally need to specify this option, as commands such as `uv run` will set the `VIRTUAL_ENV` environment variable to point to your project's virtual environment. ty can also infer the location of your environment from an activated Conda environment, and will look for a `.venv` directory in the project root if none of the above apply. Failing that, ty will look for a `python3` or `python` binary available in `PATH`.
+If you're using a project management tool such as uv, you should not generally need to specify this option, as commands such as `uv run` will set the `VIRTUAL_ENV` environment variable to point to your project's virtual environment. Otherwise, ty looks for an activated child Conda or Pixi environment, a `.venv` directory in the project root, then an activated base Conda environment, in that order. ty skips Conda and Pixi environments that contain no Python interpreter. If none of these environments are found, ty looks for a `python3` or `python` binary in `PATH`.
 
 Scripts with inline metadata use their own Python environment. They can use an explicitly configured environment, an activated environment, or an environment selected by the editor. Unlike projects, they do not automatically use a `.venv` directory.
 
@@ -411,7 +413,7 @@ If a version is not specified, ty will try the following techniques in order of 
 1. Check for an activated or configured Python environment and attempt to infer the Python version of that environment
 1. Fall back to the default value (see below)
 
-Scripts with inline metadata use their `requires-python` field instead of `project.requires-python`. They do not inherit the Python version of the enclosing project.
+A script uses its inline `environment.python-version` first, then `requires-python`. It falls back to the project's version if it has no inline `[tool.ty]` table.
 
 For some language features, ty can also understand conditionals based on comparisons with `sys.version_info`. These are commonly found in typeshed, for example, to reflect the differing contents of the standard library across Python versions.
 
@@ -445,7 +447,7 @@ If left unspecified, ty will try to detect common project layouts and initialize
 - `./<project-name>` (if a `./<project-name>/<project-name>` directory exists)
 - `./python`
 
-Scripts with inline metadata have no first-party roots by default because they are single-file programs. Set `root = ["."]` to allow importing local modules.
+Scripts with inline metadata have no first-party roots by default because they are single-file programs. Set `root = ["."]` in the script's `[tool.ty.environment]` table to import sibling modules.
 
 **Default value**: `null`
 

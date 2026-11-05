@@ -69,7 +69,7 @@ Used to determine the name of the active Conda environment.
 
 ### [`CONDA_PREFIX`](#conda_prefix)
 
-Used to detect the path of an active Conda environment. If both `VIRTUAL_ENV` and `CONDA_PREFIX` are present, `VIRTUAL_ENV` will be preferred.
+The path to the active Conda or Pixi environment. If it contains no Python interpreter, ty continues searching, including in the project's `.venv`. A non-empty `VIRTUAL_ENV` takes precedence.
 
 ### [`FORCE_COLOR`](#force_color)
 
