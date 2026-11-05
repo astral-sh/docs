@@ -920,23 +920,55 @@
 <p><small>
 Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.110">v0.0.110</a> ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27unsorted-imports%27%20OR%20I001)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fisort%2Frules%2Forganize_imports.rs#L42" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fisort%2Frules%2Forganize_imports.rs#L78" target="_blank">View source</a>
 </small></p>
 <p>Derived from the <strong><a href="../#isort-i">isort</a></strong> linter.</p>
 <p>Fix is sometimes available.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>De-duplicates, groups, and sorts imports based on the provided <code>isort</code> settings.</p>
+<p>By default, imports are categorized into the following sections in order:</p>
+<ol>
+<li><code>future</code> (<code>__future__</code>)</li>
+<li><code>standard-library</code> (e.g., <code>sys</code>, <code>os</code>, <code>json</code>)</li>
+<li><code>third-party</code> (e.g., <code>numpy</code>, <code>pandas</code>)</li>
+<li><code>first-party</code> (modules within the current project or package)</li>
+<li><code>local-folder</code> (relative imports starting with <code>.</code>, e.g., <code>from . import utils</code>)</li>
+</ol>
+<p>With the default settings, each section is separated by a blank line. Within a section, Ruff
+generally places <code>import</code> statements before <code>from</code> imports and sorts each group by module name.</p>
+<p>Ruff defaults to two blank lines between a top-level import block and a function or class
+definition, and one blank line before other top-level statements. In stub files (<code>.pyi</code>), the
+default is one blank line in either case.</p>
+<p>See the FAQ for more information on how Ruff <a href="https://docs.astral.sh/ruff/faq/#how-does-ruff-determine-which-of-my-imports-are-first-party-third-party-etc">determines which imports are first-party</a> and
+for how Ruff <a href="https://docs.astral.sh/ruff/faq/#how-does-ruffs-import-sorting-compare-to-isort">compares to isort</a> more broadly.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
 <p>Consistency is good. Use a common convention for imports to make your code
 more readable and idiomatic.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span> <span class="o">...</span>
 </code></pre></div>
 <p>Use instead:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span> <span class="o">...</span>
 </code></pre></div>
+<h2 id="options"><a class="toclink" href="#options">Options</a></h2>
+<p>See the <a href="https://docs.astral.sh/ruff/settings/#lintisort"><code>isort</code> settings</a> for all available
+configuration options.</p>
+<h2 id="references"><a class="toclink" href="#references">References</a></h2>
+<ul>
+<li><a href="https://peps.python.org/pep-0008/#imports">PEP 8: Imports</a></li>
+<li><a href="https://isort.readthedocs.io/en/latest/">isort documentation</a></li>
+</ul>
 
 
 
