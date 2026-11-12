@@ -920,7 +920,7 @@
 <p><small>
 Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.102">v0.0.102</a> ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27function-call-in-default-argument%27%20OR%20B008)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_bugbear%2Frules%2Ffunction_call_in_argument_default.rs#L65" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_bugbear%2Frules%2Ffunction_call_in_argument_default.rs#L66" target="_blank">View source</a>
 </small></p>
 <p>Derived from the <strong><a href="../#flake8-bugbear-b">flake8-bugbear</a></strong> linter.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
@@ -931,7 +931,7 @@ once, at definition time. The returned value will then be reused by all
 calls to the function, which can lead to unexpected behaviour.</p>
 <p>Parameters with immutable type annotations will be ignored by this rule.
 Those whose default arguments are <code>NewType</code> calls where the original type
-is immutable are also ignored.</p>
+is immutable are also ignored, as are instantiations of frozen dataclasses.</p>
 <p>Calls and types outside of the standard library can be marked as an exception
 to this rule with the <a href="../../settings/#lint_flake8-bugbear_extend-immutable-calls"><code>lint.flake8-bugbear.extend-immutable-calls</code></a> configuration option.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>

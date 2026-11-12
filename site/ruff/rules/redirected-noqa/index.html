@@ -920,16 +920,20 @@
 <p><small>
 Added in <a href="https://github.com/astral-sh/ruff/releases/tag/0.6.0">0.6.0</a> ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27redirected-noqa%27%20OR%20RUF101)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fruff%2Frules%2Fredirected_noqa.rs#L28" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fruff%2Frules%2Fredirected_noqa.rs#L34" target="_blank">View source</a>
 </small></p>
 <p>Fix is always available.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for <code>noqa</code> directives that use redirected rule codes.</p>
+<p>In <a href="../../settings/#preview"><code>preview</code></a> mode, also checks for redirected rule codes and names in
+<code>ruff: ignore</code>, <code>ruff: file-ignore</code>, <code>ruff: disable</code>, and <code>ruff: enable</code> comments.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
-<p>When one of Ruff's rule codes has been redirected, the implication is that the rule has
-been deprecated in favor of another rule or code. To keep your codebase
-consistent and up-to-date, prefer the canonical rule code over the deprecated
-code.</p>
+<p>When one of Ruff's rule codes or names has been redirected, the implication is that the rule has
+been deprecated in favor of another rule, code, or name. To keep your codebase
+consistent and up-to-date, prefer the canonical rule code or name over the deprecated one.</p>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
+<p>The fix is marked unsafe for range suppressions because replacing a redirected
+code or name can change which <code>ruff: enable</code> directive matches a <code>ruff: disable</code> directive.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">x</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>  <span class="c1"># noqa: PGH001</span>
 </code></pre></div>
