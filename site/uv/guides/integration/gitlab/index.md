@@ -2,13 +2,13 @@
 
 ## [Using the uv image](#using-the-uv-image)
 
-Astral provides [Docker images](../docker/#available-images) with uv preinstalled. Select a variant that is suitable for your workflow.
+Astral provides [Docker images](../docker/#available-images) with uv preinstalled. Use a variant with a shell, such as the Debian-based image below, so GitLab Runner can execute the job's `script`.
 
 .gitlab-ci.yml
 
 ```
 variables:
-  UV_VERSION: "0.13.7"
+  UV_VERSION: "0.13.8"
   PYTHON_VERSION: "3.12"
   BASE_LAYER: trixie-slim
   # GitLab CI creates a separate mountpoint for the build directory,
@@ -19,18 +19,6 @@ uv:
   image: ghcr.io/astral-sh/uv:$UV_VERSION-python$PYTHON_VERSION-$BASE_LAYER
   script:
     # your `uv` commands
-```
-
-Note
-
-If you are using a distroless image, you have to specify the entrypoint:
-
-```
-uv:
-  image:
-    name: ghcr.io/astral-sh/uv:$UV_VERSION
-    entrypoint: [""]
-  # ...
 ```
 
 ## [Caching](#caching)
