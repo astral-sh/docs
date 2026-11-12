@@ -606,7 +606,7 @@ For VS Code users, most of these settings are defined in the `ty.*` namespace as
 Control how ty uses [uv](https://docs.astral.sh/uv/):
 
 - `off`: Do not use uv.
-- `scripts`: Use uv to create and update environments for standalone scripts with [PEP 723 inline metadata](https://peps.python.org/pep-0723/).
+- `scripts`: Use uv to create and update environments for [standalone scripts](../../scripts/#in-your-editor) with [inline metadata (PEP 723)](https://peps.python.org/pep-0723/).
 - `on`: Use uv for project discovery and standalone script environments.
 
 This feature is experimental and may change. Enabling it requires [uv 0.12.3 or later](https://docs.astral.sh/uv/getting-started/installation/). All uv integrations are disabled when [`untrustedWorkspace`](#untrustedworkspace) is `true`.

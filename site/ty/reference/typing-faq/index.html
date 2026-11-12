@@ -81,8 +81,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2026-11-11 13:31:58Z",
-        "dateModified": "2026-11-11 13:31:58Z",
+        "datePublished": "2026-11-12 21:44:03Z",
+        "dateModified": "2026-11-12 21:44:03Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -337,6 +337,8 @@
       
         
       
+        
+      
     
     
     
@@ -425,6 +427,34 @@
     
   
     Type checking
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Checking standalone scripts
   
 
     
@@ -1357,7 +1387,7 @@
   <a href="#does-ty-support-pep-723-inline-metadata-scripts" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Does ty support PEP 723 inline-metadata scripts?
+        Does ty support inline script metadata (PEP 723)?
       
     </span>
   </a>
@@ -1704,7 +1734,7 @@
   <a href="#does-ty-support-pep-723-inline-metadata-scripts" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Does ty support PEP 723 inline-metadata scripts?
+        Does ty support inline script metadata (PEP 723)?
       
     </span>
   </a>
@@ -2134,6 +2164,10 @@ ty reports <em>"Cannot resolve imported module …"</em>, check the following:</
     with <code>-v</code> to see the search paths being used.</p>
 </li>
 <li>
+<p>For a <strong>standalone script</strong> with <a href="https://peps.python.org/pep-0723/">inline metadata (PEP 723)</a>,
+    use <a href="../../scripts/">ty's built-in script support</a>.</p>
+</li>
+<li>
 <p><strong>Compiled extensions</strong>: ty requires <code>.py</code> or <code>.pyi</code> files for type information. If a package
     contains only compiled extensions (<code>.so</code> or <code>.pyd</code> files), you'll need stub files (<code>.pyi</code>) for ty
     to understand the types. See also <a href="https://github.com/astral-sh/ty/issues/487">this issue</a> which
@@ -2164,15 +2198,10 @@ in which ty thinks something is importable when it wouldn't be at runtime.</p>
 </ol>
 <p>You can follow <a href="https://github.com/astral-sh/ty/issues/819">this issue</a> to get updates on this
 topic.</p>
-<h2 id="does-ty-support-pep-723-inline-metadata-scripts"><a class="toclink" href="#does-ty-support-pep-723-inline-metadata-scripts">Does ty support PEP 723 inline-metadata scripts?</a></h2>
-<p>It depends on what you want to do. If you have a single inline-metadata script, you can type check
-it with ty by using uv's <code>--with-requirements</code> flag to install the dependencies specified in the
-script header:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>uvx<span class="w"> </span>--with-requirements<span class="w"> </span>script.py<span class="w"> </span>ty<span class="w"> </span>check<span class="w"> </span>script.py
-</code></pre></div>
-<p>If you have multiple scripts in your workspace, ty does not yet recognize that they have different
-dependencies based on their inline metadata.</p>
-<p>You can follow <a href="https://github.com/astral-sh/ty/issues/691">this issue</a> for updates.</p>
+<h2 id="does-ty-support-pep-723-inline-metadata-scripts"><a class="toclink" href="#does-ty-support-pep-723-inline-metadata-scripts">Does ty support inline script metadata (PEP 723)?</a></h2>
+<p>Yes. Use <code>TY_UV=scripts ty check script.py</code> or <code>uv check --script script.py</code> to check a script
+with its declared dependencies. See <a href="../../scripts/">Checking standalone scripts</a> for instructions on how to check multiple
+scripts together or how to enable support in your editor.</p>
 <h2 id="is-there-a-pre-commit-hook-for-ty"><a class="toclink" href="#is-there-a-pre-commit-hook-for-ty">Is there a pre-commit hook for ty?</a></h2>
 <p>Yes! You can find it over at <a href="https://github.com/astral-sh/ty-pre-commit">https://github.com/astral-sh/ty-pre-commit</a>.</p>
 <h2 id="does-ty-support-mypy-plugins"><a class="toclink" href="#does-ty-support-mypy-plugins">Does ty support (mypy) plugins?</a></h2>
@@ -2197,7 +2226,7 @@ dependencies based on their inline metadata.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 11, 2026 13:31:58 UTC">November 11, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 12, 2026 21:44:03 UTC">November 12, 2026</span>
   </span>
 
     
