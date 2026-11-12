@@ -22,6 +22,8 @@ ty will find installed packages in the active virtual environment (via `VIRTUAL_
 
 See the [module discovery](../modules/) documentation for details.
 
+For scripts that declare their dependencies using inline metadata, see [Checking standalone scripts](../scripts/).
+
 ## [File selection](#file-selection)
 
 ty will run on all Python files in the working directory (including subdirectories, recursively). If used from a project, ty will run on all Python files in the project (starting in the directory with the `pyproject.toml`).
