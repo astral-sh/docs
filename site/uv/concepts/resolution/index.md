@@ -406,6 +406,8 @@ requires-dist = ["torch", "einops"]
 
 Like dependency overrides, `tool.uv.dependency-metadata` can also be used for cases in which a package's metadata is incorrect or incomplete, or when a package is not available in the package index. While dependency overrides allow overriding the allowed versions of a package globally, metadata overrides allow overriding the declared metadata of a *specific package*.
 
+For a variant wheel at a direct URL, the wheel's `METADATA` must still be parseable even when `tool.uv.dependency-metadata` supplies its dependencies. For example, an override can replace an incorrect version constraint, but the original `Requires-Dist` entry must use valid syntax.
+
 Note
 
 The `version` field in `tool.uv.dependency-metadata` is optional for registry-based dependencies (when omitted, uv will assume the metadata applies to all versions of the package), but *required* for direct URL dependencies (like Git dependencies).
