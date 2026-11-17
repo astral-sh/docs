@@ -2618,6 +2618,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#http2-keep-alive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        http2-keep-alive
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#index-by-name" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2908,6 +2919,17 @@
     <span class="md-ellipsis">
       
         tool-install-locks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#venv-redirect-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        venv-redirect-files
       
     </span>
   </a>
@@ -4321,6 +4343,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#http2-keep-alive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        http2-keep-alive
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#index-by-name" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4618,6 +4651,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#venv-redirect-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        venv-redirect-files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#venv-safe-clear" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4895,6 +4939,15 @@ information needed to select dependencies without the manifest.</p>
 credentials. Set <a href="../../reference/environment/#uv_gcs_endpoint_url"><code>UV_GCS_ENDPOINT_URL</code></a> to
 identify the endpoint; authentication uses <code>GOOGLE_APPLICATION_CREDENTIALS</code> or Application
 Default Credentials.</p>
+<h3 id="http2-keep-alive"><a class="toclink" href="#http2-keep-alive"><code>http2-keep-alive</code></a></h3>
+<p>On HTTP/2 connections with active requests, uv sends a <code>PING</code> after 15 seconds without
+incoming data. If the peer misses the acknowledgement deadline, uv closes the connection,
+interrupting all requests that share it. Some servers limit how often clients may ping.</p>
+<p>The acknowledgement timeout is one third of the read timeout, with a minimum of 10 seconds
+and a maximum of 20 seconds. The default 30-second
+<a href="../../reference/environment/#uv_http_timeout"><code>UV_HTTP_TIMEOUT</code></a> gives the peer 10 seconds
+to respond. Uploads use their <a href="../../reference/environment/#uv_upload_http_timeout">upload timeout</a>.
+A request can still time out waiting for data even when the peer acknowledges pings.</p>
 <h3 id="index-by-name"><a class="toclink" href="#index-by-name"><code>index-by-name</code></a></h3>
 <p>The <code>--index</code> and <code>--default-index</code> options accept the names of configured package indexes
 as well as URLs. For example, <code>--index internal</code> selects the configured index named
@@ -5015,6 +5068,9 @@ environment variable.</p>
 <p>uv stores a <code>uv.lock</code> file alongside each installed tool and reuses it for subsequent
 installations and upgrades. The lockfile records the tool's resolved dependencies and also
 provides the dependency information used by <code>uv tool audit</code>.</p>
+<h3 id="venv-redirect-files"><a class="toclink" href="#venv-redirect-files"><code>venv-redirect-files</code></a></h3>
+<p>uv supports <code>.venv</code> redirect files (<a href="https://peps.python.org/pep-0832/">PEP 832</a>). Enabling this
+feature silences the preview warning.</p>
 <h3 id="venv-safe-clear"><a class="toclink" href="#venv-safe-clear"><code>venv-safe-clear</code></a></h3>
 <p>The <code>uv venv --clear</code> option refuses to clear a directory that does not contain a
 <code>pyvenv.cfg</code> file. This helps avoid removing unrelated files when the target is not a

@@ -140,6 +140,12 @@ Frozen project commands can use `uv.lock` without the workspace's `pyproject.tom
 
 uv can authenticate requests to a Google Cloud Storage endpoint using Google Cloud credentials. Set [`UV_GCS_ENDPOINT_URL`](../../reference/environment/#uv_gcs_endpoint_url) to identify the endpoint; authentication uses `GOOGLE_APPLICATION_CREDENTIALS` or Application Default Credentials.
 
+### [`http2-keep-alive`](#http2-keep-alive)
+
+On HTTP/2 connections with active requests, uv sends a `PING` after 15 seconds without incoming data. If the peer misses the acknowledgement deadline, uv closes the connection, interrupting all requests that share it. Some servers limit how often clients may ping.
+
+The acknowledgement timeout is one third of the read timeout, with a minimum of 10 seconds and a maximum of 20 seconds. The default 30-second [`UV_HTTP_TIMEOUT`](../../reference/environment/#uv_http_timeout) gives the peer 10 seconds to respond. Uploads use their [upload timeout](../../reference/environment/#uv_upload_http_timeout). A request can still time out waiting for data even when the peer acknowledges pings.
+
 ### [`index-by-name`](#index-by-name)
 
 The `--index` and `--default-index` options accept the names of configured package indexes as well as URLs. For example, `--index internal` selects the configured index named `internal`, so its URL does not need to be repeated on the command line.
@@ -247,6 +253,10 @@ When building source distributions, the uv build backend rewrites `pyproject.tom
 ### [`tool-install-locks`](#tool-install-locks)
 
 uv stores a `uv.lock` file alongside each installed tool and reuses it for subsequent installations and upgrades. The lockfile records the tool's resolved dependencies and also provides the dependency information used by `uv tool audit`.
+
+### [`venv-redirect-files`](#venv-redirect-files)
+
+uv supports `.venv` redirect files ([PEP 832](https://peps.python.org/pep-0832/)). Enabling this feature silences the preview warning.
 
 ### [`venv-safe-clear`](#venv-safe-clear)
 

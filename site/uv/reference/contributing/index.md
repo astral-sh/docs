@@ -152,7 +152,7 @@ Linting requires [shellcheck](https://github.com/koalaman/shellcheck) and [hawk]
 ```
 # Rust
 CARGO_BUILD_WARNINGS=deny cargo clippy --workspace --all-targets --all-features --locked
-cargo +1.99.0 hawk check -D warnings
+cargo +1.100.0 hawk check -D warnings
 
 # Python
 uv run --only-group=check ruff check .
