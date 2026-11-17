@@ -13,9 +13,9 @@ This guide helps you migrate a project from [mypy](https://mypy.readthedocs.io/e
 
 ## [Stricter checking with ty](#stricter-checking-with-ty)
 
-For both mypy and pyright, "strict" mode enables several error codes that are otherwise disabled by default, but also makes fundamental changes to the way type inference and type checking works. Mypy's strict mode includes `--check-untyped-defs`, for example, without which unannotated functions are left unchecked; pyright's strict mode includes `strictListInference`, without which `[1, "foo"]` will be inferred as having type `list[Unknown]` rather than `list[int | str]` or similar.
+For both mypy and pyright, "strict" mode enables several error codes that are otherwise disabled by default, but also makes fundamental changes to how type inference and type checking work. Mypy's strict mode includes `--check-untyped-defs`, for example, without which unannotated functions are left unchecked; pyright's strict mode includes `strictListInference`, without which `[1, "foo"]` will be inferred as having type `list[Unknown]` rather than `list[int | str]` or similar.
 
-ty's default mode is currently stricter by default than either mypy or pyright in many ways. ty does not have flags such as `--check-untyped-defs` or `strictListInference`, because these are ty's default behaviour and are not currently configurable. Meanwhile, nearly all ty rules are enabled by default, and the ones that are disabled by default are usually in that category because they are either very opinionated or have many false positives.
+ty's default mode is currently stricter than either mypy or pyright in many ways. ty does not have flags such as `--check-untyped-defs` or `strictListInference`, because these are ty's default behaviour and are not currently configurable. Meanwhile, nearly all ty rules are enabled by default, and the ones that are disabled by default are usually in that category because they are either very opinionated or have many false positives.
 
 ### [Recommended configuration](#recommended-configuration)
 
@@ -26,7 +26,7 @@ To enable all ty rules at once with the `error` severity, you can simply use `--
 dynamic-function-decorator-return = "error"
 missing-type-argument = "error"
 possibly-unresolved-reference = "warn"
-unsound-return-statement = "error"
+unsound-return = "error"
 
 [tool.ruff.lint]
 extend-select = ["ANN", "PYI"]
@@ -35,7 +35,7 @@ preview = true
 
 This configuration:
 
-- Enables ty's disabled-by-default [`dynamic-function-decorator-return`](https://docs.astral.sh/ty/reference/rules/#dynamic-function-decorator-return), [`missing-type-argument`](https://docs.astral.sh/ty/reference/rules/#missing-type-argument), [`possibly-unresolved-reference`](https://docs.astral.sh/ty/reference/rules/#possibly-unresolved-reference), and [`unsound-return-statement`](https://docs.astral.sh/ty/reference/rules/#unsound-return-statement) rules
+- Enables ty's disabled-by-default [`dynamic-function-decorator-return`](https://docs.astral.sh/ty/reference/rules/#dynamic-function-decorator-return), [`missing-type-argument`](https://docs.astral.sh/ty/reference/rules/#missing-type-argument), [`possibly-unresolved-reference`](https://docs.astral.sh/ty/reference/rules/#possibly-unresolved-reference), and [`unsound-return`](https://docs.astral.sh/ty/reference/rules/#unsound-return) rules
 - Extends Ruff's default rules with the [`ANN`](https://docs.astral.sh/ruff/rules/#flake8-annotations-ann) and [`PYI`](https://docs.astral.sh/ruff/rules/#flake8-pyi-pyi) rule categories, both of which are focussed on type-annotating your code more effectively
 - Enables Ruff's preview mode so that `PYI033` also checks `.py` files
 
@@ -48,7 +48,7 @@ dynamic-function-decorator-return = "error"
 missing-type-argument = "error"
 possibly-unresolved-reference = "warn"
 unsound-assignment = "error"
-unsound-return-statement = "error"
+unsound-return = "error"
 unsound-yield = "error"
 unsupported-dynamic-base = "warn"
 
@@ -77,7 +77,7 @@ Note that several checks in mypy and pyright are not yet implemented in ty. See 
 - **Mypy error code**: the value passed to `# type: ignore[<code>]` or `disable_error_code`. Some ty rules surface as one of mypy's catch-all codes (`misc`, `assignment`, `valid-type`); these mappings are deliberately broad.
 - **Pyright diagnostic**: the `report*` setting in `pyrightconfig.json` or `[tool.pyright]`.
 
-A diagnostic may appear in multiple rows when it covers distinct cases. A blank cell means no direct equivalent exists in that checker (the diagnostic is either not emitted, or is folded into a broader category that already appears for another ty rule).
+A diagnostic may appear in multiple rows when it covers distinct cases. A blank cell means no direct equivalent exists in that checker (the diagnostic is either not emitted or is folded into a broader category that already appears for another ty rule).
 
 ### [Rules](#rules)
 

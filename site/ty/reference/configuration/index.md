@@ -63,7 +63,7 @@ ______________________________________________________________________
 
 ### [`allowed-unresolved-imports`](#allowed-unresolved-imports)
 
-A list of module glob patterns for which `import-not-found` diagnostics should be suppressed.
+A list of module glob patterns for which `import-not-found` and `missing-module-member` diagnostics should be suppressed. For `from pkg import name`, ty matches against `pkg` if the module cannot be resolved, and against `pkg.name` if the module resolves but the name cannot be imported.
 
 Details on supported glob patterns:
 
@@ -620,7 +620,7 @@ ______________________________________________________________________
 
 #### [`allowed-unresolved-imports`](#allowed-unresolved-imports_1)
 
-A list of module glob patterns for which `import-not-found` diagnostics should be suppressed.
+A list of module glob patterns for which `import-not-found` and `missing-module-member` diagnostics should be suppressed. For `from pkg import name`, ty matches against `pkg` if the module cannot be resolved, and against `pkg.name` if the module resolves but the name cannot be imported.
 
 Details on supported glob patterns:
 

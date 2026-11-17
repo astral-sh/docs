@@ -6,7 +6,7 @@ You can generally expect ty to be a fully-featured [language server](https://mic
 
 Example of an inline diagnostic with code-span annotations
 
-ty reports type errors and other [diagnostics](../diagnostics/) directly in your editor. Diagnostics are updated as you type. You can use the [`diagnosticMode`](../../reference/editor-settings/#diagnosticmode) setting to control if you want to see diagnostics for open files only, or for your entire workspace.
+ty reports type errors and other [diagnostics](../diagnostics/) directly in your editor. Diagnostics are updated as you type. You can use the [`diagnosticMode`](../../reference/editor-settings/#diagnosticmode) setting to control whether you see diagnostics for open files only or for your entire workspace.
 
 Info
 
@@ -29,7 +29,7 @@ ty powers several language server features that allow you to navigate a Python c
 
 Accepting this completion will automatically add a `subprocess` import at the top of the file.
 
-ty provides intelligent code completions as you type, offering suggestions for variables, functions, classes, and modules that are in scope. For symbols that are not yet imported, ty suggests auto-import actions to add the necessary `import` statements.
+ty provides intelligent code completions as you type, suggesting variables, functions, classes, and modules that are in scope. For symbols that are not yet imported, ty suggests auto-import actions to add the necessary `import` statements.
 
 ## [Code actions and refactorings](#code-actions-and-refactorings)
 
@@ -56,7 +56,7 @@ ty surfaces useful contextual information as you code:
 
 ## [Code folding](#code-folding)
 
-ty provides Python specific code folding ranges to LSP clients upon request. This includes tagging docstrings as comments, which supports editor actions like "fold all comment blocks."
+ty provides Python-specific code folding ranges to LSP clients upon request. This includes tagging docstrings as comments, which supports editor actions like "fold all comment blocks."
 
 ## [Notebook support](#notebook-support)
 

@@ -81,8 +81,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2026-11-13 20:24:25Z",
-        "dateModified": "2026-11-13 20:24:25Z",
+        "datePublished": "2026-11-17 09:21:29Z",
+        "dateModified": "2026-11-17 09:21:29Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -1459,10 +1459,9 @@
 <h1 id="python-version"><a class="toclink" href="#python-version">Python version</a></h1>
 <p>The Python version affects allowed syntax, type definitions of the standard library, and type
 definitions of first- and third-party modules that are conditional on the Python version.</p>
-<p>For example, Python 3.10 introduced support for <code>match</code> statements and added the
-<code>sys.stdlib_module_names</code> symbol to the standard library. Syntactic features always
-need to be available in the lowest supported Python version, but symbols may be used
-in a <code>sys.version_info</code> conditional branch:</p>
+<p>For example, Python 3.10 introduced support for <code>match</code> statements, and Python 3.15 added
+<code>sys.abi_info</code> to the standard library. Syntactic features always need to be available in the
+lowest supported Python version, but symbols may be used in a <code>sys.version_info</code> conditional branch.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># `invalid-syntax` error if `python-version` is set to 3.9 or lower:</span>
@@ -1472,21 +1471,25 @@ in a <code>sys.version_info</code> conditional branch:</p>
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">:</span>
 <a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;unknown command&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1"># `unresolved-attribute` error if `python-version` is set to 3.9 or lower:</span>
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="nb">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdlib_module_names</span><span class="p">)</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1"># `missing-attribute` error if `python-version` is set to 3.14 or lower:</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="nb">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">abi_info</span><span class="p">)</span>
 <a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">15</span><span class="p">):</span>
 <a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="c1"># ok, because the usage is guarded by a version check:</span>
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdlib_module_names</span><span class="p">)</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">abi_info</span><span class="p">)</span>
 </code></pre></div>
 <p>By default, the lower bound of the project's <a href="https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#python-requires"><code>requires-python</code></a> field (from the <code>pyproject.toml</code>) is
 used as the target Python version, ensuring that features and symbols only available in newer Python
 versions are not used.</p>
-<p>If the <code>requires-python</code> field is not available but a virtual environment <em>has</em> been
-configured or detected, ty will try to infer the Python version being used from the virtual
-environment's metadata.</p>
+<p>For <a href="../scripts/">scripts with inline metadata</a>, ty uses the script's inline
+<code>environment.python-version</code> if set, then the lower bound of its <code>requires-python</code> field. If the
+inline metadata has neither setting and contains no <code>[tool.ty]</code> table, the script can inherit the
+project's Python version.</p>
+<p>For either scripts or larger projects, if the <code>requires-python</code> field is not available but a
+virtual environment <em>has</em> been configured or detected, ty will try to infer the Python version
+being used from the virtual environment's metadata.</p>
 <p>If no virtual environment is present or inferring the Python version from the metadata fails,
-ty will fall back to the latest stable Python version supported by ty (currently 3.14).</p>
+ty will fall back to the default <a href="../reference/configuration/#python-version"><code>python-version</code></a>.</p>
 <p>The Python version may also be explicitly specified using the
 <a href="../reference/configuration/#python-version"><code>python-version</code></a> setting or the
 <a href="../reference/cli/#ty-check--python-version"><code>--python-version</code></a> flag.</p>
@@ -1516,7 +1519,7 @@ versions.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 13, 2026 20:24:25 UTC">November 13, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 17, 2026 09:21:29 UTC">November 17, 2026</span>
   </span>
 
     
