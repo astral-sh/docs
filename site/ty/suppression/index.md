@@ -8,7 +8,7 @@ To disable a rule entirely, set it to the `ignore` level as described in [rule l
 
 ## [ty suppression comments](#ty-suppression-comments)
 
-To suppress a rule violation inline add a `# ty: ignore[<rule>]` comment at the end of the line:
+To suppress a rule violation inline, add a `# ty: ignore[<rule>]` comment at the end of the line:
 
 ```
 a = 10 + "test"  # ty: ignore[unsupported-operator]

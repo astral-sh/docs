@@ -10,7 +10,7 @@ See the [rules reference](../reference/rules/) for an enumeration of all support
 
 Each rule has a configurable level:
 
-- `error`: violations are reported as errors and ty exits with an exit code of 1 if there's any.
+- `error`: violations are reported as errors. By default, ty exits with code `1` if there are any.
 - `warn`: violations are reported as warnings. By default, ty exits with code `1` if there are only warning-level violations. Use `--exit-zero-on-warning` or set `terminal.error-on-warning` to `false` to exit with code `0` instead.
 - `ignore`: the rule is turned off
 

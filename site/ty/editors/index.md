@@ -106,7 +106,7 @@ Open **Settings → Python → Tools → ty** and select **Enable**. See the [Py
 
 ## [Emacs](#emacs)
 
-ty can be utilized as a language server via the built-in [Eglot](https://www.gnu.org/software/emacs/manual/html_node/eglot/index.html) client, which is part of Emacs since version 29.
+ty can be used as a language server via the built-in [Eglot](https://www.gnu.org/software/emacs/manual/html_node/eglot/index.html) client, which has been part of Emacs since version 29.
 
 ```
 (with-eval-after-load 'eglot

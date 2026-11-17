@@ -11,7 +11,7 @@ Check the [documentation](https://docs.astral.sh/ty/reference/rules/) for the sp
 `Unknown` is ty's way of representing a type that could not be fully inferred. It behaves the same way as `Any`, but appears implicitly, rather than through an explicit `Any` annotation:
 
 ```
-from missing_module import MissingClass  # error: unresolved-import
+from missing_module import MissingClass  # error: import-not-found
 
 reveal_type(MissingClass)  # Unknown
 ```
@@ -174,7 +174,7 @@ modify(directories)  # ty emits an error on this call
 
    You can try it out in [this playground example](https://play.ty.dev/01013e73-da54-40c4-a9c5-2af269abda9d).
 
-The `modify` call mutates the contents of the `directories` list. After this call, it contains two directories *and one `File`*, which clearly violates the `list[Directory]` type annotation. If this call *were* allowed, subsequent code that relies on the fact that `directories` only contains `Directory` instances might break at runtime:
+If the `modify` call were allowed, it would mutate the contents of the `directories` list. The list would contain two directories *and one `File`*, violating the `list[Directory]` type annotation. Subsequent code that relies on the fact that `directories` only contains `Directory` instances might break at runtime:
 
 ```
 for directory in directories:
@@ -209,10 +209,11 @@ If you are looking for a covariant alternative to `dict[str, V]`, you can use [`
 
 ## [Why does ty say `Callable` has no attribute `__name__`?](#why-does-ty-say-callable-has-no-attribute-__name__)
 
-When you access `__name__`, `__qualname__`, `__module__`, or `__doc__` on a value typed as `Callable`, ty reports an `unresolved-attribute` error. This is because not all callables have these attributes. Functions do (including lambdas), but other callable objects do not. The `FileUpload` class below, for example, is callable, but instances of `FileUpload` do not have a `__name__` attribute. Passing a `FileUpload` instance to `retry` would lead to an `AttributeError` at runtime.
+When you access `__name__` or `__qualname__` on a value typed as `Callable`, ty reports a [`missing-attribute`](../rules/#missing-attribute) error. This is because not all callables have these attributes. Functions do (including lambdas), but other callable objects may lack them. Instances of `FileUpload` below, for example, are callable but do not have a `__name__` attribute. Passing a `FileUpload` instance to `retry` would lead to an `AttributeError` at runtime.
 
 ```
 from typing import Callable
+
 
 def retry(times: int, operation: Callable[[], bool]) -> bool:
     for i in range(times):
@@ -222,17 +223,19 @@ def retry(times: int, operation: Callable[[], bool]) -> bool:
             return True
     return False
 
+
 class FileUpload:
     def __init__(self, name: str) -> None:
-        # …
+        self.name = name
 
     def __call__(self) -> bool:
-        # …
+        return bool(self.name)
+
 
 retry(3, FileUpload("image.png"))
 ```
 
-To fix this, you could use `getattr` with a fall back to a default name when the attribute is not present (or use a `hasattr(…, "__name__")` check if you access it multiple times):
+To fix this, you could use `getattr` with a fallback to a default name when the attribute is not present (or use a `hasattr(…, "__name__")` check if you access it multiple times):
 
 ```
 name = getattr(operation, "__name__", "operation")
@@ -241,6 +244,8 @@ name = getattr(operation, "__name__", "operation")
 Alternatively, you could use an `isinstance(…, types.FunctionType)` check to narrow the type of `operation` to something that definitely has a `__name__` attribute:
 
 ```
+from types import FunctionType
+
 if isinstance(operation, FunctionType):
     print(f"Calling {operation.__name__}, attempt {i + 1} of {times}")
 else:
@@ -340,7 +345,11 @@ You can follow [this issue](https://github.com/astral-sh/ty/issues/819) to get u
 
 ## [Does ty support inline script metadata (PEP 723)?](#does-ty-support-pep-723-inline-metadata-scripts)
 
-Yes. Use `TY_UV=scripts ty check script.py` or `uv check --script script.py` to check a script with its declared dependencies. See [Checking standalone scripts](../../scripts/) for instructions on how to check multiple scripts together or how to enable support in your editor.
+Yes! (But you have to opt in.)
+
+Use `TY_UV=scripts ty check script.py` or `uv check --script script.py` to check a script with its declared dependencies. See [Checking standalone scripts](../../scripts/) for instructions on how to check multiple scripts together or how to enable support in your editor.
+
+Follow [this issue](https://github.com/astral-sh/ty/issues/691) for further discussion of script support.
 
 ## [Is there a pre-commit hook for ty?](#is-there-a-pre-commit-hook-for-ty)
 
