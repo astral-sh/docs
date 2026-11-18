@@ -47,6 +47,8 @@ When set to `scripts`, ty uses [uv](https://docs.astral.sh/uv/) to create and up
 
 When set to `1` or `true`, ty also uses uv to discover the workspace root and its Python environment.
 
+Set to `off` to disable all uv integration, including for scripts that set `project-manager.script = "uv"`. An explicit `TY_UV` takes precedence over ty configuration.
+
 ## [Externally-defined variables](#externally-defined-variables)
 
 ty also reads the following externally defined environment variables:
