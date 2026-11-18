@@ -81,8 +81,8 @@
 <script type="application/ld+json">
     {
         
-        "datePublished": "2026-11-18 12:02:32Z",
-        "dateModified": "2026-11-18 12:02:32Z",
+        "datePublished": "2026-11-18 20:34:43Z",
+        "dateModified": "2026-11-18 20:34:43Z",
         
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -1636,20 +1636,38 @@ supported versions are uv 0.12.3 and ty 0.0.76.</p>
 <a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
 <a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="go">Found 3 diagnostics</span>
 </code></pre></div>
-<p>ty can use uv to set up a separate environment and install the script's dependencies for you. Setting
-<a href="https://docs.astral.sh/ty/reference/environment/#ty_uv"><code>TY_UV</code></a> to <code>scripts</code> enables the integration.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="gp">$ </span><span class="nv">TY_UV</span><span class="o">=</span>scripts<span class="w"> </span>ty<span class="w"> </span>check<span class="w"> </span>example.py
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="go">All checks passed!</span>
+<p>When <a href="../reference/configuration/#script"><code>project-manager.script</code></a> is set to
+<code>"uv"</code>, ty uses uv to set up a separate environment and install the script's dependencies. To enable
+the integration for scripts in a project, add the option to your <a href="../configuration/">configuration</a>:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">pyproject.toml</label><label for="__tabbed_1_2">ty.toml</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">[tool.ty.project-manager]</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">script</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;uv&quot;</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">[project-manager]</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">script</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;uv&quot;</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>ty can now resolve the script's imports:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="gp">$ </span>ty<span class="w"> </span>check<span class="w"> </span>example.py
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="go">All checks passed!</span>
+</code></pre></div>
+<p>To check the project and all its scripts together, omit the file name:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>ty<span class="w"> </span>check
+</code></pre></div>
+<p>For a single invocation, you can also pass the option with <code>--config</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>ty<span class="w"> </span>check<span class="w"> </span>--config<span class="w"> </span><span class="s1">&#39;project-manager.script=&quot;uv&quot;&#39;</span><span class="w"> </span>example.py
 </code></pre></div>
 <p>Alternatively, you can check the script with uv's experimental
 <a href="https://docs.astral.sh/uv/reference/cli/#uv-check--script"><code>uv check --script example.py</code></a> command,
 which enables the integration automatically.</p>
-<p>To check the project and its scripts together, run <code>ty check</code> without a file name.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nv">TY_UV</span><span class="o">=</span>scripts<span class="w"> </span>ty<span class="w"> </span>check
-</code></pre></div>
 <h2 id="in-your-editor"><a class="toclink" href="#in-your-editor">In your editor</a></h2>
-<p>With <a href="../reference/editor-settings/#experimentaluseuv"><code>experimental.useUv</code></a> set to <code>"scripts"</code>,
-ty uses uv to install the script's dependencies and resolves imports from the script's environment.
+<p>The same <code>project-manager.script</code> setting enables the integration in your editor.
 In <code>example.py</code>, you can then use ty's <a href="../features/language-server/">editor features</a> to
 complete imports from <code>rich</code>, see <code>pprint</code>'s signature on hover, or go to its definition.</p>
 <figure>
@@ -1676,17 +1694,20 @@ Python 3.12.</p>
 <p>To share <code>scripts/example.py</code> with its own ty configuration, you can add a
 <a href="../reference/configuration/"><code>[tool.ty]</code></a> table to its inline metadata. The table uses the
 same syntax as in <code>pyproject.toml</code>.</p>
-<div class="highlight"><span class="filename">scripts/example.py</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># /// script</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="c1"># requires-python = &quot;&gt;=3.12&quot;</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1"># dependencies = [&quot;requests&lt;3&quot;, &quot;rich&quot;]</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1">#</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="c1"># [tool.ty.rules]</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="c1"># index-out-of-bounds = &quot;warn&quot;</span>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1"># ///</span>
+<div class="highlight"><span class="filename">scripts/example.py</span><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># /// script</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="c1"># requires-python = &quot;&gt;=3.12&quot;</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="c1"># dependencies = [&quot;requests&lt;3&quot;, &quot;rich&quot;]</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="c1">#</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="c1"># [tool.ty.project-manager]</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="c1"># script = &quot;uv&quot;</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="c1">#</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="c1"># [tool.ty.rules]</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="c1"># index-out-of-bounds = &quot;warn&quot;</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="c1"># ///</span>
 </code></pre></div>
 <p>The inline table replaces the project settings and overrides for the script, even if it is empty.
-With this configuration, ty treats <code>index-out-of-bounds</code> as a warning and uses its defaults for
-other settings.</p>
+With this configuration, ty continues to use uv for the script, treats <code>index-out-of-bounds</code> as a
+warning, and uses its defaults for other settings.</p>
 
 
 
@@ -1707,7 +1728,7 @@ other settings.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 18, 2026 12:02:32 UTC">November 18, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 18, 2026 20:34:43 UTC">November 18, 2026</span>
   </span>
 
     
