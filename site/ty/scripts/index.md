@@ -43,24 +43,42 @@ error[import-not-found]: Cannot resolve imported module `requests`
 Found 3 diagnostics
 ```
 
-ty can use uv to set up a separate environment and install the script's dependencies for you. Setting [`TY_UV`](https://docs.astral.sh/ty/reference/environment/#ty_uv) to `scripts` enables the integration.
+When [`project-manager.script`](../reference/configuration/#script) is set to `"uv"`, ty uses uv to set up a separate environment and install the script's dependencies. To enable the integration for scripts in a project, add the option to your [configuration](../configuration/):
 
 ```
-$ TY_UV=scripts ty check example.py
+[tool.ty.project-manager]
+script = "uv"
+```
+
+```
+[project-manager]
+script = "uv"
+```
+
+ty can now resolve the script's imports:
+
+```
+$ ty check example.py
 All checks passed!
+```
+
+To check the project and all its scripts together, omit the file name:
+
+```
+ty check
+```
+
+For a single invocation, you can also pass the option with `--config`:
+
+```
+ty check --config 'project-manager.script="uv"' example.py
 ```
 
 Alternatively, you can check the script with uv's experimental [`uv check --script example.py`](https://docs.astral.sh/uv/reference/cli/#uv-check--script) command, which enables the integration automatically.
 
-To check the project and its scripts together, run `ty check` without a file name.
-
-```
-TY_UV=scripts ty check
-```
-
 ## [In your editor](#in-your-editor)
 
-With [`experimental.useUv`](../reference/editor-settings/#experimentaluseuv) set to `"scripts"`, ty uses uv to install the script's dependencies and resolves imports from the script's environment. In `example.py`, you can then use ty's [editor features](../features/language-server/) to complete imports from `rich`, see `pprint`'s signature on hover, or go to its definition.
+The same `project-manager.script` setting enables the integration in your editor. In `example.py`, you can then use ty's [editor features](../features/language-server/) to complete imports from `rich`, see `pprint`'s signature on hover, or go to its definition.
 
 \[ [Download the editor demo](../assets/scripts-editor-demo.mp4). \](../assets/scripts-editor-demo.mp4)
 
@@ -81,9 +99,12 @@ scripts/example.py
 # requires-python = ">=3.12"
 # dependencies = ["requests<3", "rich"]
 #
+# [tool.ty.project-manager]
+# script = "uv"
+#
 # [tool.ty.rules]
 # index-out-of-bounds = "warn"
 # ///
 ```
 
-The inline table replaces the project settings and overrides for the script, even if it is empty. With this configuration, ty treats `index-out-of-bounds` as a warning and uses its defaults for other settings.
+The inline table replaces the project settings and overrides for the script, even if it is empty. With this configuration, ty continues to use uv for the script, treats `index-out-of-bounds` as a warning, and uses its defaults for other settings.

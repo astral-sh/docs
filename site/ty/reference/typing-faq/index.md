@@ -339,7 +339,7 @@ You can follow [this issue](https://github.com/astral-sh/ty/issues/819) to get u
 
 Yes! (But you have to opt in.)
 
-Use `TY_UV=scripts ty check script.py` or `uv check --script script.py` to check a script with its declared dependencies. See [Checking standalone scripts](../../scripts/) for instructions on how to check multiple scripts together or how to enable support in your editor.
+Set [`project-manager.script`](../configuration/#script) to `"uv"` or use `uv check --script script.py` to check a script with its declared dependencies. See [Checking standalone scripts](../../scripts/) for instructions on how to check multiple scripts together or how to enable support in your editor.
 
 Follow [this issue](https://github.com/astral-sh/ty/issues/691) for further discussion of script support.
 
