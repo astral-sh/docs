@@ -919,8 +919,9 @@
 <h1 id="unused-variable-f841"><a class="toclink" href="#unused-variable-f841">unused-variable (F841)</a></h1>
 <p><small>
 Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.22">v0.0.22</a> ·
+Category: <a href="../?category=correctness">correctness</a> ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27unused-variable%27%20OR%20F841)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fpyflakes%2Frules%2Funused_variable.rs#L56" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fpyflakes%2Frules%2Funused_variable.rs#L61" target="_blank">View source</a>
 </small></p>
 <p>Derived from the <strong><a href="../#pyflakes-f">Pyflakes</a></strong> linter.</p>
 <p>Fix is sometimes available.</p>
@@ -932,6 +933,10 @@ be removed to avoid confusion.</p>
 <p>If a variable is intentionally defined-but-not-used, it should be
 prefixed with an underscore, or some other value that adheres to the
 <a href="../../settings/#lint_dummy-variable-rgx"><code>lint.dummy-variable-rgx</code></a> pattern.</p>
+<p>This rule ignores the following variables, which debuggers and traceback
+tools read from the function's local variables at runtime:
+<code>__tracebackhide__</code>, <code>__traceback_hide__</code>, <code>__traceback_info__</code>,
+<code>__traceback_supplement__</code>, and <code>__debuggerskip__</code>.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">foo</span><span class="p">():</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
