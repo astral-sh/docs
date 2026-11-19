@@ -919,10 +919,12 @@
 <h1 id="runtime-string-union-tc010"><a class="toclink" href="#runtime-string-union-tc010">runtime-string-union (TC010)</a></h1>
 <p><small>
 Added in <a href="https://github.com/astral-sh/ruff/releases/tag/0.8.0">0.8.0</a> ·
+Category: <a href="../?category=correctness">correctness</a> ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27runtime-string-union%27%20OR%20TC010)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_type_checking%2Frules%2Fruntime_string_union.rs#L56" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_type_checking%2Frules%2Fruntime_string_union.rs#L68" target="_blank">View source</a>
 </small></p>
 <p>Derived from the <strong><a href="../#flake8-type-checking-tc">flake8-type-checking</a></strong> linter.</p>
+<p>Fix is sometimes available.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for the presence of string literals in <code>X | Y</code>-style union types.</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
@@ -954,6 +956,11 @@ annotations entirely.</p>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
 <a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">class</span><span class="w"> </span><span class="nc">Foo</span><span class="p">:</span> <span class="o">...</span>
 </code></pre></div>
+<h2 id="preview"><a class="toclink" href="#preview">Preview</a></h2>
+<p>In preview mode this rule has a fix available.</p>
+<h2 id="fix-safety"><a class="toclink" href="#fix-safety">Fix safety</a></h2>
+<p>This fix is safe as long as the fix doesn't remove a comment, which can happen
+when the union spans multiple lines.</p>
 <h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://peps.python.org/pep-0563/">PEP 563 - Postponed Evaluation of Annotations</a></li>

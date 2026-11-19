@@ -919,11 +919,12 @@
 <h1 id="double-negation-sim208"><a class="toclink" href="#double-negation-sim208">double-negation (SIM208)</a></h1>
 <p><small>
 Added in <a href="https://github.com/astral-sh/ruff/releases/tag/v0.0.213">v0.0.213</a> ·
+Category: <a href="../?category=complexity">complexity</a> ·
 <a href="https://github.com/astral-sh/ruff/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20(%27double-negation%27%20OR%20SIM208)" target="_blank">Related issues</a> ·
-<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_simplify%2Frules%2Fast_unary_op.rs#L117" target="_blank">View source</a>
+<a href="https://github.com/astral-sh/ruff/blob/main/crates%2Fruff_linter%2Fsrc%2Frules%2Fflake8_simplify%2Frules%2Fast_unary_op.rs#L123" target="_blank">View source</a>
 </small></p>
 <p>Derived from the <strong><a href="../#flake8-simplify-sim">flake8-simplify</a></strong> linter.</p>
-<p>Fix is always available.</p>
+<p>Fix is sometimes available.</p>
 <h2 id="what-it-does"><a class="toclink" href="#what-it-does">What it does</a></h2>
 <p>Checks for double negations (i.e., multiple <code>not</code> operators).</p>
 <h2 id="why-is-this-bad"><a class="toclink" href="#why-is-this-bad">Why is this bad?</a></h2>
@@ -935,6 +936,11 @@ operators entirely.</p>
 <p>Use instead:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">a</span>
 </code></pre></div>
+<h2 id="fix-availability"><a class="toclink" href="#fix-availability">Fix availability</a></h2>
+<p>Outside of a boolean context (such as an <code>if</code> test), the fix wraps the operand in
+<code>bool(...)</code> unless the operand is already known to be a <code>bool</code>. This rule will emit a
+diagnostic but not suggest a fix if that wrapper is needed and <code>bool</code> has been shadowed
+from its builtin binding.</p>
 <h2 id="references"><a class="toclink" href="#references">References</a></h2>
 <ul>
 <li><a href="https://docs.python.org/3/reference/expressions.html#comparisons">Python documentation: Comparisons</a></li>

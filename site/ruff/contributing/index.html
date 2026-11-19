@@ -1963,10 +1963,9 @@ review and remaining preparation steps below. To prepare the release locally, st
 <p>Merge the PR</p>
 </li>
 <li>
-<p>Run the <a href="https://github.com/astral-sh/ruff/actions/workflows/release.yml">release workflow</a> with:</p>
-<ul>
-<li>The new version number (without starting <code>v</code>)</li>
-</ul>
+<p>Run the <a href="https://github.com/astral-sh/ruff/actions/workflows/release.yml">release workflow</a> from
+    <code>main</code>. The workflow reads the version from <code>crates/ruff/Cargo.toml</code> and rejects versions that
+    already have a GitHub release. Enable <strong>dry-run</strong> to build release artifacts without publishing.</p>
 </li>
 <li>
 <p>Request a deployment approval from another team member</p>
@@ -1980,7 +1979,7 @@ review and remaining preparation steps below. To prepare the release locally, st
     jobs</a> and not just a single failed job.</li>
 <li>Wait for aforementioned approval</li>
 <li>Upload to PyPI.</li>
-<li>Create and push the Git tag (as extracted from <code>pyproject.toml</code>). We create the Git tag only
+<li>Create and push the Git tag for the resolved version. We create the Git tag only
     after building the wheels and uploading to PyPI, since we can't delete or modify the tag (<a href="https://github.com/astral-sh/ruff/issues/4468">#4468</a>).</li>
 <li>Attach artifacts to draft GitHub release</li>
 <li>Trigger downstream repositories. This can fail non-catastrophically, as we can run any
@@ -2003,8 +2002,10 @@ review and remaining preparation steps below. To prepare the release locally, st
 </ol>
 </li>
 <li>
-<p>Update the <a href="https://github.com/astral-sh/ruff-vscode"><code>ruff-vscode</code></a> repository by following
-    the <a href="https://github.com/astral-sh/ruff-vscode/blob/main/CONTRIBUTING.md#release">release instructions</a> there.</p>
+<p>A stable Ruff release starts the <a href="https://github.com/astral-sh/ruff-vscode/actions/workflows/release-prepare.yml">VS Code extension preparation workflow</a>
+    with the released Ruff version. After the extension builds succeed, approve its <code>release-gate</code> to
+    publish to VS Code Marketplace and Open VSX. See the <a href="https://github.com/astral-sh/ruff-vscode/blob/main/CONTRIBUTING.md#release">extension release instructions</a>
+    to start the workflow manually if needed.</p>
 </li>
 </ol>
 <h2 id="ecosystem-ci"><a class="toclink" href="#ecosystem-ci">Ecosystem CI</a></h2>
