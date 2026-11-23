@@ -849,31 +849,6 @@ MY_CONSTANT: Final[int]  # error
 INITIALIZED_CONSTANT: Final[int] = 1
 ```
 
-## [`ignore-comment-unknown-rule`](#ignore-comment-unknown-rule)
-
-Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%22ignore-comment-unknown-rule%22) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Fsuppression.rs#L48)
-
-**What it does**
-
-Checks for `ty: ignore[code]` or `type: ignore[ty:code]` comments where `code` isn't a known lint rule.
-
-**Why is this bad?**
-
-A `ty: ignore[code]` or a `type: ignore[ty:code]` directive with a `code` that doesn't match any known rule will not suppress any type errors, and is probably a mistake.
-
-**Examples**
-
-```
-# error
-a = 20 / 1  # ty: ignore[division-by-zer]
-```
-
-Use instead:
-
-```
-a = 20 / 0  # ty: ignore[division-by-zero]
-```
-
 ## [`implicit-string-concatenation-in-annotation`](#implicit-string-concatenation-in-annotation)
 
 Default level: [`error`](../../rules#rule-levels "This lint has a default level of 'error'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%28%22implicit-string-concatenation-in-annotation%22+OR+%22implicit-concatenated-string-type-annotation%22%29) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Ftypes%2Fstring_annotation.rs#L23)
@@ -5839,6 +5814,37 @@ def f(x: int) -> int:
 
 f(x=1, y=2)  # error
 ```
+
+## [`unknown-rule-in-ignore-comment`](#unknown-rule-in-ignore-comment)
+
+Default level: [`warn`](../../rules#rule-levels "This lint has a default level of 'warn'.") · Added in [0.0.1-alpha.1](https://github.com/astral-sh/ty/releases/tag/0.0.1-alpha.1) · [Related issues](https://github.com/astral-sh/ty/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20%28%22unknown-rule-in-ignore-comment%22+OR+%22ignore-comment-unknown-rule%22%29) · [View source](https://github.com/astral-sh/ruff/blob/main/crates%2Fty_python_semantic%2Fsrc%2Fsuppression.rs#L48)
+
+**What it does**
+
+Checks for `ty: ignore[code]` or `type: ignore[ty:code]` comments where `code` isn't a known lint rule.
+
+**Why is this bad?**
+
+A `ty: ignore[code]` or a `type: ignore[ty:code]` directive with a `code` that doesn't match any known rule will not suppress any type errors, and is probably a mistake.
+
+**Examples**
+
+```
+# error
+a = 20 / 1  # ty: ignore[division-by-zer]
+```
+
+Use instead:
+
+```
+a = 20 / 0  # ty: ignore[division-by-zero]
+```
+
+**Rule history**
+
+- v0.0.109: Renamed from [`ignore-comment-unknown-rule`](#ignore-comment-unknown-rule) to [`unknown-rule-in-ignore-comment`](#unknown-rule-in-ignore-comment).
+
+  [`ignore-comment-unknown-rule`](#ignore-comment-unknown-rule) remains as a compatibility alias for this rule.
 
 ## [`unknown-typed-dict-constructor-key`](#unknown-typed-dict-constructor-key)
 
