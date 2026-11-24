@@ -210,6 +210,10 @@ The `uv init` command creates a packaged application by default, with a `src/` l
 
 The `--project` option rejects invalid paths instead of warning and continuing in the current directory. Except for `uv init`, the path must already exist as a directory or point to a `pyproject.toml` file. This feature takes effect before configuration is loaded, so it must be enabled on the command line or through an environment variable.
 
+### [`proxy-index`](#proxy-index)
+
+Allows using [proxy indexes](../indexes/#proxy-indexes).
+
 ### [`publish-require-normalized`](#publish-require-normalized)
 
 The `uv publish` command requires distribution filenames to be normalized. Files with non-normalized names are skipped when selecting distributions to upload.

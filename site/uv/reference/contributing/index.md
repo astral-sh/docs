@@ -158,7 +158,7 @@ cargo +1.100.0 hawk check -D warnings
 uv run --only-group=check ruff check .
 
 # Python type checking
-uv run --only-group=check ty check python/uv
+TY_UV=scripts UV_LOCKED=1 uv run --only-group=check ty check
 
 # Python project metadata and uv schema
 ./scripts/validate-pyproject.sh
@@ -170,7 +170,7 @@ cargo dev generate-all --mode dry-run
 shellcheck <script>
 
 # Spell checking
-uv run --only-group=check typos
+uv run --only-group=typos typos
 
 # Unused Rust dependencies
 uv run --only-group=check cargo-shear
@@ -203,8 +203,10 @@ Source distributions can run arbitrary code on build and can make unwanted modif
 ```
 $ docker build -t uv-builder -f crates/uv-dev/builder.dockerfile --load .
 # Build for musl to avoid glibc errors, might not be required with your OS version
-cargo build --target x86_64-unknown-linux-musl --profile profiling
-docker run --rm -it -v $(pwd):/app uv-builder /app/target/x86_64-unknown-linux-musl/profiling/uv-dev resolve-many --cache-dir /app/cache-docker /app/scripts/popular_packages/pypi_10k_most_dependents.txt
+cargo build --bin uv --target x86_64-unknown-linux-musl --profile profiling
+docker run --rm -it -v "$(pwd):/app" uv-builder \
+    /app/target/x86_64-unknown-linux-musl/profiling/uv --config-file /app/test/uv.toml \
+    pip compile /app/test/requirements/trio.in --cache-dir /app/cache-docker
 ```
 
 We recommend using this container if you don't trust the dependency tree of the package(s) you are trying to resolve or install.

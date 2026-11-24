@@ -374,6 +374,35 @@ package = false
 
 ______________________________________________________________________
 
+### \[[`proxy-index`](#proxy-index)\](#proxy-index)
+
+The proxy indexes to use when resolving and downloading packages.
+
+`proxy-for` names a configured upstream index, `url` sets the proxy's Simple API URL, and `artifact-base-url` sets its package download URL prefix. uv records upstream URLs in lockfiles.
+
+**Default value**: `[]`
+
+**Type**: `dict`
+
+**Example usage**:
+
+pyproject.toml
+
+```
+[[tool.uv.index]]
+name = "pypi"
+url = "https://pypi.org/simple/"
+default = true
+
+[[tool.uv.proxy-index]]
+name = "socket"
+url = "https://proxy.example.com/simple/"
+artifact-base-url = "https://proxy.example.com/files/"
+proxy-for = "pypi"
+```
+
+______________________________________________________________________
+
 ### \[[`required-environments`](#required-environments)\](#required-environments)
 
 A list of required platforms, for packages that lack source distributions.
@@ -1775,6 +1804,46 @@ preview-features = ["json-output"]
 preview-features = true
 # or
 preview-features = ["json-output"]
+```
+
+______________________________________________________________________
+
+### \[[`proxy-index`](#proxy-index)\](#proxy-index)
+
+The proxy indexes to use when resolving and downloading packages.
+
+`proxy-for` names a configured upstream index, `url` sets the proxy's Simple API URL, and `artifact-base-url` sets its package download URL prefix. uv records upstream URLs in lockfiles.
+
+**Default value**: `"[]"`
+
+**Type**: `dict`
+
+**Example usage**:
+
+```
+[[tool.uv.index]]
+name = "pypi"
+url = "https://pypi.org/simple/"
+default = true
+
+[[tool.uv.proxy-index]]
+name = "socket"
+url = "https://proxy.example.com/simple/"
+artifact-base-url = "https://proxy.example.com/files/"
+proxy-for = "pypi"
+```
+
+```
+[[tool.uv.index]]
+name = "pypi"
+url = "https://pypi.org/simple/"
+default = true
+
+[[tool.uv.proxy-index]]
+name = "socket"
+url = "https://proxy.example.com/simple/"
+artifact-base-url = "https://proxy.example.com/files/"
+proxy-for = "pypi"
 ```
 
 ______________________________________________________________________
