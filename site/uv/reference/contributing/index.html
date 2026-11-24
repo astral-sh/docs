@@ -4130,7 +4130,7 @@ groups include <code>jaq</code>. Use <code>uv run --only-group=jaq &lt;script&gt
 <a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>uv<span class="w"> </span>run<span class="w"> </span>--only-group<span class="o">=</span>check<span class="w"> </span>ruff<span class="w"> </span>check<span class="w"> </span>.
 <a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>
 <a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="c1"># Python type checking</span>
-<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>uv<span class="w"> </span>run<span class="w"> </span>--only-group<span class="o">=</span>check<span class="w"> </span>ty<span class="w"> </span>check<span class="w"> </span>python/uv
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="nv">TY_UV</span><span class="o">=</span>scripts<span class="w"> </span><span class="nv">UV_LOCKED</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>uv<span class="w"> </span>run<span class="w"> </span>--only-group<span class="o">=</span>check<span class="w"> </span>ty<span class="w"> </span>check
 <a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>
 <a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="c1"># Python project metadata and uv schema</span>
 <a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>./scripts/validate-pyproject.sh
@@ -4142,7 +4142,7 @@ groups include <code>jaq</code>. Use <code>uv run --only-group=jaq &lt;script&gt
 <a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a>shellcheck<span class="w"> </span>&lt;script&gt;
 <a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a>
 <a id="__codelineno-14-20" name="__codelineno-14-20" href="#__codelineno-14-20"></a><span class="c1"># Spell checking</span>
-<a id="__codelineno-14-21" name="__codelineno-14-21" href="#__codelineno-14-21"></a>uv<span class="w"> </span>run<span class="w"> </span>--only-group<span class="o">=</span>check<span class="w"> </span>typos
+<a id="__codelineno-14-21" name="__codelineno-14-21" href="#__codelineno-14-21"></a>uv<span class="w"> </span>run<span class="w"> </span>--only-group<span class="o">=</span>typos<span class="w"> </span>typos
 <a id="__codelineno-14-22" name="__codelineno-14-22" href="#__codelineno-14-22"></a>
 <a id="__codelineno-14-23" name="__codelineno-14-23" href="#__codelineno-14-23"></a><span class="c1"># Unused Rust dependencies</span>
 <a id="__codelineno-14-24" name="__codelineno-14-24" href="#__codelineno-14-24"></a>uv<span class="w"> </span>run<span class="w"> </span>--only-group<span class="o">=</span>check<span class="w"> </span>cargo-shear
@@ -4170,8 +4170,10 @@ system
 just resolving requirements. To prevent this, there's a Docker container you can run commands in:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="gp">$ </span>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>uv-builder<span class="w"> </span>-f<span class="w"> </span>crates/uv-dev/builder.dockerfile<span class="w"> </span>--load<span class="w"> </span>.
 <a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="gp"># </span>Build<span class="w"> </span><span class="k">for</span><span class="w"> </span>musl<span class="w"> </span>to<span class="w"> </span>avoid<span class="w"> </span>glibc<span class="w"> </span>errors,<span class="w"> </span>might<span class="w"> </span>not<span class="w"> </span>be<span class="w"> </span>required<span class="w"> </span>with<span class="w"> </span>your<span class="w"> </span>OS<span class="w"> </span>version
-<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="go">cargo build --target x86_64-unknown-linux-musl --profile profiling</span>
-<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="go">docker run --rm -it -v $(pwd):/app uv-builder /app/target/x86_64-unknown-linux-musl/profiling/uv-dev resolve-many --cache-dir /app/cache-docker /app/scripts/popular_packages/pypi_10k_most_dependents.txt</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="go">cargo build --bin uv --target x86_64-unknown-linux-musl --profile profiling</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="go">docker run --rm -it -v &quot;$(pwd):/app&quot; uv-builder \</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="go">    /app/target/x86_64-unknown-linux-musl/profiling/uv --config-file /app/test/uv.toml \</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="go">    pip compile /app/test/requirements/trio.in --cache-dir /app/cache-docker</span>
 </code></pre></div>
 <p>We recommend using this container if you don't trust the dependency tree of the package(s) you are
 trying to resolve or install.</p>
